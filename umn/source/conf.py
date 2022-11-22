@@ -28,8 +28,6 @@ project = 'Cloud Container Service'
 otcdocs_repo_name = 'opentelekomcloud-docs/cloud-container-engine'
 # Those variables are required for edit/bug links
 
-
-
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -92,9 +90,4 @@ html_title = "Cloud Container Service - User Guide"
 html_static_path = ['_static']
 
 # -- Options for PDF output --------------------------------------------------
-latex_documents = [
-('index',
-     'cce-umn.tex',
-     u'Cloud Container Service - User Guide',
-     u'OpenTelekomCloud', 'manual'),
-]
+latex_documents = []
