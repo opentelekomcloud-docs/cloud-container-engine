@@ -89,5 +89,8 @@ html_title = "Cloud Container Service - User Guide"
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+# Do not include sources into the rendered results
+html_copy_source = False
+
 # -- Options for PDF output --------------------------------------------------
 latex_documents = []
