@@ -30,96 +30,96 @@ Operations supported by a fine-grained policy are specific to APIs. The followin
 
 .. table:: **Table 1** CCE actions
 
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Permissions                                     | Actions            | Authorization Scope    | APIs                                                                       |
-   +=================================================+====================+========================+============================================================================+
-   | Listing clusters in a specified project         | cce:cluster:list   | Supported:             | GET /api/v3/projects/{project_id}/clusters                                 |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Obtaining information about a specified cluster | cce:cluster:get    | Supported:             | GET /api/v3/projects/{project_id}/clusters/{cluster_id}                    |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Creating a cluster                              | cce:cluster:create | Supported:             | POST /api/v3/projects/{project_id}/clusters                                |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Updating information about a specified cluster  | cce:cluster:update | Supported:             | PUT /api/v3/projects/{project_id}/clusters/{cluster_id}                    |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Deleting a cluster                              | cce:cluster:delete | Supported:             | DELETE /api/v3/projects/{project_id}/clusters/{cluster_id}                 |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Obtaining a cluster certificate                 | cce:cluster:get    | Supported:             | GET /api/v3/projects/{project_id}/clusters/{cluster_id}/clustercert        |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Listing all nodes in a cluster                  | cce:node:list      | Supported:             | GET /api/v3/projects/{project_id}/clusters/{cluster_id}/nodes              |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Obtaining information about a specified node    | cce:node:get       | Supported:             | GET /api/v3/projects/{project_id}/clusters/{cluster_id}/nodes/{node_id}    |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Creating a node                                 | cce:node:create    | Supported:             | POST /api/v3/projects/{project_id}/clusters/{cluster_id}/nodes             |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Updating information about a specified node     | cce:node:update    | Supported:             | PUT /api/v3/projects/{project_id}/clusters/{cluster_id}/nodes/{node_id}    |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Deleting a node                                 | cce:node:delete    | Supported:             | DELETE /api/v3/projects/{project_id}/clusters/{cluster_id}/nodes/{node_id} |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Obtaining job progress                          | cce:job:get        | Supported:             | GET /api/v3/projects/{project_id}/jobs/{job_id}                            |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Listing all node pools in a specified cluster   | cce:nodepool:list  | Supported:             | GET /api/v3/projects/{project_id}/clusters/{cluster_id}/nodepools          |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Creating a PersistentVolumeClaim                | cce:storage:create | Supported:             | POST /api/v1/namespaces/{namespace}/cloudpersistentvolumeclaims            |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Deleting a PersistentVolumeClaim                | cce:storage:delete | Supported:             | DELETE /api/v1/namespaces/{namespace}/cloudpersistentvolumeclaims/{name}   |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Creating a PersistentVolume                     | cce:storage:create | Supported:             | POST /api/v1/cloudpersistentvolumes                                        |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Deleting a PersistentVolume                     | cce:storage:delete | Supported:             | DELETE /api/v1/cloudpersistentvolumes/{name}                               |
-   |                                                 |                    |                        |                                                                            |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
-   | Operating on Kubernetes resources               | cce:kubernetes:\*  | Supported:             | -  /api/\*                                                                 |
-   |                                                 |                    |                        | -  /apis/\*                                                                |
-   |                                                 |                    | -  IAM projects        |                                                                            |
-   |                                                 |                    | -  Enterprise projects |                                                                            |
-   +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Permissions                                     | Actions              | Authorization Scope    | APIs                                                                       |
+   +=================================================+======================+========================+============================================================================+
+   | Listing clusters in a specified project         | cce:cluster:list     | Supported:             | GET /api/v3/projects/{project_id}/clusters                                 |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Obtaining information about a specified cluster | cce:cluster:get      | Supported:             | GET /api/v3/projects/{project_id}/clusters/{cluster_id}                    |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Creating a cluster                              | cce:cluster:create   | Supported:             | POST /api/v3/projects/{project_id}/clusters                                |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Updating information about a specified cluster  | cce:cluster:update   | Supported:             | PUT /api/v3/projects/{project_id}/clusters/{cluster_id}                    |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Deleting a cluster                              | cce:cluster:delete   | Supported:             | DELETE /api/v3/projects/{project_id}/clusters/{cluster_id}                 |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Obtaining a cluster certificate                 | cce:cluster:get      | Supported:             | GET /api/v3/projects/{project_id}/clusters/{cluster_id}/clustercert        |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Listing all nodes in a cluster                  | cce:node:list        | Supported:             | GET /api/v3/projects/{project_id}/clusters/{cluster_id}/nodes              |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Obtaining information about a specified node    | cce:node:get         | Supported:             | GET /api/v3/projects/{project_id}/clusters/{cluster_id}/nodes/{node_id}    |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Creating a node                                 | cce:node:create      | Supported:             | POST /api/v3/projects/{project_id}/clusters/{cluster_id}/nodes             |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Updating information about a specified node     | cce:node:update      | Supported:             | PUT /api/v3/projects/{project_id}/clusters/{cluster_id}/nodes/{node_id}    |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Deleting a node                                 | cce:node:delete      | Supported:             | DELETE /api/v3/projects/{project_id}/clusters/{cluster_id}/nodes/{node_id} |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Obtaining job progress                          | cce:job:get          | Supported:             | GET /api/v3/projects/{project_id}/jobs/{job_id}                            |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Listing all node pools in a specified cluster   | cce:nodepool:list    | Supported:             | GET /api/v3/projects/{project_id}/clusters/{cluster_id}/nodepools          |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Creating a PersistentVolumeClaim                | cce:storage:create   | Supported:             | POST /api/v1/namespaces/{namespace}/cloudpersistentvolumeclaims            |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Deleting a PersistentVolumeClaim                | cce:storage:delete   | Supported:             | DELETE /api/v1/namespaces/{namespace}/cloudpersistentvolumeclaims/{name}   |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Creating a PersistentVolume                     | cce:storage:create   | Supported:             | POST /api/v1/cloudpersistentvolumes                                        |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Deleting a PersistentVolume                     | cce:storage:delete   | Supported:             | DELETE /api/v1/cloudpersistentvolumes/{name}                               |
+   |                                                 |                      |                        |                                                                            |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
+   | Operating on Kubernetes resources               | cce:kubernetes:``*`` | Supported:             | -  /api/``*``                                                              |
+   |                                                 |                      |                        | -  /apis/``*``                                                             |
+   |                                                 |                      | -  IAM projects        |                                                                            |
+   |                                                 |                      | -  Enterprise projects |                                                                            |
+   +-------------------------------------------------+----------------------+------------------------+----------------------------------------------------------------------------+
