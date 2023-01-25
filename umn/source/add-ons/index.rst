@@ -18,9 +18,9 @@ Add-ons
    :hidden: 
 
    overview
-   coredns_system_resource_add-on,_mandatory
-   storage-driver_system_resource_add-on,_mandatory
-   everest_system_resource_add-on,_mandatory
+   coredns_system_resource_add-on_mandatory
+   storage-driver_system_resource_add-on_mandatory
+   everest_system_resource_add-on_mandatory
    autoscaler
    metrics-server
    gpu-beta
