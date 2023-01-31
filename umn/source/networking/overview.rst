@@ -8,7 +8,7 @@ Overview
 You can learn about a cluster network from the following two aspects:
 
 -  What is a cluster network like? A cluster consists of multiple nodes, and pods (or containers) are running on the nodes. Nodes and containers need to communicate with each other. For details about the cluster network types and their functions, see :ref:`Cluster Network Structure <cce_01_0010__section1131733719195>`.
--  How is pod access is implemented in a cluster? Accessing a pod or container is a process of accessing services of a user. Kubernetes provides :ref:`Service <cce_01_0010__section1860619221134>` and :ref:`Ingress <cce_01_0010__section1248852094313>` to address pod access issues. This section summarizes common network access scenarios. You can select the proper scenario based on site requirements. For details about the network access scenarios, see :ref:`Access Scenarios <cce_01_0010__section1286493159>`.
+-  How is pod access implemented in a cluster? Accessing a pod or container is a process of accessing services of a user. Kubernetes provides :ref:`Service <cce_01_0010__section1860619221134>` and :ref:`Ingress <cce_01_0010__section1248852094313>` to address pod access issues. This section summarizes common network access scenarios. You can select the proper scenario based on site requirements. For details about the network access scenarios, see :ref:`Access Scenarios <cce_01_0010__section1286493159>`.
 
 .. _cce_01_0010__section1131733719195:
 
