@@ -1,6 +1,6 @@
-=======================================
-Cloud Container Service - API Reference
-=======================================
+======================================
+Cloud Container Engine - API Reference
+======================================
 
 .. toctree::
    :maxdepth: 1
