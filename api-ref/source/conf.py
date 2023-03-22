@@ -24,7 +24,7 @@ extensions = [
 otcdocs_auto_name = False
 otcdocs_auto_version = False
 
-project = 'Cloud Container Service'
+project = 'Cloud Container Engine'
 otcdocs_repo_name = 'opentelekomcloud-docs/cloud-container-engine'
 # Those variables are required for edit/bug links
 
