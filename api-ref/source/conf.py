@@ -81,7 +81,7 @@ html_theme_options = {
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 
-html_title = "Cloud Container Service - API Reference"
+html_title = "Cloud Container Engine - API Reference"
 
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -96,6 +96,6 @@ html_copy_source = False
 latex_documents = [
     ('index',
      'cce-api-ref.tex',
-     u'Cloud Container Service - API Reference',
+     u'Cloud Container Engine - API Reference',
      u'OpenTelekomCloud', 'manual'),
 ]
