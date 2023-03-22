@@ -1,6 +1,6 @@
-====================================
-Cloud Container Service - User Guide
-====================================
+===================================
+Cloud Container Engine - User Guide
+===================================
 
 .. toctree::
    :maxdepth: 1
