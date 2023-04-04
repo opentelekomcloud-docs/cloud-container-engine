@@ -15,6 +15,7 @@ To find detailed API definitions for different Kubernetes versions, visit the fo
 -  1.19: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/
 -  1.21: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/
 -  1.23: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/
+-  1.25: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/
 
 Based on the open source Kubernetes APIs, CCE enhances and adapts following functions.
 

@@ -152,6 +152,16 @@ Response
    +-----------------------+---------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | dataVolumes           | Array of :ref:`Volume <cce_02_0357__response_v3rootvolume>` objects | Data disk parameters of the node. Currently, you can add the second data disk for your node on the CCE console.                                                                                                                                                                      |
    +-----------------------+---------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | storage               | :ref:`Storage <cce_02_0357__response_storage>` object               | Disk initialization management parameter.                                                                                                                                                                                                                                            |
+   |                       |                                                                     |                                                                                                                                                                                                                                                                                      |
+   |                       |                                                                     | This parameter is complex to configure. For details, see :ref:`Attaching Disks to a Node <node_storage_example>`.                                                                                                                                                                    |
+   |                       |                                                                     |                                                                                                                                                                                                                                                                                      |
+   |                       |                                                                     | If this parameter retains its default, disks are managed based on the DockerLVMConfigOverride (discarded) parameter in extendParam. This parameter is supported by clusters of version 1.15.11 and later.                                                                            |
+   |                       |                                                                     |                                                                                                                                                                                                                                                                                      |
+   |                       |                                                                     | .. note::                                                                                                                                                                                                                                                                            |
+   |                       |                                                                     |                                                                                                                                                                                                                                                                                      |
+   |                       |                                                                     |    If a node specification involves local disks and EVS disks at the same time, do not retain the default value of this parameter to prevent unexpected disk partitions.                                                                                                             |
+   +-----------------------+---------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | publicIP              | :ref:`V3NodePublicIP <cce_02_0357__response_v3nodepublicip>` object | EIP of the node.                                                                                                                                                                                                                                                                     |
    +-----------------------+---------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | nodeNicSpec           | :ref:`NodeNicSpec <cce_02_0357__response_nodenicspec>` object       | NIC information of the node.                                                                                                                                                                                                                                                         |
@@ -221,7 +231,7 @@ Response
    |                       |                                                                     | -  **productID**: product ID.                                                                                                                                                                                                                                                        |
    |                       |                                                                     | -  **maxPods**: maximum number of pods that can be created on a node, including the default system pods. Value range: 16 to 256 This limit prevents the node from being overloaded fpr managing too many pods.                                                                       |
    |                       |                                                                     |                                                                                                                                                                                                                                                                                      |
-   |                       |                                                                     | -  **DockerLVMConfigOverride**: Docker data disk configurations. The following is an example default configuration:                                                                                                                                                                  |
+   |                       |                                                                     | -  **DockerLVMConfigOverride**: Docker data disk configuration item. (This parameter has been discarded. Use the storage field instead.) The following is an example default configuration:                                                                                          |
    |                       |                                                                     |                                                                                                                                                                                                                                                                                      |
    |                       |                                                                     |    .. code-block::                                                                                                                                                                                                                                                                   |
    |                       |                                                                     |                                                                                                                                                                                                                                                                                      |
@@ -257,6 +267,8 @@ Response
    |                       |                                                                     |    The input value must be Base64-encoded. (Command: **echo -n Content to be encoded \| base64**)                                                                                                                                                                                    |
    |                       |                                                                     |                                                                                                                                                                                                                                                                                      |
    |                       |                                                                     | -  **alpha.cce/NodeImageID**: This field is required when a custom image is used to create a BMS node.                                                                                                                                                                               |
+   +-----------------------+---------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | runtime               | :ref:`Runtime <cce_02_0357__table163721555105015>` object           | Container runtime. The default value is **docker**.                                                                                                                                                                                                                                  |
    +-----------------------+---------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. _cce_02_0357__response_login:
@@ -511,121 +523,126 @@ Response
    | jobId                 | String                | ID of the job to delete the node pool.                                     |
    +-----------------------+-----------------------+----------------------------------------------------------------------------+
 
-**Response example**:
+.. _cce_02_0357__table163721555105015:
 
-.. code-block::
+.. table:: **Table 20** Runtime
 
-   {
-       "kind": "List",
-       "apiVersion": "v3",
-       "items": [
-           {
-               "kind": "NodePool",
-               "apiVersion": "v3",
-               "metadata": {
-                   "name": "nodepool-name-change",
-                   "uid": "feec6013-cd7e-11ea-8c7a-0255ac100be7"
-               },
-               "spec": {
-                   "initialNodeCount": 0,
-                   "type": "vm",
-                   "nodeTemplate": {
-                       "flavor": "s6.large.2",
-                       "az": "eu-de-02",
-                       "os": "EulerOS 2.5",
-                       "login": {
-                           "sshKey": "KeyPair-nodepool",
-                           "userPassword": {}
-                       },
-                       "rootVolume": {
-                           "volumetype": "SAS",
-                           "size": 40
-                       },
-                       "dataVolumes": [
-                           {
-                               "volumetype": "SAS",
-                               "size": 100,
-                               "extendParam": {
-                                   "useType": "docker"
-                               }
-                           }
-                       ],
-                       "publicIP": {
-                           "eip": {
-                               "bandwidth": {}
-                           }
-                       },
-                       "nodeNicSpec": {
-                           "primaryNic": {
-                               "subnetId": "31be174a-0c7f-4b71-bb0d-d325fecb90ef"
-                           }
-                       },
-                       "billingMode": 0,
-                       "taints": [
-                           {
-                               "key": "change-taints",
-                               "value": "value1",
-                               "effect": "NoExecute"
-                           }
-                       ],
-                       "k8sTags": {
-                           "cce.cloud.com/cce-nodepool": "nodepool-name-change",
-                           "change-tag": "value2"
-                       },
-                       "userTags": [
-                           {
-                               "key": "change-resource-tag",
-                               "value": "value3"
-                           }
-                       ],
-                       "extendParam": {
-                           "DockerLVMConfigOverride": "dockerThinpool=vgpaas/90%VG;kubernetesLV=vgpaas/10%VG;diskType=evs;lvType=linear",
-                           "alpha.cce/NodeImageID": "85bd7ec5-bca4-4f5f-947b-6c1bf02599d3",
-                           "alpha.cce/postInstall": "bHMgLWwK",
-                           "alpha.cce/preInstall": "bHMgLWw=",
-                           "maxPods": 110
-                       }
-                   },
-                   "autoscaling": {
-                       "enable": true,
-                       "minNodeCount": 2,
-                       "maxNodeCount": 4,
-                       "scaleDownCooldownTime": 10,
-                       "priority": 2
-                   },
-                   "nodeManagement": {
-                       "serverGroupReference": "2129f95a-f233-4cd8-a1b2-9c0acdf918d3"
-                   }
-               },
-               "status": {
-                   "currentNode": 0,
-                   "phase": ""
-               }
-           }
-       ]
-   }
+   +-----------------+-----------------+-----------------+-----------------------------------------------------+
+   | Parameter       | Mandatory       | Type            | Description                                         |
+   +=================+=================+=================+=====================================================+
+   | name            | No              | String          | Container runtime. The default value is **docker**. |
+   |                 |                 |                 |                                                     |
+   |                 |                 |                 | Enumeration values:                                 |
+   |                 |                 |                 |                                                     |
+   |                 |                 |                 | -  docker                                           |
+   |                 |                 |                 | -  containerd                                       |
+   +-----------------+-----------------+-----------------+-----------------------------------------------------+
 
-Status Code
+.. _cce_02_0357__response_storage:
 
-:ref:`Table 20 <cce_02_0357__en-us_topic_0079614900_table46761928>` describes the status code of this API.
+.. table:: **Table 21** Storage
 
-.. _cce_02_0357__en-us_topic_0079614900_table46761928:
+   +------------------+-----------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | Parameter        | Type                                                                              | Description                                                                                 |
+   +==================+===================================================================================+=============================================================================================+
+   | storageSelectors | Array of :ref:`StorageSelectors <cce_02_0357__response_storageselectors>` objects | Disk selection. Matched disks are managed according to **matchLabels** and **storageType**. |
+   +------------------+-----------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | storageGroups    | Array of :ref:`StorageGroups <cce_02_0357__response_storagegroups>` objects       | A storage group consists of multiple storage devices. It is used to divide storage space.   |
+   +------------------+-----------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
 
-.. table:: **Table 20** Status code
+.. _cce_02_0357__response_storageselectors:
 
-   +-------------+---------------------------------------------------------------------------+
-   | Status Code | Description                                                               |
-   +=============+===========================================================================+
-   | 200         | Information about all node pools in the cluster is successfully obtained. |
-   +-------------+---------------------------------------------------------------------------+
+.. table:: **Table 22** StorageSelectors
 
-For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+   +-------------+---------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter   | Type                                                          | Description                                                                                                                                                                                                                                                         |
+   +=============+===============================================================+=====================================================================================================================================================================================================================================================================+
+   | name        | String                                                        | Selector name, used as the index of **selectorNames** in **storageGroup**. Therefore, the name of each selector must be unique.                                                                                                                                     |
+   +-------------+---------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | storageType | String                                                        | Specifies the storage type. Currently, only **evs** (EVS volumes) and **local** (local volumes) are supported. The local storage does not support disk selection. All local disks will form a VG. Therefore, only one storageSelector of the local type is allowed. |
+   +-------------+---------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | matchLabels | :ref:`matchLabels <cce_02_0357__response_matchlabels>` object | Matching field of an EVS volume. The **size**, **volumeType**, **metadataEncrypted**, **metadataCmkid** and **count** fields are supported.                                                                                                                         |
+   +-------------+---------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-Error Codes
+.. _cce_02_0357__response_matchlabels:
 
-See :ref:`Error Codes <cce_02_0250>`.
+.. table:: **Table 23** matchLabels
 
-For details about the response parameters, see :ref:`Table 18 <cce_02_0354__table835415466262>`.
+   +-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------+
+   | Parameter         | Type   | Description                                                                                                                 |
+   +===================+========+=============================================================================================================================+
+   | size              | String | Matched disk size. If this parameter is left unspecified, the disk size is not limited. Example: 100                        |
+   +-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------+
+   | volumeType        | String | EVS disk type. Currently, SSD, GPSSD and SAS are supported.                                                                 |
+   +-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------+
+   | metadataEncrypted | String | Disk encryption identifier. **0** indicates that the disk is not encrypted, and **1** indicates that the disk is encrypted. |
+   +-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------+
+   | metadataCmkid     | String | Customer master key ID of an encrypted disk. The value is a 36-byte string.                                                 |
+   +-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------+
+   | count             | String | Number of disks to be selected. If this parameter is left blank, all disks of this type are selected.                       |
+   +-------------------+--------+-----------------------------------------------------------------------------------------------------------------------------+
+
+.. _cce_02_0357__response_storagegroups:
+
+.. table:: **Table 24** StorageGroups
+
+   +---------------+---------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter     | Type                                                                      | Description                                                                                                                                                       |
+   +===============+===========================================================================+===================================================================================================================================================================+
+   | name          | String                                                                    | Name of a virtual storage group, which must be unique.                                                                                                            |
+   +---------------+---------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | cceManaged    | Boolean                                                                   | Storage space for Kubernetes and runtime components. Only one group can be set to **true**. If this parameter is left blank, the default value **false** is used. |
+   +---------------+---------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | selectorNames | Array of strings                                                          | This parameter corresponds to **name** in **storageSelectors**. A group can match multiple selectors, but a selector can match only one group.                    |
+   +---------------+---------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | virtualSpaces | Array of :ref:`VirtualSpace <cce_02_0357__response_virtualspace>` objects | Detailed management of space configuration in a group.                                                                                                            |
+   +---------------+---------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _cce_02_0357__response_virtualspace:
+
+.. table:: **Table 25** VirtualSpace
+
+   +-----------------------+-------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+
+   | Parameter             | Type                                                              | Description                                                                                                                 |
+   +=======================+===================================================================+=============================================================================================================================+
+   | name                  | String                                                            | Name of a virtualSpace.                                                                                                     |
+   |                       |                                                                   |                                                                                                                             |
+   |                       |                                                                   | -  **Kubernetes**: Kubernetes space configuration. **lvmConfig** needs to be configured.                                    |
+   |                       |                                                                   | -  **runtime**: runtime space configuration. **runtimeConfig** needs to be configured.                                      |
+   |                       |                                                                   | -  **user**: user space configuration. **lvmConfig** needs to be configured.                                                |
+   +-----------------------+-------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+
+   | size                  | String                                                            | Size of a virtualSpace. The value must be an integer in percentage. Example: 90%.                                           |
+   |                       |                                                                   |                                                                                                                             |
+   |                       |                                                                   | .. note::                                                                                                                   |
+   |                       |                                                                   |                                                                                                                             |
+   |                       |                                                                   |    The sum of the percentages of all virtualSpaces in a group cannot exceed 100%.                                           |
+   +-----------------------+-------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+
+   | lvmConfig             | :ref:`LVMConfig <cce_02_0357__response_lvmconfig>` object         | LVM configurations, applicable to **kubernetes** and **user** spaces. Note that one virtual space supports only one config. |
+   +-----------------------+-------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+
+   | runtimeConfig         | :ref:`RuntimeConfig <cce_02_0357__response_runtimeconfig>` object | runtime configurations, applicable to the **runtime** space. Note that one virtual space supports only one config.          |
+   +-----------------------+-------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+
+
+.. _cce_02_0357__response_lvmconfig:
+
+.. table:: **Table 26** LVMConfig
+
+   +-----------+--------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter | Type   | Description                                                                                                                                                                                            |
+   +===========+========+========================================================================================================================================================================================================+
+   | lvType    | String | LVM write mode. **linear** indicates the linear mode. **striped** indicates the striped mode, in which multiple disks are used to form a strip to improve disk performance.                            |
+   +-----------+--------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | path      | String | Path to which the disk is attached. This parameter takes effect only in user configuration. The value is an absolute path. Digits, letters, periods (.), hyphens (-), and underscores (_) are allowed. |
+   +-----------+--------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _cce_02_0357__response_runtimeconfig:
+
+.. table:: **Table 27** RuntimeConfig
+
+   +-----------+--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter | Type   | Description                                                                                                                                                                 |
+   +===========+========+=============================================================================================================================================================================+
+   | lvType    | String | LVM write mode. **linear** indicates the linear mode. **striped** indicates the striped mode, in which multiple disks are used to form a strip to improve disk performance. |
+   +-----------+--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Example response:**
 
@@ -666,6 +683,41 @@ For details about the response parameters, see :ref:`Table 18 <cce_02_0354__tabl
                        }
                    }
                ],
+               "storage": {
+                   "storageSelectors": [
+                       {
+                           "name": "cceUse",
+                           "storageType": "evs",
+                           "matchLabels": {
+                               "size": "100",
+                               "volumeType": "SAS",
+                               "count": "1"
+                           }
+                       }
+                   ],
+                   "storageGroups": [
+                       {
+                           "name": "vgpaas",
+                           "selectorNames": [
+                               "cceUse"
+                           ],
+                           "cceManaged": true,
+                           "virtualSpaces": [
+                               {
+                                   "name": "runtime",
+                                   "size": "90%"
+                               },
+                               {
+                                   "name": "kubernetes",
+                                   "size": "10%"
+                               }
+                           ]
+                       }
+                   ]
+               },
+               "runtime": {
+                   "name":"docker"
+               },
                "publicIP": {
                    "eip": {
                        "bandwidth": {}
@@ -722,11 +774,11 @@ For details about the response parameters, see :ref:`Table 18 <cce_02_0354__tabl
 Status Code
 -----------
 
-:ref:`Table 21 <cce_02_0357__zh-cn_topic_0079614900_table46761928>` describes the status code of this API.
+:ref:`Table 28 <cce_02_0357__zh-cn_topic_0079614900_table46761928>` describes the status code of this API.
 
 .. _cce_02_0357__zh-cn_topic_0079614900_table46761928:
 
-.. table:: **Table 21** Status code
+.. table:: **Table 28** Status code
 
    =========== ===========================================================
    Status Code Description
