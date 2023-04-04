@@ -61,17 +61,13 @@ Request
 
 .. table:: **Table 3** NodePool structure
 
-   +------------+-----------+--------------------------------------------------------+-------------------------------------------+
-   | Parameter  | Mandatory | Type                                                   | Description                               |
-   +============+===========+========================================================+===========================================+
-   | kind       | Yes       | String                                                 | API type, which is fixed at **NodePool**. |
-   +------------+-----------+--------------------------------------------------------+-------------------------------------------+
-   | apiVersion | Yes       | String                                                 | API version, which is fixed at **v3**.    |
-   +------------+-----------+--------------------------------------------------------+-------------------------------------------+
-   | metadata   | Yes       | :ref:`metadata <cce_02_0356__table13456192212>` object | Metadata of the node pool.                |
-   +------------+-----------+--------------------------------------------------------+-------------------------------------------+
-   | spec       | Yes       | :ref:`spec <cce_02_0356__table620623542313>` object    | Parameters of the node pool.              |
-   +------------+-----------+--------------------------------------------------------+-------------------------------------------+
+   +-----------+-----------+--------------------------------------------------------+------------------------------+
+   | Parameter | Mandatory | Type                                                   | Description                  |
+   +===========+===========+========================================================+==============================+
+   | metadata  | Yes       | :ref:`metadata <cce_02_0356__table13456192212>` object | Metadata of the node pool.   |
+   +-----------+-----------+--------------------------------------------------------+------------------------------+
+   | spec      | Yes       | :ref:`spec <cce_02_0356__table620623542313>` object    | Parameters of the node pool. |
+   +-----------+-----------+--------------------------------------------------------+------------------------------+
 
 .. _cce_02_0356__table13456192212:
 
@@ -93,11 +89,6 @@ Request
    | Parameter        | Mandatory       | Type                | Description                                                                                                                                                                                                                                                                                                                         |
    +==================+=================+=====================+=====================================================================================================================================================================================================================================================================================================================================+
    | initialNodeCount | Yes             | Integer             | Expected number of nodes in this node pool. The value cannot be greater than the maximum number of nodes allowed for the cluster.                                                                                                                                                                                                   |
-   +------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | type             | No              | String              | Node pool type. If this parameter is left blank, the value **vm** is used by default.                                                                                                                                                                                                                                               |
-   |                  |                 |                     |                                                                                                                                                                                                                                                                                                                                     |
-   |                  |                 |                     | -  **vm**: ECS                                                                                                                                                                                                                                                                                                                      |
-   |                  |                 |                     | -  **ElasticBMS**: BMS. This value is valid in CCE Turbo cluster.                                                                                                                                                                                                                                                                   |
    +------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | autoscaling      | No              | autoscaling object  | Auto scaling parameters.                                                                                                                                                                                                                                                                                                            |
    +------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -176,85 +167,30 @@ Request
 .. code-block::
 
    {
-       "kind": "NodePool",
-       "apiVersion": "v3",
-       "metadata": {
-           "name": "nodepool-name-change",
-           "uid": "feec6013-cd7e-11ea-8c7a-0255ac100be7"
+     "metadata" : {
+       "name" : "nodepool-name-change"
+     },
+     "spec" : {
+       "nodeTemplate" : {
+         "k8sTags" : {
+           "cce.cloud.com/cce-nodepool": "nodepool-name-change",
+            "change-tag": "value2"
        },
-       "spec": {
-           "initialNodeCount": 0,
-           "type": "vm",
-           "nodeTemplate": {
-               "flavor": "s6.large.2",
-               "az": "eu-de-01",
-               "os": "EulerOS 2.5",
-               "login": {
-                   "sshKey": "KeyPair-nodepool",
-                   "userPassword": {}
-               },
-               "rootVolume": {
-                   "volumetype": "SATA",
-                   "size": 40
-               },
-               "dataVolumes": [
-                   {
-                       "volumetype": "SATA",
-                       "size": 100,
-                       "extendParam": {
-                           "useType": "docker"
-                       }
-                   }
-               ],
-               "publicIP": {
-                   "eip": {
-                       "bandwidth": {}
-                   }
-               },
-               "nodeNicSpec": {
-                   "primaryNic": {
-                       "subnetId": "31be174a-0c7f-4b71-bb0d-d325fecb90ef"
-                   }
-               },
-               "billingMode": 0,
-               "taints": [
-                   {
-                       "key": "change-taints",
-                       "value": "value1",
-                       "effect": "NoExecute"
-                   }
-               ],
-               "k8sTags": {
-                   "change-tag": "value2"
-               },
-               "userTags": [
-                   {
-                       "key": "change-resource-tag",
-                       "value": "value3"
-                   }
-               ],
-               "extendParam": {
-                   "DockerLVMConfigOverride": "dockerThinpool=vgpaas/90%VG;kubernetesLV=vgpaas/10%VG;diskType=evs;lvType=linear",
-                   "alpha.cce/postInstall": "bHMgLWwK",
-                   "alpha.cce/preInstall": "bHMgLWw=",
-                   "maxPods": 110
-               }
-           },
-           "autoscaling": {
-               "enable": true,
-               "minNodeCount": 2,
-               "maxNodeCount": 4,
-               "scaleDownCooldownTime": 10,
-               "priority": 2
-           },
-           "nodeManagement": {
-               "serverGroupReference": "2129f95a-f233-4cd8-a1b2-9c0acdf918d3"
-           }
+         "taints" : [ {
+           "key" : "status",
+           "value" : "unavailable",
+           "effect" : "NoSchedule"
+         } ],
        },
-       "status": {
-           "currentNode": 0,
-           "phase": ""
-       }
+       "autoscaling" : {
+         "enable" : true,
+         "minNodeCount" : 2,
+         "maxNodeCount" : 4,
+         "scaleDownCooldownTime" : 10,
+         "priority" : 2
+       },
+       "initialNodeCount" : 1
+     }
    }
 
 Response
@@ -262,7 +198,7 @@ Response
 
 **Response parameters**:
 
-:ref:`Table 18 <cce_02_0354__table835415466262>` describes the response parameters.
+:ref:`Table 26 <cce_02_0354__table835415466262>` describes the response parameters.
 
 **Response example**:
 
@@ -299,6 +235,41 @@ Response
                        }
                    }
                ],
+               "storage": {
+                   "storageSelectors": [
+                       {
+                           "name": "cceUse",
+                           "storageType": "evs",
+                           "matchLabels": {
+                               "size": "100",
+                               "volumeType": "SAS",
+                               "count": "1"
+                           }
+                       }
+                   ],
+                   "storageGroups": [
+                       {
+                           "name": "vgpaas",
+                           "selectorNames": [
+                               "cceUse"
+                           ],
+                           "cceManaged": true,
+                           "virtualSpaces": [
+                               {
+                                   "name": "runtime",
+                                   "size": "90%"
+                               },
+                               {
+                                   "name": "kubernetes",
+                                   "size": "10%"
+                               }
+                           ]
+                       }
+                   ]
+               },
+               "runtime": {
+                   "name":"docker"
+               },
                "publicIP": {
                    "eip": {
                        "bandwidth": {}

@@ -13,7 +13,7 @@ This API is used to create an empty cluster, which has only master nodes but do 
 .. note::
 
    -  The URL for cluster management is in the format of **https://Endpoint/uri**. In the URL, **uri** indicates the resource path, that is, the path for API access.
-   -  Info collect agent (ICAgent) is an O&M data collection agent used by Application Performance Management (APM) service. It runs on each server to collect data from probes in real time. When this API is called to create a cluster, ICAgent is not installed by default. To automatically install ICAgent during cluster creation, add **"cluster.install.addons.external/install": "[{\\"addonTemplateName\\":\\"icagent\\"}]"** to the **annotations** field in the request body.
+   -  Info collect agent (ICAgent) is an O&M data collection agent. It runs on each server to collect data from probes in real time. When this API is called to create a cluster, ICAgent is not installed by default. To automatically install ICAgent during cluster creation, add **"cluster.install.addons.external/install": "[{\\"addonTemplateName\\":\\"icagent\\"}]"** to the **annotations** field in the request body.
    -  Before creating a cluster, :ref:`Creating a VPC and Subnet <cce_02_0100>`. If a VPC and subnet already exists, you do not need to create them again.
    -  By default, an account can create a maximum of five clusters in each region.
 

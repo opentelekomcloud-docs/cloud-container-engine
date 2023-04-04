@@ -22,6 +22,10 @@ Cluster Management
 -  :ref:`Reading Job Progress <cce_02_0247>`
 -  :ref:`Querying the Access Information of a Specified Cluster <cce_02_0347>`
 -  :ref:`Modifying the Access Information of a Specified Cluster <cce_02_0346>`
+-  :ref:`Accepting a Node <addnode>`
+-  :ref:`Resetting a Node <resetnode>`
+-  :ref:`Removing a Node <removenode>`
+-  :ref:`Migrating a Node <migratenode>`
 -  :ref:`Creating a Node Pool <cce_02_0354>`
 -  :ref:`Querying a Specified Node Pool <cce_02_0355>`
 -  :ref:`Updating a Specified Node Pool <cce_02_0356>`
@@ -49,6 +53,10 @@ Cluster Management
    reading_job_progress
    querying_the_access_information_of_a_specified_cluster
    modifying_the_access_information_of_a_specified_cluster
+   accepting_a_node
+   resetting_a_node
+   removing_a_node
+   migrating_a_node
    creating_a_node_pool
    querying_a_specified_node_pool
    updating_a_specified_node_pool

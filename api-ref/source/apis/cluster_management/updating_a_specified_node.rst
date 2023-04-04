@@ -123,6 +123,38 @@ For the description of the response parameters, see :ref:`Table 4 <cce_02_0243__
            "diskSize": 100
          }
        ],
+       "storage": {
+           "storageSelectors": [
+               {
+                   "name": "cceUse",
+                   "storageType": "evs",
+                   "matchLabels": {
+                       "size": "100",
+                       "volumeType": "SAS",
+                       "count": "1"
+                   }
+               }
+           ],
+           "storageGroups": [
+               {
+                   "name": "vgpaas",
+                   "selectorNames": [
+                       "cceUse"
+                   ],
+                   "cceManaged": true,
+                   "virtualSpaces": [
+                       {
+                           "name": "runtime",
+                           "size": "90%"
+                       },
+                       {
+                           "name": "kubernetes",
+                           "size": "10%"
+                       }
+                   ]
+               }
+           ]
+       },
         "publicIP": {
            "eip": {
                "bandwidth": {}
