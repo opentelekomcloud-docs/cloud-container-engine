@@ -1,6 +1,6 @@
-:original_name: cce_01_0338.html
+:original_name: cce_10_0338.html
 
-.. _cce_01_0338:
+.. _cce_10_0338:
 
 Removing a Node
 ===============
@@ -8,19 +8,19 @@ Removing a Node
 Scenario
 --------
 
-Removing a node from a cluster in CCE will re-install the node OS and clear CCE components on the node.
+Removing a node from a cluster will re-install the node OS and clear CCE components on the node.
 
-Removing a node will not delete the server (ECS) corresponding to the node. You are advised to remove nodes at off-peak hours to avoid impacts on your services.
+Removing a node will not delete the server corresponding to the node. You are advised to remove nodes at off-peak hours to avoid impacts on your services.
 
-After a node is removed from the cluster, the node is still running and incurs fees.
+After a node is removed from the cluster, the node is still running.
 
 Notes and Constraints
 ---------------------
 
--  Nodes can be removed only when the cluster is in the Available or Unavailable state.
--  A CCE node can be removed only when it is in the Active, Abnormal, or Error state.
+-  Nodes can be removed only when the cluster is in the **Available** or **Unavailable** state.
+-  A CCE node can be removed only when it is in the **Active**, **Abnormal**, or **Error** state.
 -  A CCE node in the Active state can have its OS re-installed and CCE components cleared after it is removed.
--  If the OS fails to be re-installed after the node is removed, manually re-install the OS. After the re-installation, log in to the node and run the clearance script to clear CCE components. For details, see :ref:`Handling Failed OS Reinstallation <cce_01_0338__section149069481111>`.
+-  If the OS fails to be re-installed after the node is removed, manually re-install the OS. After the re-installation, log in to the node and run the clearance script to clear CCE components. For details, see :ref:`Handling Failed OS Reinstallation <cce_10_0338__section149069481111>`.
 
 Precautions
 -----------
@@ -33,13 +33,15 @@ Precautions
 Procedure
 ---------
 
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Nodes**. In the same row as the target node, choose **More** > **Remove**.
+#. Log in to the CCE console and click the cluster name to access the cluster.
 
-#. In the dialog box displayed, enter **REMOVE**, configure the login information required for re-installing the OS, and click **Yes**. Wait until the node is removed.
+#. Choose **Nodes** from the navigation pane and choose **More** > **Remove** in the **Operation** column of the target node.
+
+#. In the dialog box displayed, configure the login information required for re-installing the OS and click **Yes**. Wait until the node is removed.
 
    After the node is removed, workload pods on the node are automatically migrated to other available nodes.
 
-.. _cce_01_0338__section149069481111:
+.. _cce_10_0338__section149069481111:
 
 Handling Failed OS Reinstallation
 ---------------------------------

@@ -1,13 +1,9 @@
-:original_name: cce_01_0290.html
+:original_name: cce_10_0290.html
 
-.. _cce_01_0290:
+.. _cce_10_0290:
 
 Workload Scaling Mechanisms
 ===========================
-
-.. note::
-
-   **Scaling policy priority**: If you do not manually adjust the number of pods, auto scaling policies will take effect for resource scheduling. If :ref:`manual scaling <cce_01_0057__section1050418516503>` is triggered, auto scaling policies will be temporarily invalid.
 
 How HPA Works
 -------------

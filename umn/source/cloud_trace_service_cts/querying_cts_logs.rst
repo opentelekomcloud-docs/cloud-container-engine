@@ -1,6 +1,6 @@
-:original_name: cce_01_0026.html
+:original_name: cce_10_0026.html
 
-.. _cce_01_0026:
+.. _cce_10_0026:
 
 Querying CTS Logs
 =================
@@ -42,7 +42,7 @@ Procedure
 #. Click |image2| on the left of a trace to expand its details, as shown below.
 
 
-   .. figure:: /_static/images/en-us_image_0000001144779790.png
+   .. figure:: /_static/images/en-us_image_0000001243981141.png
       :alt: **Figure 1** Expanding trace details
 
       **Figure 1** Expanding trace details
@@ -50,10 +50,10 @@ Procedure
 #. Click **View Trace** in the **Operation** column. The trace details are displayed.
 
 
-   .. figure:: /_static/images/en-us_image_0000001144620002.png
+   .. figure:: /_static/images/en-us_image_0000001244141139.png
       :alt: **Figure 2** Viewing event details
 
       **Figure 2** Viewing event details
 
-.. |image1| image:: /_static/images/en-us_image_0144054048.gif
-.. |image2| image:: /_static/images/en-us_image_0144049227.png
+.. |image1| image:: /_static/images/en-us_image_0000001244141141.gif
+.. |image2| image:: /_static/images/en-us_image_0000001199341250.png

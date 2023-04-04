@@ -1,40 +1,40 @@
-:original_name: cce_01_0188.html
+:original_name: cce_10_0188.html
 
-.. _cce_01_0188:
+.. _cce_10_0188:
 
 Cluster Permissions (IAM-based)
 ===============================
 
-CCE cluster permissions are assigned based on IAM **system policies** and **custom policies**. You can use user groups to assign permissions to IAM users.
+CCE cluster-level permissions are assigned based on **IAM system policies** and **custom policies**. You can use user groups to assign permissions to IAM users.
 
 .. caution::
 
-   **Cluster permissions** are configured only for cluster-related resources (such as clusters and nodes). You must also configure :ref:`namespace permissions <cce_01_0189>` to operate Kubernetes resources (such as workloads and Services).
+   **Cluster permissions** are configured only for cluster-related resources (such as clusters and nodes). You must also configure :ref:`namespace permissions <cce_10_0189>` to operate Kubernetes resources (such as workloads and Services).
 
 Prerequisites
 -------------
 
--  A user with the Security Administrator role has all IAM permissions except role switching. Only these users can view user groups and their permissions on the **Permissions Management** page on the CCE console.
+-  A user with the Security Administrator role (for example, your account) has all IAM permissions except role switching. Only these users can view user groups and their permissions on the **Permissions** page on the CCE console.
 
 Configuration
 -------------
 
-On the CCE console, when you choose **Permissions Management** > **Cluster-Level Permissions** to create a user group, you will be directed to the IAM console to complete the process. After the user group is created and its permissions are configured, you can view the information on the **Cluster-Level Permissions** tab page. This section describes the operations in IAM.
+On the CCE console, when you choose **Permissions** > **Cluster-Level Permissions** to create a user group, you will be directed to the IAM console to complete the process. After the user group is created and its permissions are configured, you can view the information on the **Cluster-Level Permissions** tab page. This section describes the operations in IAM.
 
 Process Flow
 ------------
 
 
-.. figure:: /_static/images/en-us_image_0000001120226646.png
+.. figure:: /_static/images/en-us_image_0000001244261073.png
    :alt: **Figure 1** Process of assigning CCE permissions
 
    **Figure 1** Process of assigning CCE permissions
 
-#. .. _cce_01_0188__li10176121316284:
+#. .. _cce_10_0188__li10176121316284:
 
    Create a user group and assign permissions to it.
 
-   Create a user group on the IAM console, and assign CCE permissions, for example, the CCE Viewer policy to the group.
+   Create a user group on the IAM console, and assign CCE permissions, for example, the **CCEReadOnlyAccess** policy to the group.
 
    .. note::
 
@@ -42,16 +42,33 @@ Process Flow
 
 #. Create a user and add it to a user group.
 
-   Create a user on the IAM console and add the user to the group created in :ref:`1 <cce_01_0188__li10176121316284>`.
+   Create a user on the IAM console and add the user to the group created in :ref:`1 <cce_10_0188__li10176121316284>`.
 
 #. Log in and verify permissions.
 
    Log in to the management console as the user you created, and verify that the user has the assigned permissions.
 
-   -  Log in to the management console and switch to the CCE console. Click **Create** **Cluster** in the upper right corner. If you fail to do so (assuming that only the CCE Viewer role is assigned), the permission control policy takes effect.
-   -  Switch to the console of any other service. If a message appears indicating that you do not have the required permissions to access the service, the CCE Viewer policy takes effect.
+   -  Log in to the management console, switch to the CCE console, and buy a cluster. If you fail to do so (assuming that only the CCEReadOnlyAccess permission is assigned), the permission control policy takes effect.
+   -  Switch to the console of any other service. If a message appears indicating that you do not have the required permissions to access the service, the **CCEReadOnlyAccess** policy takes effect.
 
-.. _cce_01_0188__section1437818291149:
+System-defined Roles
+--------------------
+
+Roles are a type of coarse-grained authorization mechanism that defines service-level permissions based on user responsibilities. Only a limited number of service-level roles are available for authorization. Roles are not ideal for fine-grained authorization and least privilege access.
+
+The preset system role for CCE in IAM is **CCEAdministrator**. When assigning this role to a user group, you must also select other roles and policies on which this role depends, such as **Tenant Guest**, **Server Administrator**, **ELB Administrator**, **OBS Administrator**, **SFS Administrator**, **SWR Admin**, and **APM FullAccess**.
+
+System-defined Policies
+-----------------------
+
+The system policies preset for CCE in IAM are **CCEFullAccess** and **CCEReadOnlyAccess**.
+
+-  **CCE FullAccess**: common operation permissions on CCE cluster resources, excluding the namespace-level permissions for the clusters (with Kubernetes RBAC enabled) and the privileged administrator operations, such as agency configuration and cluster certificate generation
+-  **CCE ReadOnlyAccess**: permissions to view CCE cluster resources, excluding the namespace-level permissions of the clusters (with Kubernetes RBAC enabled)
+
+.. note::
+
+   The **CCE Admin** and **CCE Viewer** roles will be discarded soon. You are advised to use **CCE FullAccess** and **CCE ReadOnlyAccess**.
 
 Custom Policies
 ---------------
@@ -125,17 +142,6 @@ This section provides examples of common custom CCE policies.
           ]
       }
 
-CCE Cluster Permissions and Enterprise Projects
------------------------------------------------
-
-CCE supports resource management and permission allocation by cluster and enterprise project.
-
-Note that:
-
--  IAM projects are based on physical isolation of resources, whereas enterprise projects provide global logical groups of resources, which better meet the actual requirements of enterprises. In addition, IAM policies can be managed based on enterprise projects. Therefore, you are advised to use enterprise projects for permissions management.
--  When there are both IAM projects and enterprise projects, IAM preferentially matches the IAM project policies.
--  When creating a cluster or node using purchased cloud resources, ensure that IAM users have been granted the required permissions in the enterprise project to use these resources. Otherwise, the cluster or node may fail to be created.
-
 CCE Cluster Permissions and IAM RBAC
 ------------------------------------
 
@@ -171,4 +177,4 @@ When RBAC and IAM policies co-exist, the backend authentication logic for open A
 
    Using clusterCert to obtain the cluster kubeconfig: cceadm/teadmin
 
-.. |image1| image:: /_static/images/en-us_image_0000001086743939.png
+.. |image1| image:: /_static/images/en-us_image_0000001244101107.png

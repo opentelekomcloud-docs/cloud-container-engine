@@ -1,6 +1,6 @@
-:original_name: cce_01_0004.html
+:original_name: cce_10_0004.html
 
-.. _cce_01_0004:
+.. _cce_10_0004:
 
 Managing Node Labels
 ====================
@@ -13,15 +13,15 @@ Node labels are mainly used in the following scenarios:
 -  Node management: Node labels are used to classify nodes.
 -  Affinity and anti-affinity between a workload and node:
 
-   -  Some workloads require a large CPU, some require a large memory, some require a large I/O, and other workloads may be affected. In this case, you are advised to add different labels to nodes. When deploying a workload, you can select nodes with specified labels for affinity deployment to ensure the normal operation of the system. Otherwise, node anti-affinity deployment can be used.
-   -  A system can be divided into multiple modules. Each module consists of multiple microservices. To ensure the efficiency of subsequent O&M, you can add a module label to each node so that each module can be deployed on the corresponding node, does not interfere with other modules, and can be easily developed and maintained on its node.
+   -  Different workloads have different resource requirements such as CPU, memory, and I/O. If a workload consumes too many resources in a cluster, other workloads in the same cluster may fail to run properly. In this case, you are advised to add different labels to nodes. When deploying a workload, you can select nodes with specified labels for affinity deployment to ensure the normal operation of the system. Otherwise, node anti-affinity deployment can be used.
+   -  A system can be divided into multiple modules. Each module consists of multiple microservices. To ensure efficient O&M, you can add a module label to each node so that each module can be deployed on the corresponding node. In this way, modules do not interfere with each other and microservices can be easily maintained on their nodes.
 
 Inherent Label of a Node
 ------------------------
 
-After a node is created, some fixed labels exist and cannot be deleted. For details about these labels, see :ref:`Table 1 <cce_01_0004__en-us_topic_0000001199181148_table83962234533>`.
+After a node is created, some fixed labels exist and cannot be deleted. For details about these labels, see :ref:`Table 1 <cce_10_0004__table83962234533>`.
 
-.. _cce_01_0004__en-us_topic_0000001199181148_table83962234533:
+.. _cce_10_0004__table83962234533:
 
 .. table:: **Table 1** Inherent label of a node
 
@@ -58,36 +58,24 @@ After a node is created, some fixed labels exist and cannot be deleted. For deta
    +-----------------------------------------------------+-------------------------------------------------------------+
    | os.version                                          | Node OS kernel version                                      |
    +-----------------------------------------------------+-------------------------------------------------------------+
+   | node.kubernetes.io/container-engine                 | Container engine used by the node.                          |
+   +-----------------------------------------------------+-------------------------------------------------------------+
+   | accelerator                                         | GPU node labels.                                            |
+   +-----------------------------------------------------+-------------------------------------------------------------+
+   | cce.cloud.com/cce-nodepool                          | The dedicated label of a node in a node pool.               |
+   +-----------------------------------------------------+-------------------------------------------------------------+
 
-Adding a Node Label
--------------------
+Adding or Deleting a Node Label
+-------------------------------
 
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Nodes**.
+#. Log in to the CCE console.
 
-#. In the same row as the node for which you will add labels, choose **Operation** > **More** > **Manage Labels**.
+#. Click the cluster name, access the cluster details page, and choose **Nodes** in the navigation pane. On the page displayed, select a node and click **Manage Labels and Taints**.
 
-#. In the dialog box displayed, click **Add Label** below the label list, enter the key and value of the label to be added, and click **OK**.
+#. In the displayed dialog box, click **Add batch operations** under **Batch Operation**, and then choose **Add/Update** or **Delete**.
 
-   As shown in the figure, the key is **deploy_qa** and the value is **true**, indicating that the node is used to deploy the QA (test) environment.
+   Enter the key and value of the label to be added or deleted, and click **OK**.
 
-#. After the label is added, click **Manage Labels**. Then, you will see the label that you have added.
+   For example, the key is **deploy_qa** and the value is **true**, indicating that the node is used to deploy the QA (test) environment.
 
-Deleting a Node Label
----------------------
-
-Only labels added by users can be deleted. Labels that are fixed on the node cannot be deleted.
-
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Nodes**.
-
-#. In the same row as the node for which you will delete labels, choose **Operation** > **More** > **Manage Labels**.
-
-#. Click **Delete**, and then click **OK** to delete the label.
-
-   **Label updated successfully** is displayed.
-
-Searching for a Node by Label
------------------------------
-
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Nodes**.
-#. In the upper right corner of the node list, click **Search by Label**.
-#. Enter a Kubernetes label to find the target node.
+#. After the label is added, check the added label in node data.

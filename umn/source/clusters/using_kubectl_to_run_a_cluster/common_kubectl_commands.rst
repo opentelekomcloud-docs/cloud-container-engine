@@ -1,6 +1,6 @@
-:original_name: cce_01_0139.html
+:original_name: cce_10_0139.html
 
-.. _cce_01_0139:
+.. _cce_10_0139:
 
 Common kubectl Commands
 =======================
@@ -88,7 +88,7 @@ The **expose** command exposes a resource as a new Kubernetes service. Possible 
 
 .. note::
 
-   The example command creates a service of NodePort type for the deployment with the name specified in **deployname**. The service will serve on port 81 specified in **-port** and connect to the containers on port 80 specified in **-target-port**. More specifically, the service is reachable at <cluster-internal IP address>:<port>, and containers are reachable at <node IP address>:<target-port>.
+   In the preceding command, **--port** indicates the port exposed by the Service, **--type** indicates the Service type, and **--target-port** indicates the port of the pod backing the Service. Visiting *ClusterIP*:*Port* allows you to access the applications in the cluster.
 
 **run**
 
@@ -325,7 +325,7 @@ To listen on ports 5000 and 6000 locally, forwarding data to/from ports 5000 and
 
 .. code-block::
 
-   kubectl port -forward podname 5000:6000
+   kubectl port-forward podname 5000:6000
 
 **proxy\***
 

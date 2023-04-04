@@ -1,6 +1,6 @@
-:original_name: cce_01_0326.html
+:original_name: cce_10_0326.html
 
-.. _cce_01_0326:
+.. _cce_10_0326:
 
 (kubectl) Creating a PV from an Existing OBS Bucket
 ===================================================
@@ -9,12 +9,6 @@ Scenario
 --------
 
 CCE allows you to use an existing OBS bucket to create a PersistentVolume (PV). You can create a PersistentVolumeClaim (PVC) and bind it to the PV.
-
-Prerequisites
--------------
-
--  You have created a CCE cluster and installed the FlexVolume plug-in (:ref:`storage-driver <cce_01_0127>`) in the cluster.
--  The AK/SK has been uploaded. For details, see :ref:`Preparations <cce_01_0324__section14271608324>`.
 
 Notes and Constraints
 ---------------------
@@ -26,23 +20,23 @@ Procedure
 
 #. Log in to the OBS console, create an OBS bucket, and record the bucket name and storage class.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create two YAML files for creating the PV and PVC. Assume that the file names are **pv-obs-example.yaml** and **pvc-obs-example.yaml**.
 
    **touch pv-obs-example.yaml** **pvc-obs-example.yaml**
 
    +-----------------------------+------------------------------+-----------------------------------------------------+
-   | Kubernetes Version          | Description                  | YAML Example                                        |
+   | Kubernetes Cluster Version  | Description                  | YAML Example                                        |
    +=============================+==============================+=====================================================+
-   | 1.11 <= K8s version <= 1.13 | Clusters from v1.11 to v1.13 | :ref:`Example YAML <cce_01_0326__li45671840132016>` |
+   | 1.11 <= K8s version <= 1.13 | Clusters from v1.11 to v1.13 | :ref:`Example YAML <cce_10_0326__li45671840132016>` |
    +-----------------------------+------------------------------+-----------------------------------------------------+
-   | K8s version = 1.9           | Clusters of v1.9             | :ref:`Example YAML <cce_01_0326__li154036581589>`   |
+   | K8s version = 1.9           | Clusters of v1.9             | :ref:`Example YAML <cce_10_0326__li154036581589>`   |
    +-----------------------------+------------------------------+-----------------------------------------------------+
 
    **Clusters from v1.11 to v1.13**
 
-   -  .. _cce_01_0326__li45671840132016:
+   -  .. _cce_10_0326__li45671840132016:
 
       **Example YAML file for the PV:**
 
@@ -84,7 +78,7 @@ Procedure
          +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | storage_class                     | Storage class, including **STANDARD** (standard bucket) and **STANDARD_IA** (infrequent access bucket).                                                                                       |
          +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | region                            | For details about the value of **region**, see `Regions and Endpoints <https://docs.otc.t-systems.com/en-us/endpoint/index.html>`__.                                                          |
+         | region                            | Region where the cluster is located.                                                                                                                                                          |
          +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | volumeID                          | OBS bucket name.                                                                                                                                                                              |
          |                                   |                                                                                                                                                                                               |
@@ -139,7 +133,7 @@ Procedure
 
    **Clusters of v1.9**
 
-   -  .. _cce_01_0326__li154036581589:
+   -  .. _cce_10_0326__li154036581589:
 
       **Example YAML file for the PV:**
 
@@ -176,7 +170,7 @@ Procedure
          +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | storage_class                     | Storage class, including **STANDARD** (standard bucket) and **STANDARD_IA** (infrequent access bucket).                                                                                       |
          +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | region                            | For details about the value of **region**, see `Regions and Endpoints <https://docs.otc.t-systems.com/en-us/endpoint/index.html>`__.                                                          |
+         | region                            | Region where the cluster is located.                                                                                                                                                          |
          +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | volumeID                          | OBS bucket name.                                                                                                                                                                              |
          |                                   |                                                                                                                                                                                               |

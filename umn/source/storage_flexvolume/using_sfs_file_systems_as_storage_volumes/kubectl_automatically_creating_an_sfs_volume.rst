@@ -1,19 +1,9 @@
-:original_name: cce_01_0318.html
+:original_name: cce_10_0318.html
 
-.. _cce_01_0318:
+.. _cce_10_0318:
 
 (kubectl) Automatically Creating an SFS Volume
 ==============================================
-
-Scenario
---------
-
-CCE supports creating SFS volumes through PersistentVolumeClaims (PVCs).
-
-Prerequisites
--------------
-
-You have created a CCE cluster and installed the FlexVolume plug-in (:ref:`storage-driver <cce_01_0127>`) in the cluster.
 
 Notes and Constraints
 ---------------------
@@ -23,7 +13,7 @@ The following configuration example applies to clusters of Kubernetes 1.13 or ea
 Procedure
 ---------
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Run the following commands to configure the **pvc-sfs-auto-example.yaml** file, which is used to create a PVC.
 
@@ -63,7 +53,7 @@ Procedure
       | storage                                 | Storage capacity in the unit of Gi.                                                   |
       +-----------------------------------------+---------------------------------------------------------------------------------------+
 
-#. Run the following command to create the PVC.
+#. Run the following command to create a PVC:
 
    **kubectl create -f pvc-sfs-auto-example.yaml**
 

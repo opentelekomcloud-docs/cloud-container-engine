@@ -1,6 +1,6 @@
-:original_name: cce_01_0388.html
+:original_name: cce_10_0388.html
 
-.. _cce_01_0388:
+.. _cce_10_0388:
 
 Cluster Secrets
 ===============
@@ -11,9 +11,9 @@ By default, CCE creates the following secrets in each namespace:
 -  paas.elb
 -  default-token-*xxxxx* (*xxxxx* is a random number.)
 
-|image1|
-
 The functions of these secrets are described as follows.
+
+.. _cce_10_0388__section11760122012591:
 
 default-secret
 --------------
@@ -86,5 +86,3 @@ By default, Kubernetes creates a service account named **default** for each name
    Mountable secrets:   default-token-vssmw
    Tokens:              default-token-vssmw
    Events:              <none>
-
-.. |image1| image:: /_static/images/en-us_image_0000001227977765.png

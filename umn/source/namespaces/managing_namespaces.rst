@@ -1,12 +1,12 @@
-:original_name: cce_01_0285.html
+:original_name: cce_10_0285.html
 
-.. _cce_01_0285:
+.. _cce_10_0285:
 
 Managing Namespaces
 ===================
 
-Selecting a Namespace
----------------------
+Using Namespaces
+----------------
 
 -  When creating a workload, you can select a namespace to isolate resources or users.
 -  When querying workloads, you can select a namespace to view all workloads in the namespace.
@@ -29,7 +29,7 @@ Isolating Namespaces
       The following figure shows namespaces created for the development, joint debugging, and testing environments, respectively.
 
 
-      .. figure:: /_static/images/en-us_image_0000001098645539.png
+      .. figure:: /_static/images/en-us_image_0000001199021298.png
          :alt: **Figure 1** One namespace for one environment
 
          **Figure 1** One namespace for one environment
@@ -39,7 +39,7 @@ Isolating Namespaces
    You are advised to use this method if a large number of workloads are deployed in the same environment. For example, in the following figure, different namespaces (APP1 and APP2) are created to logically manage workloads as different groups. Workloads in the same namespace access each other using the Service name, and workloads in different namespaces access each other using the Service name or namespace name.
 
 
-   .. figure:: /_static/images/en-us_image_0000001098403383.png
+   .. figure:: /_static/images/en-us_image_0000001243981147.png
       :alt: **Figure 2** Grouping workloads into different namespaces
 
       **Figure 2** Grouping workloads into different namespaces
@@ -49,10 +49,8 @@ Deleting a Namespace
 
 If a namespace is deleted, all resources (such as workloads, jobs, and ConfigMaps) in this namespace will also be deleted. Exercise caution when deleting a namespace.
 
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Namespaces**.
+#. Log in to the CCE console and access the cluster console.
 
-#. Select the cluster to which the namespace belongs from the **Clusters** drop-down list.
-
-#. Select the namespace to be deleted and click **Delete**.
+#. In the navigation pane, choose **Namespaces**, select the target namespace, and choose **More** > **Delete**.
 
    Follow the prompts to delete the namespace. The default namespaces cannot be deleted.

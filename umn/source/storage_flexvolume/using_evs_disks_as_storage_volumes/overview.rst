@@ -1,6 +1,6 @@
-:original_name: cce_01_0310.html
+:original_name: cce_10_0310.html
 
-.. _cce_01_0310:
+.. _cce_10_0310:
 
 Overview
 ========
@@ -8,7 +8,7 @@ Overview
 To achieve persistent storage, CCE allows you to mount the storage volumes created from Elastic Volume Service (EVS) disks to a path of a container. When the container is migrated, the mounted EVS volumes are also migrated. By using EVS volumes, you can mount the remote file directory of storage system into a container so that data in the data volume is permanently preserved even when the container is deleted.
 
 
-.. figure:: /_static/images/en-us_image_0276664178.png
+.. figure:: /_static/images/en-us_image_0000001248663503.png
    :alt: **Figure 1** Mounting EVS volumes to CCE
 
    **Figure 1** Mounting EVS volumes to CCE

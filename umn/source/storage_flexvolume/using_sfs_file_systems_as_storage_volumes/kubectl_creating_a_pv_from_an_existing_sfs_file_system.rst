@@ -1,19 +1,9 @@
-:original_name: cce_01_0319.html
+:original_name: cce_10_0319.html
 
-.. _cce_01_0319:
+.. _cce_10_0319:
 
 (kubectl) Creating a PV from an Existing SFS File System
 ========================================================
-
-Scenario
---------
-
-CCE allows you to use an existing file system to create a PersistentVolume (PV). After the creation is successful, create the corresponding PersistentVolumeClaim (PVC) and bind it to the PV.
-
-Prerequisites
--------------
-
-You have created a CCE cluster and installed the FlexVolume plug-in (:ref:`storage-driver <cce_01_0127>`) in the cluster.
 
 Notes and Constraints
 ---------------------
@@ -25,23 +15,23 @@ Procedure
 
 #. Log in to the SFS console, create a file system, and record the file system ID, shared path, and capacity.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create two YAML files for creating the PV and PVC. Assume that the file names are **pv-sfs-example.yaml** and **pvc-sfs-example.yaml**.
 
    **touch pv-sfs-example.yaml** **pvc-sfs-example.yaml**
 
-   +-----------------------------+------------------------------+-----------------------------------------------------+
-   | Kubernetes Version          | Description                  | YAML Example                                        |
-   +=============================+==============================+=====================================================+
-   | 1.11 <= K8s version <= 1.13 | Clusters from v1.11 to v1.13 | :ref:`Example YAML <cce_01_0319__li1252510101515>`  |
-   +-----------------------------+------------------------------+-----------------------------------------------------+
-   | K8s version = 1.9           | Clusters of v1.9             | :ref:`Example YAML <cce_01_0319__li10858156164514>` |
-   +-----------------------------+------------------------------+-----------------------------------------------------+
+   +----------------------------+------------------------------+-----------------------------------------------------+
+   | Kubernetes Cluster Version | Description                  | YAML Example                                        |
+   +============================+==============================+=====================================================+
+   | 1.11 <= K8s version < 1.13 | Clusters from v1.11 to v1.13 | :ref:`Example YAML <cce_10_0319__li1252510101515>`  |
+   +----------------------------+------------------------------+-----------------------------------------------------+
+   | K8s version = 1.9          | Clusters of v1.9             | :ref:`Example YAML <cce_10_0319__li10858156164514>` |
+   +----------------------------+------------------------------+-----------------------------------------------------+
 
    **Clusters from v1.11 to v1.13**
 
-   -  .. _cce_01_0319__li1252510101515:
+   -  .. _cce_10_0319__li1252510101515:
 
       **Example YAML file for the PV:**
 
@@ -137,7 +127,7 @@ Procedure
 
    **Clusters of v1.9**
 
-   -  .. _cce_01_0319__li10858156164514:
+   -  .. _cce_10_0319__li10858156164514:
 
       **Example YAML file for the PV:**
 

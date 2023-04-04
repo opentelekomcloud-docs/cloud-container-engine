@@ -1,6 +1,6 @@
-:original_name: cce_01_0314.html
+:original_name: cce_10_0314.html
 
-.. _cce_01_0314:
+.. _cce_10_0314:
 
 (kubectl) Creating a Pod Mounted with an EVS Volume
 ===================================================
@@ -14,11 +14,6 @@ After an EVS volume is created or imported to CCE, you can mount it to a workloa
 
    EVS disks cannot be attached across AZs. Before mounting a volume, you can run the **kubectl get pvc** command to query the available PVCs in the AZ where the current cluster is located.
 
-Prerequisites
--------------
-
-You have created a CCE cluster and installed the FlexVolume plug-in (:ref:`storage-driver <cce_01_0127>`) in the cluster.
-
 Notes and Constraints
 ---------------------
 
@@ -27,7 +22,7 @@ The following configuration example applies to clusters of Kubernetes 1.13 or ea
 Procedure
 ---------
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Run the following commands to configure the **evs-deployment-example.yaml** file, which is used to create a Deployment.
 
@@ -141,7 +136,7 @@ Procedure
       +-------------------------------------------+-------------+------------------------------------------------------------------------------------------------------------------------------------+
       | spec.template.spec.containers.volumeMount | mountPath   | Mount path of the container. In this example, the volume is mounted to the **/tmp** directory.                                     |
       +-------------------------------------------+-------------+------------------------------------------------------------------------------------------------------------------------------------+
-      | spec                                      | serviceName | Service corresponding to the workload. For details about how to create a Service, see :ref:`Creating a StatefulSet <cce_01_0048>`. |
+      | spec                                      | serviceName | Service corresponding to the workload. For details about how to create a Service, see :ref:`Creating a StatefulSet <cce_10_0048>`. |
       +-------------------------------------------+-------------+------------------------------------------------------------------------------------------------------------------------------------+
 
    .. note::

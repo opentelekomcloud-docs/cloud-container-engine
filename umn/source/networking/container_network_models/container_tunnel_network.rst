@@ -1,6 +1,6 @@
-:original_name: cce_01_0282.html
+:original_name: cce_10_0282.html
 
-.. _cce_01_0282:
+.. _cce_10_0282:
 
 Container Tunnel Network
 ========================
@@ -11,7 +11,7 @@ Container Tunnel Network Model
 The container tunnel network is constructed on but independent of the node network through tunnel encapsulation. This network model uses VXLAN to encapsulate Ethernet packets into UDP packets and transmits them in tunnels. Open vSwitch serves as the backend virtual switch. Though at some costs of performance, packet encapsulation and tunnel transmission enable higher interoperability and compatibility with advanced features (such as network policy-based isolation) for most common scenarios.
 
 
-.. figure:: /_static/images/en-us_image_0000001145535931.png
+.. figure:: /_static/images/en-us_image_0000001199341330.png
    :alt: **Figure 1** Container tunnel network
 
    **Figure 1** Container tunnel network
@@ -27,7 +27,7 @@ Advantages and Disadvantages
 **Advantages**
 
 -  The container network is decoupled from the node network and is not limited by the VPC quotas and response speed (such as the number of VPC routes, number of elastic ENIs, and creation speed).
--  Network isolation is supported. For details, see :ref:`Network Policies <cce_01_0059>`.
+-  Network isolation is supported. For details, see :ref:`Network Policies <cce_10_0059>`.
 -  Bandwidth limits are supported.
 -  Large-scale networking is supported.
 
@@ -43,8 +43,6 @@ Applicable Scenarios
 -  Low requirements on performance: As the container tunnel network requires additional VXLAN tunnel encapsulation, it has about 5% to 15% of performance loss when compared with the other two container network models. Therefore, the container tunnel network is applicable to the scenarios that do not have high performance requirements, such as web applications, and middle-end and back-end services with a small number of access requests.
 -  Large-scale networking: Different from the VPC network that is limited by the VPC route quota, the container tunnel network does not have any restriction on the infrastructure. In addition, the container tunnel network controls the broadcast domain to the node level. The container tunnel network supports a maximum of 2000 nodes.
 
-.. _cce_01_0282__section182851515105616:
-
 Container IP Address Management
 -------------------------------
 
@@ -57,7 +55,7 @@ The container tunnel network allocates container IP addresses according to the f
 -  Pods scheduled to a node are cyclically allocated IP addresses from one or more CIDR blocks allocated to the node.
 
 
-.. figure:: /_static/images/en-us_image_0000001198861255.png
+.. figure:: /_static/images/en-us_image_0000001244141217.png
    :alt: **Figure 2** IP address allocation of the container tunnel network
 
    **Figure 2** IP address allocation of the container tunnel network
@@ -69,7 +67,7 @@ For example, if the container CIDR block is 172.16.0.0/16, the number of IP addr
 Recommendation for CIDR Block Planning
 --------------------------------------
 
-As described in :ref:`Cluster Network Structure <cce_01_0010__section1131733719195>`, network addresses in a cluster can be divided into three parts: node network, container network, and service network. When planning network addresses, consider the following aspects:
+As described in :ref:`Cluster Network Structure <cce_10_0010__section1131733719195>`, network addresses in a cluster can be divided into three parts: node network, container network, and service network. When planning network addresses, consider the following aspects:
 
 -  The three CIDR blocks cannot overlap. Otherwise, a conflict occurs.
 -  Ensure that each CIDR block has sufficient IP addresses.
@@ -77,18 +75,10 @@ As described in :ref:`Cluster Network Structure <cce_01_0010__section11317337191
    -  The IP addresses in the node CIDR block must match the cluster scale. Otherwise, nodes cannot be created due to insufficient IP addresses.
    -  The IP addresses in the container CIDR block must match the service scale. Otherwise, pods cannot be created due to insufficient IP addresses. The number of pods that can be created on each node also depends on other parameter settings.
 
-In the following configuration, the cluster has 200 nodes, and the network model is the container tunnel network.
-
-In this case, the number of available IP addresses in the selected node subnet must be greater than 200. Otherwise, nodes cannot be created due to insufficient IP addresses.
-
-The container CIDR block is 10.0.0.0/16, and the number of available IP addresses is 65533. These IP addresses can be allocated to a maximum of 4096 nodes. (16 IP addresses are allocated to each node at a time. For details, see :ref:`Container IP Address Management <cce_01_0282__section182851515105616>`.)
-
 Example of Container Tunnel Network Access
 ------------------------------------------
 
-Create a cluster that uses the container tunnel network model.
-
-Create a Deployment on the cluster.
+Create a cluster that uses the container tunnel network model. Create a Deployment in the cluster.
 
 .. code-block::
 

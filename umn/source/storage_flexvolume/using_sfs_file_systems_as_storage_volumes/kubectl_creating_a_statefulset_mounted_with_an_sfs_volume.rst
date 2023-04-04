@@ -1,6 +1,6 @@
-:original_name: cce_01_0321.html
+:original_name: cce_10_0321.html
 
-.. _cce_01_0321:
+.. _cce_10_0321:
 
 (kubectl) Creating a StatefulSet Mounted with an SFS Volume
 ===========================================================
@@ -10,11 +10,6 @@ Scenario
 
 CCE allows you to use an existing SFS volume to create a StatefulSet through a PersistentVolumeClaim (PVC).
 
-Prerequisites
--------------
-
-You have created a CCE cluster and installed the FlexVolume plug-in (:ref:`storage-driver <cce_01_0127>`) in the cluster.
-
 Notes and Constraints
 ---------------------
 
@@ -23,9 +18,9 @@ The following configuration example applies to clusters of Kubernetes 1.13 or ea
 Procedure
 ---------
 
-#. Create an SFS volume by referring to :ref:`Creating an SFS Volume <cce_01_0317__cce_01_0259_section1191025105819>` and record the volume name.
+#. Create an SFS volume by referring to :ref:`(kubectl) Automatically Creating an SFS Volume <cce_10_0318>` and record the volume name.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a YAML file for creating the workload. Assume that the file name is **sfs-statefulset-example**.\ **yaml**.
 
@@ -83,7 +78,7 @@ Procedure
       +--------------------------------------------------+-------------+------------------------------------------------------------------------------------------------------------------------------------+
       | spec.template.spec.containers.volumeMounts       | mountPath   | Mount path in the container.                                                                                                       |
       +--------------------------------------------------+-------------+------------------------------------------------------------------------------------------------------------------------------------+
-      | spec                                             | serviceName | Service corresponding to the workload. For details about how to create a Service, see :ref:`Creating a StatefulSet <cce_01_0048>`. |
+      | spec                                             | serviceName | Service corresponding to the workload. For details about how to create a Service, see :ref:`Creating a StatefulSet <cce_10_0048>`. |
       +--------------------------------------------------+-------------+------------------------------------------------------------------------------------------------------------------------------------+
       | spec.template.spec.volumes.persistentVolumeClaim | claimName   | Name of an existing PVC.                                                                                                           |
       +--------------------------------------------------+-------------+------------------------------------------------------------------------------------------------------------------------------------+

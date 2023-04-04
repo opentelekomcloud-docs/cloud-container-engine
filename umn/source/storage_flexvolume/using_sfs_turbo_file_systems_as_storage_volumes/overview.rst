@@ -1,6 +1,6 @@
-:original_name: cce_01_0330.html
+:original_name: cce_10_0330.html
 
-.. _cce_01_0330:
+.. _cce_10_0330:
 
 Overview
 ========
@@ -8,7 +8,7 @@ Overview
 CCE allows you to mount a volume created from an SFS Turbo file system to a container to store data persistently. Provisioned on demand and fast, SFS Turbo is suitable for DevOps, container microservices, and enterprise OA scenarios.
 
 
-.. figure:: /_static/images/en-us_image_0276664792.png
+.. figure:: /_static/images/en-us_image_0000001202103502.png
    :alt: **Figure 1** Mounting SFS Turbo volumes to CCE
 
    **Figure 1** Mounting SFS Turbo volumes to CCE

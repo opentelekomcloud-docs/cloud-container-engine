@@ -1,6 +1,6 @@
-:original_name: cce_01_0189.html
+:original_name: cce_10_0189.html
 
-.. _cce_01_0189:
+.. _cce_10_0189:
 
 Namespace Permissions (Kubernetes RBAC-based)
 =============================================
@@ -19,76 +19,77 @@ You can regulate users' or user groups' access to Kubernetes resources in a sing
 Role and ClusterRole specify actions that can be performed on specific resources. RoleBinding and ClusterRoleBinding bind roles to specific users, user groups, or ServiceAccounts. Illustration:
 
 
-.. figure:: /_static/images/en-us_image_0000001142984374.png
+.. figure:: /_static/images/en-us_image_0000001244261071.png
    :alt: **Figure 1** Role binding
 
    **Figure 1** Role binding
 
 On the CCE console, you can assign permissions to a user or user group to access resources in one or multiple namespaces. By default, the CCE console provides the following ClusterRoles:
 
--  view: read-only permission on most resources in all or selected namespaces.
--  edit: read and write permissions on most resources in all or selected namespaces. If this ClusterRole is configured for all namespaces, its capability is the same as the O&M permission.
--  admin: read and write permissions on most resources in all namespaces, and read-only permission on nodes, storage volumes, namespaces, and quota management.
--  cluster-admin: read and write permissions on all resources in all namespaces.
+-  view (read-only): read-only permission on most resources in all or selected namespaces.
+-  edit (development): read and write permissions on most resources in all or selected namespaces. If this ClusterRole is configured for all namespaces, its capability is the same as the O&M permission.
+-  admin (O&M): read and write permissions on most resources in all namespaces, and read-only permission on nodes, storage volumes, namespaces, and quota management.
+-  cluster-admin (administrator): read and write permissions on all resources in all namespaces.
 
-.. _cce_01_0189__section207514572488:
+.. _cce_10_0189__section207514572488:
 
 Cluster Permissions (IAM-based) and Namespace Permissions (Kubernetes RBAC-based)
 ---------------------------------------------------------------------------------
 
-Users with different cluster permissions (assigned using IAM) have different namespace permissions (assigned using Kubernetes RBAC). :ref:`Table 1 <cce_01_0189__cce_01_0187_table886210176509>` lists the namespace permissions of different users.
+Users with different cluster permissions (assigned using IAM) have different namespace permissions (assigned using Kubernetes RBAC). :ref:`Table 1 <cce_10_0189__cce_10_0187_table886210176509>` lists the namespace permissions of different users.
 
-.. _cce_01_0189__cce_01_0187_table886210176509:
+.. _cce_10_0189__cce_10_0187_table886210176509:
 
 .. table:: **Table 1** Differences in namespace permissions
 
-   +------------------------------------------------+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
-   | User                                           | Clusters Earlier Than v1.11.7-r2 | Clusters of v1.11.7-r2                                                                                                            |
-   +================================================+==================================+===================================================================================================================================+
-   | User with the Tenant Administrator permissions | All namespace permissions        | -  Has all namespace permissions when using CCE on the console.                                                                   |
-   |                                                |                                  | -  Requires Kubernetes RBAC authorization when using CCE via :ref:`kubectl <cce_01_0140>`.                                        |
-   |                                                |                                  |                                                                                                                                   |
-   |                                                |                                  | .. note::                                                                                                                         |
-   |                                                |                                  |                                                                                                                                   |
-   |                                                |                                  |    When such a user accesses the CCE console, an administrator group is added. Therefore, the user has all namespace permissions. |
-   +------------------------------------------------+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
-   | IAM user with the CCE Administrator role       | All namespace permissions        | -  Has all namespace permissions when using CCE on the console.                                                                   |
-   |                                                |                                  | -  Requires Kubernetes RBAC authorization when using CCE via :ref:`kubectl <cce_01_0140>`.                                        |
-   |                                                |                                  |                                                                                                                                   |
-   |                                                |                                  | .. note::                                                                                                                         |
-   |                                                |                                  |                                                                                                                                   |
-   |                                                |                                  |    When such a user accesses the CCE console, an administrator group is added. Therefore, the user has all namespace permissions. |
-   +------------------------------------------------+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
-   | IAM user with the CCE Viewer role              | All namespace permissions        | Requires Kubernetes RBAC authorization.                                                                                           |
-   +------------------------------------------------+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
-   | IAM user with the Tenant Guest role            | All namespace permissions        | Requires Kubernetes RBAC authorization.                                                                                           |
-   +------------------------------------------------+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+   +-------------------------------------------------------------+-----------------------------------------+
+   | User                                                        | Clusters of v1.13 and Later             |
+   +=============================================================+=========================================+
+   | User with the Tenant Administrator permissions              | All namespace permissions               |
+   +-------------------------------------------------------------+-----------------------------------------+
+   | IAM user with the CCE Administrator role                    | All namespace permissions               |
+   +-------------------------------------------------------------+-----------------------------------------+
+   | IAM user with the CCE FullAccess or CCE ReadOnlyAccess role | Requires Kubernetes RBAC authorization. |
+   +-------------------------------------------------------------+-----------------------------------------+
+   | IAM user with the Tenant Guest role                         | Requires Kubernetes RBAC authorization. |
+   +-------------------------------------------------------------+-----------------------------------------+
 
-Prerequisites
--------------
+Precautions
+-----------
 
--  Kubernetes RBAC authorization can be used for clusters of v1.11.7-r2 and later. Ensure that you have deployed a supported cluster version. For details about upgrading a cluster, see :ref:`Performing Replace/Rolling Upgrade (v1.13 and Earlier) <cce_01_0120>`.
--  After you create a cluster of v1.11.7-r2 or later, CCE automatically assigns the cluster-admin permission to you, which means you have full control on all resources in all namespaces in the cluster.
--  A user with the Security Administrator role has all IAM permissions except role switching. Only these users can assign permissions on the **Permissions Management** page on the CCE console.
+-  Kubernetes RBAC authorization can be used for clusters of v1.11.7-r2 and later. Ensure that you have deployed a supported cluster version. For details about upgrading a cluster, see :ref:`Performing Replace/Rolling Upgrade <cce_10_0120>`.
+-  After you create a cluster of v1.11.7-r2 or later, CCE automatically assigns the cluster-admin permission to you, which means you have full control on all resources in all namespaces in the cluster. The ID of a federated user changes upon each login and logout. Therefore, the user with the permissions is displayed as deleted. In this case, do not delete the permissions. Otherwise, the authentication fails. You are advised to grant the cluster-admin permission to a user group on CCE and add federated users to the user group.
+-  A user with the Security Administrator role has all IAM permissions except role switching. For example, an account in the admin user group has this role by default. Only these users can assign permissions on the **Permissions** page on the CCE console.
 
 Configuring Namespace Permissions (on the Console)
 --------------------------------------------------
 
 You can regulate users' or user groups' access to Kubernetes resources in a single namespace based on their Kubernetes RBAC roles.
 
-#. Log in to the CCE console. In the navigation pane, choose **Permissions Management**.
-#. On the displayed page, click the **Namespace-Level Permissions** tab. In the upper right corner of the namespace permissions list, select the cluster that contains the namespace whose access will be managed, and click **Add Permissions**.
-#. Confirm the cluster name and select the namespace to assign permissions for. For example, select **All namespaces**, the target user or user group, and select the permissions.
-#. Click **Create**.
+#. Log in to the CCE console. In the navigation pane, choose **Permissions**.
 
-.. _cce_01_0189__section1273861718819:
+#. Select a cluster for which you want to add permissions from the drop-down list on the right.
+
+#. Click **Add Permissions** in the upper right corner.
+
+#. Confirm the cluster name and select the namespace to assign permissions for. For example, select **All namespaces**, the target user or user group, and select the permissions.
+
+   .. note::
+
+      If you do not have IAM permissions, you cannot select users or user groups when configuring permissions for other users or user groups. In this case, you can enter a user ID or user group ID.
+
+   Permissions can be customized as required. After selecting **Custom** for **Permission Type**, click **Add Custom Role** on the right of the **Custom** parameter. In the dialog box displayed, enter a name and select a rule. After the custom rule is created, you can select a value from the **Custom** drop-down list box.
+
+#. Click **OK**.
+
+.. _cce_10_0189__section1273861718819:
 
 Using kubectl to Configure Namespace Permissions
 ------------------------------------------------
 
 .. note::
 
-   When you access a cluster using kubectl, CCE uses the kubeconfig.json file generated on the cluster for authentication. This file contains user information, based on which CCE determines which Kubernetes resources can be accessed by kubectl. The permissions recorded in a kubeconfig.json file vary from user to user. The permissions that a user has are listed in :ref:`Cluster Permissions (IAM-based) and Namespace Permissions (Kubernetes RBAC-based) <cce_01_0189__section207514572488>`.
+   When you access a cluster using kubectl, CCE uses the kubeconfig.json file generated on the cluster for authentication. This file contains user information, based on which CCE determines which Kubernetes resources can be accessed by kubectl. The permissions recorded in a kubeconfig.json file vary from user to user. The permissions that a user has are listed in :ref:`Cluster Permissions (IAM-based) and Namespace Permissions (Kubernetes RBAC-based) <cce_10_0189__section207514572488>`.
 
 In addition to cluster-admin, admin, edit, and view, you can define Roles and RoleBindings to configure the permissions to add, delete, modify, and query resources, such as pods, Deployments, and Services, in the namespace.
 
@@ -221,12 +222,11 @@ Connect to the cluster as an authorized user. If the PVs and StorageClasses can 
    csi-disk-topology   everest-csi-provisioner         Delete          WaitForFirstConsumer   true                   75d
    csi-nas             everest-csi-provisioner         Delete          Immediate              true                   75d
    csi-obs             everest-csi-provisioner         Delete          Immediate              false                  75d
-   csi-sfsturbo        everest-csi-provisioner         Delete          Immediate              true                   75d
 
 Example: Assigning All Namespace Permissions (admin)
 ----------------------------------------------------
 
-The admin role contains all permissions on a namespace. You can assign permissions to users to access one or multiple namespaces.
+**admin** has all permissions on namespaces. You can grant this role to a user or user group to manage one or all namespaces.
 
 In the following example kubectl output, a RoleBinding has been created, the admin role is bound to the user group **cce-role-group**, and the target namespace is the default namespace.
 
@@ -317,4 +317,4 @@ Connect to the cluster as an authorized user. In this example, you can query res
 Example: Assigning Permissions for a Specific Kubernetes Resource Object
 ------------------------------------------------------------------------
 
-You can assign permissions on a specific Kubernetes resource object, such as pod, Deployment, and Service. For details, see :ref:`Using kubectl to Configure Namespace Permissions <cce_01_0189__section1273861718819>`.
+You can assign permissions on a specific Kubernetes resource object, such as pod, Deployment, and Service. For details, see :ref:`Using kubectl to Configure Namespace Permissions <cce_10_0189__section1273861718819>`.

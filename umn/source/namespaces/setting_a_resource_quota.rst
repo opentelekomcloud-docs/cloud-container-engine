@@ -1,21 +1,11 @@
-:original_name: cce_01_0287.html
+:original_name: cce_10_0287.html
 
-.. _cce_01_0287:
+.. _cce_10_0287:
 
 Setting a Resource Quota
 ========================
 
 Namespace-level resource quotas limit the amount of resources available to teams or users when these teams or users use the same cluster. The quotas include the total number of a type of objects and the total amount of compute resources (CPU and memory) consumed by the objects.
-
-.. note::
-
-   Quotas can be set only in clusters of v1.9 or later.
-
-Prerequisites
--------------
-
--  You have created a Kubernetes cluster. For details, see :ref:`Creating a CCE Cluster <cce_01_0028>`.
--  You have created a namespace. For details, see :ref:`Creating a Namespace <cce_01_0278>`.
 
 Usage
 -----
@@ -37,9 +27,9 @@ Cluster Scale Recommended Number of Pods
 2,000 nodes   50,000 pods
 ============= ==========================
 
-Starting from clusters of v1.21 and later, the default `Resource Quotas <https://kubernetes.io/docs/concepts/policy/resource-quotas/?spm=a2c4g.11186623.2.8.d882712bd1i8ae>`__ are created when a namespace is created. :ref:`Table 1 <cce_01_0287__table371165714613>` lists the resource quotas based on cluster specifications. You can modify them according to your service requirements.
+Starting from clusters of v1.21 and later, the default `Resource Quotas <https://kubernetes.io/docs/concepts/policy/resource-quotas/?spm=a2c4g.11186623.2.8.d882712bd1i8ae>`__ are created when a namespace is created if you have enabled **enable-resource-quota** in :ref:`Managing Cluster Components <cce_10_0213>`. :ref:`Table 1 <cce_10_0287__table371165714613>` lists the resource quotas based on cluster specifications. You can modify them according to your service requirements.
 
-.. _cce_01_0287__table371165714613:
+.. _cce_10_0287__table371165714613:
 
 .. table:: **Table 1** Default resource quotas
 
@@ -52,27 +42,23 @@ Starting from clusters of v1.21 and later, the default `Resource Quotas <https:/
    2,000 nodes   5000 2000       2000   2000      2000
    ============= ==== ========== ====== ========= =======
 
+Notes and Constraints
+---------------------
+
+Kubernetes provides optimistic concurrency control (OCC), also known as optimistic locking, for frequent data updates. You can use optimistic locking by defining the **resourceVersion** field. This field is in the object metadata. This field identifies the internal version number of the object. When the object is modified, this field is modified accordingly. You can use kube-apiserver to check whether an object has been modified. When the API server receives an update request containing the **resourceVersion** field, the server compares the requested data with the resource version number of the server. If they are different, the object on the server has been modified when the update is submitted. In this case, the API server returns a conflict error (409). You need to obtain the server data, modify the data, and submit the data to the server again. The resource quota limits the total resource consumption of each namespace and records the resource information in the cluster. Therefore, after the **enable-resource-quota** option is enabled, the probability of resource creation conflicts increases in large-scale concurrency scenarios, affecting the performance of batch resource creation.
+
 Procedure
 ---------
 
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Namespaces**.
+#. Log in to the CCE console and access the cluster console.
 
-#. Select the cluster to which the namespace belongs from the **Clusters** drop-down list.
+#. In the navigation pane, click **Namespaces**.
 
-#. In the **Operation** column of a namespace, click **Manage Quota**.
+#. Click **Quota Management** next to the target namespace.
 
    This operation cannot be performed on system namespaces **kube-system** and **kube-public**.
 
 #. Set the resource quotas and click **OK**.
-
-   -  **CPU (cores)**: maximum number of CPU cores that can be allocated to workload pods in the namespace.
-   -  **Memory (MiB)**: maximum amount of memory that can be allocated to workload pods in the namespace.
-   -  **StatefulSet**: maximum number of StatefulSets that can be created in the namespace.
-   -  **Deployment**: maximum number of Deployments that can be created in the namespace.
-   -  **Job**: maximum number of one-off jobs that can be created in the namespace.
-   -  **Cron Job**: maximum number of cron jobs that can be created in the namespace.
-   -  **Pod**: maximum number of pods that can be created in the namespace.
-   -  **Service**: maximum number of Services that can be created in the namespace.
 
    .. important::
 

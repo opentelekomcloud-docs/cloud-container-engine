@@ -1,6 +1,6 @@
-:original_name: cce_01_0323.html
+:original_name: cce_10_0323.html
 
-.. _cce_01_0323:
+.. _cce_10_0323:
 
 Overview
 ========
@@ -8,7 +8,7 @@ Overview
 CCE allows you to mount a volume created from an Object Storage Service (OBS) bucket to a container to store data persistently. Object storage is commonly used in cloud workloads, data analysis, content analysis, and hotspot objects.
 
 
-.. figure:: /_static/images/en-us_image_0276664570.png
+.. figure:: /_static/images/en-us_image_0000001249023453.png
    :alt: **Figure 1** Mounting OBS volumes to CCE
 
    **Figure 1** Mounting OBS volumes to CCE

@@ -1,6 +1,6 @@
-:original_name: cce_01_0141.html
+:original_name: cce_10_0141.html
 
-.. _cce_01_0141:
+.. _cce_10_0141:
 
 gpu-beta
 ========
@@ -8,36 +8,30 @@ gpu-beta
 Introduction
 ------------
 
-gpu-beta is a device management add-on that supports GPUs in containers. It supports only NVIDIA Tesla drivers.
+gpu-beta is a device management add-on that supports GPUs in containers. If GPU nodes are used in the cluster, the gpu-beta add-on must be installed.
 
 Notes and Constraints
 ---------------------
 
--  This add-on is available only in certain regions.
--  This add-on can be installed only in CCE clusters of v1.11 or later.
--  If GPU nodes are used in the cluster, the gpu-beta add-on must be installed.
 -  The driver to be downloaded must be a **.run** file.
--  Only Tesla drivers are supported, not GRID drivers.
-
-.. important::
-
-   -  If the download link is a public network address, for example, **https://us.download.nvidia.com/tesla/396.37/NVIDIA-Linux-x86_64-396.37.run**, bind an EIP to each GPU node. For details about how to obtain the driver link, see :ref:`Obtaining the Driver Link from Public Network <cce_01_0141__section95451728192112>`.
-   -  If the download link is an OBS URL, you do not need to bind an EIP to GPU nodes.
-   -  Ensure that the NVIDIA driver version matches the GPU node.
-   -  After the driver version is changed, restart the node for the change to take effect.
+-  Only NVIDIA Tesla drivers are supported, not GRID drivers.
+-  When installing or reinstalling the add-on, ensure that the driver download address is correct and accessible. CCE does not verify the address validity.
+-  The gpu-beta add-on only enables you to download the driver and execute the installation script. The add-on status only indicates that how the add-on is running, not whether the driver is successfully installed.
 
 Installing the Add-on
 ---------------------
 
-#. Log in to the CCE console. In the navigation pane, choose **Add-ons**. On the **Add-on Marketplace** tab page, click **Install Add-on** under **gpu-beta**.
+#. Log in to the CCE console and access the cluster console. Choose **Add-ons** in the navigation pane, locate **gpu-beta** on the right, and click **Install**.
+#. Configure the driver link.
 
-#. On the **Install Add-on** page, select the cluster and the add-on version, and click **Next: Configuration**.
+   .. important::
 
-#. In the **Configuration** step, enter the link to download the NVIDIA driver.
+      -  If the download link is a public network address, for example, **https://us.download.nvidia.com/tesla/470.103.01/NVIDIA-Linux-x86_64-470.103.01.run**, bind an EIP to each GPU node. For details about how to obtain the driver link, see :ref:`Obtaining the Driver Link from Public Network <cce_10_0141__section95451728192112>`.
+      -  If the download link is an OBS URL, you do not need to bind an EIP to GPU nodes.
+      -  Ensure that the NVIDIA driver version matches the GPU node.
+      -  After the driver version is changed, restart the node for the change to take effect.
 
 #. Click **Install**.
-
-   After the add-on is installed, click **Go Back to Previous Page**. On the **Add-on Instance** tab page, select the corresponding cluster to view the running instance. This indicates that the add-on has been installed on each GPU node in the cluster.
 
 Verifying the Add-on
 --------------------
@@ -60,7 +54,7 @@ If GPU information is returned, the device is available and the add-on is succes
 
 |image1|
 
-.. _cce_01_0141__section95451728192112:
+.. _cce_10_0141__section95451728192112:
 
 Obtaining the Driver Link from Public Network
 ---------------------------------------------
@@ -70,45 +64,35 @@ Obtaining the Driver Link from Public Network
 
 3. Visit https://www.nvidia.com/Download/Find.aspx?lang=en.
 
-4. Select the driver information on the **NVIDIA Driver Downloads** page, as shown in :ref:`Figure 1 <cce_01_0141__fig11696366517>`. **Operating System** must be **Linux 64-bit**.
+4. Select the driver information on the **NVIDIA Driver Downloads** page, as shown in :ref:`Figure 1 <cce_10_0141__fig11696366517>`. **Operating System** must be **Linux 64-bit**.
 
-   .. _cce_01_0141__fig11696366517:
+   .. _cce_10_0141__fig11696366517:
 
-   .. figure:: /_static/images/en-us_image_0000001280466745.png
+   .. figure:: /_static/images/en-us_image_0000001531533921.png
       :alt: **Figure 1** Setting parameters
 
       **Figure 1** Setting parameters
 
-5. After confirming the driver information, click **SEARCH**. A page is displayed, showing the driver information, as shown in :ref:`Figure 2 <cce_01_0141__fig7873421145213>`. Click **DOWNLOAD**.
+5. After confirming the driver information, click **SEARCH**. A page is displayed, showing the driver information, as shown in :ref:`Figure 2 <cce_10_0141__fig7873421145213>`. Click **DOWNLOAD**.
 
-   .. _cce_01_0141__fig7873421145213:
+   .. _cce_10_0141__fig7873421145213:
 
-   .. figure:: /_static/images/en-us_image_0181616313.png
+   .. figure:: /_static/images/en-us_image_0000001531373685.png
       :alt: **Figure 2** Driver information
 
       **Figure 2** Driver information
 
 6. Obtain the driver link in either of the following ways:
 
-   -  Method 1: As shown in :ref:`Figure 3 <cce_01_0141__fig5901194614534>`, find *url=/tesla/396.37/NVIDIA-Linux-x86_64-396.37.run* in the browser address box. Then, supplement it to obtain the driver link https://us.download.nvidia.com/tesla/396.37/NVIDIA-Linux-x86_64-396.37.run. By using this method, you must bind an EIP to each GPU node.
+   -  Method 1: As shown in :ref:`Figure 3 <cce_10_0141__fig5901194614534>`, find *url=/tesla/470.103.01/NVIDIA-Linux-x86_64-470.103.01.run* in the browser address box. Then, supplement it to obtain the driver link https://us.download.nvidia.com/tesla/470.103.01/NVIDIA-Linux-x86_64-470.103.01.run. By using this method, you must bind an EIP to each GPU node.
 
-   -  Method 2: As shown in :ref:`Figure 3 <cce_01_0141__fig5901194614534>`, click **AGREE & DOWNLOAD** to download the driver. Then, upload the driver to OBS and record the OBS URL. By using this method, you do not need to bind an EIP to GPU nodes.
+   -  Method 2: As shown in :ref:`Figure 3 <cce_10_0141__fig5901194614534>`, click **AGREE & DOWNLOAD** to download the driver. Then, upload the driver to OBS and record the OBS URL. By using this method, you do not need to bind an EIP to GPU nodes.
 
-      .. _cce_01_0141__fig5901194614534:
+      .. _cce_10_0141__fig5901194614534:
 
-      .. figure:: /_static/images/en-us_image_0181616314.png
+      .. figure:: /_static/images/en-us_image_0000001531533045.png
          :alt: **Figure 3** Obtaining the link
 
          **Figure 3** Obtaining the link
-
-Uninstalling the Add-on
------------------------
-
-#. Log in to the CCE console. In the navigation pane, choose **Add-ons**. On the **Add-on Instance** tab page, select the cluster and click **Uninstall** under **gpu-beta**.
-#. In the dialog box displayed, click **Yes** to uninstall the add-on.
-
-   .. note::
-
-      The driver will not be uninstalled during gpu-beta add-on uninstall. If the driver is reinstalled, you must restart all GPU nodes.
 
 .. |image1| image:: /_static/images/en-us_image_0000001238225460.png

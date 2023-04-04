@@ -31,7 +31,7 @@ The following table compares the two versions.
    ================== ====================================
    Container registry Image repository
    Cluster            Resource Management > Hybrid Cluster
-   Component template -
-   App Designer       -
+   Component template ``-``
+   App Designer       ``-``
    App Manager        Deployment
    ================== ====================================

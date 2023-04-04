@@ -1,6 +1,6 @@
-:original_name: cce_01_0283.html
+:original_name: cce_10_0283.html
 
-.. _cce_01_0283:
+.. _cce_10_0283:
 
 VPC Network
 ===========
@@ -11,7 +11,7 @@ Model Definition
 The VPC network uses VPC routing to integrate with the underlying network. This network model is suitable for performance-intensive scenarios. The maximum number of nodes allowed in a cluster depends on the VPC route quota. Each node is assigned a CIDR block of a fixed size. This networking model is free from tunnel encapsulation overhead and outperforms the container tunnel network model. In addition, as VPC routing includes routes to node IP addresses and the container CIDR block, container pods in a cluster can be directly accessed from outside the cluster.
 
 
-.. figure:: /_static/images/en-us_image_0000001116237931.png
+.. figure:: /_static/images/en-us_image_0000001199181338.png
    :alt: **Figure 1** VPC network model
 
    **Figure 1** VPC network model
@@ -41,7 +41,7 @@ Applicable Scenarios
 -  High performance requirements: As no tunnel encapsulation is required, the VPC network model delivers the performance close to that of a VPC network when compared with the container tunnel network model. Therefore, the VPC network model is applicable to scenarios that have high requirements on performance, such as AI computing and big data computing.
 -  Small- and medium-scale networking: The VPC network is limited by the VPC route quota. Currently, a maximum of 200 nodes are supported by default. If there are large-scale networking requirements, you can increase the VPC route quota.
 
-.. _cce_01_0283__section1574982552114:
+.. _cce_10_0283__section1574982552114:
 
 Container IP Address Management
 -------------------------------
@@ -54,19 +54,19 @@ The VPC network allocates container IP addresses according to the following rule
 -  Pods scheduled to a node are cyclically allocated IP addresses from CIDR blocks allocated to the node.
 
 
-.. figure:: /_static/images/en-us_image_0000001153101092.png
+.. figure:: /_static/images/en-us_image_0000001244261173.png
    :alt: **Figure 2** IP address management of the VPC network
 
    **Figure 2** IP address management of the VPC network
 
 Maximum number of nodes that can be created in the cluster using the VPC network = Number of IP addresses in the container CIDR block /Number of IP addresses in the CIDR block allocated to the node by the container CIDR block
 
-For example, if the container CIDR block is 172.16.0.0/16, the number of IP addresses is 65536. The mask of the container CIDR block allocated to the node is 25. That is, the number of container IP addresses on each node is 128. Therefore, a maximum of 512 (65536/128) nodes can be created. The number of nodes that can be created in a cluster also depends on the node network and cluster scale.
+For example, if the container CIDR block is 172.16.0.0/16, the number of IP addresses is 65536. The mask of the container CIDR block allocated to the node is 25. That is, the number of container IP addresses on each node is 128. Therefore, a maximum of 512 (65536/128) nodes can be created. In addition, the number of nodes that can be created in a cluster also depends on the node network and cluster scale.
 
 Recommendation for CIDR Block Planning
 --------------------------------------
 
-As described in :ref:`Cluster Network Structure <cce_01_0010__section1131733719195>`, network addresses in a cluster can be divided into three parts: node network, container network, and service network. When planning network addresses, consider the following aspects:
+As described in :ref:`Cluster Network Structure <cce_10_0010__section1131733719195>`, network addresses in a cluster can be divided into three parts: node network, container network, and service network. When planning network addresses, consider the following aspects:
 
 -  The three CIDR blocks cannot overlap. Otherwise, a conflict occurs.
 -  Ensure that each CIDR block has sufficient IP addresses.
@@ -78,20 +78,12 @@ Assume that a cluster contains 200 nodes and the network model is VPC network.
 
 In this case, the number of available IP addresses in the selected node subnet must be greater than 200. Otherwise, nodes cannot be created due to insufficient IP addresses.
 
-The container CIDR block is 10.0.0.0/16, and the number of available IP addresses is 65536. As described in :ref:`Container IP Address Management <cce_01_0283__section1574982552114>`, the VPC network is allocated a CIDR block with the fixed size (using the mask to determine the maximum number of container IP addresses allocated to each node). For example, if the upper limit is 128, the cluster supports a maximum of 512 (65536/128) nodes, including the three master nodes.
+The container CIDR block is 10.0.0.0/16, and the number of available IP addresses is 65536. As described in :ref:`Container IP Address Management <cce_10_0283__section1574982552114>`, the VPC network is allocated a CIDR block with the fixed size (using the mask to determine the maximum number of container IP addresses allocated to each node). For example, if the upper limit is 128, the cluster supports a maximum of 512 (65536/128) nodes, including the three master nodes.
 
 Example of VPC Network Access
 -----------------------------
 
-Create a cluster using the VPC network model.
-
-
-.. figure:: /_static/images/en-us_image_0000001198980979.png
-   :alt: **Figure 3** Cluster network
-
-   **Figure 3** Cluster network
-
-The cluster contains one node.
+Create a cluster using the VPC network model. The cluster contains one node.
 
 .. code-block::
 
@@ -101,7 +93,7 @@ The cluster contains one node.
 
 Check the VPC routing table. The destination address 172.16.0.0/25 is the container CIDR block allocated to the node, and the next hop is the corresponding node. When the container IP address is accessed, the VPC route forwards the access request to the next-hop node. This indicates that the VPC network model uses VPC routes.
 
-Create a Deployment on the cluster.
+Create a Deployment in the cluster.
 
 .. code-block::
 

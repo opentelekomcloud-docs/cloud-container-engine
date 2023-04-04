@@ -1,6 +1,6 @@
-:original_name: cce_01_0186.html
+:original_name: cce_10_0186.html
 
-.. _cce_01_0186:
+.. _cce_10_0186:
 
 Deleting a Node
 ===============
@@ -15,8 +15,14 @@ Notes and Constraints
 
 -  After a CCE cluster is deleted, the ECS nodes in the cluster are also deleted.
 
-Notes
------
+-
+
+   .. important::
+
+      For clusters of v1.17.11 or later, after a VM is deleted on the ECS console, the corresponding node in the CCE cluster is automatically deleted.
+
+Precautions
+-----------
 
 -  Deleting a node will lead to pod migration, which may affect services. Perform this operation during off-peak hours.
 -  Unexpected risks may occur during the operation. Back up related data in advance.
@@ -26,8 +32,9 @@ Notes
 Procedure
 ---------
 
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Nodes**. In the same row as the node you will delete, choose **More** > **Delete**.
-#. In the **Delete Node** dialog box, enter **DELETE** and click **Yes**.
+#. Log in to the CCE console and click the cluster name to access the cluster.
+#. In the navigation pane, choose **Nodes**. In the same row as the node you will delete, choose **More** > **Delete**.
+#. In the **Delete Node** dialog box, click **Yes**.
 
    .. note::
 
