@@ -18,7 +18,7 @@ Complete the following tasks to get started with CCE.
 
    **Figure 1** Procedure for getting started with CCE
 
-#. **Authorize an IAM user to use CCE.**
+#. :ref:`Charts (Helm) <cce_10_0019>`\ Authorize an IAM user to use CCE.
 
    The accounts have the permission to use CCE. However, IAM users created by the accounts do not have the permission. You need to manually assign the permission to IAM users.
 
@@ -30,12 +30,12 @@ Complete the following tasks to get started with CCE.
 
    Select existing images/chart, or create new images/chart.
 
-   -  For details on how to create a workload from images, see `Workloads <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0046.html>`__.
+   -  For details on how to create a workload from images, see :ref:`Workloads <cce_10_0046>`.
    -  For details on how to create a workload from a chart, see `Charts (Helm) <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0019.html>`__.
 
 #. **View workload status and logs. Upgrade, scale, and monitor the workload.**
 
-   For details, see `Managing Workloads and Jobs <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0007.html>`__.
+   For details, see :ref:`Managing Workloads and Jobs <cce_10_0007>`.
 
 FAQs
 ----
@@ -46,7 +46,7 @@ FAQs
 
 #. **Is CCE suitable for users who have little experience in building images?**
 
-   Yes. You can select images from **Third-party Images**, and **Shared Images** pages on the CCE console. The **My Images** page displays only the images created by you. For details, see `Workloads <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0046.html>`__.
+   Yes. You can select images from **Third-party Images**, and **Shared Images** pages on the CCE console. The **My Images** page displays only the images created by you. For details, see :ref:`Workloads <cce_10_0046>`.
 
 #. **How do I create a workload using CCE?**
 
@@ -54,7 +54,7 @@ FAQs
 
 #. **How do I create a workload accessible to public networks?**
 
-   CCE provides different types of Services for workload access in diverse scenarios. Currently, CCE provides two access types to expose a workload to public networks: NodePort and LoadBalancer. For details, see `Networking <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0020.html>`__.
+   CCE provides different types of Services for workload access in diverse scenarios. Currently, CCE provides two access types to expose a workload to public networks: NodePort and LoadBalancer. For details, see :ref:`Networking <cce_10_0020>`.
 
 #. **How can I allow multiple workloads in the same cluster to access each other?**
 
@@ -64,4 +64,4 @@ FAQs
 
    Example:
 
-   Assume that workload A needs to access workload B in the same cluster. Then, you can create a `ClusterIP <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0011.html>`__ Service for workload B. After the ClusterIP Service is created, workload B is reachable at <self-defined service name>.<workload B's namespace>.svc.cluster.local:<port number>.
+   Assume that workload A needs to access workload B in the same cluster. Then, you can create a :ref:`ClusterIP <cce_10_0011>` Service for workload B. After the ClusterIP Service is created, workload B is reachable at <self-defined service name>.<workload B's namespace>.svc.cluster.local:<port number>.

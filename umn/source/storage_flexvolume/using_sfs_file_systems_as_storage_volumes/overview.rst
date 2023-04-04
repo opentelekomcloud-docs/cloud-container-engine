@@ -1,6 +1,6 @@
-:original_name: cce_01_0316.html
+:original_name: cce_10_0316.html
 
-.. _cce_01_0316:
+.. _cce_10_0316:
 
 Overview
 ========
@@ -8,7 +8,7 @@ Overview
 CCE allows you to mount a volume created from a Scalable File Service (SFS) file system to a container to store data persistently. SFS volumes are commonly used in ReadWriteMany scenarios, such as media processing, content management, big data analysis, and workload process analysis.
 
 
-.. figure:: /_static/images/en-us_image_0276664213.png
+.. figure:: /_static/images/en-us_image_0000001201823500.png
    :alt: **Figure 1** Mounting SFS volumes to CCE
 
    **Figure 1** Mounting SFS volumes to CCE

@@ -1,13 +1,13 @@
-:original_name: cce_01_0035.html
+:original_name: cce_10_0035.html
 
-.. _cce_01_0035:
+.. _cce_10_0035:
 
 Node Pools
 ==========
 
--  :ref:`Node Pool Overview <cce_01_0081>`
--  :ref:`Creating a Node Pool <cce_01_0012>`
--  :ref:`Managing a Node Pool <cce_01_0222>`
+-  :ref:`Node Pool Overview <cce_10_0081>`
+-  :ref:`Creating a Node Pool <cce_10_0012>`
+-  :ref:`Managing a Node Pool <cce_10_0222>`
 
 .. toctree::
    :maxdepth: 1

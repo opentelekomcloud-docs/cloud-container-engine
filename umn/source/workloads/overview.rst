@@ -1,6 +1,6 @@
-:original_name: cce_01_0006.html
+:original_name: cce_10_0006.html
 
-.. _cce_01_0006:
+.. _cce_10_0006:
 
 Overview
 ========
@@ -16,9 +16,9 @@ Pods can be used in either of the following ways:
 
 -  A container is running in a pod. This is the most common usage of pods in Kubernetes. You can view the pod as a single encapsulated container, but Kubernetes directly manages pods instead of containers.
 
--  Multiple containers that need to be coupled and share resources run in a pod. In this scenario, an application contains a main container and several sidecar containers, as shown in :ref:`Figure 1 <cce_01_0006__en-us_topic_0254767870_fig347141918551>`. For example, the main container is a web server that provides file services from a fixed directory, and a sidecar container periodically downloads files to the directory.
+-  Multiple containers that need to be coupled and share resources run in a pod. In this scenario, an application contains a main container and several sidecar containers, as shown in :ref:`Figure 1 <cce_10_0006__en-us_topic_0254767870_fig347141918551>`. For example, the main container is a web server that provides file services from a fixed directory, and a sidecar container periodically downloads files to the directory.
 
-   .. _cce_01_0006__en-us_topic_0254767870_fig347141918551:
+   .. _cce_10_0006__en-us_topic_0254767870_fig347141918551:
 
    .. figure:: /_static/images/en-us_image_0258392378.png
       :alt: **Figure 1** Pod

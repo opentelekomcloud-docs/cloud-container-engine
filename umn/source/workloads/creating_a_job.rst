@@ -1,6 +1,6 @@
-:original_name: cce_01_0150.html
+:original_name: cce_10_0150.html
 
-.. _cce_01_0150:
+.. _cce_10_0150:
 
 Creating a Job
 ==============
@@ -21,118 +21,57 @@ A job is started and terminated at specific times, while a long-term servo workl
 Prerequisites
 -------------
 
-Resources have been created. For details, see :ref:`Creating a Node <cce_01_0033>`. If clusters and nodes are available, you need not create them again.
+Resources have been created. For details, see :ref:`Creating a Node <cce_10_0363>`. If clusters and nodes are available, you need not create them again.
 
-Procedure
----------
+Using the CCE Console
+---------------------
 
-#. (Optional) If you use a private container image to create your job, upload the container image to the image repository.
+#. Log in to the CCE console.
 
-#. Log in to the CCE console. In the navigation pane, choose **Workloads** > **Jobs**. Click **Create Job**.
+#. Click the cluster name to go to the cluster console, choose **Workloads** in the navigation pane, and click the **Create Workload** in the upper right corner.
 
-#. Configure the basic job information listed in :ref:`Table 1 <cce_01_0150__t70ce3a99637a44ce8f7274857fb245b1>`. The parameters marked with an asterisk (*) are mandatory.
+#. Set basic information about the workload.
 
-   .. _cce_01_0150__t70ce3a99637a44ce8f7274857fb245b1:
+   **Basic Info**
 
-   .. table:: **Table 1** Basic job information
+   -  **Workload Type**: Select **Job**. For details about workload types, see :ref:`Overview <cce_10_0006>`.
+   -  **Workload Name**: Enter the name of the workload.
+   -  **Namespace**: Select the namespace of the workload. The default value is **default**. You can also click **Create Namespace** to create one. For details, see :ref:`Creating a Namespace <cce_10_0278>`.
+   -  **Pods**: Enter the number of pods.
+   -  **Container Runtime**: A CCE cluster uses runC by default, whereas a CCE Turbo cluster supports both runC and Kata. For details about the differences between runC and Kata, see :ref:`Kata Containers and Common Containers <cce_10_0463>`.
 
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                                              |
-      +===================================+==========================================================================================================================================================================+
-      | \* Job Name                       | Name of a new job. The name must be unique.                                                                                                                              |
-      |                                   |                                                                                                                                                                          |
-      |                                   | Enter 4 to 63 characters starting with a lowercase letter and ending with a letter or digit. Only lowercase letters, digits, and hyphens (-) are allowed.                |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \* Cluster                        | Cluster to which a new job belongs.                                                                                                                                      |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \* Namespace                      | Namespace to which the new job belongs. By default, this parameter is set to **default**.                                                                                |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \*Instances                       | Number of pods in this job. A job can have one or more pods. You can specify the number of pods. The default value is **1**.                                             |
-      |                                   |                                                                                                                                                                          |
-      |                                   | Each job pod consists of the same containers. Configuring multiple job pods can ensure high availability. The job can continue to run even if one of the pods is faulty. |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Description                       | Description of a job.                                                                                                                                                    |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   **Container Settings**
 
-#. Click **Next: Add Container** to add a container and an image.
+   -  Container Information
 
-   a. Click **Select Container Image** to select the image to be deployed.
+      Multiple containers can be configured in a pod. You can click **Add Container** on the right to configure multiple containers for the pod.
 
-      -  **My Images**: displays all image repositories you created.
-      -  **Third-Party Images**: Create a job using an image from any third-party image repository. When you create a job using a third-party image, ensure that the node where the job is running can access public networks. For details about how to use a third-party image, see :ref:`Using a Third-Party Image <cce_01_0009>`.
+      -  **Basic Info**: See :ref:`Setting Basic Container Information <cce_10_0396>`.
+      -  **Lifecycle**: See :ref:`Setting Container Lifecycle Parameters <cce_10_0105>`.
+      -  **Environment Variables**: See :ref:`Setting an Environment Variable <cce_10_0113>`.
+      -  **Data Storage**: See :ref:`Overview <cce_10_0307>`.
 
-         -  If your image repository does not require authentication, set **Secret Authentication** to **No**, enter an image address in **Image Address**, and then click **OK**.
-         -  If your image repository must be authenticated (account and password), you need to create a secret and then use a third-party image. For details, see :ref:`Using a Third-Party Image <cce_01_0009>`.
+         .. note::
 
-      -  **Shared Images**: The images shared by other tenants using the SWR service are displayed here. You can create workloads based on the shared images.
+            If the workload contains more than one pod, EVS volumes cannot be mounted.
 
-   b. Set image parameters.
+      -  **Logging**: See :ref:`Using ICAgent to Collect Container Logs <cce_10_0018>`.
 
-      .. table:: **Table 2** Image parameters
+   -  **Image Access Credential**: Select the credential used for accessing the image repository. The default value is **default-secret**. You can use default-secret to access images in SWR. For details about **default-secret**, see :ref:`default-secret <cce_10_0388__section11760122012591>`.
 
-         +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Parameter                         | Description                                                                                                                                                                                                                                                                                                  |
-         +===================================+==============================================================================================================================================================================================================================================================================================================+
-         | Image                             | Name of the image. You can click **Change Image** to update it.                                                                                                                                                                                                                                              |
-         +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | \*Image Version                   | Select the image tag to be deployed.                                                                                                                                                                                                                                                                         |
-         +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | \*Container Name                  | Name of the container. You can modify it.                                                                                                                                                                                                                                                                    |
-         +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Container Resources               | **CPU**                                                                                                                                                                                                                                                                                                      |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | -  **Request**: minimum number of CPU cores required by a container. The default value is 0.25 cores.                                                                                                                                                                                                        |
-         |                                   | -  **Limit**: maximum number of CPU cores available for a container. Do not leave **Limit** unspecified. Otherwise, intensive use of container resources will occur and your workload may exhibit unexpected behavior.                                                                                       |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | **Memory**                                                                                                                                                                                                                                                                                                   |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | -  **Request**: minimum amount of memory required by a container. The default value is 0.5 GiB.                                                                                                                                                                                                              |
-         |                                   | -  **Limit**: maximum amount of memory available for a container. When memory usage exceeds the specified memory limit, the container will be terminated.                                                                                                                                                    |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | For more information about **Request** and **Limit**, see :ref:`Setting Container Specifications <cce_01_0163>`.                                                                                                                                                                                             |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | **GPU**: configurable only when the cluster contains GPU nodes.                                                                                                                                                                                                                                              |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | It indicates the percentage of GPU resources reserved for a container. Select **Use** and set the percentage. For example, if this parameter is set to 10%, the container is allowed to use 10% of GPU resources. If you do not select **Use** or set this parameter to **0**, no GPU resources can be used. |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | **GPU/Graphics Card**: The workload's pods will be scheduled to the node with the specified GPU.                                                                                                                                                                                                             |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | If **Any GPU type** is selected, the container uses a random GPU in the node. If you select a specific GPU, the container uses that GPU accordingly.                                                                                                                                                         |
-         +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   -  **GPU graphics card**: **All** is selected by default. The workload instance will be scheduled to the node with the specified GPU graphics card type.
 
-   c. (Optional) Configure advanced settings.
+   **Advanced Settings**
 
-      .. table:: **Table 3** Advanced settings
+   -  **Labels and Annotations**: See :ref:`Pod Labels and Annotations <cce_10_0386>`.
+   -  **Job Settings**:
 
-         +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Parameter                         | Description                                                                                                                                                                                                                                                                       |
-         +===================================+===================================================================================================================================================================================================================================================================================+
-         | Lifecycle                         | Lifecycle scripts define the actions taken for container-related jobs when a lifecycle event occurs.                                                                                                                                                                              |
-         |                                   |                                                                                                                                                                                                                                                                                   |
-         |                                   | -  **Start Command**: You can set the command to be executed immediately after the container is started. For details, see :ref:`Configuring a Container <cce_01_0130>`.                                                                                                           |
-         |                                   | -  **Post-Start**: The command is triggered after a job starts. For details, see :ref:`Setting Container Lifecycle Parameters <cce_01_0105>`.                                                                                                                                     |
-         |                                   | -  **Pre-Stop**: The command is triggered before a job is stopped. For details, see :ref:`Setting Container Lifecycle Parameters <cce_01_0105>`.                                                                                                                                  |
-         +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Environment Variables             | Environment variables can be added to a container. In general, environment variables are used to set parameters. On the **Environment Variables** tab page, click **Add Environment Variable**. Currently, environment variables can be added using any of the following methods: |
-         |                                   |                                                                                                                                                                                                                                                                                   |
-         |                                   | -  **Added manually**: Set **Variable Name** and **Variable Value/Reference**.                                                                                                                                                                                                    |
-         |                                   | -  **Added from Secret**: Set **Variable Name** and select the desired secret name and data. A secret must be created in advance. For details, see :ref:`Creating a Secret <cce_01_0153>`.                                                                                        |
-         |                                   | -  **Added from ConfigMap**: Set **Variable Name** and select the desired ConfigMap name and data. A ConfigMap must be created in advance. For details, see :ref:`Creating a ConfigMap <cce_01_0152>`.                                                                            |
-         +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Data Storage                      | The local disk or cloud storage can be mounted to a container to implement persistent data file storage.                                                                                                                                                                          |
-         |                                   |                                                                                                                                                                                                                                                                                   |
-         |                                   | For details, see :ref:`Storage (CSI) <cce_01_0042>`.                                                                                                                                                                                                                              |
-         +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Log Policies                      | Set a log policy and log path for collecting workload logs and preventing logs from being over-sized. For details, see :ref:`Container Logs <cce_01_0018>`.                                                                                                                       |
-         +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      -  **Parallel Pods**: Maximum number of pods that can run in parallel during job execution. The value cannot be greater than the total number of pods in the job.
+      -  **Timeout (s)**: Once a job reaches this time, the job status becomes failed and all pods in this job will be deleted. If you leave this parameter blank, the job will never time out.
 
-   d. (Optional) One job pod contains one or more related containers. If your job contains multiple containers, click **Add Container** to add containers.
+#. Click **Create Workload** in the lower right corner.
 
-#. Click **Create**.
-
-   If the status of the job is **Executing**, the job has been created successfully.
-
-.. _cce_01_0150__section450152719412:
+.. _cce_10_0150__section450152719412:
 
 Using kubectl
 -------------
@@ -149,7 +88,7 @@ A job has the following configuration parameters:
 
 Based on the **.spec.completions** and **.spec.Parallelism** settings, jobs are classified into the following types.
 
-.. table:: **Table 4** Job types
+.. table:: **Table 1** Job types
 
    +---------------------------------------------+-----------------------------------------------------------------------+-------------------------------------------------------+
    | Job Type                                    | Description                                                           | Example                                               |
@@ -235,20 +174,20 @@ The following is an example job, which calculates Pi till the 2000\ :sup:`th` di
 Related Operations
 ------------------
 
-After a one-off job is created, you can perform operations listed in :ref:`Table 5 <cce_01_0150__t84075653e7544394939d13740fad0c20>`.
+After a one-off job is created, you can perform operations listed in :ref:`Table 2 <cce_10_0150__t84075653e7544394939d13740fad0c20>`.
 
-.. _cce_01_0150__t84075653e7544394939d13740fad0c20:
+.. _cce_10_0150__t84075653e7544394939d13740fad0c20:
 
-.. table:: **Table 5** Other operations
+.. table:: **Table 2** Other operations
 
-   +-----------------------------------+--------------------------------------------------------------------------------------------------+
-   | Operation                         | Description                                                                                      |
-   +===================================+==================================================================================================+
-   | Viewing a YAML                    | Click **View YAML** next to the job name to view the YAML file corresponding to the current job. |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------+
-   | Deleting a one-off job            | #. Select the job to be deleted and click **Delete** in the **Operation** column.                |
-   |                                   |                                                                                                  |
-   |                                   | #. Click **OK**.                                                                                 |
-   |                                   |                                                                                                  |
-   |                                   |    Deleted jobs cannot be restored. Exercise caution when deleting a job.                        |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------+
+   +-----------------------------------+-------------------------------------------------------------------------------------------------------------+
+   | Operation                         | Description                                                                                                 |
+   +===================================+=============================================================================================================+
+   | Editing a YAML file               | Click **More** > **Edit YAML** next to the job name to edit the YAML file corresponding to the current job. |
+   +-----------------------------------+-------------------------------------------------------------------------------------------------------------+
+   | Deleting a job                    | #. Select the job to be deleted and click **Delete** in the **Operation** column.                           |
+   |                                   |                                                                                                             |
+   |                                   | #. Click **Yes**.                                                                                           |
+   |                                   |                                                                                                             |
+   |                                   |    Deleted jobs cannot be restored. Exercise caution when deleting a job.                                   |
+   +-----------------------------------+-------------------------------------------------------------------------------------------------------------+

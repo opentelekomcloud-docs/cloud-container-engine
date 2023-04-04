@@ -1,6 +1,6 @@
-:original_name: cce_01_0333.html
+:original_name: cce_10_0333.html
 
-.. _cce_01_0333:
+.. _cce_10_0333:
 
 (kubectl) Creating a Deployment Mounted with an SFS Turbo Volume
 ================================================================
@@ -10,11 +10,6 @@ Scenario
 
 After an SFS Turbo volume is created or imported to CCE, you can mount the volume to a workload.
 
-Prerequisites
--------------
-
-You have created a CCE cluster and installed the FlexVolume plug-in (:ref:`storage-driver <cce_01_0127>`) in the cluster.
-
 Notes and Constraints
 ---------------------
 
@@ -23,7 +18,7 @@ The following configuration example applies to clusters of Kubernetes 1.13 or ea
 Procedure
 ---------
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Run the following commands to configure the **efs-deployment-example.yaml** file, which is used to create a Deployment:
 

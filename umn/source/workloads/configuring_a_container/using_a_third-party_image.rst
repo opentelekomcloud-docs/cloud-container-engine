@@ -1,6 +1,6 @@
-:original_name: cce_01_0009.html
+:original_name: cce_10_0009.html
 
-.. _cce_01_0009:
+.. _cce_10_0009:
 
 Using a Third-Party Image
 =========================
@@ -15,31 +15,27 @@ Generally, a third-party image repository can be accessed only after authenticat
 Prerequisites
 -------------
 
-The node where the workload is running is accessible from public networks. You can access public networks through :ref:`LoadBalancer <cce_01_0014>`.
+The node where the workload is running is accessible from public networks.
 
 Using the Console
 -----------------
 
-#. .. _cce_01_0009__li16481144064414:
+#. .. _cce_10_0009__li16481144064414:
 
    Create a secret for accessing a third-party image repository.
 
-   In the navigation pane, choose **Configuration Center** > **Secret**, and click **Create Secret**. **Type** must be set to **kubernetes.io/dockerconfigjson**. For details, see :ref:`Creating a Secret <cce_01_0153>`.
+   Click the cluster name and access the cluster console. In the navigation pane, choose **ConfigMaps and Secrets**. On the **Secrets** tab page, click **Create Secret** in the upper right corner. Set **Secret Type** to **kubernetes.io/dockerconfigjson**. For details, see :ref:`Creating a Secret <cce_10_0153>`.
 
    Enter the user name and password used to access the third-party image repository.
 
-#. Create a workload. For details, see :ref:`Creating a Deployment <cce_01_0047>` or :ref:`Creating a StatefulSet <cce_01_0048>`. If the workload will be created from a third-party image, set the image parameters as follows:
+#. When creating a workload, you can enter a private image path in the format of **domainname/namespace/imagename:tag** in **Image Name** and select the key created in :ref:`1 <cce_10_0009__li16481144064414>`.
 
-   a. Set **Secret Authentication** to **Yes**.
-   b. Select the secret created in step :ref:`1 <cce_01_0009__li16481144064414>`.
-   c. Enter the image address.
-
-#. Click **Create**.
+#. Set other parameters and click **Create Workload**.
 
 Using kubectl
 -------------
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a secret of the dockercfg type using kubectl.
 

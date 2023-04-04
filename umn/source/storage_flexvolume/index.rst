@@ -1,16 +1,16 @@
-:original_name: cce_01_0305.html
+:original_name: cce_10_0305.html
 
-.. _cce_01_0305:
+.. _cce_10_0305:
 
 Storage (FlexVolume)
 ====================
 
--  :ref:`FlexVolume Overview <cce_01_0306>`
--  :ref:`How Do I Change the Storage Class Used by a Cluster of v1.15 from FlexVolume to CSI Everest? <cce_01_0343>`
--  :ref:`Using EVS Disks as Storage Volumes <cce_01_0309>`
--  :ref:`Using SFS Turbo File Systems as Storage Volumes <cce_01_0329>`
--  :ref:`Using OBS Buckets as Storage Volumes <cce_01_0322>`
--  :ref:`Using SFS File Systems as Storage Volumes <cce_01_0315>`
+-  :ref:`FlexVolume Overview <cce_10_0306>`
+-  :ref:`How Do I Change the Storage Class Used by a Cluster of v1.15 from FlexVolume to CSI Everest? <cce_10_0343>`
+-  :ref:`Using EVS Disks as Storage Volumes <cce_10_0309>`
+-  :ref:`Using SFS Turbo File Systems as Storage Volumes <cce_10_0329>`
+-  :ref:`Using OBS Buckets as Storage Volumes <cce_10_0322>`
+-  :ref:`Using SFS File Systems as Storage Volumes <cce_10_0315>`
 
 .. toctree::
    :maxdepth: 1

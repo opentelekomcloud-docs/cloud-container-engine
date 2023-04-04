@@ -1,15 +1,15 @@
-:original_name: cce_01_0045.html
+:original_name: cce_10_0045.html
 
-.. _cce_01_0045:
+.. _cce_10_0045:
 
 Configuration Center
 ====================
 
--  :ref:`Creating a ConfigMap <cce_01_0152>`
--  :ref:`Using a ConfigMap <cce_01_0015>`
--  :ref:`Creating a Secret <cce_01_0153>`
--  :ref:`Using a Secret <cce_01_0016>`
--  :ref:`Cluster Secrets <cce_01_0388>`
+-  :ref:`Creating a ConfigMap <cce_10_0152>`
+-  :ref:`Using a ConfigMap <cce_10_0015>`
+-  :ref:`Creating a Secret <cce_10_0153>`
+-  :ref:`Using a Secret <cce_10_0016>`
+-  :ref:`Cluster Secrets <cce_10_0388>`
 
 .. toctree::
    :maxdepth: 1

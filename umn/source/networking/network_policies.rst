@@ -1,20 +1,26 @@
-:original_name: cce_01_0059.html
+:original_name: cce_10_0059.html
 
-.. _cce_01_0059:
+.. _cce_10_0059:
 
 Network Policies
 ================
 
-As the service logic becomes increasingly complex, many applications require network calls between modules. Traditional external firewalls or application-based firewalls cannot meet the requirements. Network policies are urgently needed between modules, service logic layers, or functional teams in a large cluster.
+NetworkPolicy is a Kubernetes object used to restrict pod access. In CCE, by setting network policies, you can define ingress rules specifying the addresses to access pods or egress rules specifying the addresses pods can access. This is equivalent to setting up a firewall at the application layer to further ensure network security.
 
-CCE has enhanced the Kubernetes-based network policy feature, allowing network isolation in a cluster by configuring network policies. This means that a firewall can be set between pods.
+Network policies depend on the networking add-on of the cluster to which the policies apply.
 
-For example, to make a payment system accessible only to specified components for security purposes, you can configure network policies.
+By default, if a namespace does not have any policy, pods in the namespace accept traffic from any source and send traffic to any destination.
+
+Network policy rules are classified into the following types:
+
+-  **namespaceSelector**: selects particular namespaces for which all pods should be allowed as ingress sources or egress destinations.
+-  **podSelector**: selects particular pods in the same namespace as the network policy which should be allowed as ingress sources or egress destinations.
+-  **ipBlock**: selects particular IP blocks to allow as ingress sources or egress destinations. (Only egress rules support IP blocks.)
 
 Notes and Constraints
 ---------------------
 
--  Only clusters that use the **tunnel network model** support network policies.
+-  Only clusters that use the tunnel network model support network policies.
 
 -  Network isolation is not supported for IPv6 addresses.
 
@@ -27,11 +33,6 @@ Notes and Constraints
    -  EulerOS 2.5: kernel version 3.10.0-862.14.1.5.h591.eulerosv2r7.x86_64
 
 -  If a cluster is upgraded to v1.23 in in-place mode, you cannot use egress rules because the node OS is not upgraded. In this case, reset the node.
-
-Precautions
------------
-
-If no network policies have been configured for a workload, such as **workload-1**, other workloads in the same cluster can access **workload-1**.
 
 Using Ingress Rules
 -------------------
@@ -87,9 +88,9 @@ Using Ingress Rules
           - protocol: TCP
             port: 6379
 
-   :ref:`Figure 2 <cce_01_0059__en-us_topic_0249851123_fig127351855617>` shows how namespaceSelector selects ingress sources.
+   :ref:`Figure 2 <cce_10_0059__en-us_topic_0249851123_fig127351855617>` shows how namespaceSelector selects ingress sources.
 
-   .. _cce_01_0059__en-us_topic_0249851123_fig127351855617:
+   .. _cce_10_0059__en-us_topic_0249851123_fig127351855617:
 
    .. figure:: /_static/images/en-us_image_0259558489.png
       :alt: **Figure 2** namespaceSelector
@@ -171,46 +172,57 @@ Diagram:
 
    **Figure 4** Using both ingress and egress
 
-Adding a Network Policy on the Console
---------------------------------------
+Creating a Network Policy on the Console
+----------------------------------------
 
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Network**. On the **Network Policies** tab page, click **Create Network Policy**.
+#. Log in to the CCE console and access the cluster console.
+#. Choose **Networking** in the navigation pane, click the **Network Policies** tab, and click **Create Network Policy** in the upper right corner.
 
-   -  **Network Policy Name**: Specify a network policy name.
-
-   -  **Cluster Name**: Select a cluster to which the network policy belongs.
+   -  **Policy Name**: Specify a network policy name.
 
    -  **Namespace**: Select a namespace in which the network policy is applied.
 
-   -  **Workload**
+   -  **Selector**: Enter a label, select the pod to be associated, and click **Add**. You can also click **Reference Workload Label** to reference the label of an existing workload.
 
-      Click **Select Workload**. In the dialog box displayed, select a workload for which the network policy is to be created, for example, **workload-1**. Then, click **OK**.
+   -  **Inbound Rule**: Click |image1| to add an inbound rule. For details about parameter settings, see :ref:`Table 1 <cce_10_0059__table166419994515>`.
 
-   -  **Rules**: Click **Add Rule**, set the parameters listed in :ref:`Table 1 <cce_01_0059__table26919378234>`, and click **OK**.
+      |image2|
 
-      .. _cce_01_0059__table26919378234:
+      .. _cce_10_0059__table166419994515:
 
-      .. table:: **Table 1** Parameters for adding a rule
+      .. table:: **Table 1** Adding an inbound rule
 
-         +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Parameter                         | Description                                                                                                                                                    |
-         +===================================+================================================================================================================================================================+
-         | Direction                         | Only **Inbound** is supported, indicating that the whitelisted workloads access the current workload (**workload-1** in this example).                         |
-         +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Protocol                          | Select a protocol. Currently, the TCP and UDP protocols are supported. The ICMP protocol is not supported.                                                     |
-         +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Destination Container Port        | Specify a port on which the workload in the container image listens. The Nginx application listens on port 80.                                                 |
-         |                                   |                                                                                                                                                                |
-         |                                   | If no container port is specified, all ports can be accessed by default.                                                                                       |
-         +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Whitelisted Workloads             | Select other workloads that can access the current workload. These workloads will access the current workload at the destination container port.               |
-         |                                   |                                                                                                                                                                |
-         |                                   | -  **Namespace**: All workloads in the selected namespace(s) are added to the whitelist. That is, all workloads in the namespace(s) can access **workload-1**. |
-         |                                   | -  **Workload**: The selected workloads can access **workload-1**. Only other workloads in the same namespace as **workload-1** can be selected.               |
-         +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         +------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Parameter        | Description                                                                                                                                                  |
+         +==================+==============================================================================================================================================================+
+         | Protocol & Port  | Select the protocol type and port. Currently, TCP and UDP are supported.                                                                                     |
+         +------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Source Namespace | Select a namespace whose objects can be accessed. If this parameter is not specified, the source object belongs to the same namespace as the current policy. |
+         +------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Source Pod Label | Allow access to the pods with this label, if not specified, all pods in the namespace can be accessed.                                                       |
+         +------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-#. Click **Create**.
+   -  **Outbound Rule**: Click |image3| to add an outbound rule. For details about parameter settings, see :ref:`Table 1 <cce_10_0059__table166419994515>`.
 
-#. Repeat the preceding steps to add more network policies for the current workload when other ports need to be accessed by some workloads.
+      |image4|
 
-   After the network policies are created, only the specified workloads or workloads in the specified namespaces can access the current workload.
+      .. table:: **Table 2** Adding an outbound rule
+
+         +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Parameter              | Description                                                                                                                                                                                                                                                                                                                                                                       |
+         +========================+===================================================================================================================================================================================================================================================================================================================================================================================+
+         | Protocol & Port        | Select the protocol type and port. Currently, TCP and UDP are supported. If this parameter is not specified, the protocol type is not limited.                                                                                                                                                                                                                                    |
+         +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Destination CIDR Block | Allows requests to be routed to a specified CIDR block (and not to the exception CIDR blocks). Separate the destination and exception CIDR blocks by vertical bars (|), and separate multiple exception CIDR blocks by commas (,). For example, 172.17.0.0/16|172.17.1.0/24,172.17.2.0/24 indicates that 172.17.0.0/16 is accessible, but not for 172.17.1.0/24 or 172.17.2.0/24. |
+         +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Destination Namespace  | Select a namespace whose objects can be accessed. If this parameter is not specified, the source object belongs to the same namespace as the current policy.                                                                                                                                                                                                                      |
+         +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Destination Pod Label  | Allow access to the pods with this label, if not specified, all pods in the namespace can be accessed.                                                                                                                                                                                                                                                                            |
+         +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+#. Click **OK**.
+
+.. |image1| image:: /_static/images/en-us_image_0000001251716033.png
+.. |image2| image:: /_static/images/en-us_image_0000001533585325.png
+.. |image3| image:: /_static/images/en-us_image_0000001533586881.png
+.. |image4| image:: /_static/images/en-us_image_0000001482546084.png

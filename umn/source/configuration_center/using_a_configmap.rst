@@ -1,13 +1,13 @@
-:original_name: cce_01_0015.html
+:original_name: cce_10_0015.html
 
-.. _cce_01_0015:
+.. _cce_10_0015:
 
 Using a ConfigMap
 =================
 
--  :ref:`Setting Workload Environment Variables <cce_01_0015__section1737733192813>`
--  :ref:`Setting Command Line Parameters <cce_01_0015__section17930105710189>`
--  :ref:`Attaching a ConfigMap to the Workload Data Volume <cce_01_0015__section1490261161916>`
+-  :ref:`Setting Workload Environment Variables <cce_10_0015__section1737733192813>`
+-  :ref:`Setting Command Line Parameters <cce_10_0015__section17930105710189>`
+-  :ref:`Attaching a ConfigMap to the Workload Data Volume <cce_10_0015__section1490261161916>`
 
 The following example shows how to use a ConfigMap.
 
@@ -25,7 +25,7 @@ The following example shows how to use a ConfigMap.
 
    When a ConfigMap is used in a pod, the pod and ConfigMap must be in the same cluster and namespace.
 
-.. _cce_01_0015__section1737733192813:
+.. _cce_10_0015__section1737733192813:
 
 Setting Workload Environment Variables
 --------------------------------------
@@ -85,7 +85,7 @@ To add all data in a ConfigMap to environment variables, use the **envFrom** par
              name: cce-configmap
      restartPolicy: Never
 
-.. _cce_01_0015__section17930105710189:
+.. _cce_10_0015__section17930105710189:
 
 Setting Command Line Parameters
 -------------------------------
@@ -122,7 +122,7 @@ After the pod runs, the following information is displayed:
 
    Hello CCE
 
-.. _cce_01_0015__section1490261161916:
+.. _cce_10_0015__section1490261161916:
 
 Attaching a ConfigMap to the Workload Data Volume
 -------------------------------------------------
@@ -156,4 +156,4 @@ After the pod is run, the **SPECIAL_LEVEL** and **SPECIAL_TYPE** files are gener
    SPECIAL_TYPE
    SPECIAL_LEVEL
 
-To mount a ConfigMap to a data volume, you can also perform operations on the CCE console. When creating a workload, set advanced settings for the container, choose **Data Storage** > **Local Volume**, click **Add Local Volume**, and select **ConfigMap**. For details, see :ref:`ConfigMap <cce_01_0053__en-us_topic_0000001199341206_section18638191594712>`.
+To mount a ConfigMap to a data volume, you can also perform operations on the CCE console. When creating a workload, set advanced settings for the container, choose **Data Storage** > **Local Volume**, click **Add Local Volume**, and select **ConfigMap**. For details, see :ref:`ConfigMap <cce_10_0377__section18638191594712>`.

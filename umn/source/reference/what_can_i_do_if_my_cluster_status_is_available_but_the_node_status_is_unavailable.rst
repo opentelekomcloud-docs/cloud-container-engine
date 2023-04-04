@@ -67,7 +67,7 @@ Check Item 3: Whether You Can Log In to the ECS
 
 #. Log in to the management console. Choose **Service List** > **Computing** > **Elastic Cloud Server**.
 
-#. In the ECS list, locate the newly created node (generally named in the format of *cluster name*-*random number*) in the cluster and click **Remote Login** in the **Operation** column.
+#. In the ECS list, locate the newly created node (generally named in the format of *cluster name*\ ``-``\ *random number*) in the cluster and click **Remote Login** in the **Operation** column.
 
 #. Check whether the node name displayed on the page is the same as that on the VM and whether the password or key can be used to log in to the node.
 

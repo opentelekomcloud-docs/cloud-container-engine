@@ -1,6 +1,6 @@
-:original_name: cce_01_0216.html
+:original_name: cce_10_0216.html
 
-.. _cce_01_0216:
+.. _cce_10_0216:
 
 Creating a DaemonSet
 ====================
@@ -23,173 +23,131 @@ You can deploy a DaemonSet for each type of daemons on all nodes, or deploy mult
 Prerequisites
 -------------
 
-You must have one cluster available before creating a DaemonSet. For details on how to create a cluster, see :ref:`Creating a CCE Cluster <cce_01_0028>`.
+You must have one cluster available before creating a DaemonSet. For details on how to create a cluster, see :ref:`Creating a CCE Cluster <cce_10_0028>`.
 
-Procedure
----------
+Using the CCE Console
+---------------------
 
 #. Log in to the CCE console.
 
-#. In the navigation pane on the left, choose **Workloads** > **DaemonSets**. Click **Create DaemonSet** in the upper right corner of the page. Set basic workload parameters as described in :ref:`Table 1 <cce_01_0216__table18511927357>`. The parameters marked with an asterisk (*) are mandatory.
+#. Click the cluster name to go to the cluster console, choose **Workloads** in the navigation pane, and click the **Create Workload** in the upper right corner.
 
-   .. _cce_01_0216__table18511927357:
+#. Set basic information about the workload.
 
-   .. table:: **Table 1** Basic workload parameters
+   **Basic Info**
 
-      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                                                                                                               |
-      +===================================+===========================================================================================================================================================================================================================================+
-      | \* Workload Name                  | Name of the containerized workload to be created. The name must be unique.                                                                                                                                                                |
-      |                                   |                                                                                                                                                                                                                                           |
-      |                                   | Enter 4 to 63 characters starting with a letter and ending with a letter or digit. Only lowercase letters, digits, and hyphens (-) are allowed.                                                                                           |
-      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \* Cluster Name                   | Cluster to which the workload belongs.                                                                                                                                                                                                    |
-      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \* Namespace                      | In a single cluster, data in different namespaces is isolated from each other. This enables applications to share the services of the same cluster without interfering each other. If no namespace is set, the default namespace is used. |
-      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Time Zone Synchronization         | If this parameter is enabled, the container and the node use the same time zone.                                                                                                                                                          |
-      |                                   |                                                                                                                                                                                                                                           |
-      |                                   | .. important::                                                                                                                                                                                                                            |
-      |                                   |                                                                                                                                                                                                                                           |
-      |                                   |    NOTICE:                                                                                                                                                                                                                                |
-      |                                   |    After time zone synchronization is enabled, disks of the hostPath type will be automatically added and listed in the **Data Storage** > **Local Volume** area. Do not modify or delete the disks.                                      |
-      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Description                       | Description of the workload.                                                                                                                                                                                                              |
-      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   -  **Workload Type**: Select **DaemonSet**. For details about workload types, see :ref:`Overview <cce_10_0006>`.
+   -  **Workload Name**: Enter the name of the workload.
+   -  **Namespace**: Select the namespace of the workload. The default value is **default**. You can also click **Create Namespace** to create one. For details, see :ref:`Creating a Namespace <cce_10_0278>`.
+   -  **Container Runtime**: A CCE cluster uses runC by default, whereas a CCE Turbo cluster supports both runC and Kata. For details about the differences between runC and Kata, see :ref:`Kata Containers and Common Containers <cce_10_0463>`.
+   -  **Time Zone Synchronization**: Specify whether to enable time zone synchronization. After time zone synchronization is enabled, the container and node use the same time zone. The time zone synchronization function depends on the local disk mounted to the container. Do not modify or delete the time zone. For details, see :ref:`Configuring Time Zone Synchronization <cce_10_0354>`.
 
-#. Click **Next: Add Container**.
+   **Container Settings**
 
-   a. Click **Add Container** and select the image to be deployed.
+   -  Container Information
 
-      -  **My Images**: Create a workload using an image in the image repository you created.
-      -  **Third-Party Images**: Create a workload using an image from any third-party image repository. When you create a workload using a third-party image, ensure that the node where the workload is running can access public networks. For details on how to create a workload using a third-party image, see :ref:`Using a Third-Party Image <cce_01_0009>`.
+      Multiple containers can be configured in a pod. You can click **Add Container** on the right to configure multiple containers for the pod.
 
-         -  If your image repository does not require authentication, set **Secret Authentication** to **No**, enter an image pull address, and then click **OK**.
-         -  If your image repository must be authenticated (account and password), you need to create a secret and then use a third-party image. For details, see :ref:`Using a Third-Party Image <cce_01_0009>`.
-
-      -  **Shared Images**: Create a workload using an image shared by another tenant through the SWR service.
-
-   b. Configure basic image information.
-
-      A workload is an abstract model of a group of pods. One pod can encapsulate one or more containers. You can click **Add Container** in the upper right corner to add multiple container images and set them separately.
-
-      .. table:: **Table 2** Image parameters
-
-         +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Parameter                         | Description                                                                                                                                                                                                                                                                                                  |
-         +===================================+==============================================================================================================================================================================================================================================================================================================+
-         | Image Name                        | Name of the image. You can click **Change Image** to update it.                                                                                                                                                                                                                                              |
-         +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | \*Image Version                   | Select the image tag to be deployed.                                                                                                                                                                                                                                                                         |
-         +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | \*Container Name                  | Name of the container. You can modify it.                                                                                                                                                                                                                                                                    |
-         +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Privileged Container              | Programs in a privileged container have certain privileges.                                                                                                                                                                                                                                                  |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | If **Privileged Container** is **On**, the container is granted superuser permissions. For example, privileged containers can manipulate network devices on the host machine and modify kernel parameters.                                                                                                   |
-         +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Container Resources               | **CPU**                                                                                                                                                                                                                                                                                                      |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | -  **Request**: minimum number of CPU cores required by a container. The default value is 0.25 cores.                                                                                                                                                                                                        |
-         |                                   | -  **Limit**: maximum number of CPU cores available for a container. Do not leave **Limit** unspecified. Otherwise, intensive use of container resources will occur and your workload may exhibit unexpected behavior.                                                                                       |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | **Memory**                                                                                                                                                                                                                                                                                                   |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | -  **Request**: minimum amount of memory required by a container. The default value is 512 MiB.                                                                                                                                                                                                              |
-         |                                   | -  **Limit**: maximum amount of memory available for a container. When memory usage exceeds the specified memory limit, the container will be terminated.                                                                                                                                                    |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | For more information about **Request** and **Limit**, see :ref:`Setting Container Specifications <cce_01_0163>`.                                                                                                                                                                                             |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | **GPU**: configurable only when the cluster contains GPU nodes.                                                                                                                                                                                                                                              |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | It indicates the percentage of GPU resources reserved for a container. Select **Use** and set the percentage. For example, if this parameter is set to 10%, the container is allowed to use 10% of GPU resources. If you do not select **Use** or set this parameter to **0**, no GPU resources can be used. |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | **GPU/Graphics Card**: The workload's pods will be scheduled to the node with the specified GPU.                                                                                                                                                                                                             |
-         |                                   |                                                                                                                                                                                                                                                                                                              |
-         |                                   | If **Any GPU type** is selected, the container uses a random GPU in the node. If you select a specific GPU, the container uses this GPU accordingly.                                                                                                                                                         |
-         +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-   c. **Lifecycle**: Commands for starting and running containers can be set.
-
-      -  **Start Command**: executed when the workload is started. For details, see :ref:`Setting Container Startup Commands <cce_01_0008>`.
-      -  **Post-Start**: executed after the workload runs successfully. For more information, see :ref:`Setting Container Lifecycle Parameters <cce_01_0105>`.
-      -  **Pre-Stop**: executed to delete logs or temporary files before the workload ends. For more information, see :ref:`Setting Container Lifecycle Parameters <cce_01_0105>`.
-
-   d. **Health Check**: CCE provides two types of probes: liveness probe and readiness probe. They are used to determine whether containers and user services are running properly. For more information, see :ref:`Setting Health Check for a Container <cce_01_0112>`.
-
-      -  **Liveness Probe**: used to restart the unhealthy container.
-      -  **Readiness Probe**: used to change the container to the unready state when detecting that the container is unhealthy. In this way, service traffic will not be directed to the container.
-
-   e. **Environment Variables**: Environment variables can be added to a container. In general, environment variables are used to set parameters.
-
-      On the **Environment Variables** tab page, click **Add Environment Variable**. Currently, three types of environment variables are supported:
-
-      -  **Added manually**: Set **Variable Name** and **Variable Value/Reference**.
-      -  **Added from Secret**: Set **Variable Name** and select the desired secret name and data. A secret must be created in advance. For details, see :ref:`Creating a Secret <cce_01_0153>`.
-      -  **Added from ConfigMap**: Set **Variable Name** and select the desired ConfigMap name and data. A ConfigMap must be created in advance. For details, see :ref:`Creating a ConfigMap <cce_01_0152>`.
+      -  **Basic Info**: See :ref:`Setting Basic Container Information <cce_10_0396>`.
+      -  **Lifecycle**: See :ref:`Setting Container Lifecycle Parameters <cce_10_0105>`.
+      -  **Health Check**: See :ref:`Setting Health Check for a Container <cce_10_0112>`.
+      -  **Environment Variables**: See :ref:`Setting an Environment Variable <cce_10_0113>`.
+      -  **Data Storage**: See :ref:`Overview <cce_10_0307>`.
 
          .. note::
 
-            To edit an environment variable that has been set, click **Edit**. To delete an environment variable that has been set, click **Delete**.
+            If the workload contains more than one pod, EVS volumes cannot be mounted.
 
-   f. **Data Storage**: Data storage can be mounted to containers for persistent storage and high disk I/O. Local volume and cloud storage are supported. For details, see :ref:`Storage (CSI) <cce_01_0042>`.
+      -  **Security Context**: Set container permissions to protect the system and other containers from being affected. Enter the user ID to set container permissions and prevent systems and other containers from being affected.
+      -  **Logging**: See :ref:`Using ICAgent to Collect Container Logs <cce_10_0018>`.
 
-      .. note::
+   -  **Image Access Credential**: Select the credential used for accessing the image repository. The default value is **default-secret**. You can use default-secret to access images in SWR. For details about **default-secret**, see :ref:`default-secret <cce_10_0388__section11760122012591>`.
 
-         Currently, cloud storage cannot be mounted to secure (Kata) containers in a CCE Turbo cluster.
+   -  **GPU graphics card**: **All** is selected by default. The workload instance will be scheduled to the node with the specified GPU graphics card type.
 
-   g. **Security Context**: Container permissions can be configured to protect CCE and other containers from being affected.
+   **Service Settings**
 
-      Enter the user ID to set container permissions and prevent systems and other containers from being affected.
+   A Service is used for pod access. With a fixed IP address, a Service forwards access traffic to pods and performs load balancing for these pods.
 
-   h. **Log Policies**: Log collection policies and log directory can be configured to collect container logs for unified management and analysis. For details, see :ref:`Container Logs <cce_01_0018>`.
+   You can also create a Service after creating a workload. For details about the Service, see :ref:`Service Overview <cce_10_0249>`.
 
-#. Click **Next: Set Application Access**. Then, click **Add Service** and set the workload access type.
+   **Advanced Settings**
 
-   If your workload will be reachable to other workloads or public networks, add a Service to define the workload access type.
+   -  **Upgrade**: See :ref:`Configuring the Workload Upgrade Policy <cce_10_0397>`.
+   -  **Scheduling**: See :ref:`Scheduling Policy (Affinity/Anti-affinity) <cce_10_0232>`.
+   -  **Labels and Annotations**: See :ref:`Pod Labels and Annotations <cce_10_0386>`.
+   -  **Toleration**: Using both taints and tolerations allows (not forcibly) the pod to be scheduled to a node with the matching taints, and controls the pod eviction policies after the node where the pod is located is tainted. For details, see :ref:`Tolerations <cce_10_0352__section2047442210417>`.
+   -  **DNS**: See :ref:`DNS Configuration <cce_10_0365>`.
 
-   The workload access type determines the network attributes of the workload. Workloads with different access types can provide different network capabilities. For details, see :ref:`Overview <cce_01_0010>`.
+#. Click **Create Workload** in the lower right corner.
 
-#. Click **Next: Configure Advanced Settings** to configure advanced policies.
+Using kubectl
+-------------
 
-   -  **Upgrade Policy**:
+The following procedure uses Nginx as an example to describe how to create a workload using kubectl.
 
-      -  **Upgrade Mode**: Only **Rolling upgrade** is supported. During a rolling upgrade, old pods are gradually replaced with new ones. During the upgrade, service traffic is evenly distributed to both pods to ensure service continuity.
-      -  **Maximum Number of Unavailable Pods**: Maximum number of unavailable pods allowed in a rolling upgrade. If the number is equal to the total number of pods, services may be interrupted. Minimum number of alive pods = Total pods - Maximum number of unavailable pods
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
-   -  **Graceful Deletion**:
+#. Create and edit the **nginx-daemonset.yaml** file. **nginx-daemonset.yaml** is an example file name, and you can change it as required.
 
-      **Graceful Time Window**: Enter the time. The graceful scale-in policy provides a time window for workload deletion and is reserved for executing commands in the PreStop phase in the lifecycle. If workload processes are not terminated after the time window elapses, the workload will be forcibly deleted.
+   **vi nginx-daemonset.yaml**
 
-   -  **Scheduling Policies**: You can combine static global scheduling policies or dynamic runtime scheduling policies as required. For details, see :ref:`Scheduling Policy Overview <cce_01_0051>`.
+   The content of the description file is as follows: The following provides an example. For more information on DaemonSets, see `Kubernetes documents <https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/>`__.
 
-   -  **Advanced Pod Settings**
+   .. code-block::
 
-      -  **Pod Label**: The built-in **app** label is specified when the workload is created. It is used to set affinity and anti-affinity scheduling and cannot be modified. You can click **Add Label** to add labels.
+      apiVersion: apps/v1
+      kind: DaemonSet
+      metadata:
+        name: nginx-daemonset
+        labels:
+          app: nginx-daemonset
+      spec:
+        selector:
+          matchLabels:
+            app: nginx-daemonset
+        template:
+          metadata:
+            labels:
+              app: nginx-daemonset
+          spec:
+            nodeSelector:                 # Node selection. A pod is created on a node only when the node meets daemon=need.
+              daemon: need
+            containers:
+            - name: nginx-daemonset
+              image: nginx:alpine
+              resources:
+                limits:
+                  cpu: 250m
+                  memory: 512Mi
+                requests:
+                  cpu: 250m
+                  memory: 512Mi
+            imagePullSecrets:
+            - name: default-secret
 
+   The **replicas** parameter used in defining a Deployment or StatefulSet does not exist in the above configuration for a DaemonSet, because each node has only one replica. It is fixed.
 
-      .. figure:: /_static/images/en-us_image_0220765374.png
-         :alt: **Figure 1** Advanced pod settings
+   The nodeSelector in the preceding pod template specifies that a pod is created only on the nodes that meet **daemon=need**, as shown in the following figure. If you want to create a pod on each node, delete the label.
 
-         **Figure 1** Advanced pod settings
+#. Create a DaemonSet.
 
-   -  **Client DNS Configuration**: A CCE cluster has a built-in DNS add-on (CoreDNS) to provide domain name resolution for workloads in the cluster.
+   **kubectl create -f nginx-daemonset.yaml**
 
-      -  **DNS Policy**
+   If the following information is displayed, the DaemonSet is being created.
 
-         -  **ClusterFirst**: The default DNS configuration overrides the **Nameserver** and **DNS Search Domain** configurations of the client.
-         -  **None**: Only the **Nameserver** and **DNS Search Domain** configurations are used for domain name resolution.
-         -  **Default**: The pod inherits the DNS configuration from the node on which the pod runs.
+   .. code-block::
 
-      -  **Nameserver**: You can configure a domain name server for a user-defined domain name. The value is one or a group of DNS IP addresses, for example, 1.2.3.4.
-      -  **DNS Search Domain**: a search list for host-name lookup. When a domain name cannot be resolved, DNS queries will be attempted combining the domain name with each domain in the search list in turn until a match is found or all domains in the search list are tried.
-      -  **Timeout (s)**: amount of time the resolver will wait for a response from a remote name server before retrying the query on a different name server. Set it based on the site requirements.
-      -  **ndots**: threshold for the number of dots that must appear in a domain name before an initial absolute query will be made. If a domain name has **ndots** or more than **ndots** dots, the name is a fully qualified domain name (FQDN) and will be tried first as an absolute name. If a domain name has less than **ndots** dots, the operating system will look up the name in a list of search domain names.
+      daemonset.apps/nginx-daemonset created
 
-#. After the preceding configurations are complete, click **Create**. On the page displayed, click **Return to Workload List** to view the workload status.
+#. Query the DaemonSet status.
 
-   If the workload is in the **Running** state, it has been successfully created.
+   **kubectl get ds**
 
-   Workload status is not updated in real time. Click |image1| in the upper right corner or press **F5** to refresh the page.
+   .. code-block::
 
-.. |image1| image:: /_static/images/en-us_image_0183674977.png
+      $ kubectl get ds
+      NAME              DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+      nginx-daemonset   1         1         0       1            0           daemon=need     116s
+
+#. If the workload will be accessed through a ClusterIP or NodePort Service, set the corresponding workload access type. For details, see :ref:`Networking <cce_10_0020>`.

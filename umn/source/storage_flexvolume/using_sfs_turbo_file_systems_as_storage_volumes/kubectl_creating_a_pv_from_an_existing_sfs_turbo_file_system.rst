@@ -1,6 +1,6 @@
-:original_name: cce_01_0332.html
+:original_name: cce_10_0332.html
 
-.. _cce_01_0332:
+.. _cce_10_0332:
 
 (kubectl) Creating a PV from an Existing SFS Turbo File System
 ==============================================================
@@ -9,11 +9,6 @@ Scenario
 --------
 
 CCE allows you to use an existing SFS Turbo file system to create a PersistentVolume (PV). After the creation is successful, you can create a PersistentVolumeClaim (PVC) and bind it to the PV.
-
-Prerequisites
--------------
-
-You have created a CCE cluster and installed the FlexVolume plug-in (:ref:`storage-driver <cce_01_0127>`) in the cluster.
 
 Notes and Constraints
 ---------------------
@@ -25,7 +20,7 @@ Procedure
 
 #. Log in to the SFS console, create a file system, and record the file system ID, shared path, and capacity.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create two YAML files for creating the PV and PVC. Assume that the file names are **pv-efs-example.yaml** and **pvc-efs-example.yaml**.
 

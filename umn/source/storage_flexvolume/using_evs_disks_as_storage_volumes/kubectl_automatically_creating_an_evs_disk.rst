@@ -1,19 +1,9 @@
-:original_name: cce_01_0312.html
+:original_name: cce_10_0312.html
 
-.. _cce_01_0312:
+.. _cce_10_0312:
 
 (kubectl) Automatically Creating an EVS Disk
 ============================================
-
-Scenario
---------
-
-CCE supports creating EVS volumes through PersistentVolumeClaims (PVCs).
-
-Prerequisites
--------------
-
-You have created a CCE cluster and installed the FlexVolume plug-in (:ref:`storage-driver <cce_01_0127>`) in the cluster.
 
 Notes and Constraints
 ---------------------
@@ -23,7 +13,7 @@ The following configuration example applies to clusters of Kubernetes 1.13 or ea
 Procedure
 ---------
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Run the following commands to configure the **pvc-evs-auto-example.yaml** file, which is used to create a PVC.
 
@@ -54,27 +44,21 @@ Procedure
 
    .. table:: **Table 1** Key parameters
 
-      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                                | Description                                                                                                                          |
-      +==========================================+======================================================================================================================================+
-      | volume.beta.kubernetes.io/storage-class  | EVS disk type. The value is in lowercase.                                                                                            |
-      |                                          |                                                                                                                                      |
-      |                                          | Supported values: Common I/O (SATA), High I/O (SAS), and Ultra-high I/O (SSD)High I/O (SAS) and Ultra-high I/O (SSD)                 |
-      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
-      | failure-domain.beta.kubernetes.io/region | Region where the cluster is located.                                                                                                 |
-      |                                          |                                                                                                                                      |
-      |                                          | For details about the value of **region**, see `Regions and Endpoints <https://docs.otc.t-systems.com/en-us/endpoint/index.html>`__. |
-      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
-      | failure-domain.beta.kubernetes.io/zone   | AZ where the EVS volume is created. It must be the same as the AZ planned for the workload.                                          |
-      |                                          |                                                                                                                                      |
-      |                                          | For details about the value of **zone**, see `Regions and Endpoints <https://docs.otc.t-systems.com/en-us/endpoint/index.html>`__.   |
-      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
-      | storage                                  | Storage capacity in the unit of Gi.                                                                                                  |
-      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
-      | accessModes                              | Read/write mode of the volume.                                                                                                       |
-      |                                          |                                                                                                                                      |
-      |                                          | You can set this parameter to **ReadWriteMany** (shared volume) and **ReadWriteOnce** (non-shared volume).                           |
-      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+      +------------------------------------------+------------------------------------------------------------------------------------------------------------+
+      | Parameter                                | Description                                                                                                |
+      +==========================================+============================================================================================================+
+      | volume.beta.kubernetes.io/storage-class  | EVS disk type. The value is in lowercase.                                                                  |
+      +------------------------------------------+------------------------------------------------------------------------------------------------------------+
+      | failure-domain.beta.kubernetes.io/region | Region where the cluster is located.                                                                       |
+      +------------------------------------------+------------------------------------------------------------------------------------------------------------+
+      | failure-domain.beta.kubernetes.io/zone   | AZ where the EVS volume is created. It must be the same as the AZ planned for the workload.                |
+      +------------------------------------------+------------------------------------------------------------------------------------------------------------+
+      | storage                                  | Storage capacity in the unit of Gi.                                                                        |
+      +------------------------------------------+------------------------------------------------------------------------------------------------------------+
+      | accessModes                              | Read/write mode of the volume.                                                                             |
+      |                                          |                                                                                                            |
+      |                                          | You can set this parameter to **ReadWriteMany** (shared volume) and **ReadWriteOnce** (non-shared volume). |
+      +------------------------------------------+------------------------------------------------------------------------------------------------------------+
 
 #. Run the following command to create a PVC.
 

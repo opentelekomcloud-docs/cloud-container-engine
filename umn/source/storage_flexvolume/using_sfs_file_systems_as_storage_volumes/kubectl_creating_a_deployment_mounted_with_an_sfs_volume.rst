@@ -1,6 +1,6 @@
-:original_name: cce_01_0320.html
+:original_name: cce_10_0320.html
 
-.. _cce_01_0320:
+.. _cce_10_0320:
 
 (kubectl) Creating a Deployment Mounted with an SFS Volume
 ==========================================================
@@ -10,11 +10,6 @@ Scenario
 
 After an SFS volume is created or imported to CCE, you can mount the volume to a workload.
 
-Prerequisites
--------------
-
-You have created a CCE cluster and installed the FlexVolume plug-in (:ref:`storage-driver <cce_01_0127>`) in the cluster.
-
 Notes and Constraints
 ---------------------
 
@@ -23,7 +18,7 @@ The following configuration example applies to clusters of Kubernetes 1.13 or ea
 Procedure
 ---------
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Run the following commands to configure the **sfs-deployment-example.yaml** file, which is used to create a pod.
 
@@ -136,7 +131,7 @@ Procedure
       +-------------------------------------------+-------------+------------------------------------------------------------------------------------------------------------------------------------+
       | spec.template.spec.containers.volumeMount | mountPath   | Mount path in the container. In this example, the mount path is **/tmp**.                                                          |
       +-------------------------------------------+-------------+------------------------------------------------------------------------------------------------------------------------------------+
-      | spec                                      | serviceName | Service corresponding to the workload. For details about how to create a Service, see :ref:`Creating a StatefulSet <cce_01_0048>`. |
+      | spec                                      | serviceName | Service corresponding to the workload. For details about how to create a Service, see :ref:`Creating a StatefulSet <cce_10_0048>`. |
       +-------------------------------------------+-------------+------------------------------------------------------------------------------------------------------------------------------------+
 
    .. note::

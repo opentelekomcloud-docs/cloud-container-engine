@@ -1,6 +1,6 @@
-:original_name: cce_01_0343.html
+:original_name: cce_10_0343.html
 
-.. _cce_01_0343:
+.. _cce_10_0343:
 
 How Do I Change the Storage Class Used by a Cluster of v1.15 from FlexVolume to CSI Everest?
 ============================================================================================
@@ -18,7 +18,7 @@ Procedure
 
 #. (Optional) Back up data to prevent data loss in case of exceptions.
 
-#. .. _cce_01_0343__en-us_topic_0285037038_li1219802032512:
+#. .. _cce_10_0343__cce_bestpractice_0107_li1219802032512:
 
    Configure a YAML file of the PV in the CSI format according to the PV in the FlexVolume format and associate the PV with the existing storage.
 
@@ -223,9 +223,9 @@ Procedure
       | storageClassName                 | Name of the Kubernetes storage class. Set this field to **csi-sfsturbo** for SFS Turbo volumes.                         |
       +----------------------------------+-------------------------------------------------------------------------------------------------------------------------+
 
-#. .. _cce_01_0343__en-us_topic_0285037038_li1710710385418:
+#. .. _cce_10_0343__cce_bestpractice_0107_li1710710385418:
 
-   Configure a YAML file of the PVC in the CSI format according to the PVC in the FlexVolume format and associate the PVC with the PV created in :ref:`2 <cce_01_0343__en-us_topic_0285037038_li1219802032512>`.
+   Configure a YAML file of the PVC in the CSI format according to the PVC in the FlexVolume format and associate the PVC with the PV created in :ref:`2 <cce_10_0343__cce_bestpractice_0107_li1219802032512>`.
 
    To be specific, run the following commands to configure the pvc-example.yaml file, which is used to create a PVC.
 
@@ -268,7 +268,7 @@ Procedure
       +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | failure-domain.beta.kubernetes.io/zone   | AZ where the EVS disk is deployed. Use the same value as that of the FlexVolume PVC.                                                                                                                                                       |
       +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | everest.io/disk-volume-type              | Storage class of the EVS disk. The value can be **SAS** or **SSD**. Set this parameter to the same value as that of the PV created in :ref:`2 <cce_01_0343__en-us_topic_0285037038_li1219802032512>`.                                      |
+      | everest.io/disk-volume-type              | Storage class of the EVS disk. The value can be **SAS** or **SSD**. Set this parameter to the same value as that of the PV created in :ref:`2 <cce_10_0343__cce_bestpractice_0107_li1219802032512>`.                                       |
       +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | name                                     | PVC name, which must be unique in the namespace. The value must be unique in the namespace. (If the PVC is dynamically created by a stateful application, the value of this parameter must be the same as the name of the FlexVolume PVC.) |
       +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -276,7 +276,7 @@ Procedure
       +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | storage                                  | Requested capacity of the PVC, which must be the same as the storage size of the existing PV.                                                                                                                                              |
       +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | volumeName                               | Name of the PV. Set this parameter to the name of the static PV in :ref:`2 <cce_01_0343__en-us_topic_0285037038_li1219802032512>`.                                                                                                         |
+      | volumeName                               | Name of the PV. Set this parameter to the name of the static PV in :ref:`2 <cce_10_0343__cce_bestpractice_0107_li1219802032512>`.                                                                                                          |
       +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | storageClassName                         | Name of the Kubernetes storage class. Set this field to **csi-disk** for EVS disks.                                                                                                                                                        |
       +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -316,7 +316,7 @@ Procedure
       +------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | storageClassName | Set this field to **csi-nas**.                                                                                                                                                                                                             |
       +------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | volumeName       | Name of the PV. Set this parameter to the name of the static PV in :ref:`2 <cce_01_0343__en-us_topic_0285037038_li1219802032512>`.                                                                                                         |
+      | volumeName       | Name of the PV. Set this parameter to the name of the static PV in :ref:`2 <cce_10_0343__cce_bestpractice_0107_li1219802032512>`.                                                                                                          |
       +------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    Configuration example of **a PVC for an OBS volume**:
@@ -348,7 +348,7 @@ Procedure
       +----------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Parameter                  | Description                                                                                                                                                                                                                                |
       +============================+============================================================================================================================================================================================================================================+
-      | everest.io/obs-volume-type | OBS volume type, which can be **STANDARD** (standard bucket) and **WARM** (infrequent access bucket). Set this parameter to the same value as that of the PV created in :ref:`2 <cce_01_0343__en-us_topic_0285037038_li1219802032512>`.    |
+      | everest.io/obs-volume-type | OBS volume type, which can be **STANDARD** (standard bucket) and **WARM** (infrequent access bucket). Set this parameter to the same value as that of the PV created in :ref:`2 <cce_10_0343__cce_bestpractice_0107_li1219802032512>`.     |
       +----------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | csi.storage.k8s.io/fstype  | File type, which can be **obsfs** or **s3fs**. The value must be the same as that of **fsType** of the static OBS volume PV.                                                                                                               |
       +----------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -360,7 +360,7 @@ Procedure
       +----------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | storageClassName           | Name of the Kubernetes storage class. Set this field to **csi-obs**.                                                                                                                                                                       |
       +----------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | volumeName                 | Name of the PV. Set this parameter to the name of the static PV created in :ref:`2 <cce_01_0343__en-us_topic_0285037038_li1219802032512>`.                                                                                                 |
+      | volumeName                 | Name of the PV. Set this parameter to the name of the static PV created in :ref:`2 <cce_10_0343__cce_bestpractice_0107_li1219802032512>`.                                                                                                  |
       +----------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    Configuration example of **a PVC for an SFS Turbo volume**:
@@ -398,10 +398,10 @@ Procedure
       +------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | storage          | Storage capacity, in the unit of Gi. The value must be the same as the storage size of the existing PV.                                                                                                                                    |
       +------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | volumeName       | Name of the PV. Set this parameter to the name of the static PV created in :ref:`2 <cce_01_0343__en-us_topic_0285037038_li1219802032512>`.                                                                                                 |
+      | volumeName       | Name of the PV. Set this parameter to the name of the static PV created in :ref:`2 <cce_10_0343__cce_bestpractice_0107_li1219802032512>`.                                                                                                  |
       +------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-#. .. _cce_01_0343__en-us_topic_0285037038_li487255772614:
+#. .. _cce_10_0343__cce_bestpractice_0107_li487255772614:
 
    Upgrade the workload to use a new PVC.
 
@@ -415,7 +415,7 @@ Procedure
 
       .. note::
 
-         Replace the example file name **pvc-example.yaml** in the preceding commands with the names of the YAML files configured in :ref:`2 <cce_01_0343__en-us_topic_0285037038_li1219802032512>` and :ref:`3 <cce_01_0343__en-us_topic_0285037038_li1710710385418>`.
+         Replace the example file name **pvc-example.yaml** in the preceding commands with the names of the YAML files configured in :ref:`2 <cce_10_0343__cce_bestpractice_0107_li1219802032512>` and :ref:`3 <cce_10_0343__cce_bestpractice_0107_li1710710385418>`.
 
    b. Go to the CCE console. On the workload upgrade page, click **Upgrade** > **Advanced Settings** > **Data Storage** > **Cloud Storage**.
 
@@ -435,7 +435,7 @@ Procedure
 
       .. note::
 
-         Replace the example file name **pvc-example.yaml** in the preceding commands with the names of the YAML files configured in :ref:`2 <cce_01_0343__en-us_topic_0285037038_li1219802032512>` and :ref:`3 <cce_01_0343__en-us_topic_0285037038_li1710710385418>`.
+         Replace the example file name **pvc-example.yaml** in the preceding commands with the names of the YAML files configured in :ref:`2 <cce_10_0343__cce_bestpractice_0107_li1219802032512>` and :ref:`3 <cce_10_0343__cce_bestpractice_0107_li1710710385418>`.
 
    b. Run the **kubectl edit** command to edit the StatefulSet and use the newly created PVC.
 
@@ -473,7 +473,7 @@ Procedure
 
       .. note::
 
-         Replace the example file name **pvc-example.yaml** in the preceding commands with the names of the YAML files configured in :ref:`2 <cce_01_0343__en-us_topic_0285037038_li1219802032512>` and :ref:`3 <cce_01_0343__en-us_topic_0285037038_li1710710385418>`.
+         Replace the example file name **pvc-example.yaml** in the preceding commands with the names of the YAML files configured in :ref:`2 <cce_10_0343__cce_bestpractice_0107_li1219802032512>` and :ref:`3 <cce_10_0343__cce_bestpractice_0107_li1710710385418>`.
 
    e. Change the number of pods back to the original value and wait until the pods are running.
 
@@ -518,7 +518,7 @@ Procedure
                   storage: 10Gi
               storageClassName: csi-disk
 
-   The parameter value must be the same as the PVC of the EVS volume created in :ref:`3 <cce_01_0343__en-us_topic_0285037038_li1710710385418>`.
+   The parameter value must be the same as the PVC of the EVS volume created in :ref:`3 <cce_10_0343__cce_bestpractice_0107_li1710710385418>`.
 
    Configuration example of **volumeClaimTemplates for an SFS volume**:
 
@@ -537,7 +537,7 @@ Procedure
                   storage: 10Gi
               storageClassName: csi-nas
 
-   The parameter value must be the same as the PVC of the SFS volume created in :ref:`3 <cce_01_0343__en-us_topic_0285037038_li1710710385418>`.
+   The parameter value must be the same as the PVC of the SFS volume created in :ref:`3 <cce_10_0343__cce_bestpractice_0107_li1710710385418>`.
 
    Configuration example of **volumeClaimTemplates for an OBS volume**:
 
@@ -559,7 +559,7 @@ Procedure
                   storage: 1Gi
               storageClassName: csi-obs
 
-   The parameter value must be the same as the PVC of the OBS volume created in :ref:`3 <cce_01_0343__en-us_topic_0285037038_li1710710385418>`.
+   The parameter value must be the same as the PVC of the OBS volume created in :ref:`3 <cce_10_0343__cce_bestpractice_0107_li1710710385418>`.
 
    -  Delete the StatefulSet.
 
@@ -576,7 +576,7 @@ Procedure
 
    .. note::
 
-      If a rollback is required, perform :ref:`4 <cce_01_0343__en-us_topic_0285037038_li487255772614>`. Select the PVC in FlexVolume format and upgrade the application.
+      If a rollback is required, perform :ref:`4 <cce_10_0343__cce_bestpractice_0107_li487255772614>`. Select the PVC in FlexVolume format and upgrade the application.
 
 #. Uninstall the PVC in the FlexVolume format.
 
