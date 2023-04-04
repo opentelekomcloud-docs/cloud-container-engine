@@ -1,6 +1,6 @@
-:original_name: cce_01_0163.html
+:original_name: cce_10_0163.html
 
-.. _cce_01_0163:
+.. _cce_10_0163:
 
 Setting Container Specifications
 ================================
@@ -8,29 +8,24 @@ Setting Container Specifications
 Scenario
 --------
 
-CCE allows you to set resource limits for added containers during workload creation. You can request and limit the CPU and memory quotas used by each pod in the workload.
+CCE allows you to set resource limits for added containers during workload creation. You can apply for and limit the CPU and memory quotas used by each pod in a workload.
 
 Meanings
 --------
 
 For **CPU** and **Memory**, the meanings of **Request** and **Limit** are as follows:
 
--  If **Request** is selected, the system schedules the pod to the node that meets the requirements for workload deployment based on the request value.
--  If **Request** is deselected, the system schedules the pod to a random node for workload deployment.
--  If **Limit** is selected, the system limits the resources used by the workload based on the preset value.
--  If **Limit** is deselected, the system does not limit the resources used by the pod. If the memory resources used by the pod exceed the memory allocated to the node, the workload or node may be unavailable.
+-  **Request**: Schedules the pod to the node that meets the requirements for workload deployment.
+-  **Limit**: Limits the resources used by the workload.
 
 .. note::
 
    When creating a workload, you are advised to set the upper and lower limits of CPU and memory resources. If the upper and lower resource limits are not set for a workload, a resource leak of this workload will make resources unavailable for other workloads deployed on the same node. In addition, workloads that do not have upper and lower resource limits cannot be accurately monitored.
 
-For **GPU** quotas, the meanings of **Use** and **Any GPU type** are as follows:
-
--  If **Use** is selected, the system schedules the pod to a node that meets the requirements for workload deployment based on the configured value.
--  **Any GPU type** is selected by default and cannot be deselected. This option indicates that the resources used by pods are not limited.
-
 Configuration Description
 -------------------------
+
+In actual production services, the recommended ratio of **Request** to **Limit** is about 1:1.5. For some sensitive services, the recommended ratio is 1:1. If the **Request** is too small and the **Limit** is too large, node resources are overcommitted. During service peaks, the memory or CPU of a node may be used up. As a result, the node is unavailable.
 
 -  CPU quotas:
 

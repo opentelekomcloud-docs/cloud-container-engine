@@ -1,6 +1,6 @@
-:original_name: cce_01_0284.html
+:original_name: cce_10_0284.html
 
-.. _cce_01_0284:
+.. _cce_10_0284:
 
 Cloud Native Network 2.0
 ========================
@@ -11,20 +11,16 @@ Model Definition
 Developed by CCE, Cloud Native Network 2.0 deeply integrates Elastic Network Interfaces (ENIs) and sub-ENIs of Virtual Private Cloud (VPC). Container IP addresses are allocated from the VPC CIDR block. ELB passthrough networking is supported to direct access requests to containers. Security groups and elastic IPs (EIPs) are bound to deliver high performance.
 
 
-.. figure:: /_static/images/en-us_image_0000001231949185.png
+.. figure:: /_static/images/en-us_image_0000001199181336.png
    :alt: **Figure 1** Cloud Native Network 2.0
 
    **Figure 1** Cloud Native Network 2.0
 
 **Pod-to-pod communication**
 
+-  Pods on BMS nodes use ENIs, whereas pods on ECS nodes use Sub-ENIs. Sub-ENIs are attached to ENIs through VLAN sub-interfaces.
 -  On the same node: Packets are forwarded through the VPC ENI or sub-ENI.
 -  Across nodes: Packets are forwarded through the VPC ENI or sub-ENI.
-
-Notes and Constraints
----------------------
-
-This network model is available only to CCE Turbo clusters.
 
 Advantages and Disadvantages
 ----------------------------
@@ -45,30 +41,10 @@ Application Scenarios
 -  High performance requirements and use of other VPC network capabilities: Cloud Native Network 2.0 directly uses VPC, which delivers almost the same performance as the VPC network. Therefore, it is applicable to scenarios that have high requirements on bandwidth and latency, such as online live broadcast and e-commerce seckill.
 -  Large-scale networking: Cloud Native Network 2.0 supports a maximum of 2000 ECS nodes and 100,000 containers.
 
-Container IP Address Management
--------------------------------
-
-In the Cloud Native Network 2.0 model, BMS nodes use ENIs and ECS nodes use sub-ENIs. The following figure shows how IP addresses are managed on these nodes.
-
-
-.. figure:: /_static/images/en-us_image_0000001172076961.png
-   :alt: **Figure 2** IP address management in Cloud Native Network 2.0
-
-   **Figure 2** IP address management in Cloud Native Network 2.0
-
--  Pod IP addresses are allocated from **Pod Subnet** you configure from the VPC.
--  ENIs and sub-ENIs bound to an ECS node = Number of ENIs used to bear sub-ENIs + Number of sub-ENIs currently used by pods + Number of sub-ENIs to be bound
--  ENIs bound to a BMS node = Number of ENIs currently used by pods + Number of pre-bound ENIs
--  Pre-binding policy: The system periodically (every 2 minutes by default) checks whether the total number of ENIs on the node. If the low threshold is not reached, the system pre-binds ENIs. If the high threshold is exceeded, the system releases ENIs.
--  On an ECS node, when the number of pre-bound sub-ENIs plus the number of sub-ENIs currently used by the pods is **smaller than** the number of sub-ENIs at the low threshold (sub-ENI quota on the node x low threshold), the system **pre-binds** sub-ENIs to make the numbers equal.
--  On an ECS node, when the number of pre-bound sub-ENIs plus the number of sub-ENIs currently used by the pods is **larger than** the number of sub-ENIs at the high threshold (sub-ENI quota on the node x high threshold), the system **releases** sub-ENIs to make the numbers equal.
--  On a BMS node, when the number of pre-bound ENIs plus the number of ENIs currently used by the pods is **smaller than** the number of ENIs at the low threshold (ENI quota on the node x low threshold), the system **pre-binds** ENIs to make the numbers equal.
--  On a BMS node, when the number of pre-bound ENIs plus the number of ENIs currently used by the pods is **larger than** the number of ENIs at the high threshold (ENI quota on the node x high threshold), the system **releases** ENIs to make the numbers equal.
-
 Recommendation for CIDR Block Planning
 --------------------------------------
 
-As described in :ref:`Cluster Network Structure <cce_01_0010__section1131733719195>`, network addresses in a cluster can be divided into three parts: node network, container network, and service network. When planning network addresses, consider the following aspects:
+As described in :ref:`Cluster Network Structure <cce_10_0010__section1131733719195>`, network addresses in a cluster can be divided into three parts: node network, container network, and service network. When planning network addresses, consider the following aspects:
 
 -  The three CIDR blocks cannot overlap. Otherwise, a conflict occurs. All subnets (including those created from the secondary CIDR block) in the VPC where the cluster resides cannot conflict with the container and Service CIDR blocks.
 -  Ensure that each CIDR block has sufficient IP addresses.
@@ -81,25 +57,19 @@ In the Cloud Native Network 2.0 model, the container CIDR block and node CIDR bl
 In addition, a subnet can be added to the container CIDR block after a cluster is created to increase the number of available IP addresses. In this case, ensure that the added subnet does not conflict with other subnets in the container CIDR block.
 
 
-.. figure:: /_static/images/en-us_image_0000001159831938.png
-   :alt: **Figure 3** Configuring CIDR blocks
+.. figure:: /_static/images/en-us_image_0000001244261171.png
+   :alt: **Figure 2** Configuring CIDR blocks
 
-   **Figure 3** Configuring CIDR blocks
+   **Figure 2** Configuring CIDR blocks
 
 Example of Cloud Native Network 2.0 Access
 ------------------------------------------
 
 Create a CCE Turbo cluster, which contains three ECS nodes.
 
-
-.. figure:: /_static/images/en-us_image_0000001198867835.png
-   :alt: **Figure 4** Cluster network
-
-   **Figure 4** Cluster network
-
 Access the details page of one node. You can see that the node has one primary NIC and one extended NIC, and both of them are ENIs. The extended NIC belongs to the container CIDR block and is used to mount a sub-ENI to the pod.
 
-Create a Deployment on the cluster.
+Create a Deployment in the cluster.
 
 .. code-block::
 

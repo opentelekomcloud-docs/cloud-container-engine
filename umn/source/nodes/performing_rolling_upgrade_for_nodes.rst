@@ -1,6 +1,6 @@
-:original_name: cce_01_0276.html
+:original_name: cce_10_0276.html
 
-.. _cce_01_0276:
+.. _cce_10_0276:
 
 Performing Rolling Upgrade for Nodes
 ====================================
@@ -8,11 +8,11 @@ Performing Rolling Upgrade for Nodes
 Scenario
 --------
 
-In a rolling upgrade, a new node is created, existing workloads are migrated to the new node, and then the old node is deleted. :ref:`Figure 1 <cce_01_0276__fig1689610598118>` shows the migration process.
+In a rolling upgrade, a new node is created, existing workloads are migrated to the new node, and then the old node is deleted. :ref:`Figure 1 <cce_10_0276__fig1689610598118>` shows the migration process.
 
-.. _cce_01_0276__fig1689610598118:
+.. _cce_10_0276__fig1689610598118:
 
-.. figure:: /_static/images/en-us_image_0295359661.png
+.. figure:: /_static/images/en-us_image_0000001199181340.png
    :alt: **Figure 1** Workload migration
 
    **Figure 1** Workload migration
@@ -27,36 +27,13 @@ Notes and Constraints
 Scenario 1: The Original Node Is in DefaultPool
 -----------------------------------------------
 
-#. .. _cce_01_0276__li375022715214:
+#. .. _cce_10_0276__li375022715214:
 
-   Create a node.
-
-   a. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Node Pools**.
-
-   b. Select the cluster to which the original node belongs.
-
-   c. Click **Create Node Pool**, set the following parameters, and modify other parameters as required. For details about the parameters, see :ref:`Creating a Node Pool <cce_01_0012>`.
-
-      #. **Name**: Enter the name of the new node pool, for example, **nodepool-demo**.
-      #. **Nodes**: In this example, add one node.
-      #. **Specifications**: Select node specifications that best suit your needs.
-      #. **OS**: Select the operating system (OS) of the nodes to be created.
-      #. **Login Mode**:
-
-         -  If the login mode is **Key pair**, select a key pair for logging in to the node and select the check box to acknowledge that you have obtained the key file and that without this file you will not be able to log in to the node.
-
-            A key pair is used for identity authentication when you remotely log in to a node. If no key pair is available, click **Create a key pair**.
-
-   d. Click **Next: Confirm**. Confirm the node pool configuration and click **Submit**.
-
-      Go back to the node pool list. In the node list, you can view that the new node pool has been created and is in the Normal state.
+   Create a node pool. For details, see :ref:`Creating a Node Pool <cce_10_0012>`.
 
 #. Click the name of the node pool. The IP address of the new node is displayed in the node list.
 
-3. Install and configure kubectl.
-
-   a. In the navigation pane of the CCE console, choose **Resource Management** > **Clusters**, and click **Command Line Tool** > **Kubectl** under the cluster where the original node is located.
-   b. On the **Kubectl** tab page of the cluster details page, connect to the cluster as prompted.
+3. Install and configure kubectl. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 4. Migrate the workload.
 
@@ -84,49 +61,27 @@ Scenario 1: The Original Node Is in DefaultPool
 
    .. note::
 
-      During workload migration, if node affinity is configured for the workload, the workload keeps displaying a message indicating that the workload is not ready. In this case, click the workload name to go to the workload details page. On the **Scheduling Policies** tab page, delete the affinity configuration of the original node and click **Add Simple Scheduling Policy** to configure the affinity and anti-affinity policies of the new node. For details, see :ref:`Simple Scheduling Policies <cce_01_0230>`.
+      During workload migration, if node affinity is configured for the workload, the workload keeps displaying a message indicating that the workload is not ready. In this case, click the workload name to go to the workload details page. On the **Scheduling Policies** tab page, delete the affinity configuration of the original node and configure the affinity and anti-affinity policies of the new node. For details, see :ref:`Scheduling Policy (Affinity/Anti-affinity) <cce_10_0232>`.
 
-   After the workload is successfully migrated, you can view that the workload is migrated to the node created in :ref:`1 <cce_01_0276__li375022715214>` on the **Pods** tab page of the workload details page.
+   After the workload is successfully migrated, you can view that the workload is migrated to the node created in :ref:`1 <cce_10_0276__li375022715214>` on the **Pods** tab page of the workload details page.
 
 5. Delete the original node.
 
-   After the workload is successfully migrated and is running properly, choose **Resource Management** > **Nodes** to delete the original node.
+   After the workload is successfully migrated and runs properly, delete the original node.
 
 Scenario 2: The Original Node Is Not in DefaultPool
 ---------------------------------------------------
 
-#. .. _cce_01_0276__li1992616214312:
+#. .. _cce_10_0276__li1992616214312:
 
-   Copy the node pool and add nodes to it.
+   Copy the node pool and add nodes to it. For details, see :ref:`Copying a Node Pool <cce_10_0222__section550619571556>`.
 
-   a. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Node Pools**.
-
-   b. Select the cluster to which the original node belongs.
-
-      In the node pool list, locate the node pool to which the original node belongs.
-
-   c. Click **More** > **Copy** next to the node pool name. On the **Create Node Pool** page, set the following parameters and modify other parameters as required. For details about the parameters, see :ref:`Creating a Node Pool <cce_01_0012>`.
-
-      -  **Name**: Enter the name of the new node pool, for example, **nodepool-demo**.
-      -  **Nodes**: In this example, add one node.
-      -  **Specifications**: Select node specifications that best suit your needs.
-      -  **OS**: Select the operating system (OS) of the nodes to be created.
-      -  **Login Mode**:
-
-         -  If the login mode is **Key pair**, select a key pair for logging in to the node and select the check box to acknowledge that you have obtained the key file and that without this file you will not be able to log in to the node.
-
-            A key pair is used for identity authentication when you remotely log in to a node. If no key pair is available, click **Create a key pair**.
-
-   d. Click **Next: Confirm**. Confirm the node pool configuration and click **Submit**.
-
-      Go back to the node pool list. In the node list, you can view that the new node pool has been created and is in the Normal state.
-
-#. Click the name of the node pool. The IP address of the new node is displayed in the node list.
+#. Click **View Node** in the **Operation** column of the node pool. The IP address of the new node is displayed in the node list.
 
 3. Migrate the workload.
 
-   a. Click **Edit** on the right of nodepool-demo and set **Taints**.
-   b. Click **Add Taint**, set **Key** and **Value**, and set **Effect** to **NoExecute**. The value options of **Effect** include **NoSchedule**, **PreferNoSchedule**, or **NoExecute**.
+   a. Click **Edit** on the right of original node pool and set **Taints**.
+   b. Enter the key and value of the taint. The options of **Effect** are **NoSchedule**, **PreferNoSchedule**, and **NoExecute**. Select **NoExecute** and click **confirm to add**.
 
       -  **NoSchedule**: Pods that do not tolerate this taint are not scheduled on the node; existing pods are not evicted from the node.
       -  **PreferNoSchedule**: Kubernetes tries to avoid scheduling pods that do not tolerate this taint onto the node.
@@ -134,17 +89,17 @@ Scenario 2: The Original Node Is Not in DefaultPool
 
       .. note::
 
-         If you need to reset the taint, enter the new values or click **Delete**.
+         If you need to reset the taint, delete the configured taint.
 
-   c. Click **Save**.
+   c. Click **OK**.
    d. In the navigation pane of the CCE console, choose **Workloads** > **Deployments**. In the workload list, the status of the workload to be migrated changes from **Running** to **Unready**. If the workload status changes to **Running** again, the migration is successful.
 
    .. note::
 
-      During workload migration, if node affinity is configured for the workload, the workload keeps displaying a message indicating that the workload is not ready. In this case, click the workload name to go to the workload details page. On the **Scheduling Policies** tab page, delete the affinity configuration of the original node and click **Add Simple Scheduling Policy** to configure the affinity and anti-affinity policies of the new node. For details, see :ref:`Simple Scheduling Policies <cce_01_0230>`.
+      During workload migration, if node affinity is configured for the workload, the workload keeps displaying a message indicating that the workload is not ready. In this case, click the workload name to go to the workload details page. On the **Scheduling Policies** tab page, delete the affinity configuration of the original node and configure the affinity and anti-affinity policies of the new node. For details, see :ref:`Scheduling Policy (Affinity/Anti-affinity) <cce_10_0232>`.
 
-   After the workload is successfully migrated, you can view that the workload is migrated to the node created in :ref:`1 <cce_01_0276__li1992616214312>` on the **Pods** tab page of the workload details page.
+   After the workload is successfully migrated, you can view that the workload is migrated to the node created in :ref:`1 <cce_10_0276__li1992616214312>` on the **Pods** tab page of the workload details page.
 
 4. Delete the original node.
 
-   After the workload is successfully migrated and is running properly, choose **Resource Management** > **Node Pools** to delete the original node.
+   After the workload is successfully migrated and runs properly, delete the original node.

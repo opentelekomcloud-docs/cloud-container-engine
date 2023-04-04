@@ -1,6 +1,6 @@
-:original_name: cce_01_0328.html
+:original_name: cce_10_0328.html
 
-.. _cce_01_0328:
+.. _cce_10_0328:
 
 (kubectl) Creating a StatefulSet Mounted with an OBS Volume
 ===========================================================
@@ -10,12 +10,6 @@ Scenario
 
 CCE allows you to use an existing OBS volume to create a StatefulSet through a PersistentVolumeClaim (PVC).
 
-Prerequisites
--------------
-
--  You have created a CCE cluster and installed the FlexVolume plug-in (:ref:`storage-driver <cce_01_0127>`) in the cluster.
--  The AK/SK has been uploaded. For details, see :ref:`Preparations <cce_01_0324__section14271608324>`.
-
 Notes and Constraints
 ---------------------
 
@@ -24,9 +18,9 @@ The following configuration example applies to clusters of Kubernetes 1.13 or ea
 Procedure
 ---------
 
-#. Create an OBS volume by referring to :ref:`Creating an OBS Volume <cce_01_0324__section172788131291>` and obtain the PVC name.
+#. Create an OBS volume by referring to :ref:`(kubectl) Automatically Creating an OBS Volume <cce_10_0325>` and obtain the PVC name.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a YAML file for creating the workload. Assume that the file name is **obs-statefulset-example.yaml**.
 
@@ -86,7 +80,7 @@ Procedure
       +-------------+------------------------------------------------------------------------------------------------------------------------------------+
       | mountPath   | Mount path in the container.                                                                                                       |
       +-------------+------------------------------------------------------------------------------------------------------------------------------------+
-      | serviceName | Service corresponding to the workload. For details about how to create a Service, see :ref:`Creating a StatefulSet <cce_01_0048>`. |
+      | serviceName | Service corresponding to the workload. For details about how to create a Service, see :ref:`Creating a StatefulSet <cce_10_0048>`. |
       +-------------+------------------------------------------------------------------------------------------------------------------------------------+
       | claimName   | Name of an existing PVC.                                                                                                           |
       +-------------+------------------------------------------------------------------------------------------------------------------------------------+

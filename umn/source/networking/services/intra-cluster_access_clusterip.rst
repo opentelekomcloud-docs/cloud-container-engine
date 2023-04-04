@@ -1,6 +1,6 @@
-:original_name: cce_01_0011.html
+:original_name: cce_10_0011.html
 
-.. _cce_01_0011:
+.. _cce_10_0011:
 
 Intra-Cluster Access (ClusterIP)
 ================================
@@ -12,63 +12,40 @@ ClusterIP Services allow workloads in the same cluster to use their cluster-inte
 
 The cluster-internal domain name format is *<Service name>*.\ *<Namespace of the workload>*\ **.svc.cluster.local:**\ *<Port>*, for example, **nginx.default.svc.cluster.local:80**.
 
-:ref:`Figure 1 <cce_01_0011__fig192245420557>` shows the mapping relationships between access channels, container ports, and access ports.
+:ref:`Figure 1 <cce_10_0011__fig192245420557>` shows the mapping relationships between access channels, container ports, and access ports.
 
-.. _cce_01_0011__fig192245420557:
+.. _cce_10_0011__fig192245420557:
 
-.. figure:: /_static/images/en-us_image_0000001117575950.png
+.. figure:: /_static/images/en-us_image_0000001243981117.png
    :alt: **Figure 1** Intra-cluster access (ClusterIP)
 
    **Figure 1** Intra-cluster access (ClusterIP)
 
-Adding a Service When Creating a Workload
------------------------------------------
+Creating a ClusterIP Service
+----------------------------
 
-You can set the access type (Service) when creating a workload on the CCE console.
-
-#. In the **Set Application Access** step of :ref:`Creating a Deployment <cce_01_0047>`, :ref:`Creating a StatefulSet <cce_01_0048>`, or :ref:`Creating a DaemonSet <cce_01_0216>`, click **Add Service** and set the following parameters:
-
-   -  **Access Type**: Select **ClusterIP**.
-   -  **Service Name**: Specify a Service name, which can be the same as the workload name.
-   -  **Port Settings**
-
-      -  **Protocol**: protocol used by the Service.
-      -  **Container Port**: port on which the workload listens. The Nginx application listens on port 80.
-      -  **Access Port**: a port mapped to the container port at the cluster-internal IP address. The workload can be accessed at <cluster-internal IP address>:<access port>. The port number range is 1-65535.
-
-#. After the configuration, click **OK** and then **Next: Configure Advanced Settings**. On the page displayed, click **Create**.
-#. Click **View Deployment Details** or **View StatefulSet Details**. On the **Services** tab page, obtain the access address, for example, 10.247.74.100:8080.
-
-Adding a Service After Creating a Workload
-------------------------------------------
-
-You can set the Service after creating a workload. This has no impact on the workload status and takes effect immediately. The procedure is as follows:
-
-#. Log in to the CCE console. In the navigation pane, choose **Workloads** > **Deployments**. On the workload list, click the name of the workload for which you will create a Service.
-#. On the **Services** tab page, click **Add Service**.
-#. On the **Create Service** page, select **ClusterIP** from the **Access Type** drop-down list.
+#. Log in to the CCE console and access the cluster console.
+#. Choose **Networking** in the navigation pane and click **Create Service** in the upper right corner.
 #. Set intra-cluster access parameters.
 
    -  **Service Name**: Service name, which can be the same as the workload name.
-   -  **Cluster Name**: name of the cluster where the workload runs. The value is inherited from the workload creation page and cannot be changed.
-   -  **Namespace**: namespace where the workload is located. The value is inherited from the workload creation page and cannot be changed.
-   -  **Workload**: workload for which you want to add a Service.
+   -  **Service Type**: Select **ClusterIP**.
+   -  **Namespace**: Namespace to which the workload belongs.
+   -  **Selector**: Add a label and click **Add**. A Service selects a pod based on the added label. You can also click **Reference Workload Label** to reference the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
    -  **Port Settings**
 
       -  **Protocol**: protocol used by the Service.
-      -  **Container Port**: port on which the workload listens. The Nginx application listens on port 80.
-      -  **Access Port**: port mapped to the container port at the cluster-internal IP address. The workload can be accessed at <cluster-internal IP address>:<access port>. The port number range is 1-65535.
+      -  **Service Port**: port used by the Service. The port number ranges from 1 to 65535.
+      -  **Container Port**: port on which the workload listens. For example, Nginx uses port 80 by default.
 
-#. Click **Create**. The ClusterIP Service will be added for the workload.
-
-.. _cce_01_0011__section9813121512319:
+#. Click **OK**.
 
 Setting the Access Type Using kubectl
 -------------------------------------
 
 You can run kubectl commands to set the access type (Service). This section uses a Nginx workload as an example to describe how to implement intra-cluster access using kubectl.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create and edit the **nginx-deployment.yaml** and **nginx-clusterip-svc.yaml** files.
 
@@ -169,7 +146,7 @@ You can run kubectl commands to set the access type (Service). This section uses
    .. code-block::
 
       # kubectl run -i --tty --image nginx:alpine test --rm /bin/sh
-      If you don't see a command prompt, try pressing enter.
+      If you do not see a command prompt, try pressing Enter.
       / # curl 10.247.74.52:8080
       <!DOCTYPE html>
       <html>

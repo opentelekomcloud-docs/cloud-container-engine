@@ -1,6 +1,6 @@
-:original_name: cce_01_0334.html
+:original_name: cce_10_0334.html
 
-.. _cce_01_0334:
+.. _cce_10_0334:
 
 (kubectl) Creating a StatefulSet Mounted with an SFS Turbo Volume
 =================================================================
@@ -9,11 +9,6 @@ Scenario
 --------
 
 CCE allows you to use an existing SFS Turbo volume to create a StatefulSet.
-
-Prerequisites
--------------
-
-You have created a CCE cluster and installed the FlexVolume plug-in (:ref:`storage-driver <cce_01_0127>`) in the cluster.
 
 Notes and Constraints
 ---------------------
@@ -25,7 +20,7 @@ Procedure
 
 #. Create an SFS Turbo volume and record the volume name.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a YAML file for creating the workload. Assume that the file name is **efs-statefulset-example.yaml**.
 
@@ -108,7 +103,7 @@ Procedure
       +-------------+------------------------------------------------------------------------------------------------------------------------------------+
       | mountPath   | Mount path in the container.                                                                                                       |
       +-------------+------------------------------------------------------------------------------------------------------------------------------------+
-      | serviceName | Service corresponding to the workload. For details about how to create a Service, see :ref:`Creating a StatefulSet <cce_01_0048>`. |
+      | serviceName | Service corresponding to the workload. For details about how to create a Service, see :ref:`Creating a StatefulSet <cce_10_0048>`. |
       +-------------+------------------------------------------------------------------------------------------------------------------------------------+
       | claimName   | Name of an existing PVC.                                                                                                           |
       +-------------+------------------------------------------------------------------------------------------------------------------------------------+

@@ -13,18 +13,19 @@ Cloud Container Engine - User Guide
    nodes/index
    node_pools/index
    workloads/index
-   affinity_and_anti-affinity_scheduling/index
    networking/index
-   storage_csi/index
-   storage_flexvolume/index
-   monitoring_and_logs/index
+   storage/index
+   monitoring_and_alarm/index
+   logging/index
    namespaces/index
    configuration_center/index
-   charts_helm/index
-   add-ons/index
    auto_scaling/index
+   add-ons/index
+   charts/index
    permissions_management/index
    cloud_trace_service_cts/index
+   storage_flexvolume/index
    reference/index
+   best_practice/index
    migrating_data_from_cce_1.0_to_cce_2.0/index
    change_history

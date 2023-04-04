@@ -1,13 +1,9 @@
-:original_name: cce_01_0025.html
+:original_name: cce_10_0025.html
 
-.. _cce_01_0025:
+.. _cce_10_0025:
 
 CCE Operations Supported by CTS
 ===============================
-
-.. important::
-
-   CTS is available only in certain regions.
 
 .. table:: **Table 1** CCE operations supported by CTS
 

@@ -1,6 +1,6 @@
-:original_name: cce_01_0036.html
+:original_name: cce_10_0036.html
 
-.. _cce_01_0036:
+.. _cce_10_0036:
 
 Stopping a Node
 ===============
@@ -21,22 +21,14 @@ Notes and Constraints
 Procedure
 ---------
 
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Nodes**.
+#. Log in to the CCE console and click the cluster name to access the cluster.
 
-#. In the node list, click the name of the node to be stopped.
+#. In the navigation pane, choose **Nodes**. In the right pane, click the name of the node to be stopped.
 
-#. On the node details page displayed, click the node name.
-
-
-   .. figure:: /_static/images/en-us_image_0000001190302087.png
-      :alt: **Figure 1** Nodes details page
-
-      **Figure 1** Nodes details page
-
-#. In the upper right corner of the ECS details page, click **Stop**. In the **Stop ECS** dialog box, click **Yes**.
+#. In the upper right corner of the ECS details page, click **Stop** in the instance status area. In the displayed dialog box, click **Yes**.
 
 
-   .. figure:: /_static/images/en-us_image_0000001144342232.png
-      :alt: **Figure 2** ECS details page
+   .. figure:: /_static/images/en-us_image_0000001244261119.png
+      :alt: **Figure 1** ECS details page
 
-      **Figure 2** ECS details page
+      **Figure 1** ECS details page

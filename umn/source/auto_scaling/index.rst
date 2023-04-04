@@ -1,13 +1,14 @@
-:original_name: cce_01_0207.html
+:original_name: cce_10_0207.html
 
-.. _cce_01_0207:
+.. _cce_10_0207:
 
 Auto Scaling
 ============
 
--  :ref:`Overview <cce_01_0279>`
--  :ref:`Scaling a Workload <cce_01_0293>`
--  :ref:`Scaling a Cluster/Node <cce_01_0291>`
+-  :ref:`Overview <cce_10_0279>`
+-  :ref:`Scaling a Workload <cce_10_0293>`
+-  :ref:`Scaling a Node <cce_10_0291>`
+-  :ref:`Using HPA and CA for Auto Scaling of Workloads and Nodes <cce_10_0300>`
 
 .. toctree::
    :maxdepth: 1
@@ -15,4 +16,5 @@ Auto Scaling
 
    overview
    scaling_a_workload/index
-   scaling_a_cluster_node/index
+   scaling_a_node/index
+   using_hpa_and_ca_for_auto_scaling_of_workloads_and_nodes

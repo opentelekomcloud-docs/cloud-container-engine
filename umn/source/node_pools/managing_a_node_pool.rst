@@ -1,6 +1,6 @@
-:original_name: cce_01_0222.html
+:original_name: cce_10_0222.html
 
-.. _cce_01_0222:
+.. _cce_10_0222:
 
 Managing a Node Pool
 ====================
@@ -116,21 +116,23 @@ Deleting a Node Pool
 
 Deleting a node pool will delete nodes in the pool. Pods on these nodes will be automatically migrated to available nodes in other node pools. If pods in the node pool have a specific node selector and none of the other nodes in the cluster satisfies the node selector, the pods will become unschedulable.
 
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Node Pools**.
-#. In the upper right corner of the displayed page, select a cluster to filter node pools by cluster.
+#. Log in to the CCE console.
+#. Click the cluster name and access the cluster console. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right.
 #. Choose **More > Delete** next to a node pool name to delete the node pool.
 #. Read the precautions in the **Delete Node Pool** dialog box.
-#. Enter **DELETE** in the text box and click **Yes** to confirm that you want to continue the deletion.
+#. In the text box, click **Yes** to confirm that you want to continue the deletion.
+
+.. _cce_10_0222__section550619571556:
 
 Copying a Node Pool
 -------------------
 
 You can copy the configuration of an existing node pool to create a new node pool on the CCE console.
 
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Node Pools**.
-#. In the upper right corner of the displayed page, select a cluster to filter node pools by cluster.
+#. Log in to the CCE console.
+#. Click the cluster name and access the cluster console. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right.
 #. Choose **More > Copy** next to a node pool name to copy the node pool.
-#. The configuration of the selected node pool is replicated to the **Create Node Pool** page. You can edit the configuration as required and click **Next: Confirm**.
+#. The configurations of the selected node pool are replicated to the **Clone Node Pool** page. You can edit the configurations as required and click **Next: Confirm**.
 #. On the **Confirm** page, confirm the node pool configuration and click **Create Now**. Then, a new node pool is created based on the edited configuration.
 
 Migrating a Node
@@ -138,15 +140,20 @@ Migrating a Node
 
 Nodes in a node pool can be migrated. Currently, nodes in a node pool can be migrated only to the default node pool (defaultpool) in the same cluster.
 
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Node Pools**.
-#. In the upper right corner of the displayed page, select a cluster to filter node pools by cluster.
-#. Click **More** > **Migrate** next to the name of the node pool.
-#. In the dialog box displayed, select the destination node pool and the node to be migrated.
+#. Log in to the CCE console and click the cluster name to access the cluster.
+
+#. In the navigation pane, choose **Nodes** and switch to the **Node Pools** tab page.
+
+#. Click **View Node** in the **Operation** column of the node pool to be migrated.
+
+#. Select the nodes to be migrated and choose **More** > **Migrate** to migrate the nodes to the default node pool in batches.
+
+   You can also choose **More** > **Migrate** in the **Operation** column of a single node to migrate the node.
+
+#. In the displayed **Migrate Node** window, confirm the information.
 
    .. note::
 
-      After node migration, original resource tags, Kubernetes labels, and taints will be retained, and new Kubernetes labels and taints from the destination node pool will be added.
+      The migration has no impacts on the original resource tags, Kubernetes labels, and taints of the node.
 
-#. Click **OK**.
-
-.. |image1| image:: /_static/images/en-us_image_0214003838.png
+.. |image1| image:: /_static/images/en-us_image_0000001528627005.png

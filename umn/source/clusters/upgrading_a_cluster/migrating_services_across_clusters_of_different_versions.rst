@@ -1,6 +1,6 @@
-:original_name: cce_01_0210.html
+:original_name: cce_10_0210.html
 
-.. _cce_01_0210:
+.. _cce_10_0210:
 
 Migrating Services Across Clusters of Different Versions
 ========================================================
@@ -38,15 +38,15 @@ Procedure
 
 #. **Create a CCE cluster.**
 
-   Create a cluster with the same specifications and configurations as the cluster of the earlier version. For details, see :ref:`Creating a CCE Cluster <cce_01_0028>`.
+   Create a cluster with the same specifications and configurations as the cluster of the earlier version. For details, see :ref:`Creating a CCE Cluster <cce_10_0028>`.
 
 #. **Add a node.**
 
-   Add nodes with the same specifications and manual configuration items. For details, see :ref:`Creating a Node <cce_01_0033>`.
+   Add nodes with the same specifications and manual configuration items. For details, see :ref:`Creating a Node <cce_10_0363>`.
 
 #. **Create a storage volume in the new cluster.**
 
-   Use an existing storage volume to create a PVC in the new cluster. The PVC name remains unchanged. For details, see :ref:`PersistentVolumeClaims (PVCs) <cce_01_0378>`.
+   Use an existing storage volume to create a PVC in the new cluster. The PVC name remains unchanged. For details, see :ref:`PersistentVolumeClaims (PVCs) <cce_10_0378>`.
 
    .. note::
 
@@ -54,11 +54,11 @@ Procedure
 
 #. **Create a workload in the new cluster.**
 
-   The workload name and specifications remain unchanged. For details about how to create a workload, see :ref:`Creating a Deployment <cce_01_0047>` or :ref:`Creating a StatefulSet <cce_01_0048>`. For details about how to mount a storage volume to the workload, see :ref:`Creating a Pod Mounted with an EVS Volume <cce_01_0257>`.
+   The workload name and specifications remain unchanged. For details about how to create a workload, see :ref:`Creating a Deployment <cce_10_0047>` or :ref:`Creating a StatefulSet <cce_10_0048>`. For details about how to attach a storage volume to the workload, see :ref:`Creating a Deployment Mounted with an EVS Volume <cce_10_0257>`.
 
 #. **Create a Service in the new cluster.**
 
-   The Service name and specifications remain unchanged. For details about how to create a Service, see :ref:`Services <cce_01_0247>`.
+   The Service name and specifications remain unchanged. For details about how to create a Service, see :ref:`Services <cce_10_0247>`.
 
 #. **Commission services.**
 
@@ -66,4 +66,4 @@ Procedure
 
 #. **Delete the old cluster.**
 
-   When all functions of the new cluster are stable, delete the old cluster. For details about how to delete a cluster, see :ref:`Deleting a Cluster <cce_01_0212>`.
+   When all functions of the new cluster are stable, delete the old cluster. For details about how to delete a cluster, see :ref:`Deleting a Cluster <cce_10_0212>`.

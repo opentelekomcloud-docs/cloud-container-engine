@@ -1,6 +1,6 @@
-:original_name: cce_01_0212.html
+:original_name: cce_10_0212.html
 
-.. _cce_01_0212:
+.. _cce_10_0212:
 
 Deleting a Cluster
 ==================
@@ -28,18 +28,25 @@ Precautions
 Procedure
 ---------
 
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Clusters**.
+#. Log in to the CCE console. In the navigation pane, choose **Clusters**.
 
-#. Choose **More** > **Delete**.
+#. Click |image1| next to the cluster to be deleted.
 
-#. Delete the cluster.
+#. In the displayed **Delete Cluster** dialog box, select the resources to be released.
 
+   -  Delete cloud storage resources attached to workloads in the cluster.
 
-   .. figure:: /_static/images/en-us_image_0000001190168507.png
-      :alt: **Figure 1** Deleting a cluster
+      .. note::
 
-      **Figure 1** Deleting a cluster
+         Before you delete the PVCs and volumes, pay attention to the following rules:
+
+         -  The underlying storage resources are deleted according to the reclaim policy you defined.
+         -  If there are a large number of files (more than 1,000) in the OBS bucket, manually clear the files and then delete the cluster.
+
+   -  Delete networking resources, such as load balancers in a cluster. (Only automatically created load balancers can be deleted.)
 
 #. Click **Yes** to start deleting the cluster.
 
    The delete operation takes 1 to 3 minutes to complete.
+
+.. |image1| image:: /_static/images/en-us_image_0000001244997085.png

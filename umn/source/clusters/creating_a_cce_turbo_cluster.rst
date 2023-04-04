@@ -1,168 +1,107 @@
-:original_name: cce_01_0298.html
+:original_name: cce_10_0298.html
 
-.. _cce_01_0298:
+.. _cce_10_0298:
 
 Creating a CCE Turbo Cluster
 ============================
 
 CCE Turbo clusters run on a cloud native infrastructure that features software-hardware synergy to support passthrough networking, high security and reliability, and intelligent scheduling.
 
-CCE Turbo clusters are paired with the Cloud Native Network 2.0 model for large-scale, high-performance container deployment. Containers are assigned IP addresses from the VPC CIDR block. Containers and nodes can belong to different subnets. Access requests from external networks in a VPC can be directly routed to container IP addresses, which greatly improves networking performance. **It is recommended** that you go through :ref:`Cloud Native Network 2.0 <cce_01_0284>` to understand the features and network planning of each CIDR block of Cloud Native Network 2.0.
+CCE Turbo clusters are paired with the Cloud Native Network 2.0 model for large-scale, high-performance container deployment. Containers are assigned IP addresses from the VPC CIDR block. Containers and nodes can belong to different subnets. Access requests from external networks in a VPC can be directly routed to container IP addresses, which greatly improves networking performance. **It is recommended** that you go through :ref:`Cloud Native Network 2.0 <cce_10_0284>` to understand the features and network planning of each CIDR block of Cloud Native Network 2.0.
 
 Notes and Constraints
 ---------------------
 
 -  During the node creation, software packages are downloaded from OBS using the domain name. You need to use a private DNS server to resolve the OBS domain name, and configure the subnet where the node resides with a private DNS server address. When you create a subnet, the private DNS server is used by default. If you change the subnet DNS, ensure that the DNS server in use can resolve the OBS domain name.
 -  You can create a maximum of 50 clusters in a single region.
--  CCE Turbo clusters support only Cloud Native Network 2.0. For details about this network model, see :ref:`Cloud Native Network 2.0 <cce_01_0284>`.
--  Nodes in a CCE Turbo cluster must be the models developed on the QingTian architecture that features software-hardware synergy.
--  CCE Turbo clusters are available only in certain regions.
+-  CCE Turbo clusters support only Cloud Native Network 2.0. For details about this network model, see :ref:`Cloud Native Network 2.0 <cce_10_0284>`.
+-  After a cluster is created, the following items cannot be changed:
+
+   -  Cluster type
+   -  Number of master nodes in the cluster
+   -  AZ of a master node
+   -  Network configuration of the cluster, such as the VPC, subnet, container CIDR block, Service CIDR block, and kube-proxy (forwarding) settings.
+   -  Network model. For example, change **Tunnel network** to **VPC network**.
 
 Procedure
 ---------
 
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Clusters**. Click **Create** next to **CCE Turbo Cluster**.
+#. Log in to the CCE console. Choose **Clusters**. On the displayed page, click **Create** next to **CCE Turbo cluster**.
 
+#. Specify cluster parameters.
 
-   .. figure:: /_static/images/en-us_image_0000001150420952.png
-      :alt: **Figure 1** Creating a CCE Turbo cluster
+   **Basic Settings**
 
-      **Figure 1** Creating a CCE Turbo cluster
+   -  **Cluster Name**
 
-#. On the page displayed, set the following parameters:
+   -  **Cluster Version**: Select the Kubernetes version used by the cluster.
 
-   **Basic configuration**
+   -  **Cluster Scale**: Select the maximum number of nodes that can be managed by the cluster. After the creation is complete, only scale-out is supported, but not scale-in.
 
-   Specify the basic cluster configuration.
+   -  **HA**: distribution mode of master nodes. By default, master nodes are randomly distributed in different AZs to improve DR capabilities.
 
-   .. table:: **Table 1** Basic parameters for creating a cluster
+      You can also expand advanced settings and customize the master node distribution mode. The following modes are supported:
 
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                                        |
-      +===================================+====================================================================================================================================================================+
-      | Cluster Name                      | Name of the cluster to be created. The cluster name must be unique under the same account and cannot be changed after the cluster is created.                      |
-      |                                   |                                                                                                                                                                    |
-      |                                   | A cluster name contains 4 to 128 characters, starting with a letter and not ending with a hyphen (-). Only lowercase letters, digits, and hyphens (-) are allowed. |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Version                           | Version of Kubernetes to use for the cluster.                                                                                                                      |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Management Scale                  | Maximum number of worker nodes that can be managed by the master nodes of the cluster. You can select 200 nodes, 1,000 nodes, or 2,000 nodes for your cluster.     |
-      |                                   |                                                                                                                                                                    |
-      |                                   | Master node specifications change with the cluster management scale you choose, and you will be charged accordingly.                                               |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      -  **Host**: Master nodes are created on different hosts in the same AZ.
+      -  **Custom**: You can determine the location of each master node.
 
-   **Networking configuration**
+   **Network Settings**
 
-   Select the CIDR blocks used by nodes and containers in the cluster. If IP resources in the CIDR blocks are insufficient, nodes and containers cannot be created.
+   The cluster network settings cover nodes, containers, and Services. For details about the cluster networking and container network models, see :ref:`Overview <cce_10_0010>`.
 
-   .. table:: **Table 2** Networking parameters
-
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                                                                                              |
-      +===================================+==========================================================================================================================================================================================================================================================================================================================================================================================================================+
-      | Network Model                     | **Cloud Native Network 2.0**: This network model deeply integrates the native elastic network interfaces (ENIs) of VPC, uses the VPC CIDR block to allocate container addresses, and supports direct traffic distribution to containers through a load balancer to deliver high performance.                                                                                                                             |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | VPC                               | Select the VPC used by nodes and containers in the cluster. The VPC cannot be changed after the cluster is created.                                                                                                                                                                                                                                                                                                      |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                          |
-      |                                   | A VPC provides a secure and logically isolated network environment.                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                          |
-      |                                   | If no VPC is available, create one on the **VPC console**. After the VPC is created, click the refresh icon.                                                                                                                                                                                                                                                                                                             |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Node Subnet                       | This parameter is available after you select a VPC.                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                          |
-      |                                   | The subnet you select is used by nodes in the cluster and determines the maximum number of nodes in the cluster. This subnet will be the default subnet where your nodes are created. When creating a node, you can select other subnets in the same VPC.                                                                                                                                                                |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                          |
-      |                                   | A node subnet provides dedicated network resources that are logically isolated from other networks for higher security.                                                                                                                                                                                                                                                                                                  |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                          |
-      |                                   | If no node subnet is available, click **Create Subnet** to create a subnet. After the subnet is created, click the refresh icon. For details about the relationship between VPCs, subnets, and clusters, see :ref:`Cluster Overview <cce_01_0002>`.                                                                                                                                                                      |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                          |
-      |                                   | During the node creation, software packages are downloaded from OBS using the domain name. You need to use a private DNS server to resolve the OBS domain name, and configure the subnet where the node resides with a private DNS server address. When you create a subnet, the private DNS server is used by default. If you change the subnet DNS, ensure that the DNS server in use can resolve the OBS domain name. |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                          |
-      |                                   | **The selected subnet cannot be changed after the cluster is created.**                                                                                                                                                                                                                                                                                                                                                  |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Pod Subnet                        | This parameter is available after you select a VPC.                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                          |
-      |                                   | The subnet you select is used by pods in the cluster and determines the maximum number of pods in the cluster. The subnet cannot be changed after the cluster is created.                                                                                                                                                                                                                                                |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                          |
-      |                                   | IP addresses used by pods will be allocated from this subnet.                                                                                                                                                                                                                                                                                                                                                            |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                          |
-      |                                   | .. note::                                                                                                                                                                                                                                                                                                                                                                                                                |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                          |
-      |                                   |    If the pod subnet is the same as the node subnet, pods and nodes share the remaining IP addresses in the subnet. As a result, pods or nodes may fail to be created due to insufficient IP addresses.                                                                                                                                                                                                                  |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   -  **Network Model**: CCE Turbo clusters support only **Cloud Native Network 2.0**. For details, see :ref:`Cloud Native Network 2.0 <cce_10_0284>`.
+   -  **VPC**: Select the VPC to which the cluster belongs. If no VPC is available, click **Create VPC** to create one. The value cannot be changed after creation.
+   -  **Master Node Subnet**: Select the subnet where the master node is deployed. If no subnet is available, click **Create Subnet** to create one. A master node requires at least four IP addresses, which cannot be changed after creation.
+   -  **Pod Subnet**: Select the subnet where the container is located. If no subnet is available, click **Create Subnet** to create one. The pod subnet determines the maximum number of containers in the cluster. You can add pod subnets after creating the cluster.
+   -  **Service CIDR Block**: CIDR block for :ref:`Services <cce_10_0249>` used by containers in the same cluster to access each other. The value determines the maximum number of Services you can create. The value cannot be changed after creation.
 
    **Advanced Settings**
 
-   Configure enhanced capabilities for your CCE Turbo cluster.
+   -  **Request Forwarding**: The IPVS and iptables modes are supported. For details, see :ref:`Comparing iptables and IPVS <cce_10_0349>`.
 
-   .. table:: **Table 3** Networking parameters
+   -  **CPU Manager**: For details, see :ref:`Binding CPU Cores <cce_10_0351>`.
 
-      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                                                                                                                                                                             |
-      +===================================+=========================================================================================================================================================================================================================================================================================================+
-      | Service Network Segment           | An IP range from which IP addresses are allocated to Kubernetes Services. After the cluster is created, the CIDR block cannot be changed. The Service CIDR block cannot conflict with the created routes. If they conflict, select another CIDR block.                                                  |
-      |                                   |                                                                                                                                                                                                                                                                                                         |
-      |                                   | The default value is **10.247.0.0/16**. You can change the CIDR block and mask according to your service requirements. The mask determines the maximum number of Service IP addresses available in the cluster.                                                                                         |
-      |                                   |                                                                                                                                                                                                                                                                                                         |
-      |                                   | After you set the mask, the console will provide an estimated maximum number of Services you can create in this CIDR block.                                                                                                                                                                             |
-      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | kube-proxy Mode                   | Load balancing between Services and their backend pods. The value cannot be changed after the cluster is created.                                                                                                                                                                                       |
-      |                                   |                                                                                                                                                                                                                                                                                                         |
-      |                                   | -  **IPVS**: optimized kube-proxy mode to achieve higher throughput and faster speed, ideal for large-sized clusters. This mode supports incremental updates and can keep connections uninterrupted during Service updates.                                                                             |
-      |                                   |                                                                                                                                                                                                                                                                                                         |
-      |                                   |    In this mode, when the ingress and Service use the same ELB instance, the ingress cannot be accessed from the nodes and containers in the cluster.                                                                                                                                                   |
-      |                                   |                                                                                                                                                                                                                                                                                                         |
-      |                                   | -  **iptables**: Use iptables rules to implement Service load balancing. In this mode, too many iptables rules will be generated when many Services are deployed. In addition, non-incremental updates will cause a latency and even tangible performance issues in the case of service traffic spikes. |
-      |                                   |                                                                                                                                                                                                                                                                                                         |
-      |                                   | .. note::                                                                                                                                                                                                                                                                                               |
-      |                                   |                                                                                                                                                                                                                                                                                                         |
-      |                                   |    -  IPVS provides better scalability and performance for large clusters.                                                                                                                                                                                                                              |
-      |                                   |    -  Compared with iptables, IPVS supports more complex load balancing algorithms such as least load first (LLF) and weighted least connections (WLC).                                                                                                                                                 |
-      |                                   |    -  IPVS supports server health check and connection retries.                                                                                                                                                                                                                                         |
-      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | CPU Policy                        | -  **On**: Exclusive CPU cores can be allocated to workload pods. Select **On** if your workload is sensitive to latency in CPU cache and scheduling.                                                                                                                                                   |
-      |                                   | -  **Off**: Exclusive CPU cores will not be allocated to workload pods. Select **Off** if you want a large pool of shareable CPU cores.                                                                                                                                                                 |
-      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   -  **Resource Tag**:
 
-#. Click **Next: Confirm** to review the configurations and change them if required.
+      You can add resource tags to classify resources.
 
-#. Click **Submit**.
+      You can create **predefined tags** in Tag Management Service (TMS). Predefined tags are visible to all service resources that support the tagging function. You can use predefined tags to improve tag creation and resource migration efficiency.
+
+   -  **Certificate Authentication**:
+
+      -  **Default**: The X509-based authentication mode is enabled by default. X509 is a commonly used certificate format.
+
+      -  **Custom:** The cluster can identify users based on the header in the request body for authentication.
+
+         You need to upload your **CA root certificate**, **client certificate**, and **private key** of the client certificate.
+
+         .. caution::
+
+            -  Upload a file **smaller than 1 MB**. The CA certificate and client certificate can be in **.crt** or **.cer** format. The private key of the client certificate can only be uploaded **unencrypted**.
+            -  The validity period of the client certificate must be longer than five years.
+            -  The uploaded CA certificate is used for both the authentication proxy and the kube-apiserver aggregation layer configuration. **If the certificate is invalid, the cluster cannot be created**.
+            -  Starting from v1.25, Kubernetes no longer supports certificate authentication generated using the SHA1WithRSA or ECDSAWithSHA1 algorithm. You are advised to use the SHA256 algorithm.
+
+   -  **Description**: The value can contain a maximum of 200 English characters.
+
+#. Click **Next: Add-on Configuration**.
+
+   By default, :ref:`cordens <cce_10_0129>` and :ref:`everest <cce_10_0066>` add-ons are installed.
+
+   **Service log**
+
+   -  **ICAgent**:
+
+      A log collector provided by Application Operations Management (AOM), reporting logs to AOM and Log Tank Service (LTS) according to the log collection rules you configured.
+
+      You can collect stdout logs as required.
+
+#. After configuring the parameters, click **Next: Confirm**.
 
    It takes about 6 to 10 minutes to create a cluster. You can click **Back to Cluster List** to perform other operations on the cluster or click **Go to Cluster Events** to view the cluster details.
-
-#. If the cluster status is **Available**, the CCE Turbo cluster is successfully created, and **Turbo** is displayed next to the cluster name.
 
 Related Operations
 ------------------
 
--  Using kubectl to connect to the cluster: :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`
--  Logging in to the node: :ref:`Logging In to a Node <cce_01_0185>`
-
--  Creating a namespace: You can create multiple namespaces in a cluster and organize resources in the cluster into different namespaces. These namespaces serve as logical groups and can be managed separately. For details about how to create a namespace for a cluster, see :ref:`Namespaces <cce_01_0030>`.
--  Creating a workload: Once the cluster is created, you can use an image to create an application that can be accessed from public networks. For details, see :ref:`Creating a Deployment <cce_01_0047>`, :ref:`Creating a StatefulSet <cce_01_0048>`, or :ref:`Creating a DaemonSet <cce_01_0216>`.
--  Viewing cluster details: Click the cluster name to view cluster details.
-
-   .. table:: **Table 4** Details about the created cluster
-
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Tab                               | Description                                                                                                                                                                                                                                        |
-      +===================================+====================================================================================================================================================================================================================================================+
-      | Basic Information                 | You can view the details and running status of the cluster.                                                                                                                                                                                        |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Monitoring                        | You can view the CPU and memory allocation rates of all nodes in the cluster (that is, the maximum allocated amount), as well as the CPU usage, memory usage, and specifications of the master node(s).                                            |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Events                            | -  View cluster events.                                                                                                                                                                                                                            |
-      |                                   | -  Set search criteria, such as the event name or the time segment during which an event is generated, to filter events.                                                                                                                           |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Auto Scaling                      | You can configure auto scaling to add or reduce worker nodes in a cluster to meet service requirements. For details, see :ref:`Setting Cluster Auto Scaling <cce_01_0157>`.                                                                        |
-      |                                   |                                                                                                                                                                                                                                                    |
-      |                                   | Clusters of v1.17 do not support auto scaling using AOM. You can use node pools for auto scaling. For details, see :ref:`Node Pool Overview <cce_01_0081>`.                                                                                        |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | kubectl                           | To access a Kubernetes cluster from a PC, you need to use the Kubernetes command line tool `kubectl <https://kubernetes.io/docs/user-guide/kubectl/>`__. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_01_0107>`.              |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Resource Tags                     | Resource tags can be added to classify resources.                                                                                                                                                                                                  |
-      |                                   |                                                                                                                                                                                                                                                    |
-      |                                   | You can create **predefined tags** in Tag Management Service (TMS). Predefined tags are visible to all service resources that support the tagging function. You can use predefined tags to improve tag creation and resource migration efficiency. |
-      |                                   |                                                                                                                                                                                                                                                    |
-      |                                   | CCE will automatically create the "CCE-Dynamic-Provisioning-Node=\ *Node ID*" tag. A maximum of 5 tags can be added.                                                                                                                               |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+-  Using kubectl to connect to the cluster: :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`
+-  Add nodes to the cluster. For details, see :ref:`Creating a Node <cce_10_0363>`.

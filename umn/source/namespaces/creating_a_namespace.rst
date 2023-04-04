@@ -1,6 +1,6 @@
-:original_name: cce_01_0278.html
+:original_name: cce_10_0278.html
 
-.. _cce_01_0278:
+.. _cce_10_0278:
 
 Creating a Namespace
 ====================
@@ -15,7 +15,7 @@ For example, you can deploy workloads in a development environment into one name
 Prerequisites
 -------------
 
-At least one cluster has been created. For details, see :ref:`Creating a CCE Cluster <cce_01_0028>`.
+At least one cluster has been created.
 
 Notes and Constraints
 ---------------------
@@ -40,28 +40,24 @@ Namespaces can be created in either of the following ways:
 Creating a Namespace
 --------------------
 
-#. Log in to the CCE console. In the navigation pane, choose **Resource Management** > **Namespaces**. Click **Create Namespace**.
+#. Log in to the CCE console and access the cluster console.
 
-#. Set the parameters listed in :ref:`Table 1 <cce_01_0278__table5523151617575>`. The parameters marked with an asterisk (*) are mandatory.
+#. Choose **Namespaces** in the navigation pane and click **Create Namespace** in the upper right corner.
 
-   .. _cce_01_0278__table5523151617575:
+#. Set namespace parameters based on :ref:`Table 1 <cce_10_0278__table5523151617575>`.
+
+   .. _cce_10_0278__table5523151617575:
 
    .. table:: **Table 1** Parameters for creating a namespace
 
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Parameter                         | Description                                                                                                                                                                                                                                                                                              |
       +===================================+==========================================================================================================================================================================================================================================================================================================+
-      | \* Namespace                      | Unique name of the created namespace.                                                                                                                                                                                                                                                                    |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \* Cluster                        | Cluster to which the namespace belongs.                                                                                                                                                                                                                                                                  |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Node Affinity                     | If this parameter is set to on, workloads in this namespace will be scheduled only to nodes with specified labels. To add labels to a node, choose **Resource Management** > **Nodes** > **Manage Labels**.                                                                                              |
-      |                                   |                                                                                                                                                                                                                                                                                                          |
-      |                                   | This parameter is displayed only for clusters of v1.13.10-r0 and later.                                                                                                                                                                                                                                  |
+      | Name                              | Unique name of the created namespace.                                                                                                                                                                                                                                                                    |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Description                       | Description about the namespace.                                                                                                                                                                                                                                                                         |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Set Resource Quotas               | Resource quotas can limit the amount of resources available in namespaces, achieving resource allocation by namespace.                                                                                                                                                                                   |
+      | Quota Management                  | Resource quotas can limit the amount of resources available in namespaces, achieving resource allocation by namespace.                                                                                                                                                                                   |
       |                                   |                                                                                                                                                                                                                                                                                                          |
       |                                   | .. important::                                                                                                                                                                                                                                                                                           |
       |                                   |                                                                                                                                                                                                                                                                                                          |
@@ -70,20 +66,35 @@ Creating a Namespace
       |                                   |                                                                                                                                                                                                                                                                                                          |
       |                                   |    For example, the default number of pods that can be created on each node in a cluster is 110. If you create a cluster with 50 nodes, you can create a maximum of 5,500 pods. Therefore, you can set a resource quota to ensure that the total number of pods in all namespaces does not exceed 5,500. |
       |                                   |                                                                                                                                                                                                                                                                                                          |
-      |                                   | Quotas can be configured for the following resources:                                                                                                                                                                                                                                                    |
-      |                                   |                                                                                                                                                                                                                                                                                                          |
-      |                                   | -  CPU (cores)                                                                                                                                                                                                                                                                                           |
-      |                                   | -  Memory (MiB)                                                                                                                                                                                                                                                                                          |
-      |                                   | -  StatefulSet                                                                                                                                                                                                                                                                                           |
-      |                                   | -  Deployment                                                                                                                                                                                                                                                                                            |
-      |                                   | -  Job                                                                                                                                                                                                                                                                                                   |
-      |                                   | -  Cron job                                                                                                                                                                                                                                                                                              |
-      |                                   | -  Pod                                                                                                                                                                                                                                                                                                   |
-      |                                   | -  Service                                                                                                                                                                                                                                                                                               |
-      |                                   |                                                                                                                                                                                                                                                                                                          |
-      |                                   | Enter an integer. If the quota of a resource is set to **0**, no limit is posed on the resource.                                                                                                                                                                                                         |
+      |                                   | Enter an integer. If the quota of a resource is not specified, no limit is posed on the resource.                                                                                                                                                                                                        |
       |                                   |                                                                                                                                                                                                                                                                                                          |
       |                                   | If you want to limit the CPU or memory quota, you must specify the CPU or memory request value when creating a workload.                                                                                                                                                                                 |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. When the configuration is complete, click **OK**.
+
+Using kubectl to Create a Namespace
+-----------------------------------
+
+Define a namespace.
+
+.. code-block::
+
+   apiVersion: v1
+   kind: Namespace
+   metadata:
+     name: custom-namespace
+
+Run the **kubectl** command to create it.
+
+.. code-block::
+
+   $ kubectl create -f custom-namespace.yaml
+   namespace/custom-namespace created
+
+You can also run the **kubectl create namespace** command to create a namespace.
+
+.. code-block::
+
+   $ kubectl create namespace custom-namespace
+   namespace/custom-namespace created
