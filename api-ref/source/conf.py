@@ -28,6 +28,15 @@ project = 'Cloud Container Engine'
 otcdocs_repo_name = 'opentelekomcloud-docs/cloud-container-engine'
 # Those variables are required for edit/bug links
 
+# Those variables are needed for indexing into OpenSearch
+otcdocs_doc_environment = 'public'
+otcdocs_doc_link = '/cloud-container-engine/api-ref/'
+otcdocs_doc_title = 'API Reference'
+otcdocs_doc_type = 'api-ref'
+otcdocs_service_category = 'container'
+otcdocs_service_title = 'Cloud Container Engine'
+otcdocs_service_type = 'cce'
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
