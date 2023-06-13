@@ -8,26 +8,14 @@ Overview
 Description
 -----------
 
-You can use Kubernetes native APIs to manage your Kubernetes clusters. For details, see `Kubernetes API Concepts <https://kubernetes.io/docs/reference/using-api/api-concepts/>`__.
+Kubernetes APIs are resource-based (RESTful) programming interfaces provided through HTTP. It supports query, creation, update, and deletion of various cluster resources using standard HTTP request methods (POST, PUT, PATCH, DELETE, and GET).
 
-To find detailed API definitions for different Kubernetes versions, visit the following links:
+CCE allows you to use native `Kubernetes APIs <https://kubernetes.io/docs/reference/kubernetes-api/>`__ in the following ways:
 
--  1.19: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/
--  1.21: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/
--  1.23: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/
--  1.25: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/
+-  :ref:`Calling Kubernetes APIs Through API Gateway <kubernetesapi__section41207155509>`
+-  :ref:`Calling Kubernetes APIs Through the API Server <kubernetesapi__section14674391312>`
 
-Based on the open source Kubernetes APIs, CCE enhances and adapts following functions.
-
--  Ingress: For details, see `Using kubectl to Create an ELB Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0252.html>`__.
--  PV and PVC: For details, see `PV <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0379.html>`__ and `PVC <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0378.html>`__.
-
-   -  EVS: For details, see `Creating a Pod Mounted with an EVS Volume <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0257.html>`__.
-   -  SFS Turbo: For details, see `Creating a Deployment Mounted with an SFS Turbo Volume <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0274.html>`__ and `Creating a StatefulSet Mounted with an SFS Turbo Volume <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0273.html>`__.
-   -  OBS: For details, see `Creating a Deployment Mounted with an OBS Volume <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0269.html>`__ and `Creating a StatefulSet Mounted with an OBS Volume <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0268.html>`__.
-   -  SFS: For details, see `Creating a Deployment Mounted with an SFS Volume <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0263.html>`__ and `Creating a StatefulSet Mounted with an SFS Volume <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0262.html>`__.
-
--  Network Policies: For details, see `Network Policies <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0059.html>`__.
+.. _kubernetesapi__section41207155509:
 
 Calling Kubernetes APIs Through API Gateway
 -------------------------------------------
@@ -45,6 +33,8 @@ You can call Kubernetes native APIs through API Gateway using the URL in the for
    +-------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
    | uri         | Path in which the resource requested by the API is located. You can obtain the path from the URI of the API.                                       |
    +-------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _kubernetesapi__section14674391312:
 
 Calling Kubernetes APIs Through the API Server
 ----------------------------------------------

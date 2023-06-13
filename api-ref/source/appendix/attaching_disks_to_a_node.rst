@@ -108,7 +108,7 @@ The following is an API example:
            "login": {
                "userPassword": {
                    "username": "root",
-                   "password": "JDYkbzhEbE90ckIkY1c0SWJzRy9WeVIzcDFVbC41NFVqa1pxenE0bW9naERlS2RCWEIyWlhqSlpWSjJrL2NmcmdWeE12NGh4T25DeDhlMTdrREVSM2dicHdZNmYzZXh5dy4="
+                   "password": "******"
                }
            },
            "storage": {
@@ -207,7 +207,7 @@ The following is an API example. There are two data disks. One is used by CCE, a
            "login": {
                "userPassword": {
                    "username": "root",
-                   "password": "JDYkRmJPckIwRkMkR3RXTkFsNmYvNlAxSDdOTUhYSHZmWjQ0b0ttODRzTDk0L1NzMzRIaHBsQVJkRTZiOGI0WTVJbUtSLlF5aTAuTUpwbGZqdHBTdkYxOU9peGZPV2FUYi4="
+                   "password": "******"
                }
            },
            "storage": {
@@ -335,7 +335,7 @@ The following is an API example:
            "login": {
                "userPassword": {
                    "username": "root",
-                   "password": "JDYkbzhEbE90ckIkY1c0SWJzRy9WeVIzcDFVbC41NFVqa1pxenE0bW9naERlS2RCWEIyWlhqSlpWSjJrL2NmcmdWeE12NGh4T25DeDhlMTdrREVSM2dicHdZNmYzZXh5dy4="
+                   "password": "******"
                }
            },
            "storage": {

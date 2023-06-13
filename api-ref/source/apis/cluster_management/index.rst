@@ -13,7 +13,7 @@ Cluster Management
 -  :ref:`Hibernating a Cluster <cce_02_0374>`
 -  :ref:`Waking Up a Cluster <cce_02_0375>`
 -  :ref:`Obtaining Cluster Certificates <cce_02_0248>`
--  :ref:`Obtaining Cluster Certificates (Deprecated) <cce_02_0359_0>`
+-  :ref:`Obtaining Cluster Certificates (Deprecated) <cce_02_0359>`
 -  :ref:`Creating a Node <cce_02_0242>`
 -  :ref:`Reading a Specified Node <cce_02_0243>`
 -  :ref:`Listing All Nodes in a Cluster <cce_02_0244>`
