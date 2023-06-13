@@ -17,11 +17,11 @@ Cloud APIs use HTTPS as the transmission protocol. Requests/Responses are transm
 
    Before using X-Remote-User as a header, obtain the required certificate in advance. Two types of certificates are supported:
 
-   -  Self-owned certificate uploaded during cluster creation. For details, see `Creating a Cluster <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0028.html>`__.
+   -  Self-owned certificate uploaded during cluster creation. For details, see `Creating a Cluster <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0028.html>`__.
 
       |image1|
 
-   -  Cluster certificate generated and downloaded after cluster creation. For details, see `Obtaining a Cluster Certificate <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0175.html>`__.
+   -  Cluster certificate generated and downloaded after cluster creation. For details, see `Obtaining a Cluster Certificate <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0175.html>`__.
 
       |image2|
 
@@ -35,7 +35,7 @@ CCE provides two methods to authenticate requests for calling an API: token and 
 
 .. note::
 
-   Method 3 requires that the CA root certificate must has been uploaded before you create a cluster on the CCE console. For details, see `Cluster Management Permission Control <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0085.html>`__.
+   Method 3 requires that the CA root certificate must has been uploaded before you create a cluster on the CCE console.
 
 .. |image1| image:: /_static/images/en-us_image_0000001121602072.png
 .. |image2| image:: /_static/images/en-us_image_0227096557.png
