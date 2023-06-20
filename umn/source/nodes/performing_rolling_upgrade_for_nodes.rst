@@ -12,7 +12,7 @@ In a rolling upgrade, a new node is created, existing workloads are migrated to 
 
 .. _cce_10_0276__fig1689610598118:
 
-.. figure:: /_static/images/en-us_image_0000001199181340.png
+.. figure:: /_static/images/en-us_image_0000001568822733.png
    :alt: **Figure 1** Workload migration
 
    **Figure 1** Workload migration
@@ -74,7 +74,7 @@ Scenario 2: The Original Node Is Not in DefaultPool
 
 #. .. _cce_10_0276__li1992616214312:
 
-   Copy the node pool and add nodes to it. For details, see :ref:`Copying a Node Pool <cce_10_0222__section550619571556>`.
+   Copy the node pool and add nodes to it. For details, see :ref:`Copying a Node Pool <cce_10_0655>`.
 
 #. Click **View Node** in the **Operation** column of the node pool. The IP address of the new node is displayed in the node list.
 

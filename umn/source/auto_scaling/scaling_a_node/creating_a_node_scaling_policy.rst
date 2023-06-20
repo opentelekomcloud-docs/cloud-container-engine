@@ -15,7 +15,7 @@ If a node scaling policy and the configuration in the autoscaler add-on take eff
 Prerequisites
 -------------
 
-Before using the node scaling function, you must install the :ref:`autoscaler <cce_10_0154>` add-on of v1.13.8 or later.
+Before using the node scaling function, you must install the :ref:`autoscaler <cce_10_0154>` add-on of v1.13.8 or later in the cluster.
 
 Notes and Constraints
 ---------------------
@@ -36,18 +36,6 @@ Procedure
    -  **Policy Name**: name of the policy to be created, which can be customized.
 
    -  **Associated Node Pools**: Select the node pool to be associated. You can associate multiple node pools to use the same scaling policy.
-
-      .. note::
-
-         Priority is now supported for node pools. CCE will select a node pool for auto scaling based on the following policies:
-
-         a. CCE uses algorithms to determine whether a node pool meets the conditions to allow scheduling of a pod in pending state, including whether the node resources are greater than requested by the pod, and whether the nodeSelect, nodeAffinity, and taints meet the conditions. In addition, the node pools that fail to be scaled (due to insufficient resources or other reasons) and are still in the 15-minute cool-down interval are filtered.
-         b. If multiple node pools meet the scaling requirements, the system checks the priority of each node pool and selects the node pool with the highest priority for scaling. The value ranges from 0 to 100 and the default priority is 0. The value 100 indicates the highest priority, and the value 0 indicates the lowest priority.
-         c. If multiple node pools have the same priority or no priority is configured for them, the system selects the node pool that will consume the least resources based on the configured VM specification.
-         d. If the VM specifications of multiple node pools are the same but the node pools are deployed in different AZs, the system randomly selects a node pool to trigger scaling.
-         e. If the resources of the preferred node pool are insufficient, the system automatically selects next node pool based on the priority.
-
-         For details about the node pool priority, see :ref:`Creating a Node Pool <cce_10_0012>`.
 
    -  **Rules**: Click **Add Rule**. In the dialog box displayed, set the following parameters:
 

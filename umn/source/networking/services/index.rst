@@ -11,6 +11,7 @@ Services
 -  :ref:`LoadBalancer <cce_10_0014>`
 -  :ref:`Headless Service <cce_10_0398>`
 -  :ref:`Service Annotations <cce_10_0385>`
+-  :ref:`Configuring Health Check for Multiple Ports <cce_10_0684>`
 
 .. toctree::
    :maxdepth: 1
@@ -22,3 +23,4 @@ Services
    loadbalancer
    headless_service
    service_annotations
+   configuring_health_check_for_multiple_ports

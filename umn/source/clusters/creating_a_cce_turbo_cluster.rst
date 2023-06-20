@@ -12,7 +12,7 @@ CCE Turbo clusters are paired with the Cloud Native Network 2.0 model for large-
 Notes and Constraints
 ---------------------
 
--  During the node creation, software packages are downloaded from OBS using the domain name. You need to use a private DNS server to resolve the OBS domain name, and configure the subnet where the node resides with a private DNS server address. When you create a subnet, the private DNS server is used by default. If you change the subnet DNS, ensure that the DNS server in use can resolve the OBS domain name.
+-  During the node creation, software packages are downloaded from OBS using the domain name. You need to use a private DNS server to resolve the OBS domain name, and configure the DNS server address of the subnet where the node resides with a private DNS server address. When you create a subnet, the private DNS server is used by default. If you change the subnet DNS, ensure that the DNS server in use can resolve the OBS domain name.
 -  You can create a maximum of 50 clusters in a single region.
 -  CCE Turbo clusters support only Cloud Native Network 2.0. For details about this network model, see :ref:`Cloud Native Network 2.0 <cce_10_0284>`.
 -  After a cluster is created, the following items cannot be changed:
@@ -86,7 +86,9 @@ Procedure
 
 #. Click **Next: Add-on Configuration**.
 
-   By default, :ref:`cordens <cce_10_0129>` and :ref:`everest <cce_10_0066>` add-ons are installed.
+   **Domain Name Resolution**: Uses the :ref:`coredns <cce_10_0129>` add-on, installed by default, to resolve domain names and connect to the cloud DNS server.
+
+   **Container Storage**: The :ref:`everest <cce_10_0066>` add-on is installed by default to provide container storage based on CSI and connect to cloud storage services such as EVS.
 
    **Service log**
 
@@ -95,6 +97,8 @@ Procedure
       A log collector provided by Application Operations Management (AOM), reporting logs to AOM and Log Tank Service (LTS) according to the log collection rules you configured.
 
       You can collect stdout logs as required.
+
+   **Overload Control**: If overload control is enabled, concurrent requests are dynamically controlled based on the resource pressure of master nodes to keep them and the cluster available.
 
 #. After configuring the parameters, click **Next: Confirm**.
 

@@ -23,7 +23,7 @@ Resource oversubscription is the process of making use of idle requested resourc
 Hybrid deployment of online and offline jobs in a cluster can better utilize cluster resources.
 
 
-.. figure:: /_static/images/en-us_image_0000001378942548.png
+.. figure:: /_static/images/en-us_image_0000001568902489.png
    :alt: **Figure 1** Resource oversubscription
 
    **Figure 1** Resource oversubscription
@@ -83,14 +83,15 @@ Notes and Constraints
 
 -  Kubernetes version:
 
-   -  1.19: 1.19.16-r4 or later
-   -  1.21: 1.21.7-r0 or later
-   -  1.23: 1.23.5-r0 or later
+   -  v1.19: v1.19.16-r4 or later
+   -  v1.21: v1.21.7-r0 or later
+   -  v1.23: v1.23.5-r0 or later
+   -  v1.25 or later
 
--  Cluster Type: CCE or CCE Turbo
+-  Cluster type: CCE or CCE Turbo
 -  Node OS: EulerOS 2.9 (kernel-4.18.0-147.5.1.6.h729.6.eulerosv2r9.x86_64)
--  Node Type: ECS
--  The volcano add-on version: 1.7.0 or later
+-  Node type: ECS
+-  volcano add-on version: 1.7.0 or later
 
 **Constraints**
 
@@ -505,6 +506,132 @@ The following uses an example to describe how to deploy online and offline jobs 
       online-6f44bb68bd-b8z9p   1/1     Running   0       24m   192.168.10.18  192.168.0.173
       online-6f44bb68bd-g6xk8   1/1     Running   0       24m   192.168.10.69  192.168.0.173
 
+#. Log in to the CCE console and access the cluster console.
+
+#. In the navigation pane on the left, choose **Nodes**. Click the **Node Pools** tab. When creating or updating a node pool, enable hybrid deployment of online and offline services in **Advanced Settings**.
+
+#. In the navigation pane on the left, choose **Add-ons**. Click **Install** under volcano. In the **Advanced Settings** area, set **colocation_enable** to **true** to enable hybrid deployment of online and offline services. For details about the installation, see :ref:`volcano <cce_10_0193>`.
+
+   If the volcano add-on has been installed, click **Edit** to view or modify the parameter **colocation_enable**.
+
+#. Enable CPU Burst.
+
+   After confirming that the volcano add-on is working, run the following command to edit the parameter **configmap** of **volcano-agent-configuration** in the namespace **kube-system**. If **enable** is set to **true**, CPU Burst is enabled. If **enable** is set to **false**, CPU Burst is disabled.
+
+   .. code-block::
+
+      kubectl edit configmap -nkube-system volcano-agent-configuration
+
+   Example:
+
+   .. code-block::
+
+      cpuBurstConfig:
+        enable: true
+
+#. Deploy a workload in a node pool where hybrid deployment has been enabled. Take Nginx as an example. Set **cpu** under **requests** to **2** and **cpu** under **limits** to **4**, and create a Service that can be accessed in the cluster for the workload.
+
+   .. code-block::
+
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: nginx
+        namespace: default
+      spec:
+        replicas: 2
+        selector:
+          matchLabels:
+            app: nginx
+        template:
+          metadata:
+            labels:
+              app: nginx
+            annotations:
+              volcano.sh/enable-quota-burst=true
+              volcano.sh/quota-burst-time=200000
+          spec:
+            containers:
+            - name: container-1
+              image: nginx:latest
+              resources:
+                limits:
+                  cpu: "4"
+                requests:
+                  cpu: "2"
+            imagePullSecrets:
+              - name: default-secret
+      ---
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: nginx
+        namespace: default
+        labels:
+          app: nginx
+      spec:
+        selector:
+          app: nginx
+        ports:
+          - name: cce-service-0
+            targetPort: 80
+            nodePort: 0
+            port: 80
+            protocol: TCP
+        type: ClusterIP
+
+   +------------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Annotation                         | Mandatory             | Description                                                                                                                                                                                                                                                                                                                                     |
+   +====================================+=======================+=================================================================================================================================================================================================================================================================================================================================================+
+   | volcano.sh/enable-quota-burst=true | Yes                   | CPU Burst is enabled for the workload.                                                                                                                                                                                                                                                                                                          |
+   +------------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | volcano.sh/quota-burst-time=200000 | No                    | To ensure CPU scheduling stability and reduce contention when multiple containers encounter CPU bursts at the same time, the default **CPU Burst** value is the same as the **CPU Quota** value. That is, a container can use a maximum of twice the **CPU Limit** value. By default, **CPU Burst** is set for all service containers in a pod. |
+   |                                    |                       |                                                                                                                                                                                                                                                                                                                                                 |
+   |                                    |                       | In this example, the **CPU Limit** of the container is **4**, that is, the default value is **400,000** (1 core = 100,000), indicating that a maximum of four additional cores can be used after the **CPU Limit** value is reached.                                                                                                            |
+   +------------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+#. Verify CPU Burst.
+
+   You can use the wrk tool to increase load of the workload and observe the service latency, traffic limiting, and CPU limit exceeding when CPU Burst is enabled and disabled, respectively.
+
+   a. Run the following command to increase load of the pod. *$service_ip* indicates the service IP address associated with the pod.
+
+      .. code-block::
+
+         # You need to download and install the wrk tool on the node.
+         # The Gzip compression module is enabled in the Apache configuration to simulate the computing logic for the server to process requests.
+         # Run the following command to increase the load. Note that you need to change the IP address of the target application.
+         wrk -H "Accept-Encoding: deflate, gzip" -t 4 -c 28 -d 120  --latency --timeout 2s http://$service_ip
+
+   b. Obtain the pod ID.
+
+      .. code-block::
+
+         kubectl get pods -n <namespace> <pod-name> -o jsonpath='{.metadata.uid}'
+
+   c. You can run the following command on the node to view the traffic limiting status and CPU limit exceeding status. In the command, *$PodID* indicates the pod ID.
+
+      .. code-block::
+
+         $cat /sys/fs/cgroup/cpuacct/kubepods/$PodID/cpu.stat
+         nr_periods 0  # Number of scheduling periods
+         nr_throttled 0  # Traffic limiting times
+         throttled_time 0  # Traffic limiting duration (ns)
+         nr_bursts 0 # CPU Limit exceeding times
+         burst_time 0 # Total Limit exceeding duration
+
+      .. table:: **Table 3** Result summary in this example
+
+         +-----------------------+-------------+------------------------+---------------------------+-----------------------+--------------------------------+
+         | CPU Burst             | P99 Latency | nr_throttled           | throttled_time            | nr_bursts             | bursts_time                    |
+         |                       |             |                        |                           |                       |                                |
+         |                       |             | Traffic Limiting Times | Traffic Limiting Duration | Limit Exceeding Times | Total Limit Exceeding Duration |
+         +=======================+=============+========================+===========================+=======================+================================+
+         | CPU Burst not enabled | 2.96 ms     | 986                    | 14.3s                     | 0                     | 0                              |
+         +-----------------------+-------------+------------------------+---------------------------+-----------------------+--------------------------------+
+         | CPU Burst enabled     | 456 µs      | 0                      | 0                         | 469                   | 3.7s                           |
+         +-----------------------+-------------+------------------------+---------------------------+-----------------------+--------------------------------+
+
 Handling Suggestions
 --------------------
 
@@ -518,4 +645,4 @@ Handling Suggestions
 
    You can reduce the oversubscribed resource types only when the resource allocation rate does not exceed 100%.
 
-.. |image1| image:: /_static/images/en-us_image_0000001207511384.png
+.. |image1| image:: /_static/images/en-us_image_0000001518062608.png

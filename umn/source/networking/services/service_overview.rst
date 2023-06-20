@@ -18,7 +18,7 @@ For example, an application uses Deployments to create the frontend and backend.
 
 .. _cce_10_0249__en-us_topic_0249851121_fig2173165051811:
 
-.. figure:: /_static/images/en-us_image_0258894622.png
+.. figure:: /_static/images/en-us_image_0000001517743624.png
    :alt: **Figure 1** Inter-pod access
 
    **Figure 1** Inter-pod access
@@ -32,7 +32,7 @@ In the preceding example, a Service is added for the frontend pod to access the 
 
 .. _cce_10_0249__en-us_topic_0249851121_fig163156154816:
 
-.. figure:: /_static/images/en-us_image_0258889981.png
+.. figure:: /_static/images/en-us_image_0000001517743432.png
    :alt: **Figure 2** Accessing pods through a Service
 
    **Figure 2** Accessing pods through a Service

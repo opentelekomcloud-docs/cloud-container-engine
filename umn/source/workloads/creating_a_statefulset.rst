@@ -42,7 +42,7 @@ Using the CCE Console
    **Basic Info**
 
    -  **Workload Type**: Select **StatefulSet**. For details about workload types, see :ref:`Overview <cce_10_0006>`.
-   -  **Workload Name**: Enter the name of the workload.
+   -  **Workload Name**: Enter the name of the workload. Enter 1 to 52 characters starting with a lowercase letter and ending with a letter or digit. Only lowercase letters, digits, and hyphens (-) are allowed.
    -  **Namespace**: Select the namespace of the workload. The default value is **default**. You can also click **Create Namespace** to create one. For details, see :ref:`Creating a Namespace <cce_10_0278>`.
    -  **Pods**: Enter the number of pods.
    -  **Container Runtime**: A CCE cluster uses runC by default, whereas a CCE Turbo cluster supports both runC and Kata. For details about the differences between runC and Kata, see :ref:`Kata Containers and Common Containers <cce_10_0463>`.

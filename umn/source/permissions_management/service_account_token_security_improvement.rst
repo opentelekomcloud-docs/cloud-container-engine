@@ -1,6 +1,6 @@
-:original_name: cce_10_0477_0.html
+:original_name: cce_10_0477.html
 
-.. _cce_10_0477_0:
+.. _cce_10_0477:
 
 Service Account Token Security Improvement
 ==========================================
@@ -38,4 +38,4 @@ Run the following steps to check your CCE clusters of v1.21 and later:
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000001402494682.png
+.. |image1| image:: /_static/images/en-us_image_0000001518062816.png

@@ -287,7 +287,7 @@ The disk type, encryption setting, and disk mode of the created EVS PVC are cons
 
 #. Log in to the CCE console.
 #. Click the cluster name and go to the cluster console. Choose **Storage** from the navigation pane, and click the **Snapshots and Backups** tab.
-#. Locate the snapshot for which you want to create a PVC, click **Create PVC**, and specify the PVC name in the displayed dialog box.
+#. Locate the snapshot that you want to use for creating a PVC, click **Create PVC**, and specify the PVC name in the displayed dialog box.
 #. Click **Create**.
 
 **Creating from YAML**

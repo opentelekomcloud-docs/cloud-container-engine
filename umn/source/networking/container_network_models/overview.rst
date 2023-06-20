@@ -7,7 +7,7 @@ Overview
 
 The container network assigns IP addresses to pods in a cluster and provides networking services. In CCE, you can select the following network models for your cluster:
 
--  :ref:`Tunnel network <cce_10_0282>`
+-  :ref:`Container tunnel network <cce_10_0282>`
 -  :ref:`VPC network <cce_10_0283>`
 -  :ref:`Cloud Native Network 2.0 <cce_10_0284>`
 
@@ -25,7 +25,7 @@ Network Model Comparison
 .. table:: **Table 1** Network model comparison
 
    +------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
-   | Dimension              | Tunnel Network                                                                                                                    | VPC Network                                                                                                                                          | Cloud Native Network 2.0                                                                                   |
+   | Dimension              | Container Tunnel Network                                                                                                          | VPC Network                                                                                                                                          | Cloud Native Network 2.0                                                                                   |
    +========================+===================================================================================================================================+======================================================================================================================================================+============================================================================================================+
    | Application scenarios  | -  Common container service scenarios                                                                                             | -  Scenarios that have high requirements on network latency and bandwidth                                                                            | -  Scenarios that have high requirements on network latency, bandwidth, and performance                    |
    |                        | -  Scenarios that do not have high requirements on network latency and bandwidth                                                  | -  Containers can communicate with VMs using a microservice registration framework, such as Dubbo and CSE.                                           | -  Containers can communicate with VMs using a microservice registration framework, such as Dubbo and CSE. |

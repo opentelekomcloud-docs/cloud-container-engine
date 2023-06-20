@@ -25,7 +25,7 @@ Process Flow
 ------------
 
 
-.. figure:: /_static/images/en-us_image_0000001244261073.png
+.. figure:: /_static/images/en-us_image_0000001517743544.png
    :alt: **Figure 1** Process of assigning CCE permissions
 
    **Figure 1** Process of assigning CCE permissions
@@ -177,4 +177,4 @@ When RBAC and IAM policies co-exist, the backend authentication logic for open A
 
    Using clusterCert to obtain the cluster kubeconfig: cceadm/teadmin
 
-.. |image1| image:: /_static/images/en-us_image_0000001244101107.png
+.. |image1| image:: /_static/images/en-us_image_0000001518062684.png

@@ -28,7 +28,7 @@ Procedure
 #. In the upper right corner of the ECS details page, click **Stop** in the instance status area. In the displayed dialog box, click **Yes**.
 
 
-   .. figure:: /_static/images/en-us_image_0000001244261119.png
+   .. figure:: /_static/images/en-us_image_0000001518062704.png
       :alt: **Figure 1** ECS details page
 
       **Figure 1** ECS details page

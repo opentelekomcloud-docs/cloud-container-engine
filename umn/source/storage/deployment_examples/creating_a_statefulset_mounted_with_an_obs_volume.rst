@@ -13,7 +13,7 @@ CCE allows you to use an existing OBS volume to create a StatefulSet through a P
 Prerequisites
 -------------
 
-You have created a CCE cluster and installed the CSI plug-in (:ref:`everest <cce_10_0066>`) in the cluster.
+You have created a cluster and installed the CSI plug-in (:ref:`everest <cce_10_0066>`) in the cluster.
 
 Notes and Constraints
 ---------------------

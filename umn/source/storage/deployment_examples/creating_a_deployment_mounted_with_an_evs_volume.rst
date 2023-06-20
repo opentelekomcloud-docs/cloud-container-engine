@@ -17,7 +17,7 @@ After an EVS volume is created or imported to CCE, you can mount it to a workloa
 Prerequisites
 -------------
 
-You have created a CCE cluster and installed the CSI plug-in (:ref:`everest <cce_10_0066>`) in the cluster.
+You have created a cluster and installed the CSI plug-in (:ref:`everest <cce_10_0066>`) in the cluster.
 
 Notes and Constraints
 ---------------------

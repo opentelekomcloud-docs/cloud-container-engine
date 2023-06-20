@@ -48,11 +48,16 @@ Installing the Add-on
          | 400/4w             | 2500           | 4000         | 4500               | 5500             |
          +--------------------+----------------+--------------+--------------------+------------------+
 
+#. Select whether to deploy the add-on pods across multiple AZs.
+
+   -  **Preferred**: Deployment pods of the add-on are preferentially scheduled to nodes in different AZs. If the nodes in the cluster do not meet the requirements of multiple AZs, the pods are scheduled to a single AZ.
+   -  **Required**: Deployment pods of the add-on are forcibly scheduled to nodes in different AZs. If the nodes in the cluster do not meet the requirements of multiple AZs, not all pods can run.
+
 #. Parameters of the volcano default scheduler. For details, see :ref:`Table 2 <cce_10_0193__table562185146>`.
 
    .. code-block::
 
-      ca_cert: ''
+      colocation_enable: ''
       default_scheduler_conf:
         actions: 'allocate, backfill'
         tiers:
@@ -73,8 +78,6 @@ Installing the Add-on
               - name: 'nodeemptydirvolume'
               - name: 'nodeCSIscheduling'
               - name: 'networkresource'
-      server_cert: ''
-      server_key: ''
 
    .. _cce_10_0193__table562185146:
 
@@ -83,10 +86,10 @@ Installing the Add-on
       +----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
       | Add-on                     | Function                                                                                                                                                                                                                    | Description                                                                                                              | Demonstration                                               |
       +============================+=============================================================================================================================================================================================================================+==========================================================================================================================+=============================================================+
-      | binpack                    | The binpack plugin schedules pods to nodes with high resource utilization to reduce resource fragments.                                                                                                                     | -  **binpack.weight**: Weight of the binpack plugin.                                                                     | .. code-block::                                             |
-      |                            |                                                                                                                                                                                                                             | -  **binpack.cpu**: Ratio of CPU resources to all resources. Defaults to **1**.                                          |                                                             |
+      | binpack                    | Schedules pods to nodes with high resource utilization to reduce resource fragments.                                                                                                                                        | -  **binpack.weight**: Weight of the binpack plugin.                                                                     | .. code-block::                                             |
+      |                            |                                                                                                                                                                                                                             | -  **binpack.cpu**: ratio of CPU resources to all resources. Defaults to **1**.                                          |                                                             |
       |                            |                                                                                                                                                                                                                             | -  **binpack.memory**: Ratio of memory resources to all resources. Defaults to **1**.                                    |    - plugins:                                               |
-      |                            |                                                                                                                                                                                                                             | -  binpack.resources:                                                                                                    |      - name: binpack                                        |
+      |                            |                                                                                                                                                                                                                             | -  **binpack.resources**: resource type.                                                                                 |      - name: binpack                                        |
       |                            |                                                                                                                                                                                                                             |                                                                                                                          |        arguments:                                           |
       |                            |                                                                                                                                                                                                                             |                                                                                                                          |          binpack.weight: 10                                 |
       |                            |                                                                                                                                                                                                                             |                                                                                                                          |          binpack.cpu: 1                                     |

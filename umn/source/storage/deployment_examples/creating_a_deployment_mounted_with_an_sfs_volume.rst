@@ -13,7 +13,7 @@ After an SFS volume is created or imported to CCE, you can mount the volume to a
 Prerequisites
 -------------
 
-You have created a CCE cluster and installed the CSI plug-in (:ref:`everest <cce_10_0066>`) in the cluster.
+You have created a cluster and installed the CSI plug-in (:ref:`everest <cce_10_0066>`) in the cluster.
 
 Notes and Constraints
 ---------------------

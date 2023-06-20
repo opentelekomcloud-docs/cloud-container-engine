@@ -161,6 +161,8 @@ The content is as follows:
      stage: deploy
      script:
        # Configure the kubeconfig file.
+       - mkdir -p $HOME/.kube
+       - export KUBECONFIG=$HOME/.kube/config
        - echo $kube_config |base64 -d > $KUBECONFIG
        # Replace the image in the k8s.yaml file.
        - sed -i "s/<IMAGE_NAME>/swr.eu-de.otc.t-systems.com\/k8s-dev\/nginx:$CI_PIPELINE_ID/g" k8s.yaml
@@ -184,8 +186,40 @@ After the pipeline is deployed, locate the **nginx-test** Service on the CCE con
 
 If the preceding information is displayed, the deployment is correct.
 
+FAQs
+----
+
+If the following problems occur during the deployment:
+
+|image6|
+
+or
+
+|image7|
+
+Check whether the following commands are missing in the **.gitlab-ci.yml** file. If yes, add them to the **.gitlab-ci.yml** file.
+
+.. code-block::
+
+   ...
+   deploy:
+     # Use the kubectl image.
+     image:
+       name: bitnami/kubectl:latest
+       entrypoint: [""]
+     stage: deploy
+     script:
+       # Configure the kubeconfig file.
+       - mkdir -p $HOME/.kube
+       - export KUBECONFIG=$HOME/.kube/config
+       - echo $kube_config |base64 -d > $KUBECONFIG
+       # Replace the image in the k8s.yaml file.
+   ...
+
 .. |image1| image:: /_static/images/en-us_image_0000001238489436.png
 .. |image2| image:: /_static/images/en-us_image_0000001283301301.png
 .. |image3| image:: /_static/images/en-us_image_0000001238903330.png
 .. |image4| image:: /_static/images/en-us_image_0000001238830246.png
 .. |image5| image:: /_static/images/en-us_image_0000001283343269.png
+.. |image6| image:: /_static/images/en-us_image_0000001520115845.png
+.. |image7| image:: /_static/images/en-us_image_0000001520396937.png

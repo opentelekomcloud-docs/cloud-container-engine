@@ -26,7 +26,10 @@ Container Network vs. Host Network
 
 When creating a pod, you can select the container network or host network for the pod.
 
--  Container network (default): **Each pod is assigned an IP address by the cluster networking add-ons, which occupies the IP addresses of the container network**.
+-  .. _cce_10_0348__li13739132619599:
+
+   Container network (default): **Each pod is assigned an IP address by the cluster networking add-ons, which occupies the IP addresses of the container network**.
+
 -  Host network: The pod uses the host network (**hostNetwork: true** needs to be configured for the pod) and occupies the host port. The pod IP address is the host IP address. The pod does not occupy the IP addresses of the container network. To use the host network, you must confirm whether the container ports conflict with the host ports. Do not use the host network unless you know exactly which host port is used by which container.
 
 .. _cce_10_0348__section10770192193714:
@@ -36,7 +39,7 @@ Number of Container IP Addresses That Can Be Allocated on a Node
 
 If you select **VPC network** for **Network Model** when creating a CCE cluster, you also need to set the number of container IP addresses that can be allocated to each node.
 
-This parameter affects the maximum number of pods that can be created on a node. Each pod occupies an IP address (when the container network is used). If the number of available IP addresses is insufficient, pods cannot be created.
+This parameter affects the maximum number of pods that can be created on a node. Each pod occupies an IP address (when the :ref:`container network <cce_10_0348__li13739132619599>` is used). If the number of available IP addresses is insufficient, pods cannot be created.
 
 By default, a node occupies three container IP addresses (network address, gateway address, and broadcast address). Therefore, the number of container IP addresses that can be allocated to a node equals the number of selected container IP addresses minus 3. For example, in the preceding figure, **the number of container IP addresses that can be allocated to a node is 125 (128 - 3)**.
 

@@ -24,11 +24,11 @@ Assume that there are four nodes in a cluster distributed in the following AZs:
 .. code-block::
 
    $ kubectl get node -L topology.kubernetes.io/zone,kubernetes.io/hostname
-   NAME            STATUS   ROLES    AGE   VERSION                      ZONE       HOSTNAME
-   192.168.5.112   Ready    <none>   42m   v1.21.7-r0-CCE21.11.1.B007   eu-de-01   192.168.5.112
-   192.168.5.179   Ready    <none>   42m   v1.21.7-r0-CCE21.11.1.B007   eu-de-01   192.168.5.179
-   192.168.5.252   Ready    <none>   37m   v1.21.7-r0-CCE21.11.1.B007   eu-de-02   192.168.5.252
-   192.168.5.8     Ready    <none>   33h   v1.21.7-r0-CCE21.11.1.B007   eu-de-03   192.168.5.8
+   NAME            STATUS   ROLES    AGE   VERSION                      ZONE     HOSTNAME
+   192.168.5.112   Ready    <none>   42m   v1.21.7-r0-CCE21.11.1.B007   zone01   192.168.5.112
+   192.168.5.179   Ready    <none>   42m   v1.21.7-r0-CCE21.11.1.B007   zone01   192.168.5.179
+   192.168.5.252   Ready    <none>   37m   v1.21.7-r0-CCE21.11.1.B007   zone02   192.168.5.252
+   192.168.5.8     Ready    <none>   33h   v1.21.7-r0-CCE21.11.1.B007   zone03   192.168.5.8
 
 Create workloads according to the following two podAntiAffinity rules:
 

@@ -22,7 +22,7 @@ Using ICAgent to Collect Logs
    The following uses Nginx as an example. Log policies vary depending on workloads.
 
 
-   .. figure:: /_static/images/en-us_image_0000001199181298.png
+   .. figure:: /_static/images/en-us_image_0000001569022957.png
       :alt: **Figure 1** Adding a log policy
 
       **Figure 1** Adding a log policy
@@ -173,7 +173,7 @@ The following shows how to use a hostPath volume. Compared with emptyDir, the ty
 .. table:: **Table 2** Parameter description
 
    +--------------------------------+-------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Parameter                      | Explanation             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+   | Parameter                      | Description             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
    +================================+=========================+=======================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
    | extendPathMode                 | Extended host path      | Extended host paths contain pod IDs or container names to distinguish different containers into which the host path is mounted.                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
    |                                |                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -238,4 +238,4 @@ You can also run the **kubectl logs** command to view the standard output of a c
    kubectl logs pod_name -c container_name -n namespace (one-off query)
    kubectl logs -f <pod_name> -n namespace (real-time query in tail -f mode)
 
-.. |image1| image:: /_static/images/en-us_image_0000001206876656.png
+.. |image1| image:: /_static/images/en-us_image_0000001569182673.png

@@ -68,7 +68,7 @@ Obtaining the Driver Link from Public Network
 
    .. _cce_10_0141__fig11696366517:
 
-   .. figure:: /_static/images/en-us_image_0000001531533921.png
+   .. figure:: /_static/images/en-us_image_0000001518062808.png
       :alt: **Figure 1** Setting parameters
 
       **Figure 1** Setting parameters
@@ -77,7 +77,7 @@ Obtaining the Driver Link from Public Network
 
    .. _cce_10_0141__fig7873421145213:
 
-   .. figure:: /_static/images/en-us_image_0000001531373685.png
+   .. figure:: /_static/images/en-us_image_0000001517743660.png
       :alt: **Figure 2** Driver information
 
       **Figure 2** Driver information
@@ -90,9 +90,9 @@ Obtaining the Driver Link from Public Network
 
       .. _cce_10_0141__fig5901194614534:
 
-      .. figure:: /_static/images/en-us_image_0000001531533045.png
+      .. figure:: /_static/images/en-us_image_0000001517903240.png
          :alt: **Figure 3** Obtaining the link
 
          **Figure 3** Obtaining the link
 
-.. |image1| image:: /_static/images/en-us_image_0000001238225460.png
+.. |image1| image:: /_static/images/en-us_image_0000001518062812.png

@@ -19,7 +19,7 @@ You can regulate users' or user groups' access to Kubernetes resources in a sing
 Role and ClusterRole specify actions that can be performed on specific resources. RoleBinding and ClusterRoleBinding bind roles to specific users, user groups, or ServiceAccounts. Illustration:
 
 
-.. figure:: /_static/images/en-us_image_0000001244261071.png
+.. figure:: /_static/images/en-us_image_0000001517743636.png
    :alt: **Figure 1** Role binding
 
    **Figure 1** Role binding
@@ -30,15 +30,17 @@ On the CCE console, you can assign permissions to a user or user group to access
 -  edit (development): read and write permissions on most resources in all or selected namespaces. If this ClusterRole is configured for all namespaces, its capability is the same as the O&M permission.
 -  admin (O&M): read and write permissions on most resources in all namespaces, and read-only permission on nodes, storage volumes, namespaces, and quota management.
 -  cluster-admin (administrator): read and write permissions on all resources in all namespaces.
+-  drainage-editor: drain a node.
+-  drainage-viewer: view the nodal drainage status but cannot drain a node.
 
 .. _cce_10_0189__section207514572488:
 
 Cluster Permissions (IAM-based) and Namespace Permissions (Kubernetes RBAC-based)
 ---------------------------------------------------------------------------------
 
-Users with different cluster permissions (assigned using IAM) have different namespace permissions (assigned using Kubernetes RBAC). :ref:`Table 1 <cce_10_0189__cce_10_0187_table886210176509>` lists the namespace permissions of different users.
+Users with different cluster permissions (assigned using IAM) have different namespace permissions (assigned using Kubernetes RBAC). :ref:`Table 1 <cce_10_0189__en-us_topic_0000001199181174_table886210176509>` lists the namespace permissions of different users.
 
-.. _cce_10_0189__cce_10_0187_table886210176509:
+.. _cce_10_0189__en-us_topic_0000001199181174_table886210176509:
 
 .. table:: **Table 1** Differences in namespace permissions
 
@@ -136,7 +138,7 @@ After creating a Role, you can bind the Role to a specific user, which is called
 The **subjects** section binds a Role with an IAM user so that the IAM user can obtain the permissions defined in the Role, as shown in the following figure.
 
 
-.. figure:: /_static/images/en-us_image_0262051194.png
+.. figure:: /_static/images/en-us_image_0000001518222732.png
    :alt: **Figure 2** A RoleBinding binds the Role to the user.
 
    **Figure 2** A RoleBinding binds the Role to the user.

@@ -77,4 +77,4 @@ For CPU, both **requests** and **limits** must be set to the same, and **request
          imagePullSecrets:
            - name: default-secret
 
-.. |image1| image:: /_static/images/en-us_image_0000001244261055.png
+.. |image1| image:: /_static/images/en-us_image_0000001569022837.png

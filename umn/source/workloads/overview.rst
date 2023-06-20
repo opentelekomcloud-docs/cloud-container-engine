@@ -20,7 +20,7 @@ Pods can be used in either of the following ways:
 
    .. _cce_10_0006__en-us_topic_0254767870_fig347141918551:
 
-   .. figure:: /_static/images/en-us_image_0258392378.png
+   .. figure:: /_static/images/en-us_image_0000001518222716.png
       :alt: **Figure 1** Pod
 
       **Figure 1** Pod
@@ -33,7 +33,7 @@ Deployment
 A pod is the smallest and simplest unit that you create or deploy in Kubernetes. It is designed to be an ephemeral, one-off entity. A pod can be evicted when node resources are insufficient and disappears along with a cluster node failure. Kubernetes provides controllers to manage pods. Controllers can create and manage pods, and provide replica management, rolling upgrade, and self-healing capabilities. The most commonly used controller is Deployment.
 
 
-.. figure:: /_static/images/en-us_image_0258095884.png
+.. figure:: /_static/images/en-us_image_0000001569023033.png
    :alt: **Figure 2** Relationship between a Deployment and pods
 
    **Figure 2** Relationship between a Deployment and pods
@@ -72,7 +72,7 @@ A DaemonSet runs a pod on each node in a cluster and ensures that there is only 
 DaemonSets are closely related to nodes. If a node becomes faulty, the DaemonSet will not create the same pods on other nodes.
 
 
-.. figure:: /_static/images/en-us_image_0258871213.png
+.. figure:: /_static/images/en-us_image_0000001518062772.png
    :alt: **Figure 3** DaemonSet
 
    **Figure 3** DaemonSet
@@ -112,4 +112,4 @@ Workload Lifecycle
    | Pausing                | The workload is being paused.                                                                                           |
    +------------------------+-------------------------------------------------------------------------------------------------------------------------+
 
-.. |image1| image:: /_static/images/en-us_image_0258203193.png
+.. |image1| image:: /_static/images/en-us_image_0000001517743628.png

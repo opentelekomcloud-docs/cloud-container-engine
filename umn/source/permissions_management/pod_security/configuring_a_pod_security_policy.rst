@@ -5,7 +5,7 @@
 Configuring a Pod Security Policy
 =================================
 
-A pod security policy (PSP) is a cluster-level resource that controls sensitive security aspects of the pod specification. The `PodSecurityPolicy <https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#podsecuritypolicy-v1beta1-policy>`__ object in Kubernetes defines a group of conditions that a pod must comply with to be accepted by the system, as well as the default values of related fields.
+A pod security policy (PSP) is a cluster-level resource that controls sensitive security aspects of the pod specification. The PodSecurityPolicy object in Kubernetes defines a group of conditions that a pod must comply with to be accepted by the system, as well as the default values of related fields.
 
 By default, the PSP access control component is enabled for clusters of v1.17.17 and a global default PSP named **psp-global** is created. You can modify the default policy (but not delete it). You can also create a PSP and bind it to the RBAC configuration.
 

@@ -13,13 +13,7 @@ When a node in a CCE cluster is deleted, services running on the node will also 
 Notes and Constraints
 ---------------------
 
--  After a CCE cluster is deleted, the ECS nodes in the cluster are also deleted.
-
--
-
-   .. important::
-
-      For clusters of v1.17.11 or later, after a VM is deleted on the ECS console, the corresponding node in the CCE cluster is automatically deleted.
+-  VM nodes that are being used by CCE do not support deletion on the ECS page.
 
 Precautions
 -----------

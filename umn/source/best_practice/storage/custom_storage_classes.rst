@@ -1,6 +1,6 @@
-:original_name: cce_bestpractice_00281_0.html
+:original_name: cce_bestpractice_00281.html
 
-.. _cce_bestpractice_00281_0:
+.. _cce_bestpractice_00281:
 
 Custom Storage Classes
 ======================
@@ -147,7 +147,7 @@ For an ultra-high I/O storage class, you can set the class name to **csi-disk-ss
 
 .. note::
 
-   The reclamation policy set here has no impact on the SFS Turbo storage. Therefore, the yearly/monthly SFS Turbo resources will not be reclaimed when the cluster or PVC is deleted.
+   The reclamation policy set here has no impact on the SFS Turbo storage.
 
 If high data security is required, you are advised to select **Retain** to prevent data from being deleted by mistake.
 

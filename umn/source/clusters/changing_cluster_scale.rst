@@ -33,4 +33,4 @@ Procedure
 
    You can click **Operation Records** in the upper left corner to view the cluster change history. The status changes from **Executing** to **Successful**, indicating that the cluster specifications are successfully changed.
 
-.. |image1| image:: /_static/images/en-us_image_0000001236723668.png
+.. |image1| image:: /_static/images/en-us_image_0000001518062664.png

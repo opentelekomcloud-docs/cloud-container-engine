@@ -12,31 +12,31 @@ After a workload is created, you can upgrade, monitor, roll back, or delete the 
 
 .. table:: **Table 1** Workload/Job management
 
-   +-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Operation                                                                           | Description                                                                                                                                                                                    |
-   +=====================================================================================+================================================================================================================================================================================================+
-   | :ref:`Monitor <cce_10_0007__section7200124254011>`                                  | You can view the CPU and memory usage of workloads and pods on the CCE console.                                                                                                                |
-   +-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`View Log <cce_10_0007__cce_01_0007_section51511928173817>`                    | You can view the logs of workloads.                                                                                                                                                            |
-   +-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Upgrade <cce_10_0007__cce_01_0007_section17604174417381>`                     | You can replace images or image tags to quickly upgrade Deployments, StatefulSets, and DaemonSets without interrupting services.                                                               |
-   +-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Edit YAML <cce_10_0007__cce_01_0007_section21669213390>`                      | You can modify and download the YAML files of Deployments, StatefulSets, DaemonSets, and pods on the CCE console. YAML files of jobs and cron jobs can only be viewed, copied, and downloaded. |
-   +-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Roll Back <cce_10_0007__cce_01_0007_section13324541124815>`                   | Only Deployments can be rolled back.                                                                                                                                                           |
-   +-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Redeploy <cce_10_0007__section132451237607>`                                  | You can redeploy a workload. After the workload is redeployed, all pods in the workload will be restarted.                                                                                     |
-   +-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Enabling/Disabling the Upgrade <cce_10_0007__cce_01_0007_section12087915401>` | Only Deployments support this operation.                                                                                                                                                       |
-   +-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Manage Label <cce_10_0007__cce_01_0007_section5931193015488>`                 | Labels are key-value pairs and can be attached to workloads for affinity and anti-affinity scheduling. Jobs and Cron Jobs do not support this operation.                                       |
-   +-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Delete <cce_10_0007__cce_01_0007_section14423721191418>`                      | You can delete a workload or job that is no longer needed. Deleted workloads or jobs cannot be recovered.                                                                                      |
-   +-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`View Events <cce_10_0007__cce_01_0007_section1947616516301>`                  | You can view event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time.                                                              |
-   +-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Stop/Start                                                                          | You can only start or stop a cron job.                                                                                                                                                         |
-   +-------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Operation                                                                                      | Description                                                                                                                                                                                    |
+   +================================================================================================+================================================================================================================================================================================================+
+   | :ref:`Monitor <cce_10_0007__section7200124254011>`                                             | You can view the CPU and memory usage of workloads and pods on the CCE console.                                                                                                                |
+   +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`View Log <cce_10_0007__en-us_topic_0107283638_section51511928173817>`                    | You can view the logs of workloads.                                                                                                                                                            |
+   +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Upgrade <cce_10_0007__en-us_topic_0107283638_section17604174417381>`                     | You can replace images or image tags to quickly upgrade Deployments, StatefulSets, and DaemonSets without interrupting services.                                                               |
+   +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Edit YAML <cce_10_0007__en-us_topic_0107283638_section21669213390>`                      | You can modify and download the YAML files of Deployments, StatefulSets, DaemonSets, and pods on the CCE console. YAML files of jobs and cron jobs can only be viewed, copied, and downloaded. |
+   +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Roll Back <cce_10_0007__en-us_topic_0107283638_section13324541124815>`                   | Only Deployments can be rolled back.                                                                                                                                                           |
+   +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Redeploy <cce_10_0007__section132451237607>`                                             | You can redeploy a workload. After the workload is redeployed, all pods in the workload will be restarted.                                                                                     |
+   +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Enabling/Disabling the Upgrade <cce_10_0007__en-us_topic_0107283638_section12087915401>` | Only Deployments support this operation.                                                                                                                                                       |
+   +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Manage Label <cce_10_0007__en-us_topic_0107283638_section5931193015488>`                 | Labels are key-value pairs and can be attached to workloads for affinity and anti-affinity scheduling. Jobs and Cron Jobs do not support this operation.                                       |
+   +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Delete <cce_10_0007__en-us_topic_0107283638_section14423721191418>`                      | You can delete a workload or job that is no longer needed. Deleted workloads or jobs cannot be recovered.                                                                                      |
+   +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`View Events <cce_10_0007__en-us_topic_0107283638_section1947616516301>`                  | You can view event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time.                                                              |
+   +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Stop/Start                                                                                     | You can only start or stop a cron job.                                                                                                                                                         |
+   +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. _cce_10_0007__section7200124254011:
 
@@ -49,7 +49,7 @@ You can view the CPU and memory usage of Deployments and pods on the CCE console
 #. Click the **Deployments** tab and click **Monitor** of the target workload. On the page that is displayed, you can view CPU usage and memory usage of the workload.
 #. Click the workload name. On the **Pods** tab page, click the **Monitor** of the target pod to view its CPU and memory usage.
 
-.. _cce_10_0007__cce_01_0007_section51511928173817:
+.. _cce_10_0007__en-us_topic_0107283638_section51511928173817:
 
 Viewing Logs
 ------------
@@ -62,7 +62,7 @@ You can view logs of Deployments, StatefulSets, DaemonSets, and jobs. This secti
 
    On the displayed **View Log** window, you can view logs by time.
 
-.. _cce_10_0007__cce_01_0007_section17604174417381:
+.. _cce_10_0007__en-us_topic_0107283638_section17604174417381:
 
 Upgrading a Workload
 --------------------
@@ -84,7 +84,7 @@ Before replacing an image or image version, upload the new image to the SWR serv
 #. Upgrade the workload based on service requirements. The method for setting parameter is the same as that for creating a workload.
 #. After the update is complete, click **Upgrade Workload**, manually confirm the YAML file, and submit the upgrade.
 
-.. _cce_10_0007__cce_01_0007_section21669213390:
+.. _cce_10_0007__en-us_topic_0107283638_section21669213390:
 
 Editing a YAML file
 -------------------
@@ -96,7 +96,7 @@ You can modify and download the YAML files of Deployments, StatefulSets, DaemonS
 #. Click **Edit** and then **OK** to save the changes.
 #. (Optional) In the **Edit YAML** window, click **Download** to download the YAML file.
 
-.. _cce_10_0007__cce_01_0007_section13324541124815:
+.. _cce_10_0007__en-us_topic_0107283638_section13324541124815:
 
 Rolling Back a Workload (Available Only for Deployments)
 --------------------------------------------------------
@@ -118,7 +118,7 @@ After you redeploy a workload, all pods in the workload will be restarted. This 
 #. Click the **Deployments** tab and choose **More** > **Redeploy** in the **Operation** column of the target workload.
 #. In the dialog box that is displayed, click **Yes** to redeploy the workload.
 
-.. _cce_10_0007__cce_01_0007_section12087915401:
+.. _cce_10_0007__en-us_topic_0107283638_section12087915401:
 
 Disabling/Enabling Upgrade (Available Only for Deployments)
 -----------------------------------------------------------
@@ -139,7 +139,7 @@ Only Deployments support this operation.
 #. Click the **Deployments** tab and choose **More** > **Disable/Enable Upgrade** in the **Operation** column of the workload.
 #. In the dialog box that is displayed, click **Yes**.
 
-.. _cce_10_0007__cce_01_0007_section5931193015488:
+.. _cce_10_0007__en-us_topic_0107283638_section5931193015488:
 
 Managing Labels
 ---------------
@@ -157,7 +157,7 @@ In the following figure, three labels (release, env, and role) are defined for w
 If you set **key** to **role** and **value** to **frontend** when using workload scheduling or another function, APP 1 and APP 2 will be selected.
 
 
-.. figure:: /_static/images/en-us_image_0000001408895746.png
+.. figure:: /_static/images/en-us_image_0000001517903028.png
    :alt: **Figure 1** Label example
 
    **Figure 1** Label example
@@ -170,7 +170,7 @@ If you set **key** to **role** and **value** to **frontend** when using workload
 
       A key-value pair must contain 1 to 63 characters starting and ending with a letter or digit. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed.
 
-.. _cce_10_0007__cce_01_0007_section14423721191418:
+.. _cce_10_0007__en-us_topic_0107283638_section14423721191418:
 
 Deleting a Workload/Job
 -----------------------
@@ -190,7 +190,7 @@ You can delete a workload or job that is no longer needed. Deleted workloads or 
       -  If the node where the pod is located is unavailable or shut down and the workload cannot be deleted, you can forcibly delete the pod from the pod list on the workload details page.
       -  Ensure that the storage volumes to be deleted are not used by other workloads. If these volumes are imported or have snapshots, you can only unbind them.
 
-.. _cce_10_0007__cce_01_0007_section1947616516301:
+.. _cce_10_0007__en-us_topic_0107283638_section1947616516301:
 
 Viewing Events
 --------------

@@ -11,7 +11,7 @@ Scenario
 A Service is exposed on each node's IP address at a static port (NodePort). A ClusterIP Service, to which the NodePort Service will route, is automatically created. By requesting <NodeIP>:<NodePort>, you can access a NodePort Service from outside the cluster.
 
 
-.. figure:: /_static/images/en-us_image_0000001199501230.png
+.. figure:: /_static/images/en-us_image_0000001517743380.png
    :alt: **Figure 1** NodePort access
 
    **Figure 1** NodePort access

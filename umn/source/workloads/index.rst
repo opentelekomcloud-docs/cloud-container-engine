@@ -15,6 +15,7 @@ Workloads
 -  :ref:`Configuring a Container <cce_10_0130>`
 -  :ref:`GPU Scheduling <cce_10_0345>`
 -  :ref:`CPU Core Binding <cce_10_0551>`
+-  :ref:`Accessing a Container <cce_10_00356>`
 -  :ref:`Pod Labels and Annotations <cce_10_0386>`
 -  :ref:`Volcano Scheduling <cce_10_0423>`
 -  :ref:`Security Group Policies <cce_10_0288>`
@@ -33,6 +34,7 @@ Workloads
    configuring_a_container/index
    gpu_scheduling
    cpu_core_binding/index
+   accessing_a_container
    pod_labels_and_annotations
    volcano_scheduling/index
    security_group_policies

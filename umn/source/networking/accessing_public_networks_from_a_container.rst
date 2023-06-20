@@ -11,11 +11,11 @@ Containers can access public networks in either of the following ways:
 -  Bind a public IP address to the pod. (When the Cloud Native Network 2.0 model is used, manually bind an EIP to the ENI or sub-ENI of the pod on the VPC console. This method is not recommended because the IP address of a pod changes after the pod is rescheduled. As a result, the new pod cannot access the public network.)
 -  Configure SNAT rules through NAT Gateway.
 
-You can use NAT Gateway to enable container pods in a VPC to access public networks. NAT Gateway provides source network address translation (SNAT), which translates private IP addresses to a public IP address by binding an elastic IP address (EIP) to the gateway, providing secure and efficient access to the Internet. :ref:`Figure 1 <cce_10_0400__cce_bestpractice_00274_0_en-us_topic_0241700138_en-us_topic_0144420145_fig34611314153619>` shows the SNAT architecture. The SNAT function allows the container pods in a VPC to access the Internet without being bound to an EIP. SNAT supports a large number of concurrent connections, which makes it suitable for applications involving a large number of requests and connections.
+You can use NAT Gateway to enable container pods in a VPC to access public networks. NAT Gateway provides source network address translation (SNAT), which translates private IP addresses to a public IP address by binding an elastic IP address (EIP) to the gateway, providing secure and efficient access to the Internet. :ref:`Figure 1 <cce_10_0400__cce_bestpractice_00274_en-us_topic_0241700138_en-us_topic_0144420145_fig34611314153619>` shows the SNAT architecture. The SNAT function allows the container pods in a VPC to access the Internet without being bound to an EIP. SNAT supports a large number of concurrent connections, which makes it suitable for applications involving a large number of requests and connections.
 
-.. _cce_10_0400__cce_bestpractice_00274_0_en-us_topic_0241700138_en-us_topic_0144420145_fig34611314153619:
+.. _cce_10_0400__cce_bestpractice_00274_en-us_topic_0241700138_en-us_topic_0144420145_fig34611314153619:
 
-.. figure:: /_static/images/en-us_image_0000001192028618.png
+.. figure:: /_static/images/en-us_image_0000001569182781.png
    :alt: **Figure 1** SNAT
 
    **Figure 1** SNAT
@@ -65,9 +65,9 @@ To enable a container pod to access the Internet, perform the following steps:
 
    After the SNAT rule is configured, workloads can access public networks from the container. Public networks can be pinged from the container.
 
-.. |image1| image:: /_static/images/en-us_image_0275445566.png
-.. |image2| image:: /_static/images/en-us_image_0261818893.png
-.. |image3| image:: /_static/images/en-us_image_0275445543.png
-.. |image4| image:: /_static/images/en-us_image_0261818896.png
-.. |image5| image:: /_static/images/en-us_image_0275452681.png
-.. |image6| image:: /_static/images/en-us_image_0261818899.png
+.. |image1| image:: /_static/images/en-us_image_0000001568822961.png
+.. |image2| image:: /_static/images/en-us_image_0000001518062796.png
+.. |image3| image:: /_static/images/en-us_image_0000001517743652.png
+.. |image4| image:: /_static/images/en-us_image_0000001568902689.png
+.. |image5| image:: /_static/images/en-us_image_0000001569023069.png
+.. |image6| image:: /_static/images/en-us_image_0000001568822957.png

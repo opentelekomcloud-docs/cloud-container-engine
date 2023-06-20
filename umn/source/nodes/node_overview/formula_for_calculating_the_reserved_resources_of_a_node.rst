@@ -5,7 +5,7 @@
 Formula for Calculating the Reserved Resources of a Node
 ========================================================
 
-Some of the resources on the node need to run some necessary Kubernetes system components and resources to make the node as part of your cluster. Therefore, the total number of node resources and the number of assignable node resources in Kubernetes are different. The larger the node specifications, the more the containers deployed on the node. Therefore, Kubernetes needs to reserve more resources.
+Some of the resources on the node need to run some necessary Kubernetes system components and resources to make the node as part of your cluster. Therefore, the total number of node resources and the number of assignable node resources in Kubernetes are different. The larger the node specifications, the more the containers deployed on the node. Therefore, more node resources need to be reserved to run Kubernetes components.
 
 To ensure node stability, a certain amount of CCE node resources will be reserved for Kubernetes components (such as kubelet, kube-proxy, and docker) based on the node specifications.
 
@@ -17,8 +17,8 @@ The memory eviction threshold is fixed at 100 MB.
 
 When the memory consumed by all pods on a node increases, the following behaviors may occur:
 
-#. If the memory is greater than or equal to the allocatable amount on the node, kubelet is triggered to evict pods.
-#. When the memory approaches the allocatable amount and eviction threshold (total minus reserved), OS OOM is triggered.
+#. When the available memory on a node is lower than the eviction threshold, kubelet is triggered to evict pods. For details about Kubernetes eviction threshold, see `Node-pressure Eviction <https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction>`__.
+#. If a node triggers an OS Out-Of-Memory (OOM) event before kubelet reclaims memory, the system terminates the container. However, kubelet does not evict the pod, but restarts the container based on the RestartPolicy of the pod.
 
 Rules for Reserving Node Memory
 -------------------------------

@@ -85,7 +85,7 @@ Statically Importing OBS Buckets and Parallel File Systems
           fsType: obsfs
           volumeAttributes:
             everest.io/obs-volume-type: STANDARD
-            everest.io/region:   eu-de     #Set it to the ID of the current region.
+            everest.io/region:    eu-de     #Set it to the ID of the current region.
             storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
           volumeHandle: objbucket             #Replace the name with the actual bucket name of the third-party tenant.
         persistentVolumeReclaimPolicy: Retain    #This parameter must be set to Retain to ensure that the bucket will not be deleted when a PV is deleted.

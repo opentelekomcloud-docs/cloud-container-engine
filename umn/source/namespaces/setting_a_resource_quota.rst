@@ -27,7 +27,7 @@ Cluster Scale Recommended Number of Pods
 2,000 nodes   50,000 pods
 ============= ==========================
 
-Starting from clusters of v1.21 and later, the default `Resource Quotas <https://kubernetes.io/docs/concepts/policy/resource-quotas/?spm=a2c4g.11186623.2.8.d882712bd1i8ae>`__ are created when a namespace is created if you have enabled **enable-resource-quota** in :ref:`Managing Cluster Components <cce_10_0213>`. :ref:`Table 1 <cce_10_0287__table371165714613>` lists the resource quotas based on cluster specifications. You can modify them according to your service requirements.
+Starting from clusters of v1.21 and later, the default `Resource Quotas <https://kubernetes.io/docs/concepts/policy/resource-quotas/?spm=a2c4g.11186623.2.8.d882712bd1i8ae>`__ are created when a namespace is created if you have enabled **enable-resource-quota** in :ref:`Cluster Configuration Management <cce_10_0213>`. :ref:`Table 1 <cce_10_0287__table371165714613>` lists the resource quotas based on cluster specifications. You can modify them according to your service requirements.
 
 .. _cce_10_0287__table371165714613:
 
