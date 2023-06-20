@@ -20,7 +20,7 @@ Procedure
 #. In the **Download X.509 Certificate** dialog box displayed, select the certificate expiration time and download the X.509 certificate of the cluster as prompted.
 
 
-   .. figure:: /_static/images/en-us_image_0000001199181228.png
+   .. figure:: /_static/images/en-us_image_0000001568822637.png
       :alt: **Figure 1** Downloading a certificate
 
       **Figure 1** Downloading a certificate

@@ -12,7 +12,7 @@ In CCE, you can create a CCE cluster to manage VMs. By using high-performance ne
 Notes and Constraints
 ---------------------
 
--  During the node creation, software packages are downloaded from OBS using the domain name. You need to use a private DNS server to resolve the OBS domain name, and configure the subnet where the node resides with a private DNS server address. When you create a subnet, the private DNS server is used by default. If you change the subnet DNS, ensure that the DNS server in use can resolve the OBS domain name.
+-  During the node creation, software packages are downloaded from OBS using the domain name. You need to use a private DNS server to resolve the OBS domain name, and configure the DNS server address of the subnet where the node resides with a private DNS server address. When you create a subnet, the private DNS server is used by default. If you change the subnet DNS, ensure that the DNS server in use can resolve the OBS domain name.
 -  You can create a maximum of 50 clusters in a single region.
 -  After a cluster is created, the following items cannot be changed:
 
@@ -80,17 +80,21 @@ Procedure
 
 #. Click **Next: Add-on Configuration**.
 
-   By default, :ref:`cordens <cce_10_0129>` and :ref:`everest <cce_10_0066>` add-ons are installed.
+   **Domain Name Resolution**: Uses the :ref:`coredns <cce_10_0129>` add-on, installed by default, to resolve domain names and connect to the cloud DNS server.
 
-   **Service log**
+   **Container Storage**: Uses the :ref:`everest <cce_10_0066>` add-on, installed by default, to provide container storage based on CSI and connect to cloud storage services such as EVS.
 
-   -  **ICAgent**:
+   **Service logs**
+
+   -  Using ICAgent:
 
       A log collector provided by Application Operations Management (AOM), reporting logs to AOM and Log Tank Service (LTS) according to the log collection rules you configured.
 
       You can collect stdout logs as required.
 
-#. After the parameters are specified, click **Next: Confirm**. The cluster resource list is displayed. Confirm the information and click **Submit**.
+   **Overload Control**: If overload control is enabled, concurrent requests are dynamically controlled based on the resource pressure of master nodes to keep them and the cluster available.
+
+#. After setting the parameters, click **Next: Confirm**. After confirming that the cluster configuration information is correct, select **I have read and understand the preceding instructions** and click **Submit**.
 
    It takes about 6 to 10 minutes to create a cluster. You can click **Back to Cluster List** to perform other operations on the cluster or click **Go to Cluster Events** to view the cluster details.
 

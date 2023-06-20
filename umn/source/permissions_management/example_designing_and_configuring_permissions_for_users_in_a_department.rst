@@ -83,4 +83,4 @@ In the previous steps, Linda and Peter have been assigned the read-only permissi
 
 By now, all the required permissions are assigned to the department members.
 
-.. |image1| image:: /_static/images/en-us_image_0000001256348238.jpg
+.. |image1| image:: /_static/images/en-us_image_0000001569182569.jpg

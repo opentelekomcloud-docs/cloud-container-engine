@@ -139,4 +139,4 @@ The environment variables in the pod are as follows:
    configmap_key=configmap_value         # Added from ConfigMap. The key value in the original ConfigMap key is directly imported.
    secret_key=secret_value               # Added from key. The key value in the original secret is directly imported.
 
-.. |image1| image:: /_static/images/en-us_image_0000001247802971.png
+.. |image1| image:: /_static/images/en-us_image_0000001569022913.png

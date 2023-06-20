@@ -120,7 +120,7 @@ If application containers on a node do not need to access Kubernetes, you can pe
 
          iptables -I FORWARD -s {container_cidr} -d {Private API server IP} -j REJECT
 
-   *{container_cidr}* indicates the container network of the cluster, for example, 10.0.0.0/16, and *{master_ip}* indicates the IP address of the master node.
+   *{container_cidr}* indicates the container CIDR of the cluster, for example, 10.0.0.0/16.
 
    To ensure configuration persistence, you are advised to write the command to the **/etc/rc.local** script.
 

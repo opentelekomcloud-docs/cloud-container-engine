@@ -19,7 +19,7 @@ How autoscaler Works
 
 The cluster autoscaler (CA) goes through two processes.
 
--  Scale-out: The CA checks all unschedulable pods every 10 seconds and selects a node group that meets the requirements for scale-out based on the policy you set.
+-  Scale-out: The CA checks all unschedulable pods every 10 seconds and selects a node pool that meets the requirements for scale-out based on the policy you set.
 -  Scale-in: The CA scans all nodes every 10 seconds. If the number of pod requests on a node is less than the user-defined percentage for scale-in, the CA simulates whether the pods on the node can be migrated to other nodes. If yes, the node will be removed after an idle time window.
 
 As described above, if a cluster node is idle for a period of time (10 minutes by default), scale-in is triggered, and the idle node is removed.
@@ -29,7 +29,7 @@ However, a node cannot be removed from a cluster if the following pods exist:
 #. Pods that do not meet specific requirements set in PodDisruptionBudget
 #. Pods that cannot be scheduled to other nodes due to constraints such as affinity and anti-affinity policies
 #. Pods that have the **"cluster-autoscaler.kubernetes.io/safe-to-evict": "false"** annotation
-#. Pods (except those created by kube-system DaemonSet) that exist in the kube-system namespace on the node
+#. Pods (except those created by DaemonSets in the kube-system namespace) that exist in the kube-system namespace on the node
 #. Pods that are not created by the controller (Deployment/ReplicaSet/job/StatefulSet)
 
 autoscaler Architecture
@@ -39,7 +39,7 @@ autoscaler Architecture
 
 .. _cce_10_0296__fig114831750115719:
 
-.. figure:: /_static/images/en-us_image_0000001199501290.png
+.. figure:: /_static/images/en-us_image_0000001569182553.png
    :alt: **Figure 1** autoscaler architecture
 
    **Figure 1** autoscaler architecture

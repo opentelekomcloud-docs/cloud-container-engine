@@ -11,7 +11,7 @@ Permissions Management
 -  :ref:`Example: Designing and Configuring Permissions for Users in a Department <cce_10_0245>`
 -  :ref:`Permission Dependency of the CCE Console <cce_10_0190>`
 -  :ref:`Pod Security <cce_10_0465>`
--  :ref:`Service Account Token Security Improvement <cce_10_0477_0>`
+-  :ref:`Service Account Token Security Improvement <cce_10_0477>`
 
 .. toctree::
    :maxdepth: 1

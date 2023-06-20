@@ -239,7 +239,7 @@ From the preceding output, you can find that no pods of the Deployment are sched
 In the preceding example, the node scheduling priority is as follows. Nodes with both **SSD** and **gpu=true** labels have the highest priority. Nodes with the **SSD** label but no **gpu=true** label have the second priority (weight: 80). Nodes with the **gpu=true** label but no **SSD** label have the third priority. Nodes without any of these two labels have the lowest priority.
 
 
-.. figure:: /_static/images/en-us_image_0000001202101148.png
+.. figure:: /_static/images/en-us_image_0000001569022881.png
    :alt: **Figure 1** Scheduling priority
 
    **Figure 1** Scheduling priority
@@ -341,7 +341,7 @@ Add the **prefer=true** label to nodes **192.168.0.97** and **192.168.0.94**.
    192.168.0.94    Ready    <none>   91m   v1.15.6-r1-20.3.0.2.B001-15.30.2   true
    192.168.0.97    Ready    <none>   91m   v1.15.6-r1-20.3.0.2.B001-15.30.2   true
 
-Define **topologyKey** in the **podAffinity** section as **prefer**.
+Define **topologyKey** in the **podAffinity** section as **prefer**. The node topology domains are divided as shown in :ref:`Figure 2 <cce_10_0232__fig511152614544>`.
 
 .. code-block::
 
@@ -356,7 +356,14 @@ Define **topologyKey** in the **podAffinity** section as **prefer**.
                    values:
                    - backend
 
-The scheduler recognizes the nodes with the **prefer** label, that is, **192.168.0.97** and **192.168.0.94**, and then find the pods with the **app=backend** label. In this way, all frontend pods are deployed onto **192.168.0.97**.
+.. _cce_10_0232__fig511152614544:
+
+.. figure:: /_static/images/en-us_image_0000001517903036.png
+   :alt: **Figure 2** Topology domain example
+
+   **Figure 2** Topology domain example
+
+During scheduling, node topology domains are divided based on the **prefer** label. In this example, **192.168.0.97** and **192.168.0.94** are divided into the same topology domain. If pods with the **app=backend** label run in **192.168.0.97**, all frontend pods are deployed onto **192.168.0.97** or **192.168.0.94**.
 
 .. code-block::
 
@@ -376,7 +383,7 @@ Workload Anti-Affinity (podAntiAffinity)
 
 Unlike the scenarios in which pods are preferred to be scheduled onto the same node, sometimes, it could be the exact opposite. For example, if certain pods are deployed together, they will affect the performance.
 
-The following example defines an inter-pod anti-affinity rule, which specifies that pods must not be scheduled to nodes that already have pods with the **app=frontend** label, that is, to deploy the pods of the frontend to different nodes with each node has only one replica.
+In the following example, an anti-affinity rule is defined. This rule indicates that node topology domains are divided based on the **kubernetes.io/hostname** label. If a pod with the **app=frontend** label already exists on a node in the topology domain, pods with the same label cannot be scheduled to other nodes in the topology domain.
 
 .. code-block::
 
@@ -411,15 +418,15 @@ The following example defines an inter-pod anti-affinity rule, which specifies t
          affinity:
            podAntiAffinity:
              requiredDuringSchedulingIgnoredDuringExecution:
-             - topologyKey: kubernetes.io/hostname
-               labelSelector:
+             - topologyKey: kubernetes.io/hostname    # Node topology domain
+               labelSelector:    # Pod label matching rule
                  matchExpressions:
                  - key: app
                    operator: In
                    values:
                    - frontend
 
-Deploy the frontend and query the deployment results. You can find that each node has only one frontend pod and one pod of the Deployment is **Pending**. This is because when the scheduler is deploying the fifth pod, all nodes already have one pod with the **app=frontend** label on them. There is no available node. Therefore, the fifth pod will remain in the **Pending** status.
+Create an anti-affinity rule and view the deployment result. In the example, node topology domains are divided by the **kubernetes.io/hostname** label. Among nodes with the **kubernetes.io/hostname** label, the label value of each node is different. Therefore, there is only one node in a topology domain. If a frontend pod already exists in a topology (a node in this example), the same pods will not be scheduled to this topology. In this example, there are only four nodes. Therefore, another pod is pending and cannot be scheduled.
 
 .. code-block::
 
@@ -484,4 +491,4 @@ Configuring Scheduling Policies
       | Weight                            | This parameter can be set only in a **Preferred** scheduling policy.                                       |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------+
 
-.. |image1| image:: /_static/images/en-us_image_0000001203031716.png
+.. |image1| image:: /_static/images/en-us_image_0000001518062612.png

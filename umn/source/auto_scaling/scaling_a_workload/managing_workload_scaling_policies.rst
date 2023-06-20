@@ -84,4 +84,4 @@ Deleting an HPA Policy
 #. In the navigation pane, choose **Workload Scaling**. Click **Delete** in the **Operation** column of the target policy.
 #. In the dialog box displayed, click **Yes**.
 
-.. |image1| image:: /_static/images/en-us_image_0000001244261103.png
+.. |image1| image:: /_static/images/en-us_image_0000001568902521.png

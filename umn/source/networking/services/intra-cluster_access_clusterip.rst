@@ -16,7 +16,7 @@ The cluster-internal domain name format is *<Service name>*.\ *<Namespace of the
 
 .. _cce_10_0011__fig192245420557:
 
-.. figure:: /_static/images/en-us_image_0000001243981117.png
+.. figure:: /_static/images/en-us_image_0000001569023045.png
    :alt: **Figure 1** Intra-cluster access (ClusterIP)
 
    **Figure 1** Intra-cluster access (ClusterIP)

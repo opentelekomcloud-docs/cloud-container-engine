@@ -22,7 +22,9 @@ Precautions
 Notes and Constraints
 ---------------------
 
--  Currently, only CCE clusters consisting of VM nodes can be upgraded.
+-  Currently, only CCE clusters consisting of VM nodes and CCE Turbo clusters can be upgraded.
+
+-  Currently, clusters using private images cannot be upgraded.
 
 -  After the cluster is upgraded, if the containerd vulnerability of the container engine is fixed in :ref:`Cluster Version Release Notes <cce_10_0068>`, you need to manually restart containerd for the upgrade to take effect. The same applies to the existing pods.
 

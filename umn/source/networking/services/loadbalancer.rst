@@ -17,7 +17,7 @@ The LoadBalancer access address is in the format of <IP address of public networ
 In this access mode, requests are transmitted through an ELB load balancer to a node and then forwarded to the destination pod through the Service.
 
 
-.. figure:: /_static/images/en-us_image_0000001244141181.png
+.. figure:: /_static/images/en-us_image_0000001569022961.png
    :alt: **Figure 1** LoadBalancer
 
    **Figure 1** LoadBalancer
@@ -27,7 +27,7 @@ When **CCE Turbo clusters and dedicated load balancers** are used, passthrough n
 External access requests are directly forwarded from a load balancer to pods. Internal access requests can be forwarded to a pod through a Service.
 
 
-.. figure:: /_static/images/en-us_image_0000001249073211.png
+.. figure:: /_static/images/en-us_image_0000001517903124.png
    :alt: **Figure 2** Passthrough networking
 
    **Figure 2** Passthrough networking
@@ -74,7 +74,7 @@ Creating a LoadBalancer Service
 
       Select the load balancer to interconnect. Only load balancers in the same VPC as the cluster are supported. If no load balancer is available, click **Create Load Balancer** to create one on the ELB console.
 
-      You can click **Edit** and configure load balancer parameters in the **Load Balancer** dialog box.
+      You can click the edit icon in the row of **Set ELB** to configure load balancer parameters.
 
       -  **Distribution Policy**: Three algorithms are available: weighted round robin, weighted least connections algorithm, or source IP hash.
 
@@ -85,7 +85,7 @@ Creating a LoadBalancer Service
             -  **Source IP hash**: The source IP address of each request is calculated using the hash algorithm to obtain a unique hash key, and all backend servers are numbered. The generated key allocates the client to a particular server. This enables requests from different clients to be distributed in load balancing mode and ensures that requests from the same client are forwarded to the same server. This algorithm applies to TCP connections without cookies.
 
       -  **Type**: This function is disabled by default. You can select **Source IP address**. Listeners ensure session stickiness based on IP addresses. Requests from the same IP address will be forwarded to the same backend server.
-      -  **Health Check**: This function is disabled by default. The health check is for the load balancer. When TCP is selected during the :ref:`port settings <cce_10_0014__li388800117144>`, you can choose either TCP or HTTP. When UDP is selected during the :ref:`port settings <cce_10_0014__li388800117144>`, only UDP is supported.. By default, the service port (Node Port and container port of the Service) is used for health check. You can also specify another port for health check. After the port is specified, a service port named **cce-healthz** will be added for the Service.
+      -  **Health Check**: configured for the load balancer. When TCP is selected during the :ref:`port settings <cce_10_0014__li388800117144>`, you can choose either TCP or HTTP. When UDP is selected during the :ref:`port settings <cce_10_0014__li388800117144>`, only UDP is supported.. By default, the service port (Node Port and container port of the Service) is used for health check. You can also specify another port for health check. After the port is specified, a service port named **cce-healthz** will be added for the Service.
 
    -  .. _cce_10_0014__li388800117144:
 
@@ -310,7 +310,7 @@ You can set the access type when creating a workload using kubectl. This section
    The Nginx is accessible.
 
 
-   .. figure:: /_static/images/en-us_image_0000001243981181.png
+   .. figure:: /_static/images/en-us_image_0000001569182677.png
       :alt: **Figure 3** Accessing Nginx through the LoadBalancer Service
 
       **Figure 3** Accessing Nginx through the LoadBalancer Service
@@ -599,7 +599,7 @@ You can add a Service when creating a workload using kubectl. This section uses 
    The Nginx is accessible.
 
 
-   .. figure:: /_static/images/en-us_image_0000001199021334.png
+   .. figure:: /_static/images/en-us_image_0000001517743552.png
       :alt: **Figure 4** Accessing Nginx through the LoadBalancer Service
 
       **Figure 4** Accessing Nginx through the LoadBalancer Service
@@ -631,7 +631,7 @@ This is because when the LoadBalancer Service is created, kube-proxy adds the EL
 When the value of **externalTrafficPolicy** is **Local**, the situation varies according to the container network model and service forwarding mode. The details are as follows:
 
 +---------------------------------------------------------------------------+-----------------------------+---------------------------------------------------------------------+-------------------------------------------------------+------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| Server                                                                    | Client                      | Tunnel Network Cluster (IPVS)                                       | VPC Network Cluster (IPVS)                            | Tunnel Network Cluster (iptables)                                                                    | VPC Network Cluster (iptables)                                                                       |
+| Server                                                                    | Client                      | Container Tunnel Network Cluster (IPVS)                             | VPC Network Cluster (IPVS)                            | Container Tunnel Network Cluster (iptables)                                                          | VPC Network Cluster (iptables)                                                                       |
 +---------------------------------------------------------------------------+-----------------------------+---------------------------------------------------------------------+-------------------------------------------------------+------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
 | NodePort Service                                                          | Same node                   | OK. The node where the pod runs is accessible, not any other nodes. | OK. The node where the pod runs is accessible.        | OK. The node where the pod runs is accessible.                                                       | OK. The node where the pod runs is accessible.                                                       |
 +---------------------------------------------------------------------------+-----------------------------+---------------------------------------------------------------------+-------------------------------------------------------+------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+

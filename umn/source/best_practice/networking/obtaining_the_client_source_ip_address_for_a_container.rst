@@ -62,9 +62,11 @@ To obtain source IP addresses, perform the following steps:
    c. Click **Service List**. Under **Networking**, click **Elastic Load Balance**.
    d. On the **Load Balancers** page, click the name of the load balancer.
    e. Click **Listeners**.
-   f. To add a listener, click **Add Listener**.
-   g. To modify a listener, locate the listener and click |image3| on the right of its name.
-   h. Enable **Obtain Client IP Address**.
+
+      -  To add a listener, click **Add Listener**.
+      -  To modify a listener, locate the listener and click the edit button on the right of its name.
+
+   f. Enable **Obtain Client IP Address**.
 
 .. _cce_bestpractice_00035__section6340152911914:
 
@@ -75,4 +77,3 @@ Set the service affinity of a NodePort Service to **Node level** instead of **Cl
 
 .. |image1| image:: /_static/images/en-us_image_0000001176818150.png
 .. |image2| image:: /_static/images/en-us_image_0000001221501677.png
-.. |image3| image:: /_static/images/en-us_image_0000001221820189.png

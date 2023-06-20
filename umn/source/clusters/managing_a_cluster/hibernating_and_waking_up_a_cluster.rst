@@ -33,5 +33,5 @@ Waking Up a Cluster
 #. Click |image2| next to the cluster to be woken up.
 #. When the cluster status changes from **Waking** to **Running**, the cluster is woken up. It takes about 3 to 5 minutes to wake up the cluster.
 
-.. |image1| image:: /_static/images/en-us_image_0000001236562704.png
-.. |image2| image:: /_static/images/en-us_image_0000001225747980.png
+.. |image1| image:: /_static/images/en-us_image_0000001517743460.png
+.. |image2| image:: /_static/images/en-us_image_0000001569182589.png

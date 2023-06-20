@@ -31,7 +31,7 @@ Procedure
 #. Choose **More** > **Sync Server Data** next to the node.
 
 
-   .. figure:: /_static/images/en-us_image_0000001243981203.png
+   .. figure:: /_static/images/en-us_image_0000001517743520.png
       :alt: **Figure 1** Synchronizing server data
 
       **Figure 1** Synchronizing server data

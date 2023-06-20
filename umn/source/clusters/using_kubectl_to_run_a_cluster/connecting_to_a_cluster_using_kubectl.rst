@@ -33,17 +33,27 @@ CCE allows you to access a cluster through a **VPC network** or a **public netwo
 
 Download kubectl and the configuration file. Copy the file to your client, and configure kubectl. After the configuration is complete, you can access your Kubernetes clusters. Procedure:
 
-#. .. _cce_10_0107__li194691356201712:
+#. Download kubectl.
 
-   Download kubectl.
+   Prepare a computer that can access the public network and install kubectl in CLI mode. You can run the **kubectl version** command to check whether kubectl has been installed. If kubectl has been installed, skip this step.
 
-   On the `Kubernetes release <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/README.md>`__ page, click the corresponding link based on the cluster version, click **Client Binaries**, and download the corresponding platform software package. Alternatively, you can install kubectl with curl following the guide in `Install Tools <https://kubernetes.io/docs/tasks/tools/#kubectl>`__.
+   This section uses the Linux environment as an example to describe how to install and configure kubectl. For details, see `Installing kubectl <https://kubernetes.io/docs/tasks/tools/#kubectl>`__.
 
+   a. Log in to your client and download kubectl.
 
-   .. figure:: /_static/images/en-us_image_0000001336475537.png
-      :alt: **Figure 1** Downloading kubectl
+      .. code-block::
 
-      **Figure 1** Downloading kubectl
+         cd /home
+         curl -LO https://dl.k8s.io/release/{v1.25.0}/bin/linux/amd64/kubectl
+
+      **{v1.25.0}** specifies the version number. Replace it as required.
+
+   b. Install kubectl.
+
+      .. code-block::
+
+         chmod +x kubectl
+         mv -f kubectl /usr/local/bin
 
 #. .. _cce_10_0107__li34691156151712:
 
@@ -58,21 +68,15 @@ Download kubectl and the configuration file. Copy the file to your client, and c
       -  The Kubernetes permissions assigned by the configuration file downloaded by IAM users are the same as those assigned to the IAM users on the CCE console.
       -  If the KUBECONFIG environment variable is configured in the Linux OS, kubectl preferentially loads the KUBECONFIG environment variable instead of **$home/.kube/config**.
 
-#. Configure kubectl.
+#. .. _cce_10_0107__li25451059122317:
 
-   Install and configure kubectl (A Linux OS is used as an example).
+   Configure kubectl.
 
-   a. Copy the kubectl downloaded in :ref:`1 <cce_10_0107__li194691356201712>` and the configuration file downloaded in :ref:`2 <cce_10_0107__li34691156151712>` to the **/home** directory on your client.
+   Configure kubectl (A Linux OS is used).
 
-   b. Log in to your client and configure kubectl. If you have installed kubectl, skip this step.
+   a. Log in to your client and copy the kubeconfig.json configuration file downloaded in :ref:`2 <cce_10_0107__li34691156151712>` to the **/home** directory on your client.
 
-      .. code-block::
-
-         cd /home
-         chmod +x kubectl
-         mv -f kubectl /usr/local/bin
-
-   c. Log in to your client and configure the kubeconfig file.
+   b. Configure the kubectl authentication file.
 
       .. code-block::
 
@@ -80,7 +84,7 @@ Download kubectl and the configuration file. Copy the file to your client, and c
          mkdir -p $HOME/.kube
          mv -f kubeconfig.json $HOME/.kube/config
 
-   d. Switch the kubectl access mode based on service scenarios.
+   c. Switch the kubectl access mode based on service scenarios.
 
       -  Run this command to enable intra-VPC access:
 
@@ -117,20 +121,34 @@ Currently, CCE supports two-way authentication for domain names.
 
 -  For a cluster that has been bound to an EIP, if the authentication fails (x509: certificate is valid) when two-way authentication is used, you need to bind the EIP again and download **kubeconfig.json** again.
 
--  If the domain name two-way authentication is not supported, **kubeconfig.json** contains the **"insecure-skip-tls-verify": true** field, as shown in :ref:`Figure 2 <cce_10_0107__fig1941342411>`. To use two-way authentication, you can download the **kubeconfig.json** file again and enable two-way authentication for the domain names.
+-  If the domain name two-way authentication is not supported, **kubeconfig.json** contains the **"insecure-skip-tls-verify": true** field, as shown in :ref:`Figure 1 <cce_10_0107__fig1941342411>`. To use two-way authentication, you can download the **kubeconfig.json** file again and enable two-way authentication for the domain names.
 
    .. _cce_10_0107__fig1941342411:
 
-   .. figure:: /_static/images/en-us_image_0000001199021320.png
-      :alt: **Figure 2** Two-way authentication disabled for domain names
+   .. figure:: /_static/images/en-us_image_0000001568822965.png
+      :alt: **Figure 1** Two-way authentication disabled for domain names
 
-      **Figure 2** Two-way authentication disabled for domain names
+      **Figure 1** Two-way authentication disabled for domain names
 
-Common Issue (Error from server Forbidden)
-------------------------------------------
+Common Issues
+-------------
 
-When you use kubectl to create or query Kubernetes resources, the following output is returned:
+-  **Error from server Forbidden**
 
-# kubectl get deploy Error from server (Forbidden): deployments.apps is forbidden: User "0c97ac3cb280f4d91fa7c0096739e1f8" cannot list resource "deployments" in API group "apps" in the namespace "default"
+   When you use kubectl to create or query Kubernetes resources, the following output is returned:
 
-The cause is that the user does not have the permissions to operate the Kubernetes resources. For details about how to assign permissions, see :ref:`Namespace Permissions (Kubernetes RBAC-based) <cce_10_0189>`.
+   .. code-block::
+
+      # kubectl get deploy Error from server (Forbidden): deployments.apps is forbidden: User "0c97ac3cb280f4d91fa7c0096739e1f8" cannot list resource "deployments" in API group "apps" in the namespace "default"
+
+   The cause is that the user does not have the permissions to operate the Kubernetes resources. For details about how to assign permissions, see :ref:`Namespace Permissions (Kubernetes RBAC-based) <cce_10_0189>`.
+
+-  **The connection to the server localhost:8080 was refused**
+
+   When you use kubectl to create or query Kubernetes resources, the following output is returned:
+
+   .. code-block::
+
+      The connection to the server localhost:8080 was refused - did you specify the right host or port?
+
+   The cause is that cluster authentication is not configured for the kubectl client. For details, see :ref:`3 <cce_10_0107__li25451059122317>`.

@@ -93,5 +93,5 @@ Recommended Configuration for the Container Engine Space
 -  You are advised to create and delete files of containerized services in local storage volumes (such as emptyDir and hostPath volumes) or cloud storage directories mounted to the containers. In this way, the thin pool space is not occupied. emptyDir volumes occupy the kubelet space. Therefore, properly plan the size of the kubelet space.
 -  If OverlayFS is used by in CCE clusters, you can deploy services on these nodes so that the disk space occupied by files created or deleted in containers can be released immediately.
 
-.. |image1| image:: /_static/images/en-us_image_0000001199021278.png
-.. |image2| image:: /_static/images/en-us_image_0000001244101121.png
+.. |image1| image:: /_static/images/en-us_image_0000001517902940.png
+.. |image2| image:: /_static/images/en-us_image_0000001517743364.png

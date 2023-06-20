@@ -14,7 +14,7 @@ An ingress is an independent resource in the Kubernetes cluster and defines rule
 
 .. _cce_10_0094__fig18155819416:
 
-.. figure:: /_static/images/en-us_image_0000001243981115.png
+.. figure:: /_static/images/en-us_image_0000001517903200.png
    :alt: **Figure 1** Ingress diagram
 
    **Figure 1** Ingress diagram
@@ -37,7 +37,7 @@ ELB Ingress Controller is deployed on the master node and bound to the load bala
 
 .. _cce_10_0094__fig122542486129:
 
-.. figure:: /_static/images/en-us_image_0000001199501200.png
+.. figure:: /_static/images/en-us_image_0000001568822925.png
    :alt: **Figure 2** Working principle of ELB Ingress Controller
 
    **Figure 2** Working principle of ELB Ingress Controller

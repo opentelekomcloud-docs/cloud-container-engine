@@ -1,6 +1,6 @@
-:original_name: cce_bestpractice_00253_0.html
+:original_name: cce_bestpractice_00253.html
 
-.. _cce_bestpractice_00253_0:
+.. _cce_bestpractice_00253:
 
 Dynamically Creating and Mounting Subdirectories of an SFS Turbo File System
 ============================================================================
@@ -18,14 +18,14 @@ Notes and Constraints
 -  Only clusters of v1.15 and later are supported.
 -  The cluster must use the everest add-on of version 1.1.13 or later.
 -  Kata containers are not supported.
--  A maximum of 10 PVCs can be created concurrently at a time by using the subdirectory function.
+-  When the everest add-on earlier than 1.2.69 or 2.1.11 is used, a maximum of 10 PVCs can be created concurrently at a time by using the subdirectory function. Everest 1.2.69 or later or 2.1.11 or later is recommended.
 
 Creating an SFS Turbo Volume of the subpath Type
 ------------------------------------------------
 
 .. caution::
 
-   The CCE console has not yet supported the operations related to this feature, such as expanding, disassociating, and deleting subPath volumes.
+   Do not expand, disassociate, or delete subPath volumes.
 
 #. Import an SFS Turbo file system that is located in the same VPC and subnet as the cluster.
 
@@ -64,7 +64,7 @@ Creating an SFS Turbo Volume of the subpath Type
 
       -  In versions later than everest 1.1.13 and earlier than everest 1.2.8, only the **nolock** parameter can be configured. By default, the **nolock** parameter is used for the mount operation and does not need to be configured. If **nolock** is set to **false**, the **lock** field is used.
 
-      -  Starting from everest 1.2.8, more parameters are supported. The default parameter configurations are shown below. For details, see `Setting Mount Options <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0337.html>`__. **Do not set nolock to true. Otherwise, the mount operation fails.**
+      -  Starting from everest 1.2.8, more mount options are supported. For details, see `Setting Mount Options <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0337.html>`__. **Do not set nolock to true. Otherwise, the mount operation fails.**
 
          .. code-block::
 

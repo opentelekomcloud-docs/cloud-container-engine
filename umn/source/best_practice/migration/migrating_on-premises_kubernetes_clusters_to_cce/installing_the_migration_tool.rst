@@ -13,7 +13,7 @@ Prerequisites
 -------------
 
 -  The Kubernetes version of the source on-premises cluster must be 1.10 or later, and the cluster can use DNS and Internet services properly.
--  If you use OBS to store backup files, you need to obtain the AK/SK of a user who has the right to operate OBS. For details about how to obtain the AK/SK, see `Access Keys <https://docs.otc.t-systems.com/en-us/usermanual/ac/en-us_topic_0046606340.html>`__.
+-  If you use OBS to store backup files, you need to obtain the AK/SK of a user who has the right to operate OBS. For details, see `Obtaining Access Keys (AK/SK) <https://docs.otc.t-systems.com/en-us/api/obs/obs_04_0116.html>`__.
 -  If you use MinIO to store backup files, bind an EIP to the server where MinIO is installed and enable the API and console port of MinIO in the security group.
 -  The target CCE cluster has been created.
 -  The source cluster and target cluster must each have at least one idle node. It is recommended that the node specifications be 4 vCPUs and 8 GB memory or higher.
@@ -116,7 +116,7 @@ Download the latest, stable binary file from https://github.com/vmware-tanzu/vel
 
       vim credentials-velero
 
-   Replace the AK/SK in the file based on the site requirements. If OBS is used, obtain the AK/SK by referring to . If MinIO is used, the AK and SK are the username and password created in :ref:`2 <cce_bestpractice_0310__li126129251432>`.
+   Replace the AK/SK in the file based on the site requirements. If MinIO is used, the AK/SK are the username and password created in :ref:`2 <cce_bestpractice_0310__li126129251432>`.
 
    .. code-block::
 

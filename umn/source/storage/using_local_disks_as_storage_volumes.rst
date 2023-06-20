@@ -343,7 +343,7 @@ You can use kubectl to mount a file directory of the host where the container is
          -rw-r--r-- 1 root root 0 Jun  1 08:12 test1
          -rw-r--r-- 1 root root 0 Jun  1 08:14 test2
 
-.. |image1| image:: /_static/images/en-us_image_0000001465197524.png
-.. |image2| image:: /_static/images/en-us_image_0000001515917789.png
-.. |image3| image:: /_static/images/en-us_image_0000001464878016.png
-.. |image4| image:: /_static/images/en-us_image_0000001515838557.png
+.. |image1| image:: /_static/images/en-us_image_0000001568902637.png
+.. |image2| image:: /_static/images/en-us_image_0000001517903168.png
+.. |image3| image:: /_static/images/en-us_image_0000001517743600.png
+.. |image4| image:: /_static/images/en-us_image_0000001569023013.png

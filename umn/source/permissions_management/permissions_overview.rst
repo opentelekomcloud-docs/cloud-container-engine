@@ -29,7 +29,7 @@ CCE permissions are described as follows:
 In general, you configure CCE permissions in two scenarios. The first is creating and managing clusters and related resources, such as nodes. The second is creating and using Kubernetes resources in the cluster, such as workloads and Services.
 
 
-.. figure:: /_static/images/en-us_image_0000001199181266.png
+.. figure:: /_static/images/en-us_image_0000001569182621.png
    :alt: **Figure 1** Illustration on CCE permissions
 
    **Figure 1** Illustration on CCE permissions

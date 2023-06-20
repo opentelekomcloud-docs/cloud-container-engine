@@ -5,7 +5,7 @@
 Basic Cluster Information
 =========================
 
-`Kubernetes <https://kubernetes.io/>`__ allows you to easily deploy and manage containerized application and facilitates container scheduling and orchestration.
+`Kubernetes <https://kubernetes.io/>`__ is an open source container orchestration engine for automating deployment, scaling, and management of containerized applications.
 
 For developers, Kubernetes is a cluster operating system. Kubernetes provides service discovery, scaling, load balancing, self-healing, and even leader election, freeing developers from infrastructure-related configurations.
 
@@ -16,10 +16,14 @@ Kubernetes Cluster Architecture
 
 A Kubernetes cluster consists of master nodes (Masters) and worker nodes (Nodes). Applications are deployed on worker nodes, and you can specify the nodes for deployment.
 
+.. note::
+
+   For a cluster created on CCE, the master node is hosted by CCE. You only need to create a node.
+
 The following figure shows the architecture of a Kubernetes cluster.
 
 
-.. figure:: /_static/images/en-us_image_0267028603.png
+.. figure:: /_static/images/en-us_image_0000001568822869.png
    :alt: **Figure 1** Kubernetes cluster architecture
 
    **Figure 1** Kubernetes cluster architecture

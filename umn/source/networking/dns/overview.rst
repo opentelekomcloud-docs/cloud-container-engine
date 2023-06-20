@@ -46,7 +46,7 @@ By default, after other pods are created, the address of the coredns Service is 
 When a user accesses the *Service name:Port* of the Nginx pod, the IP address of the Nginx Service is resolved from CoreDNS, and then the IP address of the Nginx Service is accessed. In this way, the user can access the backend Nginx pod.
 
 
-.. figure:: /_static/images/en-us_image_0000001244261167.png
+.. figure:: /_static/images/en-us_image_0000001568822905.png
    :alt: **Figure 1** Example of domain name resolution in a cluster
 
    **Figure 1** Example of domain name resolution in a cluster

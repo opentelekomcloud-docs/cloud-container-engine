@@ -7,9 +7,9 @@ Storage
 
 -  :ref:`Expanding Node Disk Capacity <cce_bestpractice_00198>`
 -  :ref:`Mounting an Object Storage Bucket of a Third-Party Tenant <cce_bestpractice_00199>`
--  :ref:`Dynamically Creating and Mounting Subdirectories of an SFS Turbo File System <cce_bestpractice_00253_0>`
+-  :ref:`Dynamically Creating and Mounting Subdirectories of an SFS Turbo File System <cce_bestpractice_00253>`
 -  :ref:`How Do I Change the Storage Class Used by a Cluster of v1.15 from FlexVolume to CSI Everest? <cce_bestpractice_0107>`
--  :ref:`Custom Storage Classes <cce_bestpractice_00281_0>`
+-  :ref:`Custom Storage Classes <cce_bestpractice_00281>`
 -  :ref:`Realizing Automatic Topology for EVS Disks When Nodes Are Deployed Across AZs (csi-disk-topology) <cce_bestpractice_00284>`
 
 .. toctree::

@@ -7,6 +7,10 @@ Overview
 
 CCE provides multiple types of add-ons to extend cluster functions and meet feature requirements. You can install add-ons as required.
 
+.. important::
+
+   CCE uses Helm templates to deploy add-ons. To modify or upgrade an add-on, perform operations on the **Add-ons** page or use open APIs. Do not directly modify resources related to add-ons in the background. Otherwise, add-on exceptions or other unexpected problems may occur.
+
 .. table:: **Table 1** Add-on list
 
    +-------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

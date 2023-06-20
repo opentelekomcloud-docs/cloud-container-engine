@@ -138,7 +138,7 @@ Configuring Network Isolation in a Cluster
 
 -  Cloud Native Network 2.0
 
-   In the Cloud Native Network 2.0 model, you can configure security groups to isolate networks between pods. For details, see `SecurityGroups <https://support.huaweicloud.com/en-us/usermanual-cce/cce_01_0288.html>`__.
+   In the Cloud Native Network 2.0 model, you can configure security groups to isolate networks between pods. For details, see `SecurityGroup <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0288.html>`__.
 
 -  VPC network
 

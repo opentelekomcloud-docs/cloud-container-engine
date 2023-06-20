@@ -49,4 +49,4 @@ Procedure
 
    The delete operation takes 1 to 3 minutes to complete.
 
-.. |image1| image:: /_static/images/en-us_image_0000001244997085.png
+.. |image1| image:: /_static/images/en-us_image_0000001569023085.png

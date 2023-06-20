@@ -15,4 +15,4 @@ Node Pools
 
    node_pool_overview
    creating_a_node_pool
-   managing_a_node_pool
+   managing_a_node_pool/index

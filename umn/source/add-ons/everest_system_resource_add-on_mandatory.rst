@@ -45,6 +45,11 @@ This add-on has been installed by default. If it is uninstalled due to some reas
 
          If you select **Custom**, it is recommended that the **everest-csi-driver** memory limit be greater than or equal to 300 MiB. If the value is too small, the add-on container cannot be started and the add-on is unavailable.
 
+#. Whether to deploy the add-on instance across multiple AZs.
+
+   -  **Preferred**: Deployment pods of the add-on are preferentially scheduled to nodes in different AZs. If the nodes in the cluster do not meet the requirements of multiple AZs, the pods are scheduled to a single AZ.
+   -  **Required**: Deployment pods of the add-on are forcibly scheduled to nodes in different AZs. If the nodes in the cluster do not meet the requirements of multiple AZs, not all pods can run.
+
 #. Set related parameters.
 
    In everest 1.2.26 or later, the performance of attaching a large number of EVS volumes is optimized. The following three parameters are provided:

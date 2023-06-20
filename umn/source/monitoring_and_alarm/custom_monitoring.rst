@@ -198,5 +198,5 @@ You can see that Nginx has been accessed once.
 
 Log in to AOM. In the navigation pane, choose **Monitoring** > **Metric Monitoring**. You can view Nginx-related metrics, for example, **nginx_connections_active**.
 
-.. |image1| image:: /_static/images/en-us_image_0000001199501262.png
-.. |image2| image:: /_static/images/en-us_image_0000001243981177.png
+.. |image1| image:: /_static/images/en-us_image_0000001517743384.png
+.. |image2| image:: /_static/images/en-us_image_0000001568822693.png

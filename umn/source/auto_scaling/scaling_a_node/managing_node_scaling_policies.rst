@@ -58,4 +58,4 @@ Enabling or Disabling a Node Scaling Policy
 #. Choose **Node Scaling** in the navigation pane and click **Disable** in the **Operation** column of the policy to be disabled. If the policy is in the disabled state, click **Enable** in the **Operation** column of the policy.
 #. In the dialog box displayed, confirm whether to disable or enable the node policy.
 
-.. |image1| image:: /_static/images/en-us_image_0000001244261161.png
+.. |image1| image:: /_static/images/en-us_image_0000001517743464.png

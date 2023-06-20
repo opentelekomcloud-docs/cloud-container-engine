@@ -41,12 +41,19 @@ Search for **disable-auto-mount-secret** and set it to **true**.
 
 Run **:wq** to save the settings and exit. Wait until the pod is restarted.
 
+Obtaining an Access Key
+-----------------------
+
+#. Log in to the console.
+#. Hover the cursor over the username in the upper right corner and choose **My Credentials** from the drop-down list.
+#. In the navigation pane, choose **Access Keys**.
+#. Click **Create Access Key**. The **Create Access Key** dialog box is displayed.
+#. Click **OK** to download the AK/SK.
+
 Creating a Secret Using an Access Key
 -------------------------------------
 
 #. Obtain an access key.
-
-   For details, see `Creating Access Keys (AK and SK) <https://docs.otc.t-systems.com/usermanual/obs/obs_03_0405.html%20>`__.
 
 #. Encode the keys using Base64. (Assume that the AK is xxx and the SK is yyy.)
 
@@ -280,6 +287,6 @@ You can use a secret of an IAM user to mount an OBS volume. Assume that a worklo
 
       -rwxrwxrwx 1 root root 0 Jun  7 01:52 test
 
-.. |image1| image:: /_static/images/en-us_image_0000001199181232.png
-.. |image2| image:: /_static/images/en-us_image_0000001244141105.png
-.. |image3| image:: /_static/images/en-us_image_0000001244261069.png
+.. |image1| image:: /_static/images/en-us_image_0000001569182645.png
+.. |image2| image:: /_static/images/en-us_image_0000001568822821.png
+.. |image3| image:: /_static/images/en-us_image_0000001569022933.png

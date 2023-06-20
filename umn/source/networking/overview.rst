@@ -47,7 +47,7 @@ Service
 A Service is used for pod access. With a fixed IP address, a Service forwards access traffic to pods and performs load balancing for these pods.
 
 
-.. figure:: /_static/images/en-us_image_0258889981.png
+.. figure:: /_static/images/en-us_image_0000001517743432.png
    :alt: **Figure 1** Accessing pods through a Service
 
    **Figure 1** Accessing pods through a Service
@@ -68,10 +68,10 @@ Ingress
 Services forward requests using layer-4 TCP and UDP protocols. Ingresses forward requests using layer-7 HTTP and HTTPS protocols. Domain names and paths can be used to achieve finer granularities.
 
 
-.. figure:: /_static/images/en-us_image_0258961458.png
-   :alt: **Figure 2** Ingress and Service
+.. figure:: /_static/images/en-us_image_0000001517903016.png
+   :alt: **Figure 2** Ingress-Service
 
-   **Figure 2** Ingress and Service
+   **Figure 2** Ingress-Service
 
 For details about the ingress, see :ref:`Ingress Overview <cce_10_0094>`.
 
@@ -86,17 +86,17 @@ Workload access scenarios can be categorized as follows:
 -  Access from outside a cluster: A Service (NodePort or LoadBalancer type) or an ingress is recommended for a workload outside a cluster to access workloads in the cluster.
 
    -  Access through the internet requires an EIP to be bound the node or load balancer.
-   -  Access through an intranet uses only the intranet IP address of the node or load balancer. If workloads are located in different VPCs, a peering connection is required to enable communication between different VPCs.
+   -  Access through the intranet requires an internal IP address to be bound the node or load balancer. If workloads are located in different VPCs, a peering connection is required to enable communication between different VPCs.
 
--  External access initiated by a workload:
+-  The workload accesses the external network.
 
    -  Accessing an intranet: The workload accesses the intranet address, but the implementation method varies depending on container network models. Ensure that the peer security group allows the access requests from the container CIDR block.
    -  Accessing a public network: You need to assign an EIP to the node where the workload runs (when the VPC network or tunnel network model is used), bind an EIP to the pod IP address (when the Cloud Native Network 2.0 model is used), or configure SNAT rules through the NAT gateway. For details, see :ref:`Accessing Public Networks from a Container <cce_10_0400>`.
 
 
-.. figure:: /_static/images/en-us_image_0000001244261169.png
+.. figure:: /_static/images/en-us_image_0000001568822741.png
    :alt: **Figure 3** Network access diagram
 
    **Figure 3** Network access diagram
 
-.. |image1| image:: /_static/images/en-us_image_0000001199181334.png
+.. |image1| image:: /_static/images/en-us_image_0000001518222536.png

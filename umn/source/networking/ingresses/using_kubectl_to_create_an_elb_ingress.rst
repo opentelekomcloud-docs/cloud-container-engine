@@ -350,7 +350,7 @@ CCE allows you to connect to an existing load balancer when creating an ingress.
 
    -  Existing dedicated load balancers must be the application type (HTTP/HTTPS) supporting private networks (with a private IP).
 
-**If the cluster version is 1.23 or earlier, the YAML file configuration is as follows:**
+**If the cluster version is 1.23 or later, the YAML file configuration is as follows:**
 
 .. code-block::
 
@@ -378,7 +378,7 @@ CCE allows you to connect to an existing load balancer when creating an ingress.
            pathType: ImplementationSpecific
      ingressClassName: cce
 
-**If the cluster version is 1.21 or later, the YAML file configuration is as follows:**
+**If the cluster version is 1.21 or earlier, the YAML file configuration is as follows:**
 
 .. code-block::
 
@@ -848,4 +848,52 @@ Ingresses can route requests to multiple backend Services based on different mat
            property:
              ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
 
-.. |image1| image:: /_static/images/en-us_image_0000001276433425.png
+Interconnecting with HTTPS Backend Services
+-------------------------------------------
+
+Ingress can interconnect with backend services of different protocols. By default, the backend proxy channel of an ingress is an HTTP channel. To create an HTTPS channel, add the following configuration to the **annotations** field:
+
+.. code-block:: text
+
+   kubernetes.io/elb.pool-protocol: https
+
+.. important::
+
+   -  This feature only applies to clusters of v1.23.8, v1.25.3, and later.
+   -  Ingress can interconnect with HTTPS backend services only when dedicated load balancers are used.
+   -  When interconnecting with HTTPS backend services, set **Client Protocol** of ingress to **HTTPS**.
+
+An ingress configuration example is as follows:
+
+.. code-block::
+
+   apiVersion: networking.k8s.io/v1
+   kind: Ingress
+   metadata:
+     name: ingress-test
+     namespace: default
+     annotations:
+       kubernetes.io/elb.port: '443'
+       kubernetes.io/elb.id: <your_elb_id>    # In this example, an existing dedicated load balancer is used. Replace its ID with the ID of your dedicated load balancer.
+       kubernetes.io/elb.class: performance
+       kubernetes.io/elb.pool-protocol: https  # Interconnected HTTPS backend service
+       kubernetes.io/elb.tls-ciphers-policy: tls-1-2
+   spec:
+     tls:
+       - secretName: ingress-test-secret
+     rules:
+       - host: ''
+         http:
+           paths:
+             - path: '/'
+               backend:
+                 service:
+                   name: <your_service_name>  # Replace it with the name of your target Service.
+                   port:
+                     number: 80
+               property:
+                 ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
+               pathType: ImplementationSpecific
+     ingressClassName: cce
+
+.. |image1| image:: /_static/images/en-us_image_0000001569022977.png

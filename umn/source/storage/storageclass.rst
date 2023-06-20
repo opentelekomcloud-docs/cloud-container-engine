@@ -78,8 +78,8 @@ This section describes how to set a custom storage class in CCE and how to set t
           requests:
             storage: 10Gi
 
-Custom Storage Classes
-----------------------
+Custom Storage Class
+--------------------
 
 You can customize a high I/O storage class in a YAML file. For example, the name **csi-disk-sas** indicates that the disk type is SAS (high I/O).
 
@@ -117,14 +117,14 @@ For an ultra-high I/O storage class, you can set the class name to **csi-disk-ss
    volumeBindingMode: Immediate
    allowVolumeExpansion: true
 
-**reclaimPolicy**: indicates the recycling policies of the underlying cloud storage. The value can be **Delete** or **Retain**.
+**reclaimPolicy**: indicates the reclaim policies of the underlying cloud storage. The value can be **Delete** or **Retain**.
 
 -  **Delete**: When a PVC is deleted, both the PV and the EVS disk are deleted.
--  **Retain**: When a PVC is deleted, the PV and underlying storage resources are not deleted. Instead, you must manually delete these resources. After that, the PV resource is in the **Released** state and cannot be bound to the PVC again.
+-  **Retain**: When a PVC is deleted, the PV and underlying storage resources are not deleted. Instead, you must manually delete these resources. After a PVC is deleted, the PV resource is in the Released state and cannot be bound to the PVC again.
 
 .. note::
 
-   The reclamation policy set here has no impact on the SFS Turbo storage. Therefore, the yearly/monthly SFS Turbo resources will not be reclaimed when the cluster or PVC is deleted.
+   The reclamation policy set here has no impact on the SFS Turbo storage.
 
 If high data security is required, you are advised to select **Retain** to prevent data from being deleted by mistake.
 
@@ -153,7 +153,7 @@ Query the storage class again. Two more types of storage classes are displayed i
 
 Other types of storage resources can be defined in the similar way. You can use kubectl to obtain the YAML file and modify it as required.
 
--  File storage
+-  File Storage
 
    .. code-block::
 
@@ -300,4 +300,4 @@ Verification
 
    View the PVC details on the CCE console. On the PV details page, you can see that the disk type is ultra-high I/O.
 
-.. |image1| image:: /_static/images/en-us_image_0000001102275444.png
+.. |image1| image:: /_static/images/en-us_image_0000001517903252.png

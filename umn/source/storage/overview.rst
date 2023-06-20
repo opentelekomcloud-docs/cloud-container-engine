@@ -59,7 +59,7 @@ Kubernetes provides PersistentVolumes (PVs) and PersistentVolumeClaims (PVCs) to
 You can bind PVCs to PVs in a pod so that the pod can use storage resources. The following figure shows the relationship between PVs and PVCs.
 
 
-.. figure:: /_static/images/en-us_image_0000001244141191.png
+.. figure:: /_static/images/en-us_image_0000001518222608.png
    :alt: **Figure 1** PVC-to-PV binding
 
    **Figure 1** PVC-to-PV binding
@@ -94,7 +94,7 @@ Cloud Services for Container Storage
 CCE allows you to mount local and cloud storage volumes listed in :ref:`Volume Types <cce_10_0307__section16559121287>` to your pods. Their features are described below.
 
 
-.. figure:: /_static/images/en-us_image_0000001203385342.png
+.. figure:: /_static/images/en-us_image_0000001568902557.png
    :alt: **Figure 2** Volume types supported by CCE
 
    **Figure 2** Volume types supported by CCE
@@ -188,4 +188,4 @@ Checking Storage Add-ons
 #. Click the **Add-on Instance** tab.
 #. Select a cluster in the upper right corner. The default storage add-on installed during cluster creation is displayed.
 
-.. |image1| image:: /_static/images/en-us_image_0000001199501276.png
+.. |image1| image:: /_static/images/en-us_image_0000001517903088.png

@@ -60,6 +60,10 @@ Assume that a cluster administrator has a Consul DNS server located at 10.150.0.
 
 You can also modify the ConfigMap as follows:
 
+.. important::
+
+   The parameter values in red in the example can only be modified and cannot be deleted.
+
 .. code-block::
 
    $ kubectl edit configmap coredns -n kube-system

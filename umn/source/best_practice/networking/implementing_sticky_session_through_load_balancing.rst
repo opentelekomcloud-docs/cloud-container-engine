@@ -16,14 +16,20 @@ In load balancing and sticky session, connection and session are two key concept
 
 Simply put, if a user needs to log in, it can be regarded as a session; otherwise, a connection.
 
-The sticky session mechanism fundamentally conflicts with the basic functions of load balancing. A load balancer forwards requests from clients to multiple backend servers to avoid overload on a single server. However, sticky session requires that some requests be forwarded to the same server for processing. Therefore, you need to select a proper sticky session mechanism based on the application environment.
+The sticky session mechanism fundamentally conflicts with the basic functions of load balancing. A load balancer forwards requests from clients to multiple backend servers to avoid overload on a single server. However, sticky session requires that some requests be forwarded to the same server for processing. Therefore, select a proper sticky session mechanism based on the application environment.
 
 Layer-4 Load Balancing (Service)
 --------------------------------
 
 In layer-4 load balancing, source IP address-based sticky session (Hash routing based on the client IP address) can be enabled. To enable source IP address-based sticky session on Services, the following conditions must be met:
 
+**CCE cluster**
+
 #. **Service Affinity** of the Service is set to **Node level** (that is, the value of the **externalTrafficPolicy** field of the Service is **Local**).
+
+   .. note::
+
+      You do not need to set this parameter for CCE Turbo clusters.
 
 #. Enable the source IP address-based sticky session in the load balancing configuration of the Service.
 
@@ -42,7 +48,7 @@ In layer-4 load balancing, source IP address-based sticky session (Hash routing 
       spec:
         selector:
           app: nginx
-        externalTrafficPolicy: Local
+        externalTrafficPolicy: Local   # You do not need to set this parameter for CCE Turbo clusters.
         ports:
           - name: cce-service-0
             targetPort: 80
@@ -149,7 +155,7 @@ In layer-7 load balancing, sticky session based on HTTP cookies and app cookies 
           kubernetes.io/elb.session-affinity-option: '{"app_cookie_name":"test"}'  # Application cookie name.
       ...
 
-#. Create an ingress and associate it with a Service. The following example describes how to automatically create a shared load balancer. For details about how to specify other types of load balancers, see `Using kubectl to Create an ELB Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_01_0252.html>`__.
+#. Create an ingress and associate it with a Service. The following example describes how to automatically create a shared load balancer. For details about how to specify other types of load balancers, see `Using kubectl to Create an ELB Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
 
    .. code-block::
 

@@ -29,7 +29,7 @@ Isolating Namespaces
       The following figure shows namespaces created for the development, joint debugging, and testing environments, respectively.
 
 
-      .. figure:: /_static/images/en-us_image_0000001199021298.png
+      .. figure:: /_static/images/en-us_image_0000001569182513.png
          :alt: **Figure 1** One namespace for one environment
 
          **Figure 1** One namespace for one environment
@@ -39,7 +39,7 @@ Isolating Namespaces
    You are advised to use this method if a large number of workloads are deployed in the same environment. For example, in the following figure, different namespaces (APP1 and APP2) are created to logically manage workloads as different groups. Workloads in the same namespace access each other using the Service name, and workloads in different namespaces access each other using the Service name or namespace name.
 
 
-   .. figure:: /_static/images/en-us_image_0000001243981147.png
+   .. figure:: /_static/images/en-us_image_0000001569022797.png
       :alt: **Figure 2** Grouping workloads into different namespaces
 
       **Figure 2** Grouping workloads into different namespaces

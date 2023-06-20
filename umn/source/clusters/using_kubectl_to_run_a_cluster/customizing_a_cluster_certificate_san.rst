@@ -39,4 +39,4 @@ Typical Domain Name Access Scenarios
 -  Use domain name access in the intranet. DNS allows you to configure mappings between cluster EIPs and custom domain names. After an EIP is updated, you can continue to use two-way authentication and the domain name to access the cluster without downloading the **kubeconfig.json** file again.
 -  Add A records on a self-built DNS server.
 
-.. |image1| image:: /_static/images/en-us_image_0000001199341268.png
+.. |image1| image:: /_static/images/en-us_image_0000001517743644.png

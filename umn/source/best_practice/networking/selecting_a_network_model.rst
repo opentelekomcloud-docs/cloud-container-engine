@@ -5,7 +5,7 @@
 Selecting a Network Model
 =========================
 
-CCE uses self-proprietary, high-performance container networking add-ons to support the tunnel network, Cloud Native Network 2.0, and VPC network models.
+CCE uses proprietary, high-performance container networking add-ons to support the tunnel network, Cloud Native Network 2.0, and VPC network models.
 
 .. caution::
 

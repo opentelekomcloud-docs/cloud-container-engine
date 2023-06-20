@@ -14,7 +14,7 @@ Kubernetes provides the following health check probes:
 
 -  **Liveness probe** (livenessProbe): checks whether a container is still alive. It is similar to the **ps** command that checks whether a process exists. If the liveness check of a container fails, the cluster restarts the container. If the liveness check is successful, no operation is executed.
 -  **Readiness probe** (readinessProbe): checks whether a container is ready to process user requests. Upon that the container is detected unready, service traffic will not be directed to the container. It may take a long time for some applications to start up before they can provide services. This is because that they need to load disk data or rely on startup of an external module. In this case, the application process is running, but the application cannot provide services. To address this issue, this health check probe is used. If the container readiness check fails, the cluster masks all requests sent to the container. If the container readiness check is successful, the container can be accessed.
--  **Startup probe** (startupProbe): checks when a container application has started. If such a probe is configured, it disables liveness and readiness checks until it succeeds, ensuring that those probes do not interfere with the application startup. This can be used to adopt liveness checks on slow starting containers, avoiding them getting killed by the kubelet before they are started.
+-  **Startup probe** (startupProbe): checks when a container application has started. If such a probe is configured, it disables liveness and readiness checks until it succeeds, ensuring that those probes do not interfere with the application startup. This can be used to adopt liveness checks on slow starting containers, avoiding them getting terminated by the kubelet before they are started.
 
 Check Method
 ------------
@@ -37,9 +37,9 @@ Check Method
 
    The CLI mode can be used to replace the HTTP request-based and TCP port-based health check.
 
-   -  For a TCP port, you can write a program script to connect to a container port. If the connection is successful, the script returns **0**. Otherwise, the script returns **-1**.
+   -  For a TCP port, you can use a program script to connect to a container port. If the connection is successful, the script returns **0**. Otherwise, the script returns **-1**.
 
-   -  For an HTTP request, you can write a program script to run the **wget** command for a container.
+   -  For an HTTP request, you can use the script command to run the **wget** command to detect the container.
 
       **wget http://127.0.0.1:80/health-check**
 

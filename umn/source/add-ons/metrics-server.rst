@@ -17,4 +17,14 @@ Installing the Add-on
 ---------------------
 
 #. Log in to the CCE console and access the cluster console. Choose **Add-ons** in the navigation pane, locate **metrics-server** on the right, and click **Install**.
-#. Select **Single** or **HA** for **Add-on Specifications**, and click **Install**.
+#. Select **Single**, **Custom**, or **HA** for **Add-on Specifications**.
+
+   -  **Pods**: Set the number of pods based on service requirements.
+   -  **Multi AZ**:
+
+      -  **Preferred**: Deployment pods of the add-on are preferentially scheduled to nodes in different AZs. If the nodes in the cluster do not meet the requirements of multiple AZs, the pods are scheduled to a single AZ.
+      -  **Required**: Deployment pods of the add-on are forcibly scheduled to nodes in different AZs. If the nodes in the cluster do not meet the requirements of multiple AZs, not all pods can run.
+
+   -  **Containers**: Set a proper container quota based on service requirements.
+
+#. Click **Install**.

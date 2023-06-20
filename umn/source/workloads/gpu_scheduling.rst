@@ -85,7 +85,7 @@ After **nvidia.com/gpu** is specified, workloads will not be scheduled to nodes 
 To use GPUs on the CCE console, select the GPU quota and specify the percentage of GPUs reserved for the container when creating a workload.
 
 
-.. figure:: /_static/images/en-us_image_0000001397733101.png
+.. figure:: /_static/images/en-us_image_0000001569022929.png
    :alt: **Figure 1** Using GPUs
 
    **Figure 1** Using GPUs

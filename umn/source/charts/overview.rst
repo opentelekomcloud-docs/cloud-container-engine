@@ -33,4 +33,4 @@ Helm can help application orchestration for Kubernetes:
 -  Controls phases in a deployment cycle.
 -  Tests and verifies the released version.
 
-.. |image1| image:: /_static/images/en-us_image_0000001325364477.png
+.. |image1| image:: /_static/images/en-us_image_0000001518062492.png

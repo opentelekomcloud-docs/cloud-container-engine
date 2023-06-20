@@ -42,7 +42,7 @@ Procedure
 #. Click |image2| on the left of a trace to expand its details, as shown below.
 
 
-   .. figure:: /_static/images/en-us_image_0000001243981141.png
+   .. figure:: /_static/images/en-us_image_0000001569022781.png
       :alt: **Figure 1** Expanding trace details
 
       **Figure 1** Expanding trace details
@@ -50,10 +50,10 @@ Procedure
 #. Click **View Trace** in the **Operation** column. The trace details are displayed.
 
 
-   .. figure:: /_static/images/en-us_image_0000001244141139.png
+   .. figure:: /_static/images/en-us_image_0000001517743372.png
       :alt: **Figure 2** Viewing event details
 
       **Figure 2** Viewing event details
 
-.. |image1| image:: /_static/images/en-us_image_0000001244141141.gif
-.. |image2| image:: /_static/images/en-us_image_0000001199341250.png
+.. |image1| image:: /_static/images/en-us_image_0000001569182497.gif
+.. |image2| image:: /_static/images/en-us_image_0000001569182505.png

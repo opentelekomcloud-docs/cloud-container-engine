@@ -40,7 +40,9 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
 
       Dedicated load balancers must support HTTP and the network type must support private networks.
 
-   -  **Listener Configuration**: Ingress configures a listener for the load balancer, which listens to requests from the load balancer and distributes traffic. After the configuration is complete, a listener is created on the load balancer. The default listener name is *k8s__<Protocol type>_<Port number>*, for example, *k8s_HTTP_80*.
+   -  .. _cce_10_0251__li6851318392:
+
+      **Listener**: Ingress configures a listener for the load balancer, which listens to requests from the load balancer and distributes traffic. After the configuration is complete, a listener is created on the load balancer. The default listener name is *k8s__<Protocol type>_<Port number>*, for example, *k8s_HTTP_80*.
 
       -  **Front-End Protocol**: **HTTP** and **HTTPS** are available.
 
@@ -70,7 +72,13 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
             -  **Security Policy** is available only when **HTTPS** is selected.
             -  This function is supported only for clusters of v1.17.9 and later.
 
-   -  **Forwarding Policies**: When the access address of a request matches the forwarding policy (a forwarding policy consists of a domain name and URL, for example, 10.117.117.117:80/helloworld), the request is forwarded to the corresponding target Service for processing. Click **Add Forwarding Policies** to add multiple forwarding policies.
+      -  Backend protocol
+
+         If the :ref:`listener <cce_10_0251__li6851318392>` uses HTTP, only **HTTP** can be selected.
+
+         If the :ref:`listener <cce_10_0251__li6851318392>` uses HTTPS, you can select **HTTP** or **HTTPS**.
+
+   -  **Forwarding Policies**: When the access address of a request matches the forwarding policy (a forwarding policy consists of a domain name and URL, for example, 10.117.117.117:80/helloworld), the request is forwarded to the corresponding target Service for processing. Click |image1| to add multiple forwarding policies.
 
       -  **Domain Name**: actual domain name. Ensure that the domain name has been registered and archived. Once a domain name rule is configured, you must use the domain name for access.
 
@@ -101,11 +109,11 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
             .. note::
 
                -  **Weighted round robin**: Requests are forwarded to different servers based on their weights, which indicate server processing performance. Backend servers with higher weights receive proportionately more requests, whereas equal-weighted servers receive the same number of requests. This algorithm is often used for short connections, such as HTTP services.
-               -  **Weighted least connections**: In addition to the weight assigned to each server, the number of connections processed by each backend server is also considered. Requests are forwarded to the server with the lowest connections-to-weight ratio. Building on **least connections**, the **weighted least connections** algorithm assigns a weight to each server based on their processing capability. This algorithm is often used for persistent connections, such as database connections.
-               -  **Source IP hash**: The source IP address of each request is calculated using the hash algorithm to obtain a unique hash key, and all backend servers are numbered. The generated key allocates the client to a particular server. This enables requests from different clients to be distributed in load balancing mode and ensures that requests from the same client are forwarded to the same server. This algorithm applies to TCP connections without cookies.
+               -  **Weighted least connections**: In addition to the weight assigned to each server, the number of connections processed by each backend server is also considered. Requests are forwarded to the server with the lowest connections-to-weight ratio. Building on **least connections**, the **weighted least connections** algorithm assigns a weight to each server based on their processing performance. This algorithm is often used for persistent connections, such as database connections.
+               -  **Source IP hash**: The source IP address of each request is calculated using the hash algorithm to obtain a unique hash key, and all backend servers are numbered. The generated key allocates the client to a particular server. This allows requests from different clients to be routed based on source IP addresses and ensures that a client is directed to the same server as always. This algorithm applies to TCP connections without cookies.
 
          -  **Type**: This function is disabled by default. You can select **Load balancer cookie**.
-         -  **Health Check**: This function is disabled by default. The health check is for the load balancer. When TCP is selected during the :ref:`port settings <cce_10_0251__li118614181492>`, you can choose either TCP or HTTP. Currently, UDP is not supported. By default, the service port (Node Port and container port of the Service) is used for health check. You can also specify another port for health check. After the port is specified, a service port named **cce-healthz** will be added for the Service.
+         -  **Health Check**: configured for the load balancer. When TCP is selected during the :ref:`port settings <cce_10_0251__li118614181492>`, you can choose either TCP or HTTP. Currently, UDP is not supported. By default, the service port (Node Port and container port of the Service) is used for health check. You can also specify another port for health check. After the port is specified, a service port named **cce-healthz** will be added for the Service.
 
       -  **Operation**: Click **Delete** to delete the configuration.
 
@@ -127,7 +135,9 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
 
       .. _cce_10_0251__fig17115192714367:
 
-      .. figure:: /_static/images/en-us_image_0000001199181230.png
+      .. figure:: /_static/images/en-us_image_0000001518062672.png
          :alt: **Figure 1** Accessing the /healthz interface of defaultbackend
 
          **Figure 1** Accessing the /healthz interface of defaultbackend
+
+.. |image1| image:: /_static/images/en-us_image_0000001568822825.png
