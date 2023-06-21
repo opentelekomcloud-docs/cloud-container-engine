@@ -9,6 +9,7 @@ Cluster Overview
 -  :ref:`CCE Turbo Clusters and CCE Clusters <cce_10_0342>`
 -  :ref:`Comparing iptables and IPVS <cce_10_0349>`
 -  :ref:`Release Notes <cce_10_0068>`
+-  :ref:`Cluster Patch Version Release Notes <cce_10_0405>`
 
 .. toctree::
    :maxdepth: 1
@@ -18,3 +19,4 @@ Cluster Overview
    cce_turbo_clusters_and_cce_clusters
    comparing_iptables_and_ipvs
    release_notes/index
+   cluster_patch_version_release_notes
