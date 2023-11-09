@@ -231,8 +231,7 @@ For details about the response parameters, see :ref:`Table 7 <cce_02_0240__table
                    "External": "https://10.185.69.54:5443",
                },
               {
-                   "external_otc": "https://a140174a-2f3e-11e9-9f91-0255ac101405.cce.eu-de.otc.t-systems.com",
-               },
+                   "external_otc": "https://a140174a-2f3e-11e9-9f91-0255ac101405.cce.eu-de.otc.t-systems.com",            },
            ]
        }
    }
