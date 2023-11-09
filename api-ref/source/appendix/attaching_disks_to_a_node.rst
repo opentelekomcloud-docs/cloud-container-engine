@@ -43,10 +43,10 @@ The basic logic for field matching is as follows:
 
    |image2|
 
-   a. In step 1, the first disk in **dataVolumes** is matched by the EVS disk whose size is 100 GB and storage class is SAS. In step 2, the second disk in **dataVolumes** is matched by the EVS disk whose size is 100 GB because the first disk has been selected.
+   a. In step 1, the first disk in **dataVolumes** is matched by the EVS disk whose size is 100 GiB and storage class is SAS. In step 2, the second disk in **dataVolumes** is matched by the EVS disk whose size is 100 GiB because the first disk has been selected.
    b. In step 3, two disks in **dataVolumes** can be matched because **volumeType** or **count** is not specified in **matchLabels**. In this case, no disk is available for matching in step 4.
 
-#. **storageGroups** associates with **storageSelectors** based on **selectorName**. Finally, two 100 GB disks are selected. The CCE backend groups the two PVs into a volume group (VG) and divides the VG into two logical volumes (LVs) in the ratio of 9:1. 10% of Kubernetes LVs are partitioned in striped mode. 90% runtime LVs are partitioned in linear mode by default because runtimeConfig is not configured.
+#. **storageGroups** associates with **storageSelectors** based on **selectorName**. Finally, two 100 GiB disks are selected. The CCE backend groups the two PVs into a volume group (VG) and divides the VG into two logical volumes (LVs) in the ratio of 9:1. 10% of Kubernetes LVs are partitioned in striped mode. 90% runtime LVs are partitioned in linear mode by default because runtimeConfig is not configured.
 
 Creating a Raw Disk
 -------------------
@@ -57,11 +57,11 @@ The following figure shows the API calling logic.
 
 |image3|
 
-#. The **cceUse** selector matches a 100 GB data disk.
+#. The **cceUse** selector matches a 100 GiB data disk.
 #. The selected disk is managed by CCE and used as a data disk.
-#. The other 100 GB data disk created in **dataVolumes** is not selected by any selector and is managed by storageGroups. Therefore, this EVS disk will be attached to the node as a raw disk and will not be initialized.
+#. The other 100 GiB data disk created in **dataVolumes** is not selected by any selector and is managed by storageGroups. Therefore, this EVS disk will be attached to the node as a raw disk and will not be initialized.
 
-After the node is created, log in to the node and check whether a 100 GB disk has been attached but not initialized.
+After the node is created, log in to the node and check whether a 100 GiB disk has been attached but not initialized.
 
 |image4|
 
@@ -156,11 +156,11 @@ The following figure shows the API calling logic.
 
 |image5|
 
-#. The **user1** selector selects a 100 GB data disk.
+#. The **user1** selector selects a 100 GiB data disk.
 #. Create a VG named **vguser1** using LVM.
 #. Strip all the space of **vguser1** into an LV named **user** and format the disk in ext4 format. Finally, attach the disk to the **/tmp2** directory.
 
-After the node is created, log in to the node and check whether a 100 GB disk has been attached and managed by LVM.
+After the node is created, log in to the node and check whether a 100 GiB disk has been attached and managed by LVM.
 
 |image6|
 
@@ -278,7 +278,7 @@ Currently, the striped LV function is supported only by calling an API. The foll
 
 |image7|
 
-#. **storageSelectors** matches all EVS disks in **dataVolumes** because **matchLables** is not contained in **storageSelectors**.
+#. **storageSelectors** matches all EVS disks in **dataVolumes** because **matchLabels** is not contained in **storageSelectors**.
 #. Create a VG named **vgpaas** using LVM.
 #. Strip 90% of the **vgpaas** space into runtime LVs.
 #. Strip 10% of the **vgpaas** space into Kubernetes LVs.
@@ -286,7 +286,8 @@ Currently, the striped LV function is supported only by calling an API. The foll
 .. note::
 
    -  Two or more data disks are required for striping.
-   -  When creating a striped LV, ensure that the types and sizes of the PVs added to the VG are the same. Otherwise, the striping fails.
+   -  When creating a striped LV, ensure that the types and sizes of the PVs added to the VG are the same. Otherwise, the creation will fail.
+   -  When creating a striped LV, use the striping configuration for both the runtime LV and Kubernetes LV. Otherwise, the creation will fail.
 
 Log in to the node and run the following command to view the striping result:
 

@@ -15,6 +15,7 @@ Appendix
 -  :ref:`API Permissions <cce_02_0272>`
 -  :ref:`Creating a VPC and Subnet <cce_02_0100>`
 -  :ref:`Creating a Key Pair <cce_02_0101>`
+-  :ref:`Node Flavor Description <cce_02_0368>`
 -  :ref:`Attaching Disks to a Node <node_storage_example>`
 
 .. toctree::
@@ -31,4 +32,5 @@ Appendix
    api_permissions
    creating_a_vpc_and_subnet
    creating_a_key_pair
+   node_flavor_description
    attaching_disks_to_a_node
