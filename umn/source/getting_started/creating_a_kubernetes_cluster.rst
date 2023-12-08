@@ -16,7 +16,7 @@ Creating a Cluster
 #. Log in to the CCE console.
 
    -  If you have not created a cluster, a wizard page is displayed. Click **Create** under **CCE cluster**.
-   -  If you have created a cluster, choose **Clusters** from the navigation pane on the left and click **Create** next to **CCE cluster**.
+   -  If you have created a cluster, choose **Clusters** from the navigation pane and click **Create** next to **CCE cluster**.
 
 #. On the **Configure Cluster** page, configure cluster parameters.
 
@@ -93,8 +93,8 @@ After a cluster is created, you need to create nodes in the cluster to run workl
 
    **Storage Settings**
 
-   -  **System Disk**: Set disk type and capacity based on site requirements. The default disk capacity is 50 GB.
-   -  **Data Disk**: Set disk type and capacity based on site requirements. The default disk capacity is 100 GB.
+   -  **System Disk**: Configure disk type and capacity based on your requirements. The default disk capacity is 50 GiB.
+   -  **Data Disk**: Configure disk type and capacity based on your requirements. The default disk capacity is 100 GiB.
 
    **Network Settings**
 

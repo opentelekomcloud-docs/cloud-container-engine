@@ -8,15 +8,19 @@ Setting Container Specifications
 Scenario
 --------
 
-CCE allows you to set resource limits for added containers during workload creation. You can apply for and limit the CPU and memory quotas used by each pod in a workload.
+CCE allows you to set resource requirements and limits, such as CPU and RAM, for added containers during workload creation. Kubernetes also allows using YAML to set requirements of other resource types.
 
-Meanings
---------
+Request and Limit
+-----------------
 
 For **CPU** and **Memory**, the meanings of **Request** and **Limit** are as follows:
 
--  **Request**: Schedules the pod to the node that meets the requirements for workload deployment.
--  **Limit**: Limits the resources used by the workload.
+-  **Request**: The system schedules a pod to the node that meets the requirements for workload deployment based on the request value.
+-  **Limit**: The system limits the resources used by the workload based on the limit value.
+
+If a node has sufficient resources, the pod on this node can use more resources than requested, but no more than limited.
+
+For example, if you set the memory request of a container to 1 GiB and the limit value to 2 GiB, a pod is scheduled to a node with 8 GiB CPUs with no other pod running. In this case, the pod can use more than 1 GiB memory when the load is heavy, but the memory usage cannot exceed 2 GiB. If a process in a container attempts to use more than 2 GiB resources, the system kernel attempts to terminate the process. As a result, an out of memory (OOM) error occurs.
 
 .. note::
 
@@ -25,9 +29,9 @@ For **CPU** and **Memory**, the meanings of **Request** and **Limit** are as fol
 Configuration Description
 -------------------------
 
-In actual production services, the recommended ratio of **Request** to **Limit** is about 1:1.5. For some sensitive services, the recommended ratio is 1:1. If the **Request** is too small and the **Limit** is too large, node resources are overcommitted. During service peaks, the memory or CPU of a node may be used up. As a result, the node is unavailable.
+In real-world scenarios, the recommended ratio of **Request** to **Limit** is about 1:1.5. For some sensitive services, the recommended ratio is 1:1. If the **Request** is too small and the **Limit** is too large, node resources are oversubscribed. During service peaks, the memory or CPU of a node may be used up. As a result, the node is unavailable.
 
--  CPU quotas:
+-  CPU quota: The unit of CPU resources is core, which can be expressed by quantity or an integer suffixed with the unit (m). For example, 0.1 core in the quantity expression is equivalent to 100m in the expression. However, Kubernetes does not allow CPU resources whose precision is less than 1m.
 
    .. table:: **Table 1** Description of CPU quotas
 
@@ -43,7 +47,7 @@ In actual production services, the recommended ratio of **Request** to **Limit**
 
    Actual available CPU of a node >= Sum of CPU limits of all containers on the current node >= Sum of CPU requests of all containers on the current node. You can view the actual available CPUs of a node on the CCE console (**Resource Management** > **Nodes** > **Allocatable**).
 
--  Memory quotas:
+-  Memory quota: The default unit of memory resources is byte. You can also use an integer with the unit suffix, for example, 100 Mi. Note that the unit is case-sensitive.
 
    .. table:: **Table 2** Description of memory quotas
 
@@ -61,19 +65,30 @@ In actual production services, the recommended ratio of **Request** to **Limit**
 
 .. note::
 
-   The allocatable resources are calculated based on the resource request value (**Request**), which indicates the upper limit of resources that can be requested by pods on this node, but does not indicate the actual available resources of the node. The calculation formula is as follows:
+   The allocatable resources are calculated based on the resource request value (**Request**), which indicates the upper limit of resources that can be requested by pods on this node, but does not indicate the actual available resources of the node (for details, see :ref:`Example of CPU and Memory Quota Usage <cce_10_0163__section17887209103612>`). The calculation formula is as follows:
 
    -  Allocatable CPU = Total CPU - Requested CPU of all pods - Reserved CPU for other resources
    -  Allocatable memory = Total memory - Requested memory of all pods - Reserved memory for other resources
 
-Example
--------
+.. _cce_10_0163__section17887209103612:
 
-Assume that a cluster contains a node with 4 cores and 8 GB. A workload containing two pods has been deployed on the cluster. The resources of the two pods (pods 1 and 2) are as follows: {CPU request, CPU limit, memory request, memory limit} = {1 core, 2 cores, 2 GB, 2 GB}.
+Example of CPU and Memory Quota Usage
+-------------------------------------
+
+Assume that a cluster contains a node with 4 CPU cores and 8 GiB memory. Two pods (pod 1 and pod 2) have been deployed on the cluster. Pod 1 oversubscribes resources (that is **Limit** > **Request**). The specifications of the two pods are as follows.
+
+===== =========== ========= ============== ============
+Pod   CPU Request CPU Limit Memory Request Memory Limit
+===== =========== ========= ============== ============
+Pod 1 1 core      2 cores   1 GiB          4 GiB
+Pod 2 2 cores     2 cores   2 GiB          2 GiB
+===== =========== ========= ============== ============
 
 The CPU and memory usage of the node is as follows:
 
--  Allocatable CPU = 4 cores - (1 core requested by pod 1 + 1 core requested by pod 2) = 2 cores
--  Allocatable memory = 8 GB - (2 GB requested by pod 1 + 2 GB requested by pod 2) = 4 GB
+-  Allocatable CPUs = 4 cores - (1 core requested by pod 1 + 2 cores requested by pod 2) = 1 core
+-  Allocatable memory = 8 GiB - (1 GiB requested by pod 1 + 2 GiB requested by pod 2) = 5 GiB
 
-Therefore, the remaining 2 cores and 4 GB can be used by the next new pod.
+In this case, the remaining 1 core 5 GiB can be used by the next new pod.
+
+If pod 1 is under heavy load during peak hours, it will use more CPUs and memory within the limit. Therefore, the actual allocatable resources are fewer than 1 core 5 GiB.

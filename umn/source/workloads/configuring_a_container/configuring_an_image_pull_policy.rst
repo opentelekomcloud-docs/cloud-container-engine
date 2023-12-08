@@ -32,7 +32,7 @@ The image pull policy can also be set to **Always**, indicating that the image i
      imagePullSecrets:
      - name: default-secret
 
-You can also set the image pull policy when creating a workload on the CCE console. As shown in the following figure, if you select **Always**, the image is always pulled. If you do not select it, the policy will be **IfNotPresent**, which means that the image is not pulled.
+You can also set the image pull policy when creating a workload on the CCE console. If you select **Always**, the image is always pulled. If you do not select it, the policy will be **IfNotPresent**, which means that the image is not pulled.
 
 .. important::
 

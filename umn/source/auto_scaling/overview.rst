@@ -12,7 +12,7 @@ Context
 
 More and more applications are developed based on Kubernetes. It becomes increasingly important to quickly scale out applications on Kubernetes to cope with service peaks and to scale in applications during off-peak hours to save resources and reduce costs.
 
-In a Kubernetes cluster, auto scaling involves pods and nodes. A pod is an application instance. Each pod contains one or more containers and runs on a node (VM or bare-metal server). If a cluster does not have sufficient nodes to run new pods, you need to add nodes to the cluster to ensure service running.
+In a Kubernetes cluster, auto scaling involves pods and nodes. A pod is an application instance. Each pod contains one or more containers and runs on a node (VM or bare-metal server). If a cluster does not have sufficient nodes to run new pods, add nodes to the cluster to ensure service running.
 
 In CCE, auto scaling is used for online services, large-scale computing and training, deep learning GPU or shared GPU training and inference, periodic load changes, and many other scenarios.
 
@@ -31,11 +31,11 @@ Components
 
 .. table:: **Table 1** Workload scaling components
 
-   +------+-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+
-   | Type | Component Name                      | Component Description                                                                                                                                                              | Reference                                                             |
-   +======+=====================================+====================================================================================================================================================================================+=======================================================================+
-   | HPA  | :ref:`metrics-server <cce_10_0205>` | A built-in component of Kubernetes, which enables horizontal scaling of pods. It adds the application-level cooldown time window and scaling threshold functions based on the HPA. | :ref:`Creating an HPA Policy for Workload Auto Scaling <cce_10_0208>` |
-   +------+-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+
+   +------+-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
+   | Type | Component Name                      | Component Description                                                                                                                                                              | Reference                |
+   +======+=====================================+====================================================================================================================================================================================+==========================+
+   | HPA  | :ref:`metrics-server <cce_10_0205>` | A built-in component of Kubernetes, which enables horizontal scaling of pods. It adds the application-level cooldown time window and scaling threshold functions based on the HPA. | :ref:`HPA <cce_10_0208>` |
+   +------+-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
 
 **Node scaling components are described as follows:**
 

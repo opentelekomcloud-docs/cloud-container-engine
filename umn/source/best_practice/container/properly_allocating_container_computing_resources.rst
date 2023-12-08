@@ -28,7 +28,7 @@ Set a higher upper limit for the workload.
 Example
 -------
 
-A pod will be created and allocated memory that exceeds the limit. As shown in the following configuration file of the pod, the pod requests 50 MB memory and the memory limit is set to 100 MB.
+A pod will be created and allocated memory that exceeds the limit. As shown in the following configuration file of the pod, the pod requests 50 MiB memory and the memory limit is set to 100 MiB.
 
 Example YAML file (memory-request-limit-2.yaml):
 
@@ -55,7 +55,7 @@ Example YAML file (memory-request-limit-2.yaml):
        - -mem-alloc-sleep
        - 1s
 
-The **args** parameters indicate that the container attempts to request 250 MB memory, which exceeds the pod's upper limit (100 MB).
+The **args** parameters indicate that the container attempts to request 250 MiB memory, which exceeds the pod's upper limit (100 MiB).
 
 Creating a pod:
 

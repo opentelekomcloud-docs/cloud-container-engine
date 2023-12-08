@@ -8,20 +8,21 @@ Adding Nodes for Management
 Scenario
 --------
 
-In CCE, you can :ref:`Creating a Node <cce_10_0363>` or add existing nodes (ECSs) into your cluster.
+In CCE, you can create a node (:ref:`Creating a Node <cce_10_0363>`) or add existing nodes (ECSs or) to your cluster.
 
 .. important::
 
    -  While an ECS is being accepted into a cluster, the operating system of the ECS will be reset to the standard OS image provided by CCE to ensure node stability. The CCE console prompts you to select the operating system and the login mode during the reset.
-   -  The system disk and data disk of an ECS will be formatted while the ECS is being accepted into a cluster. Ensure that information in the disks has been backed up.
+   -  LVM information, including volume groups (VGs), logical volumes (LVs), and physical volumes (PVs), will be deleted from the system disks and data disks attached to the selected ECSs during management. Ensure that the information has been backed up.
    -  While an ECS is being accepted into a cluster, do not perform any operation on the ECS through the ECS console.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  The cluster version must be 1.15 or later.
--  If the password or key has been set when a VM node is created, the VM node can be accepted into a cluster 10 minutes after it is available. During the management, the original password or key will become invalid. You need to reset the password or key.
+-  If a password or key has been set when the original VM node was created, reset the password or key during management. The original password or key will become invalid.
 -  Nodes in a CCE Turbo cluster must support sub-ENIs or be bound to at least 16 ENIs. For details about the node specifications, see the nodes that can be selected on the console when you create a node.
+-  Data disks that have been partitioned will be ignored during node management. Ensure that there is at least one unpartitioned data disk meeting the specifications is attached to the node.
 
 Prerequisites
 -------------
@@ -30,14 +31,14 @@ A cloud server that meets the following conditions can be accepted:
 
 -  The node to be accepted must be in the **Running** state and not used by other clusters. In addition, the node to be accepted does not carry the CCE-Dynamic-Provisioning-Node tag.
 -  The node to be accepted and the cluster must be in the same VPC. (If the cluster version is earlier than v1.13.10, the node to be accepted and the CCE cluster must be in the same subnet.)
--  At least one data disk is attached to the node to be accepted. The data disk capacity is greater than or equal to 100 GB.
--  The node to be accepted has 2-core or higher CPU, 4 GB or larger memory, and only one NIC.
+-  Data disks must be attached to the nodes to be managed. A local disk (disk-intensive disk) or a data disk of at least 20 GiB can be attached to the node, and any data disks already attached cannot be smaller than 10 GiB.
+-  The node to be accepted has 2-core or higher CPU, 4 GiB or larger memory, and only one NIC.
 -  Only cloud servers with the same specifications, AZ, and data disk configuration can be added in batches.
 
 Procedure
 ---------
 
-#. Log in to the CCE console and go to the cluster where the node to be managed resides.
+#. Log in to the CCE console and go to the cluster where the node to be accepted resides.
 
 #. In the navigation pane, choose **Nodes**. On the displayed page, click **Accept Node** in the upper right corner.
 
@@ -58,7 +59,7 @@ Procedure
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Container Engine                  | CCE clusters support Docker and containerd in some scenarios.                                                                                                                            |
       |                                   |                                                                                                                                                                                          |
-      |                                   | -  VPC network clusters of v1.23 and later versions support containerd. Container tunnel network clusters of v1.23.2-r0 and later versions support containerd.                           |
+      |                                   | -  VPC network clusters of v1.23 and later versions support containerd. Tunnel network clusters of v1.23.2-r0 and later versions support containerd.                                     |
       |                                   | -  For a CCE Turbo cluster, both **Docker** and **containerd** are supported. For details, see :ref:`Mapping between Node OSs and Container Engines <cce_10_0462__section159298451879>`. |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | OS                                | **Public image**: Select an OS for the node.                                                                                                                                             |
@@ -97,17 +98,17 @@ Procedure
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Parameter                         | Description                                                                                                                                                                                                                                                    |
       +===================================+================================================================================================================================================================================================================================================================+
-      | Kubernetes Label                  | Click **Add Label** to set the key-value pair attached to the Kubernetes objects (such as pods). A maximum of 20 labels can be added.                                                                                                                          |
+      | Kubernetes Label                  | Click **Add** to set the key-value pair attached to the Kubernetes objects (such as pods). A maximum of 20 labels can be added.                                                                                                                                |
       |                                   |                                                                                                                                                                                                                                                                |
       |                                   | Labels can be used to distinguish nodes. With workload affinity settings, container pods can be scheduled to a specified node. For more information, see `Labels and Selectors <https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/>`__. |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Resource Tag                      | You can add resource tags to classify resources.                                                                                                                                                                                                               |
       |                                   |                                                                                                                                                                                                                                                                |
-      |                                   | You can create **predefined tags** in Tag Management Service (TMS). Predefined tags are visible to all service resources that support the tagging function. You can use these tags to improve tagging and resource migration efficiency.                       |
+      |                                   | You can create **predefined tags** in Tag Management Service (TMS). Predefined tags are available to all service resources that support tags. You can use these tags to improve tagging and resource migration efficiency.                                     |
       |                                   |                                                                                                                                                                                                                                                                |
       |                                   | CCE will automatically create the "CCE-Dynamic-Provisioning-Node=\ *node id*" tag.                                                                                                                                                                             |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Taint                             | This field is left blank by default. You can add taints to set anti-affinity for the node. A maximum of 10 taints are allowed for each node. Each taint contains the following parameters:                                                                     |
+      | Taint                             | This field is left blank by default. You can add taints to configure anti-affinity for the node. A maximum of 20 taints are allowed for each node. Each taint contains the following parameters:                                                               |
       |                                   |                                                                                                                                                                                                                                                                |
       |                                   | -  **Key**: A key must contain 1 to 63 characters, starting with a letter or digit. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used as the prefix of a key.                                  |
       |                                   | -  **Value**: A value must start with a letter or digit and can contain a maximum of 63 characters, including letters, digits, hyphens (-), underscores (_), and periods (.).                                                                                  |

@@ -41,6 +41,6 @@ Procedure
 
    **docker build -t apptest .**
 
-#. Upload the image to the SWR service. For details, see `Uploading an Image Through the Client <https://docs.otc.t-systems.com/en-us/usermanual/swr/swr_01_0011.html>`__.
+#. Upload the image to SWR. For details, see `Uploading an Image Through the Client <https://docs.otc.t-systems.com/usermanual/swr/swr_01_0011.html>`__.
 
-.. |image1| image:: /_static/images/en-us_image_0091292713.png
+.. |image1| image:: /_static/images/en-us_image_0000001653425284.png

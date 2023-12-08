@@ -8,10 +8,10 @@ Cluster Overload Control
 Scenario
 --------
 
-If overload control is enabled, concurrent requests are dynamically controlled based on the resource pressure of master nodes to keep them and the cluster available.
+If enabled, concurrent requests are dynamically controlled based on the resource pressure of master nodes to keep them and the cluster available.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 The cluster version must be 1.23 or later.
 

@@ -5,33 +5,33 @@
 Selecting a Data Disk for the Node
 ==================================
 
-When a node is created, a data disk is created by default for container runtime and kubelet components to use. The data disk used by the container runtime and kubelet components cannot be detached, and the default size is 100 GB. To reduce costs, the size of a common data disk attached to a node can be reduced to 10 GB.
+When a node is created, a data disk is attached by default for a container runtime and kubelet. The data disk used by the container runtime and kubelet cannot be detached, and the default capacity is 100 GiB. To cut costs, you can reduce the disk capacity attached to a node to the minimum of 10 GiB.
 
 .. important::
 
-   Adjusting the size of the data disk used by the container and Kubelet component may cause risks. You are advised to adjust the size after comprehensive evaluation based on the estimation method provided in this section.
+   Adjusting the size of the data disk used by the container runtime and kubelet may incur risks. You are advised to evaluate the capacity adjustment and then perform the operations described in this section.
 
-   -  If the data disk capacity is too small, the disk space may be insufficient. As a result, the image fails to be pulled. If different images need to be frequently pulled on the node, you are not advised to reduce the data disk capacity.
-   -  During the cluster upgrade pre-check, the system checks whether the data disk usage exceeds 95%. If the disk pressure is high, the cluster upgrade may be affected.
-   -  If Device Mapper is used, the disk space may be insufficient. You are advised to use the OverlayFS or select a large-capacity data disk.
-   -  For dumping logs, application logs must be stored in a separate disk to prevent insufficient space of the dockersys partition from affecting service running.
+   -  If the disk capacity is too small, the image pull may fail. If different images need to be frequently pulled on the node, you are not advised to reduce the data disk capacity.
+   -  Before a cluster upgrade, the system checks whether the data disk usage exceeds 95%. If the usage is high, the cluster upgrade may be affected.
+   -  If Device Mapper is used, the disk capacity may be insufficient. You are advised to use the OverlayFS or select a large-capacity data disk.
+   -  For dumping logs, application logs must be stored in a separate disk to prevent insufficient storage capacity of the dockersys volume from affecting service running.
 
-   -  After reducing the data disk capacity, you are advised to install a npd add-on in the cluster to detect node disk pressure. If the disk pressure of a node is high, rectify the fault by referring to :ref:`What Do I Do If the Data Disk Space Is Insufficient? <cce_bestpractice_10012__section094517492470>`.
+   -  After reducing the data disk capacity, you are advised to install the npd add-on in the cluster to detect disk usage. If the disk usage of a node is high, resolve this problem by referring to :ref:`What If the Data Disk Capacity Is Insufficient? <cce_bestpractice_10012__section094517492470>`
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
--  Only clusters of v1.19 or later support reducing the data disk capacity used by running containers and kubelet components.
+-  Only clusters of v1.19 or later allow reducing the capacity of the data disk used by container runtimes and kubelet.
 -  Only the EVS disk capacity can be adjusted. (Local disks are available only when the node specification is **disk-intensive** or **Ultra-high I/O**.)
 
 Selecting a Data Disk
 ---------------------
 
-When selecting a proper data disk, consider the following factors:
+When selecting a data disk, consider the following factors:
 
--  During image pulling, the system downloads the image .tar package from the image repository, decompresses the package, and deletes the TAR package to retain the image file. During the decompression of the .tar package, the .tar package and the decompressed image file coexist, occupying extra storage space. Pay attention to this when calculating the required data disk capacity.
--  During cluster creation, mandatory add-ons (such as everest and coredns add-ons) may be deployed on nodes, occupying certain space. When calculating the data disk size, reserve about 2 GB space for them.
--  Logs are generated during application running and occupy certain space. To ensure normal service running, reserve about 1 GB space for each pod.
+-  During image pull, the system downloads the image package (the .tar package) from the image repository, and decompresses the package. Then it deletes the package but retain the image file. During the decompression of the .tar package, the package and the decompressed image file coexist. Reserve the capacity for the decompressed files.
+-  Mandatory add-ons (such as everest and coredns) may be deployed on nodes during cluster creation. When calculating the data disk size, reserve about 2 GiB storage capacity for them.
+-  Logs are generated during application running. To ensure stable application running, reserve about 1 GiB storage capacity for each pod.
 
 For details about the calculation formulas, see :ref:`OverlayFS <cce_bestpractice_10012__section97181505230>` and :ref:`Device Mapper <cce_bestpractice_10012__section212373119234>`.
 
@@ -40,83 +40,107 @@ For details about the calculation formulas, see :ref:`OverlayFS <cce_bestpractic
 OverlayFS
 ---------
 
-By default, the container engine and container image space on OverlayFS nodes occupy 90% of the data disk space (you are advised to retain this value). All the space is used for the dockersys partition. The calculation formula is as follows:
+By default, the container engine and container image storage capacity of a node using the OverlayFS storage driver occupies 90% of the data disk capacity (you are advised to retain this value). All the 90% storage capacity is used for dockersys partitioning. The calculation methods are as follows:
 
 -  .. _cce_bestpractice_10012__li14531528269:
 
-   Container engine and container image space: Defaults to 90%. Space size = Data disk space x 90%
+   Capacity for storing container engines and container images requires 90% of the data disk capacity by default.
 
-   -  dockersys partition (**/var/lib/docker** path): The entire container engine and container image space (90% of the data disk by default) are in the **/var/lib/docker** directory. Space size = Data disk space x 90%
+   -  Capacity for dockersys volume (in the **/var/lib/docker** directory) requires 90% of the data disk capacity. The entire container engine and container image capacity (need 90% of the data disk capacity by default) are in the **/var/lib/docker** directory.
 
--  kubelet components and emptyDir volumes space: 10% of the data disk space. Space size = Data disk space x 10%
+-  Capacity for storing temporary kubelet and emptyDir requires 10% of the data disk capacity.
 
-On an OverlayFS node, when an image is pulled, the .tar package is decompressed after being downloaded. During this process, the .tar package and the decompressed image file are stored in the dockersys space at the same time, occupying about twice the actual image capacity, after the decompression is complete, the .tar package is deleted. Therefore, in the actual image pulling process, after deducting the space occupied by the system add-on image, ensure that the remaining space of the dockersys partition is greater than twice the actual image capacity. To ensure that the container can run properly, you need to reserve pod space in the dockersys partition for container logs and other related files.
+On a node using the OverlayFS, when an image is pulled, the .tar package is decompressed after being downloaded. During this process, the .tar package and the decompressed image file are stored in the dockersys volume, occupying about twice the actual image storage capacity. After the decompression is complete, the .tar package is deleted. Therefore, during image pull, after deducting the storage capacity occupied by the system add-on images, ensure that the remaining capacity of the dockersys volume is greater than twice the actual image storage capacity. To ensure that the containers can run stably, reserve certain capacity in the dockersys volume for container logs and other related files.
 
-A proper data disk should meet the following formula:
+When selecting a data disk, consider the following formula:
 
-**dockersys partition capacity > 2 x Actual total image capacity + Total system add-on image capacity (about 2 GB) + Number of containers x Available space for a single container (about 1 GB log space)**
+**Capacity of dockersys volume > Actual total image storage capacity x 2 + Total system add-on image storage capacity (about 2 GiB) + Number of containers x Available storage capacity for a single container (about 1 GiB log storage capacity for each container)**
 
 .. note::
 
-   If container logs are output in the json.log format, the dockersys partition is occupied. If persistent storage is configured for container logs, the dockersys partition is not occupied. Estimate the space of a single container as required.
+   If container logs are output in the **json.log** format, they will occupy some capacity in the dockersys volume. If container logs are stored on persistent storage, they will not occupy capacity in the dockersys volume. Estimate the capacity of every container as required.
 
 Example:
 
-Assume that the storage type of the node is OverlayFS and the data disk size of the node is 20 GB. According to :ref:`the preceding formula <cce_bestpractice_10012__li14531528269>`, the default ratio of the container engine and image space is 90%. Therefore, the dockersys partition disk usage is 18 GB (20 GB x 90%). In addition, mandatory add-ons may occupy about 2 GB space during cluster creation. If you deploy a .tar image package of 10 GB, 20 GB dockersys space is occupied by the decompressed package. In addition, the space occupied by mandatory add-ons exceeds the remaining space of dockersys. As a result, the image may fail to be pulled.
+Assume that the node uses the OverlayFS and the data disk attached to this node is 20 GiB. According to :ref:`the preceding methods <cce_bestpractice_10012__li14531528269>`, the capacity for storing container engines and images occupies 90% of the data disk capacity, and the capacity for the dockersys volume is 18 GiB (20 GiB x 90%). Additionally, mandatory add-ons may occupy about 2 GiB storage capacity during cluster creation. If you deploy a .tar package of 10 GiB, the package decompression takes 20 GiB of the dockersys volume's storage capacity. This, coupled with the storage capacity occupied by mandatory add-ons, exceeds the remaining capacity of the dockersys volume. As a result, the image pull may fail.
 
 .. _cce_bestpractice_10012__section212373119234:
 
 Device Mapper
 -------------
 
-By default, the container engine and image space on Device Mapper nodes occupy 90% of the data disk space (recommended). This 90% capacity is divided into the dockersys partition and thinpool space. The calculation formula is as follows:
+By default, the capacity for storing container engines and container images of a node using the Device Mapper storage driver occupies 90% of the data disk capacity (you are advised to retain this value). The occupied capacity includes the dockersys volume and thinpool volume. The calculation methods are as follows:
 
 -  .. _cce_bestpractice_10012__li1519941320114:
 
-   Container engine and image space: 90% of the data disk space by default. Space size = Data disk space x 90%
+   Capacity for storing container engines and container images requires 90% of the data disk capacity by default.
 
-   -  dockersys partition (**/var/lib/docker** path): Defaults to 20%. Space size = Data disk space x 90% x 20%
-   -  thinpool space: Defaults to 80%. Space size = Data disk space x 90% x 80%
+   -  Capacity for the dockersys volume (in the **/var/lib/docker** directory) requires 20% of the capacity for storing container engines and container images.
+   -  Capacity forthe thinpool volume requires 80% of the container engine and container image storage capacity.
 
--  kubelet and emptyDir space: occupy 10%. Space size = Data disk space x 10%
+-  Capacity for storing temporary kubelet and emptyDir requires 10% of the data disk capacity.
 
-On a Device Mapper node, when an image is pulled, the TAR package is temporarily stored in the dockersys partition. After the TAR package is decompressed, the image file is stored in the thinpool space. Finally, the TAR package in the dockersys space is deleted. Therefore, during image pulling, ensure that the dockersys partition space and thinpool space are sufficient. The dockersys space is smaller than the thinpool space. Pay attention to this when calculating the data disk space. To ensure that a container can run properly, reserve pod space in the dockersys partition to store container logs and other related files.
+On a node using the Device Mapper storage driver, when an image is pulled, the .tar package is temporarily stored in the dockersys volume. After the .tar package is decompressed, the image file is stored in the thinpool volume, and the package in the dockersys volume will be deleted. Therefore, during image pull, ensure that the storage capacity of the dockersys volume and thinpool volume are sufficient, and note that the former is smaller than the latter. To ensure that the containers can run stably, reserve certain capacity in the dockersys volume for container logs and other related files.
 
-A proper data disk should meet the following formula:
+When selecting a data disk, consider the following formulas:
 
--  **dockersys partition capacity > temporary storage space of the TAR package (approximately equal to the actual total image capacity) + Number of containers x Space of a single container (about 1 GB log space must be reserved for each container)**
--  **thinpool space > Actual total image capacity + Total add-on image capacity (about 2 GB)**
+-  **Capacity for dockersys volume > Temporary storage capacity of the .tar package (approximately equal to the actual total image storage capacity) + Number of containers x Storage capacity of a single container (about 1 GiB log storage capacity must be reserved for each container)**
+-  **Capacity for thinpool volume > Actual total image storage capacity + Total add-on image storage capacity (about 2 GiB)**
 
 .. note::
 
-   If container logs are output in the json.log format, the dockersys partition is occupied. If persistent storage is configured for container logs, the dockersys partition is not occupied. Estimate the space of a single container as required.
+   If container logs are output in the **json.log** format, they will occupy some capacity in the dockersys volume. If container logs are stored on persistent storage, they will not occupy capacity in the dockersys volume. Estimate the capacity of every container as required.
 
 Example:
 
-Assume that the storage type of the node is Device Mapper and the data disk size of the node is 20 GB. According to :ref:`the preceding formula <cce_bestpractice_10012__li1519941320114>`, the default ratio of the container engine and image space is 90%. Therefore, the dockersys partition disk usage is: 20 GB x 90% x 20% = 3.6 GB. In addition, mandatory add-ons may occupy about 2 GB dockersys space during cluster creation. Therefore, the remaining space is about 1.6 GB. If you deploy a .tar image package larger than 1.6 GB, the dockersys partition space is insufficient when the package is decompressed. As a result, the image may fail to be pulled.
+Assume that the node uses the Device Mapper and the data disk attached to this node is 20 GiB. According to :ref:`the preceding methods <cce_bestpractice_10012__li1519941320114>`, the container engine and image storage capacity occupies 90% of the data disk capacity, and the disk usage of the dockersys volume is 3.6 GiB. Additionally, the storage capacity of the mandatory add-ons may occupy about 2 GiB of the dockersys volume during cluster creation. The remaining storage capacity is about 1.6 GiB. If you deploy a .tar image package larger than 1.6 GiB, the storage capacity of the dockersys volume is insufficient for the package to be decompressed. As a result, the image pull may fail.
 
 .. _cce_bestpractice_10012__section094517492470:
 
-What Do I Do If the Data Disk Space Is Insufficient?
-----------------------------------------------------
+What If the Data Disk Capacity Is Insufficient?
+-----------------------------------------------
 
-**Solution 1: Clearing Images**
+**Solution 1: Clearing images**
 
-You can run the following command to clear unused Docker images:
+Perform the following operations to clear unused images:
 
-.. code-block::
+-  Nodes that use containerd
 
-   docker system prune -a
+   #. Obtain local images on the node.
+
+      .. code-block::
+
+         crictl images -v
+
+   #. Delete the images that are not required by image ID.
+
+      .. code-block::
+
+         crictl rmi Image ID
+
+-  Nodes that use Docker
+
+   #. Obtain local images on the node.
+
+      .. code-block::
+
+         docker images
+
+   #. Delete the images that are not required by image ID.
+
+      .. code-block::
+
+         docker rmi Image ID
 
 .. note::
 
-   This command will delete all Docker images that are not used. Exercise caution when running this command.
+   Do not delete system images such as the cce-pause image. Otherwise, pods may fail to be created.
 
-**Solution 2: Expanding the Disk Capacity**
+**Solution 2: Expanding the disk capacity**
 
 #. Expand the capacity of the data disk on the EVS console.
 
-#. Log in to the CCE console and click the cluster. In the navigation pane, choose **Nodes**. Click **More** > **Sync Server Data** at the row containing the target node.
+#. Log in to the CCE console and click the cluster. In the navigation pane, choose **Nodes**. Click **More** > **Sync Server Data** in the row containing the target node.
 
 #. Log in to the target node.
 
@@ -133,8 +157,8 @@ You can run the following command to clear unused Docker images:
          sda                   8:0    0   50G  0 disk
          └─sda1                8:1    0   50G  0 part /
          sdb                   8:16   0  200G  0 disk
-         ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/docker               # Space used by Docker.
-         └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet  # Space used by Kubernetes.
+         ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/docker               # Space used by the container engine
+         └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet  # Space used by Kubernetes
 
       Run the following commands on the node to add the new disk capacity to the **dockersys** disk:
 

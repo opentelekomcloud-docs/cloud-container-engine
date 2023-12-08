@@ -13,10 +13,5 @@ Check whether the resources of Kubernetes components, such as etcd and kube-cont
 Solution
 --------
 
-Solution 1: Reducing Kubernetes resources
-
-Solution 2: :ref:`Expanding cluster scale <cce_10_0403>`
-
-|image1|
-
-.. |image1| image:: /_static/images/en-us_image_0000001579008782.png
+-  Solution 1: Reduce Kubernetes resources.
+-  Solution 2: :ref:`Scale out the cluster. <cce_10_0403>`

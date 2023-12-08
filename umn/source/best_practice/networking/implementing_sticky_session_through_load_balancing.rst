@@ -23,7 +23,7 @@ Layer-4 Load Balancing (Service)
 
 In layer-4 load balancing, source IP address-based sticky session (Hash routing based on the client IP address) can be enabled. To enable source IP address-based sticky session on Services, the following conditions must be met:
 
-**CCE cluster**
+**CCE clusters**
 
 #. **Service Affinity** of the Service is set to **Node level** (that is, the value of the **externalTrafficPolicy** field of the Service is **Local**).
 
@@ -69,7 +69,7 @@ In layer-7 load balancing, sticky session based on HTTP cookies and app cookies 
 
 **Procedure**
 
-#. Create a Nginx workload.
+#. Create an Nginx workload.
 
    Set the number of pods to 3 and set the podAntiAffinity.
 

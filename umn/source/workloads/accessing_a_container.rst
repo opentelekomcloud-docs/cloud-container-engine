@@ -8,7 +8,7 @@ Accessing a Container
 Scenario
 --------
 
-If you encounter unexpected problems when using a container, you can log in to the container for debugging.
+If you encounter unexpected problems when using a container, you can log in to the container to debug it.
 
 Logging In to a Container Using kubectl
 ---------------------------------------
@@ -28,7 +28,7 @@ Logging In to a Container Using kubectl
       NAME                               READY   STATUS    RESTARTS       AGE
       nginx-59d89cb66f-mhljr             1/1     Running   0              11m
 
-#. Query the name of the container in the pod.
+#. Query the container name in the pod.
 
    .. code-block::
 
@@ -40,7 +40,7 @@ Logging In to a Container Using kubectl
 
       container-1
 
-#. Run the following command to log in to the container named **container-1** in **nginx-59d89cb66f-mhljrPod**:
+#. Run the following command to log in to the **container-1** container in the **nginx-59d89cb66f-mhljr** pod:
 
    .. code-block::
 

@@ -51,7 +51,7 @@ If the commands and arguments used to run a container are set during application
       +===================================+=============================================================================================================================================+
       | Command                           | Enter an executable command, for example, **/run/server**.                                                                                  |
       |                                   |                                                                                                                                             |
-      |                                   | If there are multiple commands, separate them with spaces. If the command contains a space, you need to add a quotation mark ("").          |
+      |                                   | If there are multiple executable commands, write them in different lines.                                                                   |
       |                                   |                                                                                                                                             |
       |                                   | .. note::                                                                                                                                   |
       |                                   |                                                                                                                                             |
@@ -92,7 +92,7 @@ Post-Start Processing
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
       |                                   | -  **Path**: (optional) request URL.                                                                                                                                                                                                                                                                                                                                                                                                                                     |
       |                                   | -  **Port**: (mandatory) request port.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-      |                                   | -  **Host**: (optional) IP address of the request. The default value is the IP address of the node where the container resides.                                                                                                                                                                                                                                                                                                                                          |
+      |                                   | -  **Host**: (optional) requested host IP address. The default value is the IP address of the pod.                                                                                                                                                                                                                                                                                                                                                                       |
       +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. _cce_10_0105__section2334114473712:
@@ -125,7 +125,7 @@ Pre-Stop Processing
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                  |
       |                                   | -  **Path**: (optional) request URL.                                                                                                                                                                                                                                                                                                                                             |
       |                                   | -  **Port**: (mandatory) request port.                                                                                                                                                                                                                                                                                                                                           |
-      |                                   | -  **Host**: (optional) IP address of the request. The default value is the IP address of the node where the container resides.                                                                                                                                                                                                                                                  |
+      |                                   | -  **Host**: (optional) requested host IP address. The default value is the IP address of the pod.                                                                                                                                                                                                                                                                               |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Example YAML
@@ -154,19 +154,19 @@ In the following configuration file, the **postStart** command is defined to run
          containers:
          - image: nginx
            command:
-           - sleep 3600                        #Startup command
+           - sleep 3600                        # Startup command
            imagePullPolicy: Always
            lifecycle:
              postStart:
                exec:
                  command:
                  - /bin/bash
-                 - install.sh                  #Post-start command
+                 - install.sh                  # Post-start command
              preStop:
                exec:
                  command:
                  - /bin/bash
-                 - uninstall.sh                 #Pre-stop command
+                 - uninstall.sh                 # Pre-stop command
            name: nginx
          imagePullSecrets:
          - name: default-secret

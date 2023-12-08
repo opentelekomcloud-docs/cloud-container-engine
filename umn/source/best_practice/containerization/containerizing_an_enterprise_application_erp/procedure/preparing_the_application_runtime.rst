@@ -5,9 +5,9 @@
 Preparing the Application Runtime
 =================================
 
-After application analysis, you have gained the understanding of the OS and runtime required for running the application. You need to make the following preparations:
+After application analysis, you have gained the understanding of the OS and runtime required for running the application. Make the following preparations:
 
--  :ref:`Installing Docker <cce_bestpractice_0006__section411319276259>`: During application containerization, you need to build a container image. To do so, you have to prepare a PC and install Docker on it.
+-  :ref:`Installing Docker <cce_bestpractice_0006__section411319276259>`: During application containerization, build a container image. To do so, you have to prepare a PC and install Docker on it.
 -  :ref:`Obtaining the base image tag <cce_bestpractice_0006__section7944139145718>`: Determine the base image based on the OS on which the application runs. In this example, the application runs on CentOS 7.1 and the base image can be obtained from an open-source image repository.
 -  :ref:`Obtaining the runtime <cce_bestpractice_0006__section44401821348>`: Obtain the runtime of the application and the MongoDB database with which the application interconnects.
 
@@ -26,7 +26,7 @@ Docker is compatible with almost all operating systems. Select a Docker version 
 
 #. Log in as user **root** to the device on which Docker is about to be installed.
 
-#. Run the following commands to quickly install Docker on the device running Linux:
+#. Quickly install Docker on the device running Linux. You can also manually install Docker. For details, see `Docker Engine installation <https://docs.docker.com/engine/install/#server>`__.
 
    **curl -fsSL get.docker.com -o get-docker.sh**
 
@@ -58,10 +58,10 @@ Determine the base image based on the OS on which the application runs. In this 
 
 #. Visit the Docker website.
 
-#. Search for CentOS. The image corresponding to CentOS 7.1 is **centos7.1.1503**. You need to use this image name when compiling the Dockerfile.
+#. Search for CentOS. The image corresponding to CentOS 7.1 is **centos7.1.1503**. Use this image name when editing the Dockerfile.
 
 
-   .. figure:: /_static/images/en-us_image_0091280734.png
+   .. figure:: /_static/images/en-us_image_0000001701704485.png
       :alt: **Figure 1** Obtaining the CentOS version
 
       **Figure 1** Obtaining the CentOS version

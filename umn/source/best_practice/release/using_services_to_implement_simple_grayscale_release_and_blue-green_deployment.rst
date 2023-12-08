@@ -5,7 +5,7 @@
 Using Services to Implement Simple Grayscale Release and Blue-Green Deployment
 ==============================================================================
 
-To implement grayscale release for a CCE cluster, you need to deploy other open-source tools, such as Nginx Ingress, to the cluster or deploy services to a service mesh. These solutions are difficult to implement. If your grayscale release requirements are simple and you do not want to introduce too many plug-ins or complex configurations, you can refer to this section to implement simple grayscale release and blue-green deployment based on native Kubernetes features.
+To implement grayscale release for a CCE cluster, deploy other open-source tools, such as Nginx Ingress, to the cluster or deploy services to a service mesh. These solutions are difficult to implement. If your grayscale release requirements are simple and you do not want to introduce too many plug-ins or complex configurations, you can refer to this section to implement simple grayscale release and blue-green deployment based on native Kubernetes features.
 
 Principles
 ----------
@@ -139,11 +139,11 @@ Step 2: Implement Grayscale Release
 
 #. Run the following command to test the access:
 
-   **for i in {1..10}; do curl** <EXTERNAL_IP>\ **; done;**
+   **for i in {1..10}; do curl** *<EXTERNAL_IP>*\ **; done;**
 
-   <EXTERNAL_IP> indicates the IP address of the ELB load balancer.
+   *<EXTERNAL_IP>* indicates the IP address of the ELB load balancer.
 
-   The command output is as follows. Half of the responses are from the Deployment of version v1, and the other half are from version v2.
+   The command output is as follows (Half of the responses are from the Deployment of version v1, and the other half are from version v2):
 
    .. code-block::
 
@@ -166,9 +166,9 @@ Step 2: Implement Grayscale Release
 
 #. Run the following command to test the access again:
 
-   **for i in {1..10}; do curl** <EXTERNAL_IP>\ **; done;**
+   **for i in {1..10}; do curl** *<EXTERNAL_IP>*\ **; done;**
 
-   <EXTERNAL_IP> indicates the IP address of the ELB load balancer.
+   *<EXTERNAL_IP>* indicates the IP address of the ELB load balancer.
 
    In the command output, among the 10 access requests, only two responses are from the v2 version. The response ratio of the v1 and v2 versions is the same as the ratio of the number of replicas of the v1 and v2 versions, that is, 4:1. Grayscale release is implemented by controlling the number of replicas of services of different versions.
 
@@ -215,9 +215,9 @@ Step 3: Implement Blue-Green Deployment
 
 #. Run the following command to test the access:
 
-   **for i in {1..10}; do curl** <EXTERNAL_IP>\ **; done;**
+   **for i in {1..10}; do curl** *<EXTERNAL_IP>*\ **; done;**
 
-   <EXTERNAL_IP> indicates the IP address of the ELB load balancer.
+   *<EXTERNAL_IP>* indicates the IP address of the ELB load balancer.
 
    The command output is as follows (all responses are from the v1 version):
 
@@ -240,9 +240,9 @@ Step 3: Implement Blue-Green Deployment
 
 #. Run the following command to test the access again:
 
-   **for i in {1..10}; do curl** <EXTERNAL_IP>\ **; done;**
+   **for i in {1..10}; do curl** *<EXTERNAL_IP>*\ **; done;**
 
-   <EXTERNAL_IP> indicates the IP address of the ELB load balancer.
+   *<EXTERNAL_IP>* indicates the IP address of the ELB load balancer.
 
    The returned results show that are all responses are from the v2 version. The blue-green deployment is successfully implemented.
 
@@ -259,6 +259,6 @@ Step 3: Implement Blue-Green Deployment
       Nginx-v2
       Nginx-v2
 
-.. |image1| image:: /_static/images/en-us_image_0000001169475948.png
-.. |image2| image:: /_static/images/en-us_image_0000001168997466.png
-.. |image3| image:: /_static/images/en-us_image_0000001214635805.png
+.. |image1| image:: /_static/images/en-us_image_0000001653584900.png
+.. |image2| image:: /_static/images/en-us_image_0000001653425596.png
+.. |image3| image:: /_static/images/en-us_image_0000001701704381.png

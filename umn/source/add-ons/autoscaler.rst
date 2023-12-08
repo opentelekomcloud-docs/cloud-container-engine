@@ -12,7 +12,7 @@ Autoscaler is an important Kubernetes controller. It supports microservice scali
 
 When the CPU or memory usage of a microservice is too high, horizontal pod autoscaling is triggered to add pods to reduce the load. These pods can be automatically reduced when the load is low, allowing the microservice to run as efficiently as possible.
 
-CCE simplifies the creation, upgrade, and manual scaling of Kubernetes clusters, in which traffic loads change over time. To balance resource usage and workload performance of nodes, Kubernetes introduces the autoscaler add-on to automatically resize a cluster based on the resource usage required for workloads deployed in the cluster. For details, see :ref:`Creating a Node Scaling Policy <cce_10_0209>`.
+CCE simplifies the creation, upgrade, and manual scaling of Kubernetes clusters, in which traffic loads change over time. To balance resource usage and workload performance of nodes, Kubernetes introduces the autoscaler add-on to automatically adjust the number of nodes in a cluster based on the resource usage required for workloads deployed in the cluster. For details, see :ref:`Creating a Node Scaling Policy <cce_10_0209>`.
 
 Open source community: https://github.com/kubernetes/autoscaler
 
@@ -30,7 +30,7 @@ autoscaler controls auto scale-out and scale-in.
       Auto scale-out will be performed when:
 
       -  Node resources are insufficient.
-      -  No node affinity policy is set in the pod scheduling configuration. That is, if a node has been configured as an affinity node for pods, no node will not be automatically added when pods cannot be scheduled. For details about how to configure the node affinity policy, see :ref:`Scheduling Policy (Affinity/Anti-affinity) <cce_10_0232>`.
+      -  No node affinity policy is set in the pod scheduling configuration. If a node has been configured as an affinity node for pods, no node will not be automatically added when pods cannot be scheduled. For details about how to configure the node affinity policy, see :ref:`Scheduling Policy (Affinity/Anti-affinity) <cce_10_0232>`.
 
    -  When the cluster meets the node scaling policy, cluster scale-out is also triggered. For details, see :ref:`Creating a Node Scaling Policy <cce_10_0209>`.
 
@@ -42,26 +42,33 @@ autoscaler controls auto scale-out and scale-in.
 
    When a cluster node is idle for a period of time (10 minutes by default), cluster scale-in is triggered, and the node is automatically deleted. However, a node cannot be deleted from a cluster if the following pods exist:
 
-   -  Pods that do not meet specific requirements set in PodDisruptionBudget
+   -  Pods that do not meet specific requirements set in Pod Disruption Budgets (`PodDisruptionBudget <https://kubernetes.io/docs/tasks/run-application/configure-pdb/>`__)
    -  Pods that cannot be scheduled to other nodes due to constraints such as affinity and anti-affinity policies
    -  Pods that have the **cluster-autoscaler.kubernetes.io/safe-to-evict: 'false'** annotation
-   -  Pods (except those created by kube-system DaemonSet) that exist in the kube-system namespace on the node
+   -  Pods (except those created by DaemonSets in the kube-system namespace) that exist in the kube-system namespace on the node
    -  Pods that are not created by the controller (Deployment/ReplicaSet/job/StatefulSet)
 
-Notes and Constraints
----------------------
+   .. note::
 
--  Only clusters of v1.9.10-r2 and later support autoscaler.
+      When a node meets the scale-in conditions, autoscaler adds the **DeletionCandidateOfClusterAutoscaler** taint to the node in advance to prevent pods from being scheduled to the node. After the autoscaler add-on is uninstalled, if the taint still exists on the node, manually delete it.
+
+Constraints
+-----------
+
 -  Ensure that there are sufficient resources for installing the add-on.
 -  The default node pool does not support auto scaling. For details, see :ref:`Description of DefaultPool <cce_10_0081__section16928123042115>`.
+-  When autoscaler is used, some taints or annotations may affect auto scaling. Therefore, do not use the following taints or annotations in clusters:
+
+   -  **ignore-taint.cluster-autoscaler.kubernetes.io**: The taint works on nodes. Kubernetes-native autoscaler supports protection against abnormal scale outs and periodically evaluates the proportion of available nodes in the cluster. When the proportion of non-ready nodes exceeds 45%, protection will be triggered. In this case, all nodes with the **ignore-taint.cluster-autoscaler.kubernetes.io** taint in the cluster are filtered out from the autoscaler template and recorded as non-ready nodes, which affects cluster scaling.
+   -  **cluster-autoscaler.kubernetes.io/enable-ds-eviction**: The annotation works on pods, which determines whether DaemonSet pods can be evicted by autoscaler. For details, see `Well-Known Labels, Annotations and Taints <https://kubernetes.io/docs/reference/labels-annotations-taints/#enable-ds-eviction>`__.
 
 Installing the Add-on
 ---------------------
 
-#. Log in to the CCE console, click the cluster name, and access the cluster console. Choose **Add-ons** in the navigation pane, locate **autoscaler** on the right, and click **Install**.
-#. Configure add-on installation parameters.
+#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane, locate **autoscaler** on the right, and click **Install**.
+#. On the **Install Add-on** page, configure the specifications.
 
-   .. table:: **Table 1** Specifications configuration
+   .. table:: **Table 1** Add-on configuration
 
       +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                            |
@@ -74,14 +81,24 @@ Installing the Add-on
       |                                   |                                                                                                                                                                                                                                                                                                                                                        |
       |                                   | -  **Single**: The add-on is deployed with only one pod.                                                                                                                                                                                                                                                                                               |
       |                                   | -  **HA50**: The add-on is deployed with two pods, serving a cluster with 50 nodes and ensuring high availability.                                                                                                                                                                                                                                     |
-      |                                   | -  **HA200**: The add-on is deployed with two pods, serving a cluster with 50 nodes and ensuring high availability. Each pod uses more resources than those of the **HA50** specification.                                                                                                                                                             |
+      |                                   | -  **HA200**: The add-on is deployed with two pods, serving a cluster with 200 nodes and ensuring high availability. Each pod uses more resources than those of the **HA50** specification.                                                                                                                                                            |
       |                                   | -  **Custom**: You can customize the number of pods and specifications as required.                                                                                                                                                                                                                                                                    |
       +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Multi AZ                          | -  **Preferred**: Deployment pods of the add-on are preferentially scheduled to nodes in different AZs. If the nodes in the cluster do not meet the requirements of multiple AZs, the pods are scheduled to a single AZ.                                                                                                                               |
-      |                                   | -  **Required**: Deployment pods of the add-on are forcibly scheduled to nodes in different AZs. If the nodes in the cluster do not meet the requirements of multiple AZs, not all pods can run.                                                                                                                                                       |
+      | Pods                              | Number of pods that will be created to match the selected add-on specifications.                                                                                                                                                                                                                                                                       |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                        |
+      |                                   | If you select **Custom**, you can adjust the number of pods as required.                                                                                                                                                                                                                                                                               |
+      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Multi-AZ                          | -  **Preferred**: Deployment pods of the add-on will be preferentially scheduled to nodes in different AZs. If all the nodes in the cluster are deployed in the same AZ, the pods will be scheduled to that AZ.                                                                                                                                        |
+      |                                   | -  **Required**: Deployment pods of the add-on will be forcibly scheduled to nodes in different AZs. If there are fewer AZs than pods, the extra pods will fail to run.                                                                                                                                                                                |
+      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Containers                        | CPU and memory quotas of the container allowed for the selected add-on specifications.                                                                                                                                                                                                                                                                 |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                        |
+      |                                   | If you select **Custom**, you can adjust the container specifications as required.                                                                                                                                                                                                                                                                     |
       +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-   .. table:: **Table 2** Parameter configuration
+#. Configure the add-on parameters.
+
+   .. table:: **Table 2** Add-on parameters
 
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                                            |
@@ -106,11 +123,11 @@ Installing the Add-on
       |                                   |                                                                                                                                                                                                                                                                                                                                                                        |
       |                                   |       .. note::                                                                                                                                                                                                                                                                                                                                                        |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                        |
-      |                                   |          If both auto scale-out and scale-in exist in a cluster, you are advised to set **How long after a scale-out that a scale-in evaluation resumes** to 0 minutes. This can prevent the node scale-in from being blocked due to continuous scale-out of some node pools or retries upon a scale-out failure, resulting in unexpected waste of node resources.     |
+      |                                   |          If both auto scale-out and scale-in exist in a cluster, set **How long after a scale-out that a scale-in evaluation resumes** to 0 minutes. This can prevent the node scale-in from being blocked due to continuous scale-out of some node pools or retries upon a scale-out failure, resulting in unexpected waste of node resources.                        |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                        |
       |                                   |       How long after the node deletion that a scale-in evaluation resumes. Default value: 10 minutes.                                                                                                                                                                                                                                                                  |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                        |
-      |                                   |       How long after a scale-in failure that a scale-in evaluation resumes. Default value: 3 minutes. For details about the impact and relationship between the scale-in cooling intervals configured in the node pool and autoscaler, see :ref:`Description of the Scale-In Cool-Down Period <cce_10_0154__section59676731017>`.                                      |
+      |                                   |       How long after a scale-in failure that a scale-in evaluation resumes. Default value: 3 minutes. For details about the impact and relationship between the scale-in cooling intervals configured in the node pool and autoscaler, see :ref:`Scale-In Cool-Down Period <cce_10_0154__section59676731017>`.                                                         |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                        |
       |                                   |    -  **Max. Nodes for Batch Deletion**: Maximum number of empty nodes that can be deleted at the same time. Default value: 10.                                                                                                                                                                                                                                        |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                        |
@@ -129,12 +146,23 @@ Installing the Add-on
       | Total Memory (GB)                 | Maximum sum of memory of all nodes in a cluster, within which cluster scale-out is performed.                                                                                                                                                                                                                                                                          |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-#. When the configuration is complete, click **Install**.
+#. After the configuration is complete, click **Install**.
+
+Components
+----------
+
+.. table:: **Table 3** autoscaler
+
+   =================== ==================================== =============
+   Container Component Description                          Resource Type
+   =================== ==================================== =============
+   autoscaler          Auto scaling for Kubernetes clusters Deployment
+   =================== ==================================== =============
 
 .. _cce_10_0154__section59676731017:
 
-Description of the Scale-In Cool-Down Period
---------------------------------------------
+Scale-In Cool-Down Period
+-------------------------
 
 Scale-in cooling intervals can be configured in the node pool settings and the autoscaler add-on settings.
 

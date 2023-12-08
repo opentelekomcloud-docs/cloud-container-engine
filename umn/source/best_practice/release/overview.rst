@@ -5,13 +5,13 @@
 Overview
 ========
 
-Challenges
+Background
 ----------
 
 When switching between old and new services, you may be challenged in ensuring the system service continuity. If a new service version is directly released to all users at a time, it can be risky because once an online accident or bug occurs, the impact on users is great. It could take a long time to fix the issue. Sometimes, the version has to be rolled back, which severely affects user experience.
 
-Solutions
----------
+Solution
+--------
 
 Several release policies are developed for service upgrade: grayscale release, blue-green deployment, A/B testing, rolling upgrade, and batch suspension of release. Traffic loss or service unavailability caused by releases can be avoided as much as possible.
 
@@ -31,6 +31,6 @@ This document describes the principles and practices of grayscale release and bl
 
    |image3|
 
-.. |image1| image:: /_static/images/en-us_image_0000001214475863.gif
-.. |image2| image:: /_static/images/en-us_image_0000001214717329.gif
-.. |image3| image:: /_static/images/en-us_image_0000001169315996.gif
+.. |image1| image:: /_static/images/en-us_image_0000001701704085.gif
+.. |image2| image:: /_static/images/en-us_image_0000001653584612.gif
+.. |image3| image:: /_static/images/en-us_image_0000001653425300.gif

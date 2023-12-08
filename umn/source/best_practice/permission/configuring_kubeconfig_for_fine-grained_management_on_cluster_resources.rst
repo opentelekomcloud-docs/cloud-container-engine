@@ -5,8 +5,8 @@
 Configuring kubeconfig for Fine-Grained Management on Cluster Resources
 =======================================================================
 
-Scenario
---------
+Application Scenarios
+---------------------
 
 By default, the kubeconfig file provided by CCE for users has permissions bound to the **cluster-admin** role, which are equivalent to the permissions of user **root**. It is difficult to implement refined management on users with such permissions.
 
@@ -15,8 +15,8 @@ Purpose
 
 Cluster resources are managed in a refined manner so that specific users have only certain permissions (such as adding, querying, and modifying resources).
 
-Note
-----
+Precautions
+-----------
 
 Ensure that kubectl is available on your host. If not, download it from `here <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/README.md>`__ (corresponding to the cluster version or the latest version).
 
@@ -158,7 +158,7 @@ Configuration Method
 
 #. Configure the cluster authentication information.
 
-   a. Obtain the cluster token. (If the token is obtained in GET mode, you need to run **based64 -d** to decode the token.)
+   a. Obtain the cluster token. (If the token is obtained in GET mode, run **based64 -d** to decode the token.)
 
    .. code-block::
 
@@ -184,7 +184,7 @@ Configuration Method
 
 #. .. _cce_bestpractice_00221__en-us_topic_0235296162_li1088912408273:
 
-   Set the context. For details about how to use the context, see :ref:`Permissions Verification <cce_bestpractice_00221__en-us_topic_0235296162_section14884146153319>`.
+   Set the context. For details about how to use the context, see :ref:`Verification <cce_bestpractice_00221__en-us_topic_0235296162_section14884146153319>`.
 
    .. code-block::
 
@@ -198,8 +198,8 @@ Configuration Method
 
 .. _cce_bestpractice_00221__en-us_topic_0235296162_section14884146153319:
 
-Permissions Verification
-------------------------
+Verification
+------------
 
 #. Pods in the **test** namespace cannot access pods in other namespaces.
 
@@ -218,13 +218,13 @@ Further Readings
 
 For more information about users and identity authentication in Kubernetes, see `Authenticating <https://kubernetes.io/docs/reference/access-authn-authz/authentication/>`__.
 
-.. |image1| image:: /_static/images/en-us_image_0271457115.png
-.. |image2| image:: /_static/images/en-us_image_0271467350.png
-.. |image3| image:: /_static/images/en-us_image_0271467469.png
-.. |image4| image:: /_static/images/en-us_image_0271463079.png
-.. |image5| image:: /_static/images/en-us_image_0271466158.png
-.. |image6| image:: /_static/images/en-us_image_0271466198.png
-.. |image7| image:: /_static/images/en-us_image_0271466336.png
-.. |image8| image:: /_static/images/en-us_image_0271466320.png
-.. |image9| image:: /_static/images/en-us_image_0271466402.png
-.. |image10| image:: /_static/images/en-us_image_0271466430.png
+.. |image1| image:: /_static/images/en-us_image_0000001653425348.png
+.. |image2| image:: /_static/images/en-us_image_0000001701784889.png
+.. |image3| image:: /_static/images/en-us_image_0000001701784881.png
+.. |image4| image:: /_static/images/en-us_image_0000001653425356.png
+.. |image5| image:: /_static/images/en-us_image_0000001653584656.png
+.. |image6| image:: /_static/images/en-us_image_0000001653425344.png
+.. |image7| image:: /_static/images/en-us_image_0000001653425352.png
+.. |image8| image:: /_static/images/en-us_image_0000001701704133.png
+.. |image9| image:: /_static/images/en-us_image_0000001701784885.png
+.. |image10| image:: /_static/images/en-us_image_0000001701784877.png

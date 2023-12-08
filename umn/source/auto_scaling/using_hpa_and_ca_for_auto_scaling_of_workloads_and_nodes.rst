@@ -5,12 +5,12 @@
 Using HPA and CA for Auto Scaling of Workloads and Nodes
 ========================================================
 
-Scenario
---------
+Application Scenarios
+---------------------
 
 The best way to handle surging traffic is to automatically adjust the number of machines based on the traffic volume or resource usage, which is called scaling.
 
-In CCE, the resources that can be used by containers are fixed during application deployment. Therefore, in auto scaling, pods are scaled first. The node resource usage increases only after the number of pods increases. Then, nodes can be scaled based on the node resource usage. How to configure auto scaling in CCE?
+When pods or containers are used for deploying applications, the upper limit of available resources is typically required to set for pods or containers to prevent unlimited usage of node resources during peak hours. However, after the upper limit is reached, an application error may occur. To resolve this issue, scale in the number of pods to share workloads. If the node resource usage increases to a certain extent that newly added pods cannot be scheduled, scale in the number of nodes based on the node resource usage.
 
 Solution
 --------
@@ -19,11 +19,11 @@ Two major auto scaling policies are HPA (Horizontal Pod Autoscaling) and CA (Clu
 
 HPA and CA work with each other. HPA requires sufficient cluster resources for successful scaling. When the cluster resources are insufficient, CA is needed to add nodes. If HPA reduces workloads, the cluster will have a large number of idle resources. In this case, CA needs to release nodes to avoid resource waste.
 
-As shown in :ref:`Figure 1 <cce_10_0300__cce_bestpractice_00282_fig6540132372015>`, HPA performs scale-out based on the monitoring metrics. When cluster resources are insufficient, newly created pods are in Pending state. CA then checks these pending pods and selects the most appropriate node pool based on the configured scaling policy to scale out the node pool.
+As shown in :ref:`Figure 1 <cce_10_0300__en-us_topic_0000001148755333_fig6540132372015>`, HPA performs scale-out based on the monitoring metrics. When cluster resources are insufficient, newly created pods are in Pending state. CA then checks these pending pods and selects the most appropriate node pool based on the configured scaling policy to scale out the node pool.
 
-.. _cce_10_0300__cce_bestpractice_00282_fig6540132372015:
+.. _cce_10_0300__en-us_topic_0000001148755333_fig6540132372015:
 
-.. figure:: /_static/images/en-us_image_0000001518222708.png
+.. figure:: /_static/images/en-us_image_0000001695737421.png
    :alt: **Figure 1** HPA and CA working flows
 
    **Figure 1** HPA and CA working flows
@@ -35,7 +35,7 @@ This section uses an example to describe the auto scaling process using HPA and 
 Preparations
 ------------
 
-#. Create a cluster with one node. The node should have 2 cores of CPU and 4 GB of memory, or a higher specification, as well as an EIP to allow external access. If no EIP is bound to the node during node creation, you can manually bind one on the ECS console after creating the node.
+#. Create a cluster with one node. The node should have 2 cores of CPU and 4 GiB of memory, or a higher specification, as well as an EIP to allow external access. If no EIP is bound to the node during node creation, you can manually bind one on the ECS console after creating the node.
 #. Install add-ons for the cluster.
 
    -  autoscaler: node scaling add-on
@@ -81,26 +81,26 @@ Preparations
 
          docker build -t hpa-example:latest .
 
-   d. .. _cce_10_0300__cce_bestpractice_00282_li108181514125:
+   d. .. _cce_10_0300__en-us_topic_0000001148755333_li108181514125:
 
       (Optional) Log in to the SWR console, choose **Organization Management** in the navigation pane, and click **Create Organization** in the upper right corner to create an organization.
 
       Skip this step if you already have an organization.
 
-   e. .. _cce_10_0300__cce_bestpractice_00282_li187221141362:
+   e. .. _cce_10_0300__en-us_topic_0000001148755333_li187221141362:
 
       In the navigation pane, choose **My Images** and then click **Upload Through Client**. On the page displayed, click **Generate a temporary login command** and click |image1| to copy the command.
 
    f. Run the login command copied in the previous step on the cluster node. If the login is successful, the message "Login Succeeded" is displayed.
 
-   g. Tag the hpa-example image.
+   g. Add a tag for the **hpa-example** image.
 
-      **docker tag** **[Image name 1:Tag 1]** **[Image repository address]/[Organization name]/[Image name 2:Tag 2]**
+      **docker tag** *{Image name 1*:*Tag 1}*/*{Image repository address}*/*{Organization name}*/*{Image name 2*:*Tag 2}*
 
-      -  **[Image name 1:Tag 1]**: name and tag of the local image to be uploaded.
-      -  **[Image repository address]**: The domain name at the end of the login command in :ref:`5 <cce_10_0300__cce_bestpractice_00282_li187221141362>` is the image repository address, which can be obtained on the SWR console.
-      -  **[Organization name]**: name of the organization created in :ref:`4 <cce_10_0300__cce_bestpractice_00282_li108181514125>`.
-      -  **[Image name 2:Tag 2]**: desired image name and tag to be displayed on the SWR console.
+      -  *{Image name 1:Tag 1}*: name and tag of the local image to be uploaded.
+      -  *{Image repository address}*: the domain name at the end of the login command in :ref:`login command <cce_10_0300__en-us_topic_0000001148755333_li187221141362>`. It can be obtained on the SWR console.
+      -  *{Organization name}*: name of the :ref:`created organization <cce_10_0300__en-us_topic_0000001148755333_li108181514125>`.
+      -  *{Image name 2:Tag 2}*: desired image name and tag to be displayed on the SWR console.
 
       Example:
 
@@ -174,7 +174,7 @@ Use the hpa-example image to create a Deployment with one replica. The image pat
        spec:
          containers:
          - name: container-1
-           image: 'hpa-example:latest '  # Replace it with the address of the image you uploaded to SWR.
+           image: 'hpa-example:latest' # Replace it with the address of the image you uploaded to SWR.
            resources:
              limits:                  # The value of limits must be the same as that of requests to prevent flapping during scaling.
                cpu: 500m
@@ -231,7 +231,9 @@ There are two other annotations. One annotation defines the CPU thresholds, indi
        - type: Resource
          resource:
            name: cpu
-           targetAverageUtilization: 50
+           target:
+             type: Utilization
+             averageUtilization: 50
 
 Set the parameters as follows if you are using the console.
 
@@ -263,7 +265,7 @@ Observing the Auto Scaling Process
 
    .. note::
 
-      If no EIP is displayed, the cluster node has not been assigned any EIP. You need to create one, bind it to the node, and synchronize node data. .
+      If no EIP is displayed, the cluster node has not been assigned any EIP. Allocate one, bind it to the node, and synchronize node data. .
 
    Observe the scaling process of the workload.
 
@@ -379,7 +381,7 @@ Summary
 
 Using HPA and CA can easily implement auto scaling in most scenarios. In addition, the scaling process of nodes and pods can be easily observed.
 
-.. |image1| image:: /_static/images/en-us_image_0000001518222700.png
-.. |image2| image:: /_static/images/en-us_image_0000001568902661.png
-.. |image3| image:: /_static/images/en-us_image_0000001569182741.png
-.. |image4| image:: /_static/images/en-us_image_0000001569023029.png
+.. |image1| image:: /_static/images/en-us_image_0000001647577020.png
+.. |image2| image:: /_static/images/en-us_image_0000001647577036.png
+.. |image3| image:: /_static/images/en-us_image_0000001647417772.png
+.. |image4| image:: /_static/images/en-us_image_0000001695737425.png

@@ -17,28 +17,28 @@ Prerequisites
 
 .. table:: **Table 1** Checklist before migration
 
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Category                          | Description                                                                                                                                                                                                                                |
-   +===================================+============================================================================================================================================================================================================================================+
-   | Cluster                           | NodeIP-related: Check whether node IP addresses (including EIPs) of the cluster before the migration have been used in other configurations or whitelists.                                                                                 |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Workloads                         | Record the number of workloads for post-migration check.                                                                                                                                                                                   |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Storage                           | #. Check whether the storage resources in use are provisioned by the cloud or by your organization.                                                                                                                                        |
-   |                                   | #. Change the automatically created storage to the existing storage in the new cluster.                                                                                                                                                    |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Network                           | #. Pay special attention to the ELB and ingress.                                                                                                                                                                                           |
-   |                                   | #. Clusters of an earlier version support only the classic load balancer. To migrate services to a new cluster, you need to change load balancer type to shared load balancer. Then, the corresponding ELB service will be re-established. |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | O&M                               | Private configuration: Check whether kernel parameters or system data have been configured on nodes in the cluster.                                                                                                                        |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Category                          | Description                                                                                                                                                                                                                    |
+   +===================================+================================================================================================================================================================================================================================+
+   | Cluster                           | NodeIP-related: Check whether node IP addresses (including EIPs) of the cluster before the migration have been used in other configurations or whitelists.                                                                     |
+   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Workloads                         | Record the number of workloads for post-migration check.                                                                                                                                                                       |
+   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Storage                           | #. Check whether the storage resources in use are provisioned by the cloud or by your organization.                                                                                                                            |
+   |                                   | #. Change the automatically created storage to the existing storage in the new cluster.                                                                                                                                        |
+   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Network                           | #. Pay special attention to the ELB and ingress.                                                                                                                                                                               |
+   |                                   | #. Clusters of an earlier version support only the classic load balancer. To migrate services to a new cluster, change load balancer type to shared load balancer. Then, the corresponding ELB service will be re-established. |
+   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | O&M                               | Private configuration: Check whether kernel parameters or system data have been configured on nodes in the cluster.                                                                                                            |
+   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Procedure
 ---------
 
 #. **Create a CCE cluster.**
 
-   Create a cluster with the same specifications and configurations as the cluster of the earlier version. For details, see :ref:`Creating a CCE Cluster <cce_10_0028>`.
+   Create a cluster with the same specifications and configurations as the cluster of the earlier version. For details, see :ref:`Creating a Cluster <cce_10_0028>`.
 
 #. **Add a node.**
 
@@ -46,19 +46,23 @@ Procedure
 
 #. **Create a storage volume in the new cluster.**
 
-   Use an existing storage volume to create a PVC in the new cluster. The PVC name remains unchanged. For details, see :ref:`PersistentVolumeClaims (PVCs) <cce_10_0378>`.
+   Use an existing storage volume to create a PVC in the new cluster. The PVC name remains unchanged. For details, see :ref:`Using an Existing OBS Bucket Through a Static PV <cce_10_0379>` or :ref:`Using an Existing SFS Turbo File System Through a Static PV <cce_10_0625>`.
 
    .. note::
 
-      Storage switching supports only OBS buckets, SFS file systems, and shared EVS disks. If a non-shared EVS disk is used, you need to suspend the workloads in the old cluster to switch the storage resources. As a result, services will be interrupted.
+      Storage switching supports only OBS buckets and SFS Turbo file systems. If non-shared storage is used, suspend the workloads in the old cluster to switch the storage resources. As a result, services will be unavailable.
 
 #. **Create a workload in the new cluster.**
 
-   The workload name and specifications remain unchanged. For details about how to create a workload, see :ref:`Creating a Deployment <cce_10_0047>` or :ref:`Creating a StatefulSet <cce_10_0048>`. For details about how to attach a storage volume to the workload, see :ref:`Creating a Deployment Mounted with an EVS Volume <cce_10_0257>`.
+   The workload name and specifications remain unchanged. For details about how to create a workload, see :ref:`Creating a Deployment <cce_10_0047>` or :ref:`Creating a StatefulSet <cce_10_0048>`.
+
+#. **Mount the storage again.**
+
+   Mount the existing storage in the workload again. For details, see :ref:`Using an Existing OBS Bucket Through a Static PV <cce_10_0379>` or :ref:`Using an Existing SFS Turbo File System Through a Static PV <cce_10_0625>`.
 
 #. **Create a Service in the new cluster.**
 
-   The Service name and specifications remain unchanged. For details about how to create a Service, see :ref:`Services <cce_10_0247>`.
+   The Service name and specifications remain unchanged. For details about how to create a Service, see :ref:`Service <cce_10_0247>`.
 
 #. **Commission services.**
 

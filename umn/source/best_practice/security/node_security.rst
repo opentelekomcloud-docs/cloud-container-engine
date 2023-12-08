@@ -13,7 +13,7 @@ Preventing Nodes from Being Exposed to Public Networks
 
 You may have configured the **kubeconfig.json** file on a node in your cluster. kubectl can use the certificate and private key in this file to control the entire cluster. You are advised to delete unnecessary files from the **/root/.kube** directory on the node to prevent malicious use.
 
-rm -rf /root/.kube
+**rm -rf /root/.kube**
 
 Hardening VPC Security Group Rules
 ----------------------------------
@@ -42,9 +42,7 @@ For details about how to restore the metadata, see the "Notes" section in `Obtai
 
 #. Obtain the network model and container CIDR of the cluster.
 
-   On the **Clusters** page of the CCE console, view the network model and container CIDR of the cluster.
-
-   |image1|
+   On the **Cluster Information** page, check the network model and container CIDR block of the cluster in the **Networking Configuration** area.
 
 #. Prevent the container from obtaining host metadata.
 
@@ -85,5 +83,3 @@ For details about how to restore the metadata, see the "Notes" section in `Obtai
 
             curl 169.254.169.254/openstack/latest/meta_data.json
             curl 169.254.169.254/openstack/latest/user_data
-
-.. |image1| image:: /_static/images/en-us_image_0000001226818003.png

@@ -5,12 +5,12 @@
 Solution Overview
 =================
 
-Scenario
---------
+Application Scenarios
+---------------------
 
 Containers are growing in popularity and Kubernetes simplifies containerized deployment. Many companies choose to build their own Kubernetes clusters. However, the O&M workload of on-premises clusters is heavy, and O&M personnel need to configure the management systems and monitoring solutions by themselves. This increases the labor costs while decreasing the efficiency.
 
-In terms of performance, an on-premises cluster has poor scalability due to its fixed specifications. Auto scaling cannot be implemented in case of traffic surges, which may easily result in the insufficient or waste of cluster resources. In addition, an on-premises cluster is usually deployed on a single node without considering disaster recovery risks. Once a fault occurs, the entire cluster cannot be used, which may cause serious production incident.
+In terms of performance, an on-premises cluster has poor scalability due to its fixed specifications. Auto scaling cannot be implemented in case of traffic surges, which may easily result in the insufficient or waste of cluster resources. In addition, disaster recovery risks are not considered for deploying an on-premises cluster, leading to poor reliability. Once a fault occurs, the entire cluster may fail, resulting in serious production incidents.
 
 Now you can address the preceding challenges by using CCE, a service that allows easy cluster management and flexible scaling, integrated with application service mesh and Helm charts to simplify cluster O&M and reduce operations costs. CCE is easy to use and delivers high performance, security, reliability, openness, and compatibility. This section describes the solution and procedure for migrating on-premises clusters to CCE.
 
@@ -25,7 +25,7 @@ This section describes a cluster migration solution, which applies to the follow
 -  On-premises clusters built using multiple ECSs
 -  Cluster services provided by other cloud service providers
 
-Before the migration, you need to analyze all resources in the source clusters and then determine the migration solution. Resources that can be migrated include resources inside and outside the clusters, as listed in the following table.
+Before the migration, analyze all resources in the source clusters and then determine the migration solution. Resources that can be migrated include resources inside and outside the clusters, as listed in the following table.
 
 .. _cce_bestpractice_0307__table1126932541820:
 
@@ -57,7 +57,7 @@ Before the migration, you need to analyze all resources in the source clusters a
 
 .. _cce_bestpractice_0307__fig203631140201419:
 
-.. figure:: /_static/images/en-us_image_0000001172392670.png
+.. figure:: /_static/images/en-us_image_0000001701785133.png
    :alt: **Figure 1** Migration solution diagram
 
    **Figure 1** Migration solution diagram
@@ -75,7 +75,7 @@ The cluster migration process is as follows:
 
 #. **Migrate resources outside a cluster.**
 
-   If you need to migrate resources outside the cluster, see :ref:`Migrating Resources Outside a Cluster <cce_bestpractice_0309>`.
+   To migrate resources outside the cluster, see :ref:`Migrating Resources Outside a Cluster <cce_bestpractice_0309>`.
 
 #. **Install the migration tool.**
 
@@ -95,7 +95,7 @@ The cluster migration process is as follows:
 
 #. **Update resources accordingly.**
 
-   After the migration, cluster resources may fail to be deployed. You need to update the faulty resources. The possible adaptation problems are as follows:
+   After the migration, cluster resources may fail to be deployed. Update the faulty resources. The possible adaptation problems are as follows:
 
    -  :ref:`Updating Images <cce_bestpractice_0312__section7125750134820>`
    -  :ref:`Updating Services <cce_bestpractice_0312__section41282507482>`
@@ -106,4 +106,4 @@ The cluster migration process is as follows:
 
    After cluster resources are properly deployed, verify application functions after the migration and switch service traffic to the target cluster. After confirming that all services are running properly, bring the source cluster offline.
 
-.. |image1| image:: /_static/images/en-us_image_0000001218074121.png
+.. |image1| image:: /_static/images/en-us_image_0000001701785137.png

@@ -40,7 +40,7 @@ Procedure
    .. table:: **Table 1** Preparing the environment
 
       +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | No.                   | Item                  | Procedure                                                                                                                                                                                      |
+      | No.                   | Category              | Procedure                                                                                                                                                                                      |
       +=======================+=======================+================================================================================================================================================================================================+
       | 1                     | Creating a VPC        | Create a VPC before you create a cluster. A VPC provides an isolated, configurable, and manageable virtual network environment for CCE clusters.                                               |
       |                       |                       |                                                                                                                                                                                                |
@@ -57,7 +57,7 @@ Procedure
       |                       |                       |                                                                                                                                                                                                |
       |                       |                       | b. In the service list, choose **Data Encryption Workshop** under **Security & Compliance**.                                                                                                   |
       |                       |                       |                                                                                                                                                                                                |
-      |                       |                       | c. In the navigation pane, choose **Key Pair Service**. On the **Private Key Pairs** tab page, click **Create Key Pair**.                                                                      |
+      |                       |                       | c. In the navigation pane, choose **Key Pair Service**. On the **Private Key Pairs** tab, click **Create Key Pair**.                                                                           |
       |                       |                       |                                                                                                                                                                                                |
       |                       |                       | d. Enter a key pair name, select **I agree to have the private key managed on the cloud** and **I have read and agree to the Key Pair Service Disclaimer**, and click **OK**.                  |
       |                       |                       |                                                                                                                                                                                                |
@@ -78,7 +78,7 @@ Procedure
 
    a. Log in to the CCE console, click the created cluster, choose **Workloads** in the navigation pane, and click **Create Workload** in the upper right corner.
 
-   b. Set the following parameters, and retain the default settings for other parameters:
+   b. Configure the following parameters, and retain the default settings for other parameters:
 
       -  **Workload Name**: Set it to **apptest**.
       -  **Pods**: Set it to **1**.
@@ -141,6 +141,6 @@ After a workload is created, you can access the workload to check whether the de
 
 In the preceding configuration, the NodePort mode is selected to access the workload by using **IP address:Port number**. If the access is successful, the workload is successfully deployed.
 
-You can obtain the access mode from the **Access Mode** tab page on the workload details page.
+You can obtain the access mode from the **Access Mode** tab on the workload details page.
 
-.. |image1| image:: /_static/images/en-us_image_0000001244128658.png
+.. |image1| image:: /_static/images/en-us_image_0000001653584716.png

@@ -18,7 +18,7 @@ Procedure
 ---------
 
 #. Log in to the CCE console.
-#. Click the cluster name and access the cluster console. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right.
-#. Choose **More > Delete** next to a node pool name to delete the node pool.
+#. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right.
+#. Choose **More > Delete** in the **Operation** column of the target node pool.
 #. Read the precautions in the **Delete Node Pool** dialog box.
 #. In the text box, click **Yes** to confirm that you want to continue the deletion.

@@ -14,7 +14,7 @@ CCE uses proprietary, high-performance container networking add-ons to support t
 -  **Tunnel network**: The container network is an overlay tunnel network on top of a VPC network and uses the VXLAN technology. This network model is applicable when there is no high requirements on performance. VXLAN encapsulates Ethernet packets as UDP packets for tunnel transmission. Though at some cost of performance, the tunnel encapsulation enables higher interoperability and compatibility with advanced features (such as network policy-based isolation), meeting the requirements of most applications.
 
 
-   .. figure:: /_static/images/en-us_image_0000001145545261.png
+   .. figure:: /_static/images/en-us_image_0000001701704425.png
       :alt: **Figure 1** Container tunnel network
 
       **Figure 1** Container tunnel network
@@ -22,7 +22,7 @@ CCE uses proprietary, high-performance container networking add-ons to support t
 -  **VPC network**: The container network uses VPC routing to integrate with the underlying network. This network model is applicable to performance-intensive scenarios. The maximum number of nodes allowed in a cluster depends on the route quota in a VPC network. Each node is assigned a CIDR block of a fixed size. VPC networks are free from tunnel encapsulation overhead and outperform container tunnel networks. In addition, as VPC routing includes routes to node IP addresses and container network segment, container pods in the cluster can be directly accessed from outside the cluster.
 
 
-   .. figure:: /_static/images/en-us_image_0261818875.png
+   .. figure:: /_static/images/en-us_image_0000001701785165.png
       :alt: **Figure 2** VPC network
 
       **Figure 2** VPC network
@@ -30,7 +30,7 @@ CCE uses proprietary, high-performance container networking add-ons to support t
 -  **Cloud Native Network 2.0**: The container network deeply integrates the elastic network interface (ENI) capability of VPC, uses the VPC CIDR block to allocate container addresses, and supports passthrough networking to containers through a load balancer.
 
 
-   .. figure:: /_static/images/en-us_image_0000001352539924.png
+   .. figure:: /_static/images/en-us_image_0000001701704433.png
       :alt: **Figure 3** Cloud Native Network 2.0
 
       **Figure 3** Cloud Native Network 2.0
@@ -59,7 +59,7 @@ The following table lists the differences between the network models.
    |                        |                                                                                                                                   |                                                                                                                                                      |                                                                                                        |
    |                        |                                                                                                                                   | Each time a node is added to the cluster, a route is added to the VPC routing table. Therefore, the cluster scale is limited by the VPC route table. |                                                                                                        |
    +------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-   | Scenario               | -  Common container services                                                                                                      | -  Scenarios that have high requirements on network latency and bandwidth                                                                            | -  Scenarios that have high requirements on network latency, bandwidth, and performance                |
+   | Application Scenarios  | -  Common container services                                                                                                      | -  Scenarios that have high requirements on network latency and bandwidth                                                                            | -  Scenarios that have high requirements on network latency, bandwidth, and performance                |
    |                        | -  Scenarios that do not have high requirements on network latency and bandwidth                                                  | -  Containers communicate with VMs using a microservice registration framework, such as Dubbo and CSE.                                               | -  Containers communicate with VMs using a microservice registration framework, such as Dubbo and CSE. |
    +------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 

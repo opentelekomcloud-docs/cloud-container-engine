@@ -12,7 +12,7 @@ Updating Images
 
 The WordPress and MySQL images used in this example can be pulled from SWR. Therefore, the image pull failure (ErrImagePull) will not occur. If the application to be migrated is created from a private image, perform the following steps to update the image:
 
-#. Migrate the image resources to SWR. For details, see `Uploading an Image Through a Container Engine Client <https://docs.otc.t-systems.com/usermanual/swr/swr_01_0011.html>`__.
+#. Migrate the image resources to SWR. For details, see `Uploading an Image Through the Client <https://docs.otc.t-systems.com/usermanual/swr/swr_01_0011.html>`__.
 
 #. Log in to the SWR console and obtain the image path used after the migration.
 
@@ -35,7 +35,7 @@ The WordPress and MySQL images used in this example can be pulled from SWR. Ther
 Updating Services
 -----------------
 
-After the cluster is migrated, the Service of the source cluster may fail to take effect. You can perform the following steps to update the Service. If ingresses are configured in the source cluster, you need to connect the new cluster to ELB again after the migration. For details, see `Using kubectl to Create an ELB Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
+After the cluster is migrated, the Service of the source cluster may fail to take effect. You can perform the following steps to update the Service. If ingresses are configured in the source cluster, connect the new cluster to ELB again after the migration. For details, see `Using kubectl to Create an ELB Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
 
 #. Connect to the cluster using kubectl.
 
@@ -45,7 +45,7 @@ After the cluster is migrated, the Service of the source cluster may fail to tak
 
       kubectl edit svc wordpress
 
-   To update load balancer resources, you need to connect to ELB again. Add the following annotations. For details, see `LoadBalancer <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0014.html>`__.
+   To update load balancer resources, connect to ELB again. Add the annotations by following the procedure described in `LoadBalancer <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0014.html>`__.
 
    .. code-block::
 
@@ -157,7 +157,7 @@ As the storage infrastructures of clusters may be different, storage volumes can
 
    .. note::
 
-      -  SFS Turbo file systems cannot be directly created using StorageClass. You need to go to the SFS Turbo console to create SFS Turbo file systems that belong to the same VPC subnet and have inbound ports (111, 445, 2049, 2051, 2052, and 20048) enabled in the security group.
+      -  SFS Turbo file systems cannot be directly created using StorageClass. Go to the SFS Turbo console to create SFS Turbo file systems that belong to the same VPC subnet and have inbound ports (111, 445, 2049, 2051, 2052, and 20048) enabled in the security group.
       -  CCE does not support EVS disks of the ReadWriteMany type. If resources of this type exist in the source cluster, change the storage type to **ReadWriteOnce**.
 
 #. Restore the cluster application by referring to :ref:`Restoring Applications in the Target Cluster <cce_bestpractice_0311__section482103142819>` and check whether the PVC is successfully created.
@@ -196,7 +196,7 @@ In this example, the database is a local MySQL database and does not need to be 
    Set the environment variables in the **env** field.
 
    -  **WORDPRESS_DB_HOST**: address and port number used for accessing the database, that is, the internal network address and port number obtained in the previous step.
-   -  **WORDPRESS_DB_USERU**: username for accessing the database.
+   -  **WORDPRESS_DB_USER**: username for accessing the database.
    -  **WORDPRESS_DB_PASSWORD**: password for accessing the database.
    -  **WORDPRESS_DB_NAME**: name of the database to be connected.
 

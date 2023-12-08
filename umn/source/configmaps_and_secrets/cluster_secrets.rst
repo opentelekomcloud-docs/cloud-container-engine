@@ -18,7 +18,7 @@ The functions of these secrets are described as follows.
 default-secret
 --------------
 
-The type of **default-secret** is **kubernetes.io/dockerconfigjson**. The data is the credential for logging in to the SWR image repository and is used to pull images from SWR. If you need to pull an image from SWR when creating a workload on CCE, set **imagePullSecrets** to **default-secret**.
+The type of **default-secret** is **kubernetes.io/dockerconfigjson**. The data is the credential for logging in to the SWR image repository and is used to pull images from SWR. To pull an image from SWR when creating a workload on CCE, set **imagePullSecrets** to **default-secret**.
 
 .. code-block::
 
@@ -83,6 +83,6 @@ By default, Kubernetes creates a service account named **default** for each name
    Labels:              <none>
    Annotations:         <none>
    Image pull secrets:  <none>
-   Mountable secrets:   default-token-vssmw
-   Tokens:              default-token-vssmw
+   Mountable secrets:   default-token-xxxxx
+   Tokens:              default-token-xxxxx
    Events:              <none>
