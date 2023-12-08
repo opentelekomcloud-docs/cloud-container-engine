@@ -10,15 +10,15 @@ Scenario
 
 A secret is a type of resource that holds sensitive data, such as authentication and key information. Its content is user-defined. After creating secrets, you can use them as files or environment variables in a containerized workload.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 Secrets cannot be used in `static pods <https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/>`__.
 
 Procedure
 ---------
 
-#. Log in to the CCE console and access the cluster console.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
 #. Choose **ConfigMaps and Secrets** in the navigation pane, click the **Secrets** tab, and click **Create Secret** in the upper right corner.
 
@@ -28,36 +28,36 @@ Procedure
 
    .. table:: **Table 1** Parameters for creating a secret
 
-      +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                   |
-      +===================================+===============================================================================================================================================+
-      | Name                              | Name of the secret you create, which must be unique.                                                                                          |
-      +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-      | Namespace                         | Namespace to which the secret belongs. If you do not specify this parameter, the value **default** is used by default.                        |
-      +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-      | Description                       | Description of a secret.                                                                                                                      |
-      +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-      | Type                              | Type of the secret you create.                                                                                                                |
-      |                                   |                                                                                                                                               |
-      |                                   | -  Opaque: common secret.                                                                                                                     |
-      |                                   | -  kubernetes.io/dockerconfigjson: a secret that stores the authentication information required for pulling images from a private repository. |
-      |                                   | -  **kubernetes.io/tls**: Kubernetes TLS secret, which is used to store the certificate required by layer-7 load balancing Services.          |
-      |                                   | -  **IngressTLS**: TLS secret provided by CCE to store the certificate required by layer-7 load balancing Services.                           |
-      |                                   | -  Other: another type of secret, which is specified manually.                                                                                |
-      +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-      | Secret Data                       | Workload secret data can be used in containers.                                                                                               |
-      |                                   |                                                                                                                                               |
-      |                                   | -  If **Secret Type** is **Opaque**, click |image1|. In the dialog box displayed, enter a key-value pair and select **Auto Base64 Encoding**. |
-      |                                   | -  If the secret type is kubernetes.io/dockerconfigjson, enter the account and password of the private image repository.                      |
-      |                                   | -  If **Secret Type** is **kubernetes.io/tls** or **IngressTLS**, upload the certificate file and private key file.                           |
-      |                                   |                                                                                                                                               |
-      |                                   |    .. note::                                                                                                                                  |
-      |                                   |                                                                                                                                               |
-      |                                   |       -  A certificate is a self-signed or CA-signed credential used for identity authentication.                                             |
-      |                                   |       -  A certificate request is a request for a signature with a private key.                                                               |
-      +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-      | Secret Label                      | Label of the secret. Enter a key-value pair and click **Add**.                                                                                |
-      +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                                                                                                                      |
+      +===================================+==================================================================================================================================================================================================================================================================================================================+
+      | Name                              | Name of the secret you create, which must be unique.                                                                                                                                                                                                                                                             |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Namespace                         | Namespace to which the secret belongs. If you do not specify this parameter, the value **default** is used by default.                                                                                                                                                                                           |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Description                       | Description of a secret.                                                                                                                                                                                                                                                                                         |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Type                              | Type of the secret you create.                                                                                                                                                                                                                                                                                   |
+      |                                   |                                                                                                                                                                                                                                                                                                                  |
+      |                                   | -  Opaque: common secret.                                                                                                                                                                                                                                                                                        |
+      |                                   | -  kubernetes.io/dockerconfigjson: a secret that stores the authentication information required for pulling images from a private repository.                                                                                                                                                                    |
+      |                                   | -  **kubernetes.io/tls**: Kubernetes TLS secret, which is used to store the certificate required by layer-7 load balancing Services. For details about examples of the kubernetes.io/tls secret and its description, see `TLS secrets <https://kubernetes.io/docs/concepts/configuration/secret/#tls-secret>`__. |
+      |                                   | -  **IngressTLS**: TLS secret provided by CCE to store the certificate required by layer-7 load balancing Services.                                                                                                                                                                                              |
+      |                                   | -  Other: another type of secret, which is specified manually.                                                                                                                                                                                                                                                   |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Secret Data                       | Workload secret data can be used in containers.                                                                                                                                                                                                                                                                  |
+      |                                   |                                                                                                                                                                                                                                                                                                                  |
+      |                                   | -  If **Secret Type** is **Opaque**, click |image1|. In the dialog box displayed, enter a key-value pair and select **Auto Base64 Encoding**.                                                                                                                                                                    |
+      |                                   | -  If **Secret Type** is **kubernetes.io/dockerconfigjson**, enter the account and password of the private image repository.                                                                                                                                                                                     |
+      |                                   | -  If **Secret Type** is **kubernetes.io/tls** or **IngressTLS**, upload the certificate file and private key file.                                                                                                                                                                                              |
+      |                                   |                                                                                                                                                                                                                                                                                                                  |
+      |                                   |    .. note::                                                                                                                                                                                                                                                                                                     |
+      |                                   |                                                                                                                                                                                                                                                                                                                  |
+      |                                   |       -  A certificate is a self-signed or CA-signed credential used for identity authentication.                                                                                                                                                                                                                |
+      |                                   |       -  A certificate request is a request for a signature with a private key.                                                                                                                                                                                                                                  |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Secret Label                      | Label of the secret. Enter a key-value pair and click **Add**.                                                                                                                                                                                                                                                   |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. After the configuration is complete, click **OK**.
 
@@ -65,12 +65,12 @@ Procedure
 
 .. _cce_10_0153__section187197531454:
 
-Secret Resource File Configuration
-----------------------------------
+Secret Resource File Configuration Example
+------------------------------------------
 
 This section describes configuration examples of secret resource description files.
 
--  Opaque
+-  Opaque type
 
    The **secret.yaml** file is defined as shown below. The **data** field is filled in as a key-value pair, and the **value** field must be encoded using Base64. For details about the Base64 encoding method, see :ref:`Base64 Encoding <cce_10_0153__section175000605919>`.
 
@@ -85,7 +85,7 @@ This section describes configuration examples of secret resource description fil
         <your_key>: <your_value>  # Enter a key-value pair. The value must be encoded using Base64.
       type: Opaque
 
--  kubernetes.io/dockerconfigjson
+-  kubernetes.io/dockerconfigjson type
 
    The **secret.yaml** file is defined as shown below. The value of **.dockerconfigjson** must be encoded using Base64. For details, see :ref:`Base64 Encoding <cce_10_0153__section175000605919>`.
 
@@ -102,13 +102,13 @@ This section describes configuration examples of secret resource description fil
 
    To obtain the **.dockerconfigjson** content, perform the following steps:
 
-   #. Obtain the login information of the image repository.
+   #. Obtain the following login information of the image repository.
 
       -  Image repository address: The section uses *address* as an example. Replace it with the actual address.
       -  Username: The section uses *username* as an example. Replace it with the actual username.
       -  Password: The section uses *password* as an example. Replace it with the actual password.
 
-   #. Use Base64 to encode the key-value pair **username:password** and fill the encoded content in step :ref:`3 <cce_10_0153__li157901847113720>`.
+   #. Use Base64 to encode the key-value pair *username:password* and fill the encoded content in :ref:`3 <cce_10_0153__li157901847113720>`.
 
       .. code-block::
 
@@ -136,7 +136,7 @@ This section describes configuration examples of secret resource description fil
 
       The encoded content is the **.dockerconfigjson** content.
 
--  kubernetes.io/tls
+-  kubernetes.io/tls type
 
    The value of **tls.crt** and **tls.key** must be encoded using Base64. For details, see :ref:`Base64 Encoding <cce_10_0153__section175000605919>`.
 
@@ -152,7 +152,7 @@ This section describes configuration examples of secret resource description fil
         tls.key: LS0tLS1CRU*****VZLS0tLS0=  # Private key content, which must be encoded using Base64.
       type: kubernetes.io/tls
 
--  IngressTLS
+-  IngressTLS type
 
    The value of **tls.crt** and **tls.key** must be encoded using Base64. For details, see :ref:`Base64 Encoding <cce_10_0153__section175000605919>`.
 
@@ -182,7 +182,7 @@ Creating a Secret Using kubectl
 
    **vi cce-secret.yaml**
 
-   The following YAML file uses the Opaque type as an example. For details about other types, see :ref:`Secret Resource File Configuration <cce_10_0153__section187197531454>`.
+   The following YAML file uses the Opaque type as an example. For details about other types, see :ref:`Secret Resource File Configuration Example <cce_10_0153__section187197531454>`.
 
    .. code-block::
 
@@ -245,4 +245,4 @@ To Base64-encode a string, run the **echo -n content to be encoded \| base64** c
    root@ubuntu:~# echo -n "content to be encoded" | base64
    ******
 
-.. |image1| image:: /_static/images/en-us_image_0000001518222636.png
+.. |image1| image:: /_static/images/en-us_image_0000001695737281.png

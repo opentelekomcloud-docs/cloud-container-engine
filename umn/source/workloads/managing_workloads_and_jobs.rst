@@ -29,7 +29,7 @@ After a workload is created, you can upgrade, monitor, roll back, or delete the 
    +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Enabling/Disabling the Upgrade <cce_10_0007__en-us_topic_0107283638_section12087915401>` | Only Deployments support this operation.                                                                                                                                                       |
    +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Manage Label <cce_10_0007__en-us_topic_0107283638_section5931193015488>`                 | Labels are key-value pairs and can be attached to workloads for affinity and anti-affinity scheduling. Jobs and Cron Jobs do not support this operation.                                       |
+   | :ref:`Manage Label <cce_10_0007__en-us_topic_0107283638_section5931193015488>`                 | Labels are attached to workloads as key-value pairs to manage and select workloads. Jobs and Cron Jobs do not support this operation.                                                          |
    +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Delete <cce_10_0007__en-us_topic_0107283638_section14423721191418>`                      | You can delete a workload or job that is no longer needed. Deleted workloads or jobs cannot be recovered.                                                                                      |
    +------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -56,11 +56,19 @@ Viewing Logs
 
 You can view logs of Deployments, StatefulSets, DaemonSets, and jobs. This section uses a Deployment as an example to describe how to view logs.
 
+.. important::
+
+   Before viewing logs, ensure that the time of the browser is the same as that on the backend server.
+
 #. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
 
 #. Click the **Deployments** tab and click the **View Log** of the target workload.
 
-   On the displayed **View Log** window, you can view logs by time.
+   On the displayed **View Log** window, you can view logs.
+
+   .. note::
+
+      The displayed logs are standard output logs of containers and do not have persistence and advanced O&M capabilities. To use more comprehensive log capabilities, see :ref:`Logs <cce_10_0553>`. If the function of collecting standard output is enabled for the workload (enabled by default), you can go to AOM to view more workload logs. For details, see :ref:`Using ICAgent to Collect Container Logs <cce_10_0018>`.
 
 .. _cce_10_0007__en-us_topic_0107283638_section17604174417381:
 
@@ -79,7 +87,7 @@ Before replacing an image or image version, upload the new image to the SWR serv
    .. note::
 
       -  Workloads cannot be upgraded in batches.
-      -  Before performing an in-place StatefulSet upgrade, you must manually delete old pods. Otherwise, the upgrade status is always displayed as **Upgrading**.
+      -  Before performing an in-place StatefulSet upgrade, you must manually delete old pods. Otherwise, the upgrade status is always displayed as **Processing**.
 
 #. Upgrade the workload based on service requirements. The method for setting parameter is the same as that for creating a workload.
 #. After the update is complete, click **Upgrade Workload**, manually confirm the YAML file, and submit the upgrade.
@@ -93,7 +101,7 @@ You can modify and download the YAML files of Deployments, StatefulSets, DaemonS
 
 #. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and choose **More** > **Edit YAML** in the **Operation** column of the target workload. In the dialog box that is displayed, modify the YAML file.
-#. Click **Edit** and then **OK** to save the changes.
+#. Click **OK**.
 #. (Optional) In the **Edit YAML** window, click **Download** to download the YAML file.
 
 .. _cce_10_0007__en-us_topic_0107283638_section13324541124815:
@@ -144,23 +152,7 @@ Only Deployments support this operation.
 Managing Labels
 ---------------
 
-Labels are key-value pairs and can be attached to workloads. Workload labels are often used for affinity and anti-affinity scheduling. You can add labels to multiple workloads or a specified workload.
-
-You can manage the labels of Deployments, StatefulSets, and DaemonSets based on service requirements. This section uses Deployments as an example to describe how to manage labels.
-
-In the following figure, three labels (release, env, and role) are defined for workload APP 1, APP 2, and APP 3. The values of these labels vary with workload.
-
--  Label of APP 1: [release:alpha;env:development;role:frontend]
--  Label of APP 2: [release:beta;env:testing;role:frontend]
--  Label of APP 3: [release:alpha;env:production;role:backend]
-
-If you set **key** to **role** and **value** to **frontend** when using workload scheduling or another function, APP 1 and APP 2 will be selected.
-
-
-.. figure:: /_static/images/en-us_image_0000001517903028.png
-   :alt: **Figure 1** Label example
-
-   **Figure 1** Label example
+Labels are key-value pairs and can be attached to workloads. You can manage and select workloads by labels. You can add labels to multiple workloads or a specified workload.
 
 #. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and choose **More** > **Manage Label** in the **Operation** column of the target workload.
@@ -192,8 +184,8 @@ You can delete a workload or job that is no longer needed. Deleted workloads or 
 
 .. _cce_10_0007__en-us_topic_0107283638_section1947616516301:
 
-Viewing Events
---------------
+Events
+------
 
 This section uses Deployments as an example to illustrate how to view events of a workload. To view the event of a job or cron jon, click **View Event** in the **Operation** column of the target workload.
 

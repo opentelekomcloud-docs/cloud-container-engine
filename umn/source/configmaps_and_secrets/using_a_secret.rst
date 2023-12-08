@@ -43,7 +43,7 @@ Setting Environment Variables of a Workload
 
 **Using the console**
 
-#. Log in to the CCE console and access the cluster console.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
 #. In the navigation pane, choose **Workloads**. Then, click **Create Workload**.
 
@@ -58,19 +58,19 @@ Setting Environment Variables of a Workload
 
       For example, after you import the value of **username** in secret **mysecret** as the value of workload environment variable **username**, an environment variable named **username** exists in the container.
 
-#. Configure other workload parameters and click **Create Workload**.
+#. Set other workload parameters and click **Create Workload**.
 
-   After the workload runs properly, :ref:`access the container <cce_10_00356>` and run the following command to check whether the secret has been set as an environment variable of the workload:
+   After the workload runs properly, :ref:`log in to the container <cce_10_00356>` and run the following statement to check whether the secret has been set as an environment variable of the workload:
 
    .. code-block::
 
       printenv username
 
-   If the output is the same as that in the secret, the secret has been set as an environment variable of the workload.
+   If the output is the same as the content in the secret, the secret has been set as an environment variable of the workload.
 
 **Using kubectl**
 
-#. According to :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`, configure the **kubectl** command to connect an ECS to the cluster.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a file named **nginx-secret.yaml** and edit it.
 
@@ -78,7 +78,7 @@ Setting Environment Variables of a Workload
 
    Content of the YAML file:
 
-   -  **Added from a secret**: To add all data in a secret to environment variables, use the **envFrom** parameter. The keys in the ConfigMap will become names of environment variables in a workload.
+   -  **Added from a secret**: To add all data in a secret to environment variables, use the **envFrom** parameter. The keys in the secret will become names of environment variables in a workload.
 
       .. code-block::
 
@@ -105,7 +105,7 @@ Setting Environment Variables of a Workload
                imagePullSecrets:
                - name: default-secret
 
-   -  **Added from a secret key**: When creating a workload, you can set a secret to set environment variables and use the **valueFrom** parameter to reference the key-value pair in the secret separately.
+   -  **Added from a secret key**: When creating a workload, you can use a secret to set environment variables and use the **valueFrom** parameter to reference the key-value pair in the secret separately.
 
       .. code-block::
 
@@ -126,13 +126,13 @@ Setting Environment Variables of a Workload
                containers:
                - name: container-1
                  image: nginx:latest
-                 env:                             # Set environment variables in the workload.
+                 env:                             # Set the environment variable in the workload.
                  - name: SECRET_USERNAME           # Name of the environment variable in the workload.
-                   valueFrom:                    # Use envFrom to specify a secret to be referenced by environment variables.
+                   valueFrom:                    # Use valueFrom to specify a secret to be referenced by environment variables.
                      secretKeyRef:
                        name: mysecret       # Name of the referenced secret.
-                       key: username        # Name of the referenced key.
-                 - name: SECRET_PASSWORD            # Add multiple environment variables. Multiple environment variables can be imported at the same time.
+                       key: username        # Key in the referenced secret.
+                 - name: SECRET_PASSWORD            # Add multiple environment variables to import them at the same time.
                    valueFrom:
                      secretKeyRef:
                        name: mysecret
@@ -164,61 +164,59 @@ Setting Environment Variables of a Workload
 
          kubectl exec nginx-secret-*** -- printenv SPECIAL_USERNAME SPECIAL_PASSWORD
 
-      If the output is the same as that in the secret, the secret has been set as an environment variable of the workload.
+      If the output is the same as the content in the secret, the secret has been set as an environment variable of the workload.
 
 .. _cce_10_0016__section472505211214:
 
 Configuring the Data Volume of a Workload
 -----------------------------------------
 
-You can mount a secret as a volume to the specified container path. Contents in a secret are user-defined. Before that, you need to create a secret. For details, see :ref:`Creating a Secret <cce_10_0153>`.
+You can mount a secret as a volume to the specified container path. Contents in a secret are user-defined. Before that, create a secret. For details, see :ref:`Creating a Secret <cce_10_0153>`.
 
 **Using the console**
 
-#. Log in to the CCE console and access the cluster console.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
 #. In the navigation pane on the left, click **Workloads**. In the right pane, click the **Deployments** tab. Click **Create Workload** in the upper right corner.
 
    When creating a workload, click **Data Storage** in the **Container Settings** area. Click **Add Volume** and select **Secret** from the drop-down list.
 
-#. Set the local volume type to **Secret** and set parameters for adding a local volume, as shown in :ref:`Table 1 <cce_10_0016__table861818920109>`.
+#. Configure the parameters.
 
-   .. _cce_10_0016__table861818920109:
+   .. table:: **Table 1** Mounting a Secret volume
 
-   .. table:: **Table 1** Secret
-
-      +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-      +===================================+=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
-      | Secret                            | Select the desired secret name.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-      |                                   | A secret must be created in advance. For details, see :ref:`Creating a Secret <cce_10_0153>`.                                                                                                                                                                                                                                                                                                                                                                                                       |
-      +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Add Container Path                | Configure the following parameters:                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-      |                                   | a. **Container Path**: Enter the path of the container, for example, **/tmp**.                                                                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-      |                                   |    This parameter indicates the container path to which a data volume will be mounted. Do not mount the volume to a system directory such as **/** or **/var/run**; this action may cause container errors. You are advised to mount the container to an empty directory. If the directory is not empty, ensure that there are no files affecting container startup in the directory. Otherwise, such files will be replaced, resulting in failures to start the container and create the workload. |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-      |                                   |    .. important::                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-      |                                   |       NOTICE:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-      |                                   |       When the container is mounted to a high-risk directory, you are advised to use an account with minimum permissions to start the container; otherwise, high-risk files on the host machine may be damaged.                                                                                                                                                                                                                                                                                     |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-      |                                   | b. **subPath**: Enter a subpath, for example, **tmp**.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-      |                                   |    -  A subpath is used to mount a local volume so that the same data volume is used in a single pod.                                                                                                                                                                                                                                                                                                                                                                                               |
-      |                                   |    -  The subpath can be the key and value of a ConfigMap or secret. If the subpath is a key-value pair that does not exist, the data import does not take effect.                                                                                                                                                                                                                                                                                                                                  |
-      |                                   |    -  The data imported by specifying a subpath will not be updated along with the ConfigMap/secret updates.                                                                                                                                                                                                                                                                                                                                                                                        |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-      |                                   | c. Set the permission to **Read-only**. Data volumes in the path are read-only.                                                                                                                                                                                                                                                                                                                                                                                                                     |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-      |                                   | You can click |image2| to add multiple paths and subpaths.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-      +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+      +===================================+==============================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
+      | Secret                            | Select the desired secret.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+      |                                   | A secret must be created in advance. For details, see :ref:`Creating a Secret <cce_10_0153>`.                                                                                                                                                                                                                                                                                                                                                                                |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Add Container Path                | Configure the following parameters:                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+      |                                   | a. **Mount Path**: Enter a path of the container, for example, **/tmp**.                                                                                                                                                                                                                                                                                                                                                                                                     |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+      |                                   |    This parameter indicates the container path to which a data volume will be mounted. Do not mount the volume to a system directory such as **/** or **/var/run**; this action may cause container errors. You are advised to mount the volume to an empty directory. If the directory is not empty, ensure that there are no files that affect container startup. Otherwise, the files will be replaced, causing container startup failures or workload creation failures. |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+      |                                   |    .. important::                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+      |                                   |       NOTICE:                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+      |                                   |       When the container is mounted to a high-risk directory, you are advised to use an account with minimum permissions to start the container; otherwise, high-risk files on the host machine may be damaged.                                                                                                                                                                                                                                                              |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+      |                                   | b. **Subpath**: Enter a subpath, for example, **tmp**.                                                                                                                                                                                                                                                                                                                                                                                                                       |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+      |                                   |    -  A subpath is used to mount a local volume so that the same data volume is used in a single pod. If this parameter is left blank, the root path is used by default.                                                                                                                                                                                                                                                                                                     |
+      |                                   |    -  The subpath can be the key and value of a ConfigMap or secret. If the subpath is a key-value pair that does not exist, the data import does not take effect.                                                                                                                                                                                                                                                                                                           |
+      |                                   |    -  The data imported by specifying a subpath will not be updated along with the ConfigMap/secret updates.                                                                                                                                                                                                                                                                                                                                                                 |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+      |                                   | c. Set the permission to **Read-only**. Data volumes in the path are read-only.                                                                                                                                                                                                                                                                                                                                                                                              |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+      |                                   | You can click |image2| to add multiple paths and subpaths.                                                                                                                                                                                                                                                                                                                                                                                                                   |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Using kubectl**
 
-#. According to :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`, configure the **kubectl** command to connect an ECS to the cluster.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a file named **nginx-secret.yaml** and edit it.
 
@@ -254,11 +252,11 @@ You can mount a secret as a volume to the specified container path. Contents in 
             secret:
               secretName: mysecret      # Name of the referenced secret.
 
-   You can also use the **items** field to control the mapping path of the secret key. For example, store the username is stored in the **/etc/foo/my-group/my-username** directory of the container.
+   You can also use the **items** field to control the mapping path of secret keys. For example, store username in the **/etc/foo/my-group/my-username** directory in the container.
 
    .. note::
 
-      -  After the **items** field is used to specify the mapping path of the secret key, the keys that are not specified will not be created as files. For example, if the password key in the following example is not specified, the file will not be created.
+      -  If you use the **items** field to specify the mapping path of the secret keys, the keys that are not specified will not be created as files. For example, if the **password** key in the following example is not specified, the file will not be created.
       -  If you want to use all keys in a secret, you must list all keys in the **items** field.
       -  All keys listed in the **items** field must exist in the corresponding secret. Otherwise, the volume is not created.
 
@@ -291,7 +289,7 @@ You can mount a secret as a volume to the specified container path. Contents in 
               secretName: mysecret      # Name of the referenced secret.
               items:
               - key: username      # Name of the referenced key.
-                path: my-group/my-username    # Mapping path of the secret key.
+                path: my-group/my-username    # Mapping path of the secret key
 
 #. Create a workload.
 
@@ -317,7 +315,7 @@ You can mount a secret as a volume to the specified container path. Contents in 
 
          kubectl exec nginx-secret-*** -- /etc/foo/username
 
-      The expected output is the same as that in the secret.
+      The expected output is the same as the content in the secret.
 
-.. |image1| image:: /_static/images/en-us_image_0000001518062644.png
-.. |image2| image:: /_static/images/en-us_image_0000001569182625.png
+.. |image1| image:: /_static/images/en-us_image_0000001647417524.png
+.. |image2| image:: /_static/images/en-us_image_0000001647576792.png

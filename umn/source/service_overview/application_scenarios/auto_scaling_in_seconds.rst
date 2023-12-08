@@ -8,7 +8,7 @@ Auto Scaling in Seconds
 Application Scenarios
 ---------------------
 
--  Shopping apps and websites, especially during promotions and flash sales
+-  Shopping apps and websites, especially during promotions
 -  Live streaming, where service loads often fluctuate
 -  Games, where many players may go online in certain time periods
 
@@ -38,7 +38,7 @@ Related Services
 HPA (Horizontal Pod Autoscaling) + CA (Cluster AutoScaling)
 
 
-.. figure:: /_static/images/en-us_image_0000001550245869.png
+.. figure:: /_static/images/en-us_image_0000001690374417.png
    :alt: **Figure 1** How auto scaling works
 
    **Figure 1** How auto scaling works

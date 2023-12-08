@@ -16,4 +16,4 @@ Check the following aspects:
 Solution
 --------
 
-During the node upgrade, you need to obtain the upgrade component package from OBS. If this check fails, contact technical support.
+During the node upgrade, obtain the upgrade component package from OBS. If this check fails, contact technical support.

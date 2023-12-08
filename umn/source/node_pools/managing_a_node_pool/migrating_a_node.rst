@@ -7,7 +7,7 @@ Migrating a Node
 
 Nodes in a node pool can be migrated. Currently, nodes in a node pool can be migrated only to the default node pool (defaultpool) in the same cluster.
 
-#. Log in to the CCE console and access the cluster console.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Nodes** and switch to the **Node Pools** tab page.
 #. Click **View Node** in the **Operation** column of the node pool to be migrated.
 #. Click **More** > **Migrate** in the **Operation** column of the target node to migrate the node.

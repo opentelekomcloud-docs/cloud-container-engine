@@ -13,6 +13,6 @@ Check whether NetworkManager of a node is normal.
 Solution
 --------
 
-Log in to the node and run the **systemctl is-active NetworkManager** command to query the running status of NetworkManager. If the command output is abnormal, run the **systemctl restart NetworkManager** command and query the status again.
+Log in to the node and run the **systemctl is-active NetworkManager** command to obtain the running status of NetworkManager. If the command output is abnormal, run the **systemctl restart NetworkManager** command and obtain the status again.
 
 If the problem persists after NetworkManager is restarted, contact technical support.

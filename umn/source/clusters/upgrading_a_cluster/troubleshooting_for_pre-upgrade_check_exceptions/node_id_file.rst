@@ -15,11 +15,7 @@ Solution
 
 #. On the **Nodes** page of the CCE console, click the name of the abnormal node to go to the ECS page.
 
-   |image1|
-
 #. Copy the node ID and save it to the local host.
-
-   |image2|
 
 #. Log in to the abnormal node and back up files.
 
@@ -32,8 +28,5 @@ Solution
 
    .. code-block::
 
-      echo "Node ID" >> /var/lib/cloud/data/instance-id
-      echo "Node ID" >> /var/paas/conf/server.conf
-
-.. |image1| image:: /_static/images/en-us_image_0000001504661902.png
-.. |image2| image:: /_static/images/en-us_image_0000001504821802.png
+      echo "Node ID" > /var/lib/cloud/data/instance-id
+      echo "Node ID" > /var/paas/conf/server.conf

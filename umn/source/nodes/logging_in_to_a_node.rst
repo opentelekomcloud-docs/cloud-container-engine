@@ -5,8 +5,8 @@
 Logging In to a Node
 ====================
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  If you use SSH to log in to a node (an ECS), ensure that the ECS already has an EIP (a public IP address).
 -  Only login to a running ECS is allowed.
@@ -34,16 +34,16 @@ You can log in to an ECS in either of the following modes:
 
 .. table:: **Table 1** Linux ECS login modes
 
-   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-   | EIP Binding           | On-Premises OS        | Connection Method                                                                                                                                 |
-   +=======================+=======================+===================================================================================================================================================+
-   | Yes                   | Windows               | Use a remote login tool, such as PuTTY or XShell.                                                                                                 |
-   |                       |                       |                                                                                                                                                   |
-   |                       |                       | -  SSH key authentication: `Login Using an SSH Key <https://docs.otc.t-systems.com/en-us/usermanual/ecs/en-us_topic_0017955633.html>`__           |
-   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Yes                   | Linux                 | Run commands.                                                                                                                                     |
-   |                       |                       |                                                                                                                                                   |
-   |                       |                       | -  SSH password authentication: `Login Using an SSH Password <https://docs.otc.t-systems.com/en-us/usermanual/ecs/en-us_topic_0017955633.html>`__ |
-   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Yes/No                | Windows/Linux         | Remote login using the management console: `Login Using VNC <https://docs.otc.t-systems.com/en-us/usermanual/ecs/en-us_topic_0093263550.html>`__  |
-   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+   +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+   | EIP Binding           | On-Premises OS        | Connection Method                                                                                                                          |
+   +=======================+=======================+============================================================================================================================================+
+   | Yes                   | Windows               | Use a remote login tool, such as PuTTY or Xshell.                                                                                          |
+   |                       |                       |                                                                                                                                            |
+   |                       |                       | -  SSH key authentication: `Login Using an SSH Key <https://docs.otc.t-systems.com/usermanual/ecs/en-us_topic_0017955380.html>`__          |
+   +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+   | Yes                   | Linux                 | Run commands.                                                                                                                              |
+   |                       |                       |                                                                                                                                            |
+   |                       |                       | -  SSH key authentication: `Login Using an SSH Key <https://docs.otc.t-systems.com/usermanual/ecs/en-us_topic_0017955380.html>`__          |
+   +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+   | Yes/No                | Windows/Linux         | Remote login using the management console: `Login Using VNC <https://docs.otc.t-systems.com/usermanual/ecs/en-us_topic_0093263550.html>`__ |
+   +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+

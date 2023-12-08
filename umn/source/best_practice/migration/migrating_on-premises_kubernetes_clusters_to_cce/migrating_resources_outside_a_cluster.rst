@@ -12,7 +12,7 @@ Migrating Container Images
 
 To ensure that container images can be properly pulled after cluster migration and improve container deployment efficiency, you are advised to migrate private images to SoftWare Repository for Container (SWR). CCE works with SWR to provide a pipeline for automated container delivery. Images are pulled in parallel, which greatly improves container delivery efficiency.
 
-You need to manually migrate container images.
+Manually migrate container images.
 
 #. Remotely log in to any node in the source cluster and run the **docker pull** command to pull all images to the local host.
 
@@ -29,11 +29,11 @@ You need to manually migrate container images.
       docker tag [Image name 1:tag 1] [Image repository address]/[Organization name]/[Image name 2:tag 2]
 
    -  *[Image name 1*:*tag 1]*: name and tag of the local image to be pulled.
-   -  *[Image repository address]*: You can query the image repository address on the SWR console.
+   -  *[Image repository address]*: You can obtain the image repository address on the SWR console.
    -  *[Organization name]*: Enter the name of the organization you created on the SWR console.
    -  *[Image name 2*:*tag 2]*: image name and tag displayed on the SWR console.
 
-   **Example**
+   The following is an example:
 
    .. code-block::
 
@@ -45,7 +45,7 @@ You need to manually migrate container images.
 
       docker push [Image repository address]/[Organization name]/[Image name 2:tag 2]
 
-   **Example**
+   The following is an example:
 
    .. code-block::
 
@@ -54,4 +54,4 @@ You need to manually migrate container images.
 Migrating Databases and Storage (On-Demand)
 -------------------------------------------
 
-You can determine whether to use **Relational Database Service (RDS)** and **Object Storage Service (OBS)** based on your production requirements. After the migration is complete, you need to reconfigure the database and storage for applications in the target CCE cluster.
+You can determine whether to use **Relational Database Service (RDS)** and **Object Storage Service (OBS)** based on your production requirements. After the migration is complete, reconfigure the database and storage for applications in the target CCE cluster.

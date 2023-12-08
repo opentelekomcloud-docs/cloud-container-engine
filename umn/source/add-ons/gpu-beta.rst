@@ -8,49 +8,75 @@ gpu-beta
 Introduction
 ------------
 
-gpu-beta is a device management add-on that supports GPUs in containers. If GPU nodes are used in the cluster, the gpu-beta add-on must be installed.
+gpu-beta is a device management add-on that supports GPUs in containers. If GPU nodes are used in the cluster, this add-on must be installed.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  The driver to be downloaded must be a **.run** file.
 -  Only NVIDIA Tesla drivers are supported, not GRID drivers.
 -  When installing or reinstalling the add-on, ensure that the driver download address is correct and accessible. CCE does not verify the address validity.
 -  The gpu-beta add-on only enables you to download the driver and execute the installation script. The add-on status only indicates that how the add-on is running, not whether the driver is successfully installed.
+-  CCE does not guarantee the compatibility between the GPU driver version and the CDUA library version of your application. You need to check the compatibility by yourself.
+-  If a GPU driver has been added to a custom OS image, CCE cannot ensure that the GPU driver is compatible with other GPU components such as the monitoring components used in CCE.
 
 Installing the Add-on
 ---------------------
 
-#. Log in to the CCE console and access the cluster console. Choose **Add-ons** in the navigation pane, locate **gpu-beta** on the right, and click **Install**.
-#. Configure the driver link.
+#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane, locate **gpu-beta** on the right, and click **Install**.
+#. On the **Install Add-on** page, configure the specifications.
 
-   .. important::
+   .. table:: **Table 1** Add-on configuration
 
-      -  If the download link is a public network address, for example, **https://us.download.nvidia.com/tesla/470.103.01/NVIDIA-Linux-x86_64-470.103.01.run**, bind an EIP to each GPU node. For details about how to obtain the driver link, see :ref:`Obtaining the Driver Link from Public Network <cce_10_0141__section95451728192112>`.
-      -  If the download link is an OBS URL, you do not need to bind an EIP to GPU nodes.
-      -  Ensure that the NVIDIA driver version matches the GPU node.
-      -  After the driver version is changed, restart the node for the change to take effect.
+      +-----------------------------------+----------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                            |
+      +===================================+========================================================================================+
+      | Add-on Specifications             | Select **Default** or **Custom**.                                                      |
+      +-----------------------------------+----------------------------------------------------------------------------------------+
+      | Containers                        | CPU and memory quotas of the container allowed for the selected add-on specifications. |
+      |                                   |                                                                                        |
+      |                                   | If you select **Custom**, you can adjust the container specifications as required.     |
+      +-----------------------------------+----------------------------------------------------------------------------------------+
+
+#. Configure the add-on parameters.
+
+   -  **NVIDIA Driver**: Enter the link for downloading the NVIDIA driver. All GPU nodes in the cluster will use this driver.
+
+      .. important::
+
+         -  If the download link is a public network address, for example, **https://us.download.nvidia.com/tesla/470.103.01/NVIDIA-Linux-x86_64-470.103.01.run**, bind an EIP to each GPU node. For details about how to obtain the driver link, see :ref:`Obtaining the Driver Link from Public Network <cce_10_0141__section95451728192112>`.
+         -  If the download link is an OBS URL, you do not need to bind an EIP to GPU nodes. For details about how to obtain the driver link, see :ref:`Obtaining the Driver Link from OBS <cce_10_0141__section14922133914508>`.
+         -  Ensure that the NVIDIA driver version matches the GPU node.
+         -  After the driver version is changed, restart the node for the change to take effect.
 
 #. Click **Install**.
+
+   .. note::
+
+      Uninstalling the add-on will clear the GPU driver on the nodes. As a result, GPU pods newly scheduled to the nodes cannot run properly, but running GPU pods are not affected.
 
 Verifying the Add-on
 --------------------
 
 After the add-on is installed, run the **nvidia-smi** command on the GPU node and the container that schedules GPU resources to verify the availability of the GPU device and driver.
 
-GPU node:
+-  GPU node:
 
-.. code-block::
+   .. code-block::
 
-   cd /opt/cloud/cce/nvidia/bin && ./nvidia-smi
+      # If the add-on version is earlier than 2.0.0, run the following command:
+      cd /opt/cloud/cce/nvidia/bin && ./nvidia-smi
 
-Container:
+      # If the add-on version is 2.0.0 or later and the driver installation path is changed, run the following command:
+      cd /usr/local/nvidia/bin && ./nvidia-smi
 
-.. code-block::
+-  Container:
 
-   cd /usr/local/nvidia/bin && ./nvidia-smi
+   .. code-block::
 
-If GPU information is returned, the device is available and the add-on is successfully installed.
+      cd /usr/local/nvidia/bin && ./nvidia-smi
+
+If GPU information is returned, the device is available and the add-on has been installed.
 
 |image1|
 
@@ -68,7 +94,7 @@ Obtaining the Driver Link from Public Network
 
    .. _cce_10_0141__fig11696366517:
 
-   .. figure:: /_static/images/en-us_image_0000001518062808.png
+   .. figure:: /_static/images/en-us_image_0000001695896741.png
       :alt: **Figure 1** Setting parameters
 
       **Figure 1** Setting parameters
@@ -77,7 +103,7 @@ Obtaining the Driver Link from Public Network
 
    .. _cce_10_0141__fig7873421145213:
 
-   .. figure:: /_static/images/en-us_image_0000001517743660.png
+   .. figure:: /_static/images/en-us_image_0000001647577072.png
       :alt: **Figure 2** Driver information
 
       **Figure 2** Driver information
@@ -90,9 +116,35 @@ Obtaining the Driver Link from Public Network
 
       .. _cce_10_0141__fig5901194614534:
 
-      .. figure:: /_static/images/en-us_image_0000001517903240.png
+      .. figure:: /_static/images/en-us_image_0000001647577080.png
          :alt: **Figure 3** Obtaining the link
 
          **Figure 3** Obtaining the link
 
-.. |image1| image:: /_static/images/en-us_image_0000001518062812.png
+.. _cce_10_0141__section14922133914508:
+
+Obtaining the Driver Link from OBS
+----------------------------------
+
+#. Upload the driver to OBS and set the driver file to public read.
+
+   .. note::
+
+      When the node is restarted, the driver will be downloaded and installed again. Ensure that the OBS bucket link of the driver is valid.
+
+#. In the bucket list, click a bucket name, and then the **Overview** page of the bucket is displayed.
+#. In the navigation pane, choose **Objects**.
+#. Select the name of the target object and copy the driver link on the object details page.
+
+Components
+----------
+
+.. table:: **Table 2** GPU component
+
+   +-------------------------+----------------------------------------------------+---------------+
+   | Container Component     | Description                                        | Resource Type |
+   +=========================+====================================================+===============+
+   | nvidia-driver-installer | Used for installing an NVIDIA driver on GPU nodes. | DaemonSet     |
+   +-------------------------+----------------------------------------------------+---------------+
+
+.. |image1| image:: /_static/images/en-us_image_0000001647417812.png

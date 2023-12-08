@@ -1,6 +1,6 @@
-:original_name: cce_bestpractice.html
+:original_name: cce_bestpractice_0000.html
 
-.. _cce_bestpractice:
+.. _cce_bestpractice_0000:
 
 Best Practice
 =============

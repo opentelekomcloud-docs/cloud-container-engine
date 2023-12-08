@@ -20,22 +20,31 @@ The function of setting environment variables on CCE is the same as that of spec
 
 Environment variables can be set in the following modes:
 
--  **Custom**
--  **Added from ConfigMap**: Import all keys in a ConfigMap as environment variables.
--  **Added from ConfigMap key**: Import a key in a ConfigMap as the value of an environment variable. For example, if you import **configmap_value** of **configmap_key** in a ConfigMap as the value of environment variable **key1**, an environment variable named **key1** with its value **is configmap_value** exists in the container.
+-  **Custom**: Enter the environment variable name and parameter value.
+-  **Added from ConfigMap key**: Import all keys in a ConfigMap as environment variables.
+-  **Added from ConfigMap**: Import a key in a ConfigMap as the value of an environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import **configmap_value** of **configmap_key** in a ConfigMap as the value of environment variable **key1**, an environment variable named **key1** whose value is **configmap_value** exists in the container.
 -  **Added from secret**: Import all keys in a secret as environment variables.
--  **Added from secret key**: Import the value of a key in a secret as the value of an environment variable. For example, if you import **secret_value** of **secret_key** in secret **secret-example** as the value of environment variable **key2**, an environment variable named **key2** with its value **secret_value** exists in the container.
--  **Variable value/reference**: Use the field defined by a pod as the value of the environment variable, for example, the pod name.
--  **Resource Reference**: Use the field defined by a container as the value of the environment variable, for example, the CPU limit of the container.
+-  **Added from secret key**: Import the value of a key in a secret as the value of an environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import **secret_value** of **secret_key** in secret **secret-example** as the value of environment variable **key2**, an environment variable named **key2** whose value is **secret_value** exists in the container.
+-  **Variable value/reference**: Use the field defined by a pod as the value of the environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if the pod name is imported as the value of environment variable **key3**, an environment variable named **key3** exists in the container and its value is the pod name.
+-  **Resource Reference**: The value of **Request** or **Limit** defined by the container is used as the value of the environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import the CPU limit of container-1 as the value of environment variable **key4**, an environment variable named **key4** exists in the container and its value is the CPU limit of container-1.
 
 Adding Environment Variables
 ----------------------------
 
-#. Log in to the CCE console. When creating a workload, select **Environment Variables** under **Container Settings**.
+#. Log in to the CCE console.
 
-#. Set environment variables.
+#. Click the cluster name to go to the cluster console, choose **Workloads** in the navigation pane, and click the **Create Workload** in the upper right corner.
 
-   |image1|
+#. When creating a workload, modify the container information in the **Container Settings** area and click the **Environment Variables** tab.
+
+#. Configure environment variables.
+
+   .. _cce_10_0113__fig164568529317:
+
+   .. figure:: /_static/images/en-us_image_0000001695896581.png
+      :alt: **Figure 1** Configuring environment variables
+
+      **Figure 1** Configuring environment variables
 
 YAML Example
 ------------
@@ -138,5 +147,3 @@ The environment variables in the pod are as follows:
    key4=1                                # limits.cpu defined by container1. The value is rounded up, in unit of cores.
    configmap_key=configmap_value         # Added from ConfigMap. The key value in the original ConfigMap key is directly imported.
    secret_key=secret_value               # Added from key. The key value in the original secret is directly imported.
-
-.. |image1| image:: /_static/images/en-us_image_0000001569022913.png

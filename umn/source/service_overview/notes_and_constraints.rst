@@ -26,7 +26,7 @@ Clusters and Nodes
 Networking
 ----------
 
--  By default, a NodePort Service is accessed within a VPC. If you need to use an EIP to access a NodePort Service through public networks, bind an EIP to the node in the cluster in advance.
+-  By default, a NodePort Service is accessed within a VPC. To use an EIP to access a NodePort Service through public networks, bind an EIP to the node in the cluster in advance.
 -  LoadBalancer Services allow workloads to be accessed from public networks through **ELB**. This access mode has the following restrictions:
 
    -  It is recommended that automatically created load balancers not be used by other resources. Otherwise, these load balancers cannot be completely deleted, causing residual resources.
@@ -34,29 +34,31 @@ Networking
 
 -  Constraints on network policies:
 
-   -  Only clusters that use the tunnel network model support network policies.
+   -  Only clusters that use the tunnel network model support network policies. Network policies are classified into the following types:
+
+      -  Ingress: All versions support this type.
+      -  Egress: Only the following OSs and cluster versions support egress rules.
+
+         +-----------------------+-----------------------+-------------------------------------------+
+         | OS                    | Cluster Version       | Verified Kernel Version                   |
+         +=======================+=======================+===========================================+
+         | CentOS                | v1.23 or later        | 3.10.0-1062.18.1.el7.x86_64               |
+         |                       |                       |                                           |
+         |                       |                       | 3.10.0-1127.19.1.el7.x86_64               |
+         |                       |                       |                                           |
+         |                       |                       | 3.10.0-1160.25.1.el7.x86_64               |
+         +-----------------------+-----------------------+-------------------------------------------+
+         | EulerOS 2.5           | v1.23 or later        | 3.10.0-862.14.1.5.h591.eulerosv2r7.x86_64 |
+         |                       |                       |                                           |
+         |                       |                       | 3.10.0-862.14.1.5.h687.eulerosv2r7.x86_64 |
+         +-----------------------+-----------------------+-------------------------------------------+
+         | EulerOS 2.9           | v1.23 or later        | 4.18.0-147.5.1.6.h541.eulerosv2r9.x86_64  |
+         |                       |                       |                                           |
+         |                       |                       | 4.18.0-147.5.1.6.h766.eulerosv2r9.x86_64  |
+         +-----------------------+-----------------------+-------------------------------------------+
 
    -  Network isolation is not supported for IPv6 addresses.
-
-   -  Network policies do not support egress rules except for clusters of v1.23 or later.
-
-      Egress rules are supported only in the following operating systems:
-
-      +-----------------------------------+-------------------------------------------+
-      | OS                                | Kernel Version                            |
-      +===================================+===========================================+
-      | CentOS                            | 3.10.0-1062.18.1.el7.x86_64               |
-      |                                   |                                           |
-      |                                   | 3.10.0-1127.19.1.el7.x86_64               |
-      |                                   |                                           |
-      |                                   | 3.10.0-1160.25.1.el7.x86_64               |
-      +-----------------------------------+-------------------------------------------+
-      | EulerOS 2.5                       | 3.10.0-862.14.1.5.h591.eulerosv2r7.x86_64 |
-      +-----------------------------------+-------------------------------------------+
-      | EulerOS 2.9                       | 4.18.0-147.5.1.6.h541.eulerosv2r9.x86_64  |
-      +-----------------------------------+-------------------------------------------+
-
-   -  If a cluster is upgraded to v1.23 in in-place mode, you cannot use egress rules because the node OS is not upgraded. In this case, reset the node.
+   -  If upgrade to a cluster version that supports egress rules is performed in in-place mode, you cannot use egress rules because the node OS is not upgraded. In this case, reset the node.
 
 Volumes
 -------

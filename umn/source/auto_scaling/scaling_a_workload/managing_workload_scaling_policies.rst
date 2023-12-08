@@ -15,17 +15,17 @@ Checking an HPA Policy
 
 You can view the rules, status, and events of an HPA policy and handle exceptions based on the error information displayed.
 
-#. Log in to the CCE console and access the cluster console.
-#. In the navigation pane, choose **Workload Scaling**. On the **HPA Policies** tab page, click |image1| next to the target HPA policy.
-#. In the expanded area, you can view the **Rules**, **Status**, and **Events** tab pages. If the policy is abnormal, locate and rectify the fault based on the error information.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Policies**. On the **HPA Policies** tab page, click |image1| next to the target HPA policy.
+#. In the expanded area, view the **Rule** and **Status** tabs. Click **View Events** in the **Operation** column. If the policy malfunctions, locate and rectify the fault based on the error message displayed on the page.
 
    .. note::
 
       You can also view the created HPA policy on the workload details page.
 
-      a. Log in to the CCE console and access the cluster console.
+      a. Log in to the CCE console and click the cluster name to access the cluster console.
       b. In the navigation pane, choose **Workloads**. Click the workload name to view its details.
-      c. On the workload details page, swich to the **Auto Scaling** tab page to view the HPA policies. You can also view the scaling policies you configured in **Workload Scaling**.
+      c. On the workload details page, click the **Auto Scaling** tab to view the HPA policies. You can also view the scaling policies you configured in the **Workload Scaling** page.
 
    .. table:: **Table 1** Event types and names
 
@@ -64,24 +64,23 @@ Updating an HPA Policy
 
 An HPA policy is used as an example.
 
-#. Log in to the CCE console and access the cluster console.
-#. In the navigation pane, choose **Workload Scaling**. Click **Update** in the **Operation** column of the target policy.
-#. On the **Update HPA Policy** page displayed, set the policy parameters listed in :ref:`Table 1 <cce_10_0208__table8638121213265>`.
-#. Click **Update**.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. On the cluster console, choose **Workload Scaling** in the navigation pane. Locate the row that contains the target policy and choose **More** > **Edit** in the **Operation** column.
+#. On the **Edit HPA Policy** page, configure the parameters as listed in :ref:`Table 1 <cce_10_0208__table8638121213265>`.
+#. Click **OK**.
 
 Editing the YAML File (HPA Policy)
 ----------------------------------
 
-#. Log in to the CCE console and access the cluster console.
-#. In the navigation pane, choose **Workload Scaling**. Click **More > Edit YAML** in the **Operation** column of the target HPA policy.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Policies**. Choose **Edit YAML** in the **Operation** column of the target HPA policy.
 #. In the **Edit YAML** dialog box displayed, edit or download the YAML file.
-#. Click the close button in the upper right corner.
 
 Deleting an HPA Policy
 ----------------------
 
-#. Log in to the CCE console and access the cluster console.
-#. In the navigation pane, choose **Workload Scaling**. Click **Delete** in the **Operation** column of the target policy.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Policies**. Choose **Delete** > **Delete** in the **Operation** column of the target policy.
 #. In the dialog box displayed, click **Yes**.
 
-.. |image1| image:: /_static/images/en-us_image_0000001568902521.png
+.. |image1| image:: /_static/images/en-us_image_0000001695737185.png

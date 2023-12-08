@@ -5,14 +5,14 @@
 Compiling a Startup Script
 ==========================
 
-During application containerization, you need to prepare a startup script. The method of compiling this script is the same as that of compiling a shell script. The startup script is used to:
+During application containerization, prepare a startup script. The method of compiling this script is the same as that of compiling a shell script. The startup script is used to:
 
 -  Start up the software on which the application depends.
 -  Set the configurations that need to be changed as the environment variables.
 
 .. note::
 
-   Startup scripts vary according to applications. You need to compile the script based on your service requirements.
+   Startup scripts vary according to applications. Edit the script based on your service requirements.
 
 Procedure
 ---------
@@ -27,7 +27,7 @@ Procedure
 
 #. .. _cce_bestpractice_0007__li12314175319811:
 
-   Compile a script file. The name and content of the script file vary according to applications. You need to compile the script file based on your application. The following example is only for your reference.
+   Compile a script file. The name and content of the script file vary according to applications. Edit the script file based on your application. The following example is only for your reference.
 
    **vi** **start_tomcat_and_mongo.sh**
 

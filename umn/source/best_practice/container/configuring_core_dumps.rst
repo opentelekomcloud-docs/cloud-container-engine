@@ -5,15 +5,15 @@
 Configuring Core Dumps
 ======================
 
-Challenges
-----------
+Application Scenarios
+---------------------
 
 Linux allows you to create a core dump file if an application crashes, which contains the data the application had in memory at the time of the crash. You can analyze the file to locate the fault.
 
 Generally, when a service application crashes, its container exits and is reclaimed and destroyed. Therefore, container core files need to be permanently stored on the host or cloud storage. This topic describes how to configure container core dumps.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 When a container core dump is persistently stored to OBS (parallel file system or object bucket), the default mount option **umask=0** is used. As a result, although the core dump file is generated, the core dump information cannot be written to the core file.
 
@@ -26,7 +26,7 @@ Log in to the node, run the following command to enable core dump, and set the p
 
 **%h**, **%e**, **%p**, and **%t** are placeholders, which are described as follows:
 
--  **%h**: host name (or pod name). You are advised to configure this parameter.
+-  **%h**: hostname (or pod name). You are advised to configure this parameter.
 -  **%e**: program file name. You are advised to configure this parameter.
 -  **%p**: (optional) process ID.
 -  **%t**: (optional) time of the core dump.

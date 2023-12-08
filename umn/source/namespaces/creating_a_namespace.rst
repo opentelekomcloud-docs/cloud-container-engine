@@ -17,8 +17,8 @@ Prerequisites
 
 At least one cluster has been created.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 A maximum of 6,000 Services can be created in each namespace. The Services mentioned here indicate the Kubernetes Service resources added for workloads.
 
@@ -40,7 +40,7 @@ Namespaces can be created in either of the following ways:
 Creating a Namespace
 --------------------
 
-#. Log in to the CCE console and access the cluster console.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
 #. Choose **Namespaces** in the navigation pane and click **Create Namespace** in the upper right corner.
 
@@ -71,7 +71,7 @@ Creating a Namespace
       |                                   | If you want to limit the CPU or memory quota, you must specify the CPU or memory request value when creating a workload.                                                                                                                                                                                 |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-#. When the configuration is complete, click **OK**.
+#. After the configuration is complete, click **OK**.
 
 Using kubectl to Create a Namespace
 -----------------------------------

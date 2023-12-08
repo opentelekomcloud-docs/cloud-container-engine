@@ -15,11 +15,11 @@ The following table lists the files to be checked.
 +-------------------------------------------------------+--------------------------------------------+------------------------------------------------------------------+
 | File Name                                             | File Content                               | Remarks                                                          |
 +=======================================================+============================================+==================================================================+
-| /opt/cloud/cce/kubernetes/kubelet/kubelet             | kubelet command line startup parameters    | ``-``                                                            |
+| /opt/cloud/cce/kubernetes/kubelet/kubelet             | kubelet command line startup parameters    | None                                                             |
 +-------------------------------------------------------+--------------------------------------------+------------------------------------------------------------------+
-| /opt/cloud/cce/kubernetes/kubelet/kubelet_config.yaml | kubelet startup parameters                 | ``-``                                                            |
+| /opt/cloud/cce/kubernetes/kubelet/kubelet_config.yaml | kubelet startup parameters                 | None                                                             |
 +-------------------------------------------------------+--------------------------------------------+------------------------------------------------------------------+
-| /opt/cloud/cce/kubernetes/kube-proxy/kube-proxy       | kube-proxy command line startup parameters | ``-``                                                            |
+| /opt/cloud/cce/kubernetes/kube-proxy/kube-proxy       | kube-proxy command line startup parameters | None                                                             |
 +-------------------------------------------------------+--------------------------------------------+------------------------------------------------------------------+
 | /etc/sysconfig/docker                                 | Docker configuration file                  | Not checked when containerd or the Debain-Group machine is used. |
 +-------------------------------------------------------+--------------------------------------------+------------------------------------------------------------------+

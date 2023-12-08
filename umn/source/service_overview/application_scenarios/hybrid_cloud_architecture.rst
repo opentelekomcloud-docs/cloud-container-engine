@@ -22,12 +22,12 @@ Application Scenarios
 
 -  Environment decoupling
 
-   To ensure IP security, you can decouple development from production. Set up one on the public cloud and the other in the local IDC.
+   To ensure IP security, you can decouple development from production. Set up one on the cloud and the other in the local IDC.
 
 Benefits
 --------
 
-Your apps and data can flow free on and off the cloud. Resource scheduling and DR are much easier, thanks to environment-independent containers. CCE connects private and public clouds for you to run containers on them.
+Your apps and data can flow free on and off the cloud. Resource scheduling and DR are much easier, thanks to environment-independent containers. CCE provides container services with interconnected networks and unified management.
 
 Advantages
 ----------
@@ -46,7 +46,7 @@ Advantages
 
 -  Lower costs
 
-   Public cloud resource pools, backed by auto scaling, can respond to load spikes in time. Manual operations are no longer needed and you can save big.
+   Cloud resource pools, backed by auto scaling, can respond to load spikes in time. Manual operations are no longer needed and you can save big.
 
 Related Services
 ----------------

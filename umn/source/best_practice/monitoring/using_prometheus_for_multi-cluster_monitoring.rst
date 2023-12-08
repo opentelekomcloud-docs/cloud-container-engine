@@ -5,8 +5,8 @@
 Using Prometheus for Multi-cluster Monitoring
 =============================================
 
-Scenario
---------
+Application Scenarios
+---------------------
 
 Generally, a user has different clusters for different purposes, such as production, testing, and development. To monitor, collect, and view metrics of these clusters, you can deploy a set of Prometheus.
 
@@ -21,13 +21,13 @@ Prerequisites
 -------------
 
 -  The target cluster has been created.
--  Prometheus is properly connected to the target cluster.
+-  Prometheus has been properly connected to the target cluster.
 -  Prometheus has been installed on a Linux host using a binary file. For details, see `Installation <https://prometheus.io/docs/prometheus/latest/installation/>`__.
 
 Procedure
 ---------
 
-#. Obtain the **bear_token** information of the target cluster.
+#. Obtain the **bearer_token** information of the target cluster.
 
    a. Create the RBAC permission in the target cluster.
 
@@ -102,7 +102,7 @@ Procedure
 
          -  In clusters earlier than v1.21, a token is obtained by mounting the secret of the service account to a pod. Tokens obtained this way are permanent. This approach is no longer recommended starting from version 1.21. Service accounts will stop auto creating secrets in clusters from version 1.25.
 
-            In clusters of version 1.21 or later, you can use the `TokenRequest <https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/>`__ API to `obtain the token <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume>`__ and use the projected volume to mount the token to the pod. Such tokens are valid for a fixed period. When the mounting pod is deleted, the token automatically becomes invalid. .
+            In clusters of version 1.21 or later, you can use the `TokenRequest <https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/>`__ API to `obtain the token <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume>`__ and use the projected volume to mount the token to the pod. Such tokens are valid for a fixed period. When the mounting pod is deleted, the token automatically becomes invalid.
 
          -  If you need a token that never expires, you can also `manually manage secrets for service accounts <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#manual-secret-management-for-serviceaccounts>`__. Although a permanent service account token can be manually created, you are advised to use a short-lived token by calling the `TokenRequest <https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/>`__ API for higher security.
 
@@ -124,9 +124,9 @@ Procedure
 
    |image4|
 
-#. Configure Prometheus to monitor jobs.
+#. Configure a Prometheus monitoring job.
 
-   The example job monitors container metrics. If you need to monitor other metrics, you can add jobs and compile capture rules.
+   The example job monitors container metrics. To monitor other metrics, you can add jobs and compile capture rules.
 
    .. code-block::
 
@@ -138,7 +138,7 @@ Procedure
           kubernetes_sd_configs:  # kubernetes automatic discovery configuration
           - role: node    # Automatic discovery of the node type
             bearer_token_file: k8s_token # Token file in the previous step
-            api_server: https://192.168.0.153:5443  # The API server address of the Kubernetes cluster
+            api_server: https://192.168.0.153:5443  # API server address of the Kubernetes cluster
             tls_config:
               insecure_skip_verify: true   # Skip the authentication on the server.
           relabel_configs:  ## Modify the existing label of the target cluster before capturing metrics.
@@ -146,13 +146,13 @@ Procedure
             replacement: 192.168.0.153:5443
             action: replace
             ## Convert metrics_path to /api/v1/nodes/${1}/proxy/metrics/cadvisor.
-            # Obtain data from kubelet using the API Server proxy.
+            # Obtain data from kubelet using the API server proxy.
           - source_labels: [__meta_kubernetes_node_name]   # Specifies the source label to be processed.
-            regex: (.+)    # Match the value of the source label. (.+) indicates that any value of the source label can be matched.
-            target_label: __metrics_path__     # specifies the label to be replaced.
-            replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor  # indicates the new label, that is, the value of __metrics_path__. ${1} indicates the value that matches the regular expression, that is, node name.
+            regex: (.+)    # Matched value of the source label. (.+) indicates that any value of the source label can be matched.
+            target_label: __metrics_path__     # Specifies the label to be replaced.
+            replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor  # Indicates the new label, that is, the value of __metrics_path__. ${1} indicates the value that matches the regular expression, that is, node name.
           - target_label: cluster
-            replacement: xxxxx   ## (Optional) Enter the cluster information based on the actual situation.
+            replacement: xxxxx   ## (Optional) Enter the cluster information.
 
       ### The following job monitors another cluster.
         - job_name: k8s02_cAdvisor
@@ -163,7 +163,7 @@ Procedure
           kubernetes_sd_configs:
           - role: node
             bearer_token_file: k8s02_token # Token file in the previous step
-            api_server: https://192.168.0.147:5443  # API Server address of the Kubernetes cluster
+            api_server: https://192.168.0.147:5443  # API server address of the Kubernetes cluster
             tls_config:
               insecure_skip_verify: true   # Skip the authentication on the server.
           relabel_configs:  ## Modify the existing label of the target cluster before capturing metrics.
@@ -177,7 +177,7 @@ Procedure
             replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
 
           - target_label: cluster
-            replacement: xxxx    ## (Optional) Enter the cluster information based on the actual situation.
+            replacement: xxxx    ## (Optional) Enter the cluster information.
 
 #. Enable Prometheus.
 
@@ -191,9 +191,9 @@ Procedure
 
    |image6|
 
-.. |image1| image:: /_static/images/en-us_image_0000001352090724.png
-.. |image2| image:: /_static/images/en-us_image_0000001403252957.png
-.. |image3| image:: /_static/images/en-us_image_0000001352573116.png
-.. |image4| image:: /_static/images/en-us_image_0000001352413288.png
-.. |image5| image:: /_static/images/en-us_image_0000001352253356.png
-.. |image6| image:: /_static/images/en-us_image_0000001402893085.png
+.. |image1| image:: /_static/images/en-us_image_0000001701704121.png
+.. |image2| image:: /_static/images/en-us_image_0000001653425336.png
+.. |image3| image:: /_static/images/en-us_image_0000001653584648.png
+.. |image4| image:: /_static/images/en-us_image_0000001701704129.png
+.. |image5| image:: /_static/images/en-us_image_0000001701784869.png
+.. |image6| image:: /_static/images/en-us_image_0000001653584652.png

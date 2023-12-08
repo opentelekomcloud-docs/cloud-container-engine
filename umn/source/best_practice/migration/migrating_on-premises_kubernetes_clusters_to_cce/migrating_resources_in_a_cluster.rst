@@ -5,8 +5,8 @@
 Migrating Resources in a Cluster
 ================================
 
-Scenario
---------
+Application Scenarios
+---------------------
 
 WordPress is used as an example to describe how to migrate an application from an on-premises Kubernetes cluster to a CCE cluster. The WordPress application consists of the WordPress and MySQL components, which are containerized. The two components are bound to two local storage volumes of the Local type respectively and provide external access through the NodePort Service.
 
@@ -19,7 +19,7 @@ Prerequisites
 -  Ensure that the cluster on the CCE side does not have the same resources as the cluster to be migrated because Velero does not restore the same resources by default.
 -  To ensure that container image images can be properly pulled after cluster migration, migrate the images to SWR.
 -  CCE does not support EVS disks of the **ReadWriteMany** type. If resources of this type exist in the source cluster, change the storage type to **ReadWriteOnce**.
--  Velero integrates the Restic tool to back up and restore storage volumes. Currently, the storage volumes of the HostPath type are not supported. For details, see `Restic Restrictions <https://velero.io/docs/v1.7/restic/#limitations>`__. If you need to back up storage volumes of this type, replace the hostPath volumes with local volumes by referring to :ref:`Storage Volumes of the HostPath Type Cannot Be Backed Up <cce_bestpractice_0314__section11197194820367>`. If a backup task involves storage of the HostPath type, the storage volumes of this type will be automatically skipped and a warning message will be generated. This will not cause a backup failure.
+-  Velero integrates the Restic tool to back up and restore storage volumes. Currently, the storage volumes of the HostPath type are not supported. For details, see `Restic Restrictions <https://velero.io/docs/v1.7/restic/#limitations>`__. To back up storage volumes of this type, replace the hostPath volumes with local volumes by referring to :ref:`Storage Volumes of the HostPath Type Cannot Be Backed Up <cce_bestpractice_0314__section11197194820367>`. If a backup task involves storage of the HostPath type, the storage volumes of this type will be automatically skipped and a warning message will be generated. This will not cause a backup failure.
 
 .. _cce_bestpractice_0311__section750718193288:
 
@@ -28,7 +28,7 @@ Backing Up Applications in the Source Cluster
 
 #. .. _cce_bestpractice_0311__li686918502812:
 
-   (Optional) If you need to back up the data of a specified storage volume in the pod, add an annotation to the pod. The annotation template is as follows:
+   (Optional) To back up the data of a specified storage volume in the pod, add an annotation to the pod. The annotation template is as follows:
 
    .. code-block::
 
@@ -71,7 +71,7 @@ Backing Up Applications in the Source Cluster
 
          velero backup create <backup-name> --selector <key>=<value>
 
-   In this section, resources in the namespace **default** are backed up. **wordpress-backup** is the backup name. You need to specify the same backup name when restoring applications. Example:
+   In this section, resources in the namespace **default** are backed up. **wordpress-backup** is the backup name. Specify the same backup name when restoring applications. An example is as follows:
 
    .. code-block::
 
@@ -105,7 +105,7 @@ Backing Up Applications in the Source Cluster
 Restoring Applications in the Target Cluster
 --------------------------------------------
 
-The storage infrastructure of an on-premises cluster is different from that of a cloud cluster. After the cluster is migrated, PVs cannot be mounted to pods. Therefore, during the migration, you need to update the storage class of the target cluster to shield the differences of underlying storage interfaces between the two clusters when creating a workload and request storage resources of the corresponding type. For details, see :ref:`Updating the Storage Class <cce_bestpractice_0312__section746195321414>`.
+The storage infrastructure of an on-premises cluster is different from that of a cloud cluster. After the cluster is migrated, PVs cannot be mounted to pods. Therefore, during the migration, update the storage class of the target cluster to shield the differences of underlying storage interfaces between the two clusters when creating a workload and request storage resources of the corresponding type. For details, see :ref:`Updating the Storage Class <cce_bestpractice_0312__section746195321414>`.
 
 #. Use kubectl to connect to the CCE cluster. Create a storage class with the same name as that of the source cluster.
 
@@ -156,4 +156,4 @@ The storage infrastructure of an on-premises cluster is different from that of a
 
 #. After the restoration is complete, check whether the application is running properly. If other adaptation problems may occur, rectify the fault by following the procedure described in :ref:`Updating Resources Accordingly <cce_bestpractice_0312>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000001480191270.png
+.. |image1| image:: /_static/images/en-us_image_0000001701704153.png

@@ -5,7 +5,7 @@
 Interconnecting GitLab with SWR and CCE for CI/CD
 =================================================
 
-Challenges
+Background
 ----------
 
 GitLab is an open-source version management system developed with Ruby on Rails for Git project repository management. It supports web-based access to public and private projects. Similar to GitHub, GitLab allows you to browse source code, manage bugs and comments, and control team member access to repositories. You will find it very easy to view committed versions and file history database. Team members can communicate with each other using the built-in chat program (Wall).
@@ -13,7 +13,7 @@ GitLab is an open-source version management system developed with Ruby on Rails 
 GitLab provides powerful CI/CD functions and is widely used in software development.
 
 
-.. figure:: /_static/images/en-us_image_0000001291567729.png
+.. figure:: /_static/images/en-us_image_0000001701704293.png
    :alt: **Figure 1** GitLab CI/CD process
 
    **Figure 1** GitLab CI/CD process
@@ -58,9 +58,9 @@ Install GitLab Runner using Helm.
 .. code-block::
 
    helm repo add gitlab https://charts.gitlab.io
-   helm install --namespace gitlab gitlab-runner -f values.yaml gitlab/gitlab-runner
+   helm install --namespace gitlab gitlab-runner -f values.yaml gitlab/gitlab-runner --version=0.43.1
 
-After the installation, you can query the workload of gitlab-runner on the CCE console and view the connection information in GitLab later.
+After the installation, you can obtain the gitlab-runner workload on the CCE console and view the connection information in GitLab later.
 
 |image2|
 
@@ -81,7 +81,7 @@ The preceding files are only examples. You can replace or modify them accordingl
 Configuring Global Variables
 ----------------------------
 
-When using pipelines, you need to build an image, upload it to SWR, and run kubectl commands to deploy the image in the cluster. Before performing these operations, you must log in to SWR and obtain the credential for connecting to the cluster. You can define the information as variables in GitLab.
+When using pipelines, build an image, upload it to SWR, and run kubectl commands to deploy the image in the cluster. Before performing these operations, you must log in to SWR and obtain the credential for connecting to the cluster. You can define the information as variables in GitLab.
 
 Log in to `GitLab <https://www.gitlab.com/>`__, choose **Settings** > **CI/CD** in the project view, and click **Expand** next to **Variables** to add variables.
 
@@ -101,7 +101,7 @@ Log in to `GitLab <https://www.gitlab.com/>`__, choose **Settings** > **CI/CD** 
 
 -  **swr_ak**: access key.
 
-   Log in to the management console, click your username in the upper right corner, and click **My Credentials**. In the navigation pane on the left, choose **Access Keys**. Click **Create Access Key**, enter the description, and click **OK**. In the displayed **Information** dialog box, click **Download**. After the certificate is downloaded, obtain the AK and SK information from the **credentials** file.
+   Log in to the management console, click your username in the upper right corner, and click **My Credentials**. In the navigation pane, choose **Access Keys**. Click **Create Access Key**, enter the description, and click **OK**. In the displayed **Information** dialog box, click **Download**. After the certificate is downloaded, obtain the AK and SK information from the **credentials** file.
 
 -  **swr_sk**: secret key for logging in to SWR.
 
@@ -189,37 +189,47 @@ If the preceding information is displayed, the deployment is correct.
 FAQs
 ----
 
-If the following problems occur during the deployment:
+-  If the following problem occurs during the deployment:
 
-|image6|
+   |image6|
 
-or
+   Or
 
-|image7|
+   |image7|
 
-Check whether the following commands are missing in the **.gitlab-ci.yml** file. If yes, add them to the **.gitlab-ci.yml** file.
+   Check whether the following commands are missing in the **.gitlab-ci.yml** file. If yes, add them to the **.gitlab-ci.yml** file.
 
-.. code-block::
+   .. code-block::
 
-   ...
-   deploy:
-     # Use the kubectl image.
-     image:
-       name: bitnami/kubectl:latest
-       entrypoint: [""]
-     stage: deploy
-     script:
-       # Configure the kubeconfig file.
-       - mkdir -p $HOME/.kube
-       - export KUBECONFIG=$HOME/.kube/config
-       - echo $kube_config |base64 -d > $KUBECONFIG
-       # Replace the image in the k8s.yaml file.
-   ...
+      ...
+      deploy:
+        # Use the kubectl image.
+        image:
+          name: bitnami/kubectl:latest
+          entrypoint: [""]
+        stage: deploy
+        script:
+          # Configure the kubeconfig file.
+          - mkdir -p $HOME/.kube
+          - export KUBECONFIG=$HOME/.kube/config
+          - echo $kube_config |base64 -d > $KUBECONFIG
+          # Replace the image in the k8s.yaml file.
+      ...
 
-.. |image1| image:: /_static/images/en-us_image_0000001238489436.png
-.. |image2| image:: /_static/images/en-us_image_0000001283301301.png
-.. |image3| image:: /_static/images/en-us_image_0000001238903330.png
-.. |image4| image:: /_static/images/en-us_image_0000001238830246.png
-.. |image5| image:: /_static/images/en-us_image_0000001283343269.png
-.. |image6| image:: /_static/images/en-us_image_0000001520115845.png
-.. |image7| image:: /_static/images/en-us_image_0000001520396937.png
+-  If Docker cannot be executed, information similar to the following will display.
+
+   |image8|
+
+   The **privileged: true** parameter fails to be transferred during GitLab Runner installation. As a result, you do not have the permission to run the docker command. To resolve this issue, find GitLab Runner in the workload list on the CCE console, add the environment variable **KUBERNETES_PRIVILEGED**, and set its value to **true**.
+
+   |image9|
+
+.. |image1| image:: /_static/images/en-us_image_0000001701785025.png
+.. |image2| image:: /_static/images/en-us_image_0000001701704301.png
+.. |image3| image:: /_static/images/en-us_image_0000001653584808.png
+.. |image4| image:: /_static/images/en-us_image_0000001653425500.png
+.. |image5| image:: /_static/images/en-us_image_0000001701785049.png
+.. |image6| image:: /_static/images/en-us_image_0000001701704289.png
+.. |image7| image:: /_static/images/en-us_image_0000001653584820.png
+.. |image8| image:: /_static/images/en-us_image_0000001653584824.png
+.. |image9| image:: /_static/images/en-us_image_0000001667910920.png

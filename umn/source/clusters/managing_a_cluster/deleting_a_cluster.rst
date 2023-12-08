@@ -5,11 +5,6 @@
 Deleting a Cluster
 ==================
 
-Scenario
---------
-
-This section describes how to delete a cluster.
-
 Precautions
 -----------
 
@@ -21,12 +16,15 @@ Precautions
    -  ELB load balancers associated with Services and ingresses (only the automatically created load balancers are deleted);
    -  Manually created cloud storage resources associated with PVs or imported cloud storage resources (only the cloud storage resources automatically created by PVCs are deleted)
 
--  A hibernated cluster cannot be deleted. Wake up the cluster and try again.
+-  If you delete a cluster that is not running (for example, unavailable), associated resources, such as storage and networking resources, will remain.
 
--  If a cluster whose status is Unavailable is deleted, some storage resources of the cluster may need to be manually deleted.
 
-Procedure
----------
+Deleting a Cluster
+------------------
+
+.. important::
+
+   A hibernated cluster cannot be deleted. Wake up the cluster and try again.
 
 #. Log in to the CCE console. In the navigation pane, choose **Clusters**.
 
@@ -34,19 +32,19 @@ Procedure
 
 #. In the displayed **Delete Cluster** dialog box, select the resources to be released.
 
-   -  Delete cloud storage resources attached to workloads in the cluster.
+   -  Delete cloud storage resources associated with workloads in the cluster.
 
       .. note::
 
-         Before you delete the PVCs and volumes, pay attention to the following rules:
+         When deleting underlying cloud storage resources bound to storage volumes in a cluster, pay attention to following constraints:
 
-         -  The underlying storage resources are deleted according to the reclaim policy you defined.
-         -  If there are a large number of files (more than 1,000) in the OBS bucket, manually clear the files and then delete the cluster.
+         -  The underlying storage resources are deleted according to the reclamation policy you defined for the storage volumes. For example, if the reclamation policy of storage volumes is **Retain**, the underlying storage resources will be retained after the cluster is deleted.
+         -  If there are more than 1,000 files in the OBS bucket, manually clear the files and then delete the cluster.
 
-   -  Delete networking resources, such as load balancers in a cluster. (Only automatically created load balancers can be deleted.)
+   -  Delete network resources such as load balancers in a cluster. (Only automatically created load balancers will be deleted).
 
 #. Click **Yes** to start deleting the cluster.
 
    The delete operation takes 1 to 3 minutes to complete.
 
-.. |image1| image:: /_static/images/en-us_image_0000001569023085.png
+.. |image1| image:: /_static/images/en-us_image_0000001695896837.png

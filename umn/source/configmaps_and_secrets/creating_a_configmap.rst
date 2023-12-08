@@ -18,8 +18,8 @@ Benefits of ConfigMaps:
 -  Deploy workloads in different environments. Multiple versions are supported for configuration files so that you can update and roll back workloads easily.
 -  Quickly import configurations in the form of files to containers.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  The size of a ConfigMap resource file cannot exceed 2 MB.
 -  ConfigMaps cannot be used in `static pods <https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/>`__.
@@ -27,7 +27,7 @@ Notes and Constraints
 Procedure
 ---------
 
-#. Log in to the CCE console and access the cluster console.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
 #. Choose **ConfigMaps and Secrets** in the navigation pane and click **Create ConfigMap** in the upper right corner.
 
@@ -62,7 +62,7 @@ Creating a ConfigMap Using kubectl
 
 #. Configure the **kubectl** command to connect an ECS to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
-#. Create and edit the **cce-configmap.yaml** file.
+#. Create a file named **cce-configmap.yaml** and edit it.
 
    **vi cce-configmap.yaml**
 
@@ -123,4 +123,4 @@ After creating a configuration item, you can update or delete it as described in
    |                                   | Follow the prompts to delete the ConfigMap.                                                          |
    +-----------------------------------+------------------------------------------------------------------------------------------------------+
 
-.. |image1| image:: /_static/images/en-us_image_0000001568902541.png
+.. |image1| image:: /_static/images/en-us_image_0000001647576860.png

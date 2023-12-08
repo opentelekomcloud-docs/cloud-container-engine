@@ -15,7 +15,7 @@ Procedure
 
 #. Create a DaemonSet in the background, select the Nginx image, enable the Privileged Container, configure the lifecycle, and add the **hostNetwork** field (value: **true**).
 
-   a. Create a DaemonSet file.
+   a. Create a **daemonSet** file.
 
       **vi daemonSet.yaml**
 
@@ -74,7 +74,7 @@ Procedure
 
    In this example, run the following command:
 
-   **kubectl get daemonset** daemonset-test
+   **kubectl get daemonset** **daemonset-test**
 
    Information similar to the following is displayed:
 
@@ -89,7 +89,7 @@ Procedure
 
    In this example, run the following command:
 
-   **docker ps -a|grep** daemonset-test
+   **docker ps -a|grep** **daemonset-test**
 
    Information similar to the following is displayed:
 

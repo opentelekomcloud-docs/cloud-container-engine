@@ -5,11 +5,11 @@
 Managing a Node Pool
 ====================
 
--  :ref:`Configuring a Node Pool <cce_10_0652>`
 -  :ref:`Updating a Node Pool <cce_10_0653>`
--  :ref:`Synchronizing Node Pools <cce_10_0654>`
--  :ref:`Upgrading the OS <cce_10_0660>`
+-  :ref:`Configuring a Node Pool <cce_10_0652>`
 -  :ref:`Copying a Node Pool <cce_10_0655>`
+-  :ref:`Synchronizing Node Pools <cce_10_0654>`
+-  :ref:`Upgrading an OS <cce_10_0660>`
 -  :ref:`Migrating a Node <cce_10_0656>`
 -  :ref:`Deleting a Node Pool <cce_10_0657>`
 
@@ -17,10 +17,10 @@ Managing a Node Pool
    :maxdepth: 1
    :hidden: 
 
-   configuring_a_node_pool
    updating_a_node_pool
-   synchronizing_node_pools
-   upgrading_the_os
+   configuring_a_node_pool
    copying_a_node_pool
+   synchronizing_node_pools
+   upgrading_an_os
    migrating_a_node
    deleting_a_node_pool

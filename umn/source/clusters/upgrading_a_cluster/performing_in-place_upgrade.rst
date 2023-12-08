@@ -5,9 +5,6 @@
 Performing In-place Upgrade
 ===========================
 
-Scenario
---------
-
 You can upgrade your clusters to a newer version on the CCE console.
 
 Before the upgrade, learn about the target version to which each CCE cluster can be upgraded in what ways, and the upgrade impacts. For details, see :ref:`Upgrade Overview <cce_10_0197>` and :ref:`Before You Start <cce_10_0302>`.
@@ -23,7 +20,7 @@ Precautions
 
 -  During the cluster upgrade, the system will automatically upgrade add-ons to a version compatible with the target cluster version. Do not uninstall or reinstall add-ons during the cluster upgrade.
 -  Before the upgrade, ensure that all add-ons are running. If an add-on fails to be upgraded, rectify the fault and try again.
--  During the upgrade, CCE checks the add-on running status. Some add-ons (such as coredns) require at least two nodes to run normally. In this case, at least two nodes must be available for the upgrade.
+-  During the upgrade, CCE checks the add-on running status. Some add-ons (such as CoreDNS) require at least two nodes to run normally. In this case, at least two nodes must be available for the upgrade.
 
 For more information, see :ref:`Before You Start <cce_10_0302>`.
 
@@ -32,9 +29,9 @@ Procedure
 
 The cluster upgrade goes through check, backup, configuration and upgrade, and verification.
 
-#. Log in to the CCE console and access the cluster console.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Cluster Upgrade**. You can view the recommended version on the right.
+#. In the navigation pane, choose **Cluster Upgrade**.
 
 #. Select the cluster version to be upgraded and click **Check**.
 
@@ -44,14 +41,16 @@ The cluster upgrade goes through check, backup, configuration and upgrade, and v
       -  If your cluster has a new major version, you can select a version as required.
       -  If your cluster is of the latest version, the check entry will be hidden.
 
-#. Click **Start Check** and confirm the check. If there are abnormal or risky items in the cluster, handle the exceptions based on the check results displayed on the page and check again.
+#. Perform the pre-upgrade check. Click **Start Check** and confirm the check. If there are abnormal or risky items in the cluster, handle the exceptions based on the check results displayed on the page and check again.
 
    -  **Exceptions**: View the solution displayed on the page, handle the exceptions and check again.
    -  **Risk Items**: may affect the cluster upgrade. Check the risk description and see whether you may be impacted. If no risk exists, click **OK** next to the risk item to manually skip this risk item and check again.
 
    After the check is passed, click **Next: Back Up**.
 
-#. (Optional) Manually back up the data. Data is backed up during the upgrade following a default policy. You can click **Back Up** to manually back up data. If you do not need to manually back up data, click **Next: Configure & Upgrade**.
+#. (Optional) Manually back up the cluster data. Data is backed up during the upgrade following a default policy. You can click **Back Up** to manually back up data. If you do not need to manually back up data, click **Next: Configure & Upgrade**.
+
+   Manual backup will back up the entire master node. The backup process uses the Cloud Backup and Recovery (CBR) service and takes about 20 minutes. If there are many cloud backup tasks at the current site, the backup may take longer. The cluster cannot be upgraded during the backup.
 
 #. Configure the upgrade parameters.
 
@@ -62,7 +61,7 @@ The cluster upgrade goes through check, backup, configuration and upgrade, and v
          If a red dot |image1| is displayed on the right of an add-on, the add-on is incompatible with the target cluster version. During the upgrade, the add-on will be uninstalled and then re-installed. Ensure that the add-on parameters are correctly configured.
 
    -  **Node Upgrade Configuration:** You can set the maximum number of nodes to be upgraded in a batch.
-   -  **Node Priority:** You can set priorities for nodes to be upgraded. If you do not set this parameter, the system will determine the nodes to upgrade in batches based on specific conditions. Before setting the node upgrade priority, you need to select a node pool. Nodes and node pools will be upgraded according to the priorities you specify.
+   -  **Node Priority:** You can set priorities for nodes to be upgraded. If you do not set this parameter, the system will determine the nodes to upgrade in batches based on specific conditions. Before setting the node upgrade priority, select a node pool. Nodes and node pools will be upgraded according to the priorities you specify.
 
       -  **Add Upgrade Priority**: Add upgrade priorities for node pools.
       -  **Add Node Priority**: After adding a node pool priority, you can set the upgrade sequence of nodes in the node pool. The system upgrades nodes in the sequence you specify. If you skip this setting, the system upgrades nodes based on the default policy.
@@ -79,4 +78,4 @@ The cluster upgrade goes through check, backup, configuration and upgrade, and v
 
    You can verify the cluster Kubernetes version on the **Clusters** page.
 
-.. |image1| image:: /_static/images/en-us_image_0000001517743672.png
+.. |image1| image:: /_static/images/en-us_image_0000001695737489.png

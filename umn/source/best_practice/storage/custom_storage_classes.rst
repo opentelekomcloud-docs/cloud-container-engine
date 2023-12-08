@@ -5,7 +5,7 @@
 Custom Storage Classes
 ======================
 
-Challenges
+Background
 ----------
 
 When using storage resources in CCE, the most common method is to specify **storageClassName** to define the type of storage resources to be created when creating a PVC. The following configuration shows how to use a PVC to apply for an SAS (high I/O) EVS disk (block storage).
@@ -27,7 +27,7 @@ When using storage resources in CCE, the most common method is to specify **stor
          storage: 10Gi
      storageClassName: csi-disk
 
-If you need to specify the EVS disk type, you can set the **everest.io/disk-volume-type** field. The value **SAS** is used as an example here, indicating the high I/O EVS disk type. Or you can choose **SATA** (common I/O) and **SSD** (ultra-high I/O).
+To specify the EVS disk type, you can set the **everest.io/disk-volume-type** field. The value **SAS** is used as an example here, indicating the high I/O EVS disk type. Or you can choose **SATA** (common I/O) and **SSD** (ultra-high I/O).
 
 This configuration method may not work if you want to:
 
@@ -62,8 +62,8 @@ This section describes how to set a custom storage class in CCE and how to set t
           requests:
             storage: 10Gi
 
-Storage Classes in CCE
-----------------------
+Default Storage Classes in CCE
+------------------------------
 
 Run the following command to query the supported storage classes.
 
@@ -214,8 +214,8 @@ Other types of storage resources can be defined in the similar way. You can use 
       reclaimPolicy: Delete
       volumeBindingMode: Immediate
 
-Setting a Default Storage Class
--------------------------------
+Specifying a Default StorageClass
+---------------------------------
 
 You can specify a storage class as the default class. In this way, if you do not specify **storageClassName** when creating a PVC, the PVC is created using the default storage class.
 
@@ -323,4 +323,4 @@ Verification
 
    View the PVC details on the CCE console. On the PV details page, you can see that the disk type is ultra-high I/O.
 
-.. |image1| image:: /_static/images/en-us_image_0000001102275444.png
+.. |image1| image:: /_static/images/en-us_image_0000001653425692.png

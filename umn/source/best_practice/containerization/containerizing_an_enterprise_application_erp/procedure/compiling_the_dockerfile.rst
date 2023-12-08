@@ -20,11 +20,11 @@ Procedure
 
 #. Log in as the **root** user to the device running Docker.
 
-#. Write a Dockerfile.
+#. Compile a Dockerfile.
 
    **vi Dockerfile**
 
-   The following provides an example Dockerfile:
+   The content is as follows:
 
    .. code-block::
 
