@@ -63,9 +63,9 @@ On the CCE console, you can also manage taints of a node in batches.
 
 #. Log in to the CCE console.
 
-#. Click the cluster name, access the cluster details page, and choose **Nodes** in the navigation pane. On the page displayed, select a node and click **Manage Labels and Taints**.
+#. Click the cluster name, access the cluster details page, and choose **Nodes** in the navigation pane. On the page displayed, select a node and click **Labels and Taints** above the list.
 
-#. In the displayed dialog box, click **Add batch operations** under **Batch Operation**, choose **Add/Update**, and select **Taint**.
+#. In the displayed dialog box, click **Add Operation** under **Batch Operation**, choose **Add/Update**, and select **Taint**.
 
    Enter the key and value of the taint to be added, select the taint effect, and click **OK**.
 

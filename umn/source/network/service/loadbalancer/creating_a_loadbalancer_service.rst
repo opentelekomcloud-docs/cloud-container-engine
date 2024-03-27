@@ -64,7 +64,7 @@ Creating a LoadBalancer Service
       -  **Cluster level**: The IP addresses and access ports of all nodes in a cluster can be used to access the workload associated with the Service. Service access will cause performance loss due to route redirection, and the source IP address of the client cannot be obtained.
       -  **Node level**: Only the IP address and access port of the node where the workload is located can access the workload associated with the Service. Service access will not cause performance loss due to route redirection, and the source IP address of the client can be obtained.
 
-   -  **Selector**: Add a label and click **Add**. A Service selects a pod based on the added label. You can also click **Reference Workload Label** to reference the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
+   -  **Selector**: Add a label and click **Confirm**. A Service selects a pod based on the added label. You can also click **Reference Workload Label** to reference the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
 
    -  **Load Balancer**
 
@@ -438,7 +438,7 @@ You can set the Service when creating a workload using kubectl. This section use
             "bandwidth_sharetype": "PER",
             "eip_type": "5_bgp"
           }'
-          kubernetes.io/elb.enterpriseID: '0'       # ID of the enterprise project to which the load balancer belongs
+
           kubernetes.io/elb.lb-algorithm: ROUND_ROBIN                   # Load balancer algorithm
           kubernetes.io/elb.session-affinity-mode: SOURCE_IP          # The sticky session type is source IP address.
           kubernetes.io/elb.session-affinity-option: '{"persistence_timeout": "30"}'     # Stickiness duration (min)
@@ -487,7 +487,7 @@ You can set the Service when creating a workload using kubectl. This section use
             ],
             "l4_flavor_name": "L4_flavor.elb.s1.small"
           }'
-          kubernetes.io/elb.enterpriseID: '0'       # ID of the enterprise project to which the load balancer belongs
+
           kubernetes.io/elb.lb-algorithm: ROUND_ROBIN                   # Load balancer algorithm
           kubernetes.io/elb.session-affinity-mode: SOURCE_IP          # The sticky session type is source IP address.
           kubernetes.io/elb.session-affinity-option: '{"persistence_timeout": "30"}'     # Stickiness duration (min)

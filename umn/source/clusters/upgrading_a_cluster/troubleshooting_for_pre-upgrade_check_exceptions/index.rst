@@ -7,7 +7,7 @@ Troubleshooting for Pre-upgrade Check Exceptions
 
 -  :ref:`Pre-upgrade Check <cce_10_0549>`
 -  :ref:`Node Restrictions <cce_10_0431>`
--  :ref:`Blocklist <cce_10_0432>`
+-  :ref:`Upgrade Management <cce_10_0432>`
 -  :ref:`Add-ons <cce_10_0433>`
 -  :ref:`Helm Charts <cce_10_0434>`
 -  :ref:`SSH Connectivity of Master Nodes <cce_10_0435>`
@@ -47,6 +47,20 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Node Configuration Consistency <cce_10_0491>`
 -  :ref:`Node Configuration File <cce_10_0492>`
 -  :ref:`CoreDNS Configuration Consistency <cce_10_0493>`
+-  :ref:`sudo Commands of a Node <cce_10_0494>`
+-  :ref:`Key Commands of Nodes <cce_10_0495>`
+-  :ref:`Mounting of a Sock File on a Node <cce_10_0496>`
+-  :ref:`HTTPS Load Balancer Certificate Consistency <cce_10_0497>`
+-  :ref:`Node Mounting <cce_10_0498>`
+-  :ref:`Login Permissions of User paas on a Node <cce_10_0499>`
+-  :ref:`Private IPv4 Addresses of Load Balancers <cce_10_0500>`
+-  :ref:`Historical Upgrade Records <cce_10_0501>`
+-  :ref:`CIDR Block of the Cluster Management Plane <cce_10_0502>`
+-  :ref:`GPU Add-on <cce_10_0503>`
+-  :ref:`Nodes' System Parameter Settings <cce_10_0504>`
+-  :ref:`Residual Package Versions <cce_10_0505>`
+-  :ref:`Node Commands <cce_10_0506>`
+-  :ref:`Node Swap <cce_10_0507>`
 
 .. toctree::
    :maxdepth: 1
@@ -54,7 +68,7 @@ Troubleshooting for Pre-upgrade Check Exceptions
 
    pre-upgrade_check
    node_restrictions
-   blocklist
+   upgrade_management
    add-ons
    helm_charts
    ssh_connectivity_of_master_nodes
@@ -94,3 +108,17 @@ Troubleshooting for Pre-upgrade Check Exceptions
    node_configuration_consistency
    node_configuration_file
    coredns_configuration_consistency
+   sudo_commands_of_a_node
+   key_commands_of_nodes
+   mounting_of_a_sock_file_on_a_node
+   https_load_balancer_certificate_consistency
+   node_mounting
+   login_permissions_of_user_paas_on_a_node
+   private_ipv4_addresses_of_load_balancers
+   historical_upgrade_records
+   cidr_block_of_the_cluster_management_plane
+   gpu_add-on
+   nodes_system_parameter_settings
+   residual_package_versions
+   node_commands
+   node_swap

@@ -18,6 +18,14 @@ Common EVs in Kubernetes:
 -  :ref:`ConfigMap <cce_10_0015>`: Kubernetes data of the ConfigMap type is mounted to pods as data volumes.
 -  :ref:`Secret <cce_10_0016>`: Kubernetes data of the Secret type is mounted to pods as data volumes.
 
+emptyDir Types
+--------------
+
+CCE provides the following emptyDir types:
+
+-  :ref:`Using a Temporary Path <cce_10_0638>`: Kubernetes-native emptyDir type. Its lifecycle is the same as that of a pod. Memory can be specified as the storage medium. When the pod is deleted, the emptyDir volume is deleted and its data is lost.
+-  :ref:`Using a Local EV <cce_10_0726>`: Local data disks in a node form a :ref:`storage pool <cce_10_0725>` (VolumeGroup) through LVM. LVs are created as the storage medium of emptyDir and mounted to containers. LVs deliver better performance than the default storage medium of emptyDir.
+
 Constraints
 -----------
 

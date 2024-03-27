@@ -55,7 +55,7 @@ Prometheus provides clients in various languages. For details about the clients,
 Preparing an Application
 ------------------------
 
-User-developed applications must provide a metric monitoring API for ICAgent to collect data, and the monitoring data must comply with the Prometheus specifications. For details, see :ref:`Prometheus Monitoring Data Collection <cce_10_0201__section173671127160>`.
+Self-developed applications must provide a metric monitoring API for ICAgent to collect data, and the monitoring data must comply with the Prometheus specifications. For details, see :ref:`Prometheus Monitoring Data Collection <cce_10_0201__section173671127160>`.
 
 This document uses Nginx as an example to describe how to collect monitoring data. There is a module named **ngx_http_stub_status_module** in Nginx, which provides basic monitoring functions. You can configure the **nginx.conf** file to provide an interface for external systems to access Nginx monitoring data.
 
@@ -116,7 +116,7 @@ This document uses Nginx as an example to describe how to collect monitoring dat
 
 #. Use this Dockerfile to build an image and upload it to SWR. The image name is **nginx:exporter**.
 
-   a. In the navigation pane, choose **My Images** and then click **Upload Through Client**\ in the upper right corner. On the page displayed, click **Generate a temporary login command** and click |image1| to copy the command.
+   a. In the navigation pane, choose **My Images**. Click **Upload Through Client** in the upper right corner. On the page displayed, click **Generate a temporary login command** and click |image1| to copy the command.
 
    b. Run the login command copied in the previous step on the node. If the login is successful, the message "Login Succeeded" is displayed.
 

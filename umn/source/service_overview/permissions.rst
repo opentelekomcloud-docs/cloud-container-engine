@@ -11,7 +11,7 @@ CCE permissions are described as follows:
 
 -  :ref:`Cluster-level permissions <cce_productdesc_0002__en-us_topic_0000001550245829_section14734188>`: Cluster-level permissions management evolves out of the system policy authorization feature of IAM. IAM users in the same user group have the same permissions. On IAM, you can configure system policies to describe which IAM user groups can perform which operations on cluster resources. For example, you can grant user group A to create and delete cluster X, add a node, or install an add-on, while granting user group B to view information about cluster X.
 
-   Cluster-level permissions involve CCE non-Kubernetes APIs and support fine-grained IAM policies and enterprise project management capabilities.
+   Cluster-level permissions involve CCE non-Kubernetes APIs and support fine-grained IAM policies.
 
 -  :ref:`Namespace-level permissions <cce_productdesc_0002__en-us_topic_0000001550245829_section54736241399>`: You can regulate users' or user groups' access to **Kubernetes resources**, such as workloads, jobs, and Services, in a single namespace based on their Kubernetes RBAC roles. CCE has also been enhanced based on open-source capabilities. It supports RBAC authorization based on IAM user or user group, and RBAC authentication on access to APIs using IAM tokens.
 

@@ -21,6 +21,6 @@ Solution
 
 Custom labels will not be changed during a cluster upgrade. If you find that labels are lost or added unexpectedly, contact technical support.
 
-If you find a new taint (**node.kubernetes.io/upgrade**) on a node, the node may be skipped during the upgrade. For details, see :ref:`Node Skipping Check for Reset <cce_10_0567>`.
+If you find a new taint (**node.kubernetes.io/upgrade**) on a node, the node may be skipped during the upgrade. For details, see :ref:`Node Skipping Check <cce_10_0567>`.
 
 If you find that other taints are added to the node, contact technical support.

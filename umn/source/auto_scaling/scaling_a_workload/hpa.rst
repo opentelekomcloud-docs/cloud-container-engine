@@ -12,7 +12,7 @@ Prerequisites
 
 To use HPA, install an add-on that provides metrics APIs. Select one of the following add-ons based on your cluster version and actual requirements.
 
--  :ref:`metrics-server <cce_10_0205>`: provides basic resource usage metrics, such as container CPU and memory usage. It is supported by all cluster versions.
+-  :ref:`Kubernetes Metrics Server <cce_10_0205>`: provides basic resource usage metrics, such as container CPU and memory usage. It is supported by all cluster versions.
 
 Constraints
 -----------

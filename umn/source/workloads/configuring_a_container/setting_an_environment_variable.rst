@@ -26,7 +26,7 @@ Environment variables can be set in the following modes:
 -  **Added from secret**: Import all keys in a secret as environment variables.
 -  **Added from secret key**: Import the value of a key in a secret as the value of an environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import **secret_value** of **secret_key** in secret **secret-example** as the value of environment variable **key2**, an environment variable named **key2** whose value is **secret_value** exists in the container.
 -  **Variable value/reference**: Use the field defined by a pod as the value of the environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if the pod name is imported as the value of environment variable **key3**, an environment variable named **key3** exists in the container and its value is the pod name.
--  **Resource Reference**: The value of **Request** or **Limit** defined by the container is used as the value of the environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import the CPU limit of container-1 as the value of environment variable **key4**, an environment variable named **key4** exists in the container and its value is the CPU limit of container-1.
+-  **Resource Reference**: The value of **Request** or **Limit** defined by the container is used as the value of the environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import the CPU limit of **container-1** as the value of environment variable **key4**, an environment variable named **key4** exists in the container and its value is the CPU limit of **container-1**.
 
 Adding Environment Variables
 ----------------------------

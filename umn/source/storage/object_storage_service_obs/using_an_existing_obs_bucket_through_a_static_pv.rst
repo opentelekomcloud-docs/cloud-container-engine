@@ -126,7 +126,7 @@ Using an Existing OBS Bucket on the Console
          |                                   | .. important::                                                                                                                                                                                                                                                                                                                                                                                                                                              |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
          |                                   |    NOTICE:                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-         |                                   |    If a volume is mounted to a high-risk directory, use an account with minimum permissions to start the container. Otherwise, high-risk files on the host may be damaged.                                                                                                                                                                                                                                                                                  |
+         |                                   |    If a volume is mounted to a high-risk directory, use an account with minimum permissions to start the container. Otherwise, high-risk files on the host machine may be damaged.                                                                                                                                                                                                                                                                          |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | Subpath                           | Enter a subpath, for example, **tmp**, indicating that data in the mount path of the container will be stored in the **tmp** folder of the volume.                                                                                                                                                                                                                                                                                                          |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -174,6 +174,7 @@ Using an Existing OBS Bucket on the Console
                storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
                everest.io/obs-volume-type: STANDARD
                everest.io/region: <your_region>                        # Region where the OBS volume is.
+
              nodePublishSecretRef:            # Custom secret of the OBS volume.
                name: <your_secret_name>       # Custom secret name.
                namespace: <your_namespace>    # Namespace of the custom secret.
@@ -261,7 +262,8 @@ Using an Existing OBS Bucket on the Console
              csi.storage.k8s.io/fstype: obsfs
              csi.storage.k8s.io/node-publish-secret-name: <your_secret_name>  # Custom secret name.
              csi.storage.k8s.io/node-publish-secret-namespace: <your_namespace>        # Namespace of the custom secret.
-          spec:
+
+         spec:
            accessModes:
            - ReadWriteMany                  # The value must be ReadWriteMany for OBS.
            resources:

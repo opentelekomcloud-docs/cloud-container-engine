@@ -5,7 +5,7 @@
 Kubernetes 1.21 Release Notes
 =============================
 
-CCE has passed the Certified Kubernetes Conformance Program and is a certified Kubernetes offering. This section describes the updates in CCE Kubernetes 1.21.
+This section describes the updates in CCE Kubernetes 1.21.
 
 Resource Changes and Deprecations
 ---------------------------------
@@ -17,7 +17,7 @@ Resource Changes and Deprecations
 -  Graceful node shutdown has been upgraded to the test state. With this update, kubelet can detect that a node is shut down and gracefully terminate the pods on the node. Prior to this update, when the node was shut down, its pod did not follow the expected termination lifecycle, which caused workload problems. Now kubelet can use systemd to detect the systems that are about to be shut down and notify the running pods to terminate them gracefully.
 -  For a pod with multiple containers, you can use **kubectl.kubernetes.io/** to pre-select containers.
 -  PodSecurityPolicy is deprecated. For details, see https://kubernetes.io/blog/2021/04/06/podsecuritypolicy-deprecation-past-present-and-future/.
--  The `BoundServiceAccountTokenVolume <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume>`__ feature has entered the beta test. This feature improves the token security of the service account and changes the method of mounting tokens to pods. Kubernetes clusters of v1.21 and later enable this approach by default.
+-  The `BoundServiceAccountTokenVolume <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume>`__ feature is in beta testing, which has changed the method of mounting tokens into pods for enhanced token security of the service account. This feature will be enabled by default in Kubernetes clusters of v1.21 and later versions.
 
 **Kubernetes 1.20 Release Notes**
 

@@ -20,7 +20,7 @@ Complete the following tasks to get started with CCE.
 
 #. **Register an account and grant permissions to IAM users.**
 
-   An account has the permissions to use CCE. However, IAM users created by an account do not have the permission. You need to manually grant the permission to IAM users. For details, see .
+   An account has the permissions to use CCE. However, IAM users created by the account do not have permissions. You need to manually grant the permissions to IAM users..
 
 #. **Create a cluster.**
 

@@ -30,6 +30,10 @@ Solution
 
 -  **Scenario 4: The add-on configuration does not meet the upgrade requirements. Upgrade the add-on and try again.**
 
-   As shown in the following figure, the error message "please upgrade addon [ ] in the page of addon managecheck and try again" is displayed during the pre-upgrade check.
+   The following error information is displayed during the pre-upgrade check:
+
+   .. code-block::
+
+      please upgrade addon [ ] in the page of addon managecheck and try again
 
    Log in to the CCE console and go to the target cluster. Choose **O&M** > **Add-ons** to manually upgrade the add-on.

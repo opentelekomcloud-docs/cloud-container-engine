@@ -86,6 +86,7 @@ Storage volumes can be mounted to the host system only in the mode supported by 
    SFS          x             Y
    OBS          x             Y
    SFS Turbo    x             Y
+   Local PV     Y             x
    ============ ============= =============
 
 Mounting a Storage Volume

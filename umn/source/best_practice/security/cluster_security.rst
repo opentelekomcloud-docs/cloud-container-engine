@@ -21,7 +21,7 @@ By default, Kubernetes associates the default service account with every pod. Th
 
 Two methods are available:
 
--  Method 1: Set the **automountServiceAccountToken** field of the service account to **false**. After the configuration is complete, newly created workloads will not be associated with the default service account by default. Set this field for each namespace as required.
+-  Method 1: Set the **automountServiceAccountToken** field of the service account to **false**. After the configuration is complete, newly created workloads will not be associated with the default service account by default. Configure this field for each namespace as required.
 
    .. code-block::
 

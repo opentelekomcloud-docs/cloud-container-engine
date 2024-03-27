@@ -40,17 +40,17 @@ The following uses an OBS bucket as an example to describe how to set a bucket p
 #. Log in to the OBS console.
 #. In the bucket list, click a bucket name to access the **Overview** page.
 
-3. In the navigation pane, choose **Permissions** > **Bucket Policy**. On the displayed page, click **Create** to create a bucket policy.
+3. In the navigation pane, choose **Permissions**. Click the **Bucket Policies** tab and click **Create Bucket Policy** under **Custom Bucket Policies**.
 
 
-   .. figure:: /_static/images/en-us_image_0000001701704541.png
+   .. figure:: /_static/images/en-us_image_0000001780253930.png
       :alt: **Figure 2** Creating a bucket policy
 
       **Figure 2** Creating a bucket policy
 
    -  **Policy Mode**: Select **Customized**.
    -  **Effect**: Select **Allow**.
-   -  **Principal**: Select **Other account**, and enter the account ID and user ID. The bucket policy takes effect for the specified users.
+   -  **Principal**: Select **Include**, select **Cloud service user**, and enter the account ID and user ID. The bucket policy is applied to the specified user.
    -  **Resources**: Select the resources that can be operated.
    -  **Actions**: Select the actions that can be operated.
 

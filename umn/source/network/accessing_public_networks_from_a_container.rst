@@ -27,7 +27,7 @@ To enable a container pod to access the Internet, perform the following steps:
    a. Log in to the management console.
    b. Click |image1| in the upper left corner of the management console and select a region and a project.
    c. Click |image2| at the upper left corner and choose **Networking** > **Elastic IP** in the expanded list.
-   d. On the **EIPs** page, click **Create** **EIP**.
+   d. On the **EIPs** page, click **Assign** **EIP**.
    e. Configure parameters as required.
 
       .. note::
@@ -53,7 +53,7 @@ To enable a container pod to access the Internet, perform the following steps:
    c. Click |image6| at the upper left corner and choose **Networking** > **NAT Gateway** in the expanded list.
    d. On the page displayed, click the name of the NAT gateway for which you want to add the SNAT rule.
    e. On the **SNAT Rules** tab page, click **Add SNAT Rule**.
-   f. Set parameters as required.
+   f. Configure parameters as required.
 
    .. note::
 

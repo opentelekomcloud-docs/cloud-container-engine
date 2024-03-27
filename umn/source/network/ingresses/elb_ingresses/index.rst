@@ -13,6 +13,7 @@ ELB Ingresses
 -  :ref:`ELB Ingresses Routing to Multiple Services <cce_10_0689>`
 -  :ref:`ELB Ingresses Using HTTP/2 <cce_10_0694>`
 -  :ref:`Interconnecting ELB Ingresses with HTTPS Backend Services <cce_10_0691>`
+-  :ref:`Configuring Timeout for an ELB Ingress <cce_10_0730>`
 
 .. toctree::
    :maxdepth: 1
@@ -26,3 +27,4 @@ ELB Ingresses
    elb_ingresses_routing_to_multiple_services
    elb_ingresses_using_http_2
    interconnecting_elb_ingresses_with_https_backend_services
+   configuring_timeout_for_an_elb_ingress

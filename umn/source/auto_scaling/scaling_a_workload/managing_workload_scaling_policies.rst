@@ -16,7 +16,7 @@ Checking an HPA Policy
 You can view the rules, status, and events of an HPA policy and handle exceptions based on the error information displayed.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Policies**. On the **HPA Policies** tab page, click |image1| next to the target HPA policy.
+#. In the navigation pane, choose **Workload Scaling**. On the **HPA Policies** tab, click |image1| next to the target HPA policy.
 #. In the expanded area, view the **Rule** and **Status** tabs. Click **View Events** in the **Operation** column. If the policy malfunctions, locate and rectify the fault based on the error message displayed on the page.
 
    .. note::
@@ -73,14 +73,14 @@ Editing the YAML File (HPA Policy)
 ----------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Policies**. Choose **Edit YAML** in the **Operation** column of the target HPA policy.
+#. In the navigation pane, choose **Workload Scaling**, locate the row containing the target policy, and click **Edit YAML** in the **Operation** column.
 #. In the **Edit YAML** dialog box displayed, edit or download the YAML file.
 
 Deleting an HPA Policy
 ----------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Policies**. Choose **Delete** > **Delete** in the **Operation** column of the target policy.
+#. In the navigation pane, choose **Workload Scaling**. Locate the row containing the target policy and choose **More** > **Delete** in the **Operation** column.
 #. In the dialog box displayed, click **Yes**.
 
 .. |image1| image:: /_static/images/en-us_image_0000001695737185.png

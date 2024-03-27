@@ -33,6 +33,8 @@ Constraints
       | EulerOS 2.9           | v1.23 or later        | 4.18.0-147.5.1.6.h541.eulerosv2r9.x86_64  |
       |                       |                       |                                           |
       |                       |                       | 4.18.0-147.5.1.6.h766.eulerosv2r9.x86_64  |
+      |                       |                       |                                           |
+      |                       |                       | 4.18.0-147.5.1.6.h998.eulerosv2r9.x86_64  |
       +-----------------------+-----------------------+-------------------------------------------+
 
 -  Network isolation is not supported for IPv6 addresses.
@@ -185,7 +187,7 @@ Creating a Network Policy on the Console
 
    -  **Namespace**: Select a namespace in which the network policy is applied.
 
-   -  **Selector**: Enter a label, select the pod to be associated, and click **Add**. You can also click **Reference Workload Label** to reference the label of an existing workload.
+   -  **Selector**: Enter a label, select the pod to be associated, and click **Confirm**. You can also click **Reference Workload Label** to reference the label of an existing workload.
 
    -  **Inbound Rule**: Click |image1| to add an inbound rule. For details about parameter settings, see :ref:`Table 1 <cce_10_0059__table166419994515>`.
 

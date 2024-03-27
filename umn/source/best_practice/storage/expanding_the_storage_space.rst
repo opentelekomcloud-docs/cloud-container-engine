@@ -235,7 +235,7 @@ CCE divides the data disk space for two parts by default. One part is used to st
 Expanding the Capacity of a Data Disk Used by kubelet
 -----------------------------------------------------
 
-CCE divides the data disk space for container engines and pods. The container engine space stores the Docker/containerd working directories, container images, and image metadata. The other is reserved for kubelet and emptyDir volumes. To expand the kubelet space, perform the following steps:
+CCE divides the data disk space for two parts by default. One part is used to store the Docker/containerd working directories, container images, and image metadata. The other is reserved for kubelet and emptyDir volumes. To expand the kubelet space, perform the following steps:
 
 #. Expand the capacity of the data disk on the EVS console.
 

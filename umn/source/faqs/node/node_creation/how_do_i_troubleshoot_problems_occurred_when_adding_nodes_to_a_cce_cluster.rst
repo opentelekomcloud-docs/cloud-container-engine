@@ -93,7 +93,3 @@ A node cannot be added to a CCE cluster.
 You can click the cluster name to view the cluster details. In the **Networking Configuration** area, click the icon next to **Default security group of the node** to check whether the default security group is deleted and whether the security group rules comply with :ref:`Configuring Cluster Security Group Rules <cce_faq_00265>`.
 
 If your account has multiple clusters and you need to manage network security policies of nodes in a unified manner, you can specify custom security groups.
-
-|image1|
-
-.. |image1| image:: /_static/images/en-us_image_0000001656255698.png

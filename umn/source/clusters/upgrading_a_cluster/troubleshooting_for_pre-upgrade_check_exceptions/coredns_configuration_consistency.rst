@@ -63,7 +63,7 @@ You can upgrade CoreDNS separately after confirming the configuration difference
 
    To retain the different configurations, use either of the following methods:
 
-   -  Set **parameterSyncStrategy** to **force**. Manually enter the differential configuration. For details, see :ref:`coredns (System Resource Add-on, Mandatory) <cce_10_0129>`.
+   -  Set **parameterSyncStrategy** to **force**. Manually enter the differential configuration. For details, see :ref:`CoreDNS <cce_10_0129>`.
    -  If **parameterSyncStrategy** is set to **inherit**, differentiated configurations are automatically inherited. The system automatically parses, identifies, and inherits differentiated parameters.
 
    |image1|

@@ -7,7 +7,7 @@ DNS Configuration
 
 Every Kubernetes cluster has a built-in DNS add-on (Kube-DNS or CoreDNS) to provide domain name resolution for workloads in the cluster. When handling a high concurrency of DNS queries, Kube-DNS/CoreDNS may encounter a performance bottleneck, that is, it may fail occasionally to fulfill DNS queries. There are cases when Kubernetes workloads initiate unnecessary DNS queries. This makes DNS overloaded if there are many concurrent DNS queries. Tuning DNS configuration for workloads will reduce the risks of DNS query failures to some extent.
 
-For more information about DNS, see :ref:`coredns (System Resource Add-on, Mandatory) <cce_10_0129>`.
+For more information about DNS, see :ref:`CoreDNS <cce_10_0129>`.
 
 DNS Configuration Items
 -----------------------

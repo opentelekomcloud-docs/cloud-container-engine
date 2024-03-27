@@ -95,15 +95,15 @@ Mapping Between OS and Container Storage Rootfs
 
 .. table:: **Table 2** Node OSs and container engines in CCE Turbo clusters
 
-   +-----------------------+----------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
-   | OS                    | Container Storage Rootfs   | Customized Basesize                                                                                                                  |
-   +=======================+============================+======================================================================================================================================+
-   | Ubuntu 22.04          | OverlayFS                  | Not supported.                                                                                                                       |
-   +-----------------------+----------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
-   | EulerOS 2.9           | ECS VMs use OverlayFS.     | Supported only when Rootfs is set to OverlayFS and the container engine is Docker. The container basesize is not limited by default. |
-   |                       |                            |                                                                                                                                      |
-   |                       | ECS PMs use Device Mapper. | Supported when Rootfs is set to Device Mapper and the container engine is Docker. The default value is 10 GB.                        |
-   +-----------------------+----------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+   +-----------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+   | OS                    | Container Storage Rootfs | Customized Basesize                                                                                                                  |
+   +=======================+==========================+======================================================================================================================================+
+   | Ubuntu 22.04          | OverlayFS                | Not supported.                                                                                                                       |
+   +-----------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+   | EulerOS 2.9           | ECS VMs use OverlayFS.   | Supported only when Rootfs is set to OverlayFS and the container engine is Docker. The container basesize is not limited by default. |
+   |                       |                          |                                                                                                                                      |
+   |                       |                          | Supported when Rootfs is set to Device Mapper and the container engine is Docker. The default value is 10 GB.                        |
+   +-----------------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
 
 Garbage Collection Policies for Container Images
 ------------------------------------------------
