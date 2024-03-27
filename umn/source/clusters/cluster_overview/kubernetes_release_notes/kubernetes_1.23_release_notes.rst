@@ -5,7 +5,7 @@
 Kubernetes 1.23 Release Notes
 =============================
 
-CCE has passed the Certified Kubernetes Conformance Program and is a certified Kubernetes offering. This section describes the updates in CCE Kubernetes 1.23.
+This section describes the updates in CCE Kubernetes 1.23.
 
 Resource Changes and Deprecations
 ---------------------------------
@@ -24,7 +24,7 @@ Resource Changes and Deprecations
 -  The Kubernetes release cycle is changed from four releases a year to three releases a year.
 -  StatefulSets support **minReadySeconds**.
 -  During scale-in, pods are randomly selected and deleted based on the pod UID by default (LogarithmicScaleDown). This feature enhances the randomness of the pods to be deleted and alleviates the problems caused by pod topology spread constraints. For more information, see `KEP-2185 <https://github.com/kubernetes/enhancements/tree/master/keps/sig-apps/2185-random-pod-select-on-replicaset-downscale>`__ and `issue 96748 <https://github.com/kubernetes/kubernetes/issues/96748?spm=a2c4g.11186623.0.0.1de23edc3yorUN>`__.
--  The `BoundServiceAccountTokenVolume <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume>`__ feature is stable. This feature improves the token security of the service account and changes the method of mounting tokens to pods. Kubernetes clusters of v1.21 and later enable this approach by default.
+-  The `BoundServiceAccountTokenVolume <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume>`__ feature is stable, which has changed the method of mounting tokens into pods for enhanced token security of the service account. This feature is enabled by default in Kubernetes clusters of v1.21 and later versions.
 
 References
 ----------

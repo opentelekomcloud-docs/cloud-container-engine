@@ -5,7 +5,7 @@
 API & kubectl FAQs
 ==================
 
--  :ref:`How Can I Access a CCE Cluster? <cce_faq_00025>`
+-  :ref:`How Can I Access a Cluster API Server? <cce_faq_00025>`
 -  :ref:`Can the Resources Created Using APIs or kubectl Be Displayed on the CCE Console? <cce_faq_00208>`
 -  :ref:`How Do I Download kubeconfig for Connecting to a Cluster Using kubectl? <cce_faq_00041>`
 -  :ref:`How Do I Rectify the Error Reported When Running the kubectl top node Command? <cce_faq_00321>`
@@ -15,7 +15,7 @@ API & kubectl FAQs
    :maxdepth: 1
    :hidden: 
 
-   how_can_i_access_a_cce_cluster
+   how_can_i_access_a_cluster_api_server
    can_the_resources_created_using_apis_or_kubectl_be_displayed_on_the_cce_console
    how_do_i_download_kubeconfig_for_connecting_to_a_cluster_using_kubectl
    how_do_i_rectify_the_error_reported_when_running_the_kubectl_top_node_command

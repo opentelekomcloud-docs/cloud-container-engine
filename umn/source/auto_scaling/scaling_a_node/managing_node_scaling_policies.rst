@@ -25,7 +25,7 @@ You can view the associated node pool, rules, and scaling history of a node scal
 
       a. Log in to the CCE console and click the cluster name to access the cluster console.
       b. In the navigation pane, choose **Nodes** and switch to the **Node Pools** tab.
-      c. Locate the row containing the target node pool and click **Update Node Pool**. In the window that slides out from the right, enable **Auto Scaling**, and configure **Max. Nodes**, **Min. Nodes**, and **Cooldown Period**.
+      c. Locate the row containing the target node pool and click **Update** in the **Operation** column. In the window that slides out from the right, enable **Auto Scaling**, and configure **Max. Nodes**, **Min. Nodes**, and **Cooldown Period**.
 
 Deleting a Node Scaling Policy
 ------------------------------

@@ -229,3 +229,70 @@ Using a TLS Secret Certificate
 #. Enter **https://121.**.**.*\*:443** in the address box of the browser to access the workload (for example, :ref:`Nginx workload <cce_10_0047__section155246177178>`).
 
    **121.**.**.*\*** indicates the IP address of the unified load balancer.
+
+Using the ELB Certificate
+-------------------------
+
+To use the ELB certificate, you can specify the annotations **kubernetes.io/elb.tls-certificate-ids**.
+
+.. note::
+
+   #. If you specify both the IngressTLS certificate and the ELB certificate, the latter is used.
+   #. CCE does not check whether the ELB certificate is valid. It only checks whether the certificate exists.
+   #. Only clusters of v1.19.16-r2, v1.21.5-r0, v1.23.3-r0, or later support the ELB certificate.
+
+**For clusters of v1.21 or earlier:**
+
+.. code-block::
+
+   apiVersion: networking.k8s.io/v1beta1
+   kind: Ingress
+   metadata:
+     name: ingress-test
+     annotations:
+       kubernetes.io/ingress.class: cce
+       kubernetes.io/elb.port: '443'
+       kubernetes.io/elb.id: 0b9a6c4d-bd8b-45cc-bfc8-ff0f9da54e95
+       kubernetes.io/elb.class: union
+       kubernetes.io/elb.tls-certificate-ids: 058cc023690d48a3867ad69dbe9cd6e5,b98382b1f01c473286653afd1ed9ab63
+   spec:
+     rules:
+     - host: ''
+       http:
+         paths:
+         - path: '/'
+           backend:
+             serviceName: <your_service_name>  # Replace it with the name of your target Service.
+             servicePort: 80
+           property:
+             ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
+
+**For clusters of v1.23 or later:**
+
+.. code-block::
+
+   apiVersion: networking.k8s.io/v1
+   kind: Ingress
+   metadata:
+     name: ingress-test
+     namespace: default
+     annotations:
+       kubernetes.io/elb.port: '443'
+       kubernetes.io/elb.id: 0b9a6c4d-bd8b-45cc-bfc8-ff0f9da54e95
+       kubernetes.io/elb.class: union
+       kubernetes.io/elb.tls-certificate-ids: 058cc023690d48a3867ad69dbe9cd6e5,b98382b1f01c473286653afd1ed9ab63
+   spec:
+     rules:
+       - host: ''
+         http:
+           paths:
+             - path: '/'
+               backend:
+                 service:
+                   name: <your_service_name>  # Replace it with the name of your target Service.
+                   port:
+                     number: 8080             # Replace 8080 with the port number of your target Service.
+               property:
+                 ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
+               pathType: ImplementationSpecific
+     ingressClassName: cce

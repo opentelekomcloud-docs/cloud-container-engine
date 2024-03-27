@@ -46,13 +46,20 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
       -  **Public Access**: If enabled, an EIP with 5 Mbit/s bandwidth will be created.
       -  **Subnet**, **AZ**, and **Specifications** (available only for dedicated load balancers): Configure the subnet AZ, and specifications. Only HTTP- or HTTPS-compliant dedicated load balancers can be automatically created.
 
-   -  **Listener**: Ingress configures a listener for the load balancer, which listens to requests from the load balancer and distributes traffic. After the configuration is complete, a listener is created on the load balancer. The default listener name is *k8s__<Protocol type>_<Port number>*, for example, *k8s_HTTP_80*.
+   -  .. _cce_10_0251__li6851318392:
+
+      **Listener**: Ingress configures a listener for the load balancer, which listens to requests from the load balancer and distributes traffic. After the configuration is complete, a listener is created on the load balancer. The default listener name is *k8s__<Protocol type>_<Port number>*, for example, *k8s_HTTP_80*.
 
       -  **External Protocol**: **HTTP** and **HTTPS** are available.
 
       -  **External Port**: Port number that is open to the ELB service address. The port number can be specified randomly.
 
+      -  **Certificate Source**: TLS secret and ELB server certificate are supported.
+
       -  **Server Certificate**: When an HTTPS listener is created for a load balancer, bind a certificate to the load balancer to support encrypted authentication for HTTPS data transmission.
+
+         -  **TLS secret**: For details about how to create a secret certificate, see :ref:`Creating a Secret <cce_10_0153>`.
+         -  **ELB server certificate**: Use the certificate created in the ELB service.
 
          .. note::
 
@@ -75,6 +82,12 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
 
             -  **Security Policy** is available only when **HTTPS** is selected.
             -  This function is supported only for clusters of v1.17.9 and later.
+
+      -  **Backend Protocol**
+
+         When :ref:`Listener <cce_10_0251__li6851318392>` uses HTTP protocols, only **HTTP** can be selected.
+
+         When :ref:`Listener <cce_10_0251__li6851318392>` uses HTTPS protocols, you can select **HTTP** or **HTTPS**.
 
    -  **Forwarding Policy**: When the access address of a request matches the forwarding policy (a forwarding policy consists of a domain name and URL, for example, *10.XXX.XXX.XXX:80/helloworld*), the request is forwarded to the corresponding Service for processing. You can click |image1| to add multiple forwarding policies.
 

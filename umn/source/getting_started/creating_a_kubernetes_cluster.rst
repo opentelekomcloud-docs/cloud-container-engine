@@ -15,8 +15,8 @@ Creating a Cluster
 
 #. Log in to the CCE console.
 
-   -  If you have not created a cluster, a wizard page is displayed. Click **Create** under **CCE cluster**.
-   -  If you have created a cluster, choose **Clusters** from the navigation pane and click **Create** next to **CCE cluster**.
+   -  If you have not created a cluster, a wizard page is displayed. Click **Create** under **CCE Standard Cluster**.
+   -  If you have created a cluster, choose **Clusters** from the navigation pane and click **Create**.
 
 #. On the **Configure Cluster** page, configure cluster parameters.
 
@@ -32,8 +32,6 @@ Creating a Cluster
       | **Basic Settings**                |                                                                                                                                                                                                                |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | \*Cluster Name                    | Name of the cluster to be created. A cluster name contains 4 to 128 characters starting with a lowercase letter and not ending with a hyphen (-). Only lowercase letters, digits, and hyphens (-) are allowed. |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \* Enterprise Project             | This parameter is displayed only for enterprise users who have enabled Enterprise Project Management.                                                                                                          |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | \* Cluster Version                | Choose the latest version.                                                                                                                                                                                     |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

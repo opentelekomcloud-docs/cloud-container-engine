@@ -37,7 +37,7 @@ Procedure
 
    -  **Cluster Scale**: maximum number of nodes that can be managed by the cluster.
 
-   -  HA: distribution mode of master nodes. By default, master nodes are randomly distributed in different AZs to improve DR capabilities.
+   -  **HA**: distribution mode of master nodes. By default, master nodes are randomly distributed in different AZs to improve DR capabilities.
 
       You can also expand advanced settings and customize the master node distribution mode. The following two modes are supported:
 
@@ -51,12 +51,12 @@ Procedure
 
    The cluster network settings cover nodes, containers, and Services. For details about the cluster networking and container network models, see :ref:`Overview <cce_10_0010>`.
 
-   -  Network Model: CCE clusters support **VPC network** and **Tunnel network**. CCE Turbo clusters support **Cloud Native Network 2.0.**. For details, see :ref:`Overview <cce_10_0281>`.
+   -  **Network Model**: CCE clusters support **VPC network** and **Tunnel network**. CCE Turbo clusters support **Cloud Native Network 2.0.**. For details, see :ref:`Overview <cce_10_0281>`.
    -  **VPC**: Select the VPC to which the cluster belongs. If no VPC is available, click **Create VPC** to create one. The value cannot be changed after creation.
    -  **Master Node Subnet**: Select the subnet where the master node is deployed. If no subnet is available, click **Create Subnet** to create one. The subnet cannot be changed after creation.
    -  **Container CIDR Block** (CCE Cluster): Specify the CIDR block used by containers, which determines the maximum number of containers in the cluster.
    -  **Default Pod Subnet** (CCE Turbo Cluster): Select the subnet where the container is located. If no subnet is available, click **Create Subnet**. The pod subnet determines the maximum number of containers in the cluster. You can add pod subnets after creating the cluster.
-   -  **Service CIDR Block**: CIDR block for Services used by containers in the same cluster to access each other. The value determines the maximum number of Services you can create. The value cannot be changed after creation.
+   -  **IPv4 Service CIDR Block**: CIDR block for Services used by containers in the same cluster to access each other. The value determines the maximum number of Services you can create. The value cannot be changed after creation.
 
    **Advanced Settings**
 
@@ -66,7 +66,7 @@ Procedure
 
    -  **CPU Manager**: When enabled, CPU cores will be exclusively allocated to workload pods. For details, see :ref:`CPU Policy <cce_10_0351>`.
 
-   -  Resource Tag:
+   -  **Resource Tag**:
 
       You can add resource tags to classify resources.
 

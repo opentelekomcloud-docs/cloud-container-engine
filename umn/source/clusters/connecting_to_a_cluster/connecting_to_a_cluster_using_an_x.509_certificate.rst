@@ -15,12 +15,12 @@ Procedure
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. Choose **Cluster Information** from the navigation pane and click **Download** next to **Authentication Mode** in the **Connection Information** area.
+#. Choose **Cluster Information** from the navigation pane and click **Download** next to **Certificate Authentication** in the **Connection Information** area.
 
-#. In the **Download X.509 Certificate** dialog box displayed, select the certificate expiration time and download the X.509 certificate of the cluster as prompted.
+#. In the **Obtain Certificate** dialog box displayed, select the certificate expiration time and download the X.509 certificate of the cluster as prompted.
 
 
-   .. figure:: /_static/images/en-us_image_0000001647417220.png
+   .. figure:: /_static/images/en-us_image_0000001781916460.png
       :alt: **Figure 1** Downloading a certificate
 
       **Figure 1** Downloading a certificate

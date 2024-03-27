@@ -30,7 +30,7 @@ Using the CCE Console
 
 #. Log in to the CCE console.
 
-#. Click the cluster name to go to the cluster console, choose **Workloads** in the navigation pane, and click the **Create Workload** in the upper right corner.
+#. Click the cluster name to go to the cluster console, choose **Workloads** in the navigation pane, and click **Create Workload** in the upper right corner.
 
 #. Set basic information about the workload.
 
@@ -44,7 +44,7 @@ Using the CCE Console
 
    **Container Settings**
 
-   -  Container Information
+   -  **Container Information**
 
       Multiple containers can be configured in a pod. You can click **Add Container** on the right to configure multiple containers for the pod.
 
@@ -73,7 +73,7 @@ Using the CCE Console
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                    |
          |                                   | If **Request** and **Limit** are not specified, the quota is not limited. For more information and suggestions about **Request** and **Limit**, see :ref:`Setting Container Specifications <cce_10_0163>`.                                                                                                                                                                                                                         |
          +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | (Optional) GPU Quota              | Configurable only when the cluster contains GPU nodes and the :ref:`gpu-beta <cce_10_0141>` add-on is installed.                                                                                                                                                                                                                                                                                                                   |
+         | (Optional) GPU Quota              | Configurable only when the cluster contains GPU nodes and the :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>` add-on is installed.                                                                                                                                                                                                                                                                                                  |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                    |
          |                                   | -  **All**: The GPU is not used.                                                                                                                                                                                                                                                                                                                                                                                                   |
          |                                   | -  **Dedicated**: GPU resources are exclusively used by the container.                                                                                                                                                                                                                                                                                                                                                             |
@@ -116,14 +116,14 @@ Using the CCE Console
 
    **(Optional) Advanced Settings**
 
-   -  Upgrade: Specify the upgrade mode and upgrade parameters of the workload. **Rolling upgrade** and **Replace upgrade** are supported. For details, see :ref:`Configuring the Workload Upgrade Policy <cce_10_0397>`.
+   -  **Upgrade**: Specify the upgrade mode and upgrade parameters of the workload. **Rolling upgrade** and **Replace upgrade** are supported. For details, see :ref:`Configuring the Workload Upgrade Policy <cce_10_0397>`.
 
    -  **Scheduling**: Configure affinity and anti-affinity policies for flexible workload scheduling. Node affinity, pod affinity, and pod anti-affinity are supported. For details, see :ref:`Scheduling Policy (Affinity/Anti-affinity) <cce_10_0232>`.
 
    -  **Toleration**: Using both taints and tolerations allows (not forcibly) the pod to be scheduled to a node with the matching taints, and controls the pod eviction policies after the node where the pod is located is tainted. For details, see :ref:`Taints and Tolerations <cce_10_0728>`.
    -  **Labels and Annotations**: Add labels or annotations for pods using key-value pairs. After entering the key and value, click **Confirm**. For details about how to use and configure labels and annotations, see :ref:`Labels and Annotations <cce_10_0386>`.
    -  **DNS**: Configure a separate DNS policy for the workload. For details, see :ref:`DNS Configuration <cce_10_0365>`.
-   -  Network configuration:
+   -  **Network Configuration**:
 
       -  Pod ingress/egress bandwidth limitation: You can set ingress/egress bandwidth limitation for pods. For details, see :ref:`Configuring QoS Rate Limiting for Inter-Pod Access <cce_10_0382>`.
 
@@ -176,7 +176,7 @@ The following procedure uses Nginx as an example to describe how to create a wor
 
    The **replicas** parameter used in defining a Deployment or StatefulSet does not exist in the above configuration for a DaemonSet, because each node has only one replica. It is fixed.
 
-   The nodeSelector in the preceding pod template specifies that a pod is created only on the nodes that meet **daemon=need**, as shown in the following figure. If you want to create a pod on each node, delete the label.
+   DaemonSet only creates pods on nodes with specific labels. In the preceding pod template, **nodeSelector** specifies that a pod is created only on nodes with the **daemon: need** label. If you want to create a pod on each node, delete the label.
 
 #. Create a DaemonSet.
 

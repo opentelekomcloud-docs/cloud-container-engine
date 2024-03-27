@@ -68,7 +68,7 @@ Procedure
 
 #. Create a cluster and a node.
 
-   a. Log in to the CCE console. Choose **Clusters**. On the displayed page, select the type of the cluster to be created and click Create.
+   a. Log in to the CCE console. Choose **Clusters**. On the displayed page, select the type of the cluster to be created and click **Create**.
 
       Configure cluster parameters and select the VPC created in :ref:`1 <cce_bestpractice_0010__li1025612329217>`.
 

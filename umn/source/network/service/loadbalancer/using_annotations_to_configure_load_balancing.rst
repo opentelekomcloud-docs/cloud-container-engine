@@ -13,8 +13,8 @@ You can add annotations to a YAML file to use some CCE advanced functions. This 
 -  :ref:`HTTP Protocol <cce_10_0385__section12416195865818>`
 -  :ref:`Dynamic Adjustment of the Weight of the Backend ECS <cce_10_0385__section3712956145815>`
 -  :ref:`Pass-through Capability <cce_10_0385__section5456195255814>`
--  :ref:`Whitelist <cce_10_0385__section79480421873>`
 -  :ref:`Host Network <cce_10_0385__section952710224812>`
+-  :ref:`Timeout <cce_10_0385__section117351411644>`
 
 .. _cce_10_0385__section584135019388:
 
@@ -120,7 +120,7 @@ The following shows how to use the preceding annotations:
             "bandwidth_sharetype": "PER",
             "eip_type": "5_bgp"
           }'
-          kubernetes.io/elb.enterpriseID: '0'               # ID of the enterprise project to which the load balancer belongs
+
           kubernetes.io/elb.lb-algorithm: ROUND_ROBIN     # Load balancer algorithm
         labels:
           app: nginx
@@ -160,7 +160,7 @@ The following shows how to use the preceding annotations:
             ],
             "l4_flavor_name": "L4_flavor.elb.s1.small"
           }'
-          kubernetes.io/elb.enterpriseID: '0'               # ID of the enterprise project to which the load balancer belongs
+
           kubernetes.io/elb.lb-algorithm: ROUND_ROBIN     # Load balancer algorithm
       spec:
         selector:
@@ -348,66 +348,12 @@ Pass-through Capability
 
 For details about the application scenarios, see :ref:`Enabling Passthrough Networking for LoadBalancer Services <cce_10_0355>`.
 
-.. _cce_10_0385__section79480421873:
-
-Whitelist
----------
-
-.. table:: **Table 7** Annotations for ELB access list
-
-   +------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+
-   | Parameter                    | Type            | Description                                                                                                                                                                                                                   | Supported Cluster Version   |
-   +==============================+=================+===============================================================================================================================================================================================================================+=============================+
-   | kubernetes.io/elb.acl-id     | String          | This parameter is mandatory when you configure an IP address whitelist for a load balancer. The value of this parameter is the IP address group ID of the load balancer..                                                     | v1.19.16, v1.21.4, or later |
-   |                              |                 |                                                                                                                                                                                                                               |                             |
-   |                              |                 | **This parameter takes effect only for dedicated load balancers and takes effect only when a Service is created or a new service port (listener) is specified.**                                                              |                             |
-   |                              |                 |                                                                                                                                                                                                                               |                             |
-   |                              |                 | **How to obtain**:                                                                                                                                                                                                            |                             |
-   |                              |                 |                                                                                                                                                                                                                               |                             |
-   |                              |                 | Log in to the console. In the **Service List**, choose **Networking > Elastic Load Balance**. On the Network Console, choose **Elastic Load Balance > IP Address Groups** and copy the **ID** of the target IP address group. |                             |
-   +------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+
-   | kubernetes.io/elb.acl-status | String          | This parameter is mandatory when you set an IP address whitelist for a load balancer. The value is **on**, indicating that access control is enabled.                                                                         | v1.19.16, v1.21.4, or later |
-   |                              |                 |                                                                                                                                                                                                                               |                             |
-   |                              |                 | **This parameter takes effect only for dedicated load balancers and takes effect only when a Service is created or a new service port (listener) is specified.**                                                              |                             |
-   +------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+
-   | kubernetes.io/elb.acl-type   | String          | This parameter is mandatory when you set the IP address whitelist for a load balancer.                                                                                                                                        | v1.19.16, v1.21.4, or later |
-   |                              |                 |                                                                                                                                                                                                                               |                             |
-   |                              |                 | -  black: indicates the blacklist. The selected IP address group cannot access the ELB address.                                                                                                                               |                             |
-   |                              |                 | -  white: indicates the whitelist. Only the selected IP address group can access the ELB address.                                                                                                                             |                             |
-   |                              |                 |                                                                                                                                                                                                                               |                             |
-   |                              |                 | **This parameter takes effect only for dedicated load balancers and takes effect only when a Service is created or a new service port (listener) is specified.**                                                              |                             |
-   +------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+
-
-The following shows how to use the preceding annotations:
-
-.. code-block::
-
-   apiVersion: v1
-   kind: Service
-   metadata:
-     name: nginx
-     annotations:
-       kubernetes.io/elb.id: <your_elb_id>                    # ELB ID. Replace it with the actual value.
-       kubernetes.io/elb.class: performance                   # Load balancer type
-       kubernetes.io/elb.acl-id: <your_acl_id>               # ELB IP address group ID
-       kubernetes.io/elb.acl-status: 'on'                    # Enable access control.
-       kubernetes.io/elb.acl-type: 'white'                   # Whitelist control
-   spec:
-     selector:
-        app: nginx
-     ports:
-     - name: service0
-       port: 80
-       protocol: TCP
-       targetPort: 80
-     type: LoadBalancer
-
 .. _cce_10_0385__section952710224812:
 
 Host Network
 ------------
 
-.. table:: **Table 8** Annotations for host network
+.. table:: **Table 7** Annotations for host network
 
    +-------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------+---------------------------+
    | Parameter                     | Type            | Description                                                                                                      | Supported Cluster Version |
@@ -441,6 +387,27 @@ The following shows how to use the preceding annotations:
        protocol: TCP
        targetPort: 80
      type: LoadBalancer
+
+.. _cce_10_0385__section117351411644:
+
+Timeout
+-------
+
+.. table:: **Table 8** Annotation for configuring timeout
+
+   +-------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+   | Parameter                           | Type            | Description                                                                                                                                                                                                                                          | Supported Cluster Version                                       |
+   +=====================================+=================+======================================================================================================================================================================================================================================================+=================================================================+
+   | kubernetes.io/elb.keepalive_timeout | Integer         | Timeout for client connections. If there are no requests reaching the load balancer after the timeout duration elapses, the load balancer will disconnect the connection with the client and establish a new connection when there is a new request. | v1.19.16-r30, v1.21.10-r10, v1.23.8-r10, v1.25.3-r10, and later |
+   |                                     |                 |                                                                                                                                                                                                                                                      |                                                                 |
+   |                                     |                 | Value:                                                                                                                                                                                                                                               |                                                                 |
+   |                                     |                 |                                                                                                                                                                                                                                                      |                                                                 |
+   |                                     |                 | -  For TCP listeners, the value ranges from **10** to **4000** (in seconds). The default value is **300**.                                                                                                                                           |                                                                 |
+   |                                     |                 | -  For HTTP, HTTPS, and TERMINATED_HTTPS listeners, the value ranges from **10** to **4000** (in seconds). The default value is **60**.                                                                                                              |                                                                 |
+   |                                     |                 | -  For UDP listeners, this parameter does not take effect.                                                                                                                                                                                           |                                                                 |
+   +-------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+
+
+For details about the application scenarios, see :ref:`Configuring Timeout for a LoadBalancer Service <cce_10_0729>`.
 
 Data Structure
 --------------

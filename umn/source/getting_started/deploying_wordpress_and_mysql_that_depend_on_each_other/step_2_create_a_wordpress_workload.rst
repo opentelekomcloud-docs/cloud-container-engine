@@ -80,15 +80,15 @@ Accessing WordPress
 
 
    .. figure:: /_static/images/en-us_image_0000001550838141.png
-      :alt: **Figure 1** WordPress workload
+      :alt: **Figure 1** WordPress-1
 
-      **Figure 1** WordPress workload
+      **Figure 1** WordPress-1
 
 
    .. figure:: /_static/images/en-us_image_0000001550678265.png
-      :alt: **Figure 2** WordPress
+      :alt: **Figure 2** WordPress-2
 
-      **Figure 2** WordPress
+      **Figure 2** WordPress-2
 
 Deleting Resources
 ------------------

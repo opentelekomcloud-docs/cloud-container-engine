@@ -28,7 +28,7 @@ Using the CCE Console
 
 #. Log in to the CCE console.
 
-#. Click the cluster name to go to the cluster console, choose **Workloads** in the navigation pane, and click the **Create Workload** in the upper right corner.
+#. Click the cluster name to go to the cluster console, choose **Workloads** in the navigation pane, and click **Create Workload** in the upper right corner.
 
 #. Set basic information about the workload.
 
@@ -42,7 +42,7 @@ Using the CCE Console
 
    **Container Settings**
 
-   -  Container Information
+   -  **Container Information**
 
       Multiple containers can be configured in a pod. You can click **Add Container** on the right to configure multiple containers for the pod.
 
@@ -71,7 +71,7 @@ Using the CCE Console
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                    |
          |                                   | If **Request** and **Limit** are not specified, the quota is not limited. For more information and suggestions about **Request** and **Limit**, see :ref:`Setting Container Specifications <cce_10_0163>`.                                                                                                                                                                                                                         |
          +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | (Optional) GPU Quota              | Configurable only when the cluster contains GPU nodes and the :ref:`gpu-beta <cce_10_0141>` add-on is installed.                                                                                                                                                                                                                                                                                                                   |
+         | (Optional) GPU Quota              | Configurable only when the cluster contains GPU nodes and the :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>` add-on is installed.                                                                                                                                                                                                                                                                                                  |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                    |
          |                                   | -  **All**: The GPU is not used.                                                                                                                                                                                                                                                                                                                                                                                                   |
          |                                   | -  **Dedicated**: GPU resources are exclusively used by the container.                                                                                                                                                                                                                                                                                                                                                             |
@@ -114,8 +114,14 @@ Using the CCE Console
 
       -  **Parallel Pods**: Maximum number of pods that can run in parallel during job execution. The value cannot be greater than the total number of pods in the job.
       -  **Timeout (s)**: Once a job reaches this time, the job status becomes failed and all pods in this job will be deleted. If you leave this parameter blank, the job will never time out.
+      -  **Completion Mode**
 
-   -  Network configuration:
+         -  **Non-indexed**: A job is considered complete when all the pods are successfully executed. Each pod completion is homologous to each other.
+         -  **Indexed**: Each pod gets an associated completion index from 0 to the number of pods minus 1. The job is considered complete when every pod allocated with an index is successfully executed. For an indexed job, pods are named in the format of $(job-name)-$(index).
+
+      -  **Suspend Job**: By default, a job is executed immediately after being created. The job's execution will be suspended if you enable this option, and resumed after you disable it.
+
+   -  **Network Configuration**:
 
       -  Pod ingress/egress bandwidth limitation: You can set ingress/egress bandwidth limitation for pods. For details, see :ref:`Configuring QoS Rate Limiting for Inter-Pod Access <cce_10_0382>`.
 

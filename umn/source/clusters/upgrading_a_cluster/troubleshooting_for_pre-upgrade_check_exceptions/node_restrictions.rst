@@ -5,50 +5,60 @@
 Node Restrictions
 =================
 
-Check Item
-----------
+Check Items
+-----------
 
-Check the following aspects:
+Check the following items:
 
 -  Check whether the node is available.
 -  Check whether the node OS supports the upgrade.
--  Check whether there are unexpected node pool tags in the node.
--  Check whether the Kubernetes node name is consistent with the ECS name.
+-  Check whether the node is marked with unexpected node pool labels.
+-  Check whether the Kubernetes node name is the same as the ECS name.
 
 Solution
 --------
 
--  **Scenario 1: The node status is abnormal. Rectify the fault first.**
+#. **The node is unavailable. Preferentially recover the node.**
 
-   Log in to the CCE console and access the cluster console. Choose **Nodes** in the navigation pane and check the node status. Ensure that the node is in the **Running** status. A node in the **Installing** or **Deleting** status cannot be upgraded.
+   If a node is unavailable, log in to the CCE console and click the cluster name to access the cluster console. Then, choose **Nodes** in the navigation pane and click the **Nodes** tab. Ensure that the node is in the **Running** state. A node in the **Installing** or **Deleting** state cannot be upgraded.
 
-   If the node status is abnormal, restore the node and retry the check task.
+   If a node is unavailable, recover the node and retry the check task.
 
--  **Scenario 2: The node OS does not support the upgrade. Contact technical support.**
+#. **The container engine of the node does not support the upgrade.**
+
+   This issue typically occurs when a cluster of an earlier version is upgraded to v1.27 or later. Clusters of v1.27 or later support only the containerd runtime. If your node runtime is not containerd, the upgrade cannot be performed. In this case, reset the node and change the node runtime to containerd.
+
+#. **The node OS does not support the upgrade.**
 
    The following table lists the node OSs that support the upgrade. You can reset the node OS to an available OS in the list.
 
    .. table:: **Table 1** OSs that support the upgrade
 
-      +-------------+-----------------------------------------------------------------------------------------------------------------------+
-      | OS          | Constraint                                                                                                            |
-      +=============+=======================================================================================================================+
-      | EulerOS 2.x | None.                                                                                                                 |
-      +-------------+-----------------------------------------------------------------------------------------------------------------------+
-      | Ubuntu      | Some sites cannot perform upgrade. If the check result shows the upgrade is not supported, contact technical support. |
-      +-------------+-----------------------------------------------------------------------------------------------------------------------+
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+      | OS                                | Constraint                                                                                                           |
+      +===================================+======================================================================================================================+
+      | EulerOS 2.x                       | If the target version is earlier than v1.27, there are no constraints.                                               |
+      |                                   |                                                                                                                      |
+      |                                   | If the target version is v1.27 or later, only EulerOS 2.9 and EulerOS 2.10 support the upgrade.                      |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+      | Ubuntu                            | If the check result shows that the upgrade is not supported due to regional restrictions, contact technical support. |
+      |                                   |                                                                                                                      |
+      |                                   | .. note::                                                                                                            |
+      |                                   |                                                                                                                      |
+      |                                   |    If the target version is v1.27 or later, only Ubuntu 22.04 supports the upgrade.                                  |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
 
--  **Scenario 3: The node belongs to the default node pool but contains a common node pool label, which affects the upgrade process.**
+#. **The affected node belongs to the default node pool but it is configured with a non-default node pool label, which will affect the upgrade.**
 
-   If a node is migrated from a node pool to the default node pool, the node pool label **cce.cloud.com/cce-nodepool** is retained, affecting cluster upgrade. Check whether the load scheduling on the node depends on the label.
+   If a node is migrated from a node pool to the default node pool, the node pool label **cce.cloud.com/cce-nodepool** is retained, affecting the cluster upgrade. Check whether load scheduling on the node depends on the label.
 
-   -  If there is no dependency, delete the tag.
-   -  If yes, modify the load balancing policy, remove the dependency, and then delete the tag.
+   -  If no, delete the label.
+   -  If yes, modify the load balancing policy, remove the dependency, and then delete the label.
 
--  **Scenario 4: CNIProblem taints are detected on the node. Remove the taints first.**
+#. **The node is marked with a CNIProblem taint. Preferentially recover the node.**
 
-   The node contains a taint whose key is **node.cloudprovider.kubernetes.io/cni-problem**, and the effect is **NoSchedule**. The taint is added by the npd add-on. You are advised to upgrade the npd add-on to the latest version and check again. If the problem persists, contact technical support.
+   The node contains a taint whose key is **node.cloudprovider.kubernetes.io/cni-problem**, and the effect is **NoSchedule**. The taint is added by the NPD add-on. Upgrade the NPD add-on to the latest version and check again. If the problem persists, contact technical support.
 
--  **Scenario 5: The Kubernetes node corresponding to the node does not exist. The node may be being deleted. Check again later.**
+#. **The Kubernetes node corresponding to the affected node does not exist.**
 
-   Check again later.
+   It is possible that the node is being deleted. Check again later.

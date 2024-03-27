@@ -187,11 +187,11 @@ To expand a disk capacity, perform the following steps:
 
 #. Expand the capacity of the data disk on the EVS console.
 
-#. Log in to the CCE console and click the cluster. In the navigation pane, choose **Nodes**. Click **More** > **Sync Server Data** in the row containing the target node.
+#. Log in to the CCE console and click the cluster. In the navigation pane, choose **Nodes**. Locate the row containing the target node and choose **More** > **Sync Server Data** in the **Operation** column.
 
 #. Log in to the target node.
 
-#. Run the **lsblk** command to check the block device information of the node.
+#. Run **lsblk** to view the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 

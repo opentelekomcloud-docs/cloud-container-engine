@@ -23,7 +23,7 @@ After a node is created, some fixed labels exist and cannot be deleted. For deta
 
 .. note::
 
-   Do not manually change the inherent labels that are automatically added to a node. If the manually changed value conflicts with the system value, the system value prevails.
+   Do not manually change the inherent labels that are automatically added to a node. If the manually changed value conflicts with the system value, the system value is used.
 
 .. _cce_10_0004__table83962234533:
 
@@ -74,9 +74,9 @@ Adding or Deleting a Node Label
 
 #. Log in to the CCE console.
 
-#. Click the cluster name, access the cluster details page, and choose **Nodes** in the navigation pane. On the page displayed, select a node and click **Manage Labels and Taints**.
+#. Click the cluster name, access the cluster details page, and choose **Nodes** in the navigation pane. On the page displayed, select a node and click **Labels and Taints** above the list.
 
-#. In the displayed dialog box, click **Add batch operations** under **Batch Operation**, and then choose **Add/Update** or **Delete**.
+#. In the displayed dialog box, click **Add Operation** under **Batch Operation**, and then choose **Add/Update** or **Delete**.
 
    Enter the key and value of the label to be added or deleted, and click **OK**.
 

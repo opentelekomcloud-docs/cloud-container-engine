@@ -23,23 +23,23 @@ Version Requirements
 
    **Obsolete**: CCE will no longer provide support for this version, including release of new functions, community bug fixes, vulnerability management, and upgrade.
 
-CCE releases only odd major Kubernetes versions, such as v1.25, v1.23, and v1.21. The specific version support policies in different scenarios are as follows:
+The specific version support policies in different scenarios are as follows:
 
 -  Cluster creation
 
-   CCE allows you to create clusters of two latest major Kubernetes versions, for example, v1.25 and v1.23. When v1.25 is commercially available, support for earlier versions (such as v1.21) will be removed. In this case, you will not be able to create clusters of v1.21 on the CCE console.
+   Clusters v1.27 and v1.25 can be created using the CCE console or APIs. Clusters v1.23 and v1.21 can be created using APIs. Clusters v1.19 and earlier versions are brought offline.
 
 -  Cluster maintenance
 
-   CCE maintains clusters of four major Kubernetes versions at most, such as v1.25, v1.23, v1.21, and v1.19. For example, after v1.25 is commercially available, support for v1.17 will be removed.
+   CCE maintains clusters of four major Kubernetes versions at most, such as v1.27, v1.25, v1.23, and v1.21. For example, after v1.27 is commercially available, clusters v1.19 are obsolete.
 
    |image2|
 
 -  Cluster upgrade
 
-   CCE allows you to upgrade clusters of **three major versions** at the same time. Clusters of 1.19 and later versions can be upgraded skipping one major version at most (for example, from 1.19 directly to 1.23). Each version is maintained for one year. For example, after v1.25 is available, support for earlier versions (such as v1.17) will be removed. You are advised to upgrade your Kubernetes cluster before the maintenance period ends.
+   CCE allows you to upgrade clusters of **three major versions** at the same time. Clusters of v1.19 and later versions can be upgraded skipping one major version at most (for example, from v1.19 directly to v1.23). Each version is maintained for one year. For example, after v1.27 is available, support for earlier versions (such as v1.19) will be removed. You are advised to upgrade your Kubernetes cluster before the maintenance period ends.
 
-   -  Cluster version upgrade: After the latest major version (for example, v1.25) is available, CCE allows you to upgrade clusters to the last stable version of the second-latest major version, for example, v1.23. For details, see :ref:`Upgrade Overview <cce_10_0197>`.
+   -  Cluster version upgrade: After the latest major version (for example, v1.27) is available, CCE allows you to upgrade clusters to the last stable version of the second-latest major version, for example, v1.25. For details, see :ref:`Upgrade Overview <cce_10_0197>`.
    -  Cluster patch upgrade: For existing clusters running on the live network, if there are major Kubernetes issues or vulnerabilities, CCE will perform the patch upgrade on these clusters in the background. Users are unaware of the patch upgrade. If the patch upgrade has adverse impact on user services, CCE will release a notice one week in advance.
 
 Version Release Cycle

@@ -17,7 +17,7 @@ Before using CCE, you need to make the following preparations:
 Creating an IAM user
 --------------------
 
-If you want to allow multiple users to manage your resources without sharing your password or keys, you can create users using IAM and grant permissions to the users. These users can use specified links and their own accounts to access the cloud and manage resources efficiently. You can also configure account security policies to ensure the security of these accounts.
+If you want to allow multiple users to manage your resources without sharing your password or private key, you can create users using IAM and grant permissions to the users. These users can use specified links and their own accounts and help you manage resources efficiently. You can also configure account security policies to ensure the security of these accounts.
 
 Your accounts have the permissions to use CCE. However, IAM users created by your accounts do not have the permissions. You need to manually assign the permissions to IAM users.
 

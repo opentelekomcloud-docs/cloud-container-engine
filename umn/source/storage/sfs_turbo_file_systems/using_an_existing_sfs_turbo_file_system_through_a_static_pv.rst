@@ -91,7 +91,7 @@ Using an Existing SFS Turbo File System on the Console
          |                                   | .. important::                                                                                                                                                                                                                                                                                                                                                                                                                                              |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
          |                                   |    NOTICE:                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-         |                                   |    If a volume is mounted to a high-risk directory, use an account with minimum permissions to start the container. Otherwise, high-risk files on the host may be damaged.                                                                                                                                                                                                                                                                                  |
+         |                                   |    If a volume is mounted to a high-risk directory, use an account with minimum permissions to start the container. Otherwise, high-risk files on the host machine may be damaged.                                                                                                                                                                                                                                                                          |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | Subpath                           | Enter a subpath, for example, **tmp**, indicating that data in the mount path of the container will be stored in the **tmp** folder of the volume.                                                                                                                                                                                                                                                                                                          |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -136,6 +136,7 @@ Using an Existing SFS Turbo File System on the Console
              volumeHandle: <your_volume_id>   # SFS Turbo volume ID.
              volumeAttributes:
                everest.io/share-export-location: <your_location>   # Shared path of the SFS Turbo volume.
+
                storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
            persistentVolumeReclaimPolicy: Retain    # Reclaim policy.
            storageClassName: csi-sfsturbo          # Storage class name of the SFS Turbo file system.
@@ -196,7 +197,8 @@ Using an Existing SFS Turbo File System on the Console
            namespace: default
            annotations:
              volume.beta.kubernetes.io/storage-provisioner: everest-csi-provisioner
-          spec:
+
+         spec:
            accessModes:
            - ReadWriteMany                  # The value must be ReadWriteMany for SFS Turbo.
            resources:

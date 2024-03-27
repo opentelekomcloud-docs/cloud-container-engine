@@ -26,7 +26,7 @@ Using the Console
 
    Click the cluster name to access the cluster console. In the navigation pane, choose **ConfigMaps and Secrets**. On the **Secrets** tab, click **Create Secret** in the upper right corner. Set **Secret Type** to **kubernetes.io/dockerconfigjson**. For details, see :ref:`Creating a Secret <cce_10_0153>`.
 
-   Enter the user name and password used to access the third-party image repository.
+   Enter the username and password used to access the third-party image repository.
 
 #. When creating a workload, you can enter a private image path in the format of *domainname/namespace/imagename:tag* for **Image Name** and select the key created in :ref:`1 <cce_10_0009__li16481144064414>` for **Image Access Credential**.
 

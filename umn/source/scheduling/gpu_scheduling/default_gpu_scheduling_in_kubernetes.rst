@@ -12,7 +12,7 @@ Prerequisites
 
 -  A GPU node has been created. For details, see :ref:`Creating a Node <cce_10_0363>`.
 
--  The gpu-device-plugin (previously gpu-beta add-on) has been installed. During the installation, select the GPU driver on the node. For details, see :ref:`gpu-beta <cce_10_0141>`.
+-  The gpu-device-plugin (previously gpu-beta add-on) has been installed. During the installation, select the GPU driver on the node. For details, see :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>`.
 
 -  gpu-device-plugin mounts the driver directory to **/usr/local/nvidia/lib64**. To use GPU resources in a container, add **/usr/local/nvidia/lib64** to the **LD_LIBRARY_PATH** environment variable.
 

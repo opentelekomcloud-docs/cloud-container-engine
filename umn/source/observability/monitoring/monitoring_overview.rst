@@ -15,6 +15,12 @@ CCE works with AOM to comprehensively monitor clusters. When a node is created, 
 
    The ICAgent collects custom metrics of applications and uploads them to AOM. For details, see :ref:`Monitoring Custom Metrics on AOM <cce_10_0201>`.
 
+-  NPD monitoring
+
+   node-problem-detector (npd for short) is an add-on that monitors and reports a node's health. It can connect to a third-party monitoring platform. It is a daemon running on each node. It collects node problems from different daemons and reports them to the API server. The npd add-on can run as a DaemonSet or a daemon.
+
+   CCE enhances npd in version 1.16.0, which now supports checks on node resources, components, and events, as well as fault isolation. For details, see :ref:`CCE Node Problem Detector <cce_10_0132>`.
+
 .. _cce_10_0182__section205486212251:
 
 Resource Metrics
@@ -148,7 +154,7 @@ CCE allows you to view monitoring data of a single workload.
       +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Downlink Rate (BPS) (KB/s)        | A metric indicates the speed at which data is downloaded from the Internet.                                                                                                       |
       +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Uplink Rate (BPS) (KB/s)          | A metric indicates the speed at which data is uploaded from the node to the Internet                                                                                              |
+      | Uplink Rate (BPS) (KB/s)          | A metric indicates the speed at which data is uploaded from the node to the Internet.                                                                                             |
       +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | GPU Usage (%)                     | A metric indicates the GPU usage of the workload.                                                                                                                                 |
       +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -167,13 +173,13 @@ Viewing Pod Monitoring Data
 CCE allows you to view the monitoring date of your pods.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. Choose **Workloads** from the navigation pane. Then click the workload name of the target workload to list the pods.
+#. Choose **Workloads** in the navigation pane. Then click the workload name of the target workload to list the pods.
 #. Click **Monitor** of the target pod to view the monitoring data.
 #. You can select statistical **Dimension** and choose time range to view the monitoring data. The data is provided by AOM. You can view the monitoring data of a pod, including the CPU, memory, disk, networking, and GPU.
 
    .. note::
 
-      If multiple containers exist in a single pod, the monitoring data may vary according to the statistical **Dimension**. For example, if you select **Maximum** or **Minimum** for **Dimension**, the value of each monitoring data is the maximum or minimum value of all containers under the pod. If **Average** is selected, the value of each monitoring data is the average value of all containers in the pod.
+      If there are multiple containers in a single pod, the monitoring data may vary according to the statistical **Dimension**. For example, if you select **Maximum** or **Minimum** for **Dimension**, the value of each monitoring data is the maximum or minimum value of all containers under the pod. If **Average** is selected, the value of each monitoring data is the average value of all containers in the pod.
 
    .. table:: **Table 4** Pod monitoring metrics
 

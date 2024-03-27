@@ -162,8 +162,6 @@ Ensure that you have correctly configure labels because the scheduler does not c
    b. Choose **More** > **Manage** in the **Operation** column of the created node pool.
    c. In the **Manage Components** window that is displayed, set **over-subscription-resource** under **kubelet** to **true** and click **OK**.
 
-   |image1|
-
 #. Set the node oversubscription label.
 
    The **volcano.sh/oversubscription** label needs to be configured for an oversubscribed node. If this label is set for a node and the value is **true**, the node is an oversubscribed node. Otherwise, the node is not an oversubscribed node.
@@ -540,5 +538,3 @@ Handling Suggestions
 -  If an offline job is deployed on a node ahead of an online job and the online job cannot be scheduled due to insufficient resources, configure a higher priorityClass for the online job than that for the offline job.
 
 -  If there are only online jobs on a node and the eviction threshold is reached, the offline jobs that are scheduled to the current node will be evicted soon. This is normal.
-
-.. |image1| image:: /_static/images/en-us_image_0000001647576724.png

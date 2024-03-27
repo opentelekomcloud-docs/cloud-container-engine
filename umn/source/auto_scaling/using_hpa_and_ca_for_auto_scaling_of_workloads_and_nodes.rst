@@ -383,5 +383,5 @@ Using HPA and CA can easily implement auto scaling in most scenarios. In additio
 
 .. |image1| image:: /_static/images/en-us_image_0000001647577020.png
 .. |image2| image:: /_static/images/en-us_image_0000001647577036.png
-.. |image3| image:: /_static/images/en-us_image_0000001647417772.png
-.. |image4| image:: /_static/images/en-us_image_0000001695737425.png
+.. |image3| image:: /_static/images/en-us_image_0000001824934977.png
+.. |image4| image:: /_static/images/en-us_image_0000001824936309.png

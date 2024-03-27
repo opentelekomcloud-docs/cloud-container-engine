@@ -31,7 +31,7 @@ Creating a ClusterIP Service
    -  **Service Name**: Service name, which can be the same as the workload name.
    -  **Service Type**: Select **ClusterIP**.
    -  **Namespace**: Namespace to which the workload belongs.
-   -  **Selector**: Add a label and click **Add**. A Service selects a pod based on the added label. You can also click **Reference Workload Label** to reference the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
+   -  **Selector**: Add a label and click **Confirm**. A Service selects a pod based on the added label. You can also click **Reference Workload Label** to reference the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
    -  **Port**
 
       -  **Protocol**: protocol used by the Service.
