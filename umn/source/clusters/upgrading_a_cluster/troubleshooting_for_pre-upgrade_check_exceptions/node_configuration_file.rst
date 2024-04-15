@@ -5,8 +5,8 @@
 Node Configuration File
 =======================
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the configuration files of key components exist on the node.
 

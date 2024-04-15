@@ -5,8 +5,8 @@
 Helm Charts
 ===========
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the current HelmRelease record contains discarded Kubernetes APIs that are not supported by the target cluster version. If yes, the Helm chart may be unavailable after the upgrade.
 

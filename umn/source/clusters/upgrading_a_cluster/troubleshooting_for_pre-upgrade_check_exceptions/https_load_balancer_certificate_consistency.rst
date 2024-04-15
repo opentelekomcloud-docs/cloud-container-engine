@@ -25,9 +25,9 @@ The certificate referenced by an HTTPS Ingress created on CCE is modified on the
 
       kubectl get secret --all-namespaces -o jsonpath='{range .items[*]}{"uid:"}{.metadata.uid}{" namespace:"}{.metadata.namespace}{" name:"}{.metadata.name}{"\n"}{end}' | grep <secret_id>
 
-#. Only clusters of v1.19.16-r2, v1.21.5-r0, v1.23.3-r0, and later versions support certificates required by load balancers. For clusters of the earlier versions, see :ref:`Solution 1 <cce_10_0497__en-us_topic_0000001797909201_li49931854113415>`. For clusters of other versions, see :ref:`Solution 2 <cce_10_0497__en-us_topic_0000001797909201_li1126485713418>`.
+#. Only clusters of v1.19.16-r2, v1.21.5-r0, v1.23.3-r0, and later versions support certificates required by load balancers. For clusters of the earlier versions, see :ref:`Solution 1 <cce_10_0497__li49931854113415>`. For clusters of other versions, see :ref:`Solution 2 <cce_10_0497__li1126485713418>`.
 
-   -  .. _cce_10_0497__en-us_topic_0000001797909201_li49931854113415:
+   -  .. _cce_10_0497__li49931854113415:
 
       Solution 1: Replace the certificate used by an Ingress with the one used by the load balancer. Then, you can create or edit the certificate on the ELB console.
 
@@ -43,7 +43,7 @@ The certificate referenced by an HTTPS Ingress created on CCE is modified on the
 
       c. On the **Configurations And Secrets** page, delete the target Secret. Before the deletion, back up data.
 
-   -  .. _cce_10_0497__en-us_topic_0000001797909201_li1126485713418:
+   -  .. _cce_10_0497__li1126485713418:
 
       Solution 2: Overwrite the certificate used by an Ingress with the corresponding Secret resource of the cluster to prevent the certificate being updated on the ELB console during the cluster upgrade.
 

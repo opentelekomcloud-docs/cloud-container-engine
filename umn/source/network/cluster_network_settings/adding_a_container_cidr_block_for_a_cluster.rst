@@ -13,14 +13,14 @@ If the container CIDR block (container subnet in a CCE Turbo cluster) set during
 Constraints
 -----------
 
--  This function applies to CCE clusters and CCE Turbo clusters of v1.19 or later, but not to clusters using container tunnel networking.
+-  This function applies to CCE standard clusters and CCE Turbo clusters of v1.19 or later, but not to clusters using container tunnel networking.
 -  The container CIDR block or container subnet cannot be deleted after being added. Exercise caution when performing this operation.
 
-Adding a Container CIDR Block for a CCE Cluster
------------------------------------------------
+Adding a Container CIDR Block for a CCE Standard Cluster
+--------------------------------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. On the **Cluster Information** page, click **Add Container CIDR Block** in the **Networking Configuration** area.
+#. On the **Overview** page, locate the **Networking Configuration** area and click **Add**.
 #. Configure the container CIDR block to be added. You can click |image1| to add multiple container CIDR blocks at a time.
 
    .. note::
@@ -33,8 +33,8 @@ Adding a Container Subnet for a CCE Turbo Cluster
 -------------------------------------------------
 
 #. Log in to the CCE console and access the CCE Turbo cluster console.
-#. On the **Cluster Information** page, locate the **Networking Configuration** area and click **Add Pod Subnet**.
+#. On the **Overview** page, locate the **Networking Configuration** area and click **Add Pod Subnet**.
 #. Select a container subnet in the same VPC. You can add multiple container subnets at a time. If no other container subnet is available, go to the VPC console to create one.
 #. Click **OK**.
 
-.. |image1| image:: /_static/images/en-us_image_0000001647417744.png
+.. |image1| image:: /_static/images/en-us_image_0000001797910209.png

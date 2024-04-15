@@ -5,7 +5,7 @@
 Kubernetes 1.25 Release Notes
 =============================
 
-CCE has passed the Certified Kubernetes Conformance Program and is a certified Kubernetes offering. This document describes the changes made in Kubernetes 1.25 compared with Kubernetes 1.23.
+CCE has passed the Certified Kubernetes Conformance Program and is a certified Kubernetes offering. This section describes the changes made in Kubernetes 1.25 compared with Kubernetes 1.23.
 
 Indexes
 -------
@@ -99,7 +99,7 @@ New Features
 
 -  LegacyServiceAccountTokenNoAutoGeneration is enabled by default.
 
-   The LegacyServiceAccountTokenNoAutoGeneration feature is in beta state. By default, this feature is enabled and no more secret token will be automatically generated for the service account. To use a token that never expires, create a secret and mount it. For details, see `Service account token Secrets <https://kubernetes.io/docs/concepts/configuration/secret/#service-account-token-secrets>`__.
+   LegacyServiceAccountTokenNoAutoGeneration moves to beta. By default, this feature is enabled, where no secret token is automatically generated for a service account. To use a token that never expires, create a secret to hold the token. For details, see `Service account token Secrets <https://kubernetes.io/docs/concepts/configuration/secret/#service-account-token-secrets>`__.
 
 -  IP address conflict is prevented.
 
@@ -130,7 +130,7 @@ Deprecations and Removals
 
    In versions later than Kubernetes 1.25, Kubelet uses IPTablesCleanup to migrate the Kubernetes-generated iptables chains used by the components outside of Kubernetes in phases so that iptables chains such as KUBE-MARK-DROP, KUBE-MARK-MASQ, and KUBE-POSTROUTING will not be created in the NAT table. For more details, see `Cleaning Up IPTables Chain Ownership <https://github.com/kubernetes/enhancements/issues/3178>`__.
 
--  The cloud service vendors' in-tree storage drivers are removed.
+-  In-tree volume drivers from cloud service vendors are removed.
 
 **Kubernetes 1.24**
 
@@ -161,5 +161,5 @@ References
 
 For more details about the performance comparison and function evolution between Kubernetes 1.25 and other versions, see the following documents:
 
--  `Kubernetes 1.25 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.25.md>`__
--  `Kubernetes 1.24 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.24.md>`__
+-  `Kubernetes v1.25 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.25.md>`__
+-  `Kubernetes v1.24 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.24.md>`__

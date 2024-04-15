@@ -173,7 +173,7 @@ CCE divides the data disk space for two parts by default. One part is used to st
 
 #. Log in to the target node.
 
-#. Run the **lsblk** command to check the block device information of the node.
+#. Run **lsblk** to view the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 
@@ -183,9 +183,9 @@ CCE divides the data disk space for two parts by default. One part is used to st
 
          # lsblk
          NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-         sda                   8:0    0   50G  0 disk
-         └─sda1                8:1    0   50G  0 part /
-         sdb                   8:16   0  200G  0 disk
+         vda                   8:0    0   50G  0 disk
+         └─vda1                8:1    0   50G  0 part /
+         vdb                   8:16   0  200G  0 disk
          ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/docker               # Space used by the container engine
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet  # Space used by Kubernetes
 
@@ -193,7 +193,7 @@ CCE divides the data disk space for two parts by default. One part is used to st
 
       .. code-block::
 
-         pvresize /dev/sdb
+         pvresize /dev/vdb
          lvextend -l+100%FREE -n vgpaas/dockersys
          resize2fs /dev/vgpaas/dockersys
 
@@ -203,12 +203,12 @@ CCE divides the data disk space for two parts by default. One part is used to st
 
          # lsblk
          NAME                                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-         sda                                   8:0    0   50G  0 disk
-         └─sda1                                8:1    0   50G  0 part /
-         sdb                                   8:16   0  200G  0 disk
+         vda                                   8:0    0   50G  0 disk
+         └─vda1                                8:1    0   50G  0 part /
+         vdb                                   8:16   0  200G  0 disk
          ├─vgpaas-dockersys                  253:0    0   18G  0 lvm  /var/lib/docker
          ├─vgpaas-thinpool_tmeta             253:1    0    3G  0 lvm
-         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Thin pool space.
+         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Space used by thinpool
          │   ...
          ├─vgpaas-thinpool_tdata             253:2    0   67G  0 lvm
          │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm
@@ -219,14 +219,14 @@ CCE divides the data disk space for two parts by default. One part is used to st
 
          .. code-block::
 
-            pvresize /dev/sdb
+            pvresize /dev/vdb
             lvextend -l+100%FREE -n vgpaas/thinpool
 
       -  Run the following commands on the node to add the new disk capacity to the **dockersys** disk:
 
          .. code-block::
 
-            pvresize /dev/sdb
+            pvresize /dev/vdb
             lvextend -l+100%FREE -n vgpaas/dockersys
             resize2fs /dev/vgpaas/dockersys
 
@@ -243,11 +243,23 @@ CCE divides the data disk space for two parts by default. One part is used to st
 
 #. Log in to the target node.
 
+#. Run **lsblk** to view the block device information of the node.
+
+   .. code-block::
+
+      # lsblk
+      NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+      vda                   8:0    0   50G  0 disk
+      └─vda1                8:1    0   50G  0 part /
+      vdb                   8:16   0  200G  0 disk
+      ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/docker               # Space used by the container engine
+      └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet  # Space used by Kubernetes
+
 #. Run the following commands on the node to add the new disk capacity to the Kubernetes disk:
 
    .. code-block::
 
-      pvresize /dev/sdb
+      pvresize /dev/vdb
       lvextend -l+100%FREE -n vgpaas/kubernetes
       resize2fs /dev/vgpaas/kubernetes
 
@@ -256,15 +268,17 @@ CCE divides the data disk space for two parts by default. One part is used to st
 Expanding the Capacity of a Data Disk Used by Pod (basesize)
 ------------------------------------------------------------
 
-#. Log in to the CCE console and click the name of the target cluster in the cluster list.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
 #. Choose **Nodes** from the navigation pane.
 
-#. Select the target node and choose **More** > **Reset Node** in the **Operation** column.
+#. Click the Nodes tab, locate the row containing the target node, and choose **More** > **Reset Node** in the **Operation** column.
 
    .. important::
 
-      Resetting a node may make the node-specific resources (such as local storage and workloads scheduled to this node) unavailable. Exercise caution when performing this operation to avoid impact on running services.
+      Resetting a node may make unavailable the node-specific resources (such as local storage and workloads scheduled to this node). Exercise caution when performing this operation to avoid impact on running services.
+
+#. Click **Yes**.
 
 #. Reconfigure node parameters.
 
@@ -275,7 +289,7 @@ Expanding the Capacity of a Data Disk Used by Pod (basesize)
    **Storage Settings**: Click **Expand** next to the data disk to set the following parameters:
 
    -  **Allocate Disk Space**: storage space used by the container engine to store the Docker/containerd working directory, container image data, and image metadata. Defaults to 90% of the data disk.
-   -  **Allocate Pod Basesize**: CCE allows you to set an upper limit for the disk space occupied by each workload pod (including the space occupied by container images). This setting prevents the pods from taking all the disk space available, which may cause service exceptions. It is recommended that the value be less than or equal to 80% of the container engine space.
+   -  **Allocate Pod Basesize**: CCE allows you to set an upper limit for the disk space occupied by each workload pod (including the space occupied by container images). This setting prevents the pods from taking all the disk space available, which may cause service exceptions. It is recommended that the value be smaller than or equal to 80% of the container engine space.
 
       .. note::
 
@@ -285,11 +299,11 @@ Expanding the Capacity of a Data Disk Used by Pod (basesize)
 
             -  When the rootfs uses OverlayFS, most nodes do not support custom pod basesize. The storage space of a single container is not limited and defaults to the container engine space.
 
-               Only nodes running EulerOS 2.9 in clusters of 1.19.16, 1.21.3, 1.23.3, and later versions support custom pod basesize.
+               Only EulerOS 2.9 nodes in clusters of 1.19.16, 1.21.3, 1.23.3, and later versions support custom pod basesize.
 
-         -  In the case of using Docker on nodes running EulerOS 2.9, **basesize** will not take effect if **CAP_SYS_RESOURCE** or **privileged** is configured for a container.
+         -  In the case of using Docker on EulerOS 2.9 nodes, **basesize** will not take effect if **CAP_SYS_RESOURCE** or **privileged** is configured for a container.
 
-#. After the node is reset, log in to the node and run the following command to access the container and check whether the container storage capacity has been expanded.
+#. After the node is reset, log in to the node and run the following command to access the container and check whether the container storage capacity has been expanded:
 
    **docker exec -it** *container_id* **/bin/sh** or **kubectl exec -it** *container_id* **/bin/sh**
 
@@ -309,10 +323,10 @@ Cloud storage:
 
    -  You can expand the capacity of automatically created pay-per-use volumes on the console. The procedure is as follows:
 
-      #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** tab. Locate the row containing the target PVC and choose **More** > **Scale-out** in the **Operation** column.
+      #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** tab. Click **More** in the **Operation** column of the target PVC and select **Scale-out**.
       #. Enter the capacity to be added and click **OK**.
 
 -  For SFS Turbo, expand the capacity on the SFS console and then change the capacity in the PVC.
 
-.. |image1| image:: /_static/images/en-us_image_0000001653425276.png
-.. |image2| image:: /_static/images/en-us_image_0000001653584588.png
+.. |image1| image:: /_static/images/en-us_image_0000001797909113.png
+.. |image2| image:: /_static/images/en-us_image_0000001797870097.png

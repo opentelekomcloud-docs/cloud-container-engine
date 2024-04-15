@@ -68,7 +68,7 @@ Procedure
 
 #. Create a cluster and a node.
 
-   a. Log in to the CCE console. Choose **Clusters**. On the displayed page, select the type of the cluster to be created and click **Create**.
+   a. Log in to the CCE console. On the **Clusters** page, click **Create** **Cluster** and select the type of the cluster to be created.
 
       Configure cluster parameters and select the VPC created in :ref:`1 <cce_bestpractice_0010__li1025612329217>`.
 
@@ -143,4 +143,4 @@ In the preceding configuration, the NodePort mode is selected to access the work
 
 You can obtain the access mode from the **Access Mode** tab on the workload details page.
 
-.. |image1| image:: /_static/images/en-us_image_0000001653584716.png
+.. |image1| image:: /_static/images/en-us_image_0000001750790212.png

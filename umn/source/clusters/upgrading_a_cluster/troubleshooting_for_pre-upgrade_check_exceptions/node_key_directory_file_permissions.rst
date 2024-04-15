@@ -5,10 +5,10 @@
 Node Key Directory File Permissions
 ===================================
 
-Check Item
-----------
+Check Items
+-----------
 
-Check whether the key directory **/var/paas** on the nodes contain files with abnormal owners or owner groups.
+Check whether the owner and owner group of the files in the **/var/paas** directory used by the CCE are both **paas**.
 
 Solution
 --------
@@ -19,7 +19,11 @@ Solution
 
    During the current cluster upgrade, the owner and owner group of the files in the **/var/paas** directory are reset to paas.
 
-   Check whether file data is stored in the **/var/paas** directory. If yes, do not use this directory, remove abnormal files from this directory, and check again. Otherwise, the upgrade is prohibited.
+   Check whether file data in the current service pod is stored in the **/var/paas** directory. If yes, do not use this directory, remove abnormal files from this directory, and check again. After the check is passed, proceed with the upgrade.
+
+   .. code-block::
+
+      find /var/paas -not \( -user paas -o -user root \) -print
 
 -  **Scenario 2: The error message "user paas must have at least read and execute permissions on the root directory" is displayed.**
 

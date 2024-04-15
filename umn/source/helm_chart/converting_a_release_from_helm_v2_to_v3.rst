@@ -21,13 +21,13 @@ Precautions
 Conversion Process (Without Using the Helm v3 Client)
 -----------------------------------------------------
 
-#. Download the helm 2to3 conversion plug-in on the CCE node.
+#. Download the helm 2-to-3 conversion plugin on the CCE node.
 
    .. code-block::
 
       wget https://github.com/helm/helm-2to3/releases/download/v0.10.2/helm-2to3_0.10.2_linux_amd64.tar.gz
 
-2. Decompress the plug-in package.
+2. Decompress the plugin package.
 
    .. code-block::
 
@@ -94,7 +94,7 @@ Conversion Process (Using the Helm v3 Client)
 
 #. Install the Helm v3 client. For details, see :ref:`Installing Helm v3 <cce_10_0144__en-us_topic_0226102212_en-us_topic_0179003017_section3719193213815>`.
 
-#. Install the conversion plug-in.
+#. Install the conversion plugin.
 
    .. code-block::
 
@@ -103,7 +103,7 @@ Conversion Process (Using the Helm v3 Client)
       https://github.com/helm/helm-2to3/releases/download/v0.10.2/helm-2to3_0.10.2_linux_amd64.tar.gz
       Installed plugin: 2to3
 
-#. Check whether the plug-in has been installed.
+#. Check whether the plugin has been installed.
 
    .. code-block::
 

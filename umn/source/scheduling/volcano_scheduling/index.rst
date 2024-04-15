@@ -5,10 +5,20 @@
 Volcano Scheduling
 ==================
 
+-  :ref:`Overview <cce_10_0721>`
+-  :ref:`Scheduling Workloads <cce_10_0722>`
+-  :ref:`Resource Utilization-based Scheduling <cce_10_0768>`
+-  :ref:`Priority-based Scheduling <cce_10_0774>`
+-  :ref:`AI Performance-based Scheduling <cce_10_0776>`
 -  :ref:`NUMA Affinity Scheduling <cce_10_0425>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
+   overview
+   scheduling_workloads
+   resource_utilization-based_scheduling/index
+   priority-based_scheduling/index
+   ai_performance-based_scheduling/index
    numa_affinity_scheduling

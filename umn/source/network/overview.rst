@@ -31,7 +31,7 @@ All nodes in the cluster are located in a VPC and use the VPC network. The conta
 
    -  Container tunnel network: The container tunnel network is constructed on but independent of the node network through tunnel encapsulation. This network model uses VXLAN to encapsulate Ethernet packets into UDP packets and transmits them in tunnels. Open vSwitch serves as the backend virtual switch.
    -  VPC network: The VPC network uses VPC routing to integrate with the underlying network. This network model applies to performance-intensive scenarios. The maximum number of nodes allowed in a cluster depends on the route quota in a VPC network. Each node is assigned a CIDR block of a fixed size. This networking model is free from tunnel encapsulation overhead and outperforms the container tunnel network model. In addition, as VPC routing includes routes to node IP addresses and the container CIDR block, container pods in a cluster can be directly accessed from outside the cluster.
-   -  Developed by CCE, Cloud Native Network 2.0 deeply integrates Elastic Network Interfaces (ENIs) and Sub Network Interfaces (sub-ENIs) of VPC. Container IP addresses are allocated from the VPC CIDR block. ELB passthrough networking is supported to direct access requests to containers. Security groups and elastic IPs (EIPs) are bound to deliver high performance.
+   -  Developed by CCE, Cloud Native 2.0 network deeply integrates Elastic Network Interfaces (ENIs) and Sub Network Interfaces (sub-ENIs) of VPC. Container IP addresses are allocated from the VPC CIDR block. ELB passthrough networking is supported to direct access requests to containers. Security groups and elastic IPs (EIPs) are bound to deliver high performance.
 
    The performance, networking scale, and application scenarios of a container network vary according to the container network model. For details about the functions and features of different container network models, see :ref:`Overview <cce_10_0281>`.
 
@@ -47,7 +47,7 @@ Service
 A Service is used for pod access. With a static IP address, a Service forwards access traffic to pods and performs load balancing for these pods.
 
 
-.. figure:: /_static/images/en-us_image_0000001695896373.png
+.. figure:: /_static/images/en-us_image_0258889981.png
    :alt: **Figure 1** Accessing pods through a Service
 
    **Figure 1** Accessing pods through a Service
@@ -68,10 +68,10 @@ Ingress
 Services forward requests using layer-4 TCP and UDP protocols. Ingresses forward requests using layer-7 HTTP and HTTPS protocols. Domain names and paths can be used to achieve finer granularities.
 
 
-.. figure:: /_static/images/en-us_image_0000001647417440.png
-   :alt: **Figure 2** Ingress-Service
+.. figure:: /_static/images/en-us_image_0258961458.png
+   :alt: **Figure 2** Ingress and Service
 
-   **Figure 2** Ingress-Service
+   **Figure 2** Ingress and Service
 
 For details about the ingress, see :ref:`Overview <cce_10_0094>`.
 
@@ -94,9 +94,9 @@ Workload access scenarios can be categorized as follows:
    -  Accessing a public network: Assign an EIP to the node where the workload runs (when the VPC network or tunnel network model is used), bind an EIP to the pod IP address (when the Cloud Native Network 2.0 model is used), or configure SNAT rules through the NAT gateway. For details, see :ref:`Accessing Public Networks from a Container <cce_10_0400>`.
 
 
-.. figure:: /_static/images/en-us_image_0000001647576708.png
+.. figure:: /_static/images/en-us_image_0000001797909889.png
    :alt: **Figure 3** Network access diagram
 
    **Figure 3** Network access diagram
 
-.. |image1| image:: /_static/images/en-us_image_0000001647576700.png
+.. |image1| image:: /_static/images/en-us_image_0000001750950104.png

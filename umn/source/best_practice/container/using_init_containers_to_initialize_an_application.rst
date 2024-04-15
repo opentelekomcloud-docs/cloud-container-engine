@@ -87,4 +87,4 @@ Procedure
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000001701704481.png
+.. |image1| image:: /_static/images/en-us_image_0000001750790672.png

@@ -5,10 +5,10 @@
 Enhanced CPU Policies
 =====================
 
-Check Item
-----------
+Check Items
+-----------
 
-Check whether the current cluster version and the target version support the enhanced CPU policy.
+Check whether the current cluster version and the target version support enhanced CPU policy.
 
 Solution
 --------
@@ -25,5 +25,5 @@ Upgrade to a cluster version that supports the enhanced CPU policy function. The
    Clusters of v1.17 or earlier Not supported
    Clusters of v1.19            Not supported
    Clusters of v1.21            Not supported
-   Clusters of v1.23 and later  Supported
+   Clusters of v1.23 or later   Supported
    ============================ ===================

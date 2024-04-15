@@ -5,8 +5,8 @@
 Node Label and Taint Check
 ==========================
 
-Check Item
-----------
+Check Items
+-----------
 
 -  Check whether custom node labels are lost.
 -  Check whether there are any unexpected taints newly added on the node, which will affect workload scheduling.
@@ -14,7 +14,8 @@ Check Item
 Procedure
 ---------
 
-Go to the CCE console, access the cluster console, and choose **Nodes** in the navigation pane. On the displayed page, click the **Nodes** tab, select all nodes, and click **Manage Labels and Taints** to view the labels and taints of the current node.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab, select all nodes, and click **Labels and Taints** to view the labels and taints of the current node.
 
 Solution
 --------

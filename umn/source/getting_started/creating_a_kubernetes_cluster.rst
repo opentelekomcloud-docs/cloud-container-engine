@@ -15,10 +15,10 @@ Creating a Cluster
 
 #. Log in to the CCE console.
 
-   -  If you have not created a cluster, a wizard page is displayed. Click **Create** under **CCE Standard Cluster**.
-   -  If you have created a cluster, choose **Clusters** from the navigation pane and click **Create**.
+   -  If you have no clusters, click **Create CCE Standard Cluster** under **CCE Standard Cluster** on the wizard page.
+   -  If your have CCE clusters, choose **Clusters** in the navigation pane, click **Create Cluster** and select the CCE standard cluster.
 
-#. On the **Configure Cluster** page, configure cluster parameters.
+#. On the page displayed, configure parameters following instructions.
 
    In this example, a majority of parameters retain default values. Only mandatory parameters are described. For details, see :ref:`Table 1 <cce_qs_0008__table462753513248>`.
 
@@ -33,30 +33,36 @@ Creating a Cluster
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | \*Cluster Name                    | Name of the cluster to be created. A cluster name contains 4 to 128 characters starting with a lowercase letter and not ending with a hyphen (-). Only lowercase letters, digits, and hyphens (-) are allowed. |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \* Cluster Version                | Choose the latest version.                                                                                                                                                                                     |
+      | \*Cluster Version                 | Choose the latest version.                                                                                                                                                                                     |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \* Cluster Scale                  | Maximum number of **worker nodes** that can be managed by the cluster. If you select **50 nodes**, the cluster can manage a maximum of 50 worker nodes.                                                        |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \*High Availability               | The default value is **Yes**.                                                                                                                                                                                  |
+      | \*Cluster Scale                   | Maximum number of **worker nodes** that can be managed by the cluster. If you select **Nodes: 50**, the cluster can manage a maximum of 50 worker nodes.                                                       |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | **Network Settings**              |                                                                                                                                                                                                                |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \* Network Model                  | Retain the default settings.                                                                                                                                                                                   |
+      | \*Network Model                   | You can select **VPC network** or **Tunnel network**. Retain the default value.                                                                                                                                |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | \*VPC                             | VPC where the cluster will be located.                                                                                                                                                                         |
       |                                   |                                                                                                                                                                                                                |
-      |                                   | If no VPC is available, click **Create VPC** to create one. After the VPC is created, click refresh.                                                                                                           |
+      |                                   | If no VPC is available, click **Create VPC** to create one. After the VPC is created, click the refresh icon.                                                                                                  |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \* Master Node Subnet             | Subnet where master nodes of the cluster are located.                                                                                                                                                          |
+      | \*Subnet                          | Select a subnet for worker nodes.                                                                                                                                                                              |
+      |                                   |                                                                                                                                                                                                                |
+      |                                   | If no subnet is available, click **Create Subnet**. This configuration cannot be modified after the cluster is created.                                                                                        |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \* Container CIDR Block           | Retain the default value.                                                                                                                                                                                      |
+      | \*Container CIDR Block            | CIDR block used by containers. The value determines the maximum number of containers in the cluster.                                                                                                           |
+      |                                   |                                                                                                                                                                                                                |
+      |                                   | Retain the default value.                                                                                                                                                                                      |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | \* IPv4 Service CIDR Block        | CIDR block for Services used by containers in the same cluster to access each other. The value determines the maximum number of Services you can create. The value cannot be changed after creation.           |
+      | \*Service CIDR Block              | CIDR block for Services used by containers in the same cluster to access each other. The value determines the maximum number of Services you can create. The value cannot be changed after creation.           |
+      |                                   |                                                                                                                                                                                                                |
+      |                                   | Retain the default value.                                                                                                                                                                                      |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-#. Click **Next: Add-on Configuration**. Retain the default settings.
+#. Click **Next: Select Add-on**. On the page displayed, select the add-ons to be installed during cluster creation.
 
-#. Click **Next: Confirm**. After confirming that the cluster configuration information is correct, select **I have read and understand the preceding instructions** and click **Submit**.
+#. Click **Next: Add-on Configuration**.
+
+#. Click **Next: Confirm configuration**. After confirming the information, click **Submit**.
 
    It takes about 6 to 10 minutes to create a cluster.
 
@@ -69,15 +75,15 @@ After a cluster is created, you need to create nodes in the cluster to run workl
 
 #. Log in to the CCE console.
 
-#. Click the created cluster.
+#. Click the name of the created cluster to access the cluster console.
 
-#. In the navigation pane, choose **Nodes**. Click **Create Node** in the upper right corner and set node parameters.
+#. In the navigation pane, choose **Nodes**. Click the **Nodes** tab, click **Create Node** in the upper right corner, and configure parameters as prompted.
 
    The following describes only important parameters. For other parameters, retain the defaults.
 
    **Compute Settings**
 
-   -  **AZ**: Retain the default value.
+   -  **AZ**: Keep the default.
    -  **Node Type**: Select **Elastic Cloud Server (VM)**.
    -  **Specifications**: Select node specifications that fit your business needs.
    -  **Container Engine**: Select a container engine as required.
@@ -85,26 +91,31 @@ After a cluster is created, you need to create nodes in the cluster to run workl
    -  **Node Name**: Enter a node name.
    -  **Login Mode**:
 
-      -  If the login mode is **Key pair**, select a key pair for logging to the node and select the check box to acknowledge that you have obtained the key file and without this file you will not be able to log in to the node.
+      -  If the login mode is **Key Pair**, select a key pair for logging to the node and select the check box to acknowledge that you have obtained the key file and without this file you will not be able to log in to the node.
 
-         A key pair is used for identity authentication when you remotely log in to a node. If no key pair is available, click **Create Key Pair**..
+         A key pair is used for identity authentication when you remotely log in to a node. If no key pair is available, click **Create Key Pair**.
 
    **Storage Settings**
 
-   -  **System Disk**: Configure disk type and capacity based on your requirements. The default disk capacity is 50 GiB.
-   -  **Data Disk**: Configure disk type and capacity based on your requirements. The default disk capacity is 100 GiB.
+   -  **System Disk**: Configure the disk type and capacity based on your requirements. The default disk capacity is 50 GiB.
+   -  **Data Disk**: Configure the disk type and capacity based on your requirements. The default disk capacity is 100 GiB.
 
    **Network Settings**
 
-   -  **VPC**: Use the default value, that is, the subnet selected during cluster creation.
+   -  **VPC**: Use the default VPC, which is, the subnet selected during cluster creation.
+
    -  **Node Subnet**: Select a subnet in which the node runs.
-   -  **Node IP**: IP address of the specified node.
-   -  **EIP**: The default value is **Do not use**. You can select **Use existing** and **Auto create**.
+
+   -  **Node IP**: Select **Automatic**. The node IP indicates the private IP address of the node.
+
+   -  **EIP**: enables public network access. After an EIP is bound, the node can access the Internet, for example, downloading images from an external repository.
+
+      The default value is **Do not use**. You can also select **Use existing** or **Auto create**.
 
 #. At the bottom of the page, select the node quantity, and click **Next: Confirm**.
 
-#. Review the node specifications, read the instructions, select **I have read and understand the preceding instructions**, and click **Submit**.
+#. Review the node specifications, read the instructions, select **I have read and understand the preceding information**, and click **Submit**.
 
-   It takes about 6 to 10 minutes to add a node.
+   It takes about 6 to 10 minutes to create a node.
 
    The created node will be displayed on the **Nodes** page.

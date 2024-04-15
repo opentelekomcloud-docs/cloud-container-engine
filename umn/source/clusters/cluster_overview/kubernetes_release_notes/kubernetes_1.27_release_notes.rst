@@ -10,12 +10,12 @@ CCE allows you to create clusters of Kubernetes 1.27. This section describes the
 Indexes
 -------
 
--  :ref:`New Features <cce_bulletin_0059__en-us_topic_0000001605219426_en-us_topic_0000001649273541_section14972102702312>`
--  :ref:`Deprecations and Removals <cce_bulletin_0059__en-us_topic_0000001605219426_en-us_topic_0000001649273541_section1898982110241>`
--  :ref:`Enhanced Kubernetes 1.27 on CCE <cce_bulletin_0059__en-us_topic_0000001605219426_en-us_topic_0000001649273541_section115291322132513>`
--  :ref:`References <cce_bulletin_0059__en-us_topic_0000001605219426_en-us_topic_0000001649273541_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583>`
+-  :ref:`New Features <cce_bulletin_0059__en-us_topic_0000001649273541_section14972102702312>`
+-  :ref:`Deprecations and Removals <cce_bulletin_0059__en-us_topic_0000001649273541_section1898982110241>`
+-  :ref:`Enhanced Kubernetes 1.27 on CCE <cce_bulletin_0059__en-us_topic_0000001649273541_section115291322132513>`
+-  :ref:`References <cce_bulletin_0059__en-us_topic_0000001649273541_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583>`
 
-.. _cce_bulletin_0059__en-us_topic_0000001605219426_en-us_topic_0000001649273541_section14972102702312:
+.. _cce_bulletin_0059__en-us_topic_0000001649273541_section14972102702312:
 
 New Features
 ------------
@@ -148,7 +148,7 @@ New Features
 
    **kube-controller-manager** allows **--concurrent-horizontal-pod-autoscaler-syncs** to configure the number of worker nodes of the pod autoscaler for horizontal scaling.
 
-.. _cce_bulletin_0059__en-us_topic_0000001605219426_en-us_topic_0000001649273541_section1898982110241:
+.. _cce_bulletin_0059__en-us_topic_0000001649273541_section1898982110241:
 
 Deprecations and Removals
 -------------------------
@@ -208,7 +208,7 @@ Deprecations and Removals
 
    Some logging-related command line parameters are `removed <https://github.com/kubernetes/kubernetes/pull/112120>`__. These parameters were `deprecated <https://github.com/kubernetes/enhancements/tree/3cb66bd0a1ef973ebcc974f935f0ac5cba9db4b2/keps/sig-instrumentation/2845-deprecate-klog-specific-flags-in-k8s-components#removed-klog-flags>`__ in earlier versions.
 
-.. _cce_bulletin_0059__en-us_topic_0000001605219426_en-us_topic_0000001649273541_section115291322132513:
+.. _cce_bulletin_0059__en-us_topic_0000001649273541_section115291322132513:
 
 Enhanced Kubernetes 1.27 on CCE
 -------------------------------
@@ -217,7 +217,7 @@ During a version maintenance period, CCE periodically updates Kubernetes 1.27 an
 
 For details about cluster version updates, see :ref:`Release Notes for CCE Cluster Versions <cce_10_0405>`.
 
-.. _cce_bulletin_0059__en-us_topic_0000001605219426_en-us_topic_0000001649273541_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583:
+.. _cce_bulletin_0059__en-us_topic_0000001649273541_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583:
 
 References
 ----------

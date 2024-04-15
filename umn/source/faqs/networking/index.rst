@@ -7,6 +7,7 @@ Networking
 
 -  :ref:`Network Planning <cce_faq_00146>`
 -  :ref:`Network Fault <cce_faq_00205>`
+-  :ref:`Security Hardening <cce_faq_00264>`
 
 .. toctree::
    :maxdepth: 1
@@ -14,3 +15,4 @@ Networking
 
    network_planning/index
    network_fault/index
+   security_hardening/index

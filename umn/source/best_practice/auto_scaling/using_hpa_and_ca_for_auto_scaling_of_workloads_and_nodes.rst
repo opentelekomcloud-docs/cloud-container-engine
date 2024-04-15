@@ -23,7 +23,7 @@ As shown in :ref:`Figure 1 <cce_bestpractice_00282__fig6540132372015>`, HPA perf
 
 .. _cce_bestpractice_00282__fig6540132372015:
 
-.. figure:: /_static/images/en-us_image_0000001653584748.png
+.. figure:: /_static/images/en-us_image_0000001750949248.png
    :alt: **Figure 1** HPA and CA working flows
 
    **Figure 1** HPA and CA working flows
@@ -130,26 +130,24 @@ Creating a Node Pool and a Node Scaling Policy
 
 #. Log in to the CCE console, access the created cluster, click **Nodes** on the left, click the **Node Pools** tab, and click **Create Node Pool** in the upper right corner.
 
-#. Configure node pool parameters, add a node with 2 vCPUs and 4 GiB memory, and enable auto scaling.
+#. Configure the node pool.
 
    -  **Nodes**: Set it to **1**, indicating that one node is created by default when a node pool is created.
-   -  **Auto Scaling**: Enable the option, meaning that nodes will be automatically created or deleted in the node pool based on the cluster loads.
-   -  **Max. Nodes**: Set it to **5**, indicating the maximum number of nodes in a node pool.
    -  **Specifications**: 2 vCPUs \| 4 GiB
 
    Retain the defaults for other parameters. For details, see `Creating a Node Pool <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0012.html>`__.
 
-#. Click **Add-ons** on the left of the cluster console, click **Edit** under the autoscaler add-on, modify the add-on configuration, enable **Auto node scale-in**, and configure scale-in parameters. For example, trigger scale-in when the node resource utilization is less than 50%.
+#. Locate the row containing the newly created node pool and click **Auto Scaling** in the upper right corner. For details, see `Creating a Node Scaling Policy <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0209.html>`__.
 
-   |image2|
+   If the CCE Cluster Autoscaler add-on is not installed in the cluster, install it first. For details, see `autoscaler <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0154.html>`__.
 
-   After the preceding configurations, scale-out is performed based on the pending status of the pod and scale-in is triggered when the node resource utilization decreases.
+   -  **Automatic scale-out**: If this function is enabled, nodes in a node pool will be automatically added based on the cluster load.
+   -  **Customized Rule**: Click **Add Rule**. In the dialog box displayed, configure parameters. If the CPU allocation rate is greater than 70%, a node is added to each associated node pool. A node scaling policy needs to be associated with a node pool. Multiple node pools can be associated. When you need to scale nodes, node with proper specifications will be added or reduced from the node pool based on the minimum waste principle.
+   -  **Automatic scale-in**: If this function is enabled, nodes in a node pool will be automatically deleted based on the cluster load. For example, trigger scale-in when the node resource utilization is less than 50%.
+   -  **AS Configuration**: Modify the node quantity range. During autoscaling, the number of nodes in a node pool is always within the configured quantity range.
+   -  **AS Object**: Enable autoscaling for node specifications in a node pool.
 
-#. Click **Node Scaling** on the left of the cluster console and click **Create Node Scaling Policy** in the upper right corner. Node scaling policies added here trigger scale-out based on the CPU/memory allocation rate or periodically.
-
-   As shown in the following figure, when the cluster CPU allocation rate is greater than 70%, one node will be added. A node scaling policy needs to be associated with a node pool. Multiple node pools can be associated. When you need to scale nodes, node with proper specifications will be added or reduced from the node pool based on the minimum waste principle. For details, see `Creating a Node Scaling Policy <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0209.html>`__.
-
-   |image3|
+#. Click **OK**.
 
 Creating a Workload
 -------------------
@@ -237,7 +235,7 @@ There are two other annotations. One annotation defines the CPU thresholds, indi
 
 Configure the parameters as follows if you are using the console.
 
-|image4|
+|image2|
 
 Observing the Auto Scaling Process
 ----------------------------------
@@ -381,7 +379,5 @@ Summary
 
 Using HPA and CA can easily implement auto scaling in most scenarios. In addition, the scaling process of nodes and pods can be easily observed.
 
-.. |image1| image:: /_static/images/en-us_image_0000001653425428.png
-.. |image2| image:: /_static/images/en-us_image_0000001701784973.png
-.. |image3| image:: /_static/images/en-us_image_0000001653425440.png
-.. |image4| image:: /_static/images/en-us_image_0000001701704229.png
+.. |image1| image:: /_static/images/en-us_image_0000001750949232.png
+.. |image2| image:: /_static/images/en-us_image_0000001823625674.png

@@ -16,7 +16,7 @@ The cluster-internal domain name format is *<Service name>*.\ *<Namespace of the
 
 .. _cce_10_0011__fig192245420557:
 
-.. figure:: /_static/images/en-us_image_0000001647417816.png
+.. figure:: /_static/images/en-us_image_0000001750791656.png
    :alt: **Figure 1** Intra-cluster access (ClusterIP)
 
    **Figure 1** Intra-cluster access (ClusterIP)
@@ -25,14 +25,14 @@ Creating a ClusterIP Service
 ----------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. Choose **Networking** in the navigation pane and click **Create Service** in the upper right corner.
+#. In the navigation pane, choose **Services & Ingresses**. In the upper right corner, click **Create Service**.
 #. Set intra-cluster access parameters.
 
    -  **Service Name**: Service name, which can be the same as the workload name.
    -  **Service Type**: Select **ClusterIP**.
    -  **Namespace**: Namespace to which the workload belongs.
    -  **Selector**: Add a label and click **Confirm**. A Service selects a pod based on the added label. You can also click **Reference Workload Label** to reference the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
-   -  **Port**
+   -  **Port Settings**
 
       -  **Protocol**: protocol used by the Service.
       -  **Service Port**: port used by the Service. The port number ranges from 1 to 65535.

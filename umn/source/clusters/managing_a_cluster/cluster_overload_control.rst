@@ -24,13 +24,13 @@ When creating a cluster of v1.23 or later, you can enable overload control durin
 
 **Method 2: Enabling it in an existing cluster**
 
-#. Log in to the CCE console and go to an existing cluster whose version is v1.23 or later.
-#. On the cluster information page, view the master node information. If overload control is not enabled, a message is displayed. You can click **Enable** to enable the function.
+#. Log in to the CCE console and click the name of an existing cluster whose version is v1.23 or later.
+#. On the **Overview** page, check the master node information. If overload control is not enabled, a message will be displayed. You can click **Enable** to enable the function.
 
 Disabling Cluster Overload Control
 ----------------------------------
 
 #. Log in to the CCE console and go to an existing cluster whose version is v1.23 or later.
-#. On the **Cluster Information** page, click **Manage** in the upper right corner.
-#. Set **support-overload** to **false** under **kube-apiserver**.
+#. In the navigation pane, choose\ **Settings**.
+#. On the **Cluster Access Configuration** tab, set cluster overload control (**support-overload**) to **false**.
 #. Click **OK**.

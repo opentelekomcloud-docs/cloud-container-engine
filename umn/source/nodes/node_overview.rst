@@ -16,8 +16,6 @@ A container cluster consists of a set of worker machines, called nodes, that run
 
 CCE uses high-performance Elastic Cloud Servers (ECSs) as nodes to build highly available Kubernetes clusters.
 
-.. _cce_10_0180__section1667513391595:
-
 Supported Node Specifications
 -----------------------------
 
@@ -33,10 +31,10 @@ For containerized applications that use the XFS format, pay attention to the imp
 
 Run the **docker info \| grep "Backing Filesystem"** command to check the format of the Docker underlying storage file used by the current node.
 
-Paas User and User Group
+paas User and User Group
 ------------------------
 
-When you create a node in a CCE cluster, a paas user or user group is created on the node by default. CCE components and CCE add-ons on a node run as a non-root user (paas user/user group) to minimize the running permission. If the paas user or user group is modified, CCE components and pods may fail to run properly.
+When you create a node in a cluster, the paas user or a user group will be created on the node by default. CCE components and CCE add-ons on a node run as a non-root user (user **paas** or a user group) to minimize the running permission. If the paas user or user group is modified, CCE components and pods may fail to run properly.
 
 .. important::
 

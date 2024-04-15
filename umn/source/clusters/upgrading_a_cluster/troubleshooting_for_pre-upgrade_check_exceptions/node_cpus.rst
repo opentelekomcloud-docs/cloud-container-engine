@@ -5,8 +5,8 @@
 Node CPUs
 =========
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the number of CPUs on the master node is greater than 2.
 

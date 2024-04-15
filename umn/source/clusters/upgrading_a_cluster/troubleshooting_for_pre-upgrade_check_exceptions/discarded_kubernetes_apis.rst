@@ -5,8 +5,8 @@
 Discarded Kubernetes APIs
 =========================
 
-Check Item
-----------
+Check Items
+-----------
 
 The system scans the audit logs of the past day to check whether the user calls the deprecated APIs of the target Kubernetes version.
 
@@ -23,6 +23,6 @@ Based on the check result, it is detected that your cluster calls a deprecated A
 
 **Case Study**
 
-Ingresses of extensions/v1beta1 and networking.k8s.io/v1beta1 API are deprecated in clusters of v1.22. If you upgrade a CCE cluster from v1.19 or v1.21 to v1.23, existing resources are not affected, but the v1beta1 API version may be intercepted in the creation and editing scenarios.
+Ingresses of the extensions/v1beta1 and networking.k8s.io/v1beta1 APIs are deprecated in Kubernetes v1.22. If you upgrade a cluster from v1.19 or v1.21 to v1.23, existing resources are not affected, but the v1beta1 API may be intercepted in the creation and editing scenarios.
 
 For details about the YAML configuration structure changes, see :ref:`Using kubectl to Create an ELB Ingress <cce_10_0252>`.

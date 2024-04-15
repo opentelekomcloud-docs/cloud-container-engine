@@ -12,7 +12,7 @@ WordPress is a blog platform developed in hypertext preprocessor (PHP). You can 
 WordPress must be used together with MySQL. WordPress runs the content management program while MySQL serves as a database to store data. Generally, WordPress and MySQL run in different containers, as shown in the following figure.
 
 
-.. figure:: /_static/images/en-us_image_0000001550678257.png
+.. figure:: /_static/images/en-us_image_0000001798266905.png
    :alt: **Figure 1** WordPress
 
    **Figure 1** WordPress

@@ -9,7 +9,7 @@ Kubernetes Release Notes
 -  :ref:`Kubernetes 1.25 Release Notes <cce_bulletin_0058>`
 -  :ref:`Kubernetes 1.23 Release Notes <cce_bulletin_0027>`
 -  :ref:`Kubernetes 1.21 Release Notes <cce_bulletin_0026>`
--  :ref:`Kubernetes 1.19 EOM Release Notes <cce_whsnew_0010>`
+-  :ref:`Kubernetes 1.19 (EOM) Release Notes <cce_whsnew_0010>`
 -  :ref:`Kubernetes 1.17 (EOM) Release Notes <cce_whsnew_0007>`
 
 .. toctree::

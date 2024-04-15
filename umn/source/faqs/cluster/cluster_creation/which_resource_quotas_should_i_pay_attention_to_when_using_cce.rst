@@ -7,9 +7,9 @@ Which Resource Quotas Should I Pay Attention To When Using CCE?
 
 CCE restricts **only the number of clusters**. However, when using CCE, you may also be using other cloud services, such as Elastic Cloud Server (ECS), Elastic Volume Service (EVS), Virtual Private Cloud (VPC), Elastic Load Balance (ELB), and SoftWare Repository for Containers (SWR).
 
-What Is a Quota?
-----------------
+What Is Quota?
+--------------
 
-A quota is a limit on the quantity or capacity of a certain type of cloud service resources that you can use, for example, the maximum number of ECSs or EVS disks that you can create.
+Quotas can limit the number or amount of resources available to users, such as the maximum number of ECSs or EVS disks that can be created.
 
-You can request for an increase in quota if an existing quota cannot meet your service requirements.
+If the existing resource quota cannot meet your service requirements, you can apply for a higher quota.

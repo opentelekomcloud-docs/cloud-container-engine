@@ -14,7 +14,7 @@ The CCE cluster of a SaaS service provider needs to be mounted with the OBS buck
 
 .. _cce_bestpractice_00199__fig1315433183918:
 
-.. figure:: /_static/images/en-us_image_0000001701785281.png
+.. figure:: /_static/images/en-us_image_0000001750790684.png
    :alt: **Figure 1** Mounting an OBS bucket of a third-party tenant
 
    **Figure 1** Mounting an OBS bucket of a third-party tenant
@@ -40,10 +40,10 @@ The following uses an OBS bucket as an example to describe how to set a bucket p
 #. Log in to the OBS console.
 #. In the bucket list, click a bucket name to access the **Overview** page.
 
-3. In the navigation pane, choose **Permissions**. Click the **Bucket Policies** tab and click **Create Bucket Policy** under **Custom Bucket Policies**.
+3. In the navigation pane, choose **Permissions** > **Bucket Policies**. On the displayed page, click **Create** to create a bucket policy.
 
 
-   .. figure:: /_static/images/en-us_image_0000001780253930.png
+   .. figure:: /_static/images/en-us_image_0000001826752857.png
       :alt: **Figure 2** Creating a bucket policy
 
       **Figure 2** Creating a bucket policy
@@ -54,7 +54,7 @@ The following uses an OBS bucket as an example to describe how to set a bucket p
    -  **Resources**: Select the resources that can be operated.
    -  **Actions**: Select the actions that can be operated.
 
-4. In the navigation pane, choose **Permissions** > **Bucket ACLs**. In the right pane, click **Add**.Enter the account ID or account name of the authorized user, select **Read** and **Write** for **Access to Bucket**, select **Read** and **Write** for **Access to ACL**, and click **OK**.
+4. In the navigation pane, choose **Permissions** > **Bucket ACLs**. In the right pane, click **Add**. Enter the account ID or account name of the authorized user, select **Read** and **Write** for **Access to Bucket**, select **Read** and **Write** for **Access to ACL**, and click **OK**.
 
 .. _cce_bestpractice_00199__en-us_topic_0196817407_section155006183017:
 

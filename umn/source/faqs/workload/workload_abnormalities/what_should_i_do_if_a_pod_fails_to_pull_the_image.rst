@@ -187,7 +187,7 @@ To expand a disk capacity, perform the following steps:
 
 #. Expand the capacity of the data disk on the EVS console.
 
-#. Log in to the CCE console and click the cluster. In the navigation pane, choose **Nodes**. Locate the row containing the target node and choose **More** > **Sync Server Data** in the **Operation** column.
+#. Log in to the CCE console and click the cluster. In the navigation pane, choose **Nodes**. Click **More** > **Sync Server Data** in the row containing the target node.
 
 #. Log in to the target node.
 
@@ -201,9 +201,9 @@ To expand a disk capacity, perform the following steps:
 
          # lsblk
          NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-         sda                   8:0    0   50G  0 disk
-         └─sda1                8:1    0   50G  0 part /
-         sdb                   8:16   0  200G  0 disk
+         vda                   8:0    0   50G  0 disk
+         └─vda1                8:1    0   50G  0 part /
+         vdb                   8:16   0  200G  0 disk
          ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/docker               # Space used by the container engine
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet  # Space used by Kubernetes
 
@@ -211,7 +211,7 @@ To expand a disk capacity, perform the following steps:
 
       .. code-block::
 
-         pvresize /dev/sdb
+         pvresize /dev/vdb
          lvextend -l+100%FREE -n vgpaas/dockersys
          resize2fs /dev/vgpaas/dockersys
 
@@ -221,12 +221,12 @@ To expand a disk capacity, perform the following steps:
 
          # lsblk
          NAME                                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-         sda                                   8:0    0   50G  0 disk
-         └─sda1                                8:1    0   50G  0 part /
-         sdb                                   8:16   0  200G  0 disk
+         vda                                   8:0    0   50G  0 disk
+         └─vda1                                8:1    0   50G  0 part /
+         vdb                                   8:16   0  200G  0 disk
          ├─vgpaas-dockersys                  253:0    0   18G  0 lvm  /var/lib/docker
          ├─vgpaas-thinpool_tmeta             253:1    0    3G  0 lvm
-         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Thin pool space.
+         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Space used by thinpool
          │   ...
          ├─vgpaas-thinpool_tdata             253:2    0   67G  0 lvm
          │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm
@@ -237,14 +237,14 @@ To expand a disk capacity, perform the following steps:
 
          .. code-block::
 
-            pvresize /dev/sdb
+            pvresize /dev/vdb
             lvextend -l+100%FREE -n vgpaas/thinpool
 
       -  Run the following commands on the node to add the new disk capacity to the **dockersys** disk:
 
          .. code-block::
 
-            pvresize /dev/sdb
+            pvresize /dev/vdb
             lvextend -l+100%FREE -n vgpaas/dockersys
             resize2fs /dev/vgpaas/dockersys
 
@@ -302,49 +302,39 @@ The pod event list contains the event "Failed to pull image". This may be caused
 
    Failed to pull image "XXX": rpc error: code = Unknown desc = context canceled
 
-Log in to the node and run the **docker pull** command to manually pull the image. The image is successfully pulled.
+However, the image can be manually pulled by running the **docker pull** command.
 
 **Possible Causes**
 
-The default value of **image-pull-progress-deadline** is 1 minute. If the image pull progress is not updated within 1 minute, image pull is canceled. If the node performance is poor or the image size is too large, the image may fail to be pulled and the workload may fail to be started.
+In Kubernetes clusters, there is a default timeout period for pulling images. If the image pulling progress is not updated within a certain period of time, the download will be canceled. If the node performance is poor or the image size is too large, the image may fail to be pulled and the workload may fail to be started.
 
 **Solution**
 
--  (Recommended) Method 1: Log in to the node, run the **docker pull** command to manually pull the image, and check whether **imagePullPolicy** of the workload is **IfNotPresent** (default policy configuration). In this case, the image that has been pulled to the local host is used to create the workload.
+-  Solution 1 (recommended):
 
--  Method 2: Modify the kubelet configuration parameters.
+   #. Log in to the node and manually pull the image.
 
-   For a cluster of v1.15 or later, run the following command:
+      -  containerd nodes:
 
-   .. code-block::
+         .. code-block::
 
-      vi /opt/cloud/cce/kubernetes/kubelet/kubelet
+            crictl pull <image-address>
 
-   For a cluster earlier than v1.15, run the following command:
+      -  Docker nodes:
 
-   .. code-block::
+         .. code-block::
 
-      vi /var/paas/kubernetes/kubelet/kubelet
+            docker pull <image-address>
 
-   Add **--image-pull-progress-deadline=30m** to the end of the **DAEMON_ARGS** parameter. **30m** indicates 30 minutes. You can change the value as required. The added configuration and the existing configuration are separated by a space.
+   #. When creating a workload, ensure that **imagePullPolicy** is set to **IfNotPresent** (the default configuration). In this case, the workload uses the image that has been pulled to the local host.
 
-   |image2|
+-  Solution 2 (applies to clusters of v1.25 or later): Modify the configuration parameters of the node pools. The configuration parameters for nodes in the **DefaultPool** node pool cannot be modified.
 
-   Run the following command to restart kubelet:
-
-   .. code-block::
-
-      systemctl restart kubelet
-
-   Wait for a while and check whether the kubelet status is **running**.
-
-   .. code-block::
-
-      systemctl status kubelet
-
-   |image3|
-
-   The workload is started properly, and the image is successfully pulled.
+   #. Log in to the CCE console.
+   #. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane and click the **Node Pools** tab.
+   #. Locate the row that contains the target node pool and click **Manage**.
+   #. In the window that slides out from the right, modify the **image-pull-progress-timeout** parameter under **Docker/containerd**. This parameter specifies the timeout interval for pulling an image.
+   #. Click **OK**.
 
 .. _cce_faq_00015__section19758182810816:
 
@@ -395,6 +385,4 @@ Docker Hub sets the maximum number of container image pull requests. For details
 
 Push the frequently used image to SWR and then pull the image from SWR.
 
-.. |image1| image:: /_static/images/en-us_image_0000001704495101.jpg
-.. |image2| image:: /_static/images/en-us_image_0000001656414974.png
-.. |image3| image:: /_static/images/en-us_image_0000001656414978.png
+.. |image1| image:: /_static/images/en-us_image_0000001797870021.jpg

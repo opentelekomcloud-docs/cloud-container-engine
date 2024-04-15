@@ -68,7 +68,7 @@ Using Ingress Rules
    The following figure shows how podSelector works.
 
 
-   .. figure:: /_static/images/en-us_image_0000001695896529.png
+   .. figure:: /_static/images/en-us_image_0000001750950232.png
       :alt: **Figure 1** podSelector
 
       **Figure 1** podSelector
@@ -97,7 +97,7 @@ Using Ingress Rules
    The following figure shows how namespaceSelector works.
 
 
-   .. figure:: /_static/images/en-us_image_0000001695737257.png
+   .. figure:: /_static/images/en-us_image_0000001750791324.png
       :alt: **Figure 2** namespaceSelector
 
       **Figure 2** namespaceSelector
@@ -109,7 +109,7 @@ Egress supports not only podSelector and namespaceSelector, but also ipBlock.
 
 .. note::
 
-   Only clusters of version 1.23 or later support egress rules. Currently, nodes running EulerOS 2.5, EulerOS 2.9 are supported.
+   Only clusters of version 1.23 or later support Egress rules. Only nodes running EulerOS 2.5 or EulerOS 2.9 are supported.
 
 .. code-block::
 
@@ -134,7 +134,7 @@ Egress supports not only podSelector and namespaceSelector, but also ipBlock.
 The following figure shows how ipBlock works.
 
 
-.. figure:: /_static/images/en-us_image_0000001647576864.png
+.. figure:: /_static/images/en-us_image_0000001797910037.png
    :alt: **Figure 3** ipBlock
 
    **Figure 3** ipBlock
@@ -172,7 +172,7 @@ You can define ingress and egress in the same rule.
 The following figure shows how to use ingress and egress together.
 
 
-.. figure:: /_static/images/en-us_image_0000001695896533.png
+.. figure:: /_static/images/en-us_image_0000001797871009.png
    :alt: **Figure 4** Using both ingress and egress
 
    **Figure 4** Using both ingress and egress
@@ -181,13 +181,13 @@ Creating a Network Policy on the Console
 ----------------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. Choose **Networking** in the navigation pane, click the **Network Policies** tab, and click **Create Network Policy** in the upper right corner.
+#. Choose **Policies** in the navigation pane, click the **Network Policies** tab, and click **Create Network Policy** in the upper right corner.
 
    -  **Policy Name**: Specify a network policy name.
 
    -  **Namespace**: Select a namespace in which the network policy is applied.
 
-   -  **Selector**: Enter a label, select the pod to be associated, and click **Confirm**. You can also click **Reference Workload Label** to reference the label of an existing workload.
+   -  **Selector**: Enter a label, select the pod to be associated, and click **Add**. You can also click **Reference Workload Label** to reference the label of an existing workload.
 
    -  **Inbound Rule**: Click |image1| to add an inbound rule. For details about parameter settings, see :ref:`Table 1 <cce_10_0059__table166419994515>`.
 
@@ -204,7 +204,7 @@ Creating a Network Policy on the Console
          +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
          | Source Namespace | Select a namespace whose objects can be accessed. If this parameter is not specified, the object belongs to the same namespace as the current policy. |
          +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Source Pod Label | Allow accessing the pods with this label. If this parameter is not specified, all pods in the namespace can be accessed.                              |
+         | Source Pod Label | Allow accesses from the pods with this label. If this parameter is not specified, all pods in the namespace can access the port.                      |
          +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    -  **Outbound Rule**: Click |image3| to add an outbound rule. For details about parameter settings, see :ref:`Table 1 <cce_10_0059__table166419994515>`.
@@ -227,7 +227,7 @@ Creating a Network Policy on the Console
 
 #. Click **OK**.
 
-.. |image1| image:: /_static/images/en-us_image_0000001647417596.png
-.. |image2| image:: /_static/images/en-us_image_0000001647417588.png
-.. |image3| image:: /_static/images/en-us_image_0000001695737253.png
-.. |image4| image:: /_static/images/en-us_image_0000001647417600.png
+.. |image1| image:: /_static/images/en-us_image_0000001750950236.png
+.. |image2| image:: /_static/images/en-us_image_0000001750791308.png
+.. |image3| image:: /_static/images/en-us_image_0000001797871005.png
+.. |image4| image:: /_static/images/en-us_image_0000001797871017.png

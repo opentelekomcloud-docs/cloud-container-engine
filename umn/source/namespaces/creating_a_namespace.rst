@@ -5,8 +5,8 @@
 Creating a Namespace
 ====================
 
-When to Use Namespaces
-----------------------
+Scenario
+--------
 
 A namespace is a collection of resources and objects. Multiple namespaces can be created inside a cluster and isolated from each other. This enables namespaces to share the same cluster Services without affecting each other.
 
@@ -20,7 +20,7 @@ At least one cluster has been created.
 Constraints
 -----------
 
-A maximum of 6,000 Services can be created in each namespace. The Services mentioned here indicate the Kubernetes Service resources added for workloads.
+A maximum of 6000 Services can be created in each namespace. The Services mentioned here indicate the Kubernetes Service resources added for workloads.
 
 Namespace Types
 ---------------

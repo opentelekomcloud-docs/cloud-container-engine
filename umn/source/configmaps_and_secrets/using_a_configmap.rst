@@ -5,9 +5,9 @@
 Using a ConfigMap
 =================
 
--  :ref:`Setting Workload Environment Variables <cce_10_0015__section1737733192813>`
--  :ref:`Setting Command Line Parameters <cce_10_0015__section17930105710189>`
--  :ref:`Attaching a ConfigMap to the Workload Data Volume <cce_10_0015__section1490261161916>`
+-  :ref:`Configuring Environment Variables of a Workload <cce_10_0015__section1737733192813>`
+-  :ref:`Configuring Command Line Parameters <cce_10_0015__section17930105710189>`
+-  :ref:`Mounting a ConfigMap to the Workload Data Volume <cce_10_0015__section1490261161916>`
 
 The following example shows how to use a ConfigMap.
 
@@ -33,16 +33,16 @@ The following example shows how to use a ConfigMap.
 
 .. _cce_10_0015__section1737733192813:
 
-Setting Workload Environment Variables
---------------------------------------
+Configuring Environment Variables of a Workload
+-----------------------------------------------
 
-**Using the console**
+**Using the CCE console**
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Workloads**. Then, click **Create Workload**.
+#. In the navigation pane, choose **Workloads**. In the dialog box displayed, click **Create Workload** in the upper right corner.
 
-   When creating a workload, click **Environment Variables** in the **Container Settings** area, and click |image1|.
+   When creating a workload, click **Environment Variables** in the **Container Settings** area, and click **Add Variable**.
 
    -  **Added from ConfigMap**: Select a ConfigMap to import all of its keys as environment variables.
 
@@ -77,7 +77,7 @@ Setting Workload Environment Variables
 
    Content of the YAML file:
 
-   -  **Added from a ConfigMap**: To add all data in a ConfigMap to environment variables, use the **envFrom** parameter. The keys in the ConfigMap will become names of environment variables in the workload.
+   -  **Added from ConfigMap**: To add all data in a ConfigMap to environment variables, use the **envFrom** parameter. The keys in the ConfigMap will become names of environment variables in the workload.
 
       .. code-block::
 
@@ -104,7 +104,7 @@ Setting Workload Environment Variables
                imagePullSecrets:
                - name: default-secret
 
-   -  **Added from a ConfigMap key**: When creating a workload, you can use a ConfigMap to set environment variables and use the **valueFrom** parameter to reference the key-value pair in the ConfigMap separately.
+   -  **Added from ConfigMap key**: When creating a workload, you can use a ConfigMap to set environment variables and use the **valueFrom** parameter to reference the key-value pair in the ConfigMap separately.
 
       .. code-block::
 
@@ -143,7 +143,7 @@ Setting Workload Environment Variables
 
    **kubectl apply -f nginx-configmap.yaml**
 
-#. View the environment variable in the pod.
+#. View the environment variables in the pod.
 
    a. Run the following command to view the created pod:
 
@@ -174,18 +174,18 @@ Setting Workload Environment Variables
 
 .. _cce_10_0015__section17930105710189:
 
-Setting Command Line Parameters
--------------------------------
+Configuring Command Line Parameters
+-----------------------------------
 
 You can use a ConfigMap as an environment variable to set commands or parameter values for a container by using the environment variable substitution syntax $(VAR_NAME).
 
-**Using the console**
+**Using the CCE console**
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Workloads**. Then, click **Create Workload**.
+#. In the navigation pane, choose **Workloads**. In the dialog box displayed, click **Create Workload** in the upper right corner.
 
-   When creating a workload, click **Environment Variables** in the **Container Settings** area, and click |image2|. In this example, select **Added from ConfigMap**.
+   When creating a workload, click **Environment Variables** in the **Container Settings** area, and click **Add Variable**. In this example, select **Added from ConfigMap**.
 
    -  **Added from ConfigMap**: Select a ConfigMap to import all of its keys as environment variables.
 
@@ -286,51 +286,65 @@ You can use a ConfigMap as an environment variable to set commands or parameter 
 
 .. _cce_10_0015__section1490261161916:
 
-Attaching a ConfigMap to the Workload Data Volume
--------------------------------------------------
+Mounting a ConfigMap to the Workload Data Volume
+------------------------------------------------
 
 The data stored in a ConfigMap can be referenced in a volume of type ConfigMap. You can mount such a volume to a specified container path. The platform supports the separation of workload codes and configuration files. ConfigMap volumes are used to store workload configuration parameters. Before that, create ConfigMaps in advance. For details, see :ref:`Creating a ConfigMap <cce_10_0152>`.
 
-**Using the console**
+**Using the CCE console**
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Workloads**. Then, click **Create Workload**.
+#. In the navigation pane, choose **Workloads**. In the dialog box displayed, click **Create Workload** in the upper right corner.
 
    When creating a workload, click **Data Storage** in the **Container Settings** area. Click **Add Volume** and select **ConfigMap** from the drop-down list.
 
-#. Configure the parameters.
+#. Select parameters for mounting a ConfigMap volume, as shown in :ref:`Table 1 <cce_10_0015__table1776324831114>`.
+
+   .. _cce_10_0015__table1776324831114:
 
    .. table:: **Table 1** Mounting a ConfigMap volume
 
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-      +===================================+==============================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
-      | ConfigMap                         | Select the desired ConfigMap.                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-      |                                   | A ConfigMap must be created in advance. For details, see :ref:`Creating a ConfigMap <cce_10_0152>`.                                                                                                                                                                                                                                                                                                                                                                          |
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Add Container Path                | Configure the following parameters:                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-      |                                   | a. **Mount Path**: Enter a path of the container, for example, **/tmp**.                                                                                                                                                                                                                                                                                                                                                                                                     |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-      |                                   |    This parameter indicates the container path to which a data volume will be mounted. Do not mount the volume to a system directory such as **/** or **/var/run**; this action may cause container errors. You are advised to mount the volume to an empty directory. If the directory is not empty, ensure that there are no files that affect container startup. Otherwise, the files will be replaced, causing container startup failures or workload creation failures. |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-      |                                   |    .. important::                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-      |                                   |       NOTICE:                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-      |                                   |       If a volume is mounted to a high-risk directory, use an account with minimum permissions to start the container. Otherwise, high-risk files on the host machine may be damaged.                                                                                                                                                                                                                                                                                        |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-      |                                   | b. **Subpath**: Enter a subpath, for example, **tmp**.                                                                                                                                                                                                                                                                                                                                                                                                                       |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-      |                                   |    -  A subpath is used to mount a local volume so that the same data volume is used in a single pod. If this parameter is left blank, the root path is used by default.                                                                                                                                                                                                                                                                                                     |
-      |                                   |    -  The subpath can be the key and value of a ConfigMap or secret. If the subpath is a key-value pair that does not exist, the data import does not take effect.                                                                                                                                                                                                                                                                                                           |
-      |                                   |    -  The data imported by specifying a subpath will not be updated along with the ConfigMap/secret updates.                                                                                                                                                                                                                                                                                                                                                                 |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-      |                                   | c. Set the permission to **Read-only**. Data volumes in the path are read-only.                                                                                                                                                                                                                                                                                                                                                                                              |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-      |                                   | You can click |image3| to add multiple paths and subpaths.                                                                                                                                                                                                                                                                                                                                                                                                                   |
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+      +===================================+==========================================================================================================================================================================================================================================================================================================================================================================================================================================================+
+      | ConfigMap                         | Select the desired ConfigMap.                                                                                                                                                                                                                                                                                                                                                                                                                            |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+      |                                   | A ConfigMap must be created beforehand. For details, see :ref:`Creating a ConfigMap <cce_10_0152>`.                                                                                                                                                                                                                                                                                                                                                      |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Mount Path                        | Enter a mount point. After the ConfigMap volume is mounted, a configuration file with the key as the file name and value as the file content is generated in the mount path of the container.                                                                                                                                                                                                                                                            |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+      |                                   | This parameter indicates the container path to which a data volume will be mounted. Do not mount the volume to a system directory such as **/** or **/var/run**. This may lead to container errors. Mount the volume to an empty directory. If the directory is not empty, ensure that there are no files that affect container startup. Otherwise, the files will be replaced, which leads to a container startup failure or workload creation failure. |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+      |                                   | .. important::                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+      |                                   |    NOTICE:                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+      |                                   |    If the container is mounted to a high-risk directory, use an account with minimum permissions to start the container. Otherwise, high-risk files on the host may be damaged.                                                                                                                                                                                                                                                                          |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Subpath                           | Enter a subpath of the mount path.                                                                                                                                                                                                                                                                                                                                                                                                                       |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+      |                                   | -  A subpath is used to mount a local volume so that the same data volume is used in a single pod. If this parameter is left blank, the root path is used by default.                                                                                                                                                                                                                                                                                    |
+      |                                   | -  The subpath can be the key and value of a ConfigMap or secret. If the subpath is a key-value pair that does not exist, the data import does not take effect.                                                                                                                                                                                                                                                                                          |
+      |                                   | -  The data imported by specifying a subpath will not be updated along with the ConfigMap/secret updates.                                                                                                                                                                                                                                                                                                                                                |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Permission                        | Read-only, indicating that data volume in the path is read-only.                                                                                                                                                                                                                                                                                                                                                                                         |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+#. After the configuration, click **Create Workload**.
+
+   After the workload runs properly, the **SPECIAL_LEVEL** and **SPECIAL_TYPE** files will be generated in the **/etc/config** directory in this example. The contents of the files are **Hello** and **CCE**, respectively.
+
+   :ref:`Access the container <cce_10_00356>` and run the following statement to view the **SPECIAL_LEVEL** or **SPECIAL_TYPE** file in the container:
+
+   .. code-block::
+
+      cat /etc/config/SPECIAL_LEVEL
+
+   Expected output:
+
+   .. code-block::
+
+      Hello
 
 **Using kubectl**
 
@@ -392,14 +406,10 @@ The data stored in a ConfigMap can be referenced in a volume of type ConfigMap. 
 
       .. code-block::
 
-         kubectl exec nginx-configmap-*** -- /etc/config/SPECIAL_LEVEL
+         kubectl exec nginx-configmap-*** -- cat /etc/config/SPECIAL_LEVEL
 
       Expected output:
 
       .. code-block::
 
          Hello
-
-.. |image1| image:: /_static/images/en-us_image_0000001695896853.png
-.. |image2| image:: /_static/images/en-us_image_0000001695896849.png
-.. |image3| image:: /_static/images/en-us_image_0000001647577176.png

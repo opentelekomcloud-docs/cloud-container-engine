@@ -57,7 +57,7 @@ Solution
 
 -  Scenario 3: This issue occurred on some CCE add-ons of earlier versions.
 
-   Upgrade the CCE add-ons to the latest version. For example, if this issue occurred on the Dolphin add-on of versions earlier than 1.2.2, upgrade the add-on to 1.2.2 or later.
+   Upgrade the CCE add-ons to the latest version.
 
 -  Scenario 4: The "failed to execute docker ps -aq" error is displayed in the log analysis.
 

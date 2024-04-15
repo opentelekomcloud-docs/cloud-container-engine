@@ -8,8 +8,8 @@ What Should I Do If Domain Name Resolution Fails?
 Check Item 1: Whether the coredns Add-on Has Been Installed
 -----------------------------------------------------------
 
-#. Log in to the CCE console and click the cluster.
-#. In the navigation pane, choose **Add-ons**. In the **Add-ons Installed** area, check whether the coredns add-on has been installed.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Add-ons** and check whether the CoreDNS add-on has been installed.
 #. If not, install the add-on. For details, see :ref:`Why Does a Container in a CCE Cluster Fail to Perform DNS Resolution? <cce_faq_00107>`.
 
 .. _cce_faq_00197__section19878113435:
@@ -19,9 +19,9 @@ Check Item 2: Whether the coredns Instance Reaches the Performance Limit
 
 CoreDNS QPS is positively correlated with the CPU usage. If the QPS is high, adjust the the coredns instance specifications based on the QPS.
 
-#. Log in to the CCE console and access the cluster console.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane on the left, choose **Add-ons**. In **Add-ons Installed**, find the coredns add-on corresponding to the cluster and ensure that the add-on status is **Running**.
+#. In the navigation tree, choose **Add-ons** and verify that CoreDNS is running.
 
 #. Click the coredns add-on name to view the add-on list.
 
@@ -65,9 +65,17 @@ To locate the fault, perform the following steps:
 
    -  *<coredns container ID>* must be a complete container ID, which can be obtained by running the following command:
 
+      Docker nodes:
+
       .. code-block::
 
          docker ps --no-trunc | grep k8s_coredns | awk '{print $1}'
+
+      containerd nodes:
+
+      .. code-block::
+
+         crictl ps --no-trunc | grep k8s_coredns | awk '{print $1}'
 
    Example:
 

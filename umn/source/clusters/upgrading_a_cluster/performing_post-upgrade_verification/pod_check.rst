@@ -5,8 +5,8 @@
 Pod Check
 =========
 
-Check Item
-----------
+Check Items
+-----------
 
 -  Check whether there are unexpected pods in the cluster.
 -  Check whether there are any pods that ran properly originally in the cluster restart unexpectedly.
@@ -14,9 +14,9 @@ Check Item
 Procedure
 ---------
 
-Log in to the CCE console and access the cluster console. Choose **Workloads** in the navigation pane. On the displayed page, switch to the **Pods** tab page. Select all namespaces, click **Status**, and check whether there are any abnormal pods.
-
-View the **Restarts** column to check whether there are pods that are restarted abnormally.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Workloads**. On the displayed page, select all namespaces, click the **Pods** tab, and check whether there are abnormal pods.
+#. Check the **Restarts** column for the pods that are restarted unexpectedly.
 
 Solution
 --------

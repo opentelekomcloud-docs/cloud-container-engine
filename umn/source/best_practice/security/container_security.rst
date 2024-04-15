@@ -106,23 +106,40 @@ If application containers on a node do not need to access Kubernetes, you can pe
 
    On the **Clusters** page of the CCE console, click the name of the cluster to find the information on the details page.
 
-#. Log in to each node in the CCE cluster as user **root** and run the following command:
+#. Configure access rules.
 
-   -  VPC network:
+   -  CCE cluster: Log in to each node in the cluster as user **root** and run the following command:
 
-      .. code-block::
+      -  VPC network:
 
-         iptables -I OUTPUT -s {container_cidr} -d {Private API server IP} -j REJECT
+         .. code-block::
 
-   -  Container tunnel network:
+            iptables -I OUTPUT -s {container_cidr} -d {Private API server IP} -j REJECT
 
-      .. code-block::
+      -  Container tunnel network:
 
-         iptables -I FORWARD -s {container_cidr} -d {Private API server IP} -j REJECT
+         .. code-block::
 
-   *{container_cidr}* indicates the container CIDR of the cluster, for example, 10.0.0.0/16.
+            iptables -I FORWARD -s {container_cidr} -d {Private API server IP} -j REJECT
 
-   To ensure configuration persistence, you are advised to write the command to the **/etc/rc.local** script.
+      *{container_cidr}* indicates the container CIDR of the cluster, for example, 10.0.0.0/16.
+
+      To ensure configuration persistence, you are advised to write the command to the **/etc/rc.local** script.
+
+   -  CCE Turbo cluster: Add an outbound rule to the ENI security group of the cluster.
+
+      a. Log in to the VPC console.
+      b. In the navigation pane, choose **Access Control** > **Security Groups**.
+      c. Locate the ENI security group corresponding to the cluster and name it in the format of *{Cluster name}*\ **-cce-eni-**\ *{Random ID}*. Click the security group name and configure rules.
+      d. Click the **Outbound Rules** tab and click **Add Rule** to add an outbound rule for the security group.
+
+         -  **Priority**: Set it to **1**.
+         -  **Action**: Select **Deny**, indicating that the access to the destination address is denied.
+         -  **Type**: Select **IPv4**.
+         -  **Protocol & Port**: Enter **5443** based on the port in the intranet API server address.
+         -  **Destination**: Select **IP address** and enter the IP address of the internal API server.
+
+      e. Click **OK**.
 
 #. Run the following command in the container to access kube-apiserver and check whether the request is intercepted:
 

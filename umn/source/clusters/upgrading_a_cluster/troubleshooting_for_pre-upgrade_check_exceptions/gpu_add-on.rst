@@ -5,8 +5,8 @@
 GPU Add-on
 ==========
 
-Check Item
-----------
+Check Items
+-----------
 
 The GPU add-on is involved in the upgrade, which may affect the GPU driver installation during the creation of a GPU node.
 
@@ -17,7 +17,7 @@ The GPU add-on driver needs to be configured by yourself. Check the compatibilit
 
 Perform the following operations to check the upgrade of the GPU driver to the target version and current driver configuration of GPU add-on:
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane to view the GPU add-on.
+#. Log in to the CCE console and click **Add-ons** to view the GPU add-on.
 
    .. note::
 

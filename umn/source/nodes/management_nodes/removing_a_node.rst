@@ -36,7 +36,9 @@ Procedure
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. Choose **Nodes** from the navigation pane and choose **More** > **Remove** in the **Operation** column of the target node.
+#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.
+
+#. Locate the target node and choose **More** > **Remove** in the **Operation** column.
 
 #. In the dialog box displayed, configure the login information required for re-installing the OS and click **Yes**. Wait until the node is removed.
 

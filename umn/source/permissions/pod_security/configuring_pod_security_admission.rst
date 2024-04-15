@@ -96,8 +96,6 @@ If pods are deployed in the preceding namespace, the following security restrict
 #. Restrictions related to the baseline policy are verified (audit mode + baseline level). That is, if the pod or container violates the policy, the corresponding event is recorded into the audit log.
 #. Restrictions related to the restricted policy are verified (warn mode + restricted level). That is, if the pod or container violates the policy, the user will receive an alarm when creating the pod.
 
-.. _cce_10_0466__section7164192319226:
-
 Migrating from Pod Security Policy to Pod Security Admission
 ------------------------------------------------------------
 

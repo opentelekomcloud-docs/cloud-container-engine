@@ -5,8 +5,8 @@
 Node journald
 =============
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether journald of a node is normal.
 
@@ -18,7 +18,7 @@ Log in to the node and run the **systemctl is-active systemd-journald** command 
 The normal command output is as follows:
 
 
-.. figure:: /_static/images/en-us_image_0000001647576916.png
+.. figure:: /_static/images/en-us_image_0000001797871181.png
    :alt: **Figure 1** Running status of journald
 
    **Figure 1** Running status of journald

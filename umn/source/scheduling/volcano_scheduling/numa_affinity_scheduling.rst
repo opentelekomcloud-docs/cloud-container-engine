@@ -17,10 +17,10 @@ Both the CPU Manager and Topology Manager are kubelet components, but they have 
 
 For more information, see https://github.com/volcano-sh/volcano/blob/master/docs/design/numa-aware.md.
 
-Volcano targets to resolve the limitation to make scheduler NUMA topology aware so as to achieve the following:
+Volcano targets to lift the limitation to make scheduler NUMA topology aware so that:
 
--  Do not schedule pods to the nodes which NUMA topology does not match.
--  Schedule pods to the best node for NUMA topology.
+-  Pods are not scheduled to the nodes that NUMA topology does not match.
+-  Pods are scheduled to the best node for NUMA topology.
 
 Application Scope
 -----------------
@@ -52,7 +52,7 @@ For pods with the topology policy, predicate the matched node list.
 +-----------------------------------+---------------------------------------------------------------------------------------------------+
 
 
-.. figure:: /_static/images/en-us_image_0000001647417448.png
+.. figure:: /_static/images/en-us_image_0000001750791196.png
    :alt: **Figure 1** Comparison of NUMA scheduling policies
 
    **Figure 1** Comparison of NUMA scheduling policies
@@ -91,9 +91,9 @@ Enabling Volcano to Support NUMA Affinity Scheduling
 
 #. Enable the numa-aware add-on and the **resource_exporter** function.
 
-   **volcano 1.7.1 or later**
+   **Volcano 1.7.1 or later**
 
-   a. Log in to the CCE console and access the cluster console. In the navigation pane, choose **Add-ons**. On the right of the page, locate the **volcano** add-on and click **Edit**. In the **Parameters** area, configure Volcano scheduler parameters.
+   a. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**. On the right of the page, locate the **Volcano** add-on and click **Edit**. In the **Parameters** area, configure Volcano scheduler parameters.
 
       .. code-block::
 
@@ -171,9 +171,9 @@ Enabling Volcano to Support NUMA Affinity Scheduling
              "server_key": ""
          }
 
-   **volcano earlier than 1.7.1**
+   **Volcano earlier than 1.7.1**
 
-   a. The **resource_exporter_enable** parameter is enabled for the volcano add-on to collect node NUMA information.
+   a. The **resource_exporter_enable** parameter is enabled for the Volcano add-on to collect node NUMA information.
 
       .. code-block::
 
@@ -205,7 +205,7 @@ Enabling Volcano to Support NUMA Affinity Scheduling
          node-2            4h8m
          node-3            4h8m
 
-   b. Enable the volcano numa-aware algorithm add-on.
+   b. Enable the Volcano numa-aware algorithm add-on.
 
       **kubectl edit cm -n kube-system volcano-scheduler-configmap**
 
@@ -280,7 +280,7 @@ Using Volcano to Support NUMA Affinity Scheduling
             imagePullSecrets:
             - name: default-secret
 
-#. Create a volcano job and use NUMA affinity.
+#. Create a Volcano job and use NUMA affinity.
 
    .. code-block::
 
@@ -324,4 +324,4 @@ Using Volcano to Support NUMA Affinity Scheduling
       cat /var/lib/kubelet/cpu_manager_state
       {"policyName":"static","defaultCpuSet":"0,10-15,25-31","entries":{"777870b5-c64f-42f5-9296-688b9dc212ba":{"container-1":"16-24"},"fb15e10a-b6a5-4aaa-8fcd-76c1aa64e6fd":{"container-1":"1-9"}},"checksum":318470969}
 
-.. |image1| image:: /_static/images/en-us_image_0000001695737101.png
+.. |image1| image:: /_static/images/en-us_image_0000001797909897.png

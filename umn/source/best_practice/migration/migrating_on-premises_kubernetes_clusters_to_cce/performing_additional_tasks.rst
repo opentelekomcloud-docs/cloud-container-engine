@@ -31,4 +31,4 @@ After confirming that the service on the target cluster is normal, bring the sou
 -  Bring the source cluster offline.
 -  Delete backup files.
 
-.. |image1| image:: /_static/images/en-us_image_0000001701785265.png
+.. |image1| image:: /_static/images/en-us_image_0000001797909497.png

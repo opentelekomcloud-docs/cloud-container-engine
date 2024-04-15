@@ -11,13 +11,13 @@ Prerequisites
 -  An ingress provides network access for backend workloads. Ensure that a workload is available in a cluster. If no workload is available, deploy a workload by referring to :ref:`Creating a Deployment <cce_10_0047>`, :ref:`Creating a StatefulSet <cce_10_0048>`, or :ref:`Creating a DaemonSet <cce_10_0216>`.
 -  :ref:`Services Supported by Ingresses <cce_10_0094__section3565202819276>` lists the Service types supported by ELB ingresses.
 
-Precautions
+Constraints
 -----------
 
 -  It is recommended that other resources not use the load balancer automatically created by an ingress. Otherwise, the load balancer will be occupied when the ingress is deleted, resulting in residual resources.
 -  After an ingress is created, upgrade and maintain the configuration of the selected load balancers on the CCE console. Do not modify the configuration on the ELB console. Otherwise, the ingress service may be abnormal.
 -  The URL registered in an ingress forwarding policy must be the same as the URL used to access the backend Service. Otherwise, a 404 error will be returned.
--  In a cluster using the IPVS proxy mode, if the ingress and Service use the same ELB load balancer, the ingress cannot be accessed from the nodes and containers in the cluster because kube-proxy mounts the LoadBalancer Service address to the ipvs-0 bridge. This bridge intercepts the traffic of the load balancer connected to the ingress. You are advised to use different ELB load balancers for the ingress and Service.
+-  In a cluster using the IPVS proxy mode, if the ingress and Service use the same ELB load balancer, the ingress cannot be accessed from the nodes and containers in the cluster because kube-proxy mounts the LoadBalancer Service address to the ipvs-0 bridge. This bridge intercepts the traffic of the load balancer connected to the ingress. Use different ELB load balancers for the ingress and Service.
 -  Dedicated load balancers must be the application type (HTTP/HTTPS) supporting private networks (with a private IP).
 -  If multiple ingresses are used to connect to the same ELB port in the same cluster, the listener configuration items (such as the certificate associated with the listener and the HTTP2 attribute of the listener) are subject to the configuration of the first ingress.
 
@@ -28,7 +28,7 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. Choose **Networking** in the navigation pane, click the **Ingresses** tab, and click **Create Ingress** in the upper right corner.
+#. Choose **Services & Ingresses** in the navigation pane, click the **Ingresses** tab, and click **Create Ingress** in the upper right corner.
 
 #. Configure ingress parameters.
 
@@ -44,13 +44,13 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
 
       -  **Instance Name**: Enter a load balancer name.
       -  **Public Access**: If enabled, an EIP with 5 Mbit/s bandwidth will be created.
-      -  **Subnet**, **AZ**, and **Specifications** (available only for dedicated load balancers): Configure the subnet AZ, and specifications. Only HTTP- or HTTPS-compliant dedicated load balancers can be automatically created.
+      -  **Subnet**, **AZ**, and **Specifications** (available only for dedicated load balancers): Configure the subnet, AZ, and specifications. Only dedicated load balancers of the application type (HTTP/HTTPS) can be automatically created.
 
    -  .. _cce_10_0251__li6851318392:
 
       **Listener**: Ingress configures a listener for the load balancer, which listens to requests from the load balancer and distributes traffic. After the configuration is complete, a listener is created on the load balancer. The default listener name is *k8s__<Protocol type>_<Port number>*, for example, *k8s_HTTP_80*.
 
-      -  **External Protocol**: **HTTP** and **HTTPS** are available.
+      -  **External Protocol**: **HTTP** and **HTTPS** are supported.
 
       -  **External Port**: Port number that is open to the ELB service address. The port number can be specified randomly.
 
@@ -71,7 +71,7 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
 
             -  The **SNI** option is available only when **HTTPS** is selected.
 
-            -  This function is supported only for clusters of v1.15.11 and later.
+            -  This function is supported only in clusters of v1.15.11 and later.
             -  Specify the domain name for the SNI certificate. Only one domain name can be specified for each certificate. Wildcard-domain certificates are supported.
 
       -  **Security Policy**: combinations of different TLS versions and supported cipher suites available to HTTPS listeners.
@@ -81,22 +81,22 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
          .. note::
 
             -  **Security Policy** is available only when **HTTPS** is selected.
-            -  This function is supported only for clusters of v1.17.9 and later.
+            -  This function is supported only in clusters of v1.17.9 and later.
 
-      -  **Backend Protocol**
+      -  **Backend Protocol**:
 
          When :ref:`Listener <cce_10_0251__li6851318392>` uses HTTP protocols, only **HTTP** can be selected.
 
-         When :ref:`Listener <cce_10_0251__li6851318392>` uses HTTPS protocols, you can select **HTTP** or **HTTPS**.
+         If it is an :ref:`HTTPS listener <cce_10_0251__li6851318392>`, this parameter can be set to **HTTP** or **HTTPS**.
 
-   -  **Forwarding Policy**: When the access address of a request matches the forwarding policy (a forwarding policy consists of a domain name and URL, for example, *10.XXX.XXX.XXX:80/helloworld*), the request is forwarded to the corresponding Service for processing. You can click |image1| to add multiple forwarding policies.
+   -  **Forwarding Policy**: When the access address of a request matches the forwarding policy (a forwarding policy consists of a domain name and URL, for example, 10.117.117.117:80/helloworld), the request is forwarded to the corresponding target Service for processing. You can click |image1| to add multiple forwarding policies.
 
       -  **Domain Name**: actual domain name. Ensure that the domain name has been registered and archived. Once a domain name rule is configured, you must use the domain name for access.
-      -  URL Matching Rule
+      -  **URL Matching Rule**
 
-         -  **Prefix match**: If the URL is set to **/healthz**, the URL that meets the prefix can be accessed. For example, **/healthz/v1** and **/healthz/v2**.
+         -  **Prefix match**: If the URL is set to **/healthz**, the URL that meets the prefix can be accessed, for example, **/healthz/v1** and **/healthz/v2**.
          -  **Exact match**: The URL can be accessed only when it is fully matched. For example, if the URL is set to **/healthz**, only /healthz can be accessed.
-         -  **Regular expression**: The URL is matched based on the regular expression. For example, if the regular expression is **/[A-Za-z0-9_.-]+/test**, all URLs that comply with this rule can be accessed, for example, **/abcA9/test** and **/v1-Ab/test**. Two regular expression standards are supported: POSIX and Perl.
+         -  **RegEX match**: The URL is matched based on the regular expression. For example, if the regular expression is **/[A-Za-z0-9_.-]+/test**, all URLs that comply with this rule can be accessed, for example, **/abcA9/test** and **/v1-Ab/test**. Two regular expression standards are supported: POSIX and Perl.
 
       -  **URL**: access path to be registered, for example, **/healthz**.
 
@@ -104,7 +104,7 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
 
             The access path added here must exist in the backend application. Otherwise, the forwarding fails.
 
-            For example, the default access URL of the Nginx application is **/usr/share/nginx/html**. When adding **/test** to the ingress forwarding policy, ensure that your Nginx application contains the same URL, that is, **/usr/share/nginx/html/test**, otherwise, 404 is returned.
+            For example, the default access URL of the Nginx application is **/usr/share/nginx/html**. When adding **/test** to the ingress forwarding policy, ensure the access URL of your Nginx application contains **/usr/share/nginx/html/test**. Otherwise, error 404 will be returned.
 
       -  **Destination Service**: Select an existing Service or create a Service. Services that do not meet search criteria are automatically filtered out.
       -  **Destination Service Port**: Select the access port of the destination Service.
@@ -117,7 +117,7 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
             .. note::
 
                -  **Weighted round robin**: Requests are forwarded to different servers based on their weights, which indicate server processing performance. Backend servers with higher weights receive proportionately more requests, whereas equal-weighted servers receive the same number of requests. This algorithm is often used for short connections, such as HTTP services.
-               -  **Weighted least connections**: In addition to the weight assigned to each server, the number of connections processed by each backend server is also considered. Requests are forwarded to the server with the lowest connections-to-weight ratio. Building on **least connections**, the **weighted least connections** algorithm assigns a weight to each server based on their processing capability. This algorithm is often used for persistent connections, such as database connections.
+               -  **Weighted least connections**: In addition to the weight assigned to each server, the number of connections processed by each backend server is considered. Requests are forwarded to the server with the lowest connections-to-weight ratio. Building on **least connections**, the **weighted least connections** algorithm assigns a weight to each server based on their processing capability. This algorithm is often used for persistent connections, such as database connections.
                -  **Source IP hash**: The source IP address of each request is calculated using the hash algorithm to obtain a unique hash key, and all backend servers are numbered. The generated key allocates the client to a particular server. This enables requests from different clients to be distributed in load balancing mode and ensures that requests from the same client are forwarded to the same server. This algorithm applies to TCP connections without cookies.
 
          -  **Sticky Session**: This function is disabled by default. Options are as follows:
@@ -131,36 +131,36 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
 
          -  **Health Check**: Set the health check configuration of the load balancer. If this function is enabled, the following configurations are supported:
 
-            +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-            | Parameter                         | Description                                                                                                                                                                                                                                               |
-            +===================================+===========================================================================================================================================================================================================================================================+
-            | Protocol                          | When the protocol of the target service port is set to TCP, TCP and HTTP are supported. When it is set to UDP, only UDP is supported.                                                                                                                     |
-            |                                   |                                                                                                                                                                                                                                                           |
-            |                                   | -  **Check Path** (supported only by the HTTP health check protocol): specifies the health check URL. The check path must start with a slash (/) and contain 1 to 80 characters.                                                                          |
-            +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-            | Port                              | By default, the service port (Node Port and container port of the Service) is used for health check. You can also specify another port for health check. After the port is specified, a service port named **cce-healthz** will be added for the Service. |
-            |                                   |                                                                                                                                                                                                                                                           |
-            |                                   | -  **Node Port**: If a shared load balancer is used or no ENI instance is associated, the node port is used as the health check port. If this parameter is not specified, a random port is used. The value ranges from 30000 to 32767.                    |
-            |                                   | -  **Container Port**: When a dedicated load balancer is associated with an ENI instance, the container port is used for health check. The value ranges from 1 to 65535.                                                                                  |
-            +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-            | Check Period (s)                  | Specifies the maximum interval between health checks. The value ranges from 1 to 50.                                                                                                                                                                      |
-            +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-            | Timeout (s)                       | Specifies the maximum timeout duration for each health check. The value ranges from 1 to 50.                                                                                                                                                              |
-            +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-            | Max. Retries                      | Specifies the maximum number of health check retries. The value ranges from 1 to 10.                                                                                                                                                                      |
-            +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+            +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+            | Parameter                         | Description                                                                                                                                                                                                                                             |
+            +===================================+=========================================================================================================================================================================================================================================================+
+            | Protocol                          | When the protocol of the target Service port is TCP, TCP and HTTP protocols are supported.                                                                                                                                                              |
+            |                                   |                                                                                                                                                                                                                                                         |
+            |                                   | -  **Check Path** (supported by HTTP for health check): specifies the health check URL. The check path must start with a slash (/) and contain 1 to 80 characters.                                                                                      |
+            +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+            | Port                              | By default, the service port (NodePort or container port of the Service) is used for health check. You can also specify another port for health check. After the port is specified, a service port named **cce-healthz** will be added for the Service. |
+            |                                   |                                                                                                                                                                                                                                                         |
+            |                                   | -  **Node Port**: If a shared load balancer is used or no ENI instance is associated, the node port is used as the health check port. If this parameter is not specified, a random port is used. The value ranges from 30000 to 32767.                  |
+            |                                   | -  **Container Port**: When a dedicated load balancer is associated with an ENI instance, the container port is used for health check. The value ranges from 1 to 65535.                                                                                |
+            +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+            | Check Period (s)                  | Specifies the maximum interval between health checks. The value ranges from 1 to 50.                                                                                                                                                                    |
+            +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+            | Timeout (s)                       | Specifies the maximum timeout duration for each health check. The value ranges from 1 to 50.                                                                                                                                                            |
+            +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+            | Max. Retries                      | Specifies the maximum number of health check retries. The value ranges from 1 to 10.                                                                                                                                                                    |
+            +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
       -  **Operation**: Click **Delete** to delete the configuration.
 
    -  **Annotation**: Ingresses provide some advanced CCE functions, which are implemented by annotations. When you use kubectl to create a container, annotations will be used. For details, see :ref:`Creating an Ingress - Automatically Creating a Load Balancer <cce_10_0252__section3675115714214>` and :ref:`Creating an Ingress - Interconnecting with an Existing Load Balancer <cce_10_0252__section32300431736>`.
 
-#. After the configuration is complete, click **OK**. After the ingress is created, it is displayed in the ingress list.
+#. Click **OK**. After the ingress is created, it is displayed in the ingress list.
 
-   On the ELB console, you can view the ELB automatically created through CCE. The default name is **cce-lb-ingress.UID**. Click the ELB name to access its details page. On the **Listeners** tab page, view the route settings of the ingress, including the URL, listener port, and backend server group port.
+   On the ELB console, you can view the ELB automatically created through CCE. The default name is **cce-lb-ingress.UID**. Click the ELB name to access its details page. On the **Listeners** tab, view the route settings of the ingress, including the URL, listener port, and backend server group port.
 
    .. important::
 
-      After the ingress is created, upgrade and maintain the selected load balancer on the CCE console. Do not maintain the load balancer on the ELB console. Otherwise, the ingress service may be abnormal.
+      After an ingress is created, upgrade and maintain the selected load balancer on the CCE console. Do not modify the configuration on the ELB console. Otherwise, the ingress service may be abnormal.
 
 #. Access the /healthz interface of the workload, for example, workload **defaultbackend**.
 
@@ -170,9 +170,9 @@ This section uses an Nginx workload as an example to describe how to add an ELB 
 
       .. _cce_10_0251__fig17115192714367:
 
-      .. figure:: /_static/images/en-us_image_0000001695737201.png
+      .. figure:: /_static/images/en-us_image_0000001797871133.png
          :alt: **Figure 1** Accessing the /healthz interface of defaultbackend
 
          **Figure 1** Accessing the /healthz interface of defaultbackend
 
-.. |image1| image:: /_static/images/en-us_image_0000001647417544.png
+.. |image1| image:: /_static/images/en-us_image_0000001750950352.png

@@ -11,10 +11,10 @@ Model Definition
 Developed by CCE, Cloud Native 2.0 network deeply integrates Elastic Network Interfaces (ENIs) and sub-ENIs of Virtual Private Cloud (VPC). Container IP addresses are allocated from the VPC CIDR block. ELB passthrough networking is supported to direct access requests to containers. Security groups and elastic IPs (EIPs) are bound to deliver high performance.
 
 
-.. figure:: /_static/images/en-us_image_0000001695737033.png
-   :alt: **Figure 1** Cloud Native 2.0 network model
+.. figure:: /_static/images/en-us_image_0000001750950096.png
+   :alt: **Figure 1** Cloud Native Network 2.0
 
-   **Figure 1** Cloud Native 2.0 network model
+   **Figure 1** Cloud Native Network 2.0
 
 **Pod-to-pod communication**
 
@@ -57,12 +57,12 @@ In the Cloud Native Network 2.0 model, the container CIDR block and node CIDR bl
 In addition, a subnet can be added to the container CIDR block after a cluster is created to increase the number of available IP addresses. In this case, ensure that the added subnet does not conflict with other subnets in the container CIDR block.
 
 
-.. figure:: /_static/images/en-us_image_0000001695737041.png
+.. figure:: /_static/images/en-us_image_0000001865760133.png
    :alt: **Figure 2** Configuring CIDR blocks
 
    **Figure 2** Configuring CIDR blocks
 
-Example of Cloud Native 2.0 Network Access
+Example of Cloud Native Network 2.0 Access
 ------------------------------------------
 
 Create a CCE Turbo cluster, which contains three ECS nodes.

@@ -5,7 +5,7 @@
 What Should I Do If the Host Cannot Be Found When Files Need to Be Uploaded to OBS During the Access to the CCE Service from a Public Network?
 ==============================================================================================================================================
 
-When a Service deployed on CCE attempts to upload files to OBS after receiving an access request from an offline machine, an error message is displayed, indicating that the host cannot be found. The following figure shows the error message:
+When a Service deployed on CCE attempts to upload files to OBS after receiving an access request from an offline machine, an error message is displayed, indicating that the host cannot be found. The following figure shows the error message.
 
 |image1|
 
@@ -24,4 +24,4 @@ Solution
 #. File transfer involves a large number of packet copies, which occupies a large amount of memory. You are advised to increase the proxy memory based on the actual scenario and then try to access the Service and upload files again.
 #. In addition, you can remove the Service from the mesh because the proxy only forwards packets and does not perform any other operations. If requests pass through the ingress gateway, the grayscale release function of the Service is not affected.
 
-.. |image1| image:: /_static/images/en-us_image_0000001656255634.png
+.. |image1| image:: /_static/images/en-us_image_0000001750949364.png

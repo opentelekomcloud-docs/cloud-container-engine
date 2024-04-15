@@ -1,6 +1,6 @@
-:original_name: cce_bestpractice_0306.html
+:original_name: cce_bestpractice_0326.html
 
-.. _cce_bestpractice_0306:
+.. _cce_bestpractice_0326:
 
 Migrating On-premises Kubernetes Clusters to CCE
 ================================================

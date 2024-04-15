@@ -5,7 +5,7 @@
 Selecting a Network Model
 =========================
 
-CCE uses proprietary, high-performance container networking add-ons to support the tunnel network, Cloud Native Network 2.0, and VPC network models.
+CCE uses proprietary, high-performance container networking add-ons to support the tunnel network, Cloud Native 2.0 network, and VPC network models.
 
 .. caution::
 
@@ -14,7 +14,7 @@ CCE uses proprietary, high-performance container networking add-ons to support t
 -  **Tunnel network**: The container network is an overlay tunnel network on top of a VPC network and uses the VXLAN technology. This network model is applicable when there is no high requirements on performance. VXLAN encapsulates Ethernet packets as UDP packets for tunnel transmission. Though at some cost of performance, the tunnel encapsulation enables higher interoperability and compatibility with advanced features (such as network policy-based isolation), meeting the requirements of most applications.
 
 
-   .. figure:: /_static/images/en-us_image_0000001701704425.png
+   .. figure:: /_static/images/en-us_image_0000001797870469.png
       :alt: **Figure 1** Container tunnel network
 
       **Figure 1** Container tunnel network
@@ -22,7 +22,7 @@ CCE uses proprietary, high-performance container networking add-ons to support t
 -  **VPC network**: The container network uses VPC routing to integrate with the underlying network. This network model is applicable to performance-intensive scenarios. The maximum number of nodes allowed in a cluster depends on the route quota in a VPC network. Each node is assigned a CIDR block of a fixed size. VPC networks are free from tunnel encapsulation overhead and outperform container tunnel networks. In addition, as VPC routing includes routes to node IP addresses and container network segment, container pods in the cluster can be directly accessed from outside the cluster.
 
 
-   .. figure:: /_static/images/en-us_image_0000001701785165.png
+   .. figure:: /_static/images/en-us_image_0000001797909489.png
       :alt: **Figure 2** VPC network
 
       **Figure 2** VPC network
@@ -30,17 +30,17 @@ CCE uses proprietary, high-performance container networking add-ons to support t
 -  **Cloud Native Network 2.0**: The container network deeply integrates the elastic network interface (ENI) capability of VPC, uses the VPC CIDR block to allocate container addresses, and supports passthrough networking to containers through a load balancer.
 
 
-   .. figure:: /_static/images/en-us_image_0000001701704433.png
-      :alt: **Figure 3** Cloud Native Network 2.0
+   .. figure:: /_static/images/en-us_image_0000001750790788.png
+      :alt: **Figure 3** Cloud Native 2.0 Network
 
-      **Figure 3** Cloud Native Network 2.0
+      **Figure 3** Cloud Native 2.0 Network
 
 The following table lists the differences between the network models.
 
 .. table:: **Table 1** Networking model comparison
 
    +------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-   | Dimension              | Tunnel Network                                                                                                                    | VPC Network                                                                                                                                          | Cloud Native Network 2.0                                                                               |
+   | Dimension              | Tunnel Network                                                                                                                    | VPC Network                                                                                                                                          | Cloud Native 2.0 Network                                                                               |
    +========================+===================================================================================================================================+======================================================================================================================================================+========================================================================================================+
    | Core technology        | OVS                                                                                                                               | IPvlan and VPC route                                                                                                                                 | VPC ENI/sub-ENI                                                                                        |
    +------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+

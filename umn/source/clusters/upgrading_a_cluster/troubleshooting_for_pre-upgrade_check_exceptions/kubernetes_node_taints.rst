@@ -5,8 +5,8 @@
 Kubernetes Node Taints
 ======================
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the taint needed for cluster upgrade exists on the node.
 
@@ -23,12 +23,12 @@ Solution
 
 Scenario 1: The node is skipped during the cluster upgrade.
 
-#. For details about how to configure kubectl, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Configure the **kubectl** command. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Check the kubelet version of the corresponding node. The following information is expected:
 
 
-   .. figure:: /_static/images/en-us_image_0000001647417808.png
+   .. figure:: /_static/images/en-us_image_0000001750950404.png
       :alt: **Figure 1** kubelet version
 
       **Figure 1** kubelet version

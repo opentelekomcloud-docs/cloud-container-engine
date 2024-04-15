@@ -11,7 +11,7 @@ Model Definition
 The VPC network uses VPC routing to integrate with the underlying network. This network model is suitable for performance-intensive scenarios. The maximum number of nodes allowed in a cluster depends on the VPC route quota. Each node is assigned a CIDR block of a fixed size. This networking model is free from tunnel encapsulation overhead and outperforms the container tunnel network model. In addition, as VPC routing includes routes to node IP addresses and the container CIDR block, container pods in a cluster can be directly accessed from ECSs in the same VPC outside the cluster.
 
 
-.. figure:: /_static/images/en-us_image_0000001647417536.png
+.. figure:: /_static/images/en-us_image_0000001750791328.png
    :alt: **Figure 1** VPC network model
 
    **Figure 1** VPC network model
@@ -39,7 +39,7 @@ Applicable Scenarios
 --------------------
 
 -  High performance requirements: As no tunnel encapsulation is required, the VPC network model delivers the performance close to that of a VPC network when compared with the container tunnel network model. Therefore, the VPC network model applies to scenarios that have high requirements on performance, such as AI computing and big data computing.
--  Small- and medium-scale networking: The VPC network is limited by the VPC route quota. Currently, a maximum of 200 nodes are supported by default. If there are large-scale networking requirements, you can increase the VPC route quota.
+-  Small- and medium-scale networks: Due to the limitation on VPC routing tables, it is recommended that the number of nodes in a cluster be less than or equal to 1000.
 
 .. _cce_10_0283__section1574982552114:
 
@@ -54,7 +54,7 @@ The VPC network allocates container IP addresses according to the following rule
 -  Pods scheduled to a node are cyclically allocated IP addresses from CIDR blocks allocated to the node.
 
 
-.. figure:: /_static/images/en-us_image_0000001695737193.png
+.. figure:: /_static/images/en-us_image_0000001750950248.png
    :alt: **Figure 2** IP address management of the VPC network
 
    **Figure 2** IP address management of the VPC network

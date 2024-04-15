@@ -5,8 +5,8 @@
 Node CCE Agent Versions
 =======================
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether cce-agent on the current node is of the latest version.
 
@@ -40,7 +40,7 @@ Solution
       The OBS configuration address field in the configuration file is **packageFrom.addr**.
 
 
-      .. figure:: /_static/images/en-us_image_0000001695896445.png
+      .. figure:: /_static/images/en-us_image_0000001797870965.png
          :alt: **Figure 1** OBS address
 
          **Figure 1** OBS address

@@ -323,4 +323,4 @@ Verification
 
    View the PVC details on the CCE console. On the PV details page, you can see that the disk type is ultra-high I/O.
 
-.. |image1| image:: /_static/images/en-us_image_0000001653425692.png
+.. |image1| image:: /_static/images/en-us_image_0000001750790816.png

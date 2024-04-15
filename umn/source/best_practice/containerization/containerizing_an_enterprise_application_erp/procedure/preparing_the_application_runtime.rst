@@ -61,7 +61,7 @@ Determine the base image based on the OS on which the application runs. In this 
 #. Search for CentOS. The image corresponding to CentOS 7.1 is **centos7.1.1503**. Use this image name when editing the Dockerfile.
 
 
-   .. figure:: /_static/images/en-us_image_0000001701704485.png
+   .. figure:: /_static/images/en-us_image_0000001797870461.png
       :alt: **Figure 1** Obtaining the CentOS version
 
       **Figure 1** Obtaining the CentOS version

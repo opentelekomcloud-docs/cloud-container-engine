@@ -11,7 +11,7 @@ Scenario
 A Service is exposed on each node's IP address at a static port (NodePort). When you create a NodePort Service, Kubernetes automatically allocates an internal IP address (ClusterIP) of the cluster. When clients outside the cluster access <NodeIP>:<NodePort>, the traffic will be forwarded to the target pod through the ClusterIP of the NodePort Service.
 
 
-.. figure:: /_static/images/en-us_image_0000001647417292.png
+.. figure:: /_static/images/en-us_image_0000001797870765.png
    :alt: **Figure 1** NodePort access
 
    **Figure 1** NodePort access
@@ -29,7 +29,7 @@ Creating a NodePort Service
 ---------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. Choose **Networking** in the navigation pane and click **Create Service** in the upper right corner.
+#. In the navigation pane, choose **Services & Ingresses**. In the upper right corner, click **Create Service**.
 #. Set intra-cluster access parameters.
 
    -  **Service Name**: Specify a Service name, which can be the same as the workload name.
@@ -41,7 +41,7 @@ Creating a NodePort Service
       -  **Node level**: Only the IP address and access port of the node where the workload is located can access the workload associated with the Service. Service access will not cause performance loss due to route redirection, and the source IP address of the client can be obtained.
 
    -  **Selector**: Add a label and click **Confirm**. A Service selects a pod based on the added label. You can also click **Reference Workload Label** to reference the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
-   -  **Port**
+   -  **Port Settings**
 
       -  **Protocol**: protocol used by the Service.
       -  **Service Port**: port used by the Service. The port number ranges from 1 to 65535.

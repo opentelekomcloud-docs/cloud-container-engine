@@ -5,8 +5,8 @@
 To-Be-Migrated Nodes
 ====================
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the node needs to be migrated.
 
@@ -17,7 +17,7 @@ For the 1.15 cluster that is upgraded from 1.13 in rolling mode, migrate (reset 
 
 **Solution 1**
 
-Go to the CCE console and access the cluster console. Choose **Nodes** in the navigation pane and click **More** > **Reset Node** in the **Operation** column of the corresponding node. For details, see :ref:`Resetting a Node <cce_10_0003>`. After the node is reset, retry the check task.
+Log in to the CCE console and click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. Locate the row containing the target node and choose **More** > **Reset Node** in the **Operation** column. For details, see :ref:`Resetting a Node <cce_10_0003>`. After the node is reset, retry the check task.
 
 .. note::
 

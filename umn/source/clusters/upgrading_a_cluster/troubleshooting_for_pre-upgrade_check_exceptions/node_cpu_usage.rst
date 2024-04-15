@@ -5,8 +5,8 @@
 Node CPU Usage
 ==============
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the CPU usage of the node exceeds 90%.
 

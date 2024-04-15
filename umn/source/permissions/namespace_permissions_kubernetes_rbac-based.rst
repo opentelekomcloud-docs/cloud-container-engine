@@ -19,7 +19,7 @@ You can regulate users' or user groups' access to Kubernetes resources in a sing
 Role and ClusterRole specify actions that can be performed on specific resources. RoleBinding and ClusterRoleBinding bind roles to specific users, user groups, or ServiceAccounts. Illustration:
 
 
-.. figure:: /_static/images/en-us_image_0000001647577104.png
+.. figure:: /_static/images/en-us_image_0000001750791672.png
    :alt: **Figure 1** Role binding
 
    **Figure 1** Role binding
@@ -32,6 +32,8 @@ On the CCE console, you can assign permissions to a user or user group to access
 -  cluster-admin (administrator): read and write permissions on all resources in all namespaces.
 -  drainage-editor: drain a node.
 -  drainage-viewer: view the nodal drainage status but cannot drain a node.
+
+In addition to the preceding typical ClusterRoles, you can define Role and RoleBinding to grant the permissions to add, delete, modify, and obtain global resources (such as nodes, PVs, and CustomResourceDefinitions) and different resources (such as pods, Deployments, and Services) in namespaces for refined permission control.
 
 .. _cce_10_0189__section207514572488:
 
@@ -81,6 +83,11 @@ You can regulate users' or user groups' access to Kubernetes resources in a sing
 
    Permissions can be customized as required. After selecting **Custom** for **Permission Type**, click **Add Custom Role** on the right of the **Custom** parameter. In the dialog box displayed, enter a name and select a rule. After the custom rule is created, you can select a value from the **Custom** drop-down list box.
 
+   Custom permissions are classified into ClusterRole and Role. Each ClusterRole or Role contains a group of rules that represent related permissions. For details, see `Using RBAC Authorization <https://kubernetes.io/docs/reference/access-authn-authz/rbac/>`__.
+
+   -  A ClusterRole is a cluster-level resource that can be used to configure cluster access permissions.
+   -  A Role is used to configure access permissions in a namespace. When creating a Role, specify the namespace to which the Role belongs.
+
 #. Click **OK**.
 
 .. _cce_10_0189__section1273861718819:
@@ -94,7 +101,7 @@ Using kubectl to Configure Namespace Permissions
 
 In addition to cluster-admin, admin, edit, and view, you can define Roles and RoleBindings to configure the permissions to add, delete, modify, and obtain resources, such as pods, Deployments, and Services, in the namespace.
 
-The procedure for creating a Role is very simple. To be specific, specify a namespace and then define rules. The rules in the following example are to allow GET and LIST operations on pods in the **default** namespace.
+The procedure for creating a Role is very simple. To be specific, specify a namespace and then define rules. The rules in the following example are to allow GET and LIST operations on pods in the default namespace.
 
 .. code-block::
 
@@ -137,10 +144,10 @@ After creating a Role, you can bind the Role to a specific user, which is called
 The **subjects** section binds a Role with an IAM user so that the IAM user can obtain the permissions defined in the Role, as shown in the following figure.
 
 
-.. figure:: /_static/images/en-us_image_0000001647577100.png
-   :alt: **Figure 2** Binding a Role to a user
+.. figure:: /_static/images/en-us_image_0262051194.png
+   :alt: **Figure 2** Binding a role to a user
 
-   **Figure 2** Binding a Role to a user
+   **Figure 2** Binding a role to a user
 
 You can also specify a user group in the **subjects** section. In this case, all users in the user group obtain the permissions defined in the Role.
 

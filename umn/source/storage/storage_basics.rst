@@ -55,7 +55,7 @@ Kubernetes provides PersistentVolumes (PVs) and PersistentVolumeClaims (PVCs) to
 You can bind PVCs to PVs in a pod so that the pod can use storage resources. The following figure shows the relationship between PVs and PVCs.
 
 
-.. figure:: /_static/images/en-us_image_0000001695896709.png
+.. figure:: /_static/images/en-us_image_0000001750950380.png
    :alt: **Figure 1** PVC-to-PV binding
 
    **Figure 1** PVC-to-PV binding
@@ -65,7 +65,7 @@ You can bind PVCs to PVs in a pod so that the pod can use storage resources. The
 CSI
 ---
 
-CSI is a standard for container storage interfaces and a storage plug-in implementation solution recommended by the Kubernetes community. :ref:`everest <cce_10_0066>` is a storage add-on developed based on CSI. It provides different types of persistent storage for containers.
+CSI is a standard for container storage interfaces and a storage plugin implementation solution recommended by the Kubernetes community. :ref:`Everest <cce_10_0066>` is a storage add-on developed based on CSI. It provides different types of persistent storage for containers.
 
 .. _cce_10_0378__section43881411172418:
 
@@ -82,11 +82,11 @@ Storage volumes can be mounted to the host system only in the mode supported by 
    ============ ============= =============
    Storage Type ReadWriteOnce ReadWriteMany
    ============ ============= =============
-   EVS          Y             x
-   SFS          x             Y
-   OBS          x             Y
-   SFS Turbo    x             Y
-   Local PV     Y             x
+   EVS          Supported     Not supported
+   SFS          Not supported Supported
+   OBS          Not supported Supported
+   SFS Turbo    Not supported Supported
+   Local PV     Supported     Not supported
    ============ ============= =============
 
 Mounting a Storage Volume
@@ -186,4 +186,4 @@ Documentation
 -  For more information about Kubernetes storage, see `Storage <https://kubernetes.io/docs/concepts/storage/>`__.
 -  For more information about CCE container storage, see :ref:`Overview <cce_10_0307>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000001647417776.png
+.. |image1| image:: /_static/images/en-us_image_0000001750950376.png

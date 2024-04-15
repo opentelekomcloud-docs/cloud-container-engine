@@ -78,7 +78,7 @@ In addition to the preceding possible causes, there are some other possible caus
 -  Use the correct image when you create a workload on an Arm node.
 
 
-.. figure:: /_static/images/en-us_image_0000001704495085.png
+.. figure:: /_static/images/en-us_image_0000001797870253.png
    :alt: **Figure 1** Troubleshooting process of the container restart failure
 
    **Figure 1** Troubleshooting process of the container restart failure
@@ -176,7 +176,7 @@ To expand a disk capacity, perform the following steps:
 
 #. Log in to the target node.
 
-#. Run the **lsblk** command to check the block device information of the node.
+#. Run **lsblk** to view the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 
@@ -186,9 +186,9 @@ To expand a disk capacity, perform the following steps:
 
          # lsblk
          NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-         sda                   8:0    0   50G  0 disk
-         └─sda1                8:1    0   50G  0 part /
-         sdb                   8:16   0  200G  0 disk
+         vda                   8:0    0   50G  0 disk
+         └─vda1                8:1    0   50G  0 part /
+         vdb                   8:16   0  200G  0 disk
          ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/docker               # Space used by the container engine
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet  # Space used by Kubernetes
 
@@ -196,7 +196,7 @@ To expand a disk capacity, perform the following steps:
 
       .. code-block::
 
-         pvresize /dev/sdb
+         pvresize /dev/vdb
          lvextend -l+100%FREE -n vgpaas/dockersys
          resize2fs /dev/vgpaas/dockersys
 
@@ -206,12 +206,12 @@ To expand a disk capacity, perform the following steps:
 
          # lsblk
          NAME                                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-         sda                                   8:0    0   50G  0 disk
-         └─sda1                                8:1    0   50G  0 part /
-         sdb                                   8:16   0  200G  0 disk
+         vda                                   8:0    0   50G  0 disk
+         └─vda1                                8:1    0   50G  0 part /
+         vdb                                   8:16   0  200G  0 disk
          ├─vgpaas-dockersys                  253:0    0   18G  0 lvm  /var/lib/docker
          ├─vgpaas-thinpool_tmeta             253:1    0    3G  0 lvm
-         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Thin pool space.
+         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Space used by thinpool
          │   ...
          ├─vgpaas-thinpool_tdata             253:2    0   67G  0 lvm
          │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm
@@ -222,14 +222,14 @@ To expand a disk capacity, perform the following steps:
 
          .. code-block::
 
-            pvresize /dev/sdb
+            pvresize /dev/vdb
             lvextend -l+100%FREE -n vgpaas/thinpool
 
       -  Run the following commands on the node to add the new disk capacity to the **dockersys** disk:
 
          .. code-block::
 
-            pvresize /dev/sdb
+            pvresize /dev/vdb
             lvextend -l+100%FREE -n vgpaas/dockersys
             resize2fs /dev/vgpaas/dockersys
 
@@ -273,7 +273,7 @@ Check Item 6: Whether the Container Ports in the Same Pod Conflict with Each Oth
    Rectify the fault of the workload based on logs. As shown in the following figure, container ports in the same pod conflict. As a result, the container fails to be started.
 
 
-   .. figure:: /_static/images/en-us_image_0000001704495081.png
+   .. figure:: /_static/images/en-us_image_0000001750949468.png
       :alt: **Figure 2** Container restart failure due to a container port conflict
 
       **Figure 2** Container restart failure due to a container port conflict
@@ -293,7 +293,7 @@ The error messages are as follows:
 
 **Solution**
 
-Click the workload name to go to the workload details page, click the **Containers** tab. Choose **Lifecycle** , click **Startup Command**, and ensure that the command is correct.
+Click the workload name to go to the workload details page, click the **Containers** tab. Choose **Lifecycle**, click **Startup Command**, and ensure that the command is correct.
 
 .. _cce_faq_00018__section16311023103717:
 
@@ -319,7 +319,7 @@ Check whether the workload startup command is correctly executed or whether the 
    Note: In the preceding command, *containerID* indicates the ID of the container that has exited.
 
 
-   .. figure:: /_static/images/en-us_image_0000001656414950.png
+   .. figure:: /_static/images/en-us_image_0000001797909249.png
       :alt: **Figure 3** Incorrect startup command of the container
 
       **Figure 3** Incorrect startup command of the container
@@ -330,7 +330,7 @@ Check whether the workload startup command is correctly executed or whether the 
 
 Create a new workload and configure a correct startup command.
 
-.. |image1| image:: /_static/images/en-us_image_0000001656414958.png
-.. |image2| image:: /_static/images/en-us_image_0000001704495089.png
-.. |image3| image:: /_static/images/en-us_image_0000001656414946.png
-.. |image4| image:: /_static/images/en-us_image_0000001656414954.png
+.. |image1| image:: /_static/images/en-us_image_0000001797909273.png
+.. |image2| image:: /_static/images/en-us_image_0000001750790572.png
+.. |image3| image:: /_static/images/en-us_image_0000001750949452.png
+.. |image4| image:: /_static/images/en-us_image_0000001750790556.png

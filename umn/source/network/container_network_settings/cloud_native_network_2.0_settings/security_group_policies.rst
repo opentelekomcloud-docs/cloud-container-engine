@@ -20,7 +20,7 @@ Using the Console
 
 #. In the navigation pane, choose **Workloads**. On the displayed page, click the desired workload name.
 
-#. Switch to the **SecurityGroups** tab page and click **Create**.
+#. Switch to the **SecurityGroups** tab and click **Create**.
 
 #. Set the parameters as described in :ref:`Table 1 <cce_10_0288__table572616321913>`.
 
@@ -29,7 +29,7 @@ Using the Console
    .. table:: **Table 1** Configuration parameters
 
       +----------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
-      | Parameter                  | Description                                                                                                                                                                                                                                               | Example Value                        |
+      | Parameter                  | Description                                                                                                                                                                                                                                               | Example                              |
       +============================+===========================================================================================================================================================================================================================================================+======================================+
       | Security Group Policy Name | Enter a security policy name.                                                                                                                                                                                                                             | security-group                       |
       |                            |                                                                                                                                                                                                                                                           |                                      |

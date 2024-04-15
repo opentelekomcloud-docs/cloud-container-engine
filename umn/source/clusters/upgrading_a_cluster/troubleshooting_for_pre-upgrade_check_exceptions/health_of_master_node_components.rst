@@ -5,8 +5,8 @@
 Health of Master Node Components
 ================================
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the Kubernetes, container runtime, and network components of the master nodes are healthy.
 

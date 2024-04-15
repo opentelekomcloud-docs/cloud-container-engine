@@ -5,8 +5,8 @@
 IPv6 Capabilities of a CCE Turbo Cluster
 ========================================
 
-Check Item
-----------
+Check Items
+-----------
 
 If IPv6 is enabled for a CCE Turbo cluster, check whether the target cluster version supports IPv6.
 

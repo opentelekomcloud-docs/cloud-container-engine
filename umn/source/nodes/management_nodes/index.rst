@@ -10,6 +10,7 @@ Management Nodes
 -  :ref:`Resetting a Node <cce_10_0003>`
 -  :ref:`Removing a Node <cce_10_0338>`
 -  :ref:`Synchronizing Data with Cloud Servers <cce_10_0184>`
+-  :ref:`Draining a Node <cce_10_0605>`
 -  :ref:`Deleting a Node <cce_10_0186>`
 -  :ref:`Stopping a Node <cce_10_0036>`
 -  :ref:`Performing Rolling Upgrade for Nodes <cce_10_0276>`
@@ -23,6 +24,7 @@ Management Nodes
    resetting_a_node
    removing_a_node
    synchronizing_data_with_cloud_servers
+   draining_a_node
    deleting_a_node
    stopping_a_node
    performing_rolling_upgrade_for_nodes

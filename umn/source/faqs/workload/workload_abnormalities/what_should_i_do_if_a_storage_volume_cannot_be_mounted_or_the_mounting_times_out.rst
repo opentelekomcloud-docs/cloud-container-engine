@@ -8,9 +8,9 @@ What Should I Do If a Storage Volume Cannot Be Mounted or the Mounting Times Out
 Troubleshooting Process
 -----------------------
 
-Troubleshooting methods are sorted based on the occurrence probability of the possible causes. You are advised to check the possible causes from high probability to low probability to quickly locate the cause of the problem.
+The issues here are described in order of how likely they are to occur.
 
-If the fault persists after a possible cause is rectified, check other possible causes.
+Check these causes one by one until you find the cause of the fault.
 
 -  :ref:`Check Item 1: Whether EVS Volumes Are Mounted Across AZs <cce_faq_00200__section239014414225>`
 -  :ref:`Check Item 2: Whether Multiple Permission Configurations Exist in the Storage Volume <cce_faq_00200__section15311186248>`
@@ -18,7 +18,7 @@ If the fault persists after a possible cause is rectified, check other possible 
 -  :ref:`Check Item 4: Whether the EVS Disk File System Is Damaged <cce_faq_00200__section0802134413523>`
 
 
-.. figure:: /_static/images/en-us_image_0000001656414962.png
+.. figure:: /_static/images/en-us_image_0000001750949264.png
    :alt: **Figure 1** Troubleshooting for storage volume mounting failure or mounting timeout
 
    **Figure 1** Troubleshooting for storage volume mounting failure or mounting timeout

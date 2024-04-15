@@ -29,7 +29,7 @@ Procedure for Default Node Pools
 
    -  **Upgrade Policy**: **Node Reset** is supported.
 
-   -  **Max. Nodes for Batch Upgrade**: maximum number of nodes that will be unavailable during node upgrade. Nodes will be unavailable during upgrade by resetting the nodes. Properly configure this parameter to prevent pod scheduling failures caused by too many unavailable nodes in the cluster.
+   -  **Max. Nodes for Batch Upgrade**: maximum number of nodes that will be unavailable during node upgrade. Nodes will be unavailable during synchronization by resetting the nodes. Properly configure this parameter to prevent pod scheduling failures caused by too many unavailable nodes in the cluster.
 
    -  **View Node**: Select the nodes to be upgraded.
 
@@ -41,11 +41,11 @@ Procedure for Default Node Pools
 
          A key pair is used for identity authentication when you remotely log in to a node. If no key pair is available, click **Create Key Pair**.
 
-   -  **Pre-installation Command**: Enter a maximum of 1,000 characters.
+   -  **Pre-installation Command**: Enter a maximum of 1000 characters.
 
       The script will be executed before Kubernetes software is installed. Note that if the script is incorrect, Kubernetes software may fail to be installed.
 
-   -  **Post-installation Command**: Enter a maximum of 1,000 characters.
+   -  **Post-installation Command**: Enter a maximum of 1000 characters.
 
       The script will be executed after Kubernetes software is installed and will not affect the installation.
 

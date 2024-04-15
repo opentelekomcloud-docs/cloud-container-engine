@@ -33,7 +33,7 @@ You can enable SNI when the preceding conditions are met. The following uses the
          '{
              "type": "public",
              "bandwidth_name": "cce-bandwidth-******",
-             "bandwidth_chargemode": "bandwidth",
+             "bandwidth_chargemode": "traffic",
              "bandwidth_size": 5,
              "bandwidth_sharetype": "PER",
              "eip_type": "5_bgp",
@@ -79,7 +79,7 @@ You can enable SNI when the preceding conditions are met. The following uses the
          '{
              "type": "public",
              "bandwidth_name": "cce-bandwidth-******",
-             "bandwidth_chargemode": "bandwidth",
+             "bandwidth_chargemode": "traffic",
              "bandwidth_size": 5,
              "bandwidth_sharetype": "PER",
              "eip_type": "5_bgp",

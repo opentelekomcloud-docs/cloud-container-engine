@@ -17,7 +17,7 @@ Prerequisites
 
 -  Before the migration, clear the abnormal pod resources in the source cluster. If the pod is in the abnormal state and has a PVC mounted, the PVC is in the pending state after the cluster is migrated.
 -  Ensure that the cluster on the CCE side does not have the same resources as the cluster to be migrated because Velero does not restore the same resources by default.
--  To ensure that container image images can be properly pulled after cluster migration, migrate the images to SWR.
+-  To ensure that container images can be properly pulled after cluster migration, migrate the images to SWR.
 -  CCE does not support EVS disks of the **ReadWriteMany** type. If resources of this type exist in the source cluster, change the storage type to **ReadWriteOnce**.
 -  Velero integrates the Restic tool to back up and restore storage volumes. Currently, the storage volumes of the HostPath type are not supported. For details, see `Restic Restrictions <https://velero.io/docs/v1.7/restic/#limitations>`__. To back up storage volumes of this type, replace the hostPath volumes with local volumes by referring to :ref:`Storage Volumes of the HostPath Type Cannot Be Backed Up <cce_bestpractice_0314__section11197194820367>`. If a backup task involves storage of the HostPath type, the storage volumes of this type will be automatically skipped and a warning message will be generated. This will not cause a backup failure.
 
@@ -156,4 +156,4 @@ The storage infrastructure of an on-premises cluster is different from that of a
 
 #. After the restoration is complete, check whether the application is running properly. If other adaptation problems may occur, rectify the fault by following the procedure described in :ref:`Updating Resources Accordingly <cce_bestpractice_0312>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000001701704153.png
+.. |image1| image:: /_static/images/en-us_image_0000001797869825.png

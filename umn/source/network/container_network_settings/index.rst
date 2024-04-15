@@ -6,7 +6,7 @@ Container Network Settings
 ==========================
 
 -  :ref:`Host Network <cce_10_0402>`
--  :ref:`Configuring QoS Rate Limiting for Inter-Pod Access <cce_10_0382>`
+-  :ref:`Configuring QoS for a Pod <cce_10_0382>`
 -  :ref:`Container Tunnel Network Settings <cce_10_0677>`
 -  :ref:`Cloud Native Network 2.0 Settings <cce_10_0678>`
 
@@ -15,6 +15,6 @@ Container Network Settings
    :hidden: 
 
    host_network
-   configuring_qos_rate_limiting_for_inter-pod_access
+   configuring_qos_for_a_pod
    container_tunnel_network_settings/index
    cloud_native_network_2.0_settings/index

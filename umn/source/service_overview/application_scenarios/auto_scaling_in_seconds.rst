@@ -1,6 +1,6 @@
-:original_name: cce_productdesc_0015.html
+:original_name: cce_productdesc_0021.html
 
-.. _cce_productdesc_0015:
+.. _cce_productdesc_0021:
 
 Auto Scaling in Seconds
 =======================
@@ -35,10 +35,13 @@ Advantages
 Related Services
 ----------------
 
-HPA (Horizontal Pod Autoscaling) + CA (Cluster AutoScaling)
+Add-ons: autoscaler and cce-hpa-controller
+
+-  Auto scaling for workloads: HPA (Horizontal Pod Autoscaling)
+-  Auto scaling for clusters: CA (Cluster AutoScaling)
 
 
-.. figure:: /_static/images/en-us_image_0000001690374417.png
+.. figure:: /_static/images/en-us_image_0000001697958210.png
    :alt: **Figure 1** How auto scaling works
 
    **Figure 1** How auto scaling works

@@ -8,7 +8,7 @@ CCE AI Suite (NVIDIA GPU)
 Introduction
 ------------
 
-The CCE AI Suite (NVIDIA GPU) add-on is a device management add-on that supports GPUs in containers. If GPU nodes are used in the cluster, this add-on must be installed.
+NVIDIA GPU is a device management add-on that supports GPUs in containers. To use GPU nodes in a cluster, this add-on must be installed.
 
 Constraints
 -----------
@@ -18,26 +18,12 @@ Constraints
 -  When installing or reinstalling the add-on, ensure that the driver download address is correct and accessible. CCE does not verify the address validity.
 -  The gpu-beta add-on only enables you to download the driver and execute the installation script. The add-on status only indicates that how the add-on is running, not whether the driver is successfully installed.
 -  CCE does not guarantee the compatibility between the GPU driver version and the CDUA library version of your application. You need to check the compatibility by yourself.
--  If a GPU driver has been added to a custom OS image, CCE cannot ensure that the GPU driver is compatible with other GPU components such as the monitoring components used in CCE.
+-  If a custom OS image has had a a GPU driver installed, CCE cannot ensure that the GPU driver is compatible with other GPU components such as the monitoring components used in CCE.
 
 Installing the Add-on
 ---------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane, locate **CCE AI Suite (NVIDIA GPU)** on the right, and click **Install**.
-#. On the **Install Add-on** page, configure the specifications.
-
-   .. table:: **Table 1** Add-on configuration
-
-      +-----------------------------------+----------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                            |
-      +===================================+========================================================================================+
-      | Add-on Specifications             | Select **Default** or **Custom**.                                                      |
-      +-----------------------------------+----------------------------------------------------------------------------------------+
-      | Containers                        | CPU and memory quotas of the container allowed for the selected add-on specifications. |
-      |                                   |                                                                                        |
-      |                                   | If you select **Custom**, you can adjust the container specifications as required.     |
-      +-----------------------------------+----------------------------------------------------------------------------------------+
-
 #. Configure the add-on parameters.
 
    -  **NVIDIA Driver**: Enter the link for downloading the NVIDIA driver. All GPU nodes in the cluster will use this driver.
@@ -54,13 +40,13 @@ Installing the Add-on
       .. note::
 
          -  The add-on installs the driver with the version specified by the node pool. The driver takes effect only for new pool nodes.
-         -  After the driver version of new nodes is updated, restart the nodes for the update to take effect. The driver version cannot be updated for non-new nodes.
+         -  After the driver version is updated, it takes effect on the nodes newly added to the node pool. Existing nodes must restart to apply the changes.
 
 #. Click **Install**.
 
    .. note::
 
-      Uninstalling the add-on will clear the GPU driver on the nodes. As a result, GPU pods newly scheduled to the nodes cannot run properly, but running GPU pods are not affected.
+      If the add-on is uninstalled, GPU pods newly scheduled to the nodes cannot run properly, but GPU pods already running on the nodes will not be affected.
 
 Verifying the Add-on
 --------------------
@@ -101,7 +87,7 @@ Obtaining the Driver Link from Public Network
 
    .. _cce_10_0141__fig11696366517:
 
-   .. figure:: /_static/images/en-us_image_0000001695896741.png
+   .. figure:: /_static/images/en-us_image_0000001750950592.png
       :alt: **Figure 1** Setting parameters
 
       **Figure 1** Setting parameters
@@ -110,7 +96,7 @@ Obtaining the Driver Link from Public Network
 
    .. _cce_10_0141__fig7873421145213:
 
-   .. figure:: /_static/images/en-us_image_0000001647577072.png
+   .. figure:: /_static/images/en-us_image_0000001797871377.png
       :alt: **Figure 2** Driver information
 
       **Figure 2** Driver information
@@ -123,7 +109,7 @@ Obtaining the Driver Link from Public Network
 
       .. _cce_10_0141__fig5901194614534:
 
-      .. figure:: /_static/images/en-us_image_0000001647577080.png
+      .. figure:: /_static/images/en-us_image_0000001750950604.png
          :alt: **Figure 3** Obtaining the link
 
          **Figure 3** Obtaining the link
@@ -146,12 +132,12 @@ Obtaining the Driver Link from OBS
 Components
 ----------
 
-.. table:: **Table 2** GPU component
+.. table:: **Table 1** GPU component
 
    +-------------------------+----------------------------------------------------+---------------+
-   | Container Component     | Description                                        | Resource Type |
+   | Component               | Description                                        | Resource Type |
    +=========================+====================================================+===============+
    | nvidia-driver-installer | Used for installing an NVIDIA driver on GPU nodes. | DaemonSet     |
    +-------------------------+----------------------------------------------------+---------------+
 
-.. |image1| image:: /_static/images/en-us_image_0000001647417812.png
+.. |image1| image:: /_static/images/en-us_image_0000001750791684.png

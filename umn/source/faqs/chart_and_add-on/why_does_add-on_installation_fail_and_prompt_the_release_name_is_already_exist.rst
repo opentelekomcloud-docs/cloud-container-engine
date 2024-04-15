@@ -62,7 +62,7 @@ Use kubectl to connect to the cluster and manually clear the Secret and Configma
 
       When installing the add-on for the first time, you may find it abnormal after the installation due to the residual resources of the previous add-on release, which is normal. In this case, you can uninstall the add-on on the console to ensure that the residual resources are cleared and the add-on can run properly after being installed again.
 
-.. |image1| image:: /_static/images/en-us_image_0000001656255714.png
-.. |image2| image:: /_static/images/en-us_image_0000001704574409.png
-.. |image3| image:: /_static/images/en-us_image_0000001704574405.png
-.. |image4| image:: /_static/images/en-us_image_0000001656255718.png
+.. |image1| image:: /_static/images/en-us_image_0000001750790504.png
+.. |image2| image:: /_static/images/en-us_image_0000001797909241.png
+.. |image3| image:: /_static/images/en-us_image_0000001797870201.png
+.. |image4| image:: /_static/images/en-us_image_0000001750949444.png

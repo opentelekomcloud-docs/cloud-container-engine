@@ -13,7 +13,7 @@ Preventing Nodes from Being Exposed to Public Networks
 
 You may have configured the **kubeconfig.json** file on a node in your cluster. kubectl can use the certificate and private key in this file to control the entire cluster. You are advised to delete unnecessary files from the **/root/.kube** directory on the node to prevent malicious use.
 
-**rm -rf /root/.kube**
+rm -rf /root/.kube
 
 Hardening VPC Security Group Rules
 ----------------------------------
@@ -42,21 +42,21 @@ For details about how to restore the metadata, see the "Notes" section in `Obtai
 
 #. Obtain the network model and container CIDR of the cluster.
 
-   On the **Cluster Information** page, check the network model and container CIDR block of the cluster in the **Networking Configuration** area.
+   On the **Clusters** page of the CCE console, view the network model and container CIDR of the cluster.
 
 #. Prevent the container from obtaining host metadata.
 
    -  VPC network
 
-      a. Log in to each node in the CCE cluster as user **root** and run the following command:
+      a. Log in to each node in the cluster as user **root** and run the following command:
 
          .. code-block::
 
             iptables -I OUTPUT -s {container_cidr} -d 169.254.169.254 -j REJECT
 
-         *{container_cidr}* indicates the container CIDR of the cluster, for example, 10.0.0.0/16.
+         *{container_cidr}* indicates the container CIDR of the cluster, for example, **10.0.0.0/16**.
 
-         To ensure configuration persistence, you are advised to write the command to the **/etc/rc.local** script.
+         To ensure configuration persistence, write the command to the **/etc/rc.local** script.
 
       b. Run the following commands in the container to access the **userdata** and **metadata** interfaces of OpenStack and check whether the request is intercepted:
 
@@ -67,15 +67,15 @@ For details about how to restore the metadata, see the "Notes" section in `Obtai
 
    -  Container tunnel network
 
-      a. Log in to each node in the CCE cluster as user **root** and run the following command:
+      a. Log in to each node in the cluster as user **root** and run the following command:
 
          .. code-block::
 
             iptables -I FORWARD -s {container_cidr} -d 169.254.169.254 -j REJECT
 
-         *{container_cidr}* indicates the container CIDR of the cluster, for example, 10.0.0.0/16.
+         *{container_cidr}* indicates the container CIDR of the cluster, for example, **10.0.0.0/16**.
 
-         To ensure configuration persistence, you are advised to write the command to the **/etc/rc.local** script.
+         To ensure configuration persistence, write the command to the **/etc/rc.local** script.
 
       b. Run the following commands in the container to access the **userdata** and **metadata** interfaces of OpenStack and check whether the request is intercepted:
 
@@ -83,3 +83,7 @@ For details about how to restore the metadata, see the "Notes" section in `Obtai
 
             curl 169.254.169.254/openstack/latest/meta_data.json
             curl 169.254.169.254/openstack/latest/user_data
+
+   -  CCE Turbo cluster
+
+      No additional configuration is required.

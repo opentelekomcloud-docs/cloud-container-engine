@@ -5,7 +5,7 @@
 Preparations
 ============
 
-Before using CCE, you need to make the following preparations:
+Before using CCE, make the following preparations:
 
 -  :ref:`Creating an IAM user <cce_qs_0006__section929013341428>`
 -  :ref:`Obtaining Resource Permissions <cce_qs_0006__section8819171411219>`
@@ -34,7 +34,7 @@ CCE works closely with multiple cloud services to support computing, storage, ne
 
 -  Storage services
 
-   CCE allows you to mount storage to nodes and containers in a cluster. The prerequisite is that CCE has obtained the permissions to access services such as Elastic Volume Service (EVS), Scalable File Service (SFS), and Object Storage Service (OBS).
+   CCE allows you to mount storage volumes to nodes and containers in a cluster. The prerequisite is that CCE has obtained the permissions to access services such as Elastic Volume Service (EVS), Scalable File Service (SFS), and Object Storage Service (OBS).
 
 -  Networking services
 
@@ -44,9 +44,9 @@ CCE works closely with multiple cloud services to support computing, storage, ne
 
    CCE supports functions such as container image pull, monitoring, and logging. The prerequisite is that CCE has obtained the permissions to access services such as SoftWare Repository for Container (SWR) and Application Operations Management (AOM).
 
-After you agree to delegate the permissions, an agency named **cce_admin_trust** will be created for CCE in Identity and Access Management (IAM). The system account **op_svc_cce** will be delegated the **Tenant Administrator** role to perform operations on other cloud service resources. Tenant Administrator has the permissions on all cloud services except IAM, which calls the cloud services on which CCE depends. The delegation takes effect only in the current region. For details, see `Delegating Resource Access to Another Account <https://docs.otc.t-systems.com/en-us/usermanual/iam/iam_01_0054.html>`__.
+After you agree to delegate the permissions, an agency named **cce_admin_trust** will be created for CCE in Identity and Access Management (IAM). The system account **op_svc_cce** will be delegated the **Tenant Administrator** role to perform operations on other cloud service resources. Tenant Administrator has the permissions on all cloud services except IAM, which calls the cloud services on which CCE depends. The delegation takes effect only in the current region. For details, see `Account Delegation <https://docs.otc.t-systems.com/en-us/usermanual/iam/iam_01_0054.html>`__.
 
-To use CCE in multiple regions, you need to request cloud resource permissions in each region. You can go to the IAM console, choose **Agencies**, and click **cce_admin_trust** to view the delegation records of each region.
+To use CCE in multiple regions, request for cloud resource permissions in each region. You can go to the IAM console, choose **Agencies**, and click **cce_admin_trust** to view the delegation records of each region.
 
 .. note::
 
@@ -84,7 +84,7 @@ If you already have a VPC available, skip this step.
 
 The cloud platform uses public key cryptography to protect the login information of your CCE nodes. Passwords or key pairs are used for identity authentication during remote login to nodes.
 
--  You need to specify the key pair name and provide the private key when logging to CCE nodes using SSH if you choose the key pair login mode.
+-  If you choose the key pair login mode, you need to specify the key pair name when creating a node and provide the private key when logging to the node using SSH.
 -  If you choose the password login mode, skip this task.
 
 .. note::
@@ -97,16 +97,16 @@ If you have no key pair, create one on the management console. The procedure is 
 
 #. Log in to the management console.
 #. Click |image2| in the upper left corner and select a region and a project.
-#. Under **Computing**, click **Elastic Cloud Server**.
-#. In the navigation pane on the left, choose **Key Pair**.
-#. On the right pane, click **Create Key Pair**.
-#. Enter the key name and click **OK**.
-#. A key pair name consists of two parts: **KeyPair** and four random digits. You can enter an easy-to-remember name, for example, **KeyPair-xxxx_ecs**.
+#. Under **Compute**, click **Elastic Cloud Server**.
+#. In the navigation pane, choose **Key Pair**.
+#. On the displayed page, click **Create Key Pair**.
+#. Enter the key pair name and click **OK**.
+#. A key pair name consists **KeyPair** and four random digits. You can enter an easy-to-remember name, for example, **KeyPair-xxxx_ecs**.
 #. Manually or automatically download the private key file. The file name is a specified key pair name with a suffix of .pem. Securely store the private key file. In the dialog box displayed, click **OK**.
 
    .. note::
 
-      The private key file can be downloaded only once. Keep it secure. When creating an ECS, provide the name of your desired key pair. Each time you log in to the ECS using SSH, provide the private key.
+      The private key file can be downloaded only once. Keep it secure. When creating an ECS, provide the name of your desired key pair. Each time you SSH into the ECS, provide the private key.
 
-.. |image1| image:: /_static/images/en-us_image_0000001499598344.png
-.. |image2| image:: /_static/images/en-us_image_0000001499758236.png
+.. |image1| image:: /_static/images/en-us_image_0000001798307873.png
+.. |image2| image:: /_static/images/en-us_image_0000001751467114.png
