@@ -5,8 +5,8 @@
 Node Python Commands
 ====================
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the Python commands are available on a node.
 

@@ -21,7 +21,7 @@ Benefits of ConfigMaps:
 Constraints
 -----------
 
--  The size of a ConfigMap resource file cannot exceed 2 MB.
+-  The size of a ConfigMap resource file cannot exceed 1 MB.
 -  ConfigMaps cannot be used in `static pods <https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/>`__.
 
 Procedure
@@ -31,7 +31,7 @@ Procedure
 
 #. Choose **ConfigMaps and Secrets** in the navigation pane and click **Create ConfigMap** in the upper right corner.
 
-#. Set parameters.
+#. Configure parameters.
 
    .. _cce_10_0152__table16321825732:
 
@@ -40,7 +40,7 @@ Procedure
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------+
       | Parameter                         | Description                                                                                                               |
       +===================================+===========================================================================================================================+
-      | Name                              | Name of a ConfigMap, which must be unique in a namespace.                                                                 |
+      | Name                              | Name of the ConfigMap you create, which must be unique in a namespace.                                                    |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------+
       | Namespace                         | Namespace to which the ConfigMap belongs. If you do not specify this parameter, the value **default** is used by default. |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------+
@@ -53,14 +53,14 @@ Procedure
       | Label                             | Label of the ConfigMap. Enter a key-value pair and click **Add**.                                                         |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------+
 
-#. After the configuration is complete, click **OK**.
+#. Click **OK**.
 
    The new ConfigMap is displayed in the ConfigMap list.
 
 Creating a ConfigMap Using kubectl
 ----------------------------------
 
-#. Configure the **kubectl** command to connect an ECS to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a file named **cce-configmap.yaml** and edit it.
 
@@ -103,7 +103,7 @@ Creating a ConfigMap Using kubectl
 Related Operations
 ------------------
 
-After creating a configuration item, you can update or delete it as described in :ref:`Table 3 <cce_10_0152__table1619535674020>`.
+After creating a ConfigMap, you can update or delete it as described in :ref:`Table 3 <cce_10_0152__table1619535674020>`.
 
 .. _cce_10_0152__table1619535674020:
 
@@ -123,4 +123,4 @@ After creating a configuration item, you can update or delete it as described in
    |                                   | Follow the prompts to delete the ConfigMap.                                                          |
    +-----------------------------------+------------------------------------------------------------------------------------------------------+
 
-.. |image1| image:: /_static/images/en-us_image_0000001647576860.png
+.. |image1| image:: /_static/images/en-us_image_0000001797910077.png

@@ -32,12 +32,12 @@ An EVS disk dynamically created using a PVC is named in the format of "pvc-{uid}
 Deleting Residual SFS Resources
 -------------------------------
 
-The name format of SFS systems dynamically created using a PVC is "pvc-{uid}". The **metadata** field in the API contains the cluster ID. You can use this cluster ID to obtain these SFS systems automatically created in the cluster, and delete them as required.
+An SFS system dynamically created using a PVC is named in the format of "pvc-{uid}". The **metadata** field in the API contains the cluster ID. You can use this cluster ID to obtain these SFS systems automatically created in the cluster, and delete them as required.
 
 #. Log in to the SFS console.
 #. Search for SFS systems by name ("pvc-{uid}") to obtain all automatically created SFS systems in CCE clusters.
 #. Press **F12** to open the developer tools. Check whether the **metadata** field in the **detail** interface contains the cluster ID. If yes, the SFS system is automatically created in the cluster.
-#. Delete the residual SFS resources in the cluster based on the preceding information.
+#. Delete the residual SFS resources from the cluster based on the preceding information.
 
    .. note::
 

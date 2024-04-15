@@ -51,6 +51,7 @@ Each storage class contains the default parameters used for dynamically creating
      csi.storage.k8s.io/fstype: ext4
      everest.io/disk-volume-type: SAS
      everest.io/passthrough: 'true'
+     csi.storage.k8s.io/fstype: xfs    # (Optional) Set the file system type to xfs. If it is left blank, ext4 is used by default.
    reclaimPolicy: Delete
    allowVolumeExpansion: true
    volumeBindingMode: Immediate
@@ -58,7 +59,7 @@ Each storage class contains the default parameters used for dynamically creating
 +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Parameter                         | Description                                                                                                                                                                                                                           |
 +===================================+=======================================================================================================================================================================================================================================+
-| provisioner                       | Specifies the storage resource provider, which is the everest add-on for CCE. Set this parameter to **everest-csi-provisioner**.                                                                                                      |
+| provisioner                       | Specifies the storage resource provider, which is the Everest add-on for CCE. Set this parameter to **everest-csi-provisioner**.                                                                                                      |
 +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | parameters                        | Specifies the storage parameters, which vary with storage types.                                                                                                                                                                      |
 +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -141,6 +142,7 @@ This section uses the custom storage class of EVS disks as an example to describ
         csi.storage.k8s.io/fstype: ext4
          everest.io/disk-volume-type: SAS            # High I/O EVS disk type, which cannot be customized.
         everest.io/passthrough: "true"
+        csi.storage.k8s.io/fstype: xfs    # (Optional) Set the file system type to xfs. If it is left blank, ext4 is used by default.
       provisioner: everest-csi-provisioner
       reclaimPolicy: Delete
       volumeBindingMode: Immediate
@@ -159,6 +161,7 @@ This section uses the custom storage class of EVS disks as an example to describ
         csi.storage.k8s.io/fstype: ext4
         everest.io/disk-volume-type: SSD         # Ultra-high I/O EVS disk type, which cannot be customized.
         everest.io/passthrough: "true"
+        csi.storage.k8s.io/fstype: xfs    # (Optional) Set the file system type to xfs. If it is left blank, ext4 is used by default.
       provisioner: everest-csi-provisioner
       reclaimPolicy: Delete
       volumeBindingMode: Immediate
@@ -169,7 +172,7 @@ This section uses the custom storage class of EVS disks as an example to describ
 -  **Delete**: When a PVC is deleted, both the PV and the EVS disk are deleted.
 -  **Retain**: When a PVC is deleted, the PV and underlying storage resources are not deleted. Instead, you must manually delete these resources. After that, the PV is in the **Released** status and cannot be bound to the PVC again.
 
-If high data security is required, you are advised to select **Retain** to prevent data from being deleted by mistake.
+If high data security is required, select **Retain** to prevent data from being deleted by mistake.
 
 After the definition is complete, run the **kubectl create** commands to create storage resources.
 
@@ -305,4 +308,4 @@ Verification
 
    View the PVC details on the CCE console. On the PV details page, you can see that the disk type is ultra-high I/O.
 
-.. |image1| image:: /_static/images/en-us_image_0000001695737417.png
+.. |image1| image:: /_static/images/en-us_image_0000001797910165.png

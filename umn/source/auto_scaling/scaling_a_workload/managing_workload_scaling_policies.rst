@@ -16,8 +16,8 @@ Checking an HPA Policy
 You can view the rules, status, and events of an HPA policy and handle exceptions based on the error information displayed.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Workload Scaling**. On the **HPA Policies** tab, click |image1| next to the target HPA policy.
-#. In the expanded area, view the **Rule** and **Status** tabs. Click **View Events** in the **Operation** column. If the policy malfunctions, locate and rectify the fault based on the error message displayed on the page.
+#. In the navigation pane, choose **Policies**. On the page displayed, click the **HPA Policies** tab and then |image1| next to the target HPA policy.
+#. In the expanded area, choose **View Events** in the **Operation** column. If the policy malfunctions, locate and rectify the fault based on the error message displayed on the page.
 
    .. note::
 
@@ -25,7 +25,7 @@ You can view the rules, status, and events of an HPA policy and handle exception
 
       a. Log in to the CCE console and click the cluster name to access the cluster console.
       b. In the navigation pane, choose **Workloads**. Click the workload name to view its details.
-      c. On the workload details page, click the **Auto Scaling** tab to view the HPA policies. You can also view the scaling policies you configured in the **Workload Scaling** page.
+      c. On the workload details page, switch to the **Auto Scaling** tab page to view the HPA policies. You can also view the scaling policies you configured on the **Policies** page.
 
    .. table:: **Table 1** Event types and names
 
@@ -59,28 +59,28 @@ You can view the rules, status, and events of an HPA policy and handle exception
       |            | FailedRescale                | Failed to scale the service.                 |
       +------------+------------------------------+----------------------------------------------+
 
-Updating an HPA Policy
-----------------------
+Editing an HPA Policy
+---------------------
 
 An HPA policy is used as an example.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. On the cluster console, choose **Workload Scaling** in the navigation pane. Locate the row that contains the target policy and choose **More** > **Edit** in the **Operation** column.
-#. On the **Edit HPA Policy** page, configure the parameters as listed in :ref:`Table 1 <cce_10_0208__table8638121213265>`.
+#. In the navigation pane, choose **Policies**. On the page displayed, click the **HPA Policies** tab. Locate the row containing the target policy and choose **More** > **Edit** in the **Operation** column.
+#. On the **Edit HPA Policy** page, configure policy parameters listed in :ref:`Table 1 <cce_10_0208__table8638121213265>`.
 #. Click **OK**.
 
 Editing the YAML File (HPA Policy)
 ----------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Workload Scaling**, locate the row containing the target policy, and click **Edit YAML** in the **Operation** column.
-#. In the **Edit YAML** dialog box displayed, edit or download the YAML file.
+#. In the navigation pane, choose **Policies**. On the page displayed, click the **HPA Policies** tab. Locate the row containing the target policy and click **Edit YAML** in the **Operation** column.
+#. In the dialog box displayed, edit or download the YAML file.
 
 Deleting an HPA Policy
 ----------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Workload Scaling**. Locate the row containing the target policy and choose **More** > **Delete** in the **Operation** column.
+#. In the navigation pane, choose **Policies**. Choose **More** > **Delete** in the **Operation** column of the target policy.
 #. In the dialog box displayed, click **Yes**.
 
-.. |image1| image:: /_static/images/en-us_image_0000001695737185.png
+.. |image1| image:: /_static/images/en-us_image_0000001797871061.png

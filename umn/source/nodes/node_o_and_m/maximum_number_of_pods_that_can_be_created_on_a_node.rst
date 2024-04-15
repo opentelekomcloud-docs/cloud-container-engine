@@ -44,22 +44,22 @@ When creating a node, you can configure the maximum number of pods (maxPods) tha
 
 .. table:: **Table 1** Default maximum number of pods on a node
 
-   =============== =========
-   Memory          Max. Pods
-   =============== =========
-   4 GiB           20
-   8 GiB           40
-   16 GiB          60
-   32 GiB          80
-   64 GiB or above 110
-   =============== =========
+   ============== =========
+   Memory         Max. Pods
+   ============== =========
+   4 GB           20
+   8 GB           40
+   16 GB          60
+   32 GB          80
+   64 GB or above 110
+   ============== =========
 
 .. _cce_10_0348__section15702175115573:
 
 Number of Node ENIs (CCE Turbo Clusters)
 ----------------------------------------
 
-In a CCE Turbo cluster, ECSs use sub-ENIs. The maximum number of pods that can be created on a node depends on the number of ENIs that can be used by the node.
+In a CCE Turbo cluster, ECS nodes use sub-ENIs. The maximum number of pods that can be created on a node depends on the number of ENIs that can be used by the node.
 
 .. _cce_10_0348__section12428143711548:
 

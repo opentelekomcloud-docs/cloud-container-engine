@@ -5,8 +5,8 @@
 Node Memory
 ===========
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the memory usage of the node exceeds 90%.
 

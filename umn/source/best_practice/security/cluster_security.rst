@@ -17,7 +17,7 @@ The latest cluster version has known vulnerabilities fixed or provides a more co
 Disabling the Automatic Token Mounting Function of the Default Service Account
 ------------------------------------------------------------------------------
 
-By default, Kubernetes associates the default service account with every pod. That is, the token is mounted to a container. The container can use this token to pass the authentication by the kube-apiserver and kubelet components. In a cluster with RBAC disabled, the service account who owns the token has the control permissions for the entire cluster. In a cluster with RBAC enabled, the permissions of the service account who owns the token depends on the roles associated by the administrator. The service account's token is generally used by workloads that need to access kube-apiserver, such as coredns, autoscaler, and prometheus. For workloads that do not need to access kube-apiserver, you are advised to disable the automatic association between the service account and token.
+By default, Kubernetes associates the default service account with every pod, which means that the token is mounted to a container. The container can use this token to pass the authentication by the kube-apiserver and kubelet components. In a cluster with RBAC disabled, the service account who owns the token has the control permissions for the entire cluster. In a cluster with RBAC enabled, the permissions of the service account who owns the token depends on the roles associated by the administrator. The service account's token is generally used by workloads that need to access kube-apiserver, such as coredns, autoscaler, and prometheus. For workloads that do not need to access kube-apiserver, you are advised to disable the automatic association between the service account and token.
 
 Two methods are available:
 
@@ -32,7 +32,7 @@ Two methods are available:
       automountServiceAccountToken: false
       ...
 
-   When a workload needs to be associated with a service account, explicitly set the **automountServiceAccountToken** field to **true** in the YAML file of the workload.
+   When a workload needs to be associated with a service account, explicitly set **automountServiceAccountToken** to **true** in the YAML file of the workload.
 
    .. code-block::
 
@@ -44,7 +44,7 @@ Two methods are available:
              automountServiceAccountToken: true
              ...
 
--  Method 2: Explicitly disable the function of automatically associating with service accounts for workloads.
+-  Method 2: Explicitly disable the function of automatically associating service accounts with workloads.
 
    .. code-block::
 
@@ -138,7 +138,7 @@ Configuring Network Isolation in a Cluster
 
 -  Cloud Native Network 2.0
 
-   In the Cloud Native Network 2.0 model, you can configure security groups to isolate networks between pods. For details, see `Security Group Policies <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0288.html>`__.
+   In the Cloud Native Network 2.0 model, you can configure security groups to isolate networks between pods. For details, see :ref:`SecurityGroups <cce_10_0288>`.
 
 -  VPC network
 

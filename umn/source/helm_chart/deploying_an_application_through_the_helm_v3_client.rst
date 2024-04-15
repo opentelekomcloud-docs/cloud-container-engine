@@ -127,7 +127,7 @@ Common Issues
 
       yum install socat -y
 
--  When you run the **yum install socat -y** command on a node running EulerOS 2.9 , if the following error message is displayed:
+-  When you run the **yum install socat -y** command on a node running EulerOS 2.9, the following error message is displayed:
 
    .. code-block::
 

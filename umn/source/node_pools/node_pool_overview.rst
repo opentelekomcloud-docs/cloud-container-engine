@@ -25,7 +25,7 @@ Node Pool Architecture
 Generally, all nodes in a node pool have the following same attributes:
 
 -  Node OS
--  Node specifications
+-  Node flavor
 -  Node login mode
 -  Node container runtime
 -  Startup parameters of Kubernetes components on a node
@@ -44,8 +44,8 @@ Description of DefaultPool
 
 DefaultPool is not a real node pool. It only **classifies** nodes that are not in the user-created node pools. These nodes are directly created on the console or by calling APIs. DefaultPool does not support any user-created node pool functions, including scaling and parameter configuration. DefaultPool cannot be edited, deleted, expanded, or auto scaled, and nodes in it cannot be migrated.
 
-Application Scenarios
----------------------
+Applicable Scenarios
+--------------------
 
 When a large-scale cluster is required, you are advised to use node pools to manage nodes.
 
@@ -73,7 +73,7 @@ Functions and Precautions
 +---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Deleting a node pool                  | When a node pool is deleted, the nodes in the node pool are deleted first. Workloads on the original nodes are automatically migrated to available nodes in other node pools.       | If pods in the node pool have a specific node selector and none of the other nodes in the cluster satisfies the node selector, the pods will become unschedulable.                                                     |
 +---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Enabling auto scaling for a node pool | After auto scaling is enabled, nodes will be automatically created or deleted in the node pool based on the cluster loads.                                                          | You are advised not to store important data on nodes in a node pool because after auto scaling, data cannot be restored as nodes may be deleted.                                                                       |
+| Enabling auto scaling for a node pool | After auto scaling is enabled, nodes will be automatically created or deleted in the node pool based on the cluster loads.                                                          | Do not store important data on nodes in a node pool because the nodes may be deleted after scale-in. Data on the deleted nodes cannot be restored.                                                                     |
 +---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Enabling auto scaling for a node pool | After auto scaling is disabled, the number of nodes in a node pool will not automatically change with the cluster loads.                                                            | None                                                                                                                                                                                                                   |
 +---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -94,7 +94,7 @@ Deploying a Workload in a Specified Node Pool
 
 When creating a workload, you can constrain pods to run in a specified node pool.
 
-For example, on the CCE console, you can set the affinity between the workload and the node on the **Scheduling Policies** tab page on the workload details page to forcibly deploy the workload to a specific node pool. In this way, the workload runs only on nodes in the node pool. To better control where the workload is to be scheduled, you can use affinity or anti-affinity policies between workloads and nodes described in :ref:`Scheduling Policy (Affinity/Anti-affinity) <cce_10_0232>`.
+For example, on the CCE console, you can set the affinity between the workload and the node on the **Scheduling Policies** tab page on the workload details page to forcibly deploy the workload to a specific node pool. In this way, the workload runs only on nodes in the node pool. To better control where the workload is to be scheduled, you can use affinity or anti-affinity policies between workloads and nodes described in :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
 
 For example, you can use container's resource request as a nodeSelector so that workloads will run only on the nodes that meet the resource request.
 
@@ -108,4 +108,4 @@ You can log in to the CCE console and refer to the following sections to perform
 -  :ref:`Creating a Node Pool <cce_10_0012>`
 -  :ref:`Managing a Node Pool <cce_10_0222>`
 -  :ref:`Creating a Deployment <cce_10_0047>`
--  :ref:`Scheduling Policy (Affinity/Anti-affinity) <cce_10_0232>`
+-  :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`

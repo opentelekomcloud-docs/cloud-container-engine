@@ -7,7 +7,7 @@ Namespaces
 
 -  :ref:`Creating a Namespace <cce_10_0278>`
 -  :ref:`Managing Namespaces <cce_10_0285>`
--  :ref:`Setting a Resource Quota <cce_10_0287>`
+-  :ref:`Configuring Resource Quotas <cce_10_0287>`
 
 .. toctree::
    :maxdepth: 1
@@ -15,4 +15,4 @@ Namespaces
 
    creating_a_namespace
    managing_namespaces
-   setting_a_resource_quota
+   configuring_resource_quotas

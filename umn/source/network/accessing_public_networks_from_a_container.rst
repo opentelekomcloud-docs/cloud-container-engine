@@ -15,7 +15,7 @@ You can use NAT Gateway to enable container pods in a VPC to access public netwo
 
 .. _cce_10_0400__en-us_topic_0261817696_en-us_topic_0241700138_en-us_topic_0144420145_fig34611314153619:
 
-.. figure:: /_static/images/en-us_image_0000001695896869.png
+.. figure:: /_static/images/en-us_image_0000001750950646.png
    :alt: **Figure 1** SNAT
 
    **Figure 1** SNAT
@@ -53,7 +53,7 @@ To enable a container pod to access the Internet, perform the following steps:
    c. Click |image6| at the upper left corner and choose **Networking** > **NAT Gateway** in the expanded list.
    d. On the page displayed, click the name of the NAT gateway for which you want to add the SNAT rule.
    e. On the **SNAT Rules** tab page, click **Add SNAT Rule**.
-   f. Configure parameters as required.
+   f. Set parameters as required.
 
    .. note::
 
@@ -62,13 +62,13 @@ To enable a container pod to access the Internet, perform the following steps:
       -  Tunnel network and VPC network: Select the subnet where the node is located, that is, the subnet selected during node creation.
       -  Cloud Native Network 2.0: Select the subnet where the container is located, that is, the container subnet selected during cluster creation.
 
-      If there are multiple CIDR blocks, you can create multiple SNAT rules or customize a CIDR block as long as the CIDR block contains the container subnet (Cloud Native 2.0 Network) or the node subnet.
+      If there are multiple CIDR blocks, you can create multiple SNAT rules or customize a CIDR block as long as the CIDR block contains the container subnet (Cloud Native 2.0 network) or the node subnet.
 
    After the SNAT rule is configured, workloads can access public networks from the container. Public networks can be pinged from the container.
 
-.. |image1| image:: /_static/images/en-us_image_0000001647577200.png
-.. |image2| image:: /_static/images/en-us_image_0000001695737597.png
-.. |image3| image:: /_static/images/en-us_image_0000001695737589.png
-.. |image4| image:: /_static/images/en-us_image_0000001695737593.png
-.. |image5| image:: /_static/images/en-us_image_0000001647417936.png
-.. |image6| image:: /_static/images/en-us_image_0000001647417932.png
+.. |image1| image:: /_static/images/en-us_image_0000001750791744.png
+.. |image2| image:: /_static/images/en-us_image_0000001750950660.png
+.. |image3| image:: /_static/images/en-us_image_0000001750791732.png
+.. |image4| image:: /_static/images/en-us_image_0000001797871437.png
+.. |image5| image:: /_static/images/en-us_image_0000001750950652.png
+.. |image6| image:: /_static/images/en-us_image_0000001797871425.png

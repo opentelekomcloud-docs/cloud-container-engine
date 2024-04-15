@@ -5,8 +5,8 @@
 containerd.sock
 ===============
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the containerd.sock file exists on the node. This file affects the startup of container runtime in the Euler OS.
 

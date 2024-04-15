@@ -13,9 +13,9 @@ The workload remains in the creating state.
 Troubleshooting Process
 -----------------------
 
-Troubleshooting methods are sorted based on the occurrence probability of the possible causes. You are advised to check the possible causes from high probability to low probability to quickly locate the cause of the problem.
+The issues here are described in order of how likely they are to occur.
 
-If the fault persists after a possible cause is rectified, check other possible causes.
+Check these causes one by one until you find the cause of the fault.
 
 -  :ref:`Check Item 1: Whether the cce-pause Image Is Deleted by Mistake <cce_faq_00140__section141501505112>`
 -  :ref:`Check Item 2: Modifying Node Specifications After the CPU Management Policy Is Enabled in the Cluster <cce_faq_00140__section109321639135910>`
@@ -49,13 +49,13 @@ The image is a system image added during node creation. If the image is deleted 
 
 #. Import the image.
 
-   -  For a node which uses a Docker container runtime:
+   -  Docker nodes:
 
       .. code-block::
 
-         docker load ./pause/package/image/cce-pause-3.1.tar
+         docker load -i ./pause/package/image/cce-pause-3.1.tar
 
-   -  For a node which uses a containerd container runtime:
+   -  containerd nodes:
 
       .. code-block::
 

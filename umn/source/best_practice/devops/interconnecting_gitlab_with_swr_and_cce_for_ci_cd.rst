@@ -13,7 +13,7 @@ GitLab is an open-source version management system developed with Ruby on Rails 
 GitLab provides powerful CI/CD functions and is widely used in software development.
 
 
-.. figure:: /_static/images/en-us_image_0000001701704293.png
+.. figure:: /_static/images/en-us_image_0000001797909117.png
    :alt: **Figure 1** GitLab CI/CD process
 
    **Figure 1** GitLab CI/CD process
@@ -186,8 +186,8 @@ After the pipeline is deployed, locate the **nginx-test** Service on the CCE con
 
 If the preceding information is displayed, the deployment is correct.
 
-FAQs
-----
+Common Issues
+-------------
 
 -  If the following problem occurs during the deployment:
 
@@ -224,12 +224,12 @@ FAQs
 
    |image9|
 
-.. |image1| image:: /_static/images/en-us_image_0000001701785025.png
-.. |image2| image:: /_static/images/en-us_image_0000001701704301.png
-.. |image3| image:: /_static/images/en-us_image_0000001653584808.png
-.. |image4| image:: /_static/images/en-us_image_0000001653425500.png
-.. |image5| image:: /_static/images/en-us_image_0000001701785049.png
-.. |image6| image:: /_static/images/en-us_image_0000001701704289.png
-.. |image7| image:: /_static/images/en-us_image_0000001653584820.png
-.. |image8| image:: /_static/images/en-us_image_0000001653584824.png
-.. |image9| image:: /_static/images/en-us_image_0000001667910920.png
+.. |image1| image:: /_static/images/en-us_image_0000001750790392.png
+.. |image2| image:: /_static/images/en-us_image_0000001797909137.png
+.. |image3| image:: /_static/images/en-us_image_0000001750790396.png
+.. |image4| image:: /_static/images/en-us_image_0000001797870089.png
+.. |image5| image:: /_static/images/en-us_image_0000001797909145.png
+.. |image6| image:: /_static/images/en-us_image_0000001797909109.png
+.. |image7| image:: /_static/images/en-us_image_0000001797909133.png
+.. |image8| image:: /_static/images/en-us_image_0000001797909141.png
+.. |image9| image:: /_static/images/en-us_image_0000001750949308.png

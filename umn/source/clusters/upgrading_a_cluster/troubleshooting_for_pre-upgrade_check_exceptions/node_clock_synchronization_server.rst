@@ -5,8 +5,8 @@
 Node Clock Synchronization Server
 =================================
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the clock synchronization server ntpd or chronyd of the node is running properly.
 
@@ -20,7 +20,7 @@ Solution
    The normal command output is as follows:
 
 
-   .. figure:: /_static/images/en-us_image_0000001695737169.png
+   .. figure:: /_static/images/en-us_image_0000001797871049.png
       :alt: **Figure 1** Running status of ntpd
 
       **Figure 1** Running status of ntpd
@@ -34,7 +34,7 @@ Solution
    The normal command output is as follows:
 
 
-   .. figure:: /_static/images/en-us_image_0000001695896453.png
+   .. figure:: /_static/images/en-us_image_0000001750950272.png
       :alt: **Figure 2** Running status of chronyd
 
       **Figure 2** Running status of chronyd

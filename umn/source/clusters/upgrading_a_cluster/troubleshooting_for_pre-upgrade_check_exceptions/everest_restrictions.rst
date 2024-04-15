@@ -2,15 +2,15 @@
 
 .. _cce_10_0478:
 
-everest Restrictions
+Everest Restrictions
 ====================
 
-Check Item
-----------
+Check Items
+-----------
 
-Check whether there are any compatibility restrictions on the current everest add-on.
+Check whether there are any compatibility restrictions on the current Everest add-on.
 
-.. table:: **Table 1** List of everest add-on versions with compatibility restrictions
+.. table:: **Table 1** List of Everest add-on versions with compatibility restrictions
 
    +-----------------------------------+-----------------------------------+
    | Add-on Name                       | Versions Involved                 |
@@ -23,4 +23,4 @@ Check whether there are any compatibility restrictions on the current everest ad
 Solution
 --------
 
-There are compatibility restrictions on the current everest add-on and it cannot be upgraded with the cluster upgrade. Contact technical support.
+There are compatibility restrictions on the current Everest add-on and it cannot be upgraded with the cluster upgrade. Contact technical support.

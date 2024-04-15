@@ -36,4 +36,9 @@ Assign permissions to the user.
 
    Permissions can be customized as required. After selecting **Custom** for **Permission Type**, click **Add Custom Role** on the right of the **Custom** parameter. In the dialog box displayed, enter a name and select a rule. After the custom rule is created, you can select a value from the **Custom** drop-down list box.
 
+   Custom permissions are classified into ClusterRole and Role. Each ClusterRole or Role contains a group of rules that represent related permissions. For details, see `Using RBAC Authorization <https://kubernetes.io/docs/reference/access-authn-authz/rbac/>`__.
+
+   -  A ClusterRole is a cluster-level resource that can be used to configure cluster access permissions.
+   -  A Role is used to configure access permissions in a namespace. When creating a Role, specify the namespace to which the Role belongs.
+
 #. Click **OK**.

@@ -5,8 +5,8 @@
 Health of Worker Node Components
 ================================
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the container runtime and network components on the worker nodes are healthy.
 

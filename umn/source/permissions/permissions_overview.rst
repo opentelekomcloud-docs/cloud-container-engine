@@ -9,7 +9,7 @@ CCE permissions management allows you to assign permissions to IAM users and use
 
 CCE allows you to manage permissions on clusters and related resources at a finer granularity, for example, to control the access of employees in different departments to cloud resources.
 
-This section describes the CCE permissions management mechanism and related concepts. If your account has met your service requirements, you can skip the configurations in this chapter.
+This section describes the CCE permissions management mechanism and related concepts. If your account has met your service requirements, you can skip this section.
 
 CCE Permissions Management
 --------------------------
@@ -27,7 +27,7 @@ CCE permissions are described as follows:
 In general, you configure CCE permissions in two scenarios. The first is creating and managing clusters and related resources, such as nodes. The second is creating and using Kubernetes resources in the cluster, such as workloads and Services.
 
 
-.. figure:: /_static/images/en-us_image_0000001647576892.png
+.. figure:: /_static/images/en-us_image_0000001750791360.png
    :alt: **Figure 1** Illustration on CCE permissions
 
    **Figure 1** Illustration on CCE permissions

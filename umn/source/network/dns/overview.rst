@@ -46,7 +46,7 @@ By default, after other pods are created, the address of the CoreDNS Service is 
 When a user accesses the *Service name:Port* of the Nginx pod, the IP address of the Nginx Service is resolved from CoreDNS, and then the IP address of the Nginx Service is accessed. In this way, the user can access the backend Nginx pod.
 
 
-.. figure:: /_static/images/en-us_image_0000001695896713.png
+.. figure:: /_static/images/en-us_image_0000001797871313.png
    :alt: **Figure 1** Example of domain name resolution in a cluster
 
    **Figure 1** Example of domain name resolution in a cluster
@@ -54,7 +54,7 @@ When a user accesses the *Service name:Port* of the Nginx pod, the IP address of
 How Does Domain Name Resolution Work in Kubernetes?
 ---------------------------------------------------
 
-DNS policies can be set on a per-pod basis. Currently, Kubernetes supports four types of DNS policies: **Default**, **ClusterFirst**, **ClusterFirstWithHostNet**, and **None**. For details, see https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/. These policies are specified in the **dnsPolicy** field in the pod-specific.
+DNS policies can be configured for each pod. Kubernetes supports DNS policies **Default**, **ClusterFirst**, **ClusterFirstWithHostNet**, and **None**. For details, see `DNS for Services and Pods <https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/>`__. These policies are specified in the **dnsPolicy** field in the pod-specific.
 
 -  **Default**: Pods inherit the name resolution configuration from the node that the pods run on. The custom upstream DNS server and the stub domain cannot be used together with this policy.
 -  **ClusterFirst**: Any DNS query that does not match the configured cluster domain suffix, such as **www.kubernetes.io**, is forwarded to the upstream name server inherited from the node. Cluster administrators may have extra stub domains and upstream DNS servers configured.
@@ -81,7 +81,7 @@ DNS policies can be set on a per-pod basis. Currently, Kubernetes supports four 
    -  Names that do not match the suffix (for example, **widget.com**): The request is forwarded to the upstream DNS.
 
 
-.. figure:: /_static/images/en-us_image_0000001647576960.png
+.. figure:: /_static/images/en-us_image_0000001750791424.png
    :alt: **Figure 2** Routing
 
    **Figure 2** Routing

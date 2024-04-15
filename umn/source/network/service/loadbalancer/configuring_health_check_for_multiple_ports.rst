@@ -92,7 +92,7 @@ The following is an example of using the **kubernetes.io/elb.health-check-option
    |                     |                 |                 |                                                                                                                                              |
    |                     |                 |                 |    Ensure that the port is in the listening state on the node where the pod is located. Otherwise, the health check result will be affected. |
    +---------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------+
-   | delay               | No              | String          | Initial waiting time (in seconds) for starting the health check.                                                                             |
+   | delay               | No              | String          | Health check interval (s)                                                                                                                    |
    |                     |                 |                 |                                                                                                                                              |
    |                     |                 |                 | Value range: 1 to 50. Default value: **5**                                                                                                   |
    +---------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------+
@@ -114,5 +114,5 @@ The following is an example of using the **kubernetes.io/elb.health-check-option
    |                     |                 |                 |                                                                                                                                              |
    |                     |                 |                 | Default value: **/**                                                                                                                         |
    |                     |                 |                 |                                                                                                                                              |
-   |                     |                 |                 | The value can contain 1 to 10,000 characters.                                                                                                |
+   |                     |                 |                 | Value range: 1-80 characters                                                                                                                 |
    +---------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------+

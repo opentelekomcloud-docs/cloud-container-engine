@@ -28,7 +28,7 @@ Deleting a Cluster
 
 #. Log in to the CCE console. In the navigation pane, choose **Clusters**.
 
-#. Click |image1| next to the cluster to be deleted.
+#. Locate the cluster to be deleted, click **...** to view more operations on the cluster, and choose **Delete**.
 
 #. In the displayed **Delete Cluster** dialog box, select the resources to be released.
 
@@ -39,12 +39,10 @@ Deleting a Cluster
          When deleting underlying cloud storage resources bound to storage volumes in a cluster, pay attention to following constraints:
 
          -  The underlying storage resources are deleted according to the reclamation policy you defined for the storage volumes. For example, if the reclamation policy of storage volumes is **Retain**, the underlying storage resources will be retained after the cluster is deleted.
-         -  If there are more than 1,000 files in the OBS bucket, manually clear the files and then delete the cluster.
+         -  If there are more than 1000 files in the OBS bucket, manually clear the files and then delete the cluster.
 
    -  Delete network resources such as load balancers in a cluster. (Only automatically created load balancers will be deleted).
 
 #. Click **Yes** to start deleting the cluster.
 
    The delete operation takes 1 to 3 minutes to complete.
-
-.. |image1| image:: /_static/images/en-us_image_0000001695896837.png

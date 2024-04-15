@@ -6,9 +6,11 @@ Cloud Native Network 2.0 Settings
 =================================
 
 -  :ref:`Security Group Policies <cce_10_0288>`
+-  :ref:`NetworkAttachmentDefinition <cce_10_0196>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
    security_group_policies
+   networkattachmentdefinition

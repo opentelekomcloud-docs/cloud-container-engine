@@ -5,10 +5,10 @@
 Node Configuration Consistency
 ==============================
 
-Check Item
-----------
+Check Items
+-----------
 
-When you upgrade a CCE cluster to v1.19 or later, the system checks whether the following configuration files have been modified in the background:
+When you upgrade a cluster to v1.19 or later, the system checks whether the following configuration files have been modified on the backend:
 
 -  /opt/cloud/cce/kubernetes/kubelet/kubelet
 -  /opt/cloud/cce/kubernetes/kubelet/kubelet_config.yaml

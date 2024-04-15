@@ -38,15 +38,15 @@ Procedure
 
 #. **Create a CCE cluster.**
 
-   Create a cluster with the same specifications and configurations as the cluster of the earlier version. For details, see :ref:`Creating a Cluster <cce_10_0028>`.
+   Create a cluster with the same specifications and configurations as the cluster of the earlier version. For details, see :ref:`Creating a CCE Cluster <cce_10_0028>`.
 
 #. **Add a node.**
 
-   Add nodes with the same specifications and manual configuration items. For details, see :ref:`Creating a Node <cce_10_0363>`.
+   Add a node with the same specifications and manual configuration items. For details, see :ref:`Creating a Node <cce_10_0363>`.
 
 #. **Create a storage volume in the new cluster.**
 
-   Use an existing storage volume to create a PVC in the new cluster. The PVC name remains unchanged. For details, see :ref:`Using an Existing OBS Bucket Through a Static PV <cce_10_0379>` or :ref:`Using an Existing SFS Turbo File System Through a Static PV <cce_10_0625>`.
+   Use the existing storage to create a PVC in the new cluster. The PVC name remains unchanged. For details, see :ref:`Using an Existing OBS Bucket Through a Static PV <cce_10_0379>` or :ref:`Using an Existing SFS Turbo File System Through a Static PV <cce_10_0625>`.
 
    .. note::
 
@@ -54,11 +54,11 @@ Procedure
 
 #. **Create a workload in the new cluster.**
 
-   The workload name and specifications remain unchanged. For details about how to create a workload, see :ref:`Creating a Deployment <cce_10_0047>` or :ref:`Creating a StatefulSet <cce_10_0048>`.
+   Create a workload in the new cluster. The name and specifications remain unchanged. For details, see :ref:`Creating a Deployment <cce_10_0047>` or :ref:`Creating a StatefulSet <cce_10_0048>`.
 
 #. **Mount the storage again.**
 
-   Mount the existing storage in the workload again. For details, see :ref:`Using an Existing OBS Bucket Through a Static PV <cce_10_0379>` or :ref:`Using an Existing SFS Turbo File System Through a Static PV <cce_10_0625>`.
+   Remount the existing storage in the workload. For details, see :ref:`Using an Existing OBS Bucket Through a Static PV <cce_10_0379>` or :ref:`Using an Existing SFS Turbo File System Through a Static PV <cce_10_0625>`.
 
 #. **Create a Service in the new cluster.**
 

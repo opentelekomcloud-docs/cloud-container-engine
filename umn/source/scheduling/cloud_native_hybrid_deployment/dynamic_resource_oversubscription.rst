@@ -12,7 +12,7 @@ Resource oversubscription is the process of making use of idle requested resourc
 Hybrid deployment of online and offline jobs in a cluster can better utilize cluster resources.
 
 
-.. figure:: /_static/images/en-us_image_0000001647576720.png
+.. figure:: /_static/images/en-us_image_0000001750950176.png
    :alt: **Figure 1** Resource oversubscription
 
    **Figure 1** Resource oversubscription
@@ -58,7 +58,7 @@ Hybrid deployment is supported, and CPU and memory resources can be oversubscrib
    If the label **volcano.sh/colocation=true** is configured for a node, hybrid deployment is enabled. If the label **volcano.sh/oversubscription=true** is configured, resource oversubscription is enabled. The following table lists the available feature combinations after hybrid deployment or resource oversubscription is enabled.
 
    +--------------------------------------------------------+----------------------------------------------------------------------+------------------------------+----------------------------------------------------------------------------------------+
-   | Hybrid Deployment Enabled (volcano.sh/colocation=true) | Resource oversubscription Enabled (volcano.sh/oversubscription=true) | Use Oversubscribed Resources | Conditions for Evicting Offline Pods                                                   |
+   | Hybrid Deployment Enabled (volcano.sh/colocation=true) | Resource Oversubscription Enabled (volcano.sh/oversubscription=true) | Use Oversubscribed Resources | Conditions for Evicting Offline Pods                                                   |
    +========================================================+======================================================================+==============================+========================================================================================+
    | No                                                     | No                                                                   | No                           | None                                                                                   |
    +--------------------------------------------------------+----------------------------------------------------------------------+------------------------------+----------------------------------------------------------------------------------------+
@@ -76,34 +76,34 @@ kubelet Oversubscription
 
    **Specifications**
 
-   -  Cluster Version
+   -  Cluster version
 
       -  v1.19: v1.19.16-r4 or later
       -  v1.21: v1.21.7-r0 or later
       -  v1.23: v1.23.5-r0 or later
       -  v1.25 or later
 
-   -  Cluster Type: CCE or CCE Turbo
-   -  Node OS: EulerOS 2.9 (kernel-4.18.0-147.5.1.6.h729.6.eulerosv2r9.x86_64)
-   -  Node Type: ECS
-   -  The volcano add-on version: 1.7.0 or later
+   -  Cluster type: CCE Standard or CCE Turbo
+   -  Node OS: EulerOS 2.9 (kernel-4.18.0-147.5.1.6.h729.6.eulerosv2r9.x86_64)or HCE OS 2.0
+   -  Node type: ECS
+   -  Volcano version: 1.7.0 or later
 
    **Constraints**
 
-   -  Before enabling oversubscription, ensure that the overcommit add-on is not enabled on volcano.
+   -  Before enabling oversubscription, ensure that the overcommit add-on is not enabled on Volcano.
    -  Modifying the label of an oversubscribed node does not affect the running pods.
    -  Running pods cannot be converted between online and offline services. To convert services, you need to rebuild pods.
-   -  If the label **volcano.sh/oversubscription=true** is configured for a node in the cluster, the **oversubscription** configuration must be added to the volcano add-on. Otherwise, the scheduling of oversold nodes will be abnormal. Ensure that you have correctly configure labels because the scheduler does not check the add-on and node configurations. For details about the labels, see :ref:`Table 1 <cce_10_0384__table152481219311>`.
+   -  If the label **volcano.sh/oversubscription=true** is configured for a node in the cluster, the **oversubscription** configuration must be added to the Volcano add-on. Otherwise, the scheduling of oversold nodes will be abnormal. Ensure that you have correctly configure labels because the scheduler does not check the add-on and node configurations. For details about the labels, see :ref:`Table 1 <cce_10_0384__table152481219311>`.
    -  To disable oversubscription, perform the following operations:
 
       -  Remove the **volcano.sh/oversubscription** label from the oversubscribed node.
       -  Set **over-subscription-resource** to **false**.
-      -  Modify the configmap of the volcano scheduler named **volcano-scheduler-configmap** and remove the oversubscription add-on.
+      -  Modify the configmap of the Volcano scheduler named **volcano-scheduler-configmap** and remove the oversubscription add-on.
 
    -  If **cpu-manager-policy** is set to static core binding on a node, do not assign the QoS class of Guaranteed to offline pods. If core binding is required, change the pods to online pods. Otherwise, offline pods may occupy the CPUs of online pods, causing online pod startup failures, and offline pods fail to be started although they are successfully scheduled.
    -  If **cpu-manager-policy** is set to static core binding on a node, do not bind cores to all online pods. Otherwise, online pods occupy all CPU or memory resources, leaving a small number of oversubscribed resources.
 
-If the label **volcano.sh/oversubscription=true** is configured for a node in the cluster, the **oversubscription** configuration must be added to the volcano add-on. Otherwise, the scheduling of oversold nodes will be abnormal. For details about the related configuration, see :ref:`Table 1 <cce_10_0384__table152481219311>`.
+If the label **volcano.sh/oversubscription=true** is configured for a node in the cluster, the **oversubscription** configuration must be added to the Volcano add-on. Otherwise, the scheduling of oversold nodes will be abnormal. For details about the related configuration, see :ref:`Table 1 <cce_10_0384__table152481219311>`.
 
 Ensure that you have correctly configure labels because the scheduler does not check the add-on and node configurations.
 
@@ -123,11 +123,11 @@ Ensure that you have correctly configure labels because the scheduler does not c
    | No                         | Yes                            | Not triggered or failed. Avoid this configuration. |
    +----------------------------+--------------------------------+----------------------------------------------------+
 
-#. Configure the volcano add-on.
+#. Configure the Volcano add-on.
 
    a. Use kubectl to connect to the cluster.
 
-   b. Install the volcano add-on and add the oversubscription add-on to **volcano-scheduler-configmap**. Ensure that the add-on configuration does not contain the overcommit add-on. If **- name: overcommit** exists, delete this configuration. In addition, set **enablePreemptable** and **enableJobStarving** of the gang add-on to **false** and configure a preemption action.
+   b. Install the Volcano add-on and add the oversubscription add-on to **volcano-scheduler-configmap**. Ensure that the add-on configuration does not contain the overcommit add-on. If **- name: overcommit** exists, delete this configuration. In addition, set **enablePreemptable** and **enableJobStarving** of the gang add-on to **false** and configure a preemption action.
 
       .. code-block::
 
@@ -159,7 +159,7 @@ Ensure that you have correctly configure labels because the scheduler does not c
    A label can be configured to use oversubscribed resources only after the oversubscription feature is enabled for a node. Related nodes can be created only in a node pool. To enable the oversubscription feature, perform the following steps:
 
    a. Create a node pool.
-   b. Choose **More** > **Manage** in the **Operation** column of the created node pool.
+   b. Choose **Manage** in the **Operation** column of the created node pool.
    c. In the **Manage Components** window that is displayed, set **over-subscription-resource** under **kubelet** to **true** and click **OK**.
 
 #. Set the node oversubscription label.
@@ -246,7 +246,7 @@ Ensure that you have correctly configure labels because the scheduler does not c
 
 #. Deploy online and offline jobs and configure priorityClasses for these jobs.
 
-   The **volcano.sh/qos-level** label needs to be added to annotation to distinguish offline jobs. The value is an integer ranging from -7 to 7. If the value is less than 0, the job is an offline job. If the value is greater than or equal to 0, the job is a high-priority job, that is, online job. You do not need to set this label for online jobs. For both online and offline jobs, set **schedulerName** to **volcano** to enable the volcano scheduler.
+   The **volcano.sh/qos-level** label needs to be added to annotation to distinguish offline jobs. The value is an integer ranging from -7 to 7. If the value is less than 0, the job is an offline job. If the value is greater than or equal to 0, the job is a high-priority job, that is, online job. You do not need to set this label for online jobs. For both online and offline jobs, set **schedulerName** to **volcano** to enable the Volcano scheduler.
 
    .. note::
 
@@ -266,7 +266,7 @@ Ensure that you have correctly configure labels because the scheduler does not c
               metrics.alpha.kubernetes.io/custom-endpoints: '[{"api":"","path":"","port":"","names":""}]'
               volcano.sh/qos-level: "-1"       # Offline job label
           spec:
-            schedulerName: volcano             # The volcano scheduler is used.
+            schedulerName: volcano             # The Volcano scheduler is used.
             priorityClassName: testing         # Configure the testing priorityClass.
             ...
 
@@ -283,7 +283,7 @@ Ensure that you have correctly configure labels because the scheduler does not c
             annotations:
               metrics.alpha.kubernetes.io/custom-endpoints: '[{"api":"","path":"","port":"","names":""}]'
           spec:
-            schedulerName: volcano          # The volcano scheduler is used.
+            schedulerName: volcano          # The Volcano scheduler is used.
             priorityClassName: production   # Configure the production priorityClass.
             ...
 
@@ -360,7 +360,7 @@ The following uses an example to describe how to deploy online and offline jobs 
             annotations:
               volcano.sh/qos-level: "-1"       # Offline job label
           spec:
-            schedulerName: volcano             # The volcano scheduler is used.
+            schedulerName: volcano             # The Volcano scheduler is used.
             priorityClassName: testing         # Configure the testing priorityClass.
             containers:
               - name: container-1
@@ -406,7 +406,7 @@ The following uses an example to describe how to deploy online and offline jobs 
             labels:
               app: online
           spec:
-            schedulerName: volcano                 # The volcano scheduler is used.
+            schedulerName: volcano                 # The Volcano scheduler is used.
             priorityClassName: production          # Configure the production priorityClass.
             containers:
               - name: container-1
@@ -461,7 +461,7 @@ The following uses an example to describe how to deploy online and offline jobs 
                       operator: In
                       values:
                       - 192.168.0.173
-            schedulerName: volcano                 # The volcano scheduler is used.
+            schedulerName: volcano                 # The Volcano scheduler is used.
             priorityClassName: production          # Configure the production priorityClass.
             containers:
               - name: container-1

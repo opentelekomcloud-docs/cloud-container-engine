@@ -5,8 +5,8 @@
 SSH Connectivity of Master Nodes
 ================================
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether CCE can connect to your master nodes.
 

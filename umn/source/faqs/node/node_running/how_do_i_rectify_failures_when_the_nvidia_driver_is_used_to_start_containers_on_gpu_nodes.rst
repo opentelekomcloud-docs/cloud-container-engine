@@ -58,4 +58,4 @@ Helpful Links
 
 :ref:`What Should I Do If an Error Occurs When Deploying a Service on the GPU Node? <cce_faq_00109>`
 
-.. |image1| image:: /_static/images/en-us_image_0000001704574277.png
+.. |image1| image:: /_static/images/en-us_image_0000001750790208.png

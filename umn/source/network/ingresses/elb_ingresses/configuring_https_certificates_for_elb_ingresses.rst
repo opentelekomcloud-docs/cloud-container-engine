@@ -91,7 +91,7 @@ Using a TLS Secret Certificate
             '{
                 "type": "public",
                 "bandwidth_name": "cce-bandwidth-******",
-                "bandwidth_chargemode": "bandwidth",
+                "bandwidth_chargemode": "traffic",
                 "bandwidth_size": 5,
                 "bandwidth_sharetype": "PER",
                 "eip_type": "5_bgp",
@@ -131,7 +131,7 @@ Using a TLS Secret Certificate
             '{
                 "type": "public",
                 "bandwidth_name": "cce-bandwidth-******",
-                "bandwidth_chargemode": "bandwidth",
+                "bandwidth_chargemode": "traffic",
                 "bandwidth_size": 5,
                 "bandwidth_sharetype": "PER",
                 "eip_type": "5_bgp",

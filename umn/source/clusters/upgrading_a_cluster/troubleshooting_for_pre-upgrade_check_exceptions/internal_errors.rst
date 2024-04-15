@@ -5,8 +5,8 @@
 Internal Errors
 ===============
 
-Check Item
-----------
+Check Items
+-----------
 
 Before the upgrade, check whether an internal error occurs.
 

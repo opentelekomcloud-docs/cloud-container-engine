@@ -22,4 +22,4 @@ Solution
 
 Delete the **enable** field or set it to **true**.
 
-.. |image1| image:: /_static/images/en-us_image_0000001656255574.png
+.. |image1| image:: /_static/images/en-us_image_0000001750790176.png

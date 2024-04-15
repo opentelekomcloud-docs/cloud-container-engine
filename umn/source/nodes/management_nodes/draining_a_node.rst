@@ -1,0 +1,74 @@
+:original_name: cce_10_0605.html
+
+.. _cce_10_0605:
+
+Draining a Node
+===============
+
+Scenario
+--------
+
+After you enable the nodal drainage function on the console, the system sets the node to be non-schedulable and securely evicts all pods that comply with :ref:`Nodal Drainage Rules <cce_10_0605__section14957193483118>` on the node. Subsequent new pods will not be scheduled to the node.
+
+When a node is faulty, this function helps you quickly isolate the faulty node. The evicted pods will be transferred from the workload controller to another node that can be scheduled properly.
+
+Constraints
+-----------
+
+-  Only clusters of the following versions support the nodal drainage function:
+
+   -  v1.21: v1.21.10-r0 or later
+   -  v1.23: v1.23.8-r0 or later
+   -  v1.25: v1.25.3-r0 or later
+   -  v1.25 or later
+
+-  To use the nodal drainage function, an IAM user must have at least one of the following permissions. For details, see :ref:`Namespace Permissions (Kubernetes RBAC-based) <cce_10_0189>`.
+
+   -  cluster-admin (administrator): read and write permissions on all resources in all namespaces.
+   -  drainage-editor: drain a node.
+   -  drainage-viewer: view the nodal drainage status but cannot drain a node.
+
+-  If a `disruption budget <https://kubernetes.io/docs/tasks/run-application/configure-pdb/>`__ is not specify for the workload, the workload function may be unavailable during pod rescheduling.
+
+.. _cce_10_0605__section14957193483118:
+
+Nodal Drainage Rules
+--------------------
+
+The nodal drainage function securely evicts pods on a node. However, for pods that meet the following filtering criteria, the system performs the corresponding operations:
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+--------------------------+
+| Filter Criterion                                                                                                                                    | Forced Drainage Enabled | Forced Drainage Disabled |
++=====================================================================================================================================================+=========================+==========================+
+| The `status.phase <https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase>`__ field of the pod is **Succeeded** or **Failed**. | Deletion                | Deletion                 |
++-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+--------------------------+
+| The pod is not managed by the workload controller.                                                                                                  | Deletion                | Drainage cancellation    |
++-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+--------------------------+
+| The pod is managed by DaemonSet.                                                                                                                    | None                    | Drainage cancellation    |
++-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+--------------------------+
+| A volume of the emptyDir type is mounted to the pod.                                                                                                | Eviction                | Drainage cancellation    |
++-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+--------------------------+
+| The pod is a `static pod <https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/>`__ directly managed by kubelet                      | None                    | None                     |
++-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+--------------------------+
+
+.. note::
+
+   The following operations may be performed on pods during nodal drainage:
+
+   -  Deletion: The pod is deleted from the current node and will not be scheduled to other nodes.
+   -  Eviction: The pod is deleted from the current node and rescheduled to another node.
+   -  None: The pod will not be evicted or deleted.
+   -  Drainage cancellation: If a pod on a node cancels drainage, the drainage process of the node is terminated and no pod is evicted or deleted.
+
+Procedure
+---------
+
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.
+#. Locate the target node and choose **More** > **Nodal Drainage** in the **Operation** column.
+#. In the **Nodal Drainage** window displayed, set parameters.
+
+   -  **Timeout (s)**: The drainage task automatically fails after the preset timeout period. The value 0 indicates that the timeout period is not set.
+   -  **Forced Drainage**: If this function is enabled, pods managed by DaemonSet will be ignored, and pods with emptyDir volumes and pods not managed by controllers will be deleted. For details, see :ref:`Nodal Drainage Rules <cce_10_0605__section14957193483118>`.
+
+#. Click **OK** and wait until the nodal drainage is complete.

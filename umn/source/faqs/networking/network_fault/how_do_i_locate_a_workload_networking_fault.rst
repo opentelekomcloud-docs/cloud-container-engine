@@ -8,9 +8,9 @@ How Do I Locate a Workload Networking Fault?
 Troubleshooting Process
 -----------------------
 
-Troubleshooting methods are sorted based on the occurrence probability of the possible causes. You are advised to check the possible causes from high probability to low probability to quickly locate the cause of the problem.
+The issues here are described in order of how likely they are to occur.
 
-If the fault persists after a possible cause is rectified, check other possible causes.
+Check these causes one by one until you find the cause of the fault.
 
 -  :ref:`Check Item 1: Container and Container Port <cce_faq_00202__section11960929145416>`
 -  :ref:`Check Item 2: Node IP Address and Node Port <cce_faq_00202__section138152218598>`
@@ -105,7 +105,7 @@ Log in to the management console, choose **Service List** > **Networking** > **V
 
    The security group name of the node is **{Cluster name}-cce-node-{Random characters}**.
 
-   The name of the security group associated with the containers is **{Cluster name}-cce-eni-{Random characters}**.
+   The name of the security group associated with the containers is *{Cluster name}*\ **-cce-eni-**\ *{Random characters}*.
 
 **Check the following:**
 
@@ -114,4 +114,4 @@ Log in to the management console, choose **Service List** > **Networking** > **V
 
 For details about security group configuration, see :ref:`Configuring Cluster Security Group Rules <cce_faq_00265>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000001704574297.png
+.. |image1| image:: /_static/images/en-us_image_0000001797908969.png

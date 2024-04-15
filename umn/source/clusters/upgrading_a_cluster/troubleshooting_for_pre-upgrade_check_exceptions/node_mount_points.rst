@@ -5,8 +5,8 @@
 Node Mount Points
 =================
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether inaccessible mount points exist on the node.
 
@@ -15,7 +15,7 @@ Solution
 
 **Scenario: There are inaccessible mount points on the node.**
 
-If network NFS (such as OBS, SFS, and SFS) is used by the node and the node is disconnected with the NFS server, the mount point would be inaccessible and all processes that access this mount point are suspended.
+If NFS (such as OBS parallel file systems and SFS) is used by the node and the node is disconnected with the NFS server, the mount point would be inaccessible and all processes that access this mount point are in D state.
 
 #. Log in to the node.
 
@@ -34,8 +34,8 @@ If network NFS (such as OBS, SFS, and SFS) is used by the node and the node is d
 
       - ps aux | grep "D "
 
-#. If a process is in the D state, the problem occurs. You can only reset the node to solve the problem. Reset the node and upgrade the cluster again. For details about how to reset a node, see :ref:`Resetting a Node <cce_10_0003>`.
+#. If a process is in the D state, the problem occurs. You can restart the node to solve the problem. Restart the node and upgrade the cluster again.
 
    .. note::
 
-      Resetting a node will reset all node labels, which may affect workload scheduling. Before resetting a node, check and retain the labels that you have manually added to the node.
+      Workloads running on the node will be rescheduled after a node is restarted. Check whether services will be affected before restarting the node.

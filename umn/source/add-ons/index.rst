@@ -11,9 +11,10 @@ Add-ons
 -  :ref:`CCE Node Problem Detector <cce_10_0132>`
 -  :ref:`CCE Cluster Autoscaler <cce_10_0154>`
 -  :ref:`Kubernetes Metrics Server <cce_10_0205>`
+-  :ref:`CCE Advanced HPA <cce_10_0240>`
 -  :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>`
 -  :ref:`Volcano Scheduler <cce_10_0193>`
--  :ref:`CCE Container Storage (FlexVolume) <cce_10_0127>`
+-  :ref:`CCE Container Storage (FlexVolume, Discarded) <cce_10_0127>`
 
 .. toctree::
    :maxdepth: 1
@@ -25,6 +26,7 @@ Add-ons
    cce_node_problem_detector
    cce_cluster_autoscaler
    kubernetes_metrics_server
+   cce_advanced_hpa
    cce_ai_suite_nvidia_gpu
    volcano_scheduler
-   cce_container_storage_flexvolume
+   cce_container_storage_flexvolume_discarded

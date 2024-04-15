@@ -61,11 +61,11 @@ To remove a taint, run the following command with a hyphen (-) added after **NoS
 
 On the CCE console, you can also manage taints of a node in batches.
 
-#. Log in to the CCE console.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. Click the cluster name, access the cluster details page, and choose **Nodes** in the navigation pane. On the page displayed, select a node and click **Labels and Taints** above the list.
+#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab, select the target node and click **Labels and Taints** in the upper left corner.
 
-#. In the displayed dialog box, click **Add Operation** under **Batch Operation**, choose **Add/Update**, and select **Taint**.
+#. In the displayed dialog box, click **Add batch operations** under **Batch Operation**, choose **Add/Update**, and select **Taint**.
 
    Enter the key and value of the taint to be added, select the taint effect, and click **OK**.
 
@@ -88,20 +88,24 @@ When some issues occurred on a node, Kubernetes automatically adds a taint to th
 Node Scheduling Settings
 ------------------------
 
-To configure scheduling, log in to the CCE console, click the cluster, choose **Nodes** in the navigation pane, and click **More** > **Disable Scheduling** in the **Operation** column of a node in the node list.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
-In the dialog box that is displayed, click **OK** to set the node to be unschedulable.
+#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.
 
-This operation will add a taint to the node. You can use kubectl to view the content of the taint.
+#. In the node list, locate the target node and choose **More** > **Disable Scheduling** in the **Operation** column.
 
-.. code-block::
+#. In the dialog box that is displayed, click **Yes** to configure the node to be unschedulable.
 
-   $ kubectl describe node 192.168.10.240
-   ...
-   Taints:             node.kubernetes.io/unschedulable:NoSchedule
-   ...
+   This operation will add a taint to the node. You can use kubectl to view the content of the taint.
 
-On the CCE console, remove the taint and set the node to be schedulable.
+   .. code-block::
+
+      $ kubectl describe node 192.168.10.240
+      ...
+      Taints:             node.kubernetes.io/unschedulable:NoSchedule
+      ...
+
+#. Go back to the node list, locate the target node, and choose **More** > **Enable Scheduling**. Then, the node changes to be schedulable.
 
 Tolerations
 -----------

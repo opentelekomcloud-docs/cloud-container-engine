@@ -86,7 +86,7 @@ After **nvidia.com/gpu** is specified, workloads will not be scheduled to nodes 
 -  0/2 nodes are available: 2 Insufficient nvidia.com/gpu.
 -  0/4 nodes are available: 1 InsufficientResourceOnSingleGPU, 3 Insufficient nvidia.com/gpu.
 
-To use GPUs on the CCE console, select the GPU quota and specify the percentage of GPUs reserved for the container when creating a workload.
+To use GPU resources on the CCE console, you only need to configure the GPU quota when creating a workload.
 
 GPU Node Labels
 ---------------

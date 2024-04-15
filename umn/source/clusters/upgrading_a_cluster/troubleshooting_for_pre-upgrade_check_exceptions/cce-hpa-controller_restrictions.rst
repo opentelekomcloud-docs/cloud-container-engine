@@ -5,8 +5,8 @@
 cce-hpa-controller Restrictions
 ===============================
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the current cce-controller-hpa add-on has compatibility restrictions.
 

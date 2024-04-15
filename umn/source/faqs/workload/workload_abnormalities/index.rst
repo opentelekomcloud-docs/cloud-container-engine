@@ -15,7 +15,6 @@ Workload Abnormalities
 -  :ref:`What Should I Do If Pods in the Terminating State Cannot Be Deleted? <cce_faq_00210>`
 -  :ref:`What Should I Do If a Workload Is Stopped Caused by Pod Deletion? <cce_faq_00012>`
 -  :ref:`What Should I Do If an Error Occurs When Deploying a Service on the GPU Node? <cce_faq_00109>`
--  :ref:`What Should I Do If Sandbox-Related Errors Are Reported When the Pod Remains in the Creating State? <cce_faq_00005>`
 
 .. toctree::
    :maxdepth: 1
@@ -31,4 +30,3 @@ Workload Abnormalities
    what_should_i_do_if_pods_in_the_terminating_state_cannot_be_deleted
    what_should_i_do_if_a_workload_is_stopped_caused_by_pod_deletion
    what_should_i_do_if_an_error_occurs_when_deploying_a_service_on_the_gpu_node
-   what_should_i_do_if_sandbox-related_errors_are_reported_when_the_pod_remains_in_the_creating_state

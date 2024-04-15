@@ -34,4 +34,4 @@ Procedure
 
 #. Go to the **Security Groups** page, and confirm that *Cluster name*\ **-cce-eni-**\ *xxx* is not attached to any ENIs. Then, you can delete the cluster on the CCE console.
 
-.. |image1| image:: /_static/images/en-us_image_0000001704574285.png
+.. |image1| image:: /_static/images/en-us_image_0000001797908941.png

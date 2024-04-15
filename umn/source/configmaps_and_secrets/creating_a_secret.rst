@@ -22,7 +22,7 @@ Procedure
 
 #. Choose **ConfigMaps and Secrets** in the navigation pane, click the **Secrets** tab, and click **Create Secret** in the upper right corner.
 
-#. Set parameters.
+#. Configure parameters.
 
    .. _cce_10_0153__table16321825732:
 
@@ -59,7 +59,7 @@ Procedure
       | Secret Label                      | Label of the secret. Enter a key-value pair and click **Add**.                                                                                                                                                                                                                                                   |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-#. After the configuration is complete, click **OK**.
+#. Click **OK**.
 
    The new secret is displayed in the key list.
 
@@ -171,7 +171,7 @@ This section describes configuration examples of secret resource description fil
 Creating a Secret Using kubectl
 -------------------------------
 
-#. According to :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`, configure the **kubectl** command to connect an ECS to the cluster.
+#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create and edit the Base64-encoded **cce-secret.yaml** file.
 
@@ -245,4 +245,4 @@ To Base64-encode a string, run the **echo -n content to be encoded \| base64** c
    root@ubuntu:~# echo -n "content to be encoded" | base64
    ******
 
-.. |image1| image:: /_static/images/en-us_image_0000001695737281.png
+.. |image1| image:: /_static/images/en-us_image_0000001750950360.png

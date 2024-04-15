@@ -12,7 +12,7 @@ In a rolling upgrade, a new node is created, existing workloads are migrated to 
 
 .. _cce_10_0276__fig1689610598118:
 
-.. figure:: /_static/images/en-us_image_0000001695737085.png
+.. figure:: /_static/images/en-us_image_0000001797870861.png
    :alt: **Figure 1** Workload migration
 
    **Figure 1** Workload migration
@@ -61,9 +61,9 @@ Scenario 1: The Original Node Is in DefaultPool
 
    .. note::
 
-      During workload migration, if node affinity is configured for the workload, the workload keeps displaying a message indicating that the workload is not ready. In this case, click the workload name to go to the workload details page. On the **Scheduling Policies** tab page, delete the affinity configuration of the original node and configure the affinity and anti-affinity policies of the new node. For details, see :ref:`Scheduling Policy (Affinity/Anti-affinity) <cce_10_0232>`.
+      During workload migration, if node affinity is configured for the workload, the workload keeps displaying a message indicating that the workload is not ready. In this case, click the workload name to go to the workload details page. On the **Scheduling Policies** tab page, delete the affinity configuration of the original node and configure the affinity and anti-affinity policies of the new node. For details, see :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
 
-   After the workload is successfully migrated, you can view that the workload is migrated to the node created in :ref:`1 <cce_10_0276__li375022715214>` on the **Pods** tab page of the workload details page.
+   After the workload is migrated, you can view that the workload is migrated to the node created in :ref:`1 <cce_10_0276__li375022715214>` on the **Pods** tab page of the workload details page.
 
 5. Delete the original node.
 
@@ -96,7 +96,7 @@ Scenario 2: The Original Node Is Not in DefaultPool
 
    .. note::
 
-      During workload migration, if node affinity is configured for the workload, the workload keeps displaying a message indicating that the workload is not ready. In this case, click the workload name to go to the workload details page. On the **Scheduling Policies** tab page, delete the affinity configuration of the original node and configure the affinity and anti-affinity policies of the new node. For details, see :ref:`Scheduling Policy (Affinity/Anti-affinity) <cce_10_0232>`.
+      During workload migration, if node affinity is configured for the workload, the workload keeps displaying a message indicating that the workload is not ready. In this case, click the workload name to go to the workload details page. On the **Scheduling Policies** tab page, delete the affinity configuration of the original node and configure the affinity and anti-affinity policies of the new node. For details, see :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
 
    After the workload is migrated, you can view that the workload is migrated to the node created in :ref:`1 <cce_10_0276__li1992616214312>` on the **Pods** tab page of the workload details page.
 

@@ -24,11 +24,11 @@ Using the Console
 
    Create a secret for accessing a third-party image repository.
 
-   Click the cluster name to access the cluster console. In the navigation pane, choose **ConfigMaps and Secrets**. On the **Secrets** tab, click **Create Secret** in the upper right corner. Set **Secret Type** to **kubernetes.io/dockerconfigjson**. For details, see :ref:`Creating a Secret <cce_10_0153>`.
+   Click the cluster name to access the cluster console. In the navigation pane, choose **ConfigMaps and Secrets**. On the **Secrets** tab page, click **Create Secret** in the upper right corner. Set **Secret Type** to **kubernetes.io/dockerconfigjson**. For details, see :ref:`Creating a Secret <cce_10_0153>`.
 
    Enter the username and password used to access the third-party image repository.
 
-#. When creating a workload, you can enter a private image path in the format of *domainname/namespace/imagename:tag* for **Image Name** and select the key created in :ref:`1 <cce_10_0009__li16481144064414>` for **Image Access Credential**.
+#. When creating a workload, enter a private image path in the format of *domainname/namespace/imagename:tag* in **Image Name** and select the key created in :ref:`1 <cce_10_0009__li16481144064414>`.
 
 #. Set other parameters and click **Create Workload**.
 
@@ -66,4 +66,4 @@ Using kubectl
           - name: foo
             image: www.3rdregistry.com/janedoe/awesomeapp:v1
         imagePullSecrets:
-          - name: myregistrykey              #Use the created secret.
+          - name: myregistrykey              # Use the created secret.

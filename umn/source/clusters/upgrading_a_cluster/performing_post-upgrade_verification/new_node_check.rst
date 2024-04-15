@@ -5,15 +5,16 @@
 New Node Check
 ==============
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether nodes can be created in the cluster.
 
 Procedure
 ---------
 
-Log in to the CCE console and access the cluster console. Choose **Nodes** in the navigation pane, and click **Create Node**. For details about node configurations, see :ref:`Creating a Node <cce_10_0363>`.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab and then **Create Node**. For details about the node configuration, see :ref:`Creating a Node <cce_10_0363>`.
 
 Solution
 --------

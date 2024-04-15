@@ -5,7 +5,7 @@
 Migration
 =========
 
--  :ref:`Migrating On-premises Kubernetes Clusters to CCE <cce_bestpractice_0306>`
+-  :ref:`Migrating On-premises Kubernetes Clusters to CCE <cce_bestpractice_0326>`
 
 .. toctree::
    :maxdepth: 1

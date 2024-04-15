@@ -8,7 +8,7 @@ Connecting to a Cluster Using kubectl
 Scenario
 --------
 
-This section uses a CCE cluster as an example to describe how to connect to a CCE cluster using kubectl.
+This section uses a CCE standard cluster as an example to describe how to connect to a CCE cluster using kubectl.
 
 Permissions
 -----------
@@ -22,7 +22,7 @@ For details about user permissions, see :ref:`Cluster Permissions (IAM-based) an
 Using kubectl
 -------------
 
-To connect to a Kubernetes cluster from a PC, you can use kubectl, a Kubernetes command line tool. You can log in to the CCE console, click the name of the cluster to be connected, and view the access address and kubectl connection procedure on the cluster details page.
+To connect to a Kubernetes cluster from a PC, you can use kubectl, a Kubernetes command line tool. You can log in to the CCE console and click the name of the target cluster to access the cluster console. On the **Overview** page, view the access address and kubectl connection procedure.
 
 CCE allows you to access a cluster through a private network or a public network.
 
@@ -31,7 +31,7 @@ CCE allows you to access a cluster through a private network or a public network
 
    .. important::
 
-      To bind a public IP (EIP) to the cluster, go to the cluster details page and click **Bind** next to **EIP** in the **Connection Information** pane. In a cluster with an EIP bound, kube-apiserver will be exposed to public networks and may be attacked. You are advised to configure Advanced Anti-DDoS (AAD) for the EIP of the node where kube-apiserver resides.
+      To bind an EIP to the cluster, go to the **Overview** page and click **Bind** next to **EIP** in the **Connection Information** area. In a cluster with an EIP bound, kube-apiserver will be exposed to the Internet and may be attacked. To solve this problem, you can configure Advanced Anti-DDoS for the EIP of the node on which kube-apiserver runs.
 
 Download kubectl and the configuration file. Copy the file to your client, and configure kubectl. After the configuration is complete, you can access your Kubernetes clusters. Procedure:
 
@@ -48,7 +48,7 @@ Download kubectl and the configuration file. Copy the file to your client, and c
          cd /home
          curl -LO https://dl.k8s.io/release/{v1.25.0}/bin/linux/amd64/kubectl
 
-      *{v1.25.0}* specifies the version number. Replace it as required.
+      **{v1.25.0}** specifies the version number. Replace it as required.
 
    b. Install kubectl.
 
@@ -61,12 +61,11 @@ Download kubectl and the configuration file. Copy the file to your client, and c
 
    **Obtain the kubectl configuration file (kubeconfig).**
 
-   In the **Connection Information** pane on the cluster details page, click **Configure** next to **kubectl**. On the window displayed, download the configuration file.
+   On the **Overview** page, locate the **Connection Info** area, click **Configure** next to **kubectl**. On the window displayed, download the configuration file.
 
    .. note::
 
       -  The kubectl configuration file **kubeconfig.json** is used for cluster authentication. If the file is leaked, your clusters may be attacked.
-      -  By default, two-way authentication is disabled for domain names in the current cluster. You can run the **kubectl config use-context externalTLSVerify** command to enable two-way authentication. For details, see :ref:`Two-Way Authentication for Domain Names <cce_10_0107__section1559919152711>`. For a cluster that has been bound to an EIP, if the authentication fails (x509: certificate is valid) when two-way authentication is used, bind the EIP again and download **kubeconfig.json** again.
       -  The Kubernetes permissions assigned by the configuration file downloaded by IAM users are the same as those assigned to the IAM users on the CCE console.
       -  If the KUBECONFIG environment variable is configured in the Linux OS, kubectl preferentially loads the KUBECONFIG environment variable instead of **$home/.kube/config**.
 
@@ -115,7 +114,7 @@ Two-Way Authentication for Domain Names
 
 CCE supports two-way authentication for domain names.
 
--  Two-way authentication is disabled for domain names by default. You can run the **kubectl config use-context externalTLSVerify** command to switch to the externalTLSVerify context to enable it.
+-  After an EIP is bound to an API Server, two-way domain name authentication will be disabled by default if kubectl is used to connect to the cluster. You can run **kubectl config use-context externalTLSVerify** to switch to the externalTLSVerify context to enable the two-way domain name authentication.
 
 -  When an EIP is bound to or unbound from a cluster, or a custom domain name is configured or updated, the cluster server certificate will be added the latest cluster access address (including the EIP bound to the cluster and all custom domain names configured for the cluster).
 
@@ -127,13 +126,13 @@ CCE supports two-way authentication for domain names.
 
    .. _cce_10_0107__fig1941342411:
 
-   .. figure:: /_static/images/en-us_image_0000001726718109.png
+   .. figure:: /_static/images/en-us_image_0000001750791664.png
       :alt: **Figure 1** Two-way authentication disabled for domain names
 
       **Figure 1** Two-way authentication disabled for domain names
 
-Common Issues
--------------
+FAQs
+----
 
 -  **Error from server Forbidden**
 

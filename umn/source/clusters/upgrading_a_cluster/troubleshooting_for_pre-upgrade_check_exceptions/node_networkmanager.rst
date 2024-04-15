@@ -5,8 +5,8 @@
 Node NetworkManager
 ===================
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether NetworkManager of a node is normal.
 

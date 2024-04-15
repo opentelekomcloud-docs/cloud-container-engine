@@ -5,7 +5,7 @@
 Node Resource Reservation Policy
 ================================
 
-Some node resources are used to run mandatory Kubernetes system components and resources to make the node as part of your cluster. Therefore, the total number of node resources and the amount of allocatable node resources for your cluster are different. The larger the node specifications, the more the containers deployed on the node. Therefore, more node resources need to be reserved to run Kubernetes components.
+Some node resources are used to run mandatory Kubernetes system components and resources to make the node as part of your cluster. Therefore, the total number of node resources and the number of allocatable node resources for your cluster are different. The larger the node specifications, the more the containers deployed on the node. Therefore, more node resources need to be reserved to run Kubernetes components.
 
 To ensure node stability, a certain number of CCE node resources will be reserved for Kubernetes components (such as kubelet, kube-proxy, and docker) based on the node specifications.
 
@@ -13,7 +13,7 @@ CCE calculates the resources that can be allocated to user nodes as follows:
 
 **Allocatable resources = Total amount - Reserved amount - Eviction threshold**
 
-The memory eviction threshold is fixed at 100 MiB.
+The memory eviction threshold is fixed at 100 MB.
 
 .. note::
 
@@ -29,7 +29,7 @@ Rules v1 for Reserving Node Memory
 
 .. note::
 
-   For clusters of versions earlier than **v1.21.4-r0** and **v1.23.3-r0**, the v1 model is used for node memory reservation. For clusters of **v1.21.4-r0**, **v1.23.3-r0**, or later, the node memory reservation model is optimized to v2. For details, see :ref:`Rules v2 for Reserving Node Memory <cce_10_0178__section156741258145010>`.
+   For clusters of versions earlier than **v1.21.4-r0** and **v1.23.3-r0**, the v1 model is used for node memory reservation. For clusters of **v1.21.4-r0**, **v1.23.3-r0**, or later, the node memory reservation model is optimized to v2. For details, see :ref:`Rules for Reserving Node Memory v2 <cce_10_0178__section156741258145010>`.
 
 You can use the following formula calculate how much memory you should reserve for running containers on a node:
 
@@ -77,10 +77,10 @@ Total reserved amount = :ref:`Reserved memory for system components <cce_10_0178
 
 .. _cce_10_0178__section156741258145010:
 
-Rules v2 for Reserving Node Memory
+Rules for Reserving Node Memory v2
 ----------------------------------
 
-For clusters of **v1.21.4-r0**, **v1.23.3-r0**, or later, the node memory reservation model is optimized to v2 and can be dynamically adjusted using the node pool parameters **kube-reserved-mem** and **system-reserved-mem**. For details, see :ref:`Managing a Node Pool <cce_10_0222>`.
+For clusters of **v1.21.4-r0**, **v1.23.3-r0**, or later, the node memory reservation model is optimized to v2 and can be dynamically adjusted using the node pool parameters **kube-reserved-mem** and **system-reserved-mem**. For details, see :ref:`Configuring a Node Pool <cce_10_0652>`.
 
 The total reserved node memory of the v2 model is equal to the sum of that reserved for the OS and that reserved for CCE to manage pods.
 

@@ -45,7 +45,7 @@ Currently, CCE has configured static encryption for secret resources. The secret
       ---
       apiVersion: v1
       kind: Pod
-      metadata;
+      metadata:
         name: secret-dotfiles-pod
       spec:
         volumes:

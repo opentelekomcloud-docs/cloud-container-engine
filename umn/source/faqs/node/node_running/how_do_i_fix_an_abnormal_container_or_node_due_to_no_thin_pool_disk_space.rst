@@ -38,7 +38,7 @@ Properly plan the service distribution and data plane disk space to avoid the sc
 
 #. Log in to the target node.
 
-#. Run the **lsblk** command to check the block device information of the node.
+#. Run **lsblk** to view the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 
@@ -48,9 +48,9 @@ Properly plan the service distribution and data plane disk space to avoid the sc
 
          # lsblk
          NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-         sda                   8:0    0   50G  0 disk
-         └─sda1                8:1    0   50G  0 part /
-         sdb                   8:16   0  200G  0 disk
+         vda                   8:0    0   50G  0 disk
+         └─vda1                8:1    0   50G  0 part /
+         vdb                   8:16   0  200G  0 disk
          ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/docker               # Space used by the container engine
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet  # Space used by Kubernetes
 
@@ -58,7 +58,7 @@ Properly plan the service distribution and data plane disk space to avoid the sc
 
       .. code-block::
 
-         pvresize /dev/sdb
+         pvresize /dev/vdb
          lvextend -l+100%FREE -n vgpaas/dockersys
          resize2fs /dev/vgpaas/dockersys
 
@@ -68,12 +68,12 @@ Properly plan the service distribution and data plane disk space to avoid the sc
 
          # lsblk
          NAME                                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-         sda                                   8:0    0   50G  0 disk
-         └─sda1                                8:1    0   50G  0 part /
-         sdb                                   8:16   0  200G  0 disk
+         vda                                   8:0    0   50G  0 disk
+         └─vda1                                8:1    0   50G  0 part /
+         vdb                                   8:16   0  200G  0 disk
          ├─vgpaas-dockersys                  253:0    0   18G  0 lvm  /var/lib/docker
          ├─vgpaas-thinpool_tmeta             253:1    0    3G  0 lvm
-         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Thin pool space.
+         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Space used by thinpool
          │   ...
          ├─vgpaas-thinpool_tdata             253:2    0   67G  0 lvm
          │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm
@@ -84,14 +84,14 @@ Properly plan the service distribution and data plane disk space to avoid the sc
 
          .. code-block::
 
-            pvresize /dev/sdb
+            pvresize /dev/vdb
             lvextend -l+100%FREE -n vgpaas/thinpool
 
       -  Run the following commands on the node to add the new disk capacity to the **dockersys** disk:
 
          .. code-block::
 
-            pvresize /dev/sdb
+            pvresize /dev/vdb
             lvextend -l+100%FREE -n vgpaas/dockersys
             resize2fs /dev/vgpaas/dockersys
 
@@ -103,4 +103,4 @@ Create and delete files in service containers in the local storage (such as empt
 
 If the OS uses OverlayFS, services can be deployed on such nodes to prevent the problem that the disk space occupied by files created or deleted in the container is not released immediately.
 
-.. |image1| image:: /_static/images/en-us_image_0000001656255626.png
+.. |image1| image:: /_static/images/en-us_image_0000001750949408.png

@@ -41,11 +41,11 @@ Assume that a cluster administrator has a Consul DNS server located at 10.150.0.
 
 #. In the navigation pane, choose **Add-ons**. On the displayed page, click **Edit** under **CoreDNS**.
 
-#. Add a stub domain in the **Parameters** area. The format is a key-value pair. The key is a DNS suffix domain name, and the value is a DNS IP address or a group of DNS IP addresses, for example, **consul.local --10.XXX.XXX.XXX**.
+#. Add a stub domain in the **Parameters** area. The format is a key-value pair. The key is a DNS suffix domain name, and the value is a DNS IP address or a group of DNS IP addresses, for example, **consul.local -- 10.150.0.1**.
 
 #. Click **OK**.
 
-#. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of CoreDNS to check whether the update is successful.
+#. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.
 
    The corresponding Corefile content is as follows:
 
@@ -103,7 +103,7 @@ After modifying the hosts file in CoreDNS, you do not need to configure the host
 
 #. Click **OK**.
 
-#. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of CoreDNS to check whether the update is successful.
+#. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.
 
    The corresponding Corefile content is as follows:
 
@@ -153,9 +153,9 @@ Use the Rewrite plug-in of CoreDNS to resolve a specified domain name to the dom
 
 #. Click **OK**.
 
-#. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of CoreDNS to check whether the update is successful.
+#. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.
 
-   Corresponding Corefile content:
+   The corresponding Corefile content is as follows:
 
    .. code-block::
 
@@ -201,7 +201,7 @@ By default, CoreDNS uses the **/etc/resolv.conf** file of the node for resolutio
 
 #. Click **OK**.
 
-#. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of CoreDNS to check whether the update is successful.
+#. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.
 
    The corresponding Corefile content is as follows:
 

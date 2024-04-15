@@ -31,7 +31,7 @@ Procedure
 
 #. Log in to the CCE console. In the navigation pane, choose **Clusters**. Click the target cluster name to access the cluster console.
 
-#. Choose **Nodes** in the navigation pane. Click **Create Node** on the right corner of the page and configure the parameters.
+#. Choose **Nodes** in the navigation pane, click the **Nodes** tab, click **Create Node** in the right corner, and configure the parameters.
 
 #. In the **Advanced Settings** area, enter the post-installation command.
 
@@ -51,4 +51,4 @@ Procedure
 
 #. Click **Submit**.
 
-.. |image1| image:: /_static/images/en-us_image_0000001701704505.png
+.. |image1| image:: /_static/images/en-us_image_0000001750790716.png

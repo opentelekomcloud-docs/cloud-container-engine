@@ -218,13 +218,13 @@ Further Readings
 
 For more information about users and identity authentication in Kubernetes, see `Authenticating <https://kubernetes.io/docs/reference/access-authn-authz/authentication/>`__.
 
-.. |image1| image:: /_static/images/en-us_image_0000001653425348.png
-.. |image2| image:: /_static/images/en-us_image_0000001701784889.png
-.. |image3| image:: /_static/images/en-us_image_0000001701784881.png
-.. |image4| image:: /_static/images/en-us_image_0000001653425356.png
-.. |image5| image:: /_static/images/en-us_image_0000001653584656.png
-.. |image6| image:: /_static/images/en-us_image_0000001653425344.png
-.. |image7| image:: /_static/images/en-us_image_0000001653425352.png
-.. |image8| image:: /_static/images/en-us_image_0000001701704133.png
-.. |image9| image:: /_static/images/en-us_image_0000001701784885.png
-.. |image10| image:: /_static/images/en-us_image_0000001701784877.png
+.. |image1| image:: /_static/images/en-us_image_0000001750790112.png
+.. |image2| image:: /_static/images/en-us_image_0000001797908833.png
+.. |image3| image:: /_static/images/en-us_image_0000001750949032.png
+.. |image4| image:: /_static/images/en-us_image_0000001750790124.png
+.. |image5| image:: /_static/images/en-us_image_0000001797908809.png
+.. |image6| image:: /_static/images/en-us_image_0000001750790092.png
+.. |image7| image:: /_static/images/en-us_image_0000001750790120.png
+.. |image8| image:: /_static/images/en-us_image_0000001797869789.png
+.. |image9| image:: /_static/images/en-us_image_0000001750949040.png
+.. |image10| image:: /_static/images/en-us_image_0000001750949016.png

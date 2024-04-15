@@ -5,8 +5,8 @@
 CoreDNS Configuration Consistency
 =================================
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the current CoreDNS key configuration Corefile is different from the Helm release record. The difference may be overwritten during the add-on upgrade, **affecting domain name resolution in the cluster**.
 
@@ -15,7 +15,7 @@ Solution
 
 You can upgrade CoreDNS separately after confirming the configuration differences.
 
-#. Configure kubectl, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Configure the **kubectl** command. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. .. _cce_10_0493__li1178291934910:
 
@@ -28,12 +28,13 @@ You can upgrade CoreDNS separately after confirming the configuration difference
 
 #. .. _cce_10_0493__li111544111811:
 
-   Obtain the Corefile in the Helm release record (depending on Python 3).
+   Obtain the Corefile in the Helm Release records.
 
    .. code-block::
 
       latest_release=`kubectl get secret -nkube-system -l owner=helm -l name=cceaddon-coredns --sort-by=.metadata.creationTimestamp | awk 'END{print $1}'`
       kubectl get secret -nkube-system $latest_release -o jsonpath='{.data.release}' | base64 -d | base64 -d | gzip -d | python -m json.tool | python -c "
+      from __future__ import print_function
       import json,sys,re,yaml;
       manifests = json.load(sys.stdin)['manifest']
       files = re.split('(?:^|\s*\n)---\s*',manifests)
@@ -54,19 +55,17 @@ You can upgrade CoreDNS separately after confirming the configuration difference
       diff corefile_now.txt corefile_record.txt -y;
 
 
-   .. figure:: /_static/images/en-us_image_0000001695896617.png
+   .. figure:: /_static/images/en-us_image_0000001797871201.png
       :alt: **Figure 1** Viewing output differences
 
       **Figure 1** Viewing output differences
 
-#. Return to the CCE console and click the cluster name to go to the cluster console. On the **Add-ons** page, select CoreDNS and click **Upgrade**.
+#. Return to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane, select CoreDNS, and click **Upgrade**.
 
-   To retain the different configurations, use either of the following methods:
+   To retain custom configurations, use either of the following methods:
 
+   -  (Recommended) Set **parameterSyncStrategy** to **inherit**. In this case, custom settings are automatically inherited. The system automatically parses, identifies, and inherits custom parameters.
    -  Set **parameterSyncStrategy** to **force**. Manually enter the differential configuration. For details, see :ref:`CoreDNS <cce_10_0129>`.
-   -  If **parameterSyncStrategy** is set to **inherit**, differentiated configurations are automatically inherited. The system automatically parses, identifies, and inherits differentiated parameters.
-
-   |image1|
 
 #. Click **OK**. After the add-on upgrade is complete, check whether all CoreDNS instances are available and whether Corefile meets the expectation.
 
@@ -76,6 +75,4 @@ You can upgrade CoreDNS separately after confirming the configuration difference
 
 #. Change the value of **parameterSyncStrategy** to **ensureConsistent** to enable configuration consistency verification.
 
-   In addition, you are advised to use the parameter configuration function of CCE add-on management to modify the Corefile configuration to avoid differences.
-
-.. |image1| image:: /_static/images/en-us_image_0000001716141253.png
+   In addition, it is a good practice to use the parameter configuration function of CCE add-ons to modify the Corefile configuration for consistency.

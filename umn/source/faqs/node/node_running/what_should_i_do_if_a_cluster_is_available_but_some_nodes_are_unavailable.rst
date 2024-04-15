@@ -15,9 +15,9 @@ Kubernetes provides the heartbeat mechanism to help you determine node availabil
 Troubleshooting Process
 -----------------------
 
-Troubleshooting methods are sorted based on the occurrence probability of the possible causes. You are advised to check the possible causes from high probability to low probability to quickly locate the cause of the problem.
+The issues here are described in order of how likely they are to occur.
 
-If the fault persists after a possible cause is rectified, check other possible causes.
+Check these causes one by one until you find the cause of the fault.
 
 -  :ref:`Check Item 1: Whether the Node Is Overloaded <cce_faq_00120__section745921416917>`
 -  :ref:`Check Item 2: Whether the ECS Is Deleted or Faulty <cce_faq_00120__section19793128323>`
@@ -31,7 +31,7 @@ If the fault persists after a possible cause is rectified, check other possible 
 -  :ref:`Check Item 10: Whether the Docker Service Is Normal <cce_faq_00120__section76261312361>`
 
 
-.. figure:: /_static/images/en-us_image_0000001704574393.png
+.. figure:: /_static/images/en-us_image_0000001750949488.png
    :alt: **Figure 1** Troubleshooting process for an unavailable node
 
    **Figure 1** Troubleshooting process for an unavailable node
@@ -47,7 +47,7 @@ The node connection in the cluster is abnormal. Multiple nodes report write erro
 
 **Fault Locating**
 
-#. Log in to the CCE console, and click the cluster name to access the cluster console. In the navigation pane, choose **Nodes**. Click **Monitor** in the row of the unavailable node.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Nodes** and click the **Nodes** tab. Locate the row that contains the unavailable node and click **Monitor**.
 
 #. On the top of the displayed page, click **View More** to go to the AOM console and view historical monitoring records.
 
@@ -207,5 +207,5 @@ Check Item 10: Whether the Docker Service Is Normal
 
    In this case, stop repeated creation and deletion of the workload or use more nodes to share the workload. Generally, the nodes will be restored after a period of time. If necessary, run the **docker rm** {*container_id*} command to manually clear abnormal containers.
 
-.. |image1| image:: /_static/images/en-us_image_0000001656415030.png
-.. |image2| image:: /_static/images/en-us_image_0000001704495137.png
+.. |image1| image:: /_static/images/en-us_image_0000001797870281.png
+.. |image2| image:: /_static/images/en-us_image_0000001750790564.png

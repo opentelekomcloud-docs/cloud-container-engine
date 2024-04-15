@@ -5,8 +5,8 @@
 Kubelet
 =======
 
-Check Item
-----------
+Check Items
+-----------
 
 Check whether the kubelet on the node is running properly.
 

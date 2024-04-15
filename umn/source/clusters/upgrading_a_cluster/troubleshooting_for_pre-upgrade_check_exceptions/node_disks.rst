@@ -5,48 +5,52 @@
 Node Disks
 ==========
 
-Check Item
-----------
+Check Items
+-----------
 
-Check the following aspects:
+Check the following items:
 
 -  Check whether the key data disks on the node meet the upgrade requirements.
--  Check whether the **/tmp** directory has 500 MiB available space.
+-  Check whether the **/tmp** directory has 500 MB available space.
 
 Solution
 --------
 
 During the node upgrade, the key disks store the upgrade component package, and the **/tmp** directory stores temporary files.
 
--  **Scenario 1: Check whether the disk meets the upgrade requirements.**
+-  **Scenario 1: Master node disks fail to meet the upgrade requirements.**
 
-   Run the following command to check the usage of each key disk. After ensuring that the available space meets the requirements and check again. If the space of the master node is insufficient, contact technical support.
+   Contact technical support.
 
-   -  Disk partition of Docker: 2 GB for master nodes and 1 GB for worker nodes
+-  **Scenario 2: Worker node disks fail to meet the upgrade requirements.**
+
+   Run the following command to check the usage of each key disk. After ensuring that the available space meets the requirements and check again.
+
+   -  Disk partition of Docker: at least 1 GB of available space
 
       .. code-block::
 
          df -h /var/lib/docker
 
-   -  Disk partition of containerd: 2 GB for master nodes and 1 GB for worker nodes
+   -  Disk partition of containerd: at least 1 GB of available space
 
       .. code-block::
 
          df -h /var/lib/containerd
 
-   -  Disk partition of kubelet: 2 GB for master nodes and 1 GB for worker nodes
+   -  Disk partition of kubelet: at least 1 GB of available space
 
       .. code-block::
 
          df -h /mnt/paas/kubernetes/kubelet
 
-   -  System disk: 10 GB for master nodes and 2 GB for worker nodes
+   -  System disk: at least 2 GB of available space
 
       .. code-block::
 
          df -h /
 
--  **Scenario 2: The /tmp directory space is insufficient.**
+-  **Scenario 3: The available space of the /tmp directory on worker nodes is insufficient.**
 
    Run the following command to check the usage of the file system where the **/tmp** directory is located. Ensure that the space is greater than 500 MB and check again.
 

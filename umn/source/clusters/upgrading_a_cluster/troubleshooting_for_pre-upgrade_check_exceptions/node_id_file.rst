@@ -5,8 +5,8 @@
 Node ID File
 ============
 
-Check Item
-----------
+Check Items
+-----------
 
 Check the ID file format.
 

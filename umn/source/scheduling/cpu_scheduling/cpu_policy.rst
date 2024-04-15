@@ -41,7 +41,7 @@ Prerequisites:
 -  Both requests and limits must be configured in pods and their values must be the same integer.
 -  If an init container needs to exclusively use CPUs, set its requests to the same as that of the service container. Otherwise, the service container does not inherit the CPU allocation result of the init container, and the CPU manager reserves more CPU resources than supposed. For more information, see `App Containers can't inherit Init Containers CPUs - CPU Manager Static Policy <https://github.com/kubernetes/kubernetes/issues/94220#issuecomment-868489201>`__.
 
-You can use :ref:`Scheduling Policy (Affinity/Anti-affinity) <cce_10_0232>` to schedule the configured pods to the nodes where the **static** policy is enabled. In this way, the pods can exclusively use the CPU resources.
+You can use :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>` to schedule the configured pods to the nodes where the **static** policy is enabled. In this way, the pods can exclusively use the CPU resources.
 
 Example YAML:
 

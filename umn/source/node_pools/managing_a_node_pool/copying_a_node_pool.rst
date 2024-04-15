@@ -5,10 +5,10 @@
 Copying a Node Pool
 ===================
 
-You can copy the configuration of an existing node pool to create a new node pool on the CCE console.
+You can copy the configuration of an existing node pool on the CCE console to create new node pools.
 
 #. Log in to the CCE console.
 #. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right.
-#. Choose **More > Copy** in the **Operation** column of the target node pool.
-#. The configurations of the selected node pool are replicated to the **Clone Node Pool** page. You can edit the configurations as required. For details about configuration items, see :ref:`Creating a Node Pool <cce_10_0012>`. After confirming the configuration, click **Next: Confirm**.
-#. On the **Confirm** page, confirm the node pool configuration and click **Submit**. Then, a new node pool is created based on the edited configuration.
+#. Locate the target node pool and choose **More** > **Copy**.
+#. On the page displayed, the configurations of the selected node pool are shown. You can modify the configurations as needed. For details, see :ref:`Creating a Node Pool <cce_10_0012>`. After confirming the configuration, click **Next: Confirm**.
+#. On the **Confirm** page, confirm the node pool configurations and click **Submit**. Then, a new node pool is created based on the modified configurations.

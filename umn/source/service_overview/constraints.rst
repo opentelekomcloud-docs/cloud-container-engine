@@ -80,12 +80,12 @@ Storage Volumes
 
    -  Kata containers do not support OBS volumes.
 
-   -  When parallel file systems and object buckets are used, the group and permission of the mount point cannot be modified.
+   -  If OBS volumes are used, the owner group and permission of the mount point cannot be modified.
 
-   -  CCE allows you to use OBS parallel file systems by calling the OBS SDK or mounting a PVC through the **obsfs** tool provided by OBS. Each time an OBS parallel file system is mounted, an obsfs resident process is generated. The following shows an example.
+   -  CCE allows parallel file systems to be mounted using OBS SDKs or PVCs. If PVC mounting is used, the obsfs tool provided by OBS must be used. An obsfs resident process is generated each time an object storage volume generated from the parallel file system is mounted to a node, as shown in the following figure.
 
 
-      .. figure:: /_static/images/en-us_image_0000001819725913.png
+      .. figure:: /_static/images/en-us_image_0000001797870921.png
          :alt: **Figure 1** obsfs resident process
 
          **Figure 1** obsfs resident process
@@ -94,7 +94,7 @@ Storage Volumes
 
       .. note::
 
-         An obsfs resident process runs on a node. If the consumed memory exceeds the upper limit of the node, the node malfunctions. On a node with 4 vCPUs and 8 GiB of memory, if more than 100 pods are mounted to a parallel file system, the node will be unavailable. Control the number of pods mounted to a parallel file system on a single node.
+         -  An obsfs resident process runs on a node. If the consumed memory exceeds the upper limit of the node, the node malfunctions. On a node with 4 vCPUs and 8 GiB of memory, if more than 100 pods are mounted to a parallel file system, the node will be unavailable. Control the number of pods mounted to a parallel file system on a single node.
 
 -  Constraints on local PVs:
 
@@ -111,11 +111,12 @@ Storage Volumes
 
 -  Constraints on snapshots and backups:
 
-   -  The snapshot function is available **only for clusters of v1.15 or later** and requires the CSI-based everest add-on.
+   -  The snapshot function is available **only for clusters of v1.15 or later** and requires the CSI-based Everest add-on.
    -  The subtype (common I/O, high I/O, or ultra-high I/O), disk mode (SCSI or VBD), data encryption, sharing status, and capacity of an EVS disk created from a snapshot must be the same as those of the disk associated with the snapshot. These attributes cannot be modified after being queried or set.
    -  Snapshots can be created only for EVS disks that are available or in use, and a maximum of seven snapshots can be created for a single EVS disk.
-   -  Snapshots can be created only for PVCs created using the storage class (whose name starts with csi) provided by the everest add-on. Snapshots cannot be created for PVCs created using the Flexvolume storage class whose name is ssd, sas, or sata.
+   -  Snapshots can be created only for PVCs created using the storage class (whose name starts with csi) provided by the Everest add-on. Snapshots cannot be created for PVCs created using the Flexvolume storage class whose name is ssd, sas, or sata.
    -  Snapshot data of encrypted disks is stored encrypted, and that of non-encrypted disks is stored non-encrypted.
+   -  A PVC with the xfs file system type can generate snapshots. The file system type of the disk associated with the PVC created using one of these snapshots remains xfs.
 
 Add-ons
 -------

@@ -12,7 +12,7 @@ How Do I Download kubeconfig for Connecting to a Cluster Using kubectl?
 #. In the window that is displayed, download the kubectl configuration file (**kubeconfig.json**).
 
 
-   .. figure:: /_static/images/en-us_image_0000001704574269.png
+   .. figure:: /_static/images/en-us_image_0000001870542157.png
       :alt: **Figure 1** Downloading kubeconfig.json
 
       **Figure 1** Downloading kubeconfig.json

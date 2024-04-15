@@ -34,7 +34,7 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Internal Errors <cce_10_0458>`
 -  :ref:`Node Mount Points <cce_10_0459>`
 -  :ref:`Kubernetes Node Taints <cce_10_0460>`
--  :ref:`everest Restrictions <cce_10_0478>`
+-  :ref:`Everest Restrictions <cce_10_0478>`
 -  :ref:`cce-hpa-controller Restrictions <cce_10_0479>`
 -  :ref:`Enhanced CPU Policies <cce_10_0480>`
 -  :ref:`Health of Worker Node Components <cce_10_0484>`
@@ -61,6 +61,9 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Residual Package Versions <cce_10_0505>`
 -  :ref:`Node Commands <cce_10_0506>`
 -  :ref:`Node Swap <cce_10_0507>`
+-  :ref:`containerd Pod Restart Risk <cce_10_0510>`
+-  :ref:`Key Parameters of the GPU Add-on <cce_10_0511>`
+-  :ref:`GPU/NPU Pod Rebuilding Risk <cce_10_0512>`
 
 .. toctree::
    :maxdepth: 1
@@ -122,3 +125,6 @@ Troubleshooting for Pre-upgrade Check Exceptions
    residual_package_versions
    node_commands
    node_swap
+   containerd_pod_restart_risk
+   key_parameters_of_the_gpu_add-on
+   gpu_npu_pod_rebuilding_risk

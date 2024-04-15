@@ -82,7 +82,7 @@ The Redis workload is used as an example to illustrate the chart specifications.
 Uploading a Chart
 -----------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Charts** in the navigation pane and click **Upload Chart** in the upper right corner.
+#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **App Templates** in the navigation pane and click **Upload Chart** in the upper right corner.
 #. Click **Select File**, select the chart to be uploaded, and click **Upload**.
 
    .. note::
@@ -92,7 +92,7 @@ Uploading a Chart
 Creating a Release
 ------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Charts**.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **App Templates**.
 
 #. On the **My Charts** tab page, click **Install** of the target chart.
 
@@ -130,7 +130,7 @@ Creating a Release
 Upgrading a Chart-based Workload
 --------------------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Charts** in the navigation pane and click the **Releases** tab.
+#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **App Templates** in the navigation pane and click the **Releases** tab.
 #. Click **Upgrade** in the row where the desired workload resides and set the parameters for the workload.
 #. Select a chart version for **Chart Version**.
 #. Follow the prompts to modify the chart parameters. Click **Upgrade**, and then click **Submit**.
@@ -139,7 +139,7 @@ Upgrading a Chart-based Workload
 Rolling Back a Chart-based Workload
 -----------------------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Charts** in the navigation pane and click the **Releases** tab.
+#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **App Templates** in the navigation pane and click the **Releases** tab.
 
 #. Click **More** > **Roll Back** for the workload to be rolled back, select the workload version, and click **Roll back** **to this version**.
 
@@ -148,5 +148,5 @@ Rolling Back a Chart-based Workload
 Uninstalling a Chart-based Workload
 -----------------------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Charts** in the navigation pane and click the **Releases** tab.
+#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **App Templates** in the navigation pane and click the **Releases** tab.
 #. Click **More** > **Uninstall** next to the release to be uninstalled, and click **Yes**. Exercise caution when performing this operation because releases cannot be restored after being uninstalled.

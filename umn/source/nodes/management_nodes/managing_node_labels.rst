@@ -50,7 +50,7 @@ After a node is created, some fixed labels exist and cannot be deleted. For deta
    +-----------------------------------------------------+-------------------------------------------------------------+
    | kubernetes.io/hostname                              | Node name                                                   |
    +-----------------------------------------------------+-------------------------------------------------------------+
-   | kubernetes.io/os                                    | OS type                                                     |
+   | kubernetes.io/os                                    | Node OS type                                                |
    +-----------------------------------------------------+-------------------------------------------------------------+
    | node.kubernetes.io/subnetid                         | ID of the subnet where the node is located.                 |
    +-----------------------------------------------------+-------------------------------------------------------------+
@@ -72,11 +72,11 @@ After a node is created, some fixed labels exist and cannot be deleted. For deta
 Adding or Deleting a Node Label
 -------------------------------
 
-#. Log in to the CCE console.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. Click the cluster name, access the cluster details page, and choose **Nodes** in the navigation pane. On the page displayed, select a node and click **Labels and Taints** above the list.
+#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab, select the target node and click **Labels and Taints** in the upper left corner.
 
-#. In the displayed dialog box, click **Add Operation** under **Batch Operation**, and then choose **Add/Update** or **Delete**.
+#. In the displayed dialog box, click **Add batch operations** under **Batch Operation**, and then choose **Add/Update** or **Delete**.
 
    Enter the key and value of the label to be added or deleted, and click **OK**.
 

@@ -314,5 +314,5 @@ After the creation, check the PVC and pod status. As shown in the following outp
    nginx-2   1/1     Running   0          32s   172.16.0.137   192.168.0.211   <none>           <none>
    nginx-3   1/1     Running   0          19s   172.16.1.9     192.168.0.240   <none>           <none>
 
-.. |image1| image:: /_static/images/en-us_image_0000001701784921.png
-.. |image2| image:: /_static/images/en-us_image_0000001701784925.png
+.. |image1| image:: /_static/images/en-us_image_0000001797869889.png
+.. |image2| image:: /_static/images/en-us_image_0000001797908909.png

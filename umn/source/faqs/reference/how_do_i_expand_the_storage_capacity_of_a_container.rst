@@ -5,19 +5,19 @@
 How Do I Expand the Storage Capacity of a Container?
 ====================================================
 
-Scenario
---------
+Application Scenarios
+---------------------
 
 The default storage size of a container is 10 GB. If a large volume of data is generated in the container, expand the capacity using the method described in this topic.
 
 Solution
 --------
 
-#. Log in to the CCE console and click the name of the target cluster in the cluster list.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
 #. Choose **Nodes** from the navigation pane.
 
-#. Select the target node and choose **More** > **Reset Node** in the **Operation** column.
+#. Click the Nodes tab, locate the row containing the target node, and choose **More** > **Reset Node** in the **Operation** column.
 
    .. important::
 
@@ -56,5 +56,5 @@ Solution
 
    |image2|
 
-.. |image1| image:: /_static/images/en-us_image_0000001656414938.png
-.. |image2| image:: /_static/images/en-us_image_0000001704574321.png
+.. |image1| image:: /_static/images/en-us_image_0000001797909113.png
+.. |image2| image:: /_static/images/en-us_image_0000001797870097.png

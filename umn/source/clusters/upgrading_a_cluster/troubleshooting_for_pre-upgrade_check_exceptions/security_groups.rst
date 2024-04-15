@@ -5,10 +5,10 @@
 Security Groups
 ===============
 
-Check Item
-----------
+Check Items
+-----------
 
-Check whether the security group allows the master node to access nodes using ICMP.
+Check whether the **Protocol & Port** of the worker node security groups are set to **ICMP: All** and whether the security group with the source IP address set to the master node security group is deleted.
 
 .. note::
 
@@ -17,11 +17,11 @@ Check whether the security group allows the master node to access nodes using IC
 Solution
 --------
 
-Log in to the VPC console, choose **Access Control** > **Security Groups**, and enter the target cluster name in the search box. Two security groups are displayed:
+Log in to the VPC console, choose **Access Control** > **Security Groups**, and enter the target cluster name in the search box. Two security groups are expected to display:
 
--  The security group name is **cluster name-node-xxx**. This security group is associated with the user nodes.
+-  The security group name is **cluster name-node-xxx**. This security group is associated with the worker nodes.
 -  The security group name is **cluster name-control-xxx**. This security group is associated with the master nodes.
 
-Click the security group of the node user and ensure that the following rules are configured to allow the master node to access the node using **ICMP**.
+Click the node security group and ensure that the following rules are configured to allow the master node to access the node using **ICMP**.
 
 If the preceding security group rule is unavailable, add the rule with the following configurations to the node security group: Set **Protocol & Port** to **Protocols/ICMP** and **All**, and **Source** to **Security group** and the master security group.

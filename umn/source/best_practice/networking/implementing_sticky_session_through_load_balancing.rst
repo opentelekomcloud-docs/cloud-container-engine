@@ -23,8 +23,6 @@ Layer-4 Load Balancing (Service)
 
 In layer-4 load balancing, source IP address-based sticky session (Hash routing based on the client IP address) can be enabled. To enable source IP address-based sticky session on Services, the following conditions must be met:
 
-**CCE clusters**
-
 #. **Service Affinity** of the Service is set to **Node level** (that is, the value of the **externalTrafficPolicy** field of the Service is **Local**).
 
    .. note::
@@ -48,7 +46,7 @@ In layer-4 load balancing, source IP address-based sticky session (Hash routing 
       spec:
         selector:
           app: nginx
-        externalTrafficPolicy: Local   # You do not need to set this parameter for CCE Turbo clusters.
+        externalTrafficPolicy: Local   # You do not need to configure this parameter for CCE Turbo clusters.
         ports:
           - name: cce-service-0
             targetPort: 80

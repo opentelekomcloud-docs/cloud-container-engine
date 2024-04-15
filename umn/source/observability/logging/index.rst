@@ -6,11 +6,11 @@ Logging
 =======
 
 -  :ref:`Overview <cce_10_0557>`
--  :ref:`Using ICAgent to Collect Container Logs <cce_10_0018>`
+-  :ref:`Collecting Data Plane Logs <cce_10_0182>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
    overview
-   using_icagent_to_collect_container_logs
+   collecting_data_plane_logs/index

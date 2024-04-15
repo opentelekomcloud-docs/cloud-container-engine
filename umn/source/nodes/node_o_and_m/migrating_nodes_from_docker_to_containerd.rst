@@ -27,7 +27,9 @@ Migrating a Node
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Nodes**. In the node list, select one or more nodes to be reset and choose **More** > **Reset Node**.
+#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.
+
+#. In the node list, select one or more nodes to be reset and choose **More** > **Reset Node** in the **Operation** column.
 
 #. Set **Container Engine** to **containerd**. You can adjust other parameters as required or retain them as set during creation.
 
@@ -46,6 +48,8 @@ You can :ref:`copy a node pool <cce_10_0655>`, set the container engine of the n
 
 #. On the **Compute Settings** area, set **Container Engine** to **containerd** and modify other parameters as required.
 
+   |image1|
+
 #. Scale the number of created containerd node pools to the number of original Docker node pools and delete nodes from the Docker node pools one by one.
 
    Rolling migration is preferred. That is, add some containerd nodes and then delete some Docker nodes until the number of nodes in the new containerd node pool is the same as that in the original Docker node pool.
@@ -55,3 +59,5 @@ You can :ref:`copy a node pool <cce_10_0655>`, set the container engine of the n
       If you have set node affinity for the workloads deployed on the original Docker nodes or node pool, set affinity policies for the workloads to run on the new containerd nodes or node pool.
 
 #. After the migration, delete the original Docker node pool.
+
+.. |image1| image:: /_static/images/en-us_image_0000001797910133.png

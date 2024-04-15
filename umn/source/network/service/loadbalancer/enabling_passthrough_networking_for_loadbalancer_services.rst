@@ -5,7 +5,7 @@
 Enabling Passthrough Networking for LoadBalancer Services
 =========================================================
 
-Challenges
+Background
 ----------
 
 A Kubernetes cluster can publish applications running on a group of pods as Services, which provide unified layer-4 access entries. For a Loadbalancer Service, kube-proxy configures the LoadbalanceIP in **status** of the Service to the local forwarding rule of the node by default. When a pod accesses the load balancer from within the cluster, the traffic is forwarded within the cluster instead of being forwarded by the load balancer.
@@ -18,7 +18,7 @@ Solution
 CCE supports passthrough networking. You can configure the **annotation** of **kubernetes.io/elb.pass-through** for the Loadbalancer Service. Intra-cluster access to the Service load balancer address is then forwarded to backend pods by the load balancer.
 
 
-.. figure:: /_static/images/en-us_image_0000001695736965.png
+.. figure:: /_static/images/en-us_image_0000001750949552.png
    :alt: **Figure 1** Passthrough networking illustration
 
    **Figure 1** Passthrough networking illustration
@@ -41,6 +41,7 @@ Constraints
 -  After passthrough networking is configured for a dedicated load balancer, containers on the node where the workload runs cannot be accessed through the Service.
 -  Passthrough networking is not supported for clusters of v1.15 or earlier.
 -  In IPVS network mode, the pass-through settings of Service connected to the same ELB must be the same.
+-  If node-level (local) service affinity is used, **kubernetes.io/elb.pass-through** is automatically set to **onlyLocal** to enable pass-through.
 
 Procedure
 ---------
@@ -88,7 +89,7 @@ This section describes how to create a Deployment using an Nginx image and creat
         annotations:
           kubernetes.io/elb.pass-through: "true"
           kubernetes.io/elb.class: union
-          kubernetes.io/elb.autocreate: '{"type":"public","bandwidth_name":"cce-bandwidth","bandwidth_chargemode":"bandwidth","bandwidth_size":5,"bandwidth_sharetype":"PER","eip_type":"5_bgp","name":"james"}'
+          kubernetes.io/elb.autocreate: '{"type":"public","bandwidth_name":"cce-bandwidth","bandwidth_chargemode":"traffic","bandwidth_size":5,"bandwidth_sharetype":"PER","eip_type":"5_bgp","name":"james"}'
         labels:
           app: nginx
         name: nginx
@@ -152,5 +153,5 @@ Wait for a period of time and view the ELB monitoring data. A new access connect
 
 |image2|
 
-.. |image1| image:: /_static/images/en-us_image_0000001647576552.png
-.. |image2| image:: /_static/images/en-us_image_0000001647417300.png
+.. |image1| image:: /_static/images/en-us_image_0000001750790640.png
+.. |image2| image:: /_static/images/en-us_image_0000001797870321.png

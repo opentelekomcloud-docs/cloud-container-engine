@@ -21,14 +21,14 @@ Constraints
 Procedure
 ---------
 
-#. Log in to the CCE console.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane.
+#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.
 
-#. Choose **More** > **Sync Server Data** next to the node.
+#. Locate the target node and choose **More** > **Sync Server Data** in the **Operation** column.
 
 
-   .. figure:: /_static/images/en-us_image_0000001782089384.png
+   .. figure:: /_static/images/en-us_image_0000001817482742.png
       :alt: **Figure 1** Synchronizing server data
 
       **Figure 1** Synchronizing server data

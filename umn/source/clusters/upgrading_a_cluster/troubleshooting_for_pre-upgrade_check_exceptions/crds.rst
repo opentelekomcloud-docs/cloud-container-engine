@@ -5,10 +5,10 @@
 CRDs
 ====
 
-Check Item
-----------
+Check Items
+-----------
 
-Check the following aspects:
+Check the following items:
 
 -  Check whether the key CRD **packageversions.version.cce.io** of the cluster is deleted.
 -  Check whether the cluster key CRD **network-attachment-definitions.k8s.cni.cncf.io** is deleted.

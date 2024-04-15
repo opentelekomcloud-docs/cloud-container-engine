@@ -5,10 +5,10 @@
 Add-ons
 =======
 
-Check Item
-----------
+Check Items
+-----------
 
-Check the following aspects:
+Check the following items:
 
 -  Check whether the add-on status is normal.
 -  Check whether the add-on support the target version.
@@ -16,17 +16,17 @@ Check the following aspects:
 Solution
 --------
 
--  **Scenario 1: The add-on status is abnormal.**
+-  **Scenario 1: The add-on malfunctions.**
 
-   Log in to the CCE console and go to the target cluster. Choose **O&M** > **Add-ons** to view and handle the abnormal add-on.
+   Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane and obtain add-ons. Then, handle malfunctional add-ons.
 
--  **Scenario 2: The target version does not support the current add-on.**
+-  **Scenario 2: The target cluster version does not support the current add-on version.**
 
-   The add-on cannot be automatically upgraded with the cluster. Log in to the CCE console and go to the target cluster. Choose **O&M** > **Add-ons** to manually upgrade the add-on.
+   The add-on cannot be automatically upgraded with the cluster due to compatibility issues. In this case, log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane and manually upgrade the add-on.
 
--  **Scenario 3: After the add-on is upgraded to the latest version, the target cluster version is still not supported.**
+-  **Scenario 3: After the add-on is upgraded to the latest version, it is still not supported by the target cluster version.**
 
-   Log in to the CCE console and go to the target cluster. Choose **O&M** > **Add-ons** to manually uninstall the add-on. For details about the supported add-on versions and replacement solutions, see the :ref:`Help <cce_10_0277>` document.
+   Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane and manually uninstall the add-on. For details about the supported add-on versions and substitutions, see the :ref:`Help <cce_10_0277>` document.
 
 -  **Scenario 4: The add-on configuration does not meet the upgrade requirements. Upgrade the add-on and try again.**
 
@@ -36,4 +36,4 @@ Solution
 
       please upgrade addon [ ] in the page of addon managecheck and try again
 
-   Log in to the CCE console and go to the target cluster. Choose **O&M** > **Add-ons** to manually upgrade the add-on.
+   In this case, log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane and manually upgrade the add-on.

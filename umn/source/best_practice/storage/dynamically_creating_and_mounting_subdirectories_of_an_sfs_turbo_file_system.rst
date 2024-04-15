@@ -1,6 +1,6 @@
-:original_name: cce_bestpractice_00253.html
+:original_name: cce_bestpractice_00253_0.html
 
-.. _cce_bestpractice_00253:
+.. _cce_bestpractice_00253_0:
 
 Dynamically Creating and Mounting Subdirectories of an SFS Turbo File System
 ============================================================================
@@ -64,7 +64,7 @@ Creating an SFS Turbo Volume of the subpath Type
 
       -  In versions later than everest 1.1.13 and earlier than everest 1.2.8, only the **nolock** parameter can be configured. By default, the **nolock** parameter is used for the mount operation and does not need to be configured. If **nolock** is set to **false**, the **lock** field is used.
 
-      -  More options are available in everest 1.2.8 or a later version. For details, see `Setting Mount Options <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0337.html>`__. **Do not set nolock to true. Otherwise, the mount operation will fail.**
+      -  Starting from everest 1.2.8, more mount options are supported. For details, see `Setting Mount Options <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0337.html>`__. **Do not set nolock to true. Otherwise, the mount operation will fail.**
 
          .. code-block::
 
@@ -76,7 +76,7 @@ Creating an SFS Turbo Volume of the subpath Type
 
    -  **everest.io/volume-as**: This parameter is set to **subpath** to use the **subpath** volume.
    -  **everest.io/share-access-to**: This parameter is optional. In a **subpath** volume, set this parameter to the ID of the VPC where the SFS Turbo file system is located.
-   -  **everest.io/share-expand-type**: This parameter is optional. If the type of the SFS Turbo file system is **SFS Turbo Standard - Enhanced** or **SFS Turbo Performance - Enhanced**, set this parameter to **bandwidth**.
+   -  **everest.io/share-expand-type**: This parameter is optional. If the type of the SFS Turbo file system is SFS Turbo Standard - Enhanced or SFS Turbo Performance - Enhanced, set this parameter to **bandwidth**.
    -  **everest.io/share-export-location**: This parameter indicates the mount directory. It consists of the SFS Turbo shared path and sub-directory. The shared path can be obtained on the SFS Turbo console. The sub-directory is user-defined. The PVCs created using the StorageClass are located in this sub-directory.
    -  **everest.io/share-volume-type**: This parameter is optional. It specifies the SFS Turbo file system type. The value can be **STANDARD** or **PERFORMANCE**. For enhanced types, this parameter must be used together with **everest.io/share-expand-type** (whose value should be **bandwidth**).
    -  **everest.io/zone**: This parameter is optional. Set it to the AZ where the SFS Turbo file system is located.
@@ -108,17 +108,17 @@ Creating an SFS Turbo Volume of the subpath Type
    In this example:
 
    -  **name**: indicates the name of the PVC.
-   -  **storageClassName**: specifies the name of the StorageClass.
+   -  **storageClassName**: specifies the name of the StorageClass created in the previous step.
    -  **storage**: In the subpath mode, it is useless to specify this parameter. The storage capacity is limited by the total capacity of the SFS Turbo file system. If the total capacity of the SFS Turbo file system is insufficient, expand the capacity on the SFS Turbo page in a timely manner.
 
-5. Run **kubectl create -f sfs-turbo-test.yaml**.
+5. Run the **kubectl create -f sfs-turbo-test.yaml** command to create a PVC.
 
 .. note::
 
    It is meaningless to conduct capacity expansion on an SFS Turbo volume created in the subpath mode. This operation does not expand the capacity of the SFS Turbo file system. Ensure that the total capacity of the SFS Turbo file system is not used up.
 
-Creating a Deployment and Mounting an Existing Volume to the Deployment
------------------------------------------------------------------------
+Creating a Deployment and Mounting an Existing Volume
+-----------------------------------------------------
 
 #. Create a YAML file for the Deployment, for example, **deployment-test.yaml**.
 
@@ -240,7 +240,7 @@ Dynamically Creating a subpath Volume for a StatefulSet
    -  **name**: indicates the name of the StatefulSet.
    -  **image**: specifies the image used by the StatefulSet.
    -  **mountPath**: indicates the mount path of the container. In this example, the volume is mounted to the **/tmp** directory.
-   -  **spec.template.spec.containers.volumeMounts.name** and **spec.volumeClaimTemplates.metadata.name**: must be consistent because they are mapped to each other.
+   -  **spec.template.spec.containers.volumeMounts.name** and **spec.volumeClaimTemplates.metadata.name**: must be consistent because they have a mapping relationship.
    -  **storageClassName**: indicates the name of the StorageClass.
 
 2. Create the StatefulSet.

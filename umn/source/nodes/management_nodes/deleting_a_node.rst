@@ -21,17 +21,18 @@ Precautions
 
 -  Deleting a node will lead to pod migration, which may affect services. Perform this operation during off-peak hours.
 -  Unexpected risks may occur during the operation. Back up related data in advance.
--  During the operation, the backend will set the node to the unschedulable state.
+-  While the node is being deleted, the backend will set the node to the unschedulable state.
 -  Only worker nodes can be deleted.
 
 Procedure
 ---------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Nodes**. In the same row as the node you will delete, choose **More** > **Delete**.
+#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.
+#. Locate the target node and choose **More** > **Delete** in the **Operation** column.
 #. In the **Delete Node** dialog box, click **Yes**.
 
    .. note::
 
-      -  After the node is deleted, pods on it are automatically migrated to other available nodes.
+      -  After the node is deleted, workload pods on the node are automatically migrated to other available nodes.
       -  If the disks and EIPs bound to the node are important resources, unbind them first. Otherwise, they will be deleted with the node.
