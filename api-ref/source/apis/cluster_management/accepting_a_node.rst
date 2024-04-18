@@ -39,7 +39,7 @@ Request Parameters
    +==============+===========+========+=================================================================================================================================================================================================================================================+
    | Content-Type | Yes       | String | Message body type (format).                                                                                                                                                                                                                     |
    +--------------+-----------+--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | X-Auth-Token | Yes       | String | Requests for calling an API can be authenticated using either a token or AK/SK. If token-based authentication is used, this parameter is mandatory and must be set to a user token. For details, see :ref:`API Usage Guidelines <cce_02_0344>`. |
+   | X-Auth-Token | Yes       | String | Requests for calling an API can be authenticated using either a token or AK/SK. If token-based authentication is used, this parameter is mandatory and must be set to a user token. For details, see :ref:`API Usage Guidelines <cce_02_0004>`. |
    +--------------+-----------+--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. table:: **Table 3** Request body parameters
