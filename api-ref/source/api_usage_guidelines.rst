@@ -37,5 +37,5 @@ CCE provides two methods to authenticate requests for calling an API: token and 
 
    Method 3 requires that the CA root certificate must has been uploaded before you create a cluster on the CCE console.
 
-.. |image1| image:: /_static/images/en-us_image_0000001868308453.png
+.. |image1| image:: /_static/images/en-us_image_0000001854551680.png
 .. |image2| image:: /_static/images/en-us_image_0000001868229221.png
