@@ -22,11 +22,11 @@ Environment variables can be set in the following modes:
 
 -  **Custom**: Enter the environment variable name and parameter value.
 -  **Added from ConfigMap key**: Import all keys in a ConfigMap as environment variables.
--  **Added from ConfigMap**: Import a key in a ConfigMap as the value of an environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import **configmap_value** of **configmap_key** in a ConfigMap as the value of environment variable **key1**, an environment variable named **key1** whose value is **configmap_value** exists in the container.
+-  **Added from ConfigMap**: Import a key in a ConfigMap as the value of an environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import **configmap_value** of **configmap_key** in **configmap-example** as the value of environment variable **key1**, an environment variable named **key1** whose value is **configmap_value** is available in the container.
 -  **Added from secret**: Import all keys in a secret as environment variables.
--  **Added from secret key**: Import the value of a key in a secret as the value of an environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import **secret_value** of **secret_key** in secret **secret-example** as the value of environment variable **key2**, an environment variable named **key2** whose value is **secret_value** exists in the container.
--  **Variable value/reference**: Use the field defined by a pod as the value of the environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if the pod name is imported as the value of environment variable **key3**, an environment variable named **key3** exists in the container and its value is the pod name.
--  **Resource Reference**: The value of **Request** or **Limit** defined by the container is used as the value of the environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import the CPU limit of **container-1** as the value of environment variable **key4**, an environment variable named **key4** exists in the container and its value is the CPU limit of **container-1**.
+-  **Added from secret key**: Import the value of a key in a secret as the value of an environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import **secret_value** of **secret_key** in **secret-example** as the value of environment variable **key2**, an environment variable named **key2** whose value is **secret_value** is available in the container.
+-  **Variable value/reference**: Use the field defined by a pod as the value of the environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if the pod name is imported as the value of environment variable **key3**, an environment variable named **key3** whose value is the pod name is available in the container.
+-  **Resource Reference**: The value of **Request** or **Limit** defined by the container is used as the value of the environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import the CPU limit of container-1 as the value of environment variable **key4**, an environment variable named **key4** whose value is the CPU limit of container-1 is available in the container.
 
 Adding Environment Variables
 ----------------------------
@@ -41,7 +41,7 @@ Adding Environment Variables
 
    .. _cce_10_0113__fig164568529317:
 
-   .. figure:: /_static/images/en-us_image_0000001750950284.png
+   .. figure:: /_static/images/en-us_image_0000001867802022.png
       :alt: **Figure 1** Configuring environment variables
 
       **Figure 1** Configuring environment variables
@@ -84,12 +84,12 @@ YAML Example
                  valueFrom:
                    configMapKeyRef:
                      name: configmap-example
-                     key: key1
+                     key: configmap_key
                - name: key2                    # Added from secret key
                  valueFrom:
                    secretKeyRef:
                      name: secret-example
-                     key: key2
+                     key: secret_key
                - name: key3                    # Variable reference, which uses the field defined by a pod as the value of the environment variable.
                  valueFrom:
                    fieldRef:

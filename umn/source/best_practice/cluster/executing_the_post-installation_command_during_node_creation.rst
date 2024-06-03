@@ -47,8 +47,8 @@ Procedure
 
       The command example here is for reference only.
 
-#. After the configuration, enter the number of nodes to be purchased and click **Next: Confirm**.
+#. After the configuration, enter the number of nodes to be created and click **Next: Confirm**.
 
 #. Click **Submit**.
 
-.. |image1| image:: /_static/images/en-us_image_0000001750790716.png
+.. |image1| image:: /_static/images/en-us_image_0000001851744500.png

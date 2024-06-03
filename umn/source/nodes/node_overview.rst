@@ -12,7 +12,7 @@ A container cluster consists of a set of worker machines, called nodes, that run
 
 .. note::
 
-   A Kubernetes cluster consists of master nodes and worker nodes. The nodes described in this section refer to **worker nodes**, the computing nodes of a cluster that run containerized applications.
+   A Kubernetes cluster consists of master nodes and worker nodes. The nodes described in this section refer to **worker nodes**, which are computing nodes of a cluster that run containerized applications.
 
 CCE uses high-performance Elastic Cloud Servers (ECSs) as nodes to build highly available Kubernetes clusters.
 
@@ -21,15 +21,21 @@ Supported Node Specifications
 
 Different regions support different node flavors, and node flavors may be changed. Log in to the CCE console and check whether the required node flavors are supported on the page for creating nodes.
 
-Underlying File Storage System of Docker
-----------------------------------------
+Underlying File Storage System of Containers
+--------------------------------------------
 
--  In clusters of v1.15.6 or earlier, the underlying file storage system uses the XFS format.
--  In clusters of v1.15.11 or later, after a node is created or reset, the underlying file storage system uses the ext4 format.
+**Docker**
+
+-  In clusters of v1.15.6 or earlier, the underlying Docker file storage system is in XFS format.
+-  In clusters of v1.15.11 or later, after a node is created or reset, the underlying Docker file storage system changes to the ext4 format.
 
 For containerized applications that use the XFS format, pay attention to the impact of the underlying file storage format change. (The sequence of files in different file systems is different. For example, some Java applications reference a JAR package, but the directory contains multiple versions of the JAR package. If the version is not specified, the actual referenced package is determined by the system file.)
 
-Run the **docker info \| grep "Backing Filesystem"** command to check the format of the Docker underlying storage file used by the current node.
+Run the **docker info \| grep "Backing Filesystem"** command to check the format of the underlying Docker storage file used by the current node.
+
+**containerd**
+
+Nodes running on containerd use the ext4 file storage system.
 
 paas User and User Group
 ------------------------

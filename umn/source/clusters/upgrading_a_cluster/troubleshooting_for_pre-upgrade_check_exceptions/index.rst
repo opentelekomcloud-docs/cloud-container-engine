@@ -16,7 +16,7 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`To-Be-Migrated Nodes <cce_10_0439>`
 -  :ref:`Discarded Kubernetes Resources <cce_10_0440>`
 -  :ref:`Compatibility Risks <cce_10_0441>`
--  :ref:`Node CCE Agent Versions <cce_10_0442>`
+-  :ref:`CCE Agent Versions <cce_10_0442>`
 -  :ref:`Node CPU Usage <cce_10_0443>`
 -  :ref:`CRDs <cce_10_0444>`
 -  :ref:`Node Disks <cce_10_0445>`
@@ -61,9 +61,15 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Residual Package Versions <cce_10_0505>`
 -  :ref:`Node Commands <cce_10_0506>`
 -  :ref:`Node Swap <cce_10_0507>`
--  :ref:`containerd Pod Restart Risk <cce_10_0510>`
--  :ref:`Key Parameters of the GPU Add-on <cce_10_0511>`
--  :ref:`GPU/NPU Pod Rebuilding Risk <cce_10_0512>`
+-  :ref:`Check containerd pod restart risk <cce_10_0510>`
+-  :ref:`Key GPU Add-on Parameters <cce_10_0511>`
+-  :ref:`GPU or NPU Pod Rebuild Risks <cce_10_0512>`
+-  :ref:`ELB Listener Access Control <cce_10_0513>`
+-  :ref:`Master Node Flavor <cce_10_0514>`
+-  :ref:`Subnet Quota of Master Nodes <cce_10_0515>`
+-  :ref:`Node Runtime <cce_10_0516>`
+-  :ref:`Node Pool Runtime <cce_10_0517>`
+-  :ref:`Number of Node Images <cce_10_0518>`
 
 .. toctree::
    :maxdepth: 1
@@ -80,7 +86,7 @@ Troubleshooting for Pre-upgrade Check Exceptions
    to-be-migrated_nodes
    discarded_kubernetes_resources
    compatibility_risks
-   node_cce_agent_versions
+   cce_agent_versions
    node_cpu_usage
    crds
    node_disks
@@ -125,6 +131,12 @@ Troubleshooting for Pre-upgrade Check Exceptions
    residual_package_versions
    node_commands
    node_swap
-   containerd_pod_restart_risk
-   key_parameters_of_the_gpu_add-on
-   gpu_npu_pod_rebuilding_risk
+   check_containerd_pod_restart_risk
+   key_gpu_add-on_parameters
+   gpu_or_npu_pod_rebuild_risks
+   elb_listener_access_control
+   master_node_flavor
+   subnet_quota_of_master_nodes
+   node_runtime
+   node_pool_runtime
+   number_of_node_images

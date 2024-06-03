@@ -16,7 +16,7 @@ Enabling Node Fault Detection
 -----------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane on the left, choose **Nodes**. Check whether the NPD add-on has been installed in the cluster or whether the add-on has been upgraded to the latest version. After the NPD add-on has been installed, you can use the fault detection function.
+#. In the navigation pane, choose **Nodes** and then click the **Nodes** tab. Check whether the NPD add-on has been installed in the cluster or whether the add-on has been upgraded to the latest version. After the NPD add-on has been installed, you can use the fault detection function.
 #. If the NPD add-on is running properly, click **Node Fault Detection Policy** to view the current fault detection items. For details about the NPD check item list, see :ref:`NPD Check Items <cce_10_0659__section321984418184>`.
 #. If the check result of the current node is abnormal, a message is displayed in the node list, indicating that the metric is abnormal.
 #. You can click **Abnormal metrics** and rectify the fault as prompted.
@@ -26,7 +26,7 @@ Customized Check Items
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. Choose Node Management on the left and click **Node Fault Detection Policy**.
+#. In the navigation pane, choose **Nodes** and then click the **Nodes** tab. Then, click **Fault Detection Policy**.
 
 #. On the displayed page, view the current check items. Click **Edit** in the **Operation** column and edit checks.
 

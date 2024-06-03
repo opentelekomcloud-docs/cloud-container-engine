@@ -14,7 +14,7 @@ Add-ons
 -  :ref:`CCE Advanced HPA <cce_10_0240>`
 -  :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>`
 -  :ref:`Volcano Scheduler <cce_10_0193>`
--  :ref:`CCE Container Storage (FlexVolume, Discarded) <cce_10_0127>`
+-  :ref:`FlexVolume (Discarded) <cce_10_0127>`
 
 .. toctree::
    :maxdepth: 1
@@ -29,4 +29,4 @@ Add-ons
    cce_advanced_hpa
    cce_ai_suite_nvidia_gpu
    volcano_scheduler
-   cce_container_storage_flexvolume_discarded
+   flexvolume_discarded

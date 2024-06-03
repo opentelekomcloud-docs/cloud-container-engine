@@ -20,7 +20,7 @@ Solution
    The normal command output is as follows:
 
 
-   .. figure:: /_static/images/en-us_image_0000001797871049.png
+   .. figure:: /_static/images/en-us_image_0000001897906253.png
       :alt: **Figure 1** Running status of ntpd
 
       **Figure 1** Running status of ntpd
@@ -34,7 +34,7 @@ Solution
    The normal command output is as follows:
 
 
-   .. figure:: /_static/images/en-us_image_0000001750950272.png
+   .. figure:: /_static/images/en-us_image_0000001898025781.png
       :alt: **Figure 2** Running status of chronyd
 
       **Figure 2** Running status of chronyd

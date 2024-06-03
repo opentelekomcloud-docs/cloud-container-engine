@@ -72,7 +72,7 @@ You can view logs of Deployments, StatefulSets, DaemonSets, and jobs. This secti
 
    .. note::
 
-      The displayed logs are standard output logs of containers and do not have persistence and advanced O&M capabilities. To use more comprehensive log capabilities, see :ref:`Logs <cce_10_0553>`. If the function of collecting standard output is enabled for the workload (enabled by default), you can go to AOM to view more workload logs. For details, see :ref:`Connecting CCE to AOM <cce_10_0018>`.
+      The displayed logs are standard output logs of containers and do not have persistence and advanced O&M capabilities. To use more comprehensive log capabilities, see :ref:`Logs <cce_10_0553>`. If the function of collecting standard output is enabled for the workload (enabled by default), you can go to AOM to view more workload logs. For details, see :ref:`Collecting Container Logs Using ICAgent <cce_10_0018>`.
 
 .. _cce_10_0007__en-us_topic_0107283638_section17604174417381:
 

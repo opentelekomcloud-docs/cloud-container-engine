@@ -14,7 +14,7 @@ Description
 
 Ingresses: If this access mode is used, the client's source IP address is saved in the **X-Forwarded-For** field of the HTTP header by default. No other configuration is required.
 
--  The LoadBalancer Ingresses use ELB for Layer 7 network access between the Internet and internal network (in the same VPC) based on the ELB service.
+-  LoadBalancer Ingresses use ELB for Layer 7 network access between the Internet and internal network (in the same VPC) based on the ELB service.
 
 **Layer-4 forwarding:**
 
@@ -100,7 +100,7 @@ For a LoadBalancer Service, different types of clusters obtain source IP address
 
 To obtain source IP addresses, perform the following steps:
 
-#. When creating a LoadBalancer Service on the CCE console, set **Service Affinity** to **Node level** instead of **Cluster level**.
+#. When creating a LoadBalancer Service on the CCE console, set **Service Affinity** to **Node-level** instead of **Cluster-level**.
 #. Go to the ELB console and enable the function of obtaining the client IP address of the listener corresponding to the load balancer. **Transparent transmission of source IP addresses is enabled for dedicated load balancers by default. You do not need to manually enable this function.**
 
    a. Log in to the ELB console.
@@ -112,18 +112,18 @@ To obtain source IP addresses, perform the following steps:
 
 **Cloud Native Network 2.0 Model (CCE Turbo Clusters)**
 
-In the Cloud Native Network 2.0 model, when a shared load balancer is used for load balancing, the service affinity cannot be set to **Node level**. As a result, source IP addresses cannot be obtained. To obtain a source IP address, you must use a **dedicated load balancer**. External access to the container does not need to pass through the forwarding plane.
+In the Cloud Native Network 2.0 model, when a shared load balancer is used for load balancing, the service affinity cannot be set to **Node-level**. As a result, source IP addresses cannot be obtained. To obtain a source IP address, you must use a **dedicated load balancer**. External access to the container does not need to pass through the forwarding plane.
 
 By default, transparent transmission of source IP addresses is enabled for dedicated load balancers. You do not need to manually enable **Transfer Client IP Address** on the ELB console. Instead, you only need to select a dedicated load balancer when creating an ENI LoadBalancer Service on the CCE console.
 
 NodePort
 --------
 
-Set the service affinity of a NodePort Service to **Node level** instead of **Cluster level**. That is, set **spec.externalTrafficPolicy** of the Service to **Local**.
+Set the service affinity of a NodePort Service to **Node-level** instead of **Cluster-level**. That is, set **spec.externalTrafficPolicy** of the Service to **Local**.
 
 .. note::
 
    When a node (using Cloud Native Network 2.0) accesses a NodePort Service, source IP addresses can be obtained only when hostNetwork is enabled for workloads.
 
-.. |image1| image:: /_static/images/en-us_image_0000001797908741.png
-.. |image2| image:: /_static/images/en-us_image_0000001797869741.png
+.. |image1| image:: /_static/images/en-us_image_0000001898023829.png
+.. |image2| image:: /_static/images/en-us_image_0000001851743660.png

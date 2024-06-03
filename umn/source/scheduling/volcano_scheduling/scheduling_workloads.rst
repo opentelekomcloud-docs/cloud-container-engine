@@ -12,7 +12,7 @@ Kubernetes typically uses its default scheduler to schedule workloads. To use Vo
 Constraints
 -----------
 
-When a large number of workloads are scheduled, Volcano prints a large number of logs. In this case, you can use Volcano with LTS. Otherwise, the disk space of the node where Volcano resides may be used up. For details, see :ref:`Collecting Data Plane Logs <cce_10_0182>`.
+When a large number of workloads are scheduled, Volcano prints a large number of logs. In this case, you can use Volcano with LTS. Otherwise, the disk space of the node where Volcano resides may be used up. For details, see :ref:`Collecting Container Logs <cce_10_0182>`.
 
 Using Volcano
 -------------

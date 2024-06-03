@@ -14,22 +14,22 @@ Queries per Second (QPS) of the coredns add-on is positively correlated with the
 
 .. table:: **Table 1** Recommended values for coredns
 
-   +-------+---------------------------+------+-------------+-----------+----------------+--------------+
-   | Nodes | Recommended Configuration | Pods | CPU Request | CPU Limit | Memory Request | Memory Limit |
-   +=======+===========================+======+=============+===========+================+==============+
-   | 50    | 2500 QPS                  | 2    | 500 m       | 500 m     | 512 MiB        | 512 MiB      |
-   +-------+---------------------------+------+-------------+-----------+----------------+--------------+
-   | 200   | 5000 QPS                  | 2    | 1000 m      | 1000 m    | 1024 MiB       | 1024 MiB     |
-   +-------+---------------------------+------+-------------+-----------+----------------+--------------+
-   | 1000  | 10,000 QPS                | 2    | 2000 m      | 2000 m    | 2048 MiB       | 2048 MiB     |
-   +-------+---------------------------+------+-------------+-----------+----------------+--------------+
-   | 2000  | 20,000 QPS                | 4    | 2000 m      | 2000 m    | 2048 MiB       | 2048 MiB     |
-   +-------+---------------------------+------+-------------+-----------+----------------+--------------+
+   +-------+---------------------------+-----+-------------+-----------+----------------+--------------+
+   | Node  | Recommended Configuration | Pod | CPU Request | CPU Limit | Memory Request | Memory Limit |
+   +=======+===========================+=====+=============+===========+================+==============+
+   | 50    | 2500 QPS                  | 2   | 500m        | 500m      | 512Mi          | 512Mi        |
+   +-------+---------------------------+-----+-------------+-----------+----------------+--------------+
+   | 200   | 5000 QPS                  | 2   | 1000m       | 1000m     | 1024Mi         | 1024Mi       |
+   +-------+---------------------------+-----+-------------+-----------+----------------+--------------+
+   | 1000  | 10,000 QPS                | 2   | 2000m       | 2000m     | 2048Mi         | 2048Mi       |
+   +-------+---------------------------+-----+-------------+-----------+----------------+--------------+
+   | 2,000 | 20,000 QPS                | 4   | 2000m       | 2000m     | 2048Mi         | 2048Mi       |
+   +-------+---------------------------+-----+-------------+-----------+----------------+--------------+
 
 Configuring Resource Quotas for everest
 ---------------------------------------
 
-After the cluster scale is adjusted, the everest specifications need to be modified based on the cluster scale and the number of PVCs. The CPU and memory request values can be increased based on the number of nodes and PVCs. For details, see :ref:`Table 2 <cce_faq_00429__table1764221411617>`.
+After the cluster scale is adjusted, the everest specifications need to be modified based on the cluster scale and the number of PVCs. The requested CPU and memory can be increased based on the number of nodes and PVCs. For details, see :ref:`Table 2 <cce_faq_00429__table1764221411617>`.
 
 In non-typical scenarios, the formulas for estimating the limit values are as follows:
 
@@ -72,14 +72,14 @@ autoscaler automatically adjusts the number of nodes in a cluster based on workl
 
 .. table:: **Table 3** Recommended values for autoscaler
 
-   ===== ==== =========== ========= ============== ============
-   Nodes Pods CPU Request CPU Limit Memory Request Memory Limit
-   ===== ==== =========== ========= ============== ============
-   50    2    1000 m      1000 m    1000 MiB       1000 MiB
-   200   2    4000 m      4000 m    2000 MiB       2000 MiB
-   1000  2    8000 m      8000 m    8000 MiB       8000 MiB
-   2000  2    8000 m      8000 m    8000 MiB       8000 MiB
-   ===== ==== =========== ========= ============== ============
+   ===== === =========== ========= ============== ============
+   Node  Pod CPU Request CPU Limit Memory Request Memory Limit
+   ===== === =========== ========= ============== ============
+   50    2   1000m       1000m     1000Mi         1000Mi
+   200   2   4000m       4000m     2000Mi         2000Mi
+   1,000 2   8000m       8000m     8000Mi         8000Mi
+   2,000 2   8000m       8000m     8000Mi         8000Mi
+   ===== === =========== ========= ============== ============
 
 Configuring Resource Quotas for volcano
 ---------------------------------------

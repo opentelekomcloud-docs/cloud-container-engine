@@ -30,12 +30,6 @@ Check these causes one by one until you find the cause of the fault.
 -  :ref:`Check Item 9: Whether the vdb Disk on the Node Is Deleted <cce_faq_00120__section1903800103>`
 -  :ref:`Check Item 10: Whether the Docker Service Is Normal <cce_faq_00120__section76261312361>`
 
-
-.. figure:: /_static/images/en-us_image_0000001750949488.png
-   :alt: **Figure 1** Troubleshooting process for an unavailable node
-
-   **Figure 1** Troubleshooting process for an unavailable node
-
 .. _cce_faq_00120__section745921416917:
 
 Check Item 1: Whether the Node Is Overloaded
@@ -74,7 +68,7 @@ Check Item 2: Whether the ECS Is Deleted or Faulty
 
    Log in to the CCE console and check whether the cluster is available.
 
-   -  If the cluster is unavailable, for example, an error occurs, perform operations described in :ref:`How Do I Rectify the Fault When the Cluster Status Is Unavailable? <cce_faq_00039>`
+   -  If the cluster is unavailable, for example, an error occurs, perform operations described in :ref:`How Do I Locate the Fault When a Cluster Is Unavailable? <cce_faq_00039>`
    -  If the cluster is running but some nodes in the cluster are unavailable, go to :ref:`2 <cce_faq_00120__li20888175614212>`.
 
 #. .. _cce_faq_00120__li20888175614212:
@@ -106,7 +100,7 @@ Log in to the VPC console. In the navigation pane, choose **Access Control** > *
 
 The name of this security group is in the format of *Cluster name*-cce-**control**\ ``-``\ *ID*. You can search for the security group by cluster name.
 
-Check whether the rules in the security group are modified. For details, see :ref:`Configuring Cluster Security Group Rules <cce_faq_00265>`.
+Check whether the rules in the security group are modified. For details, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`.
 
 .. _cce_faq_00120__section64919515161:
 
@@ -117,7 +111,7 @@ Check whether such a security group policy exists.
 
 When a node is added to an existing cluster, if an extended CIDR block is added to the VPC corresponding to the subnet and the subnet is an extended CIDR block, you need to add the following three security group rules to the master node security group (the group name is in the format of **Cluster name-cce-control-Random number**). These rules ensure that the nodes added to the cluster are available. (This step is not required if an extended CIDR block has been added to the VPC during cluster creation.)
 
-For details about security, see :ref:`Configuring Cluster Security Group Rules <cce_faq_00265>`.
+For details about security, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`.
 
 .. _cce_faq_00120__section165209286116:
 
@@ -207,5 +201,5 @@ Check Item 10: Whether the Docker Service Is Normal
 
    In this case, stop repeated creation and deletion of the workload or use more nodes to share the workload. Generally, the nodes will be restored after a period of time. If necessary, run the **docker rm** {*container_id*} command to manually clear abnormal containers.
 
-.. |image1| image:: /_static/images/en-us_image_0000001797870281.png
-.. |image2| image:: /_static/images/en-us_image_0000001750790564.png
+.. |image1| image:: /_static/images/en-us_image_0000001898024237.png
+.. |image2| image:: /_static/images/en-us_image_0000001851744004.png

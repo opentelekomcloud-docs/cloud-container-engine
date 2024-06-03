@@ -14,7 +14,7 @@ Some applications require additional storage, but whether the data is still avai
 
 Common EVs in Kubernetes:
 
--  :ref:`emptyDir <cce_10_0638>`: empty at pod startup, with storage coming locally from the kubelet base directory (usually the root disk) or memory. emptyDir is allocated from the `EV of the node <https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#setting-requests-and-limits-for-local-ephemeral-storage>`__. If data from other sources (such as log files or image tiering data) occupies the temporary storage, the storage capacity may be insufficient.
+-  :ref:`emptyDir <cce_10_0638>`: empty at pod startup, with storage coming locally from the kubelet base directory (usually the root disk) or memory. emptyDir is allocated from the `EV of the node <https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#setting-requests-and-limits-for-local-ephemeral-storage>`__. If data from other sources (such as log files or image tiering data) occupies the ephemeral storage, the storage capacity may be insufficient.
 -  :ref:`ConfigMap <cce_10_0015>`: Kubernetes data of the ConfigMap type is mounted to pods as data volumes.
 -  :ref:`Secret <cce_10_0016>`: Kubernetes data of the Secret type is mounted to pods as data volumes.
 

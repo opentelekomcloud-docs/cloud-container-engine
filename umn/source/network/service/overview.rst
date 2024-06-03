@@ -137,7 +137,7 @@ When the value of **externalTrafficPolicy** is **Local**, the access failures in
 .. note::
 
    -  For a multi-pod workload, ensure that all pods are accessible. Otherwise, there is a possibility that the access to the workload fails.
-   -  CCE Turbo clusters using Cloud Native 2.0 networking do not support node-level service affinity.
+   -  In a CCE Turbo cluster that utilizes a Cloud Native 2.0 network model, node-level affinity is supported only when the Service backend is connected to a HostNetwork pod.
    -  The table lists only the scenarios where the access may fail. Other scenarios that are not listed in the table indicate that the access is normal.
 
 +------------------------------------------------------+------------------------+----------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
@@ -196,7 +196,7 @@ The following methods can be used to solve this problem:
 
    .. note::
 
-      -  After passthrough networking is configured for a dedicated load balancer, containers on the node where the workload runs cannot be accessed through the Service.
+      -  After passthrough networking is configured for a dedicated load balancer, in a CCE standard cluster, pods that run on the same node as the workload and pods that run on the same node cannot be accessed through the LoadBalancer Service.
       -  Passthrough networking is not supported for clusters of v1.15 or earlier.
       -  In IPVS network mode, the pass-through settings of Service connected to the same ELB must be the same.
       -  If node-level (local) service affinity is used, **kubernetes.io/elb.pass-through** is automatically set to **onlyLocal** to enable pass-through.

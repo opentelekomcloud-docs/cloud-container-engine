@@ -21,7 +21,7 @@ The test results show that all traffic passes through the proxy. Therefore, if t
 Solution
 --------
 
-#. File transfer involves a large number of packet copies, which occupies a large amount of memory. You are advised to increase the proxy memory based on the actual scenario and then try to access the Service and upload files again.
-#. In addition, you can remove the Service from the mesh because the proxy only forwards packets and does not perform any other operations. If requests pass through the ingress gateway, the grayscale release function of the Service is not affected.
+#. File transfer involves a large number of packet copies, which occupies a large amount of memory. In this case, increase the proxy memory based on the actual scenario and then try to access the Service and upload files again.
+#. Additionally, remove the Service from the mesh because the proxy only forwards packets and does not perform any other operations. If requests pass through the ingress gateway, the grayscale release function of the Service is not affected.
 
-.. |image1| image:: /_static/images/en-us_image_0000001750949364.png
+.. |image1| image:: /_static/images/en-us_image_0000001851743836.png

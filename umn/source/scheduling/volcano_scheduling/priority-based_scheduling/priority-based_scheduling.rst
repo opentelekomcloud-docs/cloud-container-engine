@@ -10,7 +10,7 @@ A pod priority indicates the importance of a pod relative to other pods. Volcano
 Prerequisites
 -------------
 
--  A cluster of v1.19 or later is available. For details, see :ref:`Creating a CCE Cluster <cce_10_0028>`.
+-  A cluster of v1.19 or later is available. For details, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
 -  The Volcano add-on has been installed. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
 
 Overview
@@ -30,8 +30,8 @@ The services running in a cluster are diversified, including core services, non-
    | Priority-based scheduling | The scheduler preferentially guarantees the running of high-priority pods, but will not evict low-priority pods that are running. Priority-based scheduling is enabled by default and cannot be disabled. | kube-scheduler or Volcano scheduler |
    +---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------+
 
-Procedure
----------
+Configuring Priority-based Scheduling Policies
+----------------------------------------------
 
 #. Log in to the CCE console.
 #. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane and click the **Scheduling** tab.
@@ -175,7 +175,7 @@ For example, there are two idle nodes and several workloads with three prioritie
 
 #. Create a high-priority workload named **high-priority-job** to exhaust all cluster resources.
 
-   high-priority-job.yaml
+   **high-priority-job.yaml**
 
    .. code-block::
 
@@ -222,7 +222,7 @@ For example, there are two idle nodes and several workloads with three prioritie
 
 #. Create a medium-priority workload **med-priority-job** and a low-priority workload **low-priority-job**.
 
-   med-priority-job.yaml
+   **med-priority-job.yaml**
 
    .. code-block::
 
@@ -249,7 +249,7 @@ For example, there are two idle nodes and several workloads with three prioritie
                         cpu: "1"
                 restartPolicy: OnFailure
 
-   low-priority-job.yaml
+   **low-priority-job.yaml**
 
    .. code-block::
 

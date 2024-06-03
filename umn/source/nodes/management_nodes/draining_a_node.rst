@@ -8,9 +8,9 @@ Draining a Node
 Scenario
 --------
 
-After you enable the nodal drainage function on the console, the system sets the node to be non-schedulable and securely evicts all pods that comply with :ref:`Nodal Drainage Rules <cce_10_0605__section14957193483118>` on the node. Subsequent new pods will not be scheduled to the node.
+After you enable nodal drainage on the console, CCE configures the node to be non-schedulable and securely evicts all pods that comply with :ref:`Nodal Drainage Rules <cce_10_0605__section14957193483118>` on the node. Subsequent new pods will not be scheduled to this node.
 
-When a node is faulty, this function helps you quickly isolate the faulty node. The evicted pods will be transferred from the workload controller to another node that can be scheduled properly.
+When a node becomes faulty, nodal drainage quickly isolates the faulty node. The pods evicted from the faulty node will be scheduled by the workload controller to other nodes that are running properly.
 
 Constraints
 -----------

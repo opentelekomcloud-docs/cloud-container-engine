@@ -11,7 +11,7 @@ Model Definition
 The VPC network uses VPC routing to integrate with the underlying network. This network model is suitable for performance-intensive scenarios. The maximum number of nodes allowed in a cluster depends on the VPC route quota. Each node is assigned a CIDR block of a fixed size. This networking model is free from tunnel encapsulation overhead and outperforms the container tunnel network model. In addition, as VPC routing includes routes to node IP addresses and the container CIDR block, container pods in a cluster can be directly accessed from ECSs in the same VPC outside the cluster.
 
 
-.. figure:: /_static/images/en-us_image_0000001750791328.png
+.. figure:: /_static/images/en-us_image_0000001851745436.png
    :alt: **Figure 1** VPC network model
 
    **Figure 1** VPC network model
@@ -54,7 +54,7 @@ The VPC network allocates container IP addresses according to the following rule
 -  Pods scheduled to a node are cyclically allocated IP addresses from CIDR blocks allocated to the node.
 
 
-.. figure:: /_static/images/en-us_image_0000001750950248.png
+.. figure:: /_static/images/en-us_image_0000001851586708.png
    :alt: **Figure 2** IP address management of the VPC network
 
    **Figure 2** IP address management of the VPC network

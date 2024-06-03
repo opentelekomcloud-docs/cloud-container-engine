@@ -27,7 +27,7 @@ When using storage resources in CCE, the most common method is to specify **stor
          storage: 10Gi
      storageClassName: csi-disk
 
-To specify the EVS disk type, you can set the **everest.io/disk-volume-type** field. The value **SAS** is used as an example here, indicating the high I/O EVS disk type. Or you can choose **SATA** (common I/O) and **SSD** (ultra-high I/O).
+To specify the EVS disk type, you can configure the **everest.io/disk-volume-type** field. The value **SAS** is used as an example here, indicating the high I/O EVS disk type. Or you can choose **SATA** (common I/O) and **SSD** (ultra-high I/O).
 
 This configuration method may not work if you want to:
 
@@ -62,43 +62,127 @@ This section describes how to set a custom storage class in CCE and how to set t
           requests:
             storage: 10Gi
 
-Default Storage Classes in CCE
-------------------------------
+CCE Default Storage Classes
+---------------------------
 
-Run the following command to query the supported storage classes.
+As of now, CCE provides storage classes such as csi-disk, csi-nas, and csi-obs by default. When defining a PVC, you can use a **storageClassName** to automatically create a PV of the corresponding type and automatically create underlying storage resources.
+
+Run the following kubectl command to obtain the storage classes that CCE supports. Use the CSI add-on provided by CCE to create a storage class.
 
 .. code-block::
 
    # kubectl get sc
    NAME                PROVISIONER                     AGE
-   csi-disk            everest-csi-provisioner         17d          # Storage class for EVS disks
-   csi-disk-topology   everest-csi-provisioner         17d          # Storage class for EVS disks with delayed association
-   csi-nas             everest-csi-provisioner         17d          # Storage class for SFS file systems
-   csi-obs             everest-csi-provisioner         17d          # Storage Class for OBS buckets
-   csi-sfsturbo        everest-csi-provisioner         17d          # Storage class for SFS Turbo file systems
+   csi-disk            everest-csi-provisioner         17d          # EVS disk
+   csi-disk-topology   everest-csi-provisioner         17d          # EVS disks created with delayed
+   csi-nas             everest-csi-provisioner         17d          # SFS 1.0
+   csi-obs             everest-csi-provisioner         17d          # OBS
+   csi-sfsturbo        everest-csi-provisioner         17d          # SFS Turbo
 
-Check the details of **csi-disk**. You can see that the type of the disk created by **csi-disk** is SAS by default.
+Each storage class contains the default parameters used for dynamically creating a PV. The following is an example of storage class for EVS disks:
 
 .. code-block::
 
-   # kubectl get sc csi-disk -oyaml
-   allowVolumeExpansion: true
-   apiVersion: storage.k8s.io/v1
    kind: StorageClass
+   apiVersion: storage.k8s.io/v1
    metadata:
-     creationTimestamp: "2021-03-17T02:10:32Z"
      name: csi-disk
-     resourceVersion: "760"
-     selfLink: /apis/storage.k8s.io/v1/storageclasses/csi-disk
-     uid: 4db97b6c-853b-443d-b0dc-41cdcb8140f2
+   provisioner: everest-csi-provisioner
    parameters:
      csi.storage.k8s.io/csi-driver-name: disk.csi.everest.io
-     csi.storage.k8s.io/fstype: ext4
+   csi.storage.k8s.io/fstype: ext4    # (Optional) Set the file system type to xfs or ext4. If it is left blank, ext4 is used by default.
      everest.io/disk-volume-type: SAS
-     everest.io/passthrough: "true"
-   provisioner: everest-csi-provisioner
+     everest.io/passthrough: 'true'
    reclaimPolicy: Delete
+   allowVolumeExpansion: true
    volumeBindingMode: Immediate
+
+.. table:: **Table 1** Key parameters
+
+   +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter                         | Description                                                                                                                                                                                                                           |
+   +===================================+=======================================================================================================================================================================================================================================+
+   | provisioner                       | Specifies the storage resource provider, which is the Everest add-on for CCE. Set this parameter to **everest-csi-provisioner**.                                                                                                      |
+   +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | parameters                        | Specifies the storage parameters, which vary with storage types. For details, see :ref:`Table 2 <cce_bestpractice_00281__cce_10_0380_table15415188175413>`.                                                                           |
+   +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | reclaimPolicy                     | Specifies the value of **persistentVolumeReclaimPolicy** for creating a PV. The value can be **Delete** or **Retain**. If **reclaimPolicy** is not specified when a StorageClass object is created, the value defaults to **Delete**. |
+   |                                   |                                                                                                                                                                                                                                       |
+   |                                   | -  **Delete**: indicates that a dynamically created PV will be automatically destroyed.                                                                                                                                               |
+   |                                   | -  **Retain**: indicates that a dynamically created PV will not be automatically destroyed.                                                                                                                                           |
+   +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | allowVolumeExpansion              | Specifies whether the PV of this storage class supports dynamic capacity expansion. The default value is **false**. Dynamic capacity expansion is implemented by the underlying storage add-on. This is only a switch.                |
+   +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | volumeBindingMode                 | Specifies the volume binding mode, that is, the time when a PV is dynamically created. The value can be **Immediate** or **WaitForFirstConsumer**.                                                                                    |
+   |                                   |                                                                                                                                                                                                                                       |
+   |                                   | -  **Immediate**: PV binding and dynamic creation are completed when a PVC is created.                                                                                                                                                |
+   |                                   | -  **WaitForFirstConsumer**: PV binding and creation are delayed. The PV creation and binding processes are executed only when the PVC is used in the workload.                                                                       |
+   +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | mountOptions                      | This field must be supported by the underlying storage. If this field is not supported but is specified, the PV creation will fail.                                                                                                   |
+   +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _cce_bestpractice_00281__cce_10_0380_table15415188175413:
+
+.. table:: **Table 2** Parameters
+
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Volume Type     | Parameter                          | Mandatory       | Description                                                                                                                                          |
+   +=================+====================================+=================+======================================================================================================================================================+
+   | EVS             | csi.storage.k8s.io/csi-driver-name | Yes             | Driver type. If an EVS disk is used, the parameter value is fixed at **disk.csi.everest.io**.                                                        |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | csi.storage.k8s.io/fstype          | Yes             | If an EVS disk is used, the parameter value can be **ext4** or **xfs**.                                                                              |
+   |                 |                                    |                 |                                                                                                                                                      |
+   |                 |                                    |                 | The restrictions on using **xfs** are as follows:                                                                                                    |
+   |                 |                                    |                 |                                                                                                                                                      |
+   |                 |                                    |                 | -  The nodes must run CentOS 7 or Ubuntu 22.04, and the Everest version in the cluster must be 2.3.2 or later.                                       |
+   |                 |                                    |                 | -  Only common containers are supported.                                                                                                             |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | everest.io/disk-volume-type        | Yes             | EVS disk type. All letters are in uppercase.                                                                                                         |
+   |                 |                                    |                 |                                                                                                                                                      |
+   |                 |                                    |                 | -  **SATA**: common I/O                                                                                                                              |
+   |                 |                                    |                 | -  **SAS**: high I/O                                                                                                                                 |
+   |                 |                                    |                 | -  **SSD**: ultra-high I/O                                                                                                                           |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | everest.io/passthrough             | Yes             | The parameter value is fixed at **true**, which indicates that the EVS device type is **SCSI**. Other parameter values are not allowed.              |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | SFS             | csi.storage.k8s.io/csi-driver-name | Yes             | Driver type. If SFS is used, the parameter value is fixed at **nas.csi.everest.io**.                                                                 |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | csi.storage.k8s.io/fstype          | Yes             | If SFS is used, the value can be **nfs**.                                                                                                            |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | everest.io/share-access-level      | Yes             | The parameter value is fixed at **rw**, indicating that the SFS data is readable and writable.                                                       |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | everest.io/share-access-to         | Yes             | VPC ID of the cluster.                                                                                                                               |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | everest.io/share-is-public         | No              | The parameter value is fixed at **false**, indicating that the file is shared to private.                                                            |
+   |                 |                                    |                 |                                                                                                                                                      |
+   |                 |                                    |                 | You do not need to configure this parameter when SFS 3.0 is used.                                                                                    |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | everest.io/sfs-version             | No              | This parameter is mandatory only when SFS 3.0 is used. The value is fixed at **sfs3.0**.                                                             |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | SFS Turbo       | csi.storage.k8s.io/csi-driver-name | Yes             | Driver type. If SFS Turbo is used, the parameter value is fixed at **sfsturbo.csi.everest.io**.                                                      |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | csi.storage.k8s.io/fstype          | Yes             | If SFS Turbo is used, the value can be **nfs**.                                                                                                      |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | everest.io/share-access-to         | Yes             | VPC ID of the cluster.                                                                                                                               |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | everest.io/share-expand-type       | No              | Extension type. The default value is **bandwidth**, indicating an enhanced file system. This parameter does not take effect.                         |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | everest.io/share-source            | Yes             | The parameter value is fixed at **sfs-turbo**.                                                                                                       |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | everest.io/share-volume-type       | No              | SFS Turbo storage class. The default value is **STANDARD**, indicating standard and standard enhanced editions. This parameter does not take effect. |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | OBS             | csi.storage.k8s.io/csi-driver-name | Yes             | Driver type. If OBS is used, the parameter value is fixed at **obs.csi.everest.io**.                                                                 |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | csi.storage.k8s.io/fstype          | Yes             | Instance type, which can be **obsfs** or **s3fs**.                                                                                                   |
+   |                 |                                    |                 |                                                                                                                                                      |
+   |                 |                                    |                 | -  **obsfs**: Parallel file system, which is mounted using obsfs (recommended).                                                                      |
+   |                 |                                    |                 | -  **s3fs**: Object bucket, which is mounted using s3fs.                                                                                             |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   |                 | everest.io/obs-volume-type         | Yes             | OBS storage class.                                                                                                                                   |
+   |                 |                                    |                 |                                                                                                                                                      |
+   |                 |                                    |                 | -  If **fsType** is set to **s3fs**, **STANDARD** (standard bucket) and **WARM** (infrequent access bucket) are supported.                           |
+   |                 |                                    |                 | -  This parameter is invalid when **fsType** is set to **obsfs**.                                                                                    |
+   +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 Custom Storage Classes
@@ -147,7 +231,7 @@ For an ultra-high I/O storage class, you can set the class name to **csi-disk-ss
 
 .. note::
 
-   The reclamation policy set here has no impact on the SFS Turbo storage.
+   The reclamation policy configured here has no impact on the SFS Turbo storage.
 
 If high data security is required, you are advised to select **Retain** to prevent data from being deleted by mistake.
 
@@ -214,8 +298,8 @@ Other types of storage resources can be defined in the similar way. You can use 
       reclaimPolicy: Delete
       volumeBindingMode: Immediate
 
-Specifying a Default StorageClass
----------------------------------
+Specifying a Default Storage Class
+----------------------------------
 
 You can specify a storage class as the default class. In this way, if you do not specify **storageClassName** when creating a PVC, the PVC is created using the default storage class.
 
@@ -323,4 +407,4 @@ Verification
 
    View the PVC details on the CCE console. On the PV details page, you can see that the disk type is ultra-high I/O.
 
-.. |image1| image:: /_static/images/en-us_image_0000001750790816.png
+.. |image1| image:: /_static/images/en-us_image_0000001897905209.png

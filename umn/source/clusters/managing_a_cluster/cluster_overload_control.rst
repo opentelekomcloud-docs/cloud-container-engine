@@ -31,6 +31,6 @@ Disabling Cluster Overload Control
 ----------------------------------
 
 #. Log in to the CCE console and go to an existing cluster whose version is v1.23 or later.
-#. In the navigation pane, choose\ **Settings**.
-#. On the **Cluster Access Configuration** tab, set cluster overload control (**support-overload**) to **false**.
+#. In the navigation pane, choose **Settings**.
+#. On the **Cluster Access** tab page, disable overload control.
 #. Click **OK**.

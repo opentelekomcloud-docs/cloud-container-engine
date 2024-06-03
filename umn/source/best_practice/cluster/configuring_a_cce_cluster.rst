@@ -5,7 +5,7 @@
 Configuring a CCE Cluster
 =========================
 
-When you use CCE to create a Kubernetes cluster, there are multiple configuration options and terms. This document compares the key configurations for CCE clusters and provides recommendations to help you create a cluster that better suits your needs.
+When you use CCE to create a Kubernetes cluster, there are multiple configuration options and terms. This sections compares the key configurations for CCE clusters and provides recommendations to help you create a cluster that better suits your needs.
 
 Cluster Types
 -------------
@@ -120,7 +120,7 @@ Additionally, select a proper vCPU/memory ratio based on your requirements. For 
 Container Engines
 -----------------
 
-CCE supports the containerd and Docker container engines. **containerd is recommended for its shorter traces, fewer components, higher stability, and less consumption of node resources**. Since Kubernetes 1.24, Dockershim is removed and Docker is no longer supported by default. For details, see `Kubernetes is Moving on From Dockershim: Commitments and Next Steps <https://kubernetes.io/blog/2022/01/07/kubernetes-is-moving-on-from-dockershim/>`__. CCE clusters of v1.27 do not support the Docker container engine.
+CCE supports the containerd and Docker container engines. **containerd is recommended for its shorter traces, fewer components, higher stability, and less consumption of node resources**. Since Kubernetes 1.24, Dockershim is removed and Docker is no longer supported by default. For details, see `Kubernetes is Moving on From Dockershim: Commitments and Next Steps <https://kubernetes.io/blog/2022/01/07/kubernetes-is-moving-on-from-dockershim/>`__. CCE clusters 1.27 do not support the Docker container engine.
 
 Use containerd in typical scenarios. The Docker container engine is supported only in the following scenarios:
 

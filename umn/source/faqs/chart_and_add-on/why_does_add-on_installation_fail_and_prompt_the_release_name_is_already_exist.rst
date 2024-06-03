@@ -22,7 +22,7 @@ Use kubectl to connect to the cluster and manually clear the Secret and Configma
 
 #. Connect to the cluster using kubectl, and run the following command to view the Secret list of add-on releases:
 
-   **kubectl get secret -nkube-system \|grep cceaddon**
+   **kubectl get secret -A \|grep cceaddon**
 
    |image1|
 
@@ -38,7 +38,7 @@ Use kubectl to connect to the cluster and manually clear the Secret and Configma
 
 #. If the add-on is created when Helm v2 is used, CCE automatically bumps the v2 release in Configmaps to v3 release in Secrets when viewing the add-ons and their details. The v2 release in the original Configmap is not deleted. Run the following command to view the ConfigMap list of add-on releases:
 
-   **kubectl get configmap -nkube-system \| grep cceaddon**
+   **kubectl get configmap -A \| grep cceaddon**
 
    |image3|
 
@@ -62,7 +62,7 @@ Use kubectl to connect to the cluster and manually clear the Secret and Configma
 
       When installing the add-on for the first time, you may find it abnormal after the installation due to the residual resources of the previous add-on release, which is normal. In this case, you can uninstall the add-on on the console to ensure that the residual resources are cleared and the add-on can run properly after being installed again.
 
-.. |image1| image:: /_static/images/en-us_image_0000001750790504.png
-.. |image2| image:: /_static/images/en-us_image_0000001797909241.png
-.. |image3| image:: /_static/images/en-us_image_0000001797870201.png
-.. |image4| image:: /_static/images/en-us_image_0000001750949444.png
+.. |image1| image:: /_static/images/en-us_image_0000001897904725.png
+.. |image2| image:: /_static/images/en-us_image_0000001851744076.png
+.. |image3| image:: /_static/images/en-us_image_0000001898024249.png
+.. |image4| image:: /_static/images/en-us_image_0000001851744088.png

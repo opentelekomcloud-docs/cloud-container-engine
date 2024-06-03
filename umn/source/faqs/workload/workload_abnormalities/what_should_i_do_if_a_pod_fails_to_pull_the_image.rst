@@ -191,7 +191,7 @@ To expand a disk capacity, perform the following steps:
 
 #. Log in to the target node.
 
-#. Run **lsblk** to view the block device information of the node.
+#. Run the **lsblk** command to check the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 
@@ -385,4 +385,4 @@ Docker Hub sets the maximum number of container image pull requests. For details
 
 Push the frequently used image to SWR and then pull the image from SWR.
 
-.. |image1| image:: /_static/images/en-us_image_0000001797870021.jpg
+.. |image1| image:: /_static/images/en-us_image_0000001851585232.jpg

@@ -288,5 +288,5 @@ You can use a secret of an IAM user to mount an OBS volume. Assume that a worklo
 
       -rwxrwxrwx 1 root root 0 Jun  7 01:52 test
 
-.. |image1| image:: /_static/images/en-us_image_0000001750791480.png
-.. |image2| image:: /_static/images/en-us_image_0000001865334477.png
+.. |image1| image:: /_static/images/en-us_image_0000001898026001.png
+.. |image2| image:: /_static/images/en-us_image_0000001851745808.png

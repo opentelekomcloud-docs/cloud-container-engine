@@ -50,7 +50,7 @@ Procedure
       |                                   |                                                                                                                           |
       |                                   | Click |image1| to add data. The value can be in string, JSON, or YAML format.                                             |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------+
-      | Label                             | Label of the ConfigMap. Enter a key-value pair and click **Add**.                                                         |
+      | Label                             | Label of the ConfigMap. Enter a key-value pair and click **Confirm**.                                                     |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------+
 
 #. Click **OK**.
@@ -123,4 +123,4 @@ After creating a ConfigMap, you can update or delete it as described in :ref:`Ta
    |                                   | Follow the prompts to delete the ConfigMap.                                                          |
    +-----------------------------------+------------------------------------------------------------------------------------------------------+
 
-.. |image1| image:: /_static/images/en-us_image_0000001797910077.png
+.. |image1| image:: /_static/images/en-us_image_0000001851745504.png

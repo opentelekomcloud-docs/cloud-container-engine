@@ -15,7 +15,7 @@ Solution
 
 **Scenario: There are inaccessible mount points on the node.**
 
-If NFS (such as OBS parallel file systems and SFS) is used by the node and the node is disconnected with the NFS server, the mount point would be inaccessible and all processes that access this mount point are in D state.
+If NFS (such as obsfs or SFS) is used by the node and the node is disconnected from the NFS server, the mount point would be inaccessible and all processes that access this mount point are in D state.
 
 #. Log in to the node.
 

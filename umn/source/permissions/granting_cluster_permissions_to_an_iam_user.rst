@@ -26,7 +26,7 @@ Process Flow
 ------------
 
 
-.. figure:: /_static/images/en-us_image_0000001750791468.png
+.. figure:: /_static/images/en-us_image_0000001897906293.png
    :alt: **Figure 1** Process of assigning CCE permissions
 
    **Figure 1** Process of assigning CCE permissions
@@ -49,7 +49,7 @@ Process Flow
 
    Log in to the management console as the user you created, and verify that the user has the assigned permissions.
 
-   -  Log in to the management console, switch to the CCE console, and buy a cluster. If you fail to do so (assuming that only the **CCE ReadOnlyAccess** permission is assigned), the **CCE ReadOnlyAccess** policy has already taken effect.
+   -  Log in to the management console, switch to the CCE console, and create a cluster. If you fail to do so (assuming that only the **CCE ReadOnlyAccess** permission is assigned), the **CCE ReadOnlyAccess** policy has already taken effect.
    -  Switch to the console of any other service. If a message appears indicating that you do not have the required permissions for accessing the service, the **CCE ReadOnlyAccess** policy has already taken effect.
 
 System-defined Roles
@@ -170,4 +170,4 @@ When RBAC and IAM policies co-exist, the backend authentication logic for open A
 
 |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000001797871157.png
+.. |image1| image:: /_static/images/en-us_image_0000001851745632.png

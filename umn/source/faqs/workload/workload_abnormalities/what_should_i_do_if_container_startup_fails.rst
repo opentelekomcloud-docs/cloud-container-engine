@@ -43,42 +43,46 @@ Determine the cause based on the event information, as listed in :ref:`Table 1 <
 
 .. table:: **Table 1** Container startup failure
 
-   +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | Log or Event                                                                                                                                                                             | Cause and Solution                                                                                                                       |
-   +==========================================================================================================================================================================================+==========================================================================================================================================+
-   | The log contains **exit(0)**.                                                                                                                                                            | No process exists in the container.                                                                                                      |
-   |                                                                                                                                                                                          |                                                                                                                                          |
-   |                                                                                                                                                                                          | Check whether the container is running properly.                                                                                         |
-   |                                                                                                                                                                                          |                                                                                                                                          |
-   |                                                                                                                                                                                          | :ref:`Check Item 1: Whether There Are Processes that Keep Running in the Container (Exit Code: 0) <cce_faq_00018__section2524165018111>` |
-   +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | Event information: **Liveness probe failed: Get http...**                                                                                                                                | Health check fails.                                                                                                                      |
-   |                                                                                                                                                                                          |                                                                                                                                          |
-   | The log contains **exit(137)**.                                                                                                                                                          | :ref:`Check Item 2: Whether Health Check Fails to Be Performed (Exit Code: 137) <cce_faq_00018__section1766510426482>`                   |
-   +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | Event information:                                                                                                                                                                       | The disk space is insufficient. Clear the disk space.                                                                                    |
-   |                                                                                                                                                                                          |                                                                                                                                          |
-   | Thin Pool has 15991 free data blocks which are less than minimum required 16383 free data blocks. Create more free space in thin pool or use dm.min_free_space option to change behavior | :ref:`Check Item 3: Whether the Container Disk Space Is Insufficient <cce_faq_00018__section169421237111219>`                            |
-   +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | The keyword OOM exists in the log.                                                                                                                                                       | The memory is insufficient.                                                                                                              |
-   |                                                                                                                                                                                          |                                                                                                                                          |
-   |                                                                                                                                                                                          | :ref:`Check Item 4: Whether the Upper Limit of Container Resources Has Been Reached <cce_faq_00018__section060854916109>`                |
-   |                                                                                                                                                                                          |                                                                                                                                          |
-   |                                                                                                                                                                                          | :ref:`Check Item 5: Whether the Resource Limits Are Improperly Configured for the Container <cce_faq_00018__section1548114151414>`       |
-   +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | Address already in use                                                                                                                                                                   | A conflict occurs between container ports in the pod.                                                                                    |
-   |                                                                                                                                                                                          |                                                                                                                                          |
-   |                                                                                                                                                                                          | :ref:`Check Item 6: Whether the Container Ports in the Same Pod Conflict with Each Other <cce_faq_00018__section17679197145618>`         |
-   +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | Log or Event                                                                                                                                                                                                                                        | Cause and Solution                                                                                                                       |
+   +=====================================================================================================================================================================================================================================================+==========================================================================================================================================+
+   | The log contains **exit(0)**.                                                                                                                                                                                                                       | No process exists in the container.                                                                                                      |
+   |                                                                                                                                                                                                                                                     |                                                                                                                                          |
+   |                                                                                                                                                                                                                                                     | Check whether the container is running properly.                                                                                         |
+   |                                                                                                                                                                                                                                                     |                                                                                                                                          |
+   |                                                                                                                                                                                                                                                     | :ref:`Check Item 1: Whether There Are Processes that Keep Running in the Container (Exit Code: 0) <cce_faq_00018__section2524165018111>` |
+   +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | Event information: **Liveness probe failed: Get http...**                                                                                                                                                                                           | Health check fails.                                                                                                                      |
+   |                                                                                                                                                                                                                                                     |                                                                                                                                          |
+   | The log contains **exit(137)**.                                                                                                                                                                                                                     | :ref:`Check Item 2: Whether Health Check Fails to Be Performed (Exit Code: 137) <cce_faq_00018__section1766510426482>`                   |
+   +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | Event information:                                                                                                                                                                                                                                  | The disk space is insufficient. Clear the disk space.                                                                                    |
+   |                                                                                                                                                                                                                                                     |                                                                                                                                          |
+   | Thin Pool has 15991 free data blocks which are less than minimum required 16383 free data blocks. Create more free space in thin pool or use dm.min_free_space option to change behavior                                                            | :ref:`Check Item 3: Whether the Container Disk Space Is Insufficient <cce_faq_00018__section169421237111219>`                            |
+   +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | The keyword OOM exists in the log.                                                                                                                                                                                                                  | The memory is insufficient.                                                                                                              |
+   |                                                                                                                                                                                                                                                     |                                                                                                                                          |
+   |                                                                                                                                                                                                                                                     | :ref:`Check Item 4: Whether the Upper Limit of Container Resources Has Been Reached <cce_faq_00018__section060854916109>`                |
+   |                                                                                                                                                                                                                                                     |                                                                                                                                          |
+   |                                                                                                                                                                                                                                                     | :ref:`Check Item 5: Whether the Resource Limits Are Improperly Configured for the Container <cce_faq_00018__section1548114151414>`       |
+   +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | Address already in use                                                                                                                                                                                                                              | A conflict occurs between container ports in the pod.                                                                                    |
+   |                                                                                                                                                                                                                                                     |                                                                                                                                          |
+   |                                                                                                                                                                                                                                                     | :ref:`Check Item 6: Whether the Container Ports in the Same Pod Conflict with Each Other <cce_faq_00018__section17679197145618>`         |
+   +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | Error: failed to start container "filebeat": Error response from daemon: OCI runtime create failed: container_linux.go:330: starting container process caused "process_linux.go:381: container init caused \\"setenv: invalid argument\\"": unknown | A secret is mounted to the workload, and the value of the secret is not encrypted using Base64.                                          |
+   |                                                                                                                                                                                                                                                     |                                                                                                                                          |
+   |                                                                                                                                                                                                                                                     | :ref:`Check Item 7: Whether the Value of the Secret Mounted to the Workload Meets Requirements <cce_faq_00018__section12171141792912>`   |
+   +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
 
 In addition to the preceding possible causes, there are some other possible causes:
 
--  :ref:`Check Item 7: Whether the Container Startup Command Is Correctly Configured <cce_faq_00018__section1842111295128>`
--  :ref:`Check Item 8: Whether the User Service Has a Bug <cce_faq_00018__section16311023103717>`
+-  :ref:`Check Item 8: Whether the Container Startup Command Is Correctly Configured <cce_faq_00018__section1842111295128>`
+-  :ref:`Check Item 9: Whether the User Service Has a Bug <cce_faq_00018__section16311023103717>`
 -  Use the correct image when you create a workload on an Arm node.
 
 
-.. figure:: /_static/images/en-us_image_0000001797870253.png
+.. figure:: /_static/images/en-us_image_0000001851743860.png
    :alt: **Figure 1** Troubleshooting process of the container restart failure
 
    **Figure 1** Troubleshooting process of the container restart failure
@@ -176,7 +180,7 @@ To expand a disk capacity, perform the following steps:
 
 #. Log in to the target node.
 
-#. Run **lsblk** to view the block device information of the node.
+#. Run the **lsblk** command to check the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 
@@ -273,7 +277,7 @@ Check Item 6: Whether the Container Ports in the Same Pod Conflict with Each Oth
    Rectify the fault of the workload based on logs. As shown in the following figure, container ports in the same pod conflict. As a result, the container fails to be started.
 
 
-   .. figure:: /_static/images/en-us_image_0000001750949468.png
+   .. figure:: /_static/images/en-us_image_0000001898024041.png
       :alt: **Figure 2** Container restart failure due to a container port conflict
 
       **Figure 2** Container restart failure due to a container port conflict
@@ -282,9 +286,32 @@ Check Item 6: Whether the Container Ports in the Same Pod Conflict with Each Oth
 
 Re-create the workload and set a port number that is not used by any other pod.
 
+.. _cce_faq_00018__section12171141792912:
+
+Check Item 7: Whether the Value of the Secret Mounted to the Workload Meets Requirements
+----------------------------------------------------------------------------------------
+
+Information similar to the following is displayed in the event:
+
+.. code-block::
+
+   Error: failed to start container "filebeat": Error response from daemon: OCI runtime create failed: container_linux.go:330: starting container process caused "process_linux.go:381: container init caused \"setenv: invalid argument\"": unknown
+
+The root cause is that a secret is mounted to the workload, but the value of the secret is not encrypted using Base64.
+
+**Solution**:
+
+Create a secret on the console. The value of the secret is automatically encrypted using Base64.
+
+If you use YAML to create a secret, you need to manually encrypt its value using Base64.
+
+.. code-block::
+
+   # echo -n "Content to be encoded" | base64
+
 .. _cce_faq_00018__section1842111295128:
 
-Check Item 7: Whether the Container Startup Command Is Correctly Configured
+Check Item 8: Whether the Container Startup Command Is Correctly Configured
 ---------------------------------------------------------------------------
 
 The error messages are as follows:
@@ -297,7 +324,7 @@ Click the workload name to go to the workload details page, click the **Containe
 
 .. _cce_faq_00018__section16311023103717:
 
-Check Item 8: Whether the User Service Has a Bug
+Check Item 9: Whether the User Service Has a Bug
 ------------------------------------------------
 
 Check whether the workload startup command is correctly executed or whether the workload has a bug.
@@ -319,7 +346,7 @@ Check whether the workload startup command is correctly executed or whether the 
    Note: In the preceding command, *containerID* indicates the ID of the container that has exited.
 
 
-   .. figure:: /_static/images/en-us_image_0000001797909249.png
+   .. figure:: /_static/images/en-us_image_0000001851743848.png
       :alt: **Figure 3** Incorrect startup command of the container
 
       **Figure 3** Incorrect startup command of the container
@@ -330,7 +357,7 @@ Check whether the workload startup command is correctly executed or whether the 
 
 Create a new workload and configure a correct startup command.
 
-.. |image1| image:: /_static/images/en-us_image_0000001797909273.png
-.. |image2| image:: /_static/images/en-us_image_0000001750790572.png
-.. |image3| image:: /_static/images/en-us_image_0000001750949452.png
-.. |image4| image:: /_static/images/en-us_image_0000001750790556.png
+.. |image1| image:: /_static/images/en-us_image_0000001897904517.png
+.. |image2| image:: /_static/images/en-us_image_0000001851743868.png
+.. |image3| image:: /_static/images/en-us_image_0000001898024033.png
+.. |image4| image:: /_static/images/en-us_image_0000001897904509.png

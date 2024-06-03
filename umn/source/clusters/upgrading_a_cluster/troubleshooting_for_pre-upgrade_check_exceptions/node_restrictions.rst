@@ -24,10 +24,6 @@ Solution
 
    If a node is unavailable, recover the node and retry the check task.
 
-#. **The container engine of the node does not support the upgrade.**
-
-   This issue typically occurs when a cluster of an earlier version is upgraded to v1.27 or later. Clusters of v1.27 or later support only the containerd runtime. If your node runtime is not containerd, the upgrade cannot be performed. In this case, reset the node and change the node runtime to containerd.
-
 #. **The node OS does not support the upgrade.**
 
    The following table lists the node OSs that support the upgrade. You can reset the node OS to an available OS in the list.
@@ -47,10 +43,12 @@ Solution
       |                                   |                                                                                                                      |
       |                                   |    If the target version is v1.27 or later, only Ubuntu 22.04 supports the upgrade.                                  |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+      | HCE OS 2.0                        | If the check result shows that the upgrade is not supported due to regional restrictions, contact technical support. |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
 
 #. **The affected node belongs to the default node pool but it is configured with a non-default node pool label, which will affect the upgrade.**
 
-   If a node is migrated from a node pool to the default node pool, the node pool label **cce.cloud.com/cce-nodepool** is retained, affecting the cluster upgrade. Check whether load scheduling on the node depends on the label.
+   If a node is migrated from a common node pool to the default node pool, the **cce.cloud.com/cce-nodepool** label will affect the cluster upgrade. Check whether load scheduling on the node depends on the label.
 
    -  If no, delete the label.
    -  If yes, modify the load balancing policy, remove the dependency, and then delete the label.
@@ -62,3 +60,7 @@ Solution
 #. **The Kubernetes node corresponding to the affected node does not exist.**
 
    It is possible that the node is being deleted. Check again later.
+
+#. **The OS running on the master node is EulerOS 2.5, which does not support the cluster to be upgraded to v1.27.5-r0.**
+
+   You can upgrade the cluster to v1.25 or v1.28. If necessary, contact technical support.

@@ -10,18 +10,18 @@ Gang scheduling is a scheduling algorithm that schedules correlated processes or
 Prerequisites
 -------------
 
--  A cluster of v1.19 or later is available. For details, see :ref:`Creating a CCE Cluster <cce_10_0028>`.
+-  A cluster of v1.19 or later is available. For details, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
 -  The Volcano add-on has been installed. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
 
-Features
---------
+How It Works
+------------
 
 The Gang scheduling policy is one of the core scheduling algorithms of Volcano. It meets the scheduling requirements of "All or nothing" in the scheduling process and avoids the waste of cluster resources caused by arbitrary scheduling of pods. The Gang scheduler algorithm checks whether the number of scheduled pods in a job meets the minimum requirements for running the job. If yes, all pods in the job will be scheduled. If no, the pods will not be scheduled.
 
 The Gang scheduling algorithm based on container groups is well suitable for scenarios where multi-process collaboration is required. AI scenarios typically involve complex processes. Data ingestion, data analysts, data splitting, trainers, serving, and logging which require a group of containers to work together are suitable for container-based Gang scheduling. Multi-thread parallel computing communication scenarios under MPI computing framework are also suitable for Gang scheduling because master and slave processes need to work together. Containers in a pod group are highly correlated, and there may be resource contention. The overall scheduling allocation can effectively resolve deadlocks. If cluster resources are insufficient, Gang scheduling can significantly improve the utilization of cluster resources.
 
-Procedure
----------
+Configuring Gang
+----------------
 
 After Volcano is installed, you can enable or disable Gang scheduling on the **Scheduling** page. This function is enabled by default.
 
@@ -33,7 +33,7 @@ After Volcano is installed, you can enable or disable Gang scheduling on the **S
 
    This function helps you enhance the service throughput of the cluster and improve service running performance.
 
-#. Click **Confirm configuration**.
+#. Click **Confirm**.
 
 #. After the configuration, use Gang scheduling in workloads or Volcano jobs.
 
@@ -56,7 +56,7 @@ After Volcano is installed, you can enable or disable Gang scheduling on the **S
          -  **minMember**: specifies the minimum requirement on the number of pods for running a workload. When the number of pods in the current pod group meets the requirement, these pods can be centrally scheduled.
          -  **minResources**: specifies the minimum requirement on resources for running a workload. When the available resources in a cluster meet the requirement, the group of pods can be centrally scheduled.
 
-      b. When creating a workload, use **schedulerName** to specify the Volcano scheduler and **annotation** to specify the pod group in which the Volcano scheduler runs.
+      b. When creating a workload, use **schedulerName** to specify Volcano Scheduler and **annotation** to specify the pod group in which Volcano Scheduler runs.
 
          .. code-block::
 
@@ -95,7 +95,7 @@ After Volcano is installed, you can enable or disable Gang scheduling on the **S
 
    -  Create a Volcano job using Gang scheduling.
 
-      When creating a Volcano job, you only need to configure **minAvailable** and set **schedulerName** to **volcano**. The Volcano scheduler will automatically create a pod group and manage it. The following shows an example:
+      When creating a Volcano job, you only need to configure **minAvailable** and set **schedulerName** to **volcano**. Volcano Scheduler will automatically create a pod group and manage it. The following shows an example:
 
       .. code-block::
 

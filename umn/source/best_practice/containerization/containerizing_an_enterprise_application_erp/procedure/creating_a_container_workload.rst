@@ -68,15 +68,15 @@ Procedure
 
 #. Create a cluster and a node.
 
-   a. Log in to the CCE console. On the **Clusters** page, click **Create** **Cluster** and select the type of the cluster to be created.
+   a. Log in to the CCE console. On the **Clusters** page, click **Create** **Cluster** and select the type for the cluster to be created.
 
       Configure cluster parameters and select the VPC created in :ref:`1 <cce_bestpractice_0010__li1025612329217>`.
 
-   b. Buy a node and select the key pair created in :ref:`1 <cce_bestpractice_0010__li1025612329217>` as the login mode.
+   b. Create a node and select the key pair created in :ref:`1 <cce_bestpractice_0010__li1025612329217>` as the login option.
 
 #. Deploy a workload on CCE.
 
-   a. Log in to the CCE console, click the created cluster, choose **Workloads** in the navigation pane, and click **Create Workload** in the upper right corner.
+   a. Log in to the CCE console and click the name of the cluster to access the cluster console. In the navigation pane, choose **Workloads** and click **Create Workload**.
 
    b. Configure the following parameters, and retain the default settings for other parameters:
 
@@ -143,4 +143,4 @@ In the preceding configuration, the NodePort mode is selected to access the work
 
 You can obtain the access mode from the **Access Mode** tab on the workload details page.
 
-.. |image1| image:: /_static/images/en-us_image_0000001750790212.png
+.. |image1| image:: /_static/images/en-us_image_0000001897904609.png

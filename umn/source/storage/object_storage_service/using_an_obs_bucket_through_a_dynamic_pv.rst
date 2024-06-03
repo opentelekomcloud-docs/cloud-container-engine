@@ -15,7 +15,7 @@ Constraints
 -  CCE allows parallel file systems to be mounted using OBS SDKs or PVCs. If PVC mounting is used, the obsfs tool provided by OBS must be used. An obsfs resident process is generated each time an object storage volume generated from the parallel file system is mounted to a node, as shown in the following figure.
 
 
-   .. figure:: /_static/images/en-us_image_0000001797870921.png
+   .. figure:: /_static/images/en-us_image_0000001897906197.png
       :alt: **Figure 1** obsfs resident process
 
       **Figure 1** obsfs resident process
@@ -36,7 +36,7 @@ Automatically Creating an OBS Volume on the Console
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. Dynamically create a PVC and PV.
 
-   a. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** tab. Click **Create PVC** in the upper right corner. In the dialog box displayed, configure the PVC parameters.
+   a. Choose **Storage** in the navigation pane and click the **PVCs** tab. Click **Create PVC** in the upper right corner. In the dialog box displayed, configure the PVC parameters.
 
       +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Parameter                         | Description                                                                                                                                                                                                                                                 |
@@ -73,7 +73,7 @@ Automatically Creating an OBS Volume on the Console
 
    b. Click **Create** to create a PVC and a PV.
 
-      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PersistentVolumeClaims (PVCs)** and **PersistentVolumes (PVs)** tab pages, respectively.
+      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PVCs** and **PVs** tab pages, respectively.
 
 #. Create an application.
 
@@ -111,7 +111,7 @@ Automatically Creating an OBS Volume on the Console
 
    c. After the configuration, click **Create Workload**.
 
-      After the workload is created, the data in the container mount directory will be persistently stored. Verify the storage by referring to :ref:`PV Reclaim Policy <cce_10_0378__section19999142414413>`.
+      After the workload is created, the data in the container mount directory will be persistently stored. Verify the storage by referring to :ref:`Verifying Data Persistence and Sharing <cce_10_0379__section11593165910013>`.
 
 (kubectl) Automatically Creating an OBS Volume
 ----------------------------------------------
@@ -165,7 +165,7 @@ Automatically Creating an OBS Volume on the Console
          +--------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | storage                                          | Yes                   | Requested capacity in the PVC, in Gi.                                                                                                                                                                               |
          |                                                  |                       |                                                                                                                                                                                                                     |
-         |                                                  |                       | For OBS buckets, this field is used only for verification (cannot be empty or 0). Its value is fixed at **1**, and any value you set does not take effect for OBS buckets.                                          |
+         |                                                  |                       | For OBS, this field is used only for verification (cannot be empty or 0). Its value is fixed at **1**, and any value you set does not take effect for OBS.                                                          |
          +--------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | storageClassName                                 | Yes                   | Storage class name. The storage class name of OBS volumes is **csi-obs**.                                                                                                                                           |
          +--------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -202,13 +202,13 @@ Automatically Creating an OBS Volume on the Console
                  image: nginx:latest
                  volumeMounts:
                  - name: pvc-obs-volume    #Volume name, which must be the same as the volume name in the volumes field.
-                   mountPath: /data  #Location where the storage volume is mounted.
+                   mountPath: /data  # Location where the storage volume is mounted.
                imagePullSecrets:
                  - name: default-secret
                volumes:
-                 - name: pvc-obs-volume    #Volume name, which can be customized.
+                 - name: pvc-obs-volume    # Volume name, which can be customized.
                    persistentVolumeClaim:
-                     claimName: pvc-obs-auto    #Name of the created PVC.
+                     claimName: pvc-obs-auto    # Name of the created PVC.
 
    b. Run the following command to create a workload to which the OBS volume is mounted:
 
@@ -366,19 +366,19 @@ You can also perform the operations listed in :ref:`Table 3 <cce_10_0630__table1
 
 .. table:: **Table 3** Related operations
 
-   +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Operation              | Description                                                                                                                                        | Procedure                                                                                                                                                                                        |
-   +========================+====================================================================================================================================================+==================================================================================================================================================================================================+
-   | Updating an access key | Update the access key of object storage on the CCE console.                                                                                        | #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** tab. Click **More** in the **Operation** column of the target PVC and select **Update Access Key**. |
-   |                        |                                                                                                                                                    | #. Upload a key file in .csv format. For details, see :ref:`Obtaining an Access Key <cce_10_0336__section4633162355911>`. Click **OK**.                                                          |
-   |                        |                                                                                                                                                    |                                                                                                                                                                                                  |
-   |                        |                                                                                                                                                    |    .. note::                                                                                                                                                                                     |
-   |                        |                                                                                                                                                    |                                                                                                                                                                                                  |
-   |                        |                                                                                                                                                    |       After a global access key is updated, all pods mounted with the object storage that uses this access key can be accessed only after being restarted.                                       |
-   +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Viewing events         | You can view event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** or **PersistentVolumes (PVs)** tab.                                                                 |
-   |                        |                                                                                                                                                    | #. Click **View Events** in the **Operation** column of the target PVC or PV to view events generated within one hour (event data is retained for one hour).                                     |
-   +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Viewing a YAML file    | You can view, copy, and download the YAML files of a PVC or PV.                                                                                    | #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** or **PersistentVolumes (PVs)** tab.                                                                 |
-   |                        |                                                                                                                                                    | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view or download the YAML.                                                                                         |
-   +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Operation              | Description                                                                                                                                        | Procedure                                                                                                                                                               |
+   +========================+====================================================================================================================================================+=========================================================================================================================================================================+
+   | Updating an access key | Update the access key of object storage on the CCE console.                                                                                        | #. Choose **Storage** in the navigation pane and click the **PVCs** tab. Click **More** in the **Operation** column of the target PVC and select **Update Access Key**. |
+   |                        |                                                                                                                                                    | #. Upload a key file in .csv format. For details, see :ref:`Obtaining an Access Key <cce_10_0336__section4633162355911>`. Click **OK**.                                 |
+   |                        |                                                                                                                                                    |                                                                                                                                                                         |
+   |                        |                                                                                                                                                    |    .. note::                                                                                                                                                            |
+   |                        |                                                                                                                                                    |                                                                                                                                                                         |
+   |                        |                                                                                                                                                    |       After a global access key is updated, all pods mounted with the object storage that uses this access key can be accessed only after being restarted.              |
+   +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Viewing events         | You can view event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane and click the **PVCs** or **PVs** tab.                                                                                     |
+   |                        |                                                                                                                                                    | #. Click **View Events** in the **Operation** column of the target PVC or PV to view events generated within one hour (event data is retained for one hour).            |
+   +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Viewing a YAML file    | You can view, copy, and download the YAML files of a PVC or PV.                                                                                    | #. Choose **Storage** in the navigation pane and click the **PVCs** or **PVs** tab.                                                                                     |
+   |                        |                                                                                                                                                    | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view or download the YAML.                                                                |
+   +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

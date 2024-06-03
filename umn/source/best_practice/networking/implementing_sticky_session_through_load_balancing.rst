@@ -8,68 +8,48 @@ Implementing Sticky Session Through Load Balancing
 Concepts
 --------
 
-Session persistence is one of the most common while complex problems in load balancing.
+Sticky sessions ensure continuity and consistency when you access applications. If a load balancer is deployed between a client and backend servers, connections may be forwarded to different servers for processing. Sticky sessions can resolve this issue. After sticky session is enabled, requests from the same client will be continuously distributed to the same backend server through load balancing.
 
-Session persistence is also called sticky sessions. After the sticky session function is enabled, requests from the same client are distributed to the same backend ECS by the load balancer for better continuity.
+For example, in most online systems that require user identity authentication, a user needs to interact with the server for multiple times to complete a session. These interactions require continuity. If sticky session is not configured, the load balancer may allocate certain requests to different backend servers. Since user identity has not been authenticated on other backend servers, interaction exceptions such as a user login failure may occur.
 
-In load balancing and sticky session, connection and session are two key concepts. When only load balancing is concerned, session and connection refer to the same thing.
+Therefore, select a proper sticky session type based on the application environment.
 
-Simply put, if a user needs to log in, it can be regarded as a session; otherwise, a connection.
+.. table:: **Table 1** Sticky session types
 
-The sticky session mechanism fundamentally conflicts with the basic functions of load balancing. A load balancer forwards requests from clients to multiple backend servers to avoid overload on a single server. However, sticky session requires that some requests be forwarded to the same server for processing. Therefore, select a proper sticky session mechanism based on the application environment.
+   +-------------+------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+---------------------------------------------------------------------------------------------------+
+   | OSI Layer   | Listener Protocol and Networking   | Sticky Session Type                                                                                                                                                                                                                                                                                                                                                | Stickiness Duration                | Scenarios Where Sticky Sessions Become Invalid                                                    |
+   +=============+====================================+====================================================================================================================================================================================================================================================================================================================================================================+====================================+===================================================================================================+
+   | Layer 4     | TCP- or UDP-compliant Services     | **Source IP address**: The source IP address of each request is calculated using the consistent hashing algorithm to obtain a unique hashing key, and all backend servers are numbered. The system allocates the client to a particular server based on the generated key. This allows requests from the same IP address are forwarded to the same backend server. | -  Default: 20 minutes             | -  Source IP addresses of the clients have changed.                                               |
+   |             |                                    |                                                                                                                                                                                                                                                                                                                                                                    | -  Maximum: 60 minutes             | -  Requests from the clients exceed the session stickiness duration.                              |
+   |             |                                    |                                                                                                                                                                                                                                                                                                                                                                    | -  Range: 1 minute to 60 minutes   |                                                                                                   |
+   +-------------+------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+---------------------------------------------------------------------------------------------------+
+   | Layer 7     | HTTP- or HTTPS-compliant ingresses | -  **Load balancer cookie**: The load balancer generates a cookie after receiving a request from the client. All subsequent requests with the cookie will be routed to the same backend server.                                                                                                                                                                    | -  Default: 20 minutes             | -  If requests sent by the clients do not contain a cookie, sticky sessions will not take effect. |
+   |             |                                    | -  **Application cookie**: The application deployed on the backend server generates a cookie after receiving the first request from the client. All subsequent requests with the same cookie will be routed to the same backend server.                                                                                                                            | -  Maximum: 1440 minutes           | -  Requests from the clients exceed the session stickiness duration.                              |
+   |             |                                    |                                                                                                                                                                                                                                                                                                                                                                    | -  Range: 1 minute to 1440 minutes |                                                                                                   |
+   +-------------+------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------+---------------------------------------------------------------------------------------------------+
 
-Layer-4 Load Balancing (Service)
---------------------------------
+.. note::
 
-In layer-4 load balancing, source IP address-based sticky session (Hash routing based on the client IP address) can be enabled. To enable source IP address-based sticky session on Services, the following conditions must be met:
+   When creating a load balancer, configure sticky sessions by setting **kubernetes.io/elb.lb-algorithm** to **ROUND_ROBIN** or **kubernetes.io/elb.lb-algorithm** to **LEAST_CONNECTIONS**. If you set **kubernetes.io/elb.lb-algorithm** is to **SOURCE_IP**, source IP address-based sticky sessions are supported. In this case, you do not need to configure sticky sessions again.
 
-#. **Service Affinity** of the Service is set to **Node level** (that is, the value of the **externalTrafficPolicy** field of the Service is **Local**).
+Layer 4 Sticky Sessions for Services
+------------------------------------
 
-   .. note::
+In Layer 4 mode, source IP address-based sticky sessions can be enabled, where hash routing is performed based on the client IP address.
 
-      You do not need to set this parameter for CCE Turbo clusters.
+Enabling Layer 4 Sticky Session in a CCE Standard Cluster
+---------------------------------------------------------
 
-#. Enable the source IP address-based sticky session in the load balancing configuration of the Service.
+In a CCE standard cluster, to enable source IP address-based sticky session for a Service, ensure the following conditions are met:
 
-   .. code-block::
-
-      apiVersion: v1
-      kind: Service
-      metadata:
-        name: svc-example
-        namespace: default
-        annotations:
-          kubernetes.io/elb.class: union
-          kubernetes.io/elb.id: 56dcc1b4-8810-480c-940a-a44f7736f0dc
-          kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
-          kubernetes.io/elb.session-affinity-mode: SOURCE_IP
-      spec:
-        selector:
-          app: nginx
-        externalTrafficPolicy: Local   # You do not need to configure this parameter for CCE Turbo clusters.
-        ports:
-          - name: cce-service-0
-            targetPort: 80
-            nodePort: 32633
-            port: 80
-            protocol: TCP
-        type: LoadBalancer
-
-#. Anti-affinity is enabled for the backend application corresponding to the Service.
-
-Layer-7 Load Balancing (Ingress)
---------------------------------
-
-In layer-7 load balancing, sticky session based on HTTP cookies and app cookies can be enabled. To enable such sticky session, the following conditions must be met:
-
-#. The application (workload) corresponding to the ingress is enabled with workload anti-affinity.
-#. Node affinity is enabled for the Service corresponding to the ingress.
+#. **Service Affinity** of the Service must be set to **Node-level**, where the **externalTrafficPolicy** value of the Service must be **Local**.
+#. Anti-affinity has been enabled on the backend applications of the Service to prevent all pods from being deployed on the same node.
 
 **Procedure**
 
 #. Create an Nginx workload.
 
-   Set the number of pods to 3 and set the podAntiAffinity.
+   Set the number of pods to 3 and configure podAntiAffinity.
 
    .. code-block::
 
@@ -101,7 +81,7 @@ In layer-7 load balancing, sticky session based on HTTP cookies and app cookies 
             imagePullSecrets:
               - name: default-secret
             affinity:
-              podAntiAffinity:                   # Pod anti-affinity.
+              podAntiAffinity:                   # Pod anti-affinity
                 requiredDuringSchedulingIgnoredDuringExecution:
                   - labelSelector:
                       matchExpressions:
@@ -111,9 +91,211 @@ In layer-7 load balancing, sticky session based on HTTP cookies and app cookies 
                             - nginx
                     topologyKey: kubernetes.io/hostname
 
-#. Creating a NodePort Service
+#. Create a LoadBalancer Service, for example, using an existing load balancer. The following shows an example YAML file for configuring source IP address-based sticky sessions:
 
-   Configure the sticky session in a Service. An ingress can connect to multiple Services, and each Service can have different sticky sessions.
+   .. code-block::
+
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: svc-example
+        namespace: default
+        annotations:
+          kubernetes.io/elb.class: union
+          kubernetes.io/elb.id: *****
+          kubernetes.io/elb.lb-algorithm: ROUND_ROBIN      # Weighted round robin allocation policy
+          kubernetes.io/elb.session-affinity-mode: SOURCE_IP    # Enable source IP address-based sticky session.
+      spec:
+        selector:
+          app: nginx
+        externalTrafficPolicy: Local    # Node level Service affinity
+        ports:
+          - name: cce-service-0
+            targetPort: 80
+            nodePort: 32633
+            port: 80
+            protocol: TCP
+        type: LoadBalancer
+
+#. Log in to the ELB console and click the target load balancer. In the backend server group of the listener, check whether sticky session is enabled.
+
+Enabling Layer 4 Sticky Session in a CCE Turbo Cluster
+------------------------------------------------------
+
+In a CCE Turbo cluster, enabling source IP address-based sticky session for a Service relies on the load balancer type.
+
+-  When a dedicated load balancer is used, passthrough networking is allowed between the load balancer and pods, and pods function as the backend server group of the load balancer. Therefore, you do not need to configure Service affinity or application anti-affinity when enabling source IP address-based sticky session for the Service.
+-  When a shared load balancer is used, to enable source IP address-based sticky session for a Service, ensure the following conditions are met:
+
+   #. **Service Affinity** of the Service must be set to **Node-level**, where the **externalTrafficPolicy** value of the Service must be **Local**.
+   #. Anti-affinity has been enabled on the backend applications of the Service to prevent all pods from being deployed on the same node.
+
+**Procedure**
+
+-  **For dedicated load balancers**
+
+   The following shows an example YAML file for configuring source IP address-based sticky sessions for a Service that uses an existing load balancer:
+
+   .. code-block::
+
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: svc-example
+        namespace: default
+        annotations:
+          kubernetes.io/elb.class: performance
+          kubernetes.io/elb.id: *****
+          kubernetes.io/elb.lb-algorithm: ROUND_ROBIN      # Weighted round robin allocation policy
+          kubernetes.io/elb.session-affinity-mode: SOURCE_IP    # Enable source IP address-based sticky session.
+      spec:
+        selector:
+          app: nginx
+        externalTrafficPolicy: Local     # In CCE Turbo clusters, Service affinity does not need to be configured if a dedicated load balancer is used.
+        ports:
+          - name: cce-service-0
+            targetPort: 80
+            nodePort: 32633
+            port: 80
+            protocol: TCP
+        type: LoadBalancer
+
+-  **For shared load balancers**
+
+   #. Create an Nginx workload.
+
+      Set the number of pods to 3 and configure podAntiAffinity.
+
+      .. code-block::
+
+         kind: Deployment
+         apiVersion: apps/v1
+         metadata:
+           name: nginx
+           namespace: default
+         spec:
+           replicas: 3
+           selector:
+             matchLabels:
+               app: nginx
+           template:
+             metadata:
+               labels:
+                 app: nginx
+             spec:
+               containers:
+                 - name: container-0
+                   image: 'nginx:perl'
+                   resources:
+                     limits:
+                       cpu: 250m
+                       memory: 512Mi
+                     requests:
+                       cpu: 250m
+                       memory: 512Mi
+               imagePullSecrets:
+                 - name: default-secret
+               affinity:
+                 podAntiAffinity:                   # Pod anti-affinity
+                   requiredDuringSchedulingIgnoredDuringExecution:
+                     - labelSelector:
+                         matchExpressions:
+                           - key: app
+                             operator: In
+                             values:
+                               - nginx
+                       topologyKey: kubernetes.io/hostname
+
+   #. Create a LoadBalancer Service. The following shows an example YAML file for configuring source IP address-based sticky sessions for a Service that uses an existing load balancer:
+
+      .. code-block::
+
+         apiVersion: v1
+         kind: Service
+         metadata:
+           name: svc-example
+           namespace: default
+           annotations:
+             kubernetes.io/elb.class: union
+             kubernetes.io/elb.id: *****
+             kubernetes.io/elb.lb-algorithm: ROUND_ROBIN      # Weighted round robin allocation policy
+             kubernetes.io/elb.session-affinity-mode: SOURCE_IP    # Enable source IP address-based sticky session.
+         spec:
+           selector:
+             app: nginx
+           externalTrafficPolicy: Local    # Node level Service affinity
+           ports:
+             - name: cce-service-0
+               targetPort: 80
+               nodePort: 32633
+               port: 80
+               protocol: TCP
+           type: LoadBalancer
+
+   #. Log in to the ELB console and click the target load balancer. In the backend server group of the listener, check whether sticky session is enabled.
+
+Layer 7 Sticky Sessions for Ingresses
+-------------------------------------
+
+In Layer 7 mode, sticky sessions can be enabled using HTTP cookies or application cookies.
+
+Enabling Layer 7 Sticky Session in a CCE Standard Cluster
+---------------------------------------------------------
+
+To enable cookie-based sticky session on an ingress, ensure the following conditions are met:
+
+#. **Service Affinity** of the ingress must be set to **Node-level**, where the **externalTrafficPolicy** value of the Service must be **Local**.
+#. Anti-affinity must be enabled for the ingress workload to prevent all pods from being deployed on the same node.
+
+**Procedure**
+
+#. Create an Nginx workload.
+
+   Set the number of pods to 3 and configure podAntiAffinity.
+
+   .. code-block::
+
+      kind: Deployment
+      apiVersion: apps/v1
+      metadata:
+        name: nginx
+        namespace: default
+      spec:
+        replicas: 3
+        selector:
+          matchLabels:
+            app: nginx
+        template:
+          metadata:
+            labels:
+              app: nginx
+          spec:
+            containers:
+              - name: container-0
+                image: 'nginx:perl'
+                resources:
+                  limits:
+                    cpu: 250m
+                    memory: 512Mi
+                  requests:
+                    cpu: 250m
+                    memory: 512Mi
+            imagePullSecrets:
+              - name: default-secret
+            affinity:
+              podAntiAffinity:                   # Pod anti-affinity
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  - labelSelector:
+                      matchExpressions:
+                        - key: app
+                          operator: In
+                          values:
+                            - nginx
+                    topologyKey: kubernetes.io/hostname
+
+#. Create a Service for the workload. This section uses a NodePort Service as an example.
+
+   Configure sticky sessions during the creation of a Service. An ingress can access multiple Services, and each Service can have different sticky sessions.
 
    .. code-block::
 
@@ -123,8 +305,8 @@ In layer-7 load balancing, sticky session based on HTTP cookies and app cookies 
         name: nginx
         namespace: default
         annotations:
-          kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
-          kubernetes.io/elb.session-affinity-mode: HTTP_COOKIE      # HTTP cookie type.
+          kubernetes.io/elb.lb-algorithm: ROUND_ROBIN      # Weighted round robin allocation policy
+          kubernetes.io/elb.session-affinity-mode: HTTP_COOKIE      # HTTP cookie
           kubernetes.io/elb.session-affinity-option: '{"persistence_timeout":"1440"}'   # Session stickiness duration, in minutes. The value ranges from 1 to 1440.
       spec:
         selector:
@@ -134,9 +316,9 @@ In layer-7 load balancing, sticky session based on HTTP cookies and app cookies 
             protocol: TCP
             port: 80
             targetPort: 80
-            nodePort: 32633            # Node port number.
+            nodePort: 32633            # Custom node port
         type: NodePort
-        externalTrafficPolicy: Local   # Node-level forwarding.
+        externalTrafficPolicy: Local   # Node level Service affinity
 
    You can also select **APP_COOKIE**.
 
@@ -148,12 +330,12 @@ In layer-7 load balancing, sticky session based on HTTP cookies and app cookies 
         name: nginx
         namespace: default
         annotations:
-          kubernetes.io/elb.lb-algorithm: ROUND_ROBIN
+          kubernetes.io/elb.lb-algorithm: ROUND_ROBIN      # Weighted round robin allocation policy
           kubernetes.io/elb.session-affinity-mode: APP_COOKIE     # Select APP_COOKIE.
-          kubernetes.io/elb.session-affinity-option: '{"app_cookie_name":"test"}'  # Application cookie name.
+          kubernetes.io/elb.session-affinity-option: '{"app_cookie_name":"test"}'  # Application cookie name
       ...
 
-#. Create an ingress and associate it with a Service. The following example describes how to automatically create a shared load balancer. For details about how to specify other types of load balancers, see `Using kubectl to Create an ELB Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
+#. Create an ingress and associate it with the Service. The following uses an existing load balancer as an example. For details about how to automatically create a load balancer, see `Using kubectl to Create an ELB Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
 
    .. code-block::
 
@@ -165,15 +347,7 @@ In layer-7 load balancing, sticky session based on HTTP cookies and app cookies 
         annotations:
           kubernetes.io/elb.class: union
           kubernetes.io/elb.port: '80'
-          kubernetes.io/elb.autocreate:
-            '{
-                "type":"public",
-                "bandwidth_name":"cce-bandwidth-test",
-                "bandwidth_chargemode":"traffic",
-                "bandwidth_size":1,
-                "bandwidth_sharetype":"PER",
-                "eip_type":"5_bgp"
-              }'
+          kubernetes.io/elb.id: *****
       spec:
         rules:
         - host: 'www.example.com'
@@ -182,7 +356,7 @@ In layer-7 load balancing, sticky session based on HTTP cookies and app cookies 
             - path: '/'
               backend:
                 service:
-                  name: nginx     #Service name
+                  name: nginx     # Service name
                   port:
                     number: 80
               property:
@@ -190,4 +364,210 @@ In layer-7 load balancing, sticky session based on HTTP cookies and app cookies 
               pathType: ImplementationSpecific
         ingressClassName: cce
 
-#. Log in to the ELB console, access the load balancer details page, and check whether the sticky session feature is enabled.
+#. Log in to the ELB console and click the target load balancer. In the backend server group of the listener, check whether sticky session is enabled.
+
+Enabling Layer 7 Sticky Session in a CCE Turbo Cluster
+------------------------------------------------------
+
+Enable cookie-based sticky session on the ingress.
+
+-  When a dedicated load balancer is used, passthrough networking is allowed between the load balancer and pods, and pods function as the backend server group of the load balancer. Therefore, you do not need to configure Service affinity or application anti-affinity when enabling cookie-based sticky session for the ingress.
+-  When a shared load balancer is used, to enable cookie-based sticky session for an ingress, ensure the following conditions are met:
+
+   #. **Service Affinity** of the ingress must be set to **Node-level**, where the **externalTrafficPolicy** value of the Service must be **Local**.
+   #. Anti-affinity must be enabled for the ingress workload to prevent all pods from being deployed on the same node.
+
+**Procedure**
+
+-  **For dedicated load balancers**
+
+   #. Create a Service for the workload. In a CCE Turbo cluster, the ingresses that use a dedicated load balancer must interconnect with ClusterIP Services.
+
+      Configure sticky sessions during the creation of a Service. An ingress can access multiple Services, and each Service can have different sticky sessions.
+
+      .. code-block::
+
+         apiVersion: v1
+         kind: Service
+         metadata:
+           name: nginx
+           namespace: default
+           annotations:
+             kubernetes.io/elb.lb-algorithm: ROUND_ROBIN      # Weighted round robin allocation policy
+             kubernetes.io/elb.session-affinity-mode: HTTP_COOKIE      # HTTP cookie
+             kubernetes.io/elb.session-affinity-option: '{"persistence_timeout":"1440"}'   # Session stickiness duration, in minutes. The value ranges from 1 to 1440.
+         spec:
+           selector:
+             app: nginx
+           ports:
+             - name: cce-service-0
+               protocol: TCP
+               port: 80
+               targetPort: 80
+               nodePort: 0
+           type: ClusterIP
+
+      You can also select **APP_COOKIE**.
+
+      .. code-block::
+
+         apiVersion: v1
+         kind: Service
+         metadata:
+           name: nginx
+           namespace: default
+           annotations:
+             kubernetes.io/elb.lb-algorithm: ROUND_ROBIN      # Weighted round robin allocation policy
+             kubernetes.io/elb.session-affinity-mode: APP_COOKIE     # Select APP_COOKIE.
+             kubernetes.io/elb.session-affinity-option: '{"app_cookie_name":"test"}'  # Application cookie name
+         ...
+
+   #. Create an ingress and associate it with the Service. The following uses an existing load balancer as an example. For details about how to automatically create a load balancer, see `Using kubectl to Create an ELB Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
+
+      .. code-block::
+
+         apiVersion: networking.k8s.io/v1
+         kind: Ingress
+         metadata:
+           name: ingress-test
+           namespace: default
+           annotations:
+             kubernetes.io/elb.class: performance
+             kubernetes.io/elb.port: '80'
+             kubernetes.io/elb.id: *****
+         spec:
+           rules:
+           - host: 'www.example.com'
+             http:
+               paths:
+               - path: '/'
+                 backend:
+                   service:
+                     name: nginx     # Service name
+                     port:
+                       number: 80
+                 property:
+                   ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
+                 pathType: ImplementationSpecific
+           ingressClassName: cce
+
+   #. Log in to the ELB console and click the target load balancer. In the backend server group of the listener, check whether sticky session is enabled.
+
+-  **For shared load balancers**
+
+   #. Create an Nginx workload.
+
+      Set the number of pods to 3 and configure podAntiAffinity.
+
+      .. code-block::
+
+         kind: Deployment
+         apiVersion: apps/v1
+         metadata:
+           name: nginx
+           namespace: default
+         spec:
+           replicas: 3
+           selector:
+             matchLabels:
+               app: nginx
+           template:
+             metadata:
+               labels:
+                 app: nginx
+             spec:
+               containers:
+                 - name: container-0
+                   image: 'nginx:perl'
+                   resources:
+                     limits:
+                       cpu: 250m
+                       memory: 512Mi
+                     requests:
+                       cpu: 250m
+                       memory: 512Mi
+               imagePullSecrets:
+                 - name: default-secret
+               affinity:
+                 podAntiAffinity:                   # Pod anti-affinity
+                   requiredDuringSchedulingIgnoredDuringExecution:
+                     - labelSelector:
+                         matchExpressions:
+                           - key: app
+                             operator: In
+                             values:
+                               - nginx
+                       topologyKey: kubernetes.io/hostname
+
+   #. Create a Service for the workload. In a CCE Turbo cluster, the ingresses that use a shared load balancer must interconnect with NodePort Services.
+
+      Configure sticky sessions during the creation of a Service. An ingress can access multiple Services, and each Service can have different sticky sessions.
+
+      .. code-block::
+
+         apiVersion: v1
+         kind: Service
+         metadata:
+           name: nginx
+           namespace: default
+           annotations:
+             kubernetes.io/elb.lb-algorithm: ROUND_ROBIN      # Weighted round robin allocation policy
+             kubernetes.io/elb.session-affinity-mode: HTTP_COOKIE      # HTTP cookie
+             kubernetes.io/elb.session-affinity-option: '{"persistence_timeout":"1440"}'   # Session stickiness duration, in minutes. The value ranges from 1 to 1440.
+         spec:
+           selector:
+             app: nginx
+           ports:
+             - name: cce-service-0
+               protocol: TCP
+               port: 80
+               targetPort: 80
+               nodePort: 32633            # Custom node port
+           type: NodePort
+           externalTrafficPolicy: Local   # Node level Service affinity
+
+      You can also select **APP_COOKIE**.
+
+      .. code-block::
+
+         apiVersion: v1
+         kind: Service
+         metadata:
+           name: nginx
+           namespace: default
+           annotations:
+             kubernetes.io/elb.lb-algorithm: ROUND_ROBIN      # Weighted round robin allocation policy
+             kubernetes.io/elb.session-affinity-mode: APP_COOKIE     # Select APP_COOKIE.
+             kubernetes.io/elb.session-affinity-option: '{"app_cookie_name":"test"}'  # Application cookie name
+         ...
+
+   #. Create an ingress and associate it with the Service. The following uses an existing load balancer as an example. For details about how to automatically create a load balancer, see `Using kubectl to Create an ELB Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
+
+      .. code-block::
+
+         apiVersion: networking.k8s.io/v1
+         kind: Ingress
+         metadata:
+           name: ingress-test
+           namespace: default
+           annotations:
+             kubernetes.io/elb.class: union
+             kubernetes.io/elb.port: '80'
+             kubernetes.io/elb.id: *****
+         spec:
+           rules:
+           - host: 'www.example.com'
+             http:
+               paths:
+               - path: '/'
+                 backend:
+                   service:
+                     name: nginx     # Service name
+                     port:
+                       number: 80
+                 property:
+                   ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
+                 pathType: ImplementationSpecific
+           ingressClassName: cce
+
+   #. Log in to the ELB console and click the target load balancer. In the backend server group of the listener, check whether sticky session is enabled.

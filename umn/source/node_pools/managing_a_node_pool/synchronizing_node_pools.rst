@@ -14,8 +14,8 @@ After the configuration of a node pool is updated, some configurations cannot be
    -  During configuration synchronization for existing nodes, the nodes will be reset, and the system disks and data disks will be cleared. Back up important data before the synchronization.
    -  Only some node pool parameters can be synchronized by resetting nodes. The constraints are as follows:
 
-      -  When editing the resource tags of the node pool. The modified configuration takes effect only for new nodes. To synchronize the configuration to the existing nodes, manually reset the existing nodes.
-      -  Updates of kubernetes labels and taints are automatically synchronized to existing nodes. You do not need to reset nodes.
+      -  The modification of resource tags of a node pool takes effect only on new nodes. To synchronize the modification onto existing nodes, manually reset the existing nodes.
+      -  Changes to Kubernetes labels/taints in a node pool will be automatically synchronized to existing nodes. You do not need to reset these nodes.
 
 Synchronizing a Single Node
 ---------------------------

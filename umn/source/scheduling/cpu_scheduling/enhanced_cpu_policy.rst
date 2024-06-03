@@ -41,8 +41,9 @@ Constraints
 
 To use this feature, the following conditions must be met:
 
--  The cluster version is v1.23 or later.
+-  The cluster version must be v1.23 or later.
 -  The node OS is HCE OS 2.0.
+-  The CPU management policy cannot take effect on physical cloud server nodes.
 
 Procedure
 ---------
@@ -89,17 +90,20 @@ Take a node with 8 vCPUs and 32 GB memory as an example. Deploy a workload whose
 
    -  *{Container id}* must be a complete container ID. You can run the following command on the node where the container is running to obtain the container ID:
 
-      Docker node pool:
+      Docker node pool: In the command, *{pod name}* indicates the pod name.
 
       .. code-block::
 
          docker ps --no-trunc | grep {pod name} | grep -v cce-pause | awk '{print $1}'
 
-      containerd node pool:
+      containerd node pool: In the command, *{pod name}* indicates the pod name, *{pod id}* indicates the pod ID, and *{container name}* indicates the container name.
 
       .. code-block::
 
-         crictl ps --no-trunc | grep {pod name} | grep -v cce-pause | awk '{print $1}'
+         # Obtain the pod ID.
+         crictl pods | grep {pod name} | awk '{print $1}'
+         # Obtain the complete container ID.
+         crictl ps --no-trunc | grep {pod id} | grep {container name} | awk '{print $1}'
 
    A complete example is as follows:
 
@@ -113,4 +117,4 @@ Take a node with 8 vCPUs and 32 GB memory as an example. Deploy a workload whose
 
       1
 
-.. |image1| image:: /_static/images/en-us_image_0000001750791100.png
+.. |image1| image:: /_static/images/en-us_image_0000001851586476.png

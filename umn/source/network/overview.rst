@@ -31,7 +31,7 @@ All nodes in the cluster are located in a VPC and use the VPC network. The conta
 
    -  Container tunnel network: The container tunnel network is constructed on but independent of the node network through tunnel encapsulation. This network model uses VXLAN to encapsulate Ethernet packets into UDP packets and transmits them in tunnels. Open vSwitch serves as the backend virtual switch.
    -  VPC network: The VPC network uses VPC routing to integrate with the underlying network. This network model applies to performance-intensive scenarios. The maximum number of nodes allowed in a cluster depends on the route quota in a VPC network. Each node is assigned a CIDR block of a fixed size. This networking model is free from tunnel encapsulation overhead and outperforms the container tunnel network model. In addition, as VPC routing includes routes to node IP addresses and the container CIDR block, container pods in a cluster can be directly accessed from outside the cluster.
-   -  Developed by CCE, Cloud Native 2.0 network deeply integrates Elastic Network Interfaces (ENIs) and Sub Network Interfaces (sub-ENIs) of VPC. Container IP addresses are allocated from the VPC CIDR block. ELB passthrough networking is supported to direct access requests to containers. Security groups and elastic IPs (EIPs) are bound to deliver high performance.
+   -  Developed by CCE, Cloud Native 2.0 network deeply integrates Elastic Network Interfaces (ENIs) and Sub Network Interfaces (sub-ENIs) of VPC. Container IP addresses are allocated from the VPC CIDR block. ELB passthrough networking is supported to direct access requests to containers. Security groups and EIPs are bound to deliver high performance.
 
    The performance, networking scale, and application scenarios of a container network vary according to the container network model. For details about the functions and features of different container network models, see :ref:`Overview <cce_10_0281>`.
 
@@ -91,12 +91,12 @@ Workload access scenarios can be categorized as follows:
 -  The workload can access the external network as follows:
 
    -  Accessing an intranet: The workload accesses the intranet address, but the implementation method varies depending on container network models. Ensure that the peer security group allows the access requests from the container CIDR block.
-   -  Accessing a public network: Assign an EIP to the node where the workload runs (when the VPC network or tunnel network model is used), bind an EIP to the pod IP address (when the Cloud Native Network 2.0 model is used), or configure SNAT rules through the NAT gateway. For details, see :ref:`Accessing Public Networks from a Container <cce_10_0400>`.
+   -  Accessing a public network: Assign an EIP to the node where the workload runs (when the VPC network or tunnel network model is used), bind an EIP to the pod IP address (when the Cloud Native Network 2.0 model is used), or configure SNAT rules through the NAT gateway. For details, see :ref:`Accessing the Internet from a Container <cce_10_0400>`.
 
 
-.. figure:: /_static/images/en-us_image_0000001797909889.png
+.. figure:: /_static/images/en-us_image_0000001851586668.png
    :alt: **Figure 3** Network access diagram
 
    **Figure 3** Network access diagram
 
-.. |image1| image:: /_static/images/en-us_image_0000001750950104.png
+.. |image1| image:: /_static/images/en-us_image_0000001897906049.png

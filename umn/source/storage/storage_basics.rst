@@ -55,7 +55,7 @@ Kubernetes provides PersistentVolumes (PVs) and PersistentVolumeClaims (PVCs) to
 You can bind PVCs to PVs in a pod so that the pod can use storage resources. The following figure shows the relationship between PVs and PVCs.
 
 
-.. figure:: /_static/images/en-us_image_0000001750950380.png
+.. figure:: /_static/images/en-us_image_0000001851745528.png
    :alt: **Figure 1** PVC-to-PV binding
 
    **Figure 1** PVC-to-PV binding
@@ -82,11 +82,11 @@ Storage volumes can be mounted to the host system only in the mode supported by 
    ============ ============= =============
    Storage Type ReadWriteOnce ReadWriteMany
    ============ ============= =============
-   EVS          Supported     Not supported
-   SFS          Not supported Supported
-   OBS          Not supported Supported
-   SFS Turbo    Not supported Supported
-   Local PV     Supported     Not supported
+   EVS          Y             x
+   SFS          x             Y
+   OBS          x             Y
+   SFS Turbo    x             Y
+   Local PV     Y             x
    ============ ============= =============
 
 Mounting a Storage Volume
@@ -186,4 +186,4 @@ Documentation
 -  For more information about Kubernetes storage, see `Storage <https://kubernetes.io/docs/concepts/storage/>`__.
 -  For more information about CCE container storage, see :ref:`Overview <cce_10_0307>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000001750950376.png
+.. |image1| image:: /_static/images/en-us_image_0000001897906185.png

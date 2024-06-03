@@ -18,11 +18,11 @@ In Kubernetes, both kube-controller-manager and kubelet can evict pods.
 
    kube-controller-manager supports the following startup parameters:
 
-   -  **pod-eviction-timeout**: an interval when a node is down, after which pods on that node are evicted. The default interval is 5 minutes.
-   -  **node-eviction-rate**: a rate at which nodes are evicted, which is implemented by the token bucket traffic control algorithm. The default value is **0.1**, indicating that 0.1 nodes are evicted per second. Note that this rate is not the rate at which pods are evicted. In general, one node is cleared every 10 seconds.
-   -  **secondary-node-eviction-rate**: a rate at which nodes are evicted in the second grade. If a large number of nodes are down in the cluster, the eviction rate will be reduced to **secondary-node-eviction-rate**. The default value is **0.01**.
-   -  **unhealthy-zone-threshold**: a threshold for an AZ to be considered unhealthy. The default value is **0.55**, meaning that if the percentage of faulty nodes in an AZ exceeds 55%, the AZ will be considered unhealthy.
-   -  **large-cluster-size-threshold**: a threshold for a cluster to be considered large. The parameter defaults to **50**. If there are more nodes than this threshold, the cluster is considered as a large one. If the percentage of faulty nodes in a cluster exceeds 55%, the eviction rate is reduced to 0.01. If a cluster is a small one, the eviction rate is reduced to 0, which means, nodes in the cluster will not be evicted.
+   -  **pod-eviction-timeout**: indicates an interval when a node is down, after which pods on that node are evicted. The default interval is 5 minutes.
+   -  **node-eviction-rate**: indicates the number of nodes to be evicted per second. The default value is **0.1**, indicating that pods are evicted from one node every 10 seconds.
+   -  **secondary-node-eviction-rate**: specifies a rate at which nodes are evicted in the second grade. If a large number of nodes are down in the cluster, the eviction rate will be reduced to **secondary-node-eviction-rate**. The default value is **0.01**.
+   -  **unhealthy-zone-threshold**: specifies a threshold for an AZ to be considered unhealthy. The default value is **0.55**, meaning that if the percentage of faulty nodes in an AZ exceeds 55%, the AZ will be considered unhealthy.
+   -  **large-cluster-size-threshold**: specifies a threshold for a cluster to be considered large. The parameter defaults to **50**. If there are more nodes than this threshold, the cluster is considered as a large one. If there are more than 55% faulty nodes in a cluster, the eviction rate is reduced to 0.01. If the cluster is a small one, the eviction rate is reduced to 0, which means, pods running on the nodes in the cluster will not be evicted.
 
 -  **Eviction implemented by kubelet**
 
@@ -36,15 +36,15 @@ In Kubernetes, both kube-controller-manager and kubelet can evict pods.
 
       You can configure soft eviction thresholds using the following parameters:
 
-      -  **eviction-soft**: a soft eviction threshold. If a node's `eviction signal <https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals>`__ reaches a certain threshold, for example, **memory.available<1.5Gi**, kubelet will not immediately evict some pods on the node but wait for a grace period configured by **eviction-soft-grace-period**. If the threshold is reached after the grace period elapses, kubelet will evict some pods on the node.
-      -  **eviction-soft-grace-period**: an eviction grace period. If a pod reaches the soft eviction threshold, it will be terminated after the configured grace period elapses. This parameter indicates the time difference for a terminating pod to respond to the threshold being met. The default grace period is 90 seconds.
-      -  **eviction-max-pod-grace-period**: the maximum allowed grace period to use when terminating pods in response to a soft eviction threshold being met.
+      -  **eviction-soft**: indicates a soft eviction threshold. If a node's `eviction signal <https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals>`__ reaches a certain threshold, for example, **memory.available<1.5Gi**, kubelet will not immediately evict some pods on the node but wait for a grace period configured by **eviction-soft-grace-period**. If the threshold is reached after the grace period elapses, kubelet will evict some pods on the node.
+      -  **eviction-soft-grace-period**: indicates an eviction grace period. If a pod reaches the soft eviction threshold, it will be terminated after the configured grace period elapses. This parameter indicates the time difference for a terminating pod to respond to the threshold being met. The default grace period is 90 seconds.
+      -  **eviction-max-pod-grace-period**: indicates the maximum allowed grace period to use when terminating pods in response to a soft eviction threshold being met.
 
    -  **Hard eviction thresholds**: Pods are immediately evicted once these thresholds are reached.
 
       You can configure hard eviction thresholds using the following parameters:
 
-      **eviction-hard**: a hard eviction threshold. When the `eviction signal <https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals>`__ of a node reaches a certain threshold, for example, **memory.available<1Gi**, which means, when the available memory of the node is less than 1 GiB, a pod eviction will be triggered immediately.
+      **eviction-hard**: indicates a hard eviction threshold. When the `eviction signal <https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals>`__ of a node reaches a certain threshold, for example, **memory.available<1Gi**, which means, when the available memory of the node is less than 1 GiB, a pod eviction will be triggered immediately.
 
       kubelet supports the following default hard eviction thresholds:
 
@@ -55,8 +55,8 @@ In Kubernetes, both kube-controller-manager and kubelet can evict pods.
 
    kubelet also supports other parameters:
 
-   -  **eviction-pressure-transition-period**: a period for which the kubelet has to wait before transitioning out of an eviction pressure condition. The default value is 5 minutes. If the time exceeds the threshold, the node is set to **DiskPressure** or **MemoryPressure**. Then some pods running on the node will be evicted. This parameter can prevent mistaken eviction decisions when a node is oscillating above and below a soft eviction threshold in some cases.
-   -  **eviction-minimum-reclaim**: the minimum number of resources that must be reclaimed in each eviction. This parameter can prevent kubelet from repeatedly evicting pods because only a small number of resources are reclaimed during pod evictions in some cases.
+   -  **eviction-pressure-transition-period**: indicates a period for which the kubelet has to wait before transitioning out of an eviction pressure condition. The default value is 5 minutes. If the time exceeds the threshold, the node is set to **DiskPressure** or **MemoryPressure**. Then some pods running on the node will be evicted. This parameter can prevent mistaken eviction decisions when a node is oscillating above and below a soft eviction threshold in some cases.
+   -  **eviction-minimum-reclaim**: indicates the minimum number of resources that must be reclaimed in each eviction. This parameter can prevent kubelet from repeatedly evicting pods because only a small number of resources are reclaimed during pod evictions in some cases.
 
 Fault Locating
 --------------

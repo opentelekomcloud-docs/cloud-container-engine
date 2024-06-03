@@ -26,7 +26,7 @@ Procedure
 
    **AS Configuration**
 
-   -  **Customize scale-out rules.**: Click **Add Rule**. In the dialog box displayed, configure parameters. You can add multiple node scaling rules, a maximum of one CPU usage-based rule, and one memory usage-based rule. The total number of rules cannot exceed 10.
+   -  **Customized Rule**: Click **Add Rule**. In the dialog box displayed, configure parameters. You can add multiple node scaling policies, a maximum of one CPU usage-based rule, and one memory usage-based rule. The total number of rules cannot exceed 10.
 
       The following table lists custom rules.
 
@@ -69,6 +69,6 @@ Procedure
 
    **AS Object**
 
-   **Specifications**: Configure whether to enable auto scaling for node flavors in a node pool.
+   **Specification selection**: Configure whether to enable auto scaling for node flavors in a node pool.
 
 #. Click **OK**.

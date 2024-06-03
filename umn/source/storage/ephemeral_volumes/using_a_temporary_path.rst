@@ -14,7 +14,7 @@ Using the Console to Use a Temporary Path
 
 #. In the navigation pane on the left, click **Workloads**. In the right pane, click the **Deployments** tab.
 
-#. Click **Create Workload** in the upper right corner of the page. In the **Container Settings** area, click the **Data Storage** tab and click **Add Volume** > **emptyDir**.
+#. Click **Create Workload** in the upper right corner of the page. In the **Container Settings** area, click the **Data Storage** tab and click **Add Volume** > **EmptyDir**.
 
 #. Mount and use storage volumes, as shown in :ref:`Table 1 <cce_10_0638__table1867417102475>`. For details about other parameters, see :ref:`Workloads <cce_10_0046>`.
 

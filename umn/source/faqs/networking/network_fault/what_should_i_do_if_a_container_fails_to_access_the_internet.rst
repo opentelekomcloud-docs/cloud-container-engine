@@ -12,12 +12,12 @@ Check Item 1: Whether the Node Can Access the Internet
 
 #. Log in to the ECS console.
 
-#. Check whether the ECS corresponding to the node has been bound to an EIP or has a NAT gateway configured.
+#. Check whether an EIP has been bound to the ECS (node) or whether the ECS has a NAT gateway configured.
 
    The following figure shows that an EIP has been bound. If no EIP is displayed, bind an EIP to the ECS.
 
 
-   .. figure:: /_static/images/en-us_image_0000001797870045.png
+   .. figure:: /_static/images/en-us_image_0000001851585148.png
       :alt: **Figure 1** Node with an EIP bound
 
       **Figure 1** Node with an EIP bound
@@ -32,7 +32,7 @@ Check Item 2: Whether a Network ACL Has Been Configured for the Node
 Check Item 3: Whether the DNS Configuration of the Container Is Correct
 -----------------------------------------------------------------------
 
-Run the **cat /etc/resolv.conf command** command in the container to check the DNS configuration. An example is as follows:
+Run **cat /etc/resolv.conf** in the container to check the DNS configuration. An example is as follows:
 
 .. code-block::
 
@@ -40,4 +40,4 @@ Run the **cat /etc/resolv.conf command** command in the container to check the D
    search default.svc.cluster.local svc.cluster.local cluster.local
    options ndots:5
 
-If **nameserver** is set to **10.247.x.x**, DNS is connected to the CoreDNS of the cluster. Ensure that the CoreDNS of the cluster is running properly. If another IP address is displayed, an in-cloud or on-premises DNS server is used. Ensure that the domain name resolution is correct.
+If **nameserver** is set to **10.247.x.x**, DNS is connected to the CoreDNS of the cluster. Ensure that the CoreDNS of the cluster is running properly. If another IP address is displayed, an in-cloud or on-premises DNS server is used. Ensure that the domain name resolution is correctly configured.

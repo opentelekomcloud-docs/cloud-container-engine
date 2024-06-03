@@ -8,7 +8,7 @@ Managing Workload Scaling Policies
 Scenario
 --------
 
-After an HPA policy is created, you can update, clone, edit, and delete the policy, as well as edit the YAML file.
+After an HPA policy is created, you can update and delete the policy, as well as edit the YAML file.
 
 Checking an HPA Policy
 ----------------------
@@ -83,4 +83,4 @@ Deleting an HPA Policy
 #. In the navigation pane, choose **Policies**. Choose **More** > **Delete** in the **Operation** column of the target policy.
 #. In the dialog box displayed, click **Yes**.
 
-.. |image1| image:: /_static/images/en-us_image_0000001797871061.png
+.. |image1| image:: /_static/images/en-us_image_0000001851745612.png

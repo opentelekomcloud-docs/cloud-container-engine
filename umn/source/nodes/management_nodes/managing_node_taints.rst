@@ -7,8 +7,23 @@ Managing Node Taints
 
 Taints enable a node to repel specific pods to prevent these pods from being scheduled to the node.
 
-Taints
-------
+Procedure for Operations Performed on the Console
+-------------------------------------------------
+
+On the CCE console, you can also batch manage nodes' taints.
+
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+
+#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab, select the target node and click **Labels and Taints** in the upper left corner.
+
+#. In the displayed dialog box, click **Add Operation** under **Batch Operation**, and then choose **Add/Update** or **Delete** as well as **Taint**.
+
+   Enter the key and value of the taint to be operated, choose a taint effect, and click **OK**.
+
+#. After the taint is added, check the added taint in node data.
+
+Procedure for Operations Performed Through kubectl Commands
+-----------------------------------------------------------
 
 A taint is a key-value pair associated with an effect. The following effects are available:
 
@@ -47,7 +62,7 @@ To view the taint configuration, run the **describe** and **get** commands as fo
        value: value1
    ...
 
-To remove a taint, run the following command with a hyphen (-) added after **NoSchedule**:
+To remove a taint, add a hyphen (-) at the end of the command for adding a taint, as shown in the following example:
 
 .. code-block::
 
@@ -59,34 +74,10 @@ To remove a taint, run the following command with a hyphen (-) added after **NoS
    Taints:             <none>
    ...
 
-On the CCE console, you can also manage taints of a node in batches.
+Configuring a Node Scheduling Policy in One-Click Mode
+------------------------------------------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console.
-
-#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab, select the target node and click **Labels and Taints** in the upper left corner.
-
-#. In the displayed dialog box, click **Add batch operations** under **Batch Operation**, choose **Add/Update**, and select **Taint**.
-
-   Enter the key and value of the taint to be added, select the taint effect, and click **OK**.
-
-#. After the taint is added, check the added taint in node data.
-
-System Taints
--------------
-
-When some issues occurred on a node, Kubernetes automatically adds a taint to the node. The built-in taints are as follows:
-
--  node.kubernetes.io/not-ready: The node is not ready. The node **Ready** value is **False**.
--  node.kubernetes.io/unreachable: The node controller cannot access the node. The node **Ready** value is **Unknown**.
--  node.kubernetes.io/memory-pressure: The node memory is approaching the upper limit.
--  node.kubernetes.io/disk-pressure: The node disk space is approaching the upper limit.
--  node.kubernetes.io/pid-pressure: The node PIDs are approaching the upper limit.
--  node.kubernetes.io/network-unavailable: The node network is unavailable.
--  node.kubernetes.io/unschedulable: The node cannot be scheduled.
--  node.cloudprovider.kubernetes.io/uninitialized: If an external cloud platform driver is specified when kubelet is started, kubelet adds a taint to the current node and marks it as unavailable. After a controller of **cloud-controller-manager** initializes the node, kubelet will delete the taint.
-
-Node Scheduling Settings
-------------------------
+You can configure a node to be unschedulable on the console. Then, CCE will add a taint with key **node.kubernetes.io/unschedulable** and the **NoSchedule** setting to the node. After a node is set to be unschedulable, new pods cannot be scheduled to this node, but pods running on the node are not affected.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
@@ -107,8 +98,22 @@ Node Scheduling Settings
 
 #. Go back to the node list, locate the target node, and choose **More** > **Enable Scheduling**. Then, the node changes to be schedulable.
 
-Tolerations
------------
+System Taints
+-------------
+
+When some issues occurred on a node, Kubernetes automatically adds a taint to the node. The built-in taints are as follows:
+
+-  node.kubernetes.io/not-ready: The node is not ready. The node **Ready** value is **False**.
+-  node.kubernetes.io/unreachable: The node controller cannot access the node. The node **Ready** value is **Unknown**.
+-  node.kubernetes.io/memory-pressure: The node memory is approaching the upper limit.
+-  node.kubernetes.io/disk-pressure: The node disk space is approaching the upper limit.
+-  node.kubernetes.io/pid-pressure: The node PIDs are approaching the upper limit.
+-  node.kubernetes.io/network-unavailable: The node network is unavailable.
+-  node.kubernetes.io/unschedulable: The node cannot be scheduled.
+-  node.cloudprovider.kubernetes.io/uninitialized: If an external cloud platform driver is specified when kubelet is started, kubelet adds a taint to the current node and marks it as unavailable. After a controller of **cloud-controller-manager** initializes the node, kubelet will delete the taint.
+
+Related Operations (Tolerations)
+--------------------------------
 
 Tolerations are applied to pods, and allow (but do not require) the pods to schedule onto nodes with matching taints.
 

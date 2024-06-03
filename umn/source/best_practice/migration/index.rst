@@ -5,10 +5,10 @@
 Migration
 =========
 
--  :ref:`Migrating On-premises Kubernetes Clusters to CCE <cce_bestpractice_0326>`
+-  :ref:`Migrating Kubernetes Clusters to CCE <cce_bestpractice_0013>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
-   migrating_on-premises_kubernetes_clusters_to_cce/index
+   migrating_kubernetes_clusters_to_cce/index

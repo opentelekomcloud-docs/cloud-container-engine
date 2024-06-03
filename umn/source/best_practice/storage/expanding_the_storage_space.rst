@@ -173,7 +173,7 @@ CCE divides the data disk space for two parts by default. One part is used to st
 
 #. Log in to the target node.
 
-#. Run **lsblk** to view the block device information of the node.
+#. Run the **lsblk** command to check the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 
@@ -235,7 +235,7 @@ CCE divides the data disk space for two parts by default. One part is used to st
 Expanding the Capacity of a Data Disk Used by kubelet
 -----------------------------------------------------
 
-CCE divides the data disk space for two parts by default. One part is used to store the Docker/containerd working directories, container images, and image metadata. The other is reserved for kubelet and emptyDir volumes. To expand the kubelet space, perform the following steps:
+CCE divides the data disk space for container engines and pods. The container engine space stores the Docker/containerd working directories, container images, and image metadata. The other is reserved for kubelet and emptyDir volumes. To expand the kubelet space, perform the following steps:
 
 #. Expand the capacity of the data disk on the EVS console.
 
@@ -284,24 +284,9 @@ Expanding the Capacity of a Data Disk Used by Pod (basesize)
 
    If you need to adjust the container storage space, pay attention to the following configurations:
 
-   |image1|
-
    **Storage Settings**: Click **Expand** next to the data disk to set the following parameters:
 
-   -  **Allocate Disk Space**: storage space used by the container engine to store the Docker/containerd working directory, container image data, and image metadata. Defaults to 90% of the data disk.
-   -  **Allocate Pod Basesize**: CCE allows you to set an upper limit for the disk space occupied by each workload pod (including the space occupied by container images). This setting prevents the pods from taking all the disk space available, which may cause service exceptions. It is recommended that the value be smaller than or equal to 80% of the container engine space.
-
-      .. note::
-
-         -  The capability of customizing pod basesize is related to the node OS and container storage rootfs.
-
-            -  When the rootfs uses Device Mapper, the node supports custom pod basesize. The default storage space of a single container is 10 GiB.
-
-            -  When the rootfs uses OverlayFS, most nodes do not support custom pod basesize. The storage space of a single container is not limited and defaults to the container engine space.
-
-               Only EulerOS 2.9 nodes in clusters of 1.19.16, 1.21.3, 1.23.3, and later versions support custom pod basesize.
-
-         -  In the case of using Docker on EulerOS 2.9 nodes, **basesize** will not take effect if **CAP_SYS_RESOURCE** or **privileged** is configured for a container.
+   **Space Allocation for Pods**: indicates the base size of a pod. It is the maximum size that a workload's pods (including the container images) can grow to in the disk space. Proper settings can prevent pods from taking all the disk space available and avoid service exceptions. It is recommended that the value is less than or equal to 80% of the container engine space. This parameter is related to the node OS and container storage rootfs and is not supported in some scenarios. For details, see :ref:`Data Disk Space Allocation <cce_10_0341>`.
 
 #. After the node is reset, log in to the node and run the following command to access the container and check whether the container storage capacity has been expanded:
 
@@ -309,7 +294,7 @@ Expanding the Capacity of a Data Disk Used by Pod (basesize)
 
    **df -h**
 
-   |image2|
+   |image1|
 
 .. _cce_bestpractice_00198__section1623491210348:
 
@@ -321,12 +306,11 @@ Cloud storage:
 -  OBS and SFS: There is no storage restriction and capacity expansion is not required.
 -  EVS:
 
-   -  You can expand the capacity of automatically created pay-per-use volumes on the console. The procedure is as follows:
+   -  You can expand the capacity of automatically created volumes on the console. The procedure is as follows:
 
-      #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** tab. Click **More** in the **Operation** column of the target PVC and select **Scale-out**.
+      #. Choose **Storage** in the navigation pane and click the **PVCs** tab. Click **More** in the **Operation** column of the target PVC and select **Scale-out**.
       #. Enter the capacity to be added and click **OK**.
 
 -  For SFS Turbo, expand the capacity on the SFS console and then change the capacity in the PVC.
 
-.. |image1| image:: /_static/images/en-us_image_0000001797909113.png
-.. |image2| image:: /_static/images/en-us_image_0000001797870097.png
+.. |image1| image:: /_static/images/en-us_image_0000001851585112.png

@@ -5,7 +5,7 @@
 Using an Existing EVS Disk Through a Static PV
 ==============================================
 
-CCE allows you to create a PV using an existing EVS disk. After the PV is created, you can create a PVC and bind it to the PV. This mode applies to scenarios where the underlying storage is available.
+CCE allows you to create a PV using an existing EVS disk. After the PV is created, you can create a PVC and bind it to the PV. This mode applies if the underlying storage is available.
 
 Prerequisites
 -------------
@@ -14,22 +14,22 @@ Prerequisites
 -  You have created an EVS disk that meets the following requirements:
 
    -  The existing EVS disk cannot be a system disk, DSS disk, or shared disk.
-   -  The device type of the EVS disk must be **SCSI** (the default device type is **VBD** when you purchase an EVS disk).
+   -  The EVS disk must be of the **SCSI** type (the default disk type is **VBD** when you create an EVS disk).
    -  The EVS disk must be available and not used by other resources.
    -  The AZ of the EVS disk must be the same as that of the cluster node. Otherwise, the EVS disk cannot be mounted and the pod cannot start.
    -  If the EVS disk is encrypted, the key must be available.
    -  EVS disks that have been partitioned are not supported.
 
--  If you want to create a cluster using commands, use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  Before creating a cluster using commands, ensure kubectl is used to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 Constraints
 -----------
 
 -  EVS disks cannot be attached across AZs and cannot be used by multiple workloads, multiple pods of the same workload, or multiple tasks. Data sharing of a shared disk is not supported between nodes in a CCE cluster. If an EVS disk is attacked to multiple nodes, I/O conflicts and data cache conflicts may occur. Therefore, create only one pod when creating a Deployment that uses EVS disks.
 
--  For clusters earlier than v1.19.10, if an HPA policy is used to scale out a workload with EVS disks attached, the existing pods cannot be read or written when a new pod is scheduled to another node.
+-  For clusters earlier than v1.19.10, if an HPA policy is used to scale out a workload with EVS volumes mounted, the existing pods cannot be read or written when a new pod is scheduled to another node.
 
-   For clusters of v1.19.10 and later, if an HPA policy is used to scale out a workload with EVS disks attached, a new pod cannot be started because EVS disks cannot be attached.
+   For clusters of v1.19.10 and later, if an HPA policy is used to scale out a workload with EVS volumes mounted, a new pod cannot be started because EVS disks cannot be attached.
 
 Using an Existing EVS Disk on the Console
 -----------------------------------------
@@ -37,7 +37,7 @@ Using an Existing EVS Disk on the Console
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. Statically create a PVC and PV.
 
-   a. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** tab. Click **Create PVC** in the upper right corner. In the dialog box displayed, configure the PVC parameters.
+   a. Choose **Storage** in the navigation pane and click the **PVCs** tab. Click **Create PVC** in the upper right corner. In the dialog box displayed, configure the PVC parameters.
 
       +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Parameter                         | Description                                                                                                                                                                                                 |
@@ -51,7 +51,7 @@ Using an Existing EVS Disk on the Console
       |                                   |                                                                                                                                                                                                             |
       |                                   | In this example, select **Create new** to create a PV and PVC at the same time on the console.                                                                                                              |
       +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | PV\ :sup:`a`                      | Select an existing PV in the cluster. Create a PV in advance. For details, see "Creating a storage volume" in :ref:`Related Operations <cce_10_0614__section16505832153318>`.                               |
+      | PV\ :sup:`a`                      | Select an existing PV volume in the cluster. Create a PV in advance. For details, see "Creating a storage volume" in :ref:`Related Operations <cce_10_0614__section16505832153318>`.                        |
       |                                   |                                                                                                                                                                                                             |
       |                                   | You do not need to specify this parameter in this example.                                                                                                                                                  |
       +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -72,7 +72,7 @@ Using an Existing EVS Disk on the Console
 
    b. Click **Create** to create a PVC and a PV.
 
-      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PersistentVolumeClaims (PVCs)** and **PersistentVolumes (PVs)** tab pages, respectively.
+      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PVCs** and **PVs** tab pages, respectively.
 
 #. Create an application.
 
@@ -121,7 +121,7 @@ Using an Existing EVS Disk on the Console
 (kubectl) Using an Existing EVS Disk
 ------------------------------------
 
-#. Use kubectl to connect to the cluster.
+#. Use kubectl to access the cluster.
 #. Create a PV. If a PV has been created in your cluster, skip this step.
 
    a. .. _cce_10_0614__li162841212145314:
@@ -144,7 +144,7 @@ Using an Existing EVS Disk on the Console
            accessModes:
              - ReadWriteOnce     # Access mode. The value must be ReadWriteOnce for EVS disks.
            capacity:
-             storage: 10Gi       # EVS disk capacity, in the unit of Gi. The value ranges from 1 to 32768.
+             storage: 10Gi       # EVS disk capacity, in the unit of GiB. The value ranges from 1 to 32768.
            csi:
              driver: disk.csi.everest.io     # Dependent storage driver for the mounting.
              fsType: ext4    # Must be the same as that of the original file system of the disk.
@@ -179,9 +179,9 @@ Using an Existing EVS Disk on the Console
          +-----------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | fsType                                        | Yes                   | Configure the file system type. The value defaults to **ext4**.                                                                                                                                                                                                                                                           |
          |                                               |                       |                                                                                                                                                                                                                                                                                                                           |
-         |                                               |                       | The value can be **ext4** or **xfs**. The restrictions on using xfs are as follows:                                                                                                                                                                                                                                       |
+         |                                               |                       | The value can be **ext4** or **xfs**. The restrictions on using **xfs** are as follows:                                                                                                                                                                                                                                   |
          |                                               |                       |                                                                                                                                                                                                                                                                                                                           |
-         |                                               |                       | -  The nodes should run CentOS 7 or Ubuntu 22.04, and the Everest version in the cluster should be 2.3.2 or later.                                                                                                                                                                                                        |
+         |                                               |                       | -  The nodes must run CentOS 7 or Ubuntu 22.04, and the Everest version in the cluster must be 2.3.2 or later.                                                                                                                                                                                                            |
          |                                               |                       | -  Only common containers are supported.                                                                                                                                                                                                                                                                                  |
          +-----------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | volumeHandle                                  | Yes                   | Volume ID of the EVS disk.                                                                                                                                                                                                                                                                                                |
@@ -209,7 +209,7 @@ Using an Existing EVS Disk on the Console
          |                                               |                       |                                                                                                                                                                                                                                                                                                                           |
          |                                               |                       | **Retain**: When a PVC is deleted, the PV and underlying storage resources are not deleted. Instead, you must manually delete these resources. After that, the PV is in the **Released** status and cannot be bound to the PVC again.                                                                                     |
          +-----------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | storageClassName                              | Yes                   | The storage class name for EVS disks is **csi-disk**.                                                                                                                                                                                                                                                                     |
+         | storageClassName                              | Yes                   | The storage class for EVS disks is **csi-disk**.                                                                                                                                                                                                                                                                          |
          +-----------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    b. Run the following command to create a PV:
@@ -242,7 +242,7 @@ Using an Existing EVS Disk on the Console
            resources:
              requests:
                storage: 10Gi             # EVS disk capacity, ranging from 1 to 32768. The value must be the same as the storage size of the existing PV.
-           storageClassName: csi-disk    # Storage class type for EVS disks.
+           storageClassName: csi-disk    # The storage class is EVS.
            volumeName: pv-evs            # PV name.
 
       .. table:: **Table 3** Key parameters
@@ -266,7 +266,7 @@ Using an Existing EVS Disk on the Console
          +------------------------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------+
          | storageClassName                         | Yes                   | Storage class name, which must be the same as the storage class of the PV in :ref:`1 <cce_10_0614__li162841212145314>`.              |
          |                                          |                       |                                                                                                                                      |
-         |                                          |                       | The storage class name of the EVS volumes is **csi-disk**.                                                                           |
+         |                                          |                       | The storage class for EVS disks is **csi-disk**.                                                                                     |
          +------------------------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------+
 
    b. Run the following command to create a PVC:
@@ -440,22 +440,22 @@ You can also perform the operations listed in :ref:`Table 4 <cce_10_0614__table1
    +---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Operation                             | Description                                                                                                                                        | Procedure                                                                                                                                                                                                                          |
    +=======================================+====================================================================================================================================================+====================================================================================================================================================================================================================================+
-   | Creating a storage volume (PV)        | Create a PV on the CCE console.                                                                                                                    | #. Choose **Storage** in the navigation pane and click the **PersistentVolumes (PVs)** tab. Click **Create Volume** in the upper right corner. In the dialog box displayed, configure the parameters.                              |
+   | Creating a storage volume (PV)        | Create a PV on the CCE console.                                                                                                                    | #. Choose **Storage** in the navigation pane and click the **PVs** tab. Click **Create PersistentVolume** in the upper right corner. In the dialog box displayed, configure parameters.                                            |
    |                                       |                                                                                                                                                    |                                                                                                                                                                                                                                    |
    |                                       |                                                                                                                                                    |    -  **Volume Type**: Select **EVS**.                                                                                                                                                                                             |
    |                                       |                                                                                                                                                    |    -  **EVS**: Click **Select EVS**. On the displayed page, select the EVS disk that meets your requirements and click **OK**.                                                                                                     |
    |                                       |                                                                                                                                                    |    -  **PV Name**: Enter the PV name, which must be unique in the same cluster.                                                                                                                                                    |
    |                                       |                                                                                                                                                    |    -  **Access Mode**: EVS disks support only **ReadWriteOnce**, indicating that a storage volume can be mounted to one node in read/write mode. For details, see :ref:`Volume Access Modes <cce_10_0378__section43881411172418>`. |
-   |                                       |                                                                                                                                                    |    -  **Reclaim Policy**: **Delete** or **Retain**. For details, see :ref:`PV Reclaim Policy <cce_10_0378__section19999142414413>`.                                                                                                |
+   |                                       |                                                                                                                                                    |    -  **Reclaim Policy**: **Delete** or **Retain** is supported. For details, see :ref:`PV Reclaim Policy <cce_10_0378__section19999142414413>`.                                                                                   |
    |                                       |                                                                                                                                                    |                                                                                                                                                                                                                                    |
    |                                       |                                                                                                                                                    | #. Click **Create**.                                                                                                                                                                                                               |
    +---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Expanding the capacity of an EVS disk | Quickly expand the capacity of a mounted EVS disk on the CCE console.                                                                              | #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** tab. Click **More** in the **Operation** column of the target PVC and select **Scale-out**.                                           |
+   | Expanding the capacity of an EVS disk | Quickly expand the capacity of a mounted EVS disk on the CCE console.                                                                              | #. Choose **Storage** in the navigation pane and click the **PVCs** tab. Click **More** in the **Operation** column of the target PVC and select **Scale-out**.                                                                    |
    |                                       |                                                                                                                                                    | #. Enter the capacity to be added and click **OK**.                                                                                                                                                                                |
    +---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Viewing events                        | You can view event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** or **PersistentVolumes (PVs)** tab.                                                                                                   |
+   | Viewing events                        | You can view event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane and click the **PVCs** or **PVs** tab.                                                                                                                                                |
    |                                       |                                                                                                                                                    | #. Click **View Events** in the **Operation** column of the target PVC or PV to view events generated within one hour (event data is retained for one hour).                                                                       |
    +---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Viewing a YAML file                   | You can view, copy, and download the YAML files of a PVC or PV.                                                                                    | #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** or **PersistentVolumes (PVs)** tab.                                                                                                   |
+   | Viewing a YAML file                   | You can view, copy, and download the YAML files of a PVC or PV.                                                                                    | #. Choose **Storage** in the navigation pane and click the **PVCs** or **PVs** tab.                                                                                                                                                |
    |                                       |                                                                                                                                                    | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view or download the YAML.                                                                                                                           |
    +---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

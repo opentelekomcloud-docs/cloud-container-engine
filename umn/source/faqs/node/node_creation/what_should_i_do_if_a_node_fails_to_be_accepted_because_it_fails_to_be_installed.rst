@@ -31,4 +31,4 @@ Run the following command to manually create a logical volume:
 
 After the node is reset on the GUI, the node becomes normal.
 
-.. |image1| image:: /_static/images/en-us_image_0000001797869869.jpg
+.. |image1| image:: /_static/images/en-us_image_0000001897904309.jpg

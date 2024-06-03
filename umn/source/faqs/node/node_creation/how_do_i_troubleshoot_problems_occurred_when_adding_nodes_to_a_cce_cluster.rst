@@ -44,7 +44,7 @@ In 192.168.66.0/24, all 251 private IP addresses have been used.
 
 #. Expand the VPC.
 
-   Log in to the console and choose **Virtual Private Cloud** from the service list. Click **Edit CIDR Block** in the **Operation** column of the target VPC.
+   Log in to the console and choose **Virtual Private Cloud** from the service list. On the page displayed, locate the row containing the target VPC and click **Edit CIDR Block** in the **Operation** column.
 
 #. Change the subnet mask to **16** and click **OK**.
 
@@ -65,7 +65,7 @@ Check Item 2: EIP Quota
 
 **Symptom**
 
-When a node is added, **EIP** is set to **Automatically assign**. The node cannot be created, and a message indicating that EIPs are insufficient is displayed.
+When a node is added, **EIP** is set to **Auto create**. The node cannot be created, and a message indicating that EIPs are insufficient is displayed.
 
 **Solution**
 
@@ -74,9 +74,9 @@ Two methods are available to solve the problem.
 -  **Method 1:** Unbind the VMs bound with EIPs and add a node again.
 
    #. Log in to the management console.
-   #. Choose **Computing** > **Elastic Cloud Server**.
+   #. Choose **Service List** > **Compute** > **Elastic Cloud Server**.
    #. In the ECS list, locate the target ECS and click its name.
-   #. On the ECS details page, click the **EIPs** tab. In the EIP list, click **Unbind** at the row of the target ECS and click **Yes**.
+   #. On the page displayed, click the **EIPs** tab. In the EIP list, locate the row containing the target EIP, click **Unbind**, and click **Yes**.
    #. Return to the page for adding a node on the CCE console, select **Use existing** for **EIP**, and add the node again.
 
 -  **Method 2:** Increase the EIP quota.
@@ -90,6 +90,6 @@ A node cannot be added to a CCE cluster.
 
 **Solution**
 
-You can click the cluster name to view the cluster details. In the **Networking Configuration** area, click the icon next to **Default security group of the node** to check whether the default security group is deleted and whether the security group rules comply with :ref:`Configuring Cluster Security Group Rules <cce_faq_00265>`.
+You can click the cluster name to view the cluster details. In the **Networking Configuration** area, click the icon next to **Default security group of the node** to check whether the default security group is deleted and whether the security group rules comply with :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`.
 
 If your account has multiple clusters and you need to manage network security policies of nodes in a unified manner, you can specify custom security groups.

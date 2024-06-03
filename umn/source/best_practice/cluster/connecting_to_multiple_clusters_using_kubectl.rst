@@ -16,7 +16,7 @@ Solution
 This section describes how to configure access to multiple clusters by modifying **kubeconfig.json**. The file describes multiple clusters, users, and contexts. To access different clusters, run the **kubectl config use-context** command to switch between contexts.
 
 
-.. figure:: /_static/images/en-us_image_0000001797908933.png
+.. figure:: /_static/images/en-us_image_0000001898024121.png
    :alt: **Figure 1** Using kubectl to connect to multiple clusters
 
    **Figure 1** Using kubectl to connect to multiple clusters
@@ -284,7 +284,7 @@ This example configures only the public network access to the clusters. If you w
 Verification
 ------------
 
-Run the following commands to copy the file to the kubectl configuration path:
+Run the following command to copy the conbined file to the kubectl configuration path:
 
 **mkdir -p $HOME/.kube**
 
@@ -310,4 +310,4 @@ Run the kubectl commands to check whether the two clusters can be connected.
 
    To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
-.. |image1| image:: /_static/images/en-us_image_0000001844691101.png
+.. |image1| image:: /_static/images/en-us_image_0000001851585204.png

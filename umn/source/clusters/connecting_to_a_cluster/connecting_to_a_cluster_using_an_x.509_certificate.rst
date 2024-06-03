@@ -8,7 +8,7 @@ Connecting to a Cluster Using an X.509 Certificate
 Scenario
 --------
 
-This section describes how to obtain the cluster certificate from the console and use it to access Kubernetes clusters.
+This section describes how to obtain the cluster certificate from the console and use it access Kubernetes clusters.
 
 Procedure
 ---------
@@ -20,7 +20,7 @@ Procedure
 #. In the **Obtain Certificate** dialog box displayed, select the certificate expiration time and download the X.509 certificate of the cluster as prompted.
 
 
-   .. figure:: /_static/images/en-us_image_0000001864147989.png
+   .. figure:: /_static/images/en-us_image_0000001898025121.png
       :alt: **Figure 1** Downloading a certificate
 
       **Figure 1** Downloading a certificate
