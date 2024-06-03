@@ -20,8 +20,9 @@ Notes and Constraints
 ---------------------
 
 -  The cluster version must be 1.15 or later.
+-  If **IPv6** is enabled for a cluster, only nodes in a subnet with IPv6 enabled can be accepted and managed. If **IPv6** is not enabled for the cluster, only nodes in a subnet without IPv6 enabled can be accepted.
 -  If a password or key has been set when the original VM node was created, reset the password or key during management. The original password or key will become invalid.
--  Nodes in a CCE Turbo cluster must support sub-ENIs or be bound to at least 16 ENIs. For details about the node specifications, see the nodes that can be selected on the console when you create a node.
+-  Nodes in a CCE Turbo cluster must support sub-ENIs or be bound to at least 16 ENIs. For details about the node flavors, see the node flavors that can be selected on the console when you create a node.
 -  Data disks that have been partitioned will be ignored during node management. Ensure that there is at least one unpartitioned data disk meeting the specifications is attached to the node.
 
 Prerequisites

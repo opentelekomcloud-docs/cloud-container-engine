@@ -24,7 +24,7 @@ During the node upgrade, the key disks store the upgrade component package, and 
 
 -  **Scenario 2: Worker node disks fail to meet the upgrade requirements.**
 
-   Run the following command to check the usage of each key disk. After ensuring that the available space meets the requirements and check again.
+   Check the usage of each key disk. After ensuring that the available space meets the requirements, check again.
 
    -  Disk partition of Docker: at least 1 GB of available space
 

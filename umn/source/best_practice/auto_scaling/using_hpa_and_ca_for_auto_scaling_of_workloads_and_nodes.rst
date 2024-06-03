@@ -23,7 +23,7 @@ As shown in :ref:`Figure 1 <cce_bestpractice_00282__fig6540132372015>`, HPA perf
 
 .. _cce_bestpractice_00282__fig6540132372015:
 
-.. figure:: /_static/images/en-us_image_0000001750949248.png
+.. figure:: /_static/images/en-us_image_0000001851744000.png
    :alt: **Figure 1** HPA and CA working flows
 
    **Figure 1** HPA and CA working flows
@@ -379,5 +379,5 @@ Summary
 
 Using HPA and CA can easily implement auto scaling in most scenarios. In addition, the scaling process of nodes and pods can be easily observed.
 
-.. |image1| image:: /_static/images/en-us_image_0000001750949232.png
-.. |image2| image:: /_static/images/en-us_image_0000001823625674.png
+.. |image1| image:: /_static/images/en-us_image_0000001898024157.png
+.. |image2| image:: /_static/images/en-us_image_0000001851585272.png

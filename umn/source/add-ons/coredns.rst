@@ -232,7 +232,7 @@ This add-on has been installed by default. If it is uninstalled due to some reas
       |                                   | -  **Equivalent mode**: Deployment pods of the add-on are evenly scheduled to the nodes in the cluster in each AZ. If a new AZ is added, you are advised to increase add-on pods for cross-AZ HA deployment. With the Equivalent multi-AZ deployment, the difference between the number of add-on pods in different AZs will be less than or equal to 1. If resources in one of the AZs are insufficient, pods cannot be scheduled to that AZ. |
       |                                   | -  **Required**: Deployment pods of the add-on will be forcibly scheduled to nodes in different AZs. If there are fewer AZs than pods, the extra pods will fail to run.                                                                                                                                                                                                                                                                        |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Node Affinity                     | -  **Incompatibility**: Node affinity is disabled for the add-on.                                                                                                                                                                                                                                                                                                                                                                              |
+      | Node Affinity                     | -  **Not configured**: Node affinity is disabled for the add-on.                                                                                                                                                                                                                                                                                                                                                                               |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
       |                                   | -  **Node Affinity**: Specify the nodes where the add-on is deployed. If you do not specify the nodes, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                                                                                   |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -254,7 +254,7 @@ This add-on has been installed by default. If it is uninstalled due to some reas
 Components
 ----------
 
-.. table:: **Table 6** CoreDNS components
+.. table:: **Table 6** Add-on components
 
    ========= ======================= =============
    Component Description             Resource Type
@@ -292,7 +292,7 @@ DNS policies can be configured for each pod. Kubernetes supports DNS policies **
    -  Names that do not match the suffix (for example, **widget.com**): The request is forwarded to the upstream DNS.
 
 
-.. figure:: /_static/images/en-us_image_0000001750791424.png
+.. figure:: /_static/images/en-us_image_0000001897906037.png
    :alt: **Figure 1** Routing
 
    **Figure 1** Routing

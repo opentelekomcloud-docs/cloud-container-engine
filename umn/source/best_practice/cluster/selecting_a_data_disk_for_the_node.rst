@@ -144,7 +144,7 @@ Perform the following operations to clear unused images:
 
 #. Log in to the target node.
 
-#. Run **lsblk** to view the block device information of the node.
+#. Run the **lsblk** command to check the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 

@@ -9,4 +9,4 @@ Management scale indicates the maximum number of nodes that can be managed by a 
 
 The number of master nodes varies according to the cluster specification, but is not affected by the management scale.
 
-After the multi-master node mode is enabled, three master nodes will be created. If a master node is faulty, the cluster can still be available without affecting service functions.
+After the multi-master node mode is enabled, three master nodes will be created. If one of them is faulty, the cluster can still run properly. The services will not be affected.

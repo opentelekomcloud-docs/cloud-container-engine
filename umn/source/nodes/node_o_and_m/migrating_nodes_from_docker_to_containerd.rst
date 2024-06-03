@@ -8,7 +8,7 @@ Migrating Nodes from Docker to containerd
 Context
 -------
 
-Kubernetes has removed dockershim from v1.24 and does not support Docker by default. CCE will continue to support Docker in v1.25 but just till v1.27. The following steps show you how to migrate nodes from Docker to containerd.
+Kubernetes has removed dockershim from v1.24 and does not support Docker by default. CCE is going to stop the support for Docker. Change the node container engine from Docker to containerd.
 
 Prerequisites
 -------------
@@ -48,8 +48,6 @@ You can :ref:`copy a node pool <cce_10_0655>`, set the container engine of the n
 
 #. On the **Compute Settings** area, set **Container Engine** to **containerd** and modify other parameters as required.
 
-   |image1|
-
 #. Scale the number of created containerd node pools to the number of original Docker node pools and delete nodes from the Docker node pools one by one.
 
    Rolling migration is preferred. That is, add some containerd nodes and then delete some Docker nodes until the number of nodes in the new containerd node pool is the same as that in the original Docker node pool.
@@ -59,5 +57,3 @@ You can :ref:`copy a node pool <cce_10_0655>`, set the container engine of the n
       If you have set node affinity for the workloads deployed on the original Docker nodes or node pool, set affinity policies for the workloads to run on the new containerd nodes or node pool.
 
 #. After the migration, delete the original Docker node pool.
-
-.. |image1| image:: /_static/images/en-us_image_0000001797910133.png

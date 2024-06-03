@@ -13,7 +13,7 @@ Health check regularly checks the health status of containers during container r
 Kubernetes provides the following health check probes:
 
 -  **Liveness probe** (livenessProbe): checks whether a container is still alive. It is similar to the **ps** command that checks whether a process exists. If the liveness check of a container fails, the cluster restarts the container. If the liveness check is successful, no operation is executed.
--  **Readiness probe** (readinessProbe): checks whether a container is ready to process user requests. Upon that the container is detected unready, service traffic will not be directed to the container. It may take a long time for some applications to start up before they can provide services. This is because that they need to load disk data or rely on startup of an external module. In this case, the application process is running, but the application cannot provide services. To address this issue, this health check probe is used. If the container readiness check fails, the cluster masks all requests sent to the container. If the container readiness check is successful, the container can be accessed.
+-  **Readiness probe** (readinessProbe): checks whether a container is ready to process user requests. Upon that the container is detected unready, service traffic will not be directed to the container. It may take a long time for some applications to start up before they can provide services. This is because that they need to load disk data or rely on startup of an external module. In this case, although the application process has started, the application cannot provide services. To address this issue, this health check probe is used. If the container readiness check fails, the cluster masks all requests sent to the container. If the container readiness check is successful, the container can be accessed.
 -  **Startup probe** (startupProbe): checks when a containerized application has started. If such a probe is configured, it disables liveness and readiness checks until it succeeds, ensuring that those probes do not interfere with the application startup. This can be used to adopt liveness checks on slow starting containers, avoiding them getting terminated by the kubelet before they are started.
 
 Check Method
@@ -48,7 +48,7 @@ Check Method
       .. important::
 
          -  Put the program to be executed in the container image so that the program can be executed.
-         -  If the command to be executed is a shell script, do not directly specify the script as the command, but add a script parser. For example, if the script is **/data/scripts/health_check.sh**, you must specify **sh/data/scripts/health_check.sh** for command execution. The reason is that the cluster is not in the terminal environment when executing programs in a container.
+         -  If the command to be executed is a shell script, do not directly specify the script as the command, but add a script parser. For example, if the script is **/data/scripts/health_check.sh**, you must specify **sh/data/scripts/health_check.sh** for command execution.
 
 -  **gRPC Check**
 
@@ -90,7 +90,7 @@ Common Parameters
    |                                      |                                                                                                                                                                                                                                                                            |
    |                                      | Giving up in case of liveness probe means to restart the container. In case of readiness probe the pod will be marked Unready.                                                                                                                                             |
    |                                      |                                                                                                                                                                                                                                                                            |
-   |                                      | The default value is **3**. The minimum value is **1**.                                                                                                                                                                                                                    |
+   |                                      | The default value is **3**, and the minimum value is **1**.                                                                                                                                                                                                                |
    +--------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 YAML Example
@@ -107,28 +107,28 @@ YAML Example
    spec:
      containers:
      - name: liveness
-       image: nginx:alpine
+       image: <image_address>
        args:
        - /server
-       livenessProbe:
-         httpGet:
-           path: /healthz
-           port: 80
-           httpHeaders:
+       livenessProbe:                 # Liveness probe
+         httpGet:                     # Checking an HTTP request is used as an example.
+           path: /healthz             # The HTTP check path is /healthz.
+           port: 80                   # The check port number is 80.
+           httpHeaders:               # (Optional) The request header name is Custom-Header and the value is Awesome.
            - name: Custom-Header
              value: Awesome
          initialDelaySeconds: 3
          periodSeconds: 3
-       readinessProbe:
-         exec:
-           command:
+       readinessProbe:                # Readiness probe
+         exec:                        # Checking an execution command is used as an example.
+           command:                   # Command to be executed
              - cat
              - /tmp/healthy
          initialDelaySeconds: 5
          periodSeconds: 5
-       startupProbe:
-         httpGet:
-           path: /healthz
-           port: 80
+       startupProbe:                  # Startup probe
+         httpGet:                     # Checking an HTTP request is used as an example.
+           path: /healthz             # The HTTP check path is /healthz.
+           port: 80                   # The check port number is 80.
          failureThreshold: 30
          periodSeconds: 10

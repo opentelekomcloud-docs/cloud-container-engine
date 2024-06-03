@@ -10,12 +10,13 @@ The ready status of the pod is associated with the ELB health check. After the h
 Constraints
 -----------
 
--  This feature takes effect only in the following versions:
+-  This feature is available in the following versions:
 
    -  v1.19: v1.19.16-r5 or later
    -  v1.21: v1.21.8-r0 or later
    -  v1.23: v1.23.6-r0 or later
    -  v1.25: v1.25.2-r0 or later
+   -  Versions later than v1.25
 
 -  This function applies only to passthrough scenarios, that is, scenarios where dedicated load balancers are used in CCE Turbo clusters.
 -  To use this function, configure the readinessGates field in the pod and specify the label **target-health.elb.k8s.cce/**\ *{serviceName}*, where *{serviceName}* indicates the service name.

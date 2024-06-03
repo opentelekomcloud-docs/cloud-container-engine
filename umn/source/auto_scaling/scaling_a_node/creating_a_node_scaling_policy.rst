@@ -20,15 +20,16 @@ Before using the node scaling function, you must install the :ref:`CCE Cluster A
 Constraints
 -----------
 
--  Auto scaling policies apply to node pools. When the number of nodes in a node pool is 0 and the scaling policy is based on CPU or memory usage, node scaling is not triggered.
+-  If there are no nodes in a node pool, Autoscaler cannot obtain the CPU or memory data of the node, and the node scaling rule triggered using these metrics will not take effect.
+-  If the driver of a GPU node is not installed, Autoscaler determines that the node is not fully available and the node scaling rules triggered using the CPU or memory metrics will not take effect.
 -  Node scale-in will cause PVC/PV data loss for the :ref:`local PVs <cce_10_0391>` associated with the node. These PVCs and PVs cannot be restored or used again. In a node scale-in, the pod that uses the local PV is evicted from the node. A new pod is created and stays in the pending state. This is because the PVC used by the pod has a node label, due to which the pod cannot be scheduled.
 -  When Autoscaler is used, some taints or annotations may affect auto scaling. Therefore, do not use the following taints or annotations in clusters:
 
    -  **ignore-taint.cluster-autoscaler.kubernetes.io**: The taint works on nodes. Kubernetes-native Autoscaler supports protection against abnormal scale outs and periodically evaluates the proportion of available nodes in the cluster. When the proportion of non-ready nodes exceeds 45%, protection will be triggered. In this case, all nodes with the **ignore-taint.cluster-autoscaler.kubernetes.io** taint in the cluster are filtered out from the Autoscaler template and recorded as non-ready nodes, which affects cluster scaling.
    -  **cluster-autoscaler.kubernetes.io/enable-ds-eviction**: The annotation works on pods, which determines whether DaemonSet pods can be evicted by Autoscaler. For details, see `Well-Known Labels, Annotations and Taints <https://kubernetes.io/docs/reference/labels-annotations-taints/#enable-ds-eviction>`__.
 
-Procedure
----------
+Configuring Node Pool Scaling Policies
+--------------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
@@ -41,9 +42,9 @@ Procedure
 
    **AS Configuration**
 
-   -  .. _cce_10_0209__li1193994013156:
+   -  .. _cce_10_0209__li662211905512:
 
-      **Customize scale-out rules.**: Click **Add Rule**. In the dialog box displayed, configure parameters. You can add multiple node scaling rules, a maximum of one CPU usage-based rule, and one memory usage-based rule. The total number of rules cannot exceed 10.
+      **Customized Rule**: Click **Add Rule**. In the dialog box displayed, configure parameters. You can add multiple node scaling policies, a maximum of one CPU usage-based rule, and one memory usage-based rule. The total number of rules cannot exceed 10.
 
       The following table lists custom rules.
 
@@ -86,13 +87,13 @@ Procedure
 
    **AS Object**
 
-   **Specifications**: Configure whether to enable auto scaling for node flavors in a node pool.
+   **Specification selection**: Configure whether to enable auto scaling for node flavors in a node pool.
 
-#. View cluster-level auto scaling configurations, which take effect for all node pools in the cluster. On this page, you can only view cluster-level auto scaling policies. To modify these policies, go to the **Settings** page. For details, see :ref:`Configuring an Auto Scaling Policy for a Cluster <cce_10_0209__section1276410102184>`.
+#. View cluster-level auto scaling configurations, which take effect for all node pools in the cluster. On this page, you can only view cluster-level auto scaling policies. To modify these policies, go to the **Settings** page. For details, see :ref:`Configuring an Auto Scaling Policy for a Cluster <cce_10_0209__section6521214191020>`.
 
-#. Click **OK**.
+#. After the configuration is complete, click **OK**.
 
-.. _cce_10_0209__section1276410102184:
+.. _cce_10_0209__section6521214191020:
 
 Configuring an Auto Scaling Policy for a Cluster
 ------------------------------------------------
@@ -101,7 +102,7 @@ Configuring an Auto Scaling Policy for a Cluster
 
    An auto scaling policy takes effect on all node pools in a cluster. After the policy is modified, the Autoscaler add-on will be restarted.
 
-#. Log in to the CCE console and click the cluster name to access the details page.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
 #. In the navigation pane, choose **Settings** and click the **Auto Scaling** tab.
 
@@ -109,7 +110,7 @@ Configuring an Auto Scaling Policy for a Cluster
 
    -  **Auto Scale-out when the load cannot be scheduled**: When workload pods in a cluster cannot be scheduled (pods remain in pending state), CCE automatically adds nodes to the slave node pool. If a node has been configured to be affinity for pods, no node will not be automatically added when pods cannot be scheduled. Such auto scaling typically works with an HPA policy. For details, see :ref:`Using HPA and CA for Auto Scaling of Workloads and Nodes <cce_10_0300>`.
 
-      If this function is not enabled, scaling can be performed only using :ref:`custom scaling policies <cce_10_0209__li1193994013156>`.
+      If this function is not enabled, scaling can be performed only using :ref:`custom scaling policies <cce_10_0209__li662211905512>`.
 
    -  **Upper limit of resources to be expanded**: Configure an upper limit for the total resources in the cluster. When the upper limit is reached, nodes will not be automatically added.
 
@@ -129,12 +130,12 @@ Configuring an Auto Scaling Policy for a Cluster
 
       a. Resources on other nodes in the cluster are insufficient.
       b. Scale-in protection is enabled on the node. To enable or disable node scale-in protection, choose **Nodes** in the navigation pane and then click the **Nodes** tab. Locate the target node, choose **More**, and then enable or disable node scale-in protection in the **Operation** column.
-      c. There is a pod with the non-scale-in label on the node.
-      d. Policies such as reliability have been configured for some pods on the node.
-      e. There is a non-DaemonSet pod in the **kube-system** namespace of the node.
-      f. (Optional) There is a pod created using CRD on the node, and this pod is managed by a third-party Pod Controller.
+      c. There is a pod with the non-scale label on the node.
+      d. Policies such as reliability have been configured on some containers on the node.
+      e. There are non-DaemonSet containers in the **kube-system** namespace on the node.
+      f. (Optional) A container managed by a third-party pod controller is running on a node. Third-party pod controllers are for custom workloads except Kubernetes-native workloads such as Deployments and StatefulSets. Such controllers can be created using `CustomResourceDefinitions <https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions>`__.
 
-   **Node Scale-In Policy**
+   **Node Scale-in Policy**
 
    -  **Number of Concurrent Scale-In Requests**: maximum number of idle nodes that can be concurrently deleted. Default value: 10.
 
@@ -172,11 +173,20 @@ This interval indicates the period during which nodes added to the current node 
 
 **Cooldown Period During a Scale-in**
 
-The interval after a scale-out indicates the period during which the entire cluster cannot be scaled in after the auto scaling add-on triggers a scale-out (due to the unschedulable pods, metrics, and scaling policies). This interval takes effect in the entire cluster.
+The interval after a scale-out indicates the period during which the entire cluster cannot be scaled in after the Autoscaler add-on triggers a scale-out (due to the unschedulable pods, metrics, and scaling policies). This interval takes effect in the entire cluster.
 
-The interval after a node is deleted indicates the period during which the cluster cannot be scaled in after the auto scaling add-on triggers a scale-in. This setting takes effect in the entire cluster.
+The interval after a node is deleted indicates the period during which the cluster cannot be scaled in after the Autoscaler add-on triggers a scale-in. This setting takes effect in the entire cluster.
 
-The interval after a failed scale-in indicates the period during which the cluster cannot be scaled in after the auto scaling add-on triggers a scale-in. This setting takes effect in the entire cluster.
+The interval after a failed scale-in indicates the period during which the cluster cannot be scaled in after the Autoscaler add-on triggers a scale-in. This setting takes effect in the entire cluster.
+
+Period for Autoscaler to Retry a Scale-out
+------------------------------------------
+
+If a node pool failed to scale out, for example, due to insufficient resources or quota, or an error occurred during node installation, Autoscaler can retry the scale-out in the node pool or switch to another node pool. The retry period varies depending on failure causes:
+
+-  When resources in a node pool are sold out or the user quota is insufficient, Autoscaler cools down the node pool for 5 minutes, 10 minutes, or 20 minutes. The maximum cooldown duration is 30 minutes. Then, Autoscaler switches to another node pool for a scale-out in the next 10 seconds until the expected node is added or all node pools are cooled down.
+-  If an error occurred during node installation in a node pool, the node pool enters a 5-minute cooldown period. After the period expires, Autoscaler can trigger a node pool scale-out again. If the faulty node is automatically reclaimed, Cluster Autoscaler re-evaluates the cluster status within 1 minute and triggers a node pool scale-out as needed.
+-  During a node pool scale-out, if a node remains in the installing state for a long time, Cluster Autoscaler tolerates the node for a maximum of 15 minutes. After the tolerance period expires, Cluster Autoscaler re-evaluates the cluster status and triggers a node pool scale-out as needed.
 
 Example YAML
 ------------
@@ -188,13 +198,8 @@ The following is a YAML example of a node scaling policy:
    apiVersion: autoscaling.cce.io/v1alpha1
    kind: HorizontalNodeAutoscaler
    metadata:
-     creationTimestamp: "2020-02-13T12:47:49Z"
-     generation: 1
      name: xxxx
      namespace: kube-system
-     resourceVersion: "11433270"
-     selfLink: /apis/autoscaling.cce.io/v1alpha1/namespaces/kube-system/horizontalnodeautoscalers/xxxx
-     uid: c2bd1e1d-60aa-47b5-938c-6bf3fadbe91f
    spec:
      disable: false
      rules:
@@ -235,7 +240,7 @@ The following is a YAML example of a node scaling policy:
    +---------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------+
    | spec.rules[x].ruleName                      | String  | Rule name.                                                                                                          |
    +---------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].type                          | String  | Rule type. Currently, **Cron** and **Metric** are supported.                                                        |
+   | spec.rules[x].type                          | String  | Rule type. **Cron** and **Metric** are supported.                                                                   |
    +---------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------+
    | spec.rules[x].disable                       | Bool    | Rule switch. Currently, only **false** is supported.                                                                |
    +---------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------+
@@ -245,11 +250,11 @@ The following is a YAML example of a node scaling policy:
    +---------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------+
    | spec.rules[x].action.value                  | Integer | Rule action value.                                                                                                  |
    +---------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].cronTrigger                   | /       | Optional. This parameter is valid only in periodic rules.                                                           |
+   | spec.rules[x].cronTrigger                   | N/A     | Optional. This parameter is valid only in periodic rules.                                                           |
    +---------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------+
    | spec.rules[x].cronTrigger.schedule          | String  | Cron expression of a periodic rule.                                                                                 |
    +---------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].metricTrigger                 | /       | Optional. This parameter is valid only in metric-based rules.                                                       |
+   | spec.rules[x].metricTrigger                 | N/A     | Optional. This parameter is valid only in metric-based rules.                                                       |
    +---------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------+
    | spec.rules[x].metricTrigger.metricName      | String  | Metric of a metric-based rule. Currently, **Cpu** and **Memory** are supported.                                     |
    +---------------------------------------------+---------+---------------------------------------------------------------------------------------------------------------------+

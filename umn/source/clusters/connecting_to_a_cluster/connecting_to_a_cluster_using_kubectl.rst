@@ -8,12 +8,12 @@ Connecting to a Cluster Using kubectl
 Scenario
 --------
 
-This section uses a CCE standard cluster as an example to describe how to connect to a CCE cluster using kubectl.
+This section uses a CCE standard cluster as an example to describe how to access a CCE cluster using kubectl.
 
 Permissions
 -----------
 
-When you access a cluster using kubectl, CCE uses **kubeconfig.json** generated on the cluster for authentication. This file contains user information, based on which CCE determines which Kubernetes resources can be accessed by kubectl. The permissions recorded in a **kubeconfig.json** file vary from user to user.
+When you access a cluster using kubectl, CCE uses **kubeconfig** generated on the cluster for authentication. This file contains user information, based on which CCE determines which Kubernetes resources can be accessed by kubectl. The permissions recorded in a **kubeconfig** file vary from user to user.
 
 For details about user permissions, see :ref:`Cluster Permissions (IAM-based) and Namespace Permissions (Kubernetes RBAC-based) <cce_10_0187__section1464135853519>`.
 
@@ -22,7 +22,7 @@ For details about user permissions, see :ref:`Cluster Permissions (IAM-based) an
 Using kubectl
 -------------
 
-To connect to a Kubernetes cluster from a PC, you can use kubectl, a Kubernetes command line tool. You can log in to the CCE console and click the name of the target cluster to access the cluster console. On the **Overview** page, view the access address and kubectl connection procedure.
+To connect to a Kubernetes cluster from a PC, you can use kubectl, a Kubernetes command line tool. You can log in to the CCE console and click the name of the target cluster to access the cluster console. On the ****Overview**** page, view the access address and kubectl connection procedure.
 
 CCE allows you to access a cluster through a private network or a public network.
 
@@ -61,11 +61,11 @@ Download kubectl and the configuration file. Copy the file to your client, and c
 
    **Obtain the kubectl configuration file (kubeconfig).**
 
-   On the **Overview** page, locate the **Connection Info** area, click **Configure** next to **kubectl**. On the window displayed, download the configuration file.
+   On the ****Overview**** page, locate the **Connection Info** area, click **Configure** next to **kubectl**. On the page displayed, download the configuration file.
 
    .. note::
 
-      -  The kubectl configuration file **kubeconfig.json** is used for cluster authentication. If the file is leaked, your clusters may be attacked.
+      -  The kubectl configuration file **kubeconfig** is used for cluster authentication. If the file is leaked, your clusters may be attacked.
       -  The Kubernetes permissions assigned by the configuration file downloaded by IAM users are the same as those assigned to the IAM users on the CCE console.
       -  If the KUBECONFIG environment variable is configured in the Linux OS, kubectl preferentially loads the KUBECONFIG environment variable instead of **$home/.kube/config**.
 
@@ -75,7 +75,7 @@ Download kubectl and the configuration file. Copy the file to your client, and c
 
    Configure kubectl (A Linux OS is used).
 
-   a. Log in to your client and copy the kubeconfig.json configuration file downloaded in :ref:`2 <cce_10_0107__li34691156151712>` to the **/home** directory on your client.
+   a. Log in to your client and copy the **kubeconfig.yaml** file downloaded in :ref:`2 <cce_10_0107__li34691156151712>` to the **/home** directory on your client.
 
    b. Configure the kubectl authentication file.
 
@@ -83,7 +83,7 @@ Download kubectl and the configuration file. Copy the file to your client, and c
 
          cd /home
          mkdir -p $HOME/.kube
-         mv -f kubeconfig.json $HOME/.kube/config
+         mv -f kubeconfig.yaml $HOME/.kube/config
 
    c. Switch the kubectl access mode based on service scenarios.
 
@@ -114,19 +114,19 @@ Two-Way Authentication for Domain Names
 
 CCE supports two-way authentication for domain names.
 
--  After an EIP is bound to an API Server, two-way domain name authentication will be disabled by default if kubectl is used to connect to the cluster. You can run **kubectl config use-context externalTLSVerify** to switch to the externalTLSVerify context to enable the two-way domain name authentication.
+-  After an EIP is bound to an API Server, two-way domain name authentication is disabled by default if kubectl is used to access the cluster. You can run **kubectl config use-context externalTLSVerify** to enable the two-way domain name authentication.
 
 -  When an EIP is bound to or unbound from a cluster, or a custom domain name is configured or updated, the cluster server certificate will be added the latest cluster access address (including the EIP bound to the cluster and all custom domain names configured for the cluster).
 
 -  Asynchronous cluster synchronization takes about 5 to 10 minutes. You can view the synchronization result in **Synchronize Certificate** in **Operation Records**.
 
--  For a cluster that has been bound to an EIP, if the authentication fails (x509: certificate is valid) when two-way authentication is used, bind the EIP again and download **kubeconfig.json** again.
+-  For a cluster that has been bound to an EIP, if the authentication fails (x509: certificate is valid) when two-way authentication is used, bind the EIP again and download **kubeconfig.yaml** again.
 
--  If the domain name two-way authentication is not supported, **kubeconfig.json** contains the **"insecure-skip-tls-verify": true** field, as shown in :ref:`Figure 1 <cce_10_0107__fig1941342411>`. To use two-way authentication, you can download the **kubeconfig.json** file again and enable two-way authentication for the domain names.
+-  If the two-way domain name authentication is not supported, **kubeconfig.yaml** contains the **"insecure-skip-tls-verify": true** field, as shown in :ref:`Figure 1 <cce_10_0107__fig1941342411>`. To use two-way authentication, download the **kubeconfig.yaml** file again and enable two-way authentication for the domain names.
 
    .. _cce_10_0107__fig1941342411:
 
-   .. figure:: /_static/images/en-us_image_0000001750791664.png
+   .. figure:: /_static/images/en-us_image_0000001851587804.png
       :alt: **Figure 1** Two-way authentication disabled for domain names
 
       **Figure 1** Two-way authentication disabled for domain names

@@ -10,6 +10,7 @@ Workloads
 -  :ref:`Configuring a Container <cce_10_0130>`
 -  :ref:`Accessing a Container <cce_10_00356>`
 -  :ref:`Managing Workloads and Jobs <cce_10_0007>`
+-  :ref:`Managing Custom Resources <cce_10_0833>`
 -  :ref:`Kata Runtime and Common Runtime <cce_10_0463>`
 
 .. toctree::
@@ -21,4 +22,5 @@ Workloads
    configuring_a_container/index
    accessing_a_container
    managing_workloads_and_jobs
+   managing_custom_resources
    kata_runtime_and_common_runtime

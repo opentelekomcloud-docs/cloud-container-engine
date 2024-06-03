@@ -34,9 +34,11 @@ Prerequisites
 
       .. code-block::
 
+         ...
                    env:
                      - name: LD_LIBRARY_PATH
                        value: /usr/local/nvidia/lib64
+         ...
 
 Using GPUs
 ----------

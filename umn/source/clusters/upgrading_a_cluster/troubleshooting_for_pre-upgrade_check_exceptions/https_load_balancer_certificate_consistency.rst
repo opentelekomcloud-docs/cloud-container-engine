@@ -13,7 +13,7 @@ Check whether the certificate used by an HTTPS load balancer has been modified o
 Solution
 --------
 
-The certificate referenced by an HTTPS Ingress created on CCE is modified on the ELB console. This leads to inconsistent certificate content in the CCE cluster and that required by the load balancer. After the CCE cluster is upgraded, the load balancer's certificate is overwritten.
+The certificate referenced by an HTTPS ingress created on CCE is modified on the ELB console. This leads to inconsistent certificate content in the CCE cluster and that required by the load balancer. After the CCE cluster is upgraded, the load balancer's certificate is overwritten.
 
 #. Log in to the ELB console, choose **Elastic Load Balance** > **Certificates**, locate the certificate, and find the **secret_id** in the certificate description.
 
@@ -29,11 +29,11 @@ The certificate referenced by an HTTPS Ingress created on CCE is modified on the
 
    -  .. _cce_10_0497__li49931854113415:
 
-      Solution 1: Replace the certificate used by an Ingress with the one used by the load balancer. Then, you can create or edit the certificate on the ELB console.
+      Solution 1: Replace the certificate used by an ingress with the one used by the load balancer. Then, you can create or edit the certificate on the ELB console.
 
-      a. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Networking** in the navigation pane, click the **Ingresses** tab, locate the row containing the Ingress that uses the certificate, and choose **More** > **Update** in the **Operation** column. If multiple Ingresses are using this certificate, update the certificate for all of these Ingresses. To check which Ingresses are using a certificate, use the **secertName** parameter in **spec.tls** of the Ingress YAML files.
+      a. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Services & Ingresses** in the navigation pane, click the **Ingresses** tab, locate the row containing the ingress that uses the certificate, and choose **More** > **Update** in the **Operation** column. If multiple ingresses are using this certificate, update the certificate for all of these ingresses. To check which ingresses are using a certificate, use the **secertName** parameter in **spec.tls** of the ingress YAML files.
 
-         Run the following kubectl command to obtain the Ingresses using a certificate (replace *<secret_id>* with the actual value):
+         Run the following kubectl command to obtain the ingresses using a certificate (replace *<secret_id>* with the actual value):
 
          .. code-block::
 
@@ -41,10 +41,10 @@ The certificate referenced by an HTTPS Ingress created on CCE is modified on the
 
       b. When configuring a listener, select **ELB server certificate** for **Certificate Source** and click **OK**. In this way, the certificate can be created or edited on the ELB console.
 
-      c. On the **Configurations And Secrets** page, delete the target Secret. Before the deletion, back up data.
+      c. On the **ConfigMaps and Secrets** page, delete the target Secret. Before the deletion, back up data.
 
    -  .. _cce_10_0497__li1126485713418:
 
-      Solution 2: Overwrite the certificate used by an Ingress with the corresponding Secret resource of the cluster to prevent the certificate being updated on the ELB console during the cluster upgrade.
+      Solution 2: Overwrite the certificate used by an ingress with the corresponding Secret resource of the cluster to prevent the certificate being updated on the ELB console during the cluster upgrade.
 
-      Log in to the CCE console and click the cluster name to access the cluster console. Choose **Configurations And Secrets** from the navigation pane, click the **Secrets** tab, locate the row containing the target Secret, click **Update** in the **Operation** column, and enter the certificate you are using.
+      Log in to the CCE console and click the cluster name to access the cluster console. Choose **ConfigMaps and Secrets** from the navigation pane, click the **Secrets** tab, locate the row containing the target Secret, click **Update** in the **Operation** column, and enter the certificate you are using.

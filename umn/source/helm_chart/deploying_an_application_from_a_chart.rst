@@ -133,8 +133,8 @@ Upgrading a Chart-based Workload
 #. Log in to the CCE console and click the cluster name to access the cluster console. Choose **App Templates** in the navigation pane and click the **Releases** tab.
 #. Click **Upgrade** in the row where the desired workload resides and set the parameters for the workload.
 #. Select a chart version for **Chart Version**.
-#. Follow the prompts to modify the chart parameters. Click **Upgrade**, and then click **Submit**.
-#. Click **Back to Release List**. If the chart status changes to **Upgrade successful**, the workload is successfully upgraded.
+#. Follow the prompts to modify the chart parameters. Confirm the modification and click **Upgrade**.
+#. If the execution status is **Upgraded**, the workload has been upgraded.
 
 Rolling Back a Chart-based Workload
 -----------------------------------

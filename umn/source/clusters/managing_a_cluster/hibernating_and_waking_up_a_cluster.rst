@@ -17,8 +17,8 @@ A hibernated cluster can be quickly woken up and used properly.
 Constraints
 -----------
 
--  A cluster may fail to be woken up if the master nodes cannot start due to insufficient resources. Wait for a while and wake up the cluster again.
--  After a cluster is hibernated, it takes 3 to 5 minutes to initialize data. Services can be delivered only after the cluster runs properly.
+-  During cluster wakeup, the master node may fail to start due to insufficient resources, which leads to a cluster wakeup failure. In this case, wait for a while and try again.
+-  After a cluster is woken up, it takes 3 to 5 minutes to initialize data. Deliver services after the cluster runs properly.
 
 Hibernating a Cluster
 ---------------------

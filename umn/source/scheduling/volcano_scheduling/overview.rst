@@ -5,13 +5,15 @@
 Overview
 ========
 
+Volcano is a Kubernetes-based batch processing platform that supports machine learning, deep learning, bioinformatics, genomics, and other big data applications. It provides general-purpose, high-performance computing capabilities, such as job scheduling, heterogeneous chip management, and job running management.
+
 Volcano Scheduler
 -----------------
 
 Volcano Scheduler is a pod scheduling component, which consists of a series of actions and plugins. Actions should be executed in every step. Plugins provide the action algorithm details in different scenarios. Volcano Scheduler features high scalability. You can specify actions and plugins as needed.
 
 
-.. figure:: /_static/images/en-us_image_0000001797870789.png
+.. figure:: /_static/images/en-us_image_0000001898025401.png
    :alt: **Figure 1** Volcano Scheduler workflow
 
    **Figure 1** Volcano Scheduler workflow
@@ -27,6 +29,6 @@ The working process of Volcano Scheduler is as follows:
 Custom Volcano Resources
 ------------------------
 
--  A PodGroup is a custom Volcano resource type. It is a group of pods with strong association and is mainly used in batch scheduling, for example, ps and worker tasks in TensorFlow.
+-  A pod group is a custom Volcano resource type. It is a group of pods with strong association and is mainly used in batch scheduling, for example, ps and worker tasks in TensorFlow.
 -  A Queue contains a group of PodGroups. It is also the basis for the PodGroups to obtain cluster resources.
 -  Volcano Job (vcjob for short) is a custom job resource type. Different from Kubernetes Jobs, vcjob supports specified scheduler, the minimum number of running pods, tasks, lifecycle management, specified queues, and priority-based scheduling. Volcano Job is more suitable for high-performance computing scenarios such as machine learning, big data, and scientific computing.

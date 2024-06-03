@@ -60,7 +60,7 @@ Viewing Real-Time Traces in the Trace List
 
    |image5|
 
-#. For details about key fields in the trace structure, see section "Trace References" > "Trace Structure" and section "Trace References" > "Example Traces".
+#. For details about key fields in the trace structure, see section "Trace References" > "Trace Structure" and section "Trace References" > "Example Traces" in the *CTS User Guide*.
 
 .. |image1| image:: /_static/images/en-us_image_0000001696838310.png
 .. |image2| image:: /_static/images/en-us_image_0000001696678850.png

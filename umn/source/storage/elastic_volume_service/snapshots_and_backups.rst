@@ -17,7 +17,7 @@ Precautions
 -  Snapshots can be created only for EVS disks that are available or in use, and a maximum of seven snapshots can be created for a single EVS disk.
 -  Snapshots can be created only for PVCs created using the storage class (whose name starts with csi) provided by the Everest add-on. Snapshots cannot be created for PVCs created using the Flexvolume storage class whose name is ssd, sas, or sata.
 -  Snapshot data of encrypted disks is stored encrypted, and that of non-encrypted disks is stored non-encrypted.
--  A PVC with the xfs file system type can generate snapshots. The file system type of the disk associated with the PVC created using one of these snapshots remains xfs.
+-  A PVC of the xfs file system type can generate snapshots. The file system of the disk associated with the PVC created using these snapshots remains xfs.
 
 Application Scenarios
 ---------------------

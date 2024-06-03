@@ -38,7 +38,7 @@ Properly plan the service distribution and data plane disk space to avoid the sc
 
 #. Log in to the target node.
 
-#. Run **lsblk** to view the block device information of the node.
+#. Run the **lsblk** command to check the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 
@@ -103,4 +103,4 @@ Create and delete files in service containers in the local storage (such as empt
 
 If the OS uses OverlayFS, services can be deployed on such nodes to prevent the problem that the disk space occupied by files created or deleted in the container is not released immediately.
 
-.. |image1| image:: /_static/images/en-us_image_0000001750949408.png
+.. |image1| image:: /_static/images/en-us_image_0000001851743812.png

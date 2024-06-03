@@ -41,11 +41,15 @@ Procedure for Default Node Pools
 
          A key pair is used for identity authentication when you remotely log in to a node. If no key pair is available, click **Create Key Pair**.
 
-   -  **Pre-installation Command**: Enter a maximum of 1000 characters.
+   -  Pre-installation script:
+
+      Pre-installation script command, in which Chinese characters are not allowed. The script command will be Base64-transcoded.
 
       The script will be executed before Kubernetes software is installed. Note that if the script is incorrect, Kubernetes software may fail to be installed.
 
-   -  **Post-installation Command**: Enter a maximum of 1000 characters.
+   -  Post-installation script:
+
+      Pre-installation script command, in which Chinese characters are not allowed. The script command will be Base64-transcoded.
 
       The script will be executed after Kubernetes software is installed and will not affect the installation.
 

@@ -11,10 +11,7 @@ Node Label Usage Scenario
 Node labels are mainly used in the following scenarios:
 
 -  Node management: Node labels are used to classify nodes.
--  Affinity and anti-affinity between a workload and node:
-
-   -  Different workloads have different resource requirements such as CPU, memory, and I/O. If a workload consumes too many resources in a cluster, other workloads in the same cluster may fail to run properly. In this case, you are advised to add different labels to nodes. When deploying a workload, you can select nodes with specified labels for affinity deployment to ensure the normal operation of the system. Otherwise, node anti-affinity deployment can be used.
-   -  A system can be divided into multiple modules. Each module consists of multiple microservices. To ensure efficient O&M, you can add a module label to each node so that each module can be deployed on the corresponding node. In this way, modules do not interfere with each other and microservices can be easily maintained on their nodes.
+-  Node affinity or anti-affinity for workloads: By adding labels to nodes, you can schedule pods to specific nodes through node affinity or prevent pods from being scheduled to specific nodes through node anti-affinity. For details, see :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
 
 Inherent Label of a Node
 ------------------------

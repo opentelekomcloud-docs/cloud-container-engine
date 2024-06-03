@@ -105,13 +105,13 @@ Log in to the management console, choose **Service List** > **Networking** > **V
 
    The security group name of the node is **{Cluster name}-cce-node-{Random characters}**.
 
-   The name of the security group associated with the containers is *{Cluster name}*\ **-cce-eni-**\ *{Random characters}*.
+   The name of the security group associated with the containers is **{Cluster name}-cce-eni-{Random characters}**.
 
 **Check the following:**
 
 -  IP address, port, and protocol of an external request to access the workloads in the cluster. They must be allowed in the inbound rule of the cluster security group.
 -  IP address, port, and protocol of a request by a workload to visit external applications outside the cluster. They must be allowed in the outbound rule of the cluster security group.
 
-For details about security group configuration, see :ref:`Configuring Cluster Security Group Rules <cce_faq_00265>`.
+For details about security group configuration, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000001797908969.png
+.. |image1| image:: /_static/images/en-us_image_0000001851585032.png

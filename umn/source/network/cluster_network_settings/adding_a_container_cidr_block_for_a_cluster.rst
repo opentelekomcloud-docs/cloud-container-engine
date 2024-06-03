@@ -20,7 +20,7 @@ Adding a Container CIDR Block for a CCE Standard Cluster
 --------------------------------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. On the **Overview** page, locate the **Networking Configuration** area and click **Add**.
+#. On the **Overview** page, locate the **Networking Configuration** area and click **Add Container CIDR Block**.
 #. Configure the container CIDR block to be added. You can click |image1| to add multiple container CIDR blocks at a time.
 
    .. note::
@@ -37,4 +37,4 @@ Adding a Container Subnet for a CCE Turbo Cluster
 #. Select a container subnet in the same VPC. You can add multiple container subnets at a time. If no other container subnet is available, go to the VPC console to create one.
 #. Click **OK**.
 
-.. |image1| image:: /_static/images/en-us_image_0000001797910209.png
+.. |image1| image:: /_static/images/en-us_image_0000001898025869.png

@@ -30,7 +30,7 @@ Procedure
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.
 #. Locate the target node and choose **More** > **Delete** in the **Operation** column.
-#. In the **Delete Node** dialog box, click **Yes**.
+#. In the **Delete Node** dialog box, enter **DELETE** and click **Yes**.
 
    .. note::
 

@@ -12,8 +12,8 @@ Precautions
 
    Resources that are not created in CCE will not be deleted:
 
-   -  Accepted nodes (only the nodes created in CCE are deleted);
-   -  ELB load balancers associated with Services and ingresses (only the automatically created load balancers are deleted);
+   -  Accepted nodes (only the nodes created in CCE are deleted)
+   -  ELB load balancers associated with Services and ingresses (only the automatically created load balancers are deleted)
    -  Manually created cloud storage resources associated with PVs or imported cloud storage resources (only the cloud storage resources automatically created by PVCs are deleted)
 
 -  If you delete a cluster that is not running (for example, unavailable), associated resources, such as storage and networking resources, will remain.
@@ -43,6 +43,6 @@ Deleting a Cluster
 
    -  Delete network resources such as load balancers in a cluster. (Only automatically created load balancers will be deleted).
 
-#. Click **Yes** to start deleting the cluster.
+#. Enter **DELETE** and click **Yes** to start deleting the cluster.
 
    The delete operation takes 1 to 3 minutes to complete.

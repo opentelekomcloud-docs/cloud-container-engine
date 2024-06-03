@@ -23,7 +23,7 @@ You can deploy a DaemonSet for each type of daemons on all nodes, or deploy mult
 Prerequisites
 -------------
 
-Before creating a DaemonSet, you must have an available cluster. For details on how to create a cluster, see :ref:`Creating a CCE Cluster <cce_10_0028>`.
+Before creating a DaemonSet, you must have an available cluster. For details on how to create a cluster, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
 
 Using the CCE Console
 ---------------------
@@ -64,7 +64,7 @@ Using the CCE Console
          | Image Tag                         | Select the image tag to be deployed.                                                                                                                                                                                                                                                                                                                                                                                                |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | CPU Quota                         | -  **Request**: minimum number of CPU cores required by a container. The default value is 0.25 cores.                                                                                                                                                                                                                                                                                                                               |
-         |                                   | -  **Limit**: maximum number of CPU cores available for a container. Do not leave **Limit** unspecified. Otherwise, intensive use of container resources will occur and your workload may exhibit unexpected behavior.                                                                                                                                                                                                              |
+         |                                   | -  **Limit**: maximum number of CPU cores that can be used by a container. This prevents containers from using excessive resources.                                                                                                                                                                                                                                                                                                 |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                     |
          |                                   | If **Request** and **Limit** are not specified, the quota is not limited. For more information and suggestions about **Request** and **Limit**, see :ref:`Configuring Container Specifications <cce_10_0163>`.                                                                                                                                                                                                                      |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -100,7 +100,7 @@ Using the CCE Console
 
       -  (Optional) **Security Context**: Assign container permissions to protect the system and other containers from being affected. Enter the user ID to assign container permissions and prevent systems and other containers from being affected.
 
-      -  (Optional) **Logging**: Report standard container output logs to AOM by default, without requiring manual settings. You can manually configure the log collection path. For details, see :ref:`Connecting CCE to AOM <cce_10_0018>`.
+      -  (Optional) **Logging**: Report standard container output logs to AOM by default, without requiring manual settings. You can manually configure the log collection path. For details, see :ref:`Collecting Container Logs Using ICAgent <cce_10_0018>`.
 
          To disable the standard output of the current workload, add the annotation **kubernetes.AOM.log.stdout: []** in :ref:`Labels and Annotations <cce_10_0047__li179714209414>`. For details about how to use this annotation, see :ref:`Table 1 <cce_10_0386__table194691458405>`.
 
@@ -122,7 +122,7 @@ Using the CCE Console
 
       -  **Node Affinity**: Common load affinity policies are offered for quick load affinity deployment.
 
-         -  **Node Affinity**: Workload pods can be deployed on specified nodes through node affinity (**nodeAffinity**). If no node is specified, the pods will be randomly scheduled based on the default scheduling policy of the cluster.
+         -  **Specified node scheduling**: Workload pods can be deployed on specified nodes through node affinity (**nodeAffinity**). If no node is specified, the pods will be randomly scheduled based on the default scheduling policy of the cluster.
          -  **Specified node pool scheduling**: Workload pods can be deployed in a specified node pool through node affinity (**nodeAffinity**). If no node pool is specified, the pods will be randomly scheduled based on the default scheduling policy of the cluster.
          -  **Custom policies**: Affinity and anti-affinity policies can be customized as needed. For details, see :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
 
@@ -132,6 +132,7 @@ Using the CCE Console
    -  **Network Configuration**
 
       -  Pod ingress/egress bandwidth limitation: You can set ingress/egress bandwidth limitation for pods. For details, see :ref:`Configuring QoS for a Pod <cce_10_0382>`.
+      -  IPv6 shared bandwidth: available only for clusters that support this function. After this function is enabled, you can configure a shared bandwidth for a pod with IPv6 dual-stack ENIs. For details, see :ref:`Configuring Shared Bandwidth for a Pod with IPv6 Dual-Stack ENIs <cce_10_0604>`.
 
 #. Click **Create Workload** in the lower right corner.
 
@@ -182,7 +183,7 @@ The following procedure uses Nginx as an example to describe how to create a wor
 
    The **replicas** parameter used in defining a Deployment or StatefulSet does not exist in the above configuration for a DaemonSet, because each node has only one replica. It is fixed.
 
-   DaemonSet only creates pods on nodes with specific labels. In the preceding pod template, **nodeSelector** specifies that a pod is created only on nodes with the **daemon: need** label. If you want to create a pod on each node, delete the label.
+   The nodeSelector in the preceding pod template specifies that a pod is created only on the nodes that meet **daemon=need**. If you want to create a pod on each node, delete the label.
 
 #. Create a DaemonSet.
 

@@ -51,8 +51,6 @@ Pod Labels
 
 When you create a workload on the console, the following labels are added to the pod by default. The value of **app** is the workload name.
 
-|image1|
-
 Example YAML:
 
 .. code-block::
@@ -78,11 +76,9 @@ You can also add other labels to the pod for affinity and anti-affinity scheduli
 -  APP 3: [release:alpha;env:production;role:backend]
 
 
-.. figure:: /_static/images/en-us_image_0000001797910061.png
+.. figure:: /_static/images/en-us_image_0000001897905921.png
    :alt: **Figure 1** Label example
 
    **Figure 1** Label example
 
 For example, if **key/value** is set to **role/backend**, APP 3 will be selected for affinity scheduling. For details, see :ref:`Workload Affinity (podAffinity) <cce_10_0232__section3218151791419>`.
-
-.. |image1| image:: /_static/images/en-us_image_0000001750950264.png

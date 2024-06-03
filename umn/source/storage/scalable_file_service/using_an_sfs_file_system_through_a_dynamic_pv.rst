@@ -7,34 +7,43 @@ Using an SFS File System Through a Dynamic PV
 
 This section describes how to use storage classes to dynamically create PVs and PVCs and implement data persistence and sharing in workloads.
 
+Prerequisites
+-------------
+
+-  You have created a cluster and installed the :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on in the cluster.
+-  Before creating a cluster using commands, ensure kubectl is used to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  You have created an SFS file system that is in the same VPC as the cluster.
+
 Automatically Creating an SFS File System on the Console
 --------------------------------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. Dynamically create a PVC and PV.
 
-   a. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** tab. Click **Create PVC** in the upper right corner. In the dialog box displayed, configure the PVC parameters.
+   a. Choose **Storage** in the navigation pane and click the **PVCs** tab. Click **Create PVC** in the upper right corner. In the dialog box displayed, configure the PVC parameters.
 
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                                                                                                                                      |
-      +===================================+==================================================================================================================================================================================================================================================================+
-      | PVC Type                          | In this example, select **SFS**.                                                                                                                                                                                                                                 |
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | PVC Name                          | Enter the PVC name, which must be unique in the same namespace.                                                                                                                                                                                                  |
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Creation Method                   | -  If no underlying storage is available, select **Dynamically provision** to create a PVC, PV, and underlying storage on the console in cascading mode.                                                                                                         |
-      |                                   | -  If underlying storage is available, create a storage volume or use an existing storage volume to statically create a PVC based on whether a PV has been created. For details, see :ref:`Using an Existing SFS File System Through a Static PV <cce_10_0619>`. |
-      |                                   |                                                                                                                                                                                                                                                                  |
-      |                                   | In this example, select **Dynamically provision**.                                                                                                                                                                                                               |
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Storage Classes                   | The storage class for SFS volumes is **csi-nas**.                                                                                                                                                                                                                |
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Access Mode                       | SFS volumes support only **ReadWriteMany**, indicating that a storage volume can be mounted to multiple nodes in read/write mode. For details, see :ref:`Volume Access Modes <cce_10_0378__section43881411172418>`.                                              |
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                                                                  |
+      +===================================+==============================================================================================================================================================================================================================================================+
+      | PVC Type                          | In this example, select **SFS**.                                                                                                                                                                                                                             |
+      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | PVC Name                          | Enter the PVC name, which must be unique in the same namespace.                                                                                                                                                                                              |
+      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Creation Method                   | -  If no underlying storage is available, select **Dynamically provision** to create a PVC, PV, and underlying storage on the console in cascading mode.                                                                                                     |
+      |                                   | -  If underlying storage is available, create a storage volume or use an existing storage volume to statically create a PVC based on whether a PV is available. For details, see :ref:`Using an Existing SFS File System Through a Static PV <cce_10_0619>`. |
+      |                                   |                                                                                                                                                                                                                                                              |
+      |                                   | In this example, select **Dynamically provision**.                                                                                                                                                                                                           |
+      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Storage Classes                   | The storage class for SFS volumes is **csi-nas**.                                                                                                                                                                                                            |
+      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Access Mode                       | SFS volumes support only **ReadWriteMany**, indicating that a storage volume can be mounted to multiple nodes in read/write mode. For details, see :ref:`Volume Access Modes <cce_10_0378__section43881411172418>`.                                          |
+      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Encryption                        | Configure whether to encrypt underlying storage. If you select **Enabled (key)**, an encryption key must be configured.                                                                                                                                      |
+      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    b. Click **Create** to create a PVC and a PV.
 
-      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PersistentVolumeClaims (PVCs)** and **PersistentVolumes (PVs)** tab pages, respectively.
+      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PVCs** and **PVs** tab pages, respectively.
 
 #. Create an application.
 
@@ -77,7 +86,7 @@ Automatically Creating an SFS File System on the Console
 (kubectl) Automatically Creating an SFS File System
 ---------------------------------------------------
 
-#. Use kubectl to connect to the cluster.
+#. Use kubectl to access the cluster.
 #. Use **StorageClass** to dynamically create a PVC and PV.
 
    a. Create the **pvc-sfs-auto.yaml** file.
@@ -99,7 +108,7 @@ Automatically Creating an SFS File System on the Console
            resources:
              requests:
                storage: 1Gi             # SFS volume capacity.
-           storageClassName: csi-nas    # The storage class type is SFS.
+           storageClassName: csi-nas    # The storage class is SFS.
 
       .. table:: **Table 2** Key parameters
 
@@ -322,9 +331,9 @@ You can also perform the operations listed in :ref:`Table 3 <cce_10_0620__table1
    +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Operation             | Description                                                                                                                                        | Procedure                                                                                                                                                    |
    +=======================+====================================================================================================================================================+==============================================================================================================================================================+
-   | Viewing events        | You can view event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** or **PersistentVolumes (PVs)** tab.                             |
+   | Viewing events        | You can view event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane and click the **PVCs** or **PVs** tab.                                                                          |
    |                       |                                                                                                                                                    | #. Click **View Events** in the **Operation** column of the target PVC or PV to view events generated within one hour (event data is retained for one hour). |
    +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Viewing a YAML file   | You can view, copy, and download the YAML files of a PVC or PV.                                                                                    | #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** or **PersistentVolumes (PVs)** tab.                             |
+   | Viewing a YAML file   | You can view, copy, and download the YAML files of a PVC or PV.                                                                                    | #. Choose **Storage** in the navigation pane and click the **PVCs** or **PVs** tab.                                                                          |
    |                       |                                                                                                                                                    | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view or download the YAML.                                                     |
    +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+

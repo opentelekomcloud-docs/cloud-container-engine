@@ -10,7 +10,7 @@ Cluster Management
 
 -  :ref:`Why Cannot I Create a CCE Cluster? <cce_faq_00111>`
 -  :ref:`Is Management Scale of a Cluster Related to the Number of Master Nodes? <cce_faq_00090>`
--  :ref:`How Do I Rectify the Fault When the Cluster Status Is Unavailable? <cce_faq_00039>`
+-  :ref:`How Do I Locate the Fault When a Cluster Is Unavailable? <cce_faq_00039>`
 
 Node/Node Pool Management
 -------------------------

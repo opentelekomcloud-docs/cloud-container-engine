@@ -38,7 +38,7 @@ Procedure
 
 #. **Create a CCE cluster.**
 
-   Create a cluster with the same specifications and configurations as the cluster of the earlier version. For details, see :ref:`Creating a CCE Cluster <cce_10_0028>`.
+   Create a cluster with the same specifications and configurations as the cluster of the earlier version. For details, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
 
 #. **Add a node.**
 

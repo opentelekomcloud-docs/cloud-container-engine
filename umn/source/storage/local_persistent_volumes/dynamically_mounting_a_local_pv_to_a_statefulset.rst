@@ -14,7 +14,7 @@ Prerequisites
 -------------
 
 -  You have created a cluster and installed the CSI add-on (:ref:`Everest <cce_10_0066>`) in the cluster.
--  If you want to create a cluster using commands, use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  Before creating a cluster using commands, ensure kubectl is used to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 -  You have imported a data disk of a node to the local PV storage pool. For details, see :ref:`Importing a PV to a Storage Pool <cce_10_0642>`.
 
 Dynamically Mounting a Local PV on the Console
@@ -24,7 +24,7 @@ Dynamically Mounting a Local PV on the Console
 
 #. In the navigation pane on the left, click **Workloads**. In the right pane, click the **StatefulSets** tab.
 
-#. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Settings** area and click **Add Volume** to select **VolumeClaimTemplate (VTC)**.
+#. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Settings** area and click **Add Volume** to select **VolumeClaimTemplate**.
 
 #. Click **Create PVC**. In the dialog box displayed, configure the volume claim template parameters.
 
@@ -79,7 +79,7 @@ Dynamically Mounting a Local PV on the Console
 Dynamically Mounting a Local PV Using kubectl
 ---------------------------------------------
 
-#. Use kubectl to connect to the cluster.
+#. Use kubectl to access the cluster.
 
 #. Create a file named **statefulset-local.yaml**. In this example, the local PV is mounted to the **/data** path.
 
@@ -117,7 +117,7 @@ Dynamically Mounting a Local PV Using kubectl
               namespace: default
             spec:
               accessModes:
-                - ReadWriteOnce               # The local PV must adopt ReadWriteOnce.
+                - ReadWriteOnce               # The value must be ReadWriteOnce for local PVs.
               resources:
                 requests:
                   storage: 10Gi               # Storage volume capacity.
@@ -262,9 +262,9 @@ You can also perform the operations listed in :ref:`Table 3 <cce_10_0635__cce_10
    +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Operation             | Description                                                                                                                                        | Procedure                                                                                                                                                    |
    +=======================+====================================================================================================================================================+==============================================================================================================================================================+
-   | Viewing events        | You can view event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** or **PersistentVolumes (PVs)** tab.                             |
+   | Viewing events        | You can view event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane and click the **PVCs** or **PVs** tab.                                                                          |
    |                       |                                                                                                                                                    | #. Click **View Events** in the **Operation** column of the target PVC or PV to view events generated within one hour (event data is retained for one hour). |
    +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Viewing a YAML file   | You can view, copy, and download the YAML files of a PVC or PV.                                                                                    | #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** or **PersistentVolumes (PVs)** tab.                             |
+   | Viewing a YAML file   | You can view, copy, and download the YAML files of a PVC or PV.                                                                                    | #. Choose **Storage** in the navigation pane and click the **PVCs** or **PVs** tab.                                                                          |
    |                       |                                                                                                                                                    | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view or download the YAML.                                                     |
    +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+

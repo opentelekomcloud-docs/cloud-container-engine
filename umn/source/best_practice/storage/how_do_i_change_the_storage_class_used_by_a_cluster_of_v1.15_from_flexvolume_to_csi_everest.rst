@@ -592,4 +592,4 @@ Procedure
 
       kubectl patch pv {pv_name} -p '{"metadata":{"finalizers":null}}'
 
-.. |image1| image:: /_static/images/en-us_image_0000001750790604.png
+.. |image1| image:: /_static/images/en-us_image_0000001851585440.png

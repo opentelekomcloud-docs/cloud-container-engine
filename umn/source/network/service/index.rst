@@ -9,7 +9,7 @@ Service
 -  :ref:`ClusterIP <cce_10_0011>`
 -  :ref:`NodePort <cce_10_0142>`
 -  :ref:`LoadBalancer <cce_10_0014>`
--  :ref:`Headless Service <cce_10_0398>`
+-  :ref:`Headless Services <cce_10_0398>`
 
 .. toctree::
    :maxdepth: 1
@@ -19,4 +19,4 @@ Service
    clusterip
    nodeport
    loadbalancer/index
-   headless_service
+   headless_services

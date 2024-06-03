@@ -5,19 +5,35 @@
 Enabling ICMP Security Group Rules
 ==================================
 
-Scenario
---------
+Application Scenarios
+---------------------
 
 If a workload uses UDP for both load balancing and health check, enable ICMP security group rules for the backend servers.
 
 Procedure
 ---------
 
-#. Log in to the ECS console, find the ECS corresponding to any node where the workload runs, and click the ECS name. On the displayed ECS details page, record the security group name.
-#. Log in to the VPC console. In the navigation pane on the left, choose **Access Control > Security Groups**. In the security group list on the right, click the security group name obtained in step 1.
-#. On the page displayed, click the **Inbound Rules** tab and click **Add Rule** to add an inbound rule for ECS. Then, click **OK**.
+#. Log in to the CCE console, choose **Service List** > **Networking** > **Virtual Private Cloud**, and choose **Access Control** > **Security Groups** in the navigation pane.
+#. In the security group list, locate the security group of the cluster. Click the **Inbound Rules** tab page and then **Add Rule**. In the **Add Inbound Rule** dialog box, configure inbound parameters.
 
-   .. note::
+   +--------------+-------------+---------------------------------------------------------------------------------------------+-----------------+---------------------------------------------+
+   | Cluster Type | ELB Type    | Security Group                                                                              | Protocol & Port | Allowed Source CIDR Block                   |
+   +==============+=============+=============================================================================================+=================+=============================================+
+   | CCE Standard | Shared      | Node security group, which is named in the format of "{Cluster name}-cce-node-{Random ID}". | All ICMP ports  | 100.125.0.0/16 for the shared load balancer |
+   |              |             |                                                                                             |                 |                                             |
+   |              |             | If a custom node security group is bound to the cluster, select the target security group.  |                 |                                             |
+   +--------------+-------------+---------------------------------------------------------------------------------------------+-----------------+---------------------------------------------+
+   |              | Dedicated   | Node security group, which is named in the format of "{Cluster name}-cce-node-{Random ID}". | All ICMP ports  | Backend subnet of the load balancer         |
+   |              |             |                                                                                             |                 |                                             |
+   |              |             | If a custom node security group is bound to the cluster, select the target security group.  |                 |                                             |
+   +--------------+-------------+---------------------------------------------------------------------------------------------+-----------------+---------------------------------------------+
+   | CCE Turbo    | Shared      | Node security group, which is named in the format of "{Cluster name}-cce-node-{Random ID}". | All ICMP ports  | 100.125.0.0/16 for the shared load balancer |
+   |              |             |                                                                                             |                 |                                             |
+   |              |             | If a custom node security group is bound to the cluster, select the target security group.  |                 |                                             |
+   +--------------+-------------+---------------------------------------------------------------------------------------------+-----------------+---------------------------------------------+
+   |              | Dedicated   | ENI security group, which is named in the format of "{Cluster name}-cce-eni-{Random ID}".   | All ICMP ports  | Backend subnet of the load balancer         |
+   |              |             |                                                                                             |                 |                                             |
+   |              |             | If a custom ENI security group is bound to the cluster, select the target security group.   |                 |                                             |
+   +--------------+-------------+---------------------------------------------------------------------------------------------+-----------------+---------------------------------------------+
 
-      -  You only need to add security group rules to any node where the workload runs.
-      -  The security group must have rules to allow access from the CIDR block 100.125.0.0/16.
+#. Click **OK**.

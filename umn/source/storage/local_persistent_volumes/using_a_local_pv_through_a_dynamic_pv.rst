@@ -9,7 +9,7 @@ Prerequisites
 -------------
 
 -  You have created a cluster and installed the CSI add-on (:ref:`Everest <cce_10_0066>`) in the cluster.
--  If you want to create a cluster using commands, use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  Before creating a cluster using commands, ensure kubectl is used to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 -  You have imported a data disk of a node to the local PV storage pool. For details, see :ref:`Importing a PV to a Storage Pool <cce_10_0642>`.
 
 Constraints
@@ -26,7 +26,7 @@ Automatically Creating a Local PV on the Console
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. Dynamically create a PVC and PV.
 
-   a. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** tab. Click **Create PVC** in the upper right corner. In the dialog box displayed, configure the PVC parameters.
+   a. Choose **Storage** in the navigation pane and click the **PVCs** tab. Click **Create PVC** in the upper right corner. In the dialog box displayed, configure the PVC parameters.
 
       +-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Parameter       | Description                                                                                                                                                                                                 |
@@ -48,7 +48,7 @@ Automatically Creating a Local PV on the Console
 
    b. Click **Create** to create a PVC and a PV.
 
-      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PersistentVolumeClaims (PVCs)** and **PersistentVolumes (PVs)** tab pages, respectively.
+      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PVCs** and **PVs** tab pages, respectively.
 
       .. note::
 
@@ -97,7 +97,7 @@ Automatically Creating a Local PV on the Console
 (kubectl) Automatically Creating a Local PV
 -------------------------------------------
 
-#. Use kubectl to connect to the cluster.
+#. Use kubectl to access the cluster.
 #. Use **StorageClass** to dynamically create a PVC and PV.
 
    a. Create the **pvc-local.yaml** file.
@@ -111,7 +111,7 @@ Automatically Creating a Local PV on the Console
            namespace: default
          spec:
            accessModes:
-             - ReadWriteOnce             # The local PV must adopt ReadWriteOnce.
+             - ReadWriteOnce             # The value must be ReadWriteOnce for local PVs.
            resources:
              requests:
                storage: 10Gi             # Size of the local PV.
@@ -296,9 +296,9 @@ You can also perform the operations listed in :ref:`Table 3 <cce_10_0634__table1
    +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Operation             | Description                                                                                                                                        | Procedure                                                                                                                                                    |
    +=======================+====================================================================================================================================================+==============================================================================================================================================================+
-   | Viewing events        | You can view event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** or **PersistentVolumes (PVs)** tab.                             |
+   | Viewing events        | You can view event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane and click the **PVCs** or **PVs** tab.                                                                          |
    |                       |                                                                                                                                                    | #. Click **View Events** in the **Operation** column of the target PVC or PV to view events generated within one hour (event data is retained for one hour). |
    +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Viewing a YAML file   | You can view, copy, and download the YAML files of a PVC or PV.                                                                                    | #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** or **PersistentVolumes (PVs)** tab.                             |
+   | Viewing a YAML file   | You can view, copy, and download the YAML files of a PVC or PV.                                                                                    | #. Choose **Storage** in the navigation pane and click the **PVCs** or **PVs** tab.                                                                          |
    |                       |                                                                                                                                                    | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view or download the YAML.                                                     |
    +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+

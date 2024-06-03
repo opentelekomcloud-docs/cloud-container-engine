@@ -18,6 +18,11 @@ By default, kubelet uses `CFS quotas <https://www.kernel.org/doc/html/latest/sch
 
 If your workloads are sensitive to any of these items and CPU cache affinity and scheduling latency significantly affect workload performance, kubelet allows alternative CPU management policies (CPU binding) to determine some placement preferences on the node. The CPU manager preferentially allocates resources on a socket and full physical cores to avoid interference.
 
+Constraints
+-----------
+
+The CPU management policy cannot take effect on physical cloud server nodes.
+
 .. _cce_10_0351__section173918176434:
 
 Enabling the CPU Management Policy

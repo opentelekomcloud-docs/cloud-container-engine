@@ -25,7 +25,7 @@ You are advised to learn about the cluster network and container network models 
 Master Nodes and Cluster Scale
 ------------------------------
 
-When you create a cluster on CCE, you can have one or three master nodes. Three master nodes can create a cluster in HA mode.
+When you create a cluster on CCE, you can have one or three master nodes. Three master nodes will be deployed in a cluster for HA.
 
 The master node specifications decide the number of nodes that can be managed by a cluster. You can select the cluster management scale, for example, 50 or 200 nodes.
 
@@ -46,6 +46,8 @@ Cluster Lifecycle
    | Awaking     | A cluster is being woken up.                                      |
    +-------------+-------------------------------------------------------------------+
    | Upgrading   | A cluster is being upgraded.                                      |
+   +-------------+-------------------------------------------------------------------+
+   | Resizing    | The cluster flavor is being changed.                              |
    +-------------+-------------------------------------------------------------------+
    | Unavailable | A cluster is unavailable.                                         |
    +-------------+-------------------------------------------------------------------+

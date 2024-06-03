@@ -8,7 +8,8 @@ Deploying an Application Through the Helm v3 Client
 Prerequisites
 -------------
 
-The Kubernetes cluster created on CCE has been connected to kubectl. For details, see :ref:`Using kubectl <cce_10_0107__section37321625113110>`.
+-  The Kubernetes cluster created on CCE has been connected to kubectl. For details, see :ref:`Using kubectl <cce_10_0107__section37321625113110>`.
+-  To pull a public image when deploying Helm, ensure an EIP has been bound to the node.
 
 .. _cce_10_0144__en-us_topic_0226102212_en-us_topic_0179003017_section3719193213815:
 
@@ -71,33 +72,25 @@ For more details, see `Using Helm <https://helm.sh/docs/intro/using_helm/>`__.
 
 #. Run the **helm install** command to install the chart.
 
-   -  Default installation: This is the simplest method, which requires only two parameters.
+   .. code-block::
 
-      .. code-block::
+      helm install {release_name} {chart_name} --set key1=val1
 
-         helm install {release_name} {chart_name}
+   For example, to install WordPress, the WordPress chart added in :ref:`1 <cce_10_0144__li125132594918>` is **bitnami/wordpress**, the release name is **my-wordpress**, and mandatory parameters have been configured.
 
-      For example, to install WordPress, the WordPress chart added in :ref:`step 1 <cce_10_0144__li125132594918>` is **bitnami/wordpress**, and the release name is **my-wordpress**.
+   .. code-block::
 
-      .. code-block::
+      helm install my-wordpress bitnami/wordpress \
+           --set mariadb.primary.persistence.enabled=true \
+           --set mariadb.primary.persistence.storageClass=csi-disk \
+           --set mariadb.primary.persistence.size=10Gi \
+           --set persistence.enabled=false
 
-         helm install my-wordpress bitnami/wordpress
+   Run the **helm show values** *{chart_name}* command to view the configurable options of the chart. For example, to view the configurable items of WordPress, run the following command:
 
-   -  Custom installation: The default installation uses the default settings in the chart. Use custom installation to custom parameter settings. Run the **helm show values** *{chart_name}* command to view the configurable options of the chart. For example, to view the configurable items of WordPress, run the following command:
+   .. code-block::
 
-      .. code-block::
-
-         helm show values bitnami/wordpress
-
-      Overwrite specified parameters by running the following commands:
-
-      .. code-block::
-
-         helm install my-wordpress bitnami/wordpress \
-              --set mariadb.primary.persistence.enabled=true \
-              --set mariadb.primary.persistence.storageClass=csi-disk \
-              --set mariadb.primary.persistence.size=10Gi \
-              --set persistence.enabled=false
+      helm show values bitnami/wordpress
 
 #. View the installed chart release.
 

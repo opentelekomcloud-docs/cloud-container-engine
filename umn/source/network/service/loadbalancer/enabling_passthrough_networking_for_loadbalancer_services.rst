@@ -18,7 +18,7 @@ Solution
 CCE supports passthrough networking. You can configure the **annotation** of **kubernetes.io/elb.pass-through** for the Loadbalancer Service. Intra-cluster access to the Service load balancer address is then forwarded to backend pods by the load balancer.
 
 
-.. figure:: /_static/images/en-us_image_0000001750949552.png
+.. figure:: /_static/images/en-us_image_0000001898024545.png
    :alt: **Figure 1** Passthrough networking illustration
 
    **Figure 1** Passthrough networking illustration
@@ -31,14 +31,12 @@ CCE supports passthrough networking. You can configure the **annotation** of **k
 
 -  CCE Turbo clusters
 
-   When a LoadBalancer Service is accessed within the cluster, the access is forwarded to the backend pods using iptables/IPVS by default.
-
-   When a LoadBalancer Service (configured with elb.pass-through) is accessed within the cluster, the access is first forwarded to the load balancer, and then to the pods.
+   When a client accesses a LoadBalancer Service from within the cluster, pass-through is used by default. In this case, the client directly accesses the load balancer private network IP address and then access a container through the load balancer.
 
 Constraints
 -----------
 
--  After passthrough networking is configured for a dedicated load balancer, containers on the node where the workload runs cannot be accessed through the Service.
+-  After passthrough networking is configured for a dedicated load balancer, in a CCE standard cluster, pods that run on the same node as the workload and pods that run on the same node cannot be accessed through the LoadBalancer Service.
 -  Passthrough networking is not supported for clusters of v1.15 or earlier.
 -  In IPVS network mode, the pass-through settings of Service connected to the same ELB must be the same.
 -  If node-level (local) service affinity is used, **kubernetes.io/elb.pass-through** is automatically set to **onlyLocal** to enable pass-through.
@@ -79,7 +77,7 @@ This section describes how to create a Deployment using an Nginx image and creat
             imagePullSecrets:
             - name: default-secret
 
-#. Create a LoadBalancer Service and configure **kubernetes.io/elb.pass-through** to **true**.
+#. For a LoadBalance Service type, set **kubernetes.io/elb.pass-through** to **true**. In this example, a shared load balancer named **james** is automatically created.
 
    .. code-block::
 
@@ -103,8 +101,6 @@ This section describes how to create a Deployment using an Nginx image and creat
         selector:
           app: nginx
         type: LoadBalancer
-
-   A shared load balancer named **james** is automatically created. Use **kubernetes.io/elb.subnet-id** to specify the VPC subnet where the load balancer is located. The load balancer and the cluster must be in the same VPC.
 
 Verification
 ------------
@@ -153,5 +149,5 @@ Wait for a period of time and view the ELB monitoring data. A new access connect
 
 |image2|
 
-.. |image1| image:: /_static/images/en-us_image_0000001750790640.png
-.. |image2| image:: /_static/images/en-us_image_0000001797870321.png
+.. |image1| image:: /_static/images/en-us_image_0000001851744368.png
+.. |image2| image:: /_static/images/en-us_image_0000001898024541.png

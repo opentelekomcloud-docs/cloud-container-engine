@@ -14,7 +14,7 @@ The CCE cluster of a SaaS service provider needs to be mounted with the OBS buck
 
 .. _cce_bestpractice_00199__fig1315433183918:
 
-.. figure:: /_static/images/en-us_image_0000001750790684.png
+.. figure:: /_static/images/en-us_image_0000001898024613.png
    :alt: **Figure 1** Mounting an OBS bucket of a third-party tenant
 
    **Figure 1** Mounting an OBS bucket of a third-party tenant
@@ -38,12 +38,12 @@ Authorizing the SaaS Service Provider to Access the OBS Buckets
 The following uses an OBS bucket as an example to describe how to set a bucket policy and bucket ACL to authorize the SaaS service provider. The configuration for an OBS parallel file system is the same.
 
 #. Log in to the OBS console.
-#. In the bucket list, click a bucket name to access the **Overview** page.
+#. In the bucket list, click a bucket name and access the **Overview** page.
 
 3. In the navigation pane, choose **Permissions** > **Bucket Policies**. On the displayed page, click **Create** to create a bucket policy.
 
 
-   .. figure:: /_static/images/en-us_image_0000001826752857.png
+   .. figure:: /_static/images/en-us_image_0000001851585700.png
       :alt: **Figure 2** Creating a bucket policy
 
       **Figure 2** Creating a bucket policy

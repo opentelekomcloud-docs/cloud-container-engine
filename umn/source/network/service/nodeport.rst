@@ -11,7 +11,7 @@ Scenario
 A Service is exposed on each node's IP address at a static port (NodePort). When you create a NodePort Service, Kubernetes automatically allocates an internal IP address (ClusterIP) of the cluster. When clients outside the cluster access <NodeIP>:<NodePort>, the traffic will be forwarded to the target pod through the ClusterIP of the NodePort Service.
 
 
-.. figure:: /_static/images/en-us_image_0000001797870765.png
+.. figure:: /_static/images/en-us_image_0000001851586420.png
    :alt: **Figure 1** NodePort access
 
    **Figure 1** NodePort access
@@ -30,7 +30,7 @@ Creating a NodePort Service
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Services & Ingresses**. In the upper right corner, click **Create Service**.
-#. Set intra-cluster access parameters.
+#. Configure intra-cluster access parameters.
 
    -  **Service Name**: Specify a Service name, which can be the same as the workload name.
    -  **Service Type**: Select **NodePort**.
@@ -40,7 +40,8 @@ Creating a NodePort Service
       -  **Cluster level**: The IP addresses and access ports of all nodes in a cluster can access the workload associated with the Service. Service access will cause performance loss due to route redirection, and the source IP address of the client cannot be obtained.
       -  **Node level**: Only the IP address and access port of the node where the workload is located can access the workload associated with the Service. Service access will not cause performance loss due to route redirection, and the source IP address of the client can be obtained.
 
-   -  **Selector**: Add a label and click **Confirm**. A Service selects a pod based on the added label. You can also click **Reference Workload Label** to reference the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
+   -  **Selector**: Add a label and click **Confirm**. A Service selects a pod based on the added label. You can also click **Reference Workload Label** to use the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
+   -  **IPv6**: This function is disabled by default. After this function is enabled, the cluster IP address of the Service changes to an IPv6 address. **This parameter is available only in clusters of v1.15 or later with IPv6 enabled (set during cluster creation).**
    -  **Port Settings**
 
       -  **Protocol**: protocol used by the Service.

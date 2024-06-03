@@ -12,19 +12,23 @@ Allocating Data Disk Space
 
 When creating a node, configure data disks for the node. You can also click **Expand** and customize the data disk space allocation for the node.
 
--  :ref:`Allocate Disk Space <cce_10_0341__section10653143445411>`:
+-  :ref:`Space Allocation for Container Engines <cce_10_0341__section10653143445411>`
 
-   CCE divides the data disk space for two parts by default. One part is used to store the Docker/containerd working directories, container images, and image metadata. The other is reserved for kubelet and emptyDir volumes. The available container engine space affects image pulls and container startup and running.
+   -  Specified disk space: CCE divides the data disk space for two parts by default. One part is used to store the Docker/containerd working directories, container images, and image metadata. The other is reserved for kubelet and emptyDir volumes. The available container engine space affects image pulls and container startup and running.
 
-   -  Container engine and container image space (90% by default): stores the container runtime working directories, container image data, and image metadata.
-   -  kubelet and emptyDir space (10% by default): stores pod configuration files, secrets, and mounted storage such as emptyDir volumes.
+      -  Container engine and container image space (90% by default): stores the container runtime working directories, container image data, and image metadata.
+      -  kubelet and emptyDir space (10% by default): stores pod configuration files, secrets, and mounted storage such as emptyDir volumes.
 
--  :ref:`Allocate Pod Basesize <cce_10_0341__section12119191161518>`: indicates the basesize of a pod. You can set an upper limit for the disk space occupied by each workload pod (including the space occupied by container images). This setting prevents the pods from taking all the disk space available, which may cause service exceptions. It is recommended that the value is less than or equal to 80% of the container engine space. This parameter is related to the node OS and container storage rootfs and is not supported in some scenarios.
+-  :ref:`Space Allocation for Pods <cce_10_0341__section12119191161518>`: indicates the basesize of a pod. You can set an upper limit for the disk space occupied by each workload pod (including the space occupied by container images). This setting prevents the pods from taking all the disk space available, which may cause service exceptions. It is recommended that the value is less than or equal to 80% of the container engine space. This parameter is related to the node OS and container storage rootfs and is not supported in some scenarios. For details, see :ref:`Mapping Between OS and Container Storage Rootfs <cce_10_0341__section1473612279214>`.
+-  Write Mode
+
+   -  **Linear**: A linear logical volume integrates one or more physical volumes. Data is written to the next physical volume when the previous one is used up.
+   -  **Striped**: available only if there are at least two data disks. A striped logical volume stripes data into blocks of the same size and stores them in multiple physical volumes in sequence. This allows data to be concurrently read and written. A storage pool consisting of striped volumes cannot be scaled-out.
 
 .. _cce_10_0341__section10653143445411:
 
-Allocating Disk Space
----------------------
+Space Allocation for Container Engines
+--------------------------------------
 
 For a node using a non-shared data disk (100 GiB for example), the division of the disk space varies depending on the container storage Rootfs type **Device Mapper** or **OverlayFS**. For details about the container storage Rootfs corresponding to different OSs, see :ref:`Mapping Between OS and Container Storage Rootfs <cce_10_0341__section1473612279214>`.
 
@@ -39,7 +43,7 @@ For a node using a non-shared data disk (100 GiB for example), the division of t
       The thin pool is dynamically mounted. You can view it by running the **lsblk** command on a node, but not the **df -h** command.
 
 
-   .. figure:: /_static/images/en-us_image_0000001797870753.png
+   .. figure:: /_static/images/en-us_image_0000001897905733.png
       :alt: **Figure 1** Space allocation for container engines of Device Mapper
 
       **Figure 1** Space allocation for container engines of Device Mapper
@@ -49,24 +53,20 @@ For a node using a non-shared data disk (100 GiB for example), the division of t
    No separate thin pool. The entire container engine and container image space (90% of the data disk by default) are in the **/var/lib/docker** directory.
 
 
-   .. figure:: /_static/images/en-us_image_0000001797909785.png
+   .. figure:: /_static/images/en-us_image_0000001851745096.png
       :alt: **Figure 2** Space allocation for container engines of OverlayFS
 
       **Figure 2** Space allocation for container engines of OverlayFS
 
 .. _cce_10_0341__section12119191161518:
 
-Allocating Basesize for Pods
-----------------------------
+Space Allocation for Pods
+-------------------------
 
 The customized pod container space (basesize) is related to the node OS and container storage Rootfs. For details about the container storage Rootfs, see :ref:`Mapping Between OS and Container Storage Rootfs <cce_10_0341__section1473612279214>`.
 
--  Device Mapper supports custom pod basesize. The default value is 10 GB.
+-  Device Mapper supports custom pod basesize. The default value is 10 GiB.
 -  In OverlayFS mode, the pod container space is not limited by default.
-
-   .. note::
-
-      When you use Docker on EulerOS 2.9 nodes, **basesize** will not take effect if **CAP_SYS_RESOURCE** or **privileged** is configured for a container.
 
 When configuring **basesize**, consider the maximum number of pods on a node. The container engine space should be greater than the total disk space used by containers. Formula: **the container engine space and container image space (90% by default)** > **Number of containers** x **basesize**. Otherwise, the container engine space allocated to the node may be insufficient and the container cannot be started.
 
@@ -81,19 +81,17 @@ Mapping Between OS and Container Storage Rootfs
 
 .. table:: **Table 1** Node OSs and container engines in CCE clusters
 
-   +-----------------------+--------------------------+------------------------------------------------------------------------------------------------------------------------+
-   | OS                    | Container Storage Rootfs | Customized Basesize                                                                                                    |
-   +=======================+==========================+========================================================================================================================+
-   | EulerOS 2.5           | Device Mapper            | Supported only when the container engine is Docker. The default value is 10 GB.                                        |
-   +-----------------------+--------------------------+------------------------------------------------------------------------------------------------------------------------+
-   | EulerOS 2.9           | OverlayFS                | Supported only by clusters of v1.19.16, v1.21.3, v1.23.3, and later. The container basesize is not limited by default. |
-   |                       |                          |                                                                                                                        |
-   |                       |                          | Not supported if the cluster versions are earlier than v1.19.16, v1.21.3, and v1.23.3.                                 |
-   +-----------------------+--------------------------+------------------------------------------------------------------------------------------------------------------------+
-   | Ubuntu 22.04          | OverlayFS                | Not supported.                                                                                                         |
-   +-----------------------+--------------------------+------------------------------------------------------------------------------------------------------------------------+
-   | HCE OS 2.0            | OverlayFS                | Supported only when the container engine is Docker. The container basesize is not limited by default.                  |
-   +-----------------------+--------------------------+------------------------------------------------------------------------------------------------------------------------+
+   +-----------------------+--------------------------+-----------------------------------------------------------------------------------------------------+
+   | OS                    | Container Storage Rootfs | Customized Basesize                                                                                 |
+   +=======================+==========================+=====================================================================================================+
+   | EulerOS 2.9           | OverlayFS                | Supported only by clusters of v1.19.16, v1.21.3, v1.23.3, or later. There are no limits by default. |
+   |                       |                          |                                                                                                     |
+   |                       |                          | Not supported if the cluster versions are earlier than v1.19.16, v1.21.3, or v1.23.3.               |
+   +-----------------------+--------------------------+-----------------------------------------------------------------------------------------------------+
+   | Ubuntu 22.04          | OverlayFS                | Not supported.                                                                                      |
+   +-----------------------+--------------------------+-----------------------------------------------------------------------------------------------------+
+   | HCE OS 2.0            | OverlayFS                | Supported only by Docker clusters. There are no limits by default.                                  |
+   +-----------------------+--------------------------+-----------------------------------------------------------------------------------------------------+
 
 .. table:: **Table 2** Node OSs and container engines in CCE Turbo clusters
 
@@ -104,7 +102,7 @@ Mapping Between OS and Container Storage Rootfs
    +--------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
    | EulerOS 2.9  | ECS VMs use OverlayFS.   | Supported only when Rootfs is set to OverlayFS and the container engine is Docker. The container basesize is not limited by default. |
    +--------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
-   | HCE OS 2.0   | OverlayFS                | Supported only when the container engine is Docker. The container basesize is not limited by default.                                |
+   | HCE OS 2.0   | OverlayFS                | Supported only by Docker clusters. There are no limits by default.                                                                   |
    +--------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
 
 Garbage Collection Policies for Container Images
@@ -112,7 +110,7 @@ Garbage Collection Policies for Container Images
 
 When the container engine space is insufficient, image garbage collection is triggered.
 
-The policy for garbage collecting images takes two factors into consideration: **HighThresholdPercent** and **LowThresholdPercent**. Disk usage above the high threshold (default: 85%) will trigger garbage collection. The garbage collection will delete least recently used images until the low threshold (default: 80%) has been met.
+The policy for garbage collecting images takes two factors into consideration: **HighThresholdPercent** and **LowThresholdPercent**. Disk usage exceeding the high threshold (default: 80%) will trigger garbage collection. The garbage collection will delete least recently used images until the low threshold (default: 70%) is met.
 
 Recommended Configuration for the Container Engine Space
 --------------------------------------------------------

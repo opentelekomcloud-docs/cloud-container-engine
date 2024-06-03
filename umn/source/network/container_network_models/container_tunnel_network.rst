@@ -11,7 +11,7 @@ Container Tunnel Network Model
 The container tunnel network is constructed on but independent of the node network through tunnel encapsulation. This network model uses VXLAN to encapsulate Ethernet packets into UDP packets and transmits them in tunnels. Open vSwitch serves as the backend virtual switch. Though at some costs of performance, packet encapsulation and tunnel transmission enable higher interoperability and compatibility with advanced features (such as network policy-based isolation) for most common scenarios.
 
 
-.. figure:: /_static/images/en-us_image_0000001797910405.png
+.. figure:: /_static/images/en-us_image_0000001851745744.png
    :alt: **Figure 1** Container tunnel network
 
    **Figure 1** Container tunnel network
@@ -55,7 +55,7 @@ The container tunnel network allocates container IP addresses according to the f
 -  Pods scheduled to a node are cyclically allocated IP addresses from one or more CIDR blocks allocated to the node.
 
 
-.. figure:: /_static/images/en-us_image_0000001797871421.png
+.. figure:: /_static/images/en-us_image_0000001897906417.png
    :alt: **Figure 2** IP address allocation of the container tunnel network
 
    **Figure 2** IP address allocation of the container tunnel network

@@ -56,7 +56,7 @@ Procedure
       |                                   |       -  A certificate is a self-signed or CA-signed credential used for identity authentication.                                                                                                                                                                                                                |
       |                                   |       -  A certificate request is a request for a signature with a private key.                                                                                                                                                                                                                                  |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Secret Label                      | Label of the secret. Enter a key-value pair and click **Add**.                                                                                                                                                                                                                                                   |
+      | Secret Label                      | Label of the secret. Enter a key-value pair and click **Confirm**.                                                                                                                                                                                                                                               |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Click **OK**.
@@ -245,4 +245,4 @@ To Base64-encode a string, run the **echo -n content to be encoded \| base64** c
    root@ubuntu:~# echo -n "content to be encoded" | base64
    ******
 
-.. |image1| image:: /_static/images/en-us_image_0000001750950360.png
+.. |image1| image:: /_static/images/en-us_image_0000001851745844.png

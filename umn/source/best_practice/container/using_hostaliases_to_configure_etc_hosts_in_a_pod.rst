@@ -118,4 +118,4 @@ Procedure
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000001750790172.png
+.. |image1| image:: /_static/images/en-us_image_0000001851743708.png

@@ -19,7 +19,7 @@ You can regulate users' or user groups' access to Kubernetes resources in a sing
 Role and ClusterRole specify actions that can be performed on specific resources. RoleBinding and ClusterRoleBinding bind roles to specific users, user groups, or ServiceAccounts. Illustration:
 
 
-.. figure:: /_static/images/en-us_image_0000001750791672.png
+.. figure:: /_static/images/en-us_image_0000001851745716.png
    :alt: **Figure 1** Role binding
 
    **Figure 1** Role binding
@@ -174,7 +174,7 @@ Use the IAM user user-example to connect to the cluster and obtain the pod infor
    NAME                     READY   STATUS    RESTARTS   AGE
    nginx-658dff48ff-7rkph   1/1     Running   0          4d9h
 
-Try querying Deployments and Services in the namespace. The output shows that **user-example** does not have the required permissions. Try querying the pods in namespace kube-system. The output shows that **user-example** does not have the required permissions, either. This indicates that the IAM user **user-example** has only the GET and LIST Pod permissions in the default namespace, which is the same as expected.
+Try querying Deployments and Services in the namespace. The output shows that **user-example** does not have the required permissions. Try querying the pods in namespace kube-system. The output shows that **user-example** does not have the required permissions. This indicates that the IAM user **user-example** has only the GET and LIST Pod permissions in the **default** namespace, which is the same as expected.
 
 .. code-block::
 

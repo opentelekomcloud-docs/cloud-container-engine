@@ -27,7 +27,7 @@ HPA and CronHPA associate scaling objects using the **scaleTargetRef** field. If
 
 |image2|
 
-When CronHPA and HPA are used together, CronHPA rules take effect based on the HPA policy. CronHPA uses HPA to perform operations on the Deployment. Understanding the following parameters can better understand the working principle of the CronHPA.
+When CronHPA and HPA are used together, CronHPA rules take effect based on the HPA policy. CronHPA uses HPA to perform operations on the Deployment. Understanding the following parameters can better understand the working rules of the CronHPA.
 
 -  **targetReplicas**: Number of pods set for CronHPA. When CronHPA takes effect, this parameter adjusts the maximum or minimum number of pods in HPA policies to adjust the number of Deployment pods.
 -  **minReplicas**: Minimum number of Deployment pods.
@@ -38,7 +38,7 @@ When the CronHPA rule takes effect, the maximum or minimum number of pods are ad
 
 .. _cce_10_0415__fig8528823151719:
 
-.. figure:: /_static/images/en-us_image_0000001750791228.png
+.. figure:: /_static/images/en-us_image_0000001851745400.png
    :alt: **Figure 1** CronHPA scaling scenarios
 
    **Figure 1** CronHPA scaling scenarios
@@ -97,7 +97,7 @@ When the CronHPA rule takes effect, the maximum or minimum number of pods are ad
 
 #. Choose **Workloads** in the navigation pane. Locate the target workload and choose **More** > **Auto Scaling** in the **Operation** column.
 
-#. Set **Policy Type** to **HPA+CronHPA** to enable HPA and CronHPA policies.
+#. Set **Policy Type** to **HPA+CronHPA** and enable HPA and CronHPA policies.
 
    CronHPA periodically adjusts the maximum and minimum numbers of pods using the HPA policy.
 
@@ -164,15 +164,19 @@ When the CronHPA rule takes effect, the maximum or minimum number of pods are ad
 
    .. table:: **Table 3** CronHPA policy parameters
 
-      +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter        | Description                                                                                                                                                                   |
-      +==================+===============================================================================================================================================================================+
-      | Target Instances | When the policy is triggered, CCE will adjust the number of HPA policy pods based on service requirements. For details, see :ref:`Table 1 <cce_10_0415__table1259511111590>`. |
-      +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Trigger Time     | You can select a specific time every day, every week, every month, or every year.                                                                                             |
-      +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Enable           | Enable or disable the policy rule.                                                                                                                                            |
-      +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                   |
+      +===================================+===============================================================================================================================================================================+
+      | Target Instances                  | When the policy is triggered, CCE will adjust the number of HPA policy pods based on service requirements. For details, see :ref:`Table 1 <cce_10_0415__table1259511111590>`. |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Trigger Time                      | You can select a specific time every day, every week, every month, or every year.                                                                                             |
+      |                                   |                                                                                                                                                                               |
+      |                                   | .. note::                                                                                                                                                                     |
+      |                                   |                                                                                                                                                                               |
+      |                                   |    This time indicates the local time of where the node is deployed.                                                                                                          |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Enable                            | Enable or disable the policy rule.                                                                                                                                            |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. After configuring the preceding parameters, click **OK**. Then, the added policy rule is displayed in the rule list. Repeat the preceding steps to add multiple policy rules, but the triggering time of the policies must be different.
 
@@ -212,7 +216,7 @@ When the CronHPA is compatible with the HPA policy, the **scaleTargetRef** field
         name: ccetest
         namespace: default
       spec:
-         scaleTargetRef:                  # Associate the HPA policy
+         scaleTargetRef:                  # Associate an HPA policy.
             apiVersion: autoscaling/v1
             kind: HorizontalPodAutoscaler
             name: hpa-test
@@ -251,6 +255,11 @@ When the CronHPA is compatible with the HPA policy, the **scaleTargetRef** field
       |                                   |                                                                                                                                                                                                                                                                     |
       |                                   | -  **ruleName**: CronHPA rule name, which must be unique.                                                                                                                                                                                                           |
       |                                   | -  **schedule**: Running time and period of a job. For details, see `Cron <https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#cron-schedule-syntax>`__, for example, 0 \* \* \* \* or @hourly.                                                    |
+      |                                   |                                                                                                                                                                                                                                                                     |
+      |                                   |    .. note::                                                                                                                                                                                                                                                        |
+      |                                   |                                                                                                                                                                                                                                                                     |
+      |                                   |       This time indicates the local time of where the node is deployed.                                                                                                                                                                                             |
+      |                                   |                                                                                                                                                                                                                                                                     |
       |                                   | -  **targetReplicas**: indicates the number of pods to be scaled in or out.                                                                                                                                                                                         |
       |                                   | -  **disable**: The value can be **true** or **false**. **false** indicates that the rule takes effect, and **true** indicates that the rule does not take effect.                                                                                                  |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -276,15 +285,19 @@ CronHPA adjusts associated Deployments separately to periodically adjust the num
 
    .. table:: **Table 5** CronHPA policy parameters
 
-      +------------------+----------------------------------------------------------------------------------------------------------+
-      | Parameter        | Description                                                                                              |
-      +==================+==========================================================================================================+
-      | Target Instances | When a policy is triggered, the number of workload pods will be adjusted to the value of this parameter. |
-      +------------------+----------------------------------------------------------------------------------------------------------+
-      | Trigger Time     | You can select a specific time every day, every week, every month, or every year.                        |
-      +------------------+----------------------------------------------------------------------------------------------------------+
-      | Enable           | Enable or disable the policy rule.                                                                       |
-      +------------------+----------------------------------------------------------------------------------------------------------+
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                              |
+      +===================================+==========================================================================================================+
+      | Target Instances                  | When a policy is triggered, the number of workload pods will be adjusted to the value of this parameter. |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------+
+      | Trigger Time                      | You can select a specific time every day, every week, every month, or every year.                        |
+      |                                   |                                                                                                          |
+      |                                   | .. note::                                                                                                |
+      |                                   |                                                                                                          |
+      |                                   |    This time indicates the local time of where the node is deployed.                                     |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------+
+      | Enable                            | Enable or disable the policy rule.                                                                       |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------+
 
 #. After configuring the preceding parameters, click **OK**. Then, the added policy rule is displayed in the rule list. Repeat the preceding steps to add multiple policy rules, but the triggering time of the policies must be different.
 
@@ -314,7 +327,7 @@ CronHPA adjusts associated Deployments separately to periodically adjust the num
         targetReplicas: 3
         disable: false
 
-.. |image1| image:: /_static/images/en-us_image_0000001797870901.png
-.. |image2| image:: /_static/images/en-us_image_0000001750791220.png
-.. |image3| image:: /_static/images/en-us_image_0000001797870909.png
-.. |image4| image:: /_static/images/en-us_image_0000001750950144.png
+.. |image1| image:: /_static/images/en-us_image_0000001851745380.png
+.. |image2| image:: /_static/images/en-us_image_0000001898025573.png
+.. |image3| image:: /_static/images/en-us_image_0000001898025577.png
+.. |image4| image:: /_static/images/en-us_image_0000001897906057.png

@@ -60,5 +60,5 @@ Procedure
 
    -  **FROM** statement: indicates that **centos:7.1.1503** is used as the base image.
    -  **Run** statement: indicates that a shell command is executed in the container.
-   -  **Copy** statement: indicates that files in the local computer are copied to the container.
+   -  **COPY** statement: indicates that files in the local computer are copied to the container.
    -  **ENTRYPOINT** statement: indicates the commands that are run after the container is started.

@@ -13,9 +13,9 @@ Whether some key commands that the node upgrade depends on are working
 Solution
 --------
 
--  Scenario 1: The package manager command fails to be executed.
+-  Scenario 1: Executing the package manager command failed.
 
-   The **rpm** or **dpkg** command fails to be executed. Log in to the node and check whether the following commands are available:
+   Executing the **rpm** or **dpkg** command failed. In this case, log in to the affected node and check whether the following commands are available:
 
    -  rpm:
 
@@ -36,3 +36,11 @@ Solution
    .. code-block::
 
       systemctl status kubelet
+
+-  Scenario 3: Executing the Python command failed.
+
+   Check whether the command can be executed on the node.
+
+   .. code-block::
+
+      /usr/bin/python --version

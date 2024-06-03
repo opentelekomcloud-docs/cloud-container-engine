@@ -92,3 +92,49 @@ The CPU and memory usage of the node is as follows:
 In this case, the remaining 1 core 5 GiB can be used by the next new pod.
 
 If pod 1 is under heavy load during peak hours, it will use more CPUs and memory within the limit. Therefore, the actual allocatable resources are fewer than 1 core 5 GiB.
+
+Quotas of Other Resources
+-------------------------
+
+Typically, nodes support local ephemeral storage, which is provided by locally mounted writable devices or RAM. Ephemeral storage does not ensure long-term data availability. Pods can use local ephemeral storage to buffer data and store logs, or mount emptyDir storage volumes to containers. For details, see `Local ephemeral storage <https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#local-ephemeral-storage>`__.
+
+Kubernetes allows you to specify the requested value and limit value of ephemeral storage in container configurations to manage the local ephemeral storage. The following attributes can be configured for each container in a pod:
+
+-  spec.containers[].resources.limits.ephemeral-storage
+
+-  spec.containers[].resources.requests.ephemeral-storage
+
+In the following example, a pod contains two containers. The requested value of each container for local ephemeral storage is 2 GiB, and the limit value is 4 GiB. Therefore, the requested value of the pod for local ephemeral storage is 4 GiB, the limit value is 8 GiB, and the emptyDir volume uses 500 MiB of the local ephemeral storage.
+
+.. code-block::
+
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: frontend
+   spec:
+     containers:
+     - name: container-1
+       image: <example_app_image>
+       resources:
+         requests:
+           ephemeral-storage: "2Gi"
+         limits:
+           ephemeral-storage: "4Gi"
+       volumeMounts:
+       - name: ephemeral
+         mountPath: "/tmp"
+     - name: container-2
+       image: <example_log_aggregator_image>
+       resources:
+         requests:
+           ephemeral-storage: "2Gi"
+         limits:
+           ephemeral-storage: "4Gi"
+       volumeMounts:
+       - name: ephemeral
+         mountPath: "/tmp"
+     volumes:
+       - name: ephemeral
+         emptyDir:
+           sizeLimit: 500Mi

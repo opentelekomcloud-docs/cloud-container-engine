@@ -13,7 +13,7 @@ Network
 -  :ref:`Container Network Settings <cce_10_0675>`
 -  :ref:`Cluster Network Settings <cce_10_0679>`
 -  :ref:`Configuring Intra-VPC Access <cce_10_0399>`
--  :ref:`Accessing Public Networks from a Container <cce_10_0400>`
+-  :ref:`Accessing the Internet from a Container <cce_10_0400>`
 
 .. toctree::
    :maxdepth: 1
@@ -27,4 +27,4 @@ Network
    container_network_settings/index
    cluster_network_settings/index
    configuring_intra-vpc_access
-   accessing_public_networks_from_a_container
+   accessing_the_internet_from_a_container

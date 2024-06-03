@@ -39,7 +39,7 @@ Assume that a cluster administrator has a Consul DNS server located at 10.150.0.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Add-ons**. On the displayed page, click **Edit** under **CoreDNS**.
+#. In the navigation pane, choose **Add-ons**. Then, click **Edit** under **CoreDNS**.
 
 #. Add a stub domain in the **Parameters** area. The format is a key-value pair. The key is a DNS suffix domain name, and the value is a DNS IP address or a group of DNS IP addresses, for example, **consul.local -- 10.150.0.1**.
 
@@ -84,7 +84,7 @@ After modifying the hosts file in CoreDNS, you do not need to configure the host
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Add-ons**. On the displayed page, click **Edit** under **CoreDNS**.
+#. In the navigation pane, choose **Add-ons**. Then, click **Edit** under **CoreDNS**.
 
 #. Edit the advanced configuration under **Parameters** and add the following content to the **plugins** field:
 
@@ -140,7 +140,7 @@ Use the Rewrite plug-in of CoreDNS to resolve a specified domain name to the dom
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Add-ons**. On the displayed page, click **Edit** under **CoreDNS**.
+#. In the navigation pane, choose **Add-ons**. Then, click **Edit** under **CoreDNS**.
 
 #. Edit the advanced configuration under **Parameters** and add the following content to the **plugins** field:
 
@@ -187,7 +187,7 @@ By default, CoreDNS uses the **/etc/resolv.conf** file of the node for resolutio
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Add-ons**. On the displayed page, click **Edit** under **CoreDNS**.
+#. In the navigation pane, choose **Add-ons**. Then, click **Edit** under **CoreDNS**.
 
 #. Edit the advanced configuration under **Parameters** and modify the following content in the **plugins** field:
 

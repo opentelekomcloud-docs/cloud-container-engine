@@ -6,11 +6,11 @@ Ingresses
 =========
 
 -  :ref:`Overview <cce_10_0094>`
--  :ref:`ELB Ingresses <cce_10_0686>`
+-  :ref:`LoadBalancer Ingresses <cce_10_0686>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
    overview
-   elb_ingresses/index
+   loadbalancer_ingresses/index
