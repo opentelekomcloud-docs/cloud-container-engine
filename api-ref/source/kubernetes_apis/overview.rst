@@ -29,7 +29,7 @@ You can call Kubernetes native APIs through API Gateway using the URL in the for
    +=============+====================================================================================================================================================+
    | {clusterid} | Cluster ID. After a cluster is created, call the :ref:`API for obtaining a cluster in a specified project <cce_02_0239>` to obtain the cluster ID. |
    +-------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Endpoint    | Web service entry URL. It can be obtained from `Regions and Endpoints <https://docs.otc.t-systems.com/en-us/endpoint/index.html>`__.               |
+   | Endpoint    | Web service entry URL. It can be obtained from `Regions and Endpoints <https://docs.otc.t-systems.com/regions-and-endpoints/index.html>`__.        |
    +-------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
    | uri         | Path in which the resource requested by the API is located. You can obtain the path from the URI of the API.                                       |
    +-------------+----------------------------------------------------------------------------------------------------------------------------------------------------+

@@ -10,7 +10,7 @@ Obtaining the Project ID by Calling an API
 
 You can obtain the project ID by calling the API `used to query project information based on the specified criteria <https://docs.otc.t-systems.com/en-us/api/iam/en-us_topic_0057845625.html>`__.
 
-The API used to obtain a project ID is **GET https://**\ *{Endpoint}*\ **/v3/projects**, where *{Endpoint}* indicates the IAM endpoint. You can obtain the IAM endpoint from `Regions and Endpoints <https://docs.otc.t-systems.com/en-us/endpoint/index.html>`__.
+The API used to obtain a project ID is **GET https://**\ *{Endpoint}*\ **/v3/projects**, where *{Endpoint}* indicates the IAM endpoint. You can obtain the IAM endpoint from `Regions and Endpoints <https://docs.otc.t-systems.com/regions-and-endpoints/index.html>`__.
 
 The following is an example response. The value of **id** in the **projects** field is the project ID.
 
