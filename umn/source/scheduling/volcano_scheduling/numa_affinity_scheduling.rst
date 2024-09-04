@@ -18,7 +18,7 @@ Both the CPU Manager and Topology Manager are kubelet components, but they have 
 Volcano targets to lift the limitation to make scheduler NUMA topology aware so that:
 
 -  Pods are not scheduled to the nodes that NUMA topology does not match.
--  Pods are scheduled to the best node for NUMA topology.
+-  Pods are scheduled to the most suitable node for NUMA topology.
 
 For more information, see https://github.com/volcano-sh/volcano/blob/master/docs/design/numa-aware.md.
 
@@ -90,12 +90,12 @@ For example, two NUMA nodes provide resources, each with a total of 32 CPU cores
 
 -  When 9 CPU cores are requested by a pod and the **best-effort** topology policy is used, Volcano selects node 1 whose topology policy is also **best-effort**, and this policy allows the pod to be scheduled to multiple NUMA nodes. Therefore, the requested 9 CPU cores will be allocated to two NUMA nodes, and the pod can be scheduled to node 1.
 -  When 9 CPU cores are requested by a pod and the **restricted** topology policy is used, Volcano selects nodes 2 and 3 whose topology policy is also **restricted**, and each node provides a total of 9 CPU cores. However, the remaining CPU cores on node 2 or 3 are less than the requested. Therefore, the pod cannot be scheduled.
--  When 17 CPU cores are requested by a pod and the **restricted** topology policy is used, Volcano selects nodes 2 and 3 whose topology policy is also **restricted**, this policy allows the pod to be scheduled to multiple NUMA nodes, and the upper CPU limit of the both nodes is less than 17. Then, the pod can be scheduled to node 3.
+-  When 17 CPU cores are requested by a pod and the **restricted** topology policy is used, Volcano selects nodes 2 and 3 whose topology policy is also **restricted**, this policy allows the pod to be scheduled to multiple NUMA nodes, and the upper CPU limit of both the nodes is less than 17. Then, the pod can be scheduled to node 3.
 -  When 17 CPU cores are requested by a pod and the **single-numa-node** topology policy is used, Volcano selects nodes whose topology policy is also **single-numa-node**. However, no node can provide a total of 17 CPU cores. Therefore, the pod cannot be scheduled.
 
 .. _cce_10_0425__fig1216082014438:
 
-.. figure:: /_static/images/en-us_image_0000001898025173.png
+.. figure:: /_static/images/en-us_image_0000001981436181.png
    :alt: **Figure 1** Comparison of NUMA scheduling policies
 
    **Figure 1** Comparison of NUMA scheduling policies
@@ -152,8 +152,7 @@ Enabling NUMA Affinity Scheduling for Volcano
 
       .. code-block::
 
-         {
-             "ca_cert": "",
+         ...
              "default_scheduler_conf": {
                  "actions": "allocate, backfill, preempt",
                  "tiers": [
@@ -222,9 +221,7 @@ Enabling NUMA Affinity Scheduling for Volcano
                      }
                  ]
              },
-             "server_cert": "",
-             "server_key": ""
-         }
+         ...
 
    **Volcano earlier than 1.7.1**
 

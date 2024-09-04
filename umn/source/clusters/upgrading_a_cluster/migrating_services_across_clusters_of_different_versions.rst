@@ -50,7 +50,7 @@ Procedure
 
    .. note::
 
-      Storage switching supports only OBS buckets and SFS Turbo file systems. If non-shared storage is used, suspend the workloads in the old cluster to switch the storage resources. As a result, services will be unavailable.
+      Storage switching supports only shared storage such as OBS and SFS Turbo. If non-shared storage is used, suspend the workloads in the old cluster to switch the storage resources. In this case, services will be unavailable.
 
 #. **Create a workload in the new cluster.**
 

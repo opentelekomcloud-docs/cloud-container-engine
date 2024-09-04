@@ -12,8 +12,8 @@ Each node in a cluster is a cloud server or physical machine. After a cluster no
 
 Some information of CCE nodes is maintained independently from the ECS console. After you change the name, EIP, or specifications of an ECS on the ECS console, synchronize the ECS with the target node on the CCE console. After the synchronization, information on both consoles is consistent.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  Data, including the VM status, ECS names, number of CPUs, size of memory, ECS specifications, and public IP addresses, can be synchronized.
 -  Data, such as the OS and image ID, cannot be synchronized. (Such parameters cannot be modified on the ECS console.)
@@ -28,7 +28,7 @@ Synchronizing the Data of a Cloud Server
 #. Locate the target node and choose **More** > **Sync Server Data** in the **Operation** column.
 
 
-   .. figure:: /_static/images/en-us_image_0000001902829161.png
+   .. figure:: /_static/images/en-us_image_0000001981436641.png
       :alt: **Figure 1** Synchronizing server data
 
       **Figure 1** Synchronizing server data

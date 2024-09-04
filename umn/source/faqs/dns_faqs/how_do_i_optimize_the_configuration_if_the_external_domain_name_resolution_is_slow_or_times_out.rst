@@ -36,7 +36,7 @@ Scenario 1: Slow External Domain Name Resolution
 
 Optimization Solution
 
-#. If the workload does not need to access the Kubernetes Service in the cluster, see :ref:`How Do I Configure a DNS Policy for a Container? <cce_faq_00194>`.
+#. If the workload does not need to access the Kubernetes Service in the cluster, see :ref:`How Do I Configure a DNS Policy for a Container? <cce_faq_00194>`
 #. If the number of dots (.) in the domain name used by the working Service to access other Kubernetes Services is less than 2, set **ndots** to **2**.
 
 Scenario 2: External Domain Name Resolution Timeout
@@ -47,4 +47,4 @@ Optimization Solution
 #. Generally, the timeout of a Service must be greater than the value of **timeout** multiplied by **attempts**.
 #. If it takes more than 2s to resolve the domain name, you can set **timeout** to a larger value.
 
-.. |image1| image:: /_static/images/en-us_image_0000001897904433.png
+.. |image1| image:: /_static/images/en-us_image_0000001950315760.png

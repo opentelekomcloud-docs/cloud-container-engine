@@ -10,12 +10,12 @@ CCE has passed the Certified Kubernetes Conformance Program and is a certified K
 Indexes
 -------
 
--  :ref:`New Features <cce_bulletin_0058__en-us_topic_0000001851742752_en-us_topic_0000001389397618_en-us_topic_0000001430891141_en-us_topic_0000001072975092_section51381161799>`
--  :ref:`Deprecations and Removals <cce_bulletin_0058__en-us_topic_0000001851742752_section1096111394018>`
--  :ref:`Enhanced Kubernetes 1.25 on CCE <cce_bulletin_0058__en-us_topic_0000001851742752_section115291322132513>`
--  :ref:`References <cce_bulletin_0058__en-us_topic_0000001851742752_en-us_topic_0000001389397618_en-us_topic_0000001430891141_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583>`
+-  :ref:`New Features <cce_bulletin_0058__en-us_topic_0000001596950457_en-us_topic_0000001389397618_en-us_topic_0000001430891141_en-us_topic_0000001072975092_section51381161799>`
+-  :ref:`Deprecations and Removals <cce_bulletin_0058__en-us_topic_0000001596950457_section1096111394018>`
+-  :ref:`Enhanced Kubernetes 1.25 on CCE <cce_bulletin_0058__en-us_topic_0000001596950457_section115291322132513>`
+-  :ref:`References <cce_bulletin_0058__en-us_topic_0000001596950457_en-us_topic_0000001389397618_en-us_topic_0000001430891141_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583>`
 
-.. _cce_bulletin_0058__en-us_topic_0000001851742752_en-us_topic_0000001389397618_en-us_topic_0000001430891141_en-us_topic_0000001072975092_section51381161799:
+.. _cce_bulletin_0058__en-us_topic_0000001596950457_en-us_topic_0000001389397618_en-us_topic_0000001430891141_en-us_topic_0000001072975092_section51381161799:
 
 New Features
 ------------
@@ -117,7 +117,7 @@ New Features
 
    The non-graceful node shutdown is introduced as alpha in Kubernetes v1.24. A node shutdown is considered graceful only if kubelet's node shutdown manager can detect the upcoming node shutdown action. For details, see `Non-graceful node shutdown handling <https://kubernetes.io/docs/concepts/architecture/nodes/#non-graceful-node-shutdown>`__.
 
-.. _cce_bulletin_0058__en-us_topic_0000001851742752_section1096111394018:
+.. _cce_bulletin_0058__en-us_topic_0000001596950457_section1096111394018:
 
 Deprecations and Removals
 -------------------------
@@ -145,7 +145,7 @@ Deprecations and Removals
 -  In Kubernetes 1.24 and later versions, the **metadata.clusterName** field is discarded and will be deleted in the next version.
 -  In Kubernetes 1.24 and later versions, the logic for kube-proxy to listen to NodePorts is removed. If NodePorts conflict with **kernel net.ipv4.ip_local_port_range**, TCP connections may fail occasionally, which leads to a health check failure or service exception. Before the upgrade, ensure that cluster NodePorts do not conflict with **net.ipv4.ip_local_port_range** of all nodes in the cluster. For more details, see `Kubernetes PR <https://github.com/kubernetes/kubernetes/pull/108496>`__.
 
-.. _cce_bulletin_0058__en-us_topic_0000001851742752_section115291322132513:
+.. _cce_bulletin_0058__en-us_topic_0000001596950457_section115291322132513:
 
 Enhanced Kubernetes 1.25 on CCE
 -------------------------------
@@ -154,7 +154,7 @@ During a version maintenance period, CCE periodically updates Kubernetes 1.25 an
 
 For details about cluster version updates, see :ref:`Release Notes for CCE Cluster Versions <cce_10_0405>`.
 
-.. _cce_bulletin_0058__en-us_topic_0000001851742752_en-us_topic_0000001389397618_en-us_topic_0000001430891141_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583:
+.. _cce_bulletin_0058__en-us_topic_0000001596950457_en-us_topic_0000001389397618_en-us_topic_0000001430891141_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583:
 
 References
 ----------

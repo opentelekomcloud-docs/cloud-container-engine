@@ -8,7 +8,7 @@ Security Groups
 Check Items
 -----------
 
-Check whether the **Protocol & Port** of the worker node security groups are set to **ICMP: All** and whether the security group with the source IP address set to the master node security group is deleted.
+Check whether the **Protocol & Port** of the worker node security groups is set to **ICMP: All** and whether the security group with the source IP address set to the master node security group is deleted.
 
 .. note::
 

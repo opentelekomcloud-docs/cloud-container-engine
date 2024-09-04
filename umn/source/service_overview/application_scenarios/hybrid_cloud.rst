@@ -51,10 +51,10 @@ Advantages
 Related Services
 ----------------
 
-Elastic Cloud Server (ECS), Direct Connect (DC), Virtual Private Network (VPN), SoftWare Repository for Container (SWR)
+Elastic Cloud Server (ECS), Virtual Private Network (VPN), SoftWare Repository for Container (SWR)
 
 
-.. figure:: /_static/images/en-us_image_0000001702936020.png
+.. figure:: /_static/images/en-us_image_0000001851584036.png
    :alt: **Figure 1** How hybrid cloud works
 
    **Figure 1** How hybrid cloud works

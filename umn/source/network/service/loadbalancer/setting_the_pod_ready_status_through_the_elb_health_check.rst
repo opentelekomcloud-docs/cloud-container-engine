@@ -7,8 +7,8 @@ Setting the Pod Ready Status Through the ELB Health Check
 
 The ready status of the pod is associated with the ELB health check. After the health check is successful, the pod is ready. This association works with the **strategy.rollingUpdate.maxSurge** and **strategy.rollingUpdate.maxUnavailable** parameters of the pod to implement graceful rolling upgrade.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  This feature is available in the following versions:
 

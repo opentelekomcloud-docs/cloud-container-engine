@@ -24,10 +24,10 @@ emptyDir Types
 CCE provides the following emptyDir types:
 
 -  :ref:`Using a Temporary Path <cce_10_0638>`: Kubernetes-native emptyDir type. Its lifecycle is the same as that of a pod. Memory can be specified as the storage medium. When the pod is deleted, the emptyDir volume is deleted and its data is lost.
--  :ref:`Using a Local EV <cce_10_0726>`: Local data disks in a node form a :ref:`storage pool <cce_10_0725>` (VolumeGroup) through LVM. LVs are created as the storage medium of emptyDir and mounted to containers. LVs deliver better performance than the default storage medium of emptyDir.
+-  :ref:`Using a Local EV <cce_10_0726>`: Local data disks in a node form a :ref:`storage pool <cce_10_0725>` (VolumeGroup) through LVM. LVs are created as the storage medium of emptyDir and mounted to pods. LVs deliver better performance than the default storage medium of emptyDir.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  Local EVs are supported only when the cluster version is v1.21.2-r0 or later and the Everest add-on version is 1.2.29 or later.
 -  Do not manually delete the corresponding storage pool or detach data disks from the node. Otherwise, exceptions such as data loss may occur.

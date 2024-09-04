@@ -18,7 +18,7 @@ Check these causes one by one until you find the cause of the fault.
 -  :ref:`Check Item 4: Whether the EVS Disk File System Is Damaged <cce_faq_00200__section0802134413523>`
 
 
-.. figure:: /_static/images/en-us_image_0000001851585136.png
+.. figure:: /_static/images/en-us_image_0000001981435165.png
    :alt: **Figure 1** Troubleshooting for storage volume mounting failure or mounting timeout
 
    **Figure 1** Troubleshooting for storage volume mounting failure or mounting timeout

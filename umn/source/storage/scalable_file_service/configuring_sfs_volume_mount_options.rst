@@ -5,15 +5,15 @@
 Configuring SFS Volume Mount Options
 ====================================
 
-This section describes how to configure SFS volume mount options. You can configure mount options in a PV and bind the PV to a PVC. Alternatively, configure mount options in a StorageClass and use the StorageClass to create a PVC. In this way, PVs can be dynamically created and inherit mount options configured in the StorageClass by default.
+This section describes how to configure SFS mount options. You can configure mount options in a PV and bind the PV to a PVC. Alternatively, configure mount options in a StorageClass and use the StorageClass to create a PVC. In this way, PVs can be dynamically created and inherit mount options configured in the StorageClass by default.
 
 Prerequisites
 -------------
 
-The :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on version must be **1.2.8 or later**. This add-on identifies the mount options and transfers them to the underlying storage resources. The parameter settings take effect only if the underlying storage resources support the specified options.
+The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be **1.2.8 or later**. This add-on identifies the mount options and transfers them to the underlying storage resources. The parameter settings take effect only if the underlying storage resources support the specified options.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  Mount options cannot be configured for Kata containers.
 -  Due to the restrictions of the NFS protocol, if an SFS volume is mounted to a node for multiple times, link-related mounting parameters (such as **timeo**) take effect only when the SFS volume is mounted for the first time by default. For example, if the same SFS file system is mounted to multiple pods running on a node, the mounting parameter set later does not overwrite the existing parameter value. If you want to configure different mounting parameters in the preceding scenario, additionally configure the **nosharecache** parameter.
@@ -44,7 +44,7 @@ The Everest add-on in CCE presets the options described in :ref:`Table 1 <cce_10
    +-------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | timeo                   | 600                   | Waiting time before the NFS client retransmits a request. The unit is 0.1 seconds. Recommended value: **600**                                                                                                                                                                                                                                                                                               |
    +-------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | hard/soft               | Blank                 | Mounting mode.                                                                                                                                                                                                                                                                                                                                                                                              |
+   | hard/soft               | Blank                 | Mount mode.                                                                                                                                                                                                                                                                                                                                                                                                 |
    |                         |                       |                                                                                                                                                                                                                                                                                                                                                                                                             |
    |                         |                       | -  **hard**: If the NFS request times out, the client keeps resending the request until the request is successful.                                                                                                                                                                                                                                                                                          |
    |                         |                       | -  **soft**: If the NFS request times out, the client returns an error to the invoking program.                                                                                                                                                                                                                                                                                                             |
@@ -60,14 +60,14 @@ The Everest add-on in CCE presets the options described in :ref:`Table 1 <cce_10
 
 You can set other mount options if needed. For details, see `Mounting an NFS File System to ECSs (Linux) <https://docs.otc.t-systems.com/en-us/usermanual/sfs/en-us_topic_0034428728.html>`__.
 
-Setting Mount Options in a PV
------------------------------
+Configuring Mount Options in a PV
+---------------------------------
 
-You can use the **mountOptions** field to set mount options in a PV. The options you can configure in **mountOptions** are listed in :ref:`SFS Volume Mount Options <cce_10_0337__section14888047833>`.
+You can use the **mountOptions** field to configure mount options in a PV. The options you can configure in **mountOptions** are listed in :ref:`SFS Volume Mount Options <cce_10_0337__section14888047833>`.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
-#. Set mount options in a PV. Example:
+#. Configure mount options in a PV. Example:
 
    .. code-block::
 
@@ -76,23 +76,23 @@ You can use the **mountOptions** field to set mount options in a PV. The options
       metadata:
         annotations:
           pv.kubernetes.io/provisioned-by: everest-csi-provisioner
-          everest.io/reclaim-policy: retain-volume-only      # (Optional) The PV is deleted while the underlying volume is retained.
+          everest.io/reclaim-policy: retain-volume-only      # (Optional) The underlying volume is retained when the PV is deleted.
         name: pv-sfs
       spec:
         accessModes:
         - ReadWriteMany      # Access mode. The value must be ReadWriteMany for SFS.
         capacity:
-          storage: 1Gi     # SFS volume capacity.
+          storage: 1Gi     # SFS volume capacity
         csi:
-          driver: disk.csi.everest.io   # Dependent storage driver for the mounting.
+          driver: nas.csi.everest.io    # Dependent storage driver for the mounting
           fsType: nfs
           volumeHandle: <your_volume_id>   # ID of the SFS Capacity-Oriented volume
           volumeAttributes:
-            everest.io/share-export-location: <your_location>  # Shared path of the SFS volume.
+            everest.io/share-export-location: <your_location>  # Shared path of the SFS volume
             storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
-        persistentVolumeReclaimPolicy: Retain    # Reclaim policy.
-        storageClassName: csi-nas                # Storage class name.
-        mountOptions:                            # Mount options.
+        persistentVolumeReclaimPolicy: Retain    # Reclaim policy
+        storageClassName: csi-nas                # StorageClass name.
+        mountOptions:                            # Mount options
         - vers=3
         - nolock
         - timeo=600
@@ -122,20 +122,20 @@ You can use the **mountOptions** field to set mount options in a PV. The options
 
          kubectl exec -it web-sfs-*** -- mount -l | grep nfs
 
-      If the mounting information in the command output is consistent with the configured mount options, the mount options are set successfully.
+      If the mounting information in the command output is consistent with the configured mount options, the mount options have been configured.
 
       .. code-block::
 
          <Your shared path> on /data type nfs (rw,relatime,vers=3,rsize=1048576,wsize=1048576,namlen=255,hard,nolock,noresvport,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=**.**.**.**,mountvers=3,mountport=2050,mountproto=tcp,local_lock=all,addr=**.**.**.**)
 
-Setting Mount Options in a StorageClass
----------------------------------------
+Configuring Mount Options in a StorageClass
+-------------------------------------------
 
-You can use the **mountOptions** field to set mount options in a StorageClass. The options you can configure in **mountOptions** are listed in :ref:`SFS Volume Mount Options <cce_10_0337__section14888047833>`.
+You can use the **mountOptions** field to configure mount options in a StorageClass. The options you can configure in **mountOptions** are listed in :ref:`SFS Volume Mount Options <cce_10_0337__section14888047833>`.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
-#. Create a customized StorageClass. Example:
+#. Create a custom StorageClass. Example:
 
    .. code-block::
 
@@ -147,8 +147,8 @@ You can use the **mountOptions** field to set mount options in a StorageClass. T
       parameters:
         csi.storage.k8s.io/csi-driver-name: nas.csi.everest.io
         csi.storage.k8s.io/fstype: nfs
-      everest.io/share-access-to: <your_vpc_id> # VPC ID of the cluster.
-      reclaimPolicy: Delete
+      everest.io/share-access-to: <your_vpc_id> # VPC ID of the cluster
+       reclaimPolicy: Delete
       volumeBindingMode: Immediate
       mountOptions:                            # Mount options
       - vers=3
@@ -180,7 +180,7 @@ You can use the **mountOptions** field to set mount options in a StorageClass. T
 
          kubectl exec -it web-sfs-*** -- mount -l | grep nfs
 
-      If the mounting information in the command output is consistent with the configured mount options, the mount options are set successfully.
+      If the mounting information in the command output is consistent with the configured mount options, the mount options have been configured.
 
       .. code-block::
 

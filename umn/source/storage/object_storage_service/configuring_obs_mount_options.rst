@@ -10,10 +10,10 @@ This section describes how to configure OBS volume mount options. You can config
 Prerequisites
 -------------
 
-The :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on version must be **1.2.8 or later**. This add-on identifies the mount options and transfers them to the underlying storage resources. The parameter settings take effect only if the underlying storage resources support the specified options.
+The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be **1.2.8 or later**. This add-on identifies the mount options and transfers them to the underlying storage resources. The parameter settings take effect only if the underlying storage resources support the specified options.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 Mount options cannot be configured for Kata containers.
 
@@ -54,26 +54,26 @@ When mounting an OBS volume, the Everest add-on presets the options described in
 
 .. table:: **Table 2** Optional mount options configured by default
 
-   +-----------------------+----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Parameter             | Value                      | Description                                                                                                                                       |
-   +=======================+============================+===================================================================================================================================================+
-   | max_write             | 131072                     | This parameter is valid only when **big_writes** is configured. The recommended value is **128 KB**.                                              |
-   +-----------------------+----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-   | ssl_verify_hostname   | 0                          | Disables SSL certificate verification based on the host name.                                                                                     |
-   +-----------------------+----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-   | max_background        | 100                        | Allows setting the maximum number of waiting requests in the background. Used by default in parallel file systems.                                |
-   +-----------------------+----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-   | umask                 | A three-digit octal number | Mask of the configuration file permission.                                                                                                        |
-   |                       |                            |                                                                                                                                                   |
-   |                       |                            | For example, if the umask value is **022**, the directory permission (the maximum permission is **777**) is **755** (777 - 022 = 755, rwxr-xr-x). |
-   +-----------------------+----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter             | Value                 | Description                                                                                                                                       |
+   +=======================+=======================+===================================================================================================================================================+
+   | max_write             | 131072                | This parameter is valid only when **big_writes** is configured. The recommended value is **128 KB**.                                              |
+   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+   | ssl_verify_hostname   | 0                     | Disables SSL certificate verification based on the host name.                                                                                     |
+   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+   | max_background        | 100                   | Allows setting the maximum number of waiting requests in the background. Used by default in parallel file systems.                                |
+   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+   | umask                 | 0                     | Mask of the configuration file permission.                                                                                                        |
+   |                       |                       |                                                                                                                                                   |
+   |                       |                       | For example, if the umask value is **022**, the directory permission (the maximum permission is **777**) is **755** (777 - 022 = 755, rwxr-xr-x). |
+   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Configuring Mount Options in a PV
 ---------------------------------
 
 You can use the **mountOptions** field to configure mount options in a PV. The options you can configure in **mountOptions** are listed in :ref:`OBS Mount Options <cce_10_0631__section1254912109811>`.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Configure mount options in a PV. Example:
 
@@ -84,28 +84,28 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
       metadata:
         annotations:
           pv.kubernetes.io/provisioned-by: everest-csi-provisioner
-          everest.io/reclaim-policy: retain-volume-only      # (Optional) The PV is deleted while the underlying volume is retained.
-        name: pv-obs       # PV name.
+          everest.io/reclaim-policy: retain-volume-only      # (Optional) The underlying volume is retained when the PV is deleted.
+        name: pv-obs       # PV name
       spec:
         accessModes:
         - ReadWriteMany    # Access mode. The value must be ReadWriteMany for OBS.
         capacity:
-          storage: 1Gi     # OBS volume capacity.
+          storage: 1Gi     # OBS volume capacity
         csi:
-          driver: obs.csi.everest.io        # Dependent storage driver for the mounting.
-          fsType: obsfs                     # Instance type.
-          volumeHandle: <your_volume_id>    # Name of the OBS volume.
+          driver: obs.csi.everest.io        # Dependent storage driver for the mounting
+          fsType: obsfs                     # Instance type
+          volumeHandle: <your_volume_id>    # Name of the OBS volume
           volumeAttributes:
             storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
             everest.io/obs-volume-type: STANDARD
-            everest.io/region: <your_region>                        # Region where the OBS volume is.
+            everest.io/region: <your_region>                        # Region where the OBS volume is
 
-          nodePublishSecretRef:            # Custom secret of the OBS volume.
-            name: <your_secret_name>       # Custom secret name.
-            namespace: <your_namespace>    # Namespace of the custom secret.
-        persistentVolumeReclaimPolicy: Retain    # Reclaim policy.
-        storageClassName: csi-obs               # Storage class name.
-        mountOptions:                            # Mount options.
+          nodePublishSecretRef:            # Custom secret of the OBS volume
+            name: <your_secret_name>       # Custom secret name
+            namespace: <your_namespace>    # Namespace of the custom secret
+        persistentVolumeReclaimPolicy: Retain    # Reclaim policy
+        storageClassName: csi-obs               # Storage class name
+        mountOptions:                            # Mount options
         - umask=027
 
 #. After a PV is created, you can create a PVC and bind it to the PV, and then mount the PV to the container in the workload. For details, see :ref:`Using an Existing OBS Bucket Through a Static PV <cce_10_0379>`.
@@ -133,7 +133,7 @@ Configuring Mount Options in a StorageClass
 
 You can use the **mountOptions** field to configure mount options in a StorageClass. The options you can configure in **mountOptions** are listed in :ref:`OBS Mount Options <cce_10_0631__section1254912109811>`.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a customized StorageClass. Example:
 
@@ -150,8 +150,8 @@ You can use the **mountOptions** field to configure mount options in a StorageCl
         everest.io/obs-volume-type: STANDARD
       reclaimPolicy: Delete
       volumeBindingMode: Immediate
-      mountOptions:                            # Mount options.
-      - umask=0027
+      mountOptions:                            # Mount options
+      - umask=027
 
 #. After the StorageClass is configured, you can use it to create a PVC. By default, the dynamically created PVs inherit the mount options configured in the StorageClass. For details, see :ref:`Using an OBS Bucket Through a Dynamic PV <cce_10_0630>`.
 

@@ -17,7 +17,7 @@ Check Item 1: Whether the Node Can Access the Internet
    The following figure shows that an EIP has been bound. If no EIP is displayed, bind an EIP to the ECS.
 
 
-   .. figure:: /_static/images/en-us_image_0000001851585148.png
+   .. figure:: /_static/images/en-us_image_0000001981275337.png
       :alt: **Figure 1** Node with an EIP bound
 
       **Figure 1** Node with an EIP bound

@@ -10,10 +10,10 @@ This section describes how to configure SFS Turbo mount options. For SFS Turbo, 
 Prerequisites
 -------------
 
-The :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on version must be **1.2.8 or later**. This add-on identifies the mount options and transfers them to the underlying storage resources. The parameter settings take effect only if the underlying storage resources support the specified options.
+The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be **1.2.8 or later**. This add-on identifies the mount options and transfers them to the underlying storage resources. The parameter settings take effect only if the underlying storage resources support the specified options.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  Mount options cannot be configured for Kata containers.
 -  Due to the restrictions of the NFS protocol, if an SFS volume is mounted to a node for multiple times, link-related mounting parameters (such as **timeo**) take effect only when the SFS volume is mounted for the first time by default. For example, if the same SFS file system is mounted to multiple pods running on a node, the mounting parameter set later does not overwrite the existing parameter value. If you want to configure different mounting parameters in the preceding scenario, additionally configure the **nosharecache** parameter.
@@ -45,7 +45,7 @@ The Everest add-on in CCE presets the options described in :ref:`Table 1 <cce_10
    |                         |                       |                                                                                                                                                                                                                                                                                                                                                                                                             |
    |                         |                       | The default value is **hard**.                                                                                                                                                                                                                                                                                                                                                                              |
    +-------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | sharecache/nosharecache | Blank                 | How the data cache and attribute cache are shared when one file system is concurrently mounted to different clients. If this parameter is set to **sharecache**, the caches are shared. If this parameter is set to **nosharecache**, the caches are not shared, and one cache is configured for each client mounting. The default value is **sharecache**.                                                 |
+   | sharecache/nosharecache | Blank                 | How the data cache and attribute cache are shared when one file system is concurrently mounted to different clients. If this parameter is set to **sharecache**, the caches are shared between the mountings. If this parameter is set to **nosharecache**, the caches are not shared, and one cache is configured for each client mounting. The default value is **sharecache**.                           |
    |                         |                       |                                                                                                                                                                                                                                                                                                                                                                                                             |
    |                         |                       | .. note::                                                                                                                                                                                                                                                                                                                                                                                                   |
    |                         |                       |                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -59,7 +59,7 @@ Configuring Mount Options in a PV
 
 You can use the **mountOptions** field to configure mount options in a PV. The options you can configure in **mountOptions** are listed in :ref:`SFS Turbo Mount Options <cce_10_0626__section14888047833>`.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Configure mount options in a PV. Example:
 
@@ -70,23 +70,23 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
       metadata:
         annotations:
           pv.kubernetes.io/provisioned-by: everest-csi-provisioner
-        name: pv-sfsturbo    # PV name.
+        name: pv-sfsturbo    # PV name
       spec:
         accessModes:
         - ReadWriteMany      # Access mode. The value must be ReadWriteMany for SFS Turbo.
         capacity:
-          storage: 500Gi       # SFS Turbo volume capacity.
+          storage: 500Gi       # SFS Turbo volume capacity
         csi:
-          driver: sfsturbo.csi.everest.io    # Dependent storage driver for the mounting.
+          driver: sfsturbo.csi.everest.io    # Dependent storage driver for the mounting
           fsType: nfs
           volumeHandle: {your_volume_id}   # SFS Turbo volume ID
           volumeAttributes:
-            everest.io/share-export-location: {your_location}   # Shared path of the SFS Turbo volume.
+            everest.io/share-export-location: {your_location}   # Shared path of the SFS Turbo volume
 
             storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
-        persistentVolumeReclaimPolicy: Retain    # Reclaim policy.
-        storageClassName: csi-sfsturbo           # SFS Turbo storage class name.
-        mountOptions:                            # Mount options.
+        persistentVolumeReclaimPolicy: Retain    # Reclaim policy
+        storageClassName: csi-sfsturbo           # Storage class name of the SFS Turbo file system
+        mountOptions:                            # Mount options
         - vers=3
         - nolock
         - timeo=600

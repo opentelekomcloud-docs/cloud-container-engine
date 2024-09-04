@@ -7,8 +7,8 @@ Deploying an Application from a Chart
 
 On the CCE console, you can upload a Helm chart package, deploy it, and manage the deployed pods.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  The number of charts that can be uploaded by a single user is limited. The value displayed on the console of each region is the allowed quantity.
 -  A chart with multiple versions consumes the same amount of portion of chart quota.
@@ -130,7 +130,7 @@ Creating a Release
 Upgrading a Chart-based Workload
 --------------------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **App Templates** in the navigation pane and click the **Releases** tab.
+#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **App Templates** in the navigation pane. In the right pane, click the **Releases** tab.
 #. Click **Upgrade** in the row where the desired workload resides and set the parameters for the workload.
 #. Select a chart version for **Chart Version**.
 #. Follow the prompts to modify the chart parameters. Confirm the modification and click **Upgrade**.
@@ -139,7 +139,7 @@ Upgrading a Chart-based Workload
 Rolling Back a Chart-based Workload
 -----------------------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **App Templates** in the navigation pane and click the **Releases** tab.
+#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **App Templates** in the navigation pane. In the right pane, click the **Releases** tab.
 
 #. Click **More** > **Roll Back** for the workload to be rolled back, select the workload version, and click **Roll back** **to this version**.
 
@@ -148,5 +148,5 @@ Rolling Back a Chart-based Workload
 Uninstalling a Chart-based Workload
 -----------------------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **App Templates** in the navigation pane and click the **Releases** tab.
+#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **App Templates** in the navigation pane. In the right pane, click the **Releases** tab.
 #. Click **More** > **Uninstall** next to the release to be uninstalled, and click **Yes**. Exercise caution when performing this operation because releases cannot be restored after being uninstalled.

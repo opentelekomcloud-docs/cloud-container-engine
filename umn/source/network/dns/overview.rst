@@ -46,7 +46,7 @@ By default, after other pods are created, the address of the CoreDNS Service is 
 When a user accesses the *Service name:Port* of the Nginx pod, the IP address of the Nginx Service is resolved from CoreDNS, and then the IP address of the Nginx Service is accessed. In this way, the user can access the backend Nginx pod.
 
 
-.. figure:: /_static/images/en-us_image_0000001897906289.png
+.. figure:: /_static/images/en-us_image_0000001981436773.png
    :alt: **Figure 1** Example of domain name resolution in a cluster
 
    **Figure 1** Example of domain name resolution in a cluster
@@ -81,7 +81,7 @@ DNS policies can be configured for each pod. Kubernetes supports DNS policies **
    -  Names that do not match the suffix (for example, **widget.com**): The request is forwarded to the upstream DNS.
 
 
-.. figure:: /_static/images/en-us_image_0000001897906037.png
+.. figure:: /_static/images/en-us_image_0000001981276629.png
    :alt: **Figure 2** Routing
 
    **Figure 2** Routing

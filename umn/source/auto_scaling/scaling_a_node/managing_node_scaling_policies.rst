@@ -19,6 +19,14 @@ You can view the associated node pool, rules, and scaling history of a node scal
 #. In the navigation pane, choose **Nodes**.On the page displayed, click the **Node Pools** tab and then the name of the node pool for which an auto scaling policy has been created to view the node pool details.
 #. On the node pool details page, click the **Auto Scaling** tab to view the auto scaling configuration and scaling records.
 
+   .. note::
+
+      You can obtain created auto scaling policies on the **Policies** page.
+
+      a. Log in to the CCE console and click the cluster name to access the cluster console.
+      b. In the navigation pane, choose **Policies**. On the page displayed, click the **Node Scaling Policies** tab.
+      c. Check the configuration of the auto scaling policies. Choose **More** > **Scaling History** for the target policy to check the scaling records of the policy.
+
 Deleting a Node Scaling Policy
 ------------------------------
 
@@ -40,7 +48,7 @@ Cloning a Node Scaling Policy
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Policies**. On the page displayed, click the **Node Scaling Policies** tab, locate the row containing the target policy and choose **More** > **Clone** in the **Operation** column.
-#. On the **Clone Node Scaling Policy** page displayed, certain parameters have been cloned. Add or modify other policy parameters based on service requirements.
+#. On the **Create Node Scaling Policy** page displayed, certain parameters have been cloned. Add or modify other policy parameters based on service requirements.
 #. Click **OK**.
 
 Enabling or Disabling a Node Scaling Policy

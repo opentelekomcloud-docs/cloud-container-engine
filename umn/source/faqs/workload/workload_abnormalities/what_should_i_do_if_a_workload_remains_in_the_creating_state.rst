@@ -53,13 +53,13 @@ The image is a system image added during node creation. If the image is deleted 
 
       .. code-block::
 
-         docker load -i ./pause/package/image/cce-pause-3.1.tar
+         docker load -i ./pause/package/image/cce-pause-*.tar
 
    -  containerd nodes:
 
       .. code-block::
 
-         ctr -n k8s.io image import ./pause/package/image/cce-pause-3.1.tar
+         ctr -n k8s.io images import --all-platforms ./pause/package/image/cce-pause-*.tar
 
 #. Create a workload.
 

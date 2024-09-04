@@ -22,7 +22,7 @@ Docker is compatible with almost all operating systems. Select a Docker version 
 
    SWR uses Docker 1.11.2 or later to upload images.
 
-   You are advised to install Docker and build images as user **root**. Obtain the password of user **root** of the host where Docker is to be installed in advance.
+   It is recommended that you install Docker and build images as the user **root**. Make sure to obtain the user **root** password for the host where Docker will be installed beforehand.
 
 #. Log in as user **root** to the device on which Docker is about to be installed.
 
@@ -32,7 +32,7 @@ Docker is compatible with almost all operating systems. Select a Docker version 
 
    **sh get-docker.sh**
 
-#. Run the following command to query the Docker version:
+#. Run the following command to check the Docker version:
 
    **docker version**
 
@@ -61,7 +61,7 @@ Determine the base image based on the OS on which the application runs. In this 
 #. Search for CentOS. The image corresponding to CentOS 7.1 is **centos7.1.1503**. Use this image name when editing the Dockerfile.
 
 
-   .. figure:: /_static/images/en-us_image_0000001898024625.png
+   .. figure:: /_static/images/en-us_image_0000001981435329.png
       :alt: **Figure 1** Obtaining the CentOS version
 
       **Figure 1** Obtaining the CentOS version

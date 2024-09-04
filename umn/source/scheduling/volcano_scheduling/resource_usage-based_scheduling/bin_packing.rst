@@ -46,7 +46,7 @@ A larger bin packing weight leads to a higher score. A larger resource weight le
 -  **GPU.score**: calculated GPU score; **GPU.weight**: customized GPU weight
 
 
-.. figure:: /_static/images/en-us_image_0000001898026693.png
+.. figure:: /_static/images/en-us_image_0000001981436701.png
    :alt: **Figure 1** Bin packing example
 
    **Figure 1** Bin packing example
@@ -81,7 +81,7 @@ Configuring Bin Packing
 After Volcano is installed, bin packing takes effect by default. If the default configuration cannot meet your requirements, you can customize the weight of bin packing and the weight of each resource on the **Scheduling** page. To do so, perform the following operations:
 
 #. Log in to the CCE console.
-#. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane and click the **Scheduling** tab.
+#. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane. In the right pane, click the **Scheduling** tab.
 #. In the **Resource utilization optimization scheduling** area, modify the bin packing settings.
 
    .. table:: **Table 1** Bin packing weight

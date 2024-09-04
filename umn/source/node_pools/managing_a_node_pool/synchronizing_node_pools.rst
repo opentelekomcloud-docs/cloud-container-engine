@@ -14,14 +14,14 @@ After the configuration of a node pool is updated, some configurations cannot be
    -  During configuration synchronization for existing nodes, the nodes will be reset, and the system disks and data disks will be cleared. Back up important data before the synchronization.
    -  Only some node pool parameters can be synchronized by resetting nodes. The constraints are as follows:
 
-      -  The modification of resource tags of a node pool takes effect only on new nodes. To synchronize the modification onto existing nodes, manually reset the existing nodes.
-      -  Changes to Kubernetes labels/taints in a node pool will be automatically synchronized to existing nodes. You do not need to reset these nodes.
+      -  Changes to the container engine, OS, or pre-/post-installation script in a node pool take effect only on new nodes. To synchronize the modification onto existing nodes, manually reset these nodes.
+      -  Changes to resource tags and Kubernetes labels/taints in a node pool will be automatically synchronized to existing nodes. You do not need to reset these nodes.
 
 Synchronizing a Single Node
 ---------------------------
 
 #. Log in to the CCE console.
-#. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane and click the **Nodes** tab on the right.
+#. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. In the right pane, click the **Nodes** tab.
 #. Find **upgrade** in the **Node Pool** column of the existing nodes in the node pool.
 #. Click **update**. In the dialog box that is displayed, confirm whether to reset the node immediately.
 
@@ -29,7 +29,7 @@ Batch Synchronization
 ---------------------
 
 #. Log in to the CCE console.
-#. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right.
+#. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. In the right pane, click the **Node Pools** tab.
 #. Choose **More > Synchronize** in the **Operation** column of the target node pool.
 #. In the **Batch synchronization** window, configure parameters.
 

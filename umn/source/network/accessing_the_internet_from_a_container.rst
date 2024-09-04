@@ -15,14 +15,14 @@ You can use NAT Gateway to enable container pods in a VPC to access the Internet
 
 .. _cce_10_0400__en-us_topic_0261817696_en-us_topic_0241700138_en-us_topic_0144420145_fig34611314153619:
 
-.. figure:: /_static/images/en-us_image_0000001898026705.png
+.. figure:: /_static/images/en-us_image_0000001981276877.png
    :alt: **Figure 1** SNAT
 
    **Figure 1** SNAT
 
-To enable a container pod to access the Internet, perform the following steps:
+To enable a container to access the Internet, perform the following steps:
 
-#. Assign an EIP.
+#. Obtain an EIP.
 
    a. Log in to the management console.
    b. Click |image1| in the upper left corner of the management console and select a region and a project.
@@ -36,11 +36,9 @@ To enable a container pod to access the Internet, perform the following steps:
 
 #. Create a NAT gateway.
 
-   a. Log in to the management console.
-   b. Click |image3| in the upper left corner of the management console and select a region and a project.
-   c. Click |image4| in the upper left corner and choose **Networking** > **NAT Gateway** in the expanded list.
-   d. On the **Public Network Gateways** page, click **Create Public NAT Gateway** in the upper right corner.
-   e. Configure parameters as required.
+   a. Click |image3| in the upper left corner and choose **Networking** > **NAT Gateway** in the expanded list.
+   b. On the **Public Network Gateways** page, click **Create Public NAT Gateway** in the upper right corner.
+   c. Configure parameters as required.
 
       .. note::
 
@@ -48,12 +46,9 @@ To enable a container pod to access the Internet, perform the following steps:
 
 #. Configure an SNAT rule and bind the EIP to the subnet.
 
-   a. Log in to the management console.
-   b. Click |image5| in the upper left corner of the management console and select a region and a project.
-   c. Click |image6| in the upper left corner and choose **Networking** > **NAT Gateway** in the expanded list.
-   d. On the page displayed, click the name of the NAT gateway for which you want to add the SNAT rule.
-   e. On the **SNAT Rules** tab page, click **Add SNAT Rule**.
-   f. Set parameters as required.
+   a. On the page displayed, click the name of the NAT gateway for which you want to add the SNAT rule.
+   b. On the **SNAT Rules** tab page, click **Add SNAT Rule**.
+   c. Set parameters as required.
 
    .. note::
 
@@ -66,9 +61,6 @@ To enable a container pod to access the Internet, perform the following steps:
 
    After the SNAT rule is configured, workloads can access the Internet from the container. The Internet can be pinged from the container.
 
-.. |image1| image:: /_static/images/en-us_image_0000001897907185.png
-.. |image2| image:: /_static/images/en-us_image_0000001851587796.png
-.. |image3| image:: /_static/images/en-us_image_0000001851587784.png
-.. |image4| image:: /_static/images/en-us_image_0000001851587788.png
-.. |image5| image:: /_static/images/en-us_image_0000001851746508.png
-.. |image6| image:: /_static/images/en-us_image_0000001851746504.png
+.. |image1| image:: /_static/images/en-us_image_0000001950317352.png
+.. |image2| image:: /_static/images/en-us_image_0000001981276889.png
+.. |image3| image:: /_static/images/en-us_image_0000001950317344.png

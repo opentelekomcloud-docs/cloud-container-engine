@@ -58,7 +58,7 @@ Before the migration, analyze all resources in the source clusters and then dete
 
 .. _cce_bestpractice_0307__fig203631140201419:
 
-.. figure:: /_static/images/en-us_image_0000001851744176.png
+.. figure:: /_static/images/en-us_image_0000001950315452.png
    :alt: **Figure 1** Migration solution diagram
 
    **Figure 1** Migration solution diagram
@@ -107,4 +107,4 @@ The cluster migration process is as follows:
 
    After cluster resources are properly deployed, verify application functions after the migration and switch service traffic to the target cluster. After confirming that all services are running properly, bring the source cluster offline.
 
-.. |image1| image:: /_static/images/en-us_image_0000001851585464.png
+.. |image1| image:: /_static/images/en-us_image_0000001981275001.png

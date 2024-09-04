@@ -12,25 +12,25 @@ Prerequisites
 
 -  A GPU node has been created. For details, see :ref:`Creating a Node <cce_10_0363>`.
 
--  The gpu-device-plugin (previously gpu-beta add-on) has been installed. During the installation, select the GPU driver on the node. For details, see :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>`.
+-  The CCE AI Suite (NVIDIA GPU) add-on has been installed. During the installation, select the driver corresponding to the GPU model on the node. For details, see :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>`.
 
--  gpu-device-plugin mounts the driver directory to **/usr/local/nvidia/lib64**. To use GPU resources in a container, add **/usr/local/nvidia/lib64** to the **LD_LIBRARY_PATH** environment variable.
+-  When the default GPU scheduling is used in clusters of v1.27 or earlier, the CCE AI Suite (NVIDIA GPU) add-on mounts the driver directory to **/usr/local/nvidia/lib64**, so you need to add **/usr/local/nvidia/lib64** to the **LD_LIBRARY_PATH** environment variable to use GPUs in a container. You can skip this step for clusters of v1.28 or later.
 
-   Generally, you can use any of the following methods to add a file:
+   You can add environment variables in any of the following ways:
 
-   #. Configure the **LD_LIBRARY_PATH** environment variable in the Dockerfile used for creating an image. (Recommended)
+   -  Configure the **LD_LIBRARY_PATH** environment variable in the Dockerfile used for creating an image. (Recommended)
 
       .. code-block::
 
          ENV LD_LIBRARY_PATH /usr/local/nvidia/lib64:$LD_LIBRARY_PATH
 
-   #. Configure the **LD_LIBRARY_PATH** environment variable in the image startup command.
+   -  Configure the **LD_LIBRARY_PATH** environment variable in the image startup command.
 
       .. code-block::
 
          /bin/bash -c "export LD_LIBRARY_PATH=/usr/local/nvidia/lib64:$LD_LIBRARY_PATH && ..."
 
-   #. Define the **LD_LIBRARY_PATH** environment variable when creating a workload. (Ensure that this variable is not configured in the container. Otherwise, it will be overwritten.)
+   -  Define the **LD_LIBRARY_PATH** environment variable when creating a workload. (Ensure that this variable is not configured in the container. Otherwise, it will be overwritten.)
 
       .. code-block::
 

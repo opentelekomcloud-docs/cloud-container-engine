@@ -18,7 +18,6 @@ FAQs
 -  :ref:`DNS FAQs <cce_faq_00001>`
 -  :ref:`Image Repository FAQs <cce_faq_00093>`
 -  :ref:`Permissions <cce_faq_00397>`
--  :ref:`Reference <cce_faq_00292>`
 
 .. toctree::
    :maxdepth: 1
@@ -37,4 +36,3 @@ FAQs
    dns_faqs/index
    image_repository_faqs/index
    permissions/index
-   reference/index

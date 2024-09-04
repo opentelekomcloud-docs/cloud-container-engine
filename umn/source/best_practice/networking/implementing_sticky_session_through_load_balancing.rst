@@ -335,7 +335,7 @@ To enable cookie-based sticky session on an ingress, ensure the following condit
           kubernetes.io/elb.session-affinity-option: '{"app_cookie_name":"test"}'  # Application cookie name
       ...
 
-#. Create an ingress and associate it with the Service. The following uses an existing load balancer as an example. For details about how to automatically create a load balancer, see `Using kubectl to Create an ELB Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
+#. Create an ingress and associate it with the Service. The following uses an existing load balancer as an example. For details about how to automatically create a load balancer, see :ref:`Using kubectl to Create an ELB Ingress <cce_10_0252>`.
 
    .. code-block::
 
@@ -422,7 +422,7 @@ Enable cookie-based sticky session on the ingress.
              kubernetes.io/elb.session-affinity-option: '{"app_cookie_name":"test"}'  # Application cookie name
          ...
 
-   #. Create an ingress and associate it with the Service. The following uses an existing load balancer as an example. For details about how to automatically create a load balancer, see `Using kubectl to Create an ELB Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
+   #. Create an ingress and associate it with the Service. The following uses an existing load balancer as an example. For details about how to automatically create a load balancer, see :ref:`Using kubectl to Create an ELB Ingress <cce_10_0252>`.
 
       .. code-block::
 
@@ -541,7 +541,7 @@ Enable cookie-based sticky session on the ingress.
              kubernetes.io/elb.session-affinity-option: '{"app_cookie_name":"test"}'  # Application cookie name
          ...
 
-   #. Create an ingress and associate it with the Service. The following uses an existing load balancer as an example. For details about how to automatically create a load balancer, see `Using kubectl to Create an ELB Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
+   #. Create an ingress and associate it with the Service. The following uses an existing load balancer as an example. For details about how to automatically create a load balancer, see :ref:`Using kubectl to Create an ELB Ingress <cce_10_0252>`.
 
       .. code-block::
 

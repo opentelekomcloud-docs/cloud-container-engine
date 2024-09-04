@@ -5,8 +5,8 @@
 Enabling ICMP Security Group Rules
 ==================================
 
-Application Scenarios
----------------------
+Scenario
+--------
 
 If a workload uses UDP for both load balancing and health check, enable ICMP security group rules for the backend servers.
 

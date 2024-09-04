@@ -10,8 +10,8 @@ Scenario
 
 A secret is a type of resource that holds sensitive data, such as authentication and key information. Its content is user-defined. After creating secrets, you can use them as files or environment variables in a containerized workload.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 Secrets cannot be used in `static pods <https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/>`__.
 
@@ -171,7 +171,7 @@ This section describes configuration examples of secret resource description fil
 Creating a Secret Using kubectl
 -------------------------------
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create and edit the Base64-encoded **cce-secret.yaml** file.
 
@@ -245,4 +245,4 @@ To Base64-encode a string, run the **echo -n content to be encoded \| base64** c
    root@ubuntu:~# echo -n "content to be encoded" | base64
    ******
 
-.. |image1| image:: /_static/images/en-us_image_0000001851745844.png
+.. |image1| image:: /_static/images/en-us_image_0000001950317212.png

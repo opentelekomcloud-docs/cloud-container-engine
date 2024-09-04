@@ -32,7 +32,7 @@ Run the following kubectl command to obtain the storage classes that CCE support
    # kubectl get sc
    NAME                PROVISIONER                     AGE
    csi-disk            everest-csi-provisioner         17d          # EVS disk
-   csi-disk-topology   everest-csi-provisioner         17d          # EVS disks created with delayed
+   csi-disk-topology   everest-csi-provisioner         17d          # EVS disks created with delay
    csi-nas             everest-csi-provisioner         17d          # SFS 1.0
    csi-obs             everest-csi-provisioner         17d          # OBS
    csi-sfsturbo        everest-csi-provisioner         17d          # SFS Turbo
@@ -48,7 +48,7 @@ Each storage class contains the default parameters used for dynamically creating
    provisioner: everest-csi-provisioner
    parameters:
      csi.storage.k8s.io/csi-driver-name: disk.csi.everest.io
-   csi.storage.k8s.io/fstype: ext4    # (Optional) Set the file system type to xfs or ext4. If it is left blank, ext4 is used by default.
+   csi.storage.k8s.io/fstype: ext4    # (Optional) Set the file system type to xfs or ext4. If it is left blank, ext4 will be used by default.
      everest.io/disk-volume-type: SAS
      everest.io/passthrough: 'true'
    reclaimPolicy: Delete
@@ -66,8 +66,8 @@ Each storage class contains the default parameters used for dynamically creating
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | reclaimPolicy                     | Specifies the value of **persistentVolumeReclaimPolicy** for creating a PV. The value can be **Delete** or **Retain**. If **reclaimPolicy** is not specified when a StorageClass object is created, the value defaults to **Delete**. |
    |                                   |                                                                                                                                                                                                                                       |
-   |                                   | -  **Delete**: indicates that a dynamically created PV will be automatically destroyed.                                                                                                                                               |
-   |                                   | -  **Retain**: indicates that a dynamically created PV will not be automatically destroyed.                                                                                                                                           |
+   |                                   | -  **Delete**: indicates that a dynamically created PV will be automatically deleted when the PVC is deleted.                                                                                                                         |
+   |                                   | -  **Retain**: indicates that a dynamically created PV will be retained when the PVC is deleted.                                                                                                                                      |
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | allowVolumeExpansion              | Specifies whether the PV of this storage class supports dynamic capacity expansion. The default value is **false**. Dynamic capacity expansion is implemented by the underlying storage add-on. This is only a switch.                |
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -133,8 +133,8 @@ Each storage class contains the default parameters used for dynamically creating
    +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
    |                 | csi.storage.k8s.io/fstype          | Yes             | Instance type, which can be **obsfs** or **s3fs**.                                                                                                   |
    |                 |                                    |                 |                                                                                                                                                      |
-   |                 |                                    |                 | -  **obsfs**: Parallel file system, which is mounted using obsfs (recommended).                                                                      |
-   |                 |                                    |                 | -  **s3fs**: Object bucket, which is mounted using s3fs.                                                                                             |
+   |                 |                                    |                 | -  **obsfs**: a parallel file system                                                                                                                 |
+   |                 |                                    |                 | -  **s3fs**: object bucket                                                                                                                           |
    +-----------------+------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
    |                 | everest.io/obs-volume-type         | Yes             | OBS storage class.                                                                                                                                   |
    |                 |                                    |                 |                                                                                                                                                      |
@@ -177,7 +177,7 @@ The preceding is a basic method of using StorageClass. In real-world scenarios, 
 |                                                                                                                                                                                                                                                                                                                                                           |                                                                                                                                                                                                                                                                                             |                                                                            |
 |                                                                                                                                                                                                                                                                                                                                                           | For example, you can define SAS EVS disk and SSD EVS disk as a storage class, respectively. If a storage class named **csi-disk-sas** is defined, it is used to create SAS storage.                                                                                                         |                                                                            |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
-| When a user migrates services from a self-built Kubernetes cluster or other Kubernetes services to CCE, the storage class used in the original application YAML file is different from that used in CCE. As a result, a large number of YAML files or Helm chart packages need to be modified when the storage is used, which is complex and error-prone. | Create a storage class with the same name as that in the original application YAML file in the CCE centralization. After the migration, you do not need to modify the **storageClassName** in the application YAML file.                                                                    |                                                                            |
+| When a user migrates services from a self-built Kubernetes cluster or other Kubernetes services to CCE, the storage class used in the original application YAML file is different from that used in CCE. As a result, a large number of YAML files or Helm chart packages need to be modified when the storage is used, which is complex and error-prone. | Create a storage class with the same name as that in the original application YAML file in the CCE cluster. After the migration, you do not need to modify the **storageClassName** in the application YAML file.                                                                           |                                                                            |
 |                                                                                                                                                                                                                                                                                                                                                           |                                                                                                                                                                                                                                                                                             |                                                                            |
 |                                                                                                                                                                                                                                                                                                                                                           | For example, the EVS disk storage class used before the migration is **disk-standard**. After migrating services to a CCE cluster, you can copy the YAML file of the **csi-disk** storage class in the CCE cluster, change its name to **disk-standard**, and create another storage class. |                                                                            |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------+
@@ -203,7 +203,7 @@ This section uses the custom storage class of EVS disks as an example to describ
         name: csi-disk-sas                          # Name of the high I/O storage class, which can be customized.
       parameters:
         csi.storage.k8s.io/csi-driver-name: disk.csi.everest.io
-      csi.storage.k8s.io/fstype: ext4    # (Optional) Set the file system type to xfs or ext4. If it is left blank, ext4 is used by default.
+      csi.storage.k8s.io/fstype: ext4    # (Optional) Set the file system type to xfs or ext4. If it is left blank, ext4 will be used by default.
          everest.io/disk-volume-type: SAS            # High I/O EVS disk type, which cannot be customized.
         everest.io/passthrough: "true"
       provisioner: everest-csi-provisioner
@@ -221,7 +221,7 @@ This section uses the custom storage class of EVS disks as an example to describ
         name: csi-disk-ssd                       # Name of the ultra-high I/O storage class, which can be customized.
       parameters:
         csi.storage.k8s.io/csi-driver-name: disk.csi.everest.io
-      csi.storage.k8s.io/fstype: ext4    # (Optional) Set the file system type to xfs or ext4. If it is left blank, ext4 is used by default.
+      csi.storage.k8s.io/fstype: ext4    # (Optional) Set the file system type to xfs or ext4. If it is left blank, ext4 will be used by default.
         everest.io/disk-volume-type: SSD         # Ultra-high I/O EVS disk type, which cannot be customized.
         everest.io/passthrough: "true"
       provisioner: everest-csi-provisioner
@@ -232,7 +232,7 @@ This section uses the custom storage class of EVS disks as an example to describ
 **reclaimPolicy**: indicates the reclaim policies of the underlying cloud storage. The value can be **Delete** or **Retain**.
 
 -  **Delete**: When a PVC is deleted, both the PV and the EVS disk are deleted.
--  **Retain**: When a PVC is deleted, the PV and underlying storage resources are not deleted. Instead, you must manually delete these resources. After that, the PV is in the **Released** status and cannot be bound to the PVC again.
+-  **Retain**: When a PVC is deleted, both the PV and underlying storage resources will be retained. You need to manually delete these resources. After the PVC is deleted, the PV is in the **Released** state and cannot be bound to a PVC again.
 
 If high data security is required, select **Retain** to prevent data from being deleted by mistake.
 
@@ -370,4 +370,4 @@ Verification
 
    View the PVC details on the CCE console. On the PV details page, you can see that the disk type is ultra-high I/O.
 
-.. |image1| image:: /_static/images/en-us_image_0000001898025705.png
+.. |image1| image:: /_static/images/en-us_image_0000001981436605.png

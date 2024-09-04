@@ -13,7 +13,7 @@ GitLab is an open-source version management system developed with Ruby on Rails 
 GitLab provides powerful CI/CD functions and is widely used in software development.
 
 
-.. figure:: /_static/images/en-us_image_0000001897904777.png
+.. figure:: /_static/images/en-us_image_0000001981274977.png
    :alt: **Figure 1** GitLab CI/CD process
 
    **Figure 1** GitLab CI/CD process
@@ -97,11 +97,11 @@ Log in to `GitLab <https://www.gitlab.com/>`__, choose **Settings** > **CI/CD** 
 
 -  **project**: project name.
 
-   Log in to the management console, click your username in the upper right corner, and click **My Credentials**. In the **Projects** area on the **API Credentials** page, check the name of the project in your current region.
+   Log in to the management console, hover over your username in the upper right corner, and choose **My Credentials**. In the **Projects** area on the **API Credentials** page, check the name of the project in your current region.
 
 -  **swr_ak**: access key.
 
-   Log in to the management console, click your username in the upper right corner, and click **My Credentials**. In the navigation pane, choose **Access Keys**. Click **Create Access Key**, enter the description, and click **OK**. In the displayed **Information** dialog box, click **Download**. After the certificate is downloaded, obtain the AK and SK information from the **credentials** file.
+   Log in to the management console, hover over your username in the upper right corner, and choose **My Credentials**. In the navigation pane, choose **Access Keys**. Click **Create Access Key**, enter the description, and click **OK**. In the displayed **Information** dialog box, click **Download**. After the certificate is downloaded, obtain the AK and SK information from the **credentials** file.
 
 -  **swr_sk**: secret key for logging in to SWR.
 
@@ -224,12 +224,12 @@ Common Issues
 
    |image9|
 
-.. |image1| image:: /_static/images/en-us_image_0000001898024285.png
-.. |image2| image:: /_static/images/en-us_image_0000001898024333.png
-.. |image3| image:: /_static/images/en-us_image_0000001851744104.png
-.. |image4| image:: /_static/images/en-us_image_0000001851744112.png
-.. |image5| image:: /_static/images/en-us_image_0000001851585432.png
-.. |image6| image:: /_static/images/en-us_image_0000001897904773.png
-.. |image7| image:: /_static/images/en-us_image_0000001851585416.png
-.. |image8| image:: /_static/images/en-us_image_0000001911555737.png
-.. |image9| image:: /_static/images/en-us_image_0000001851585384.png
+.. |image1| image:: /_static/images/en-us_image_0000001950315436.png
+.. |image2| image:: /_static/images/en-us_image_0000001950315464.png
+.. |image3| image:: /_static/images/en-us_image_0000001981274973.png
+.. |image4| image:: /_static/images/en-us_image_0000001950315444.png
+.. |image5| image:: /_static/images/en-us_image_0000001950315472.png
+.. |image6| image:: /_static/images/en-us_image_0000001981434829.png
+.. |image7| image:: /_static/images/en-us_image_0000001950315456.png
+.. |image8| image:: /_static/images/en-us_image_0000001981274989.png
+.. |image9| image:: /_static/images/en-us_image_0000001950315440.png

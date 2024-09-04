@@ -157,4 +157,4 @@ The storage infrastructure of an on-premises cluster is different from that of a
 
 #. After the restoration is complete, check whether the application is running properly. If other adaptation problems may occur, rectify the fault by following the procedure described in :ref:`Updating Resources Accordingly <cce_bestpractice_0312>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000001851743956.png
+.. |image1| image:: /_static/images/en-us_image_0000001981274745.png

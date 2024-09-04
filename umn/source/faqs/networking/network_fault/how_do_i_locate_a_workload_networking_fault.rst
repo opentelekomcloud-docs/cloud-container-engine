@@ -114,4 +114,4 @@ Log in to the management console, choose **Service List** > **Networking** > **V
 
 For details about security group configuration, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000001851585032.png
+.. |image1| image:: /_static/images/en-us_image_0000001950315720.png

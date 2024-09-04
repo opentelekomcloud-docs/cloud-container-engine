@@ -12,7 +12,7 @@ Resource oversubscription is the process of making use of idle requested resourc
 Hybrid deployment of online and offline jobs in a cluster can better utilize cluster resources.
 
 
-.. figure:: /_static/images/en-us_image_0000001897905793.png
+.. figure:: /_static/images/en-us_image_0000001981436361.png
    :alt: **Figure 1** Resource oversubscription
 
    **Figure 1** Resource oversubscription
@@ -38,39 +38,39 @@ Hybrid deployment is supported, and CPU and memory resources can be oversubscrib
 
    If both online and offline jobs exist, online jobs are scheduled first. When the node resource usage exceeds the upper limit and the node requests exceed 100%, offline jobs will be evicted.
 
--  CPU/Memory isolation is provided by kernels.
+-  CPU/Memory resources can be isolation by kernel.
 
    CPU isolation: Online jobs can quickly preempt CPU resources of offline jobs and suppress the CPU usage of the offline jobs.
 
    Memory isolation: When system memory resources are used up and OOM Kill is triggered, the kernel evicts offline jobs first.
 
--  kubelet offline jobs admission rules:
+-  kubelet offline jobs obey the following admission rules:
 
    After the pod is scheduled to a node, kubelet starts the pod only when the node resources can meet the pod request (predicateAdmitHandler.Admit). kubelet starts the pod when both of the following conditions are met:
 
    -  The total request of pods to be started and online running jobs < allocatable nodes
    -  The total request of pods to be started and online/offline running job < allocatable nodes+oversubscribed nodes
 
--  Resource oversubscription and hybrid deployment:
+-  Resource oversubscription and hybrid deployment can be configured separately.
 
-   If only hybrid deployment is used, configure the label **volcano.sh/colocation=true** for the node and delete the node label **volcano.sh/oversubscription** or set its value to **false**.
+   Enabling hybrid deployment of a node pool also enables oversubscription by default. Nodes are then labeled with both **volcano.sh/colocation="true"** and **volcano.sh/oversubscription="true"**. To use hybrid deployment for both online and offline jobs without oversubscription, simply disable oversubscription in hybrid deployment settings. This will remove the **volcano.sh/oversubscription="true"** label.
 
-   If the label **volcano.sh/colocation=true** is configured for a node, hybrid deployment is enabled. If the label **volcano.sh/oversubscription=true** is configured, resource oversubscription is enabled. The following table lists the available feature combinations after hybrid deployment or resource oversubscription is enabled.
+   The following table lists the features that can be used after hybrid deployment or oversubscription is enabled.
 
-   +--------------------------------------------------------+----------------------------------------------------------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------+
-   | Hybrid Deployment Enabled (volcano.sh/colocation=true) | Resource Oversubscription Enabled (volcano.sh/oversubscription=true) | Resource Oversubscription | When Offline Pod Eviction Triggered (Using :ref:`Annotations <cce_10_0384__table1853397191112>` to Configure Limits) |
-   +========================================================+======================================================================+===========================+======================================================================================================================+
-   | No                                                     | No                                                                   | No                        | None                                                                                                                 |
-   +--------------------------------------------------------+----------------------------------------------------------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------+
-   | Yes                                                    | No                                                                   | No                        | The actual resource usage of a node exceeds the upper limit.                                                         |
-   +--------------------------------------------------------+----------------------------------------------------------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------+
-   | No                                                     | Yes                                                                  | Yes                       | The actual resource usage of a node exceeds the upper limit and the pod requests on the node exceed 100%.            |
-   +--------------------------------------------------------+----------------------------------------------------------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------+
-   | Yes                                                    | Yes                                                                  | Yes                       | The actual resource usage of a node exceeds the upper limit.                                                         |
-   +--------------------------------------------------------+----------------------------------------------------------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------+
+   +-------------------+------------------+---------------------------+-----------------------------------------------------------------------------------------------------------+
+   | Hybrid Deployment | Oversubscription | Oversubscription Resource | Scenario for Evicting Offline Pods                                                                        |
+   +===================+==================+===========================+===========================================================================================================+
+   | No                | No               | No                        | No                                                                                                        |
+   +-------------------+------------------+---------------------------+-----------------------------------------------------------------------------------------------------------+
+   | Yes               | No               | No                        | The actual resource usage of a node exceeds the upper limit.                                              |
+   +-------------------+------------------+---------------------------+-----------------------------------------------------------------------------------------------------------+
+   | No                | Yes              | Yes                       | The actual resource usage of a node exceeds the upper limit and the pod requests on the node exceed 100%. |
+   +-------------------+------------------+---------------------------+-----------------------------------------------------------------------------------------------------------+
+   | Yes               | Yes              | Yes                       | The actual resource usage of a node exceeds the upper limit.                                              |
+   +-------------------+------------------+---------------------------+-----------------------------------------------------------------------------------------------------------+
 
-kubelet Oversubscription
-------------------------
+Compatible kubelet Oversubscription
+-----------------------------------
 
 .. important::
 
@@ -83,8 +83,8 @@ kubelet Oversubscription
       -  v1.23: v1.23.5-r0 or later
       -  v1.25 or later
 
-   -  Cluster type: CCE Standard or CCE Turbo
-   -  Node OS: EulerOS 2.9 (kernel-4.18.0-147.5.1.6.h729.6.eulerosv2r9.x86_64)or HCE OS 2.0
+   -  Cluster type: CCE standard or CCE Turbo
+   -  Node OS: EulerOS 2.9 (kernel-4.18.0-147.5.1.6.h729.6.eulerosv2r9.x86_64) or HCE OS 2.0
    -  Node type: ECS
    -  Volcano version: 1.7.0 or later
 
@@ -92,7 +92,7 @@ kubelet Oversubscription
 
    -  Before enabling oversubscription, ensure that the overcommit add-on is not enabled on Volcano.
    -  Modifying the label of an oversubscribed node does not affect the running pods.
-   -  Running pods cannot be converted between online and offline services. To convert services, you need to rebuild pods.
+   -  Running pods cannot be converted between online and offline services. To convert services, rebuild pods.
    -  If the label **volcano.sh/oversubscription=true** is configured for a node in the cluster, the **oversubscription** configuration must be added to the Volcano add-on. Otherwise, the scheduling of oversold nodes will be abnormal. Ensure that you have correctly configure labels because the scheduler does not check the add-on and node configurations. For details, see :ref:`Table 1 <cce_10_0384__table152481219311>`.
    -  To disable oversubscription, perform the following operations:
 
@@ -100,8 +100,8 @@ kubelet Oversubscription
       -  Set **over-subscription-resource** to **false**.
       -  Modify the configmap of Volcano Scheduler named **volcano-scheduler-configmap** and remove the oversubscription add-on.
 
-   -  If **cpu-manager-policy** is set to static core binding on a node, do not assign the QoS class of Guaranteed to offline pods. If core binding is required, change the pods to online pods. Otherwise, offline pods may occupy the CPUs of online pods, causing online pod startup failures, and offline pods fail to be started although they are successfully scheduled.
-   -  If **cpu-manager-policy** is set to static core binding on a node, do not bind cores to all online pods. Otherwise, online pods occupy all CPU or memory resources, leaving a small number of oversubscribed resources.
+   -  If you have set **cpu-manager-policy** to statically bind CPU cores on a node, do not assign the QoS class of Guaranteed to offline pods. This is because offline pods may occupy the CPUs of online pods, leading to an online pod startup failure and offline pods failing to start even though they have been successfully scheduled. To prevent this, switch the pods to online pods if CPU core binding is required.
+   -  If **cpu-manager-policy** is set to static CPU core binding on a node, do not bind CPU cores to all online pods. This is because doing so can cause online pods to occupy all available CPU or memory resources, leaving only a small number of oversubscribed resources.
 
 If the label **volcano.sh/oversubscription=true** is configured for a node in the cluster, the **oversubscription** configuration must be added to the Volcano add-on. Otherwise, the scheduling of oversold nodes will be abnormal. For details about the related configuration, see :ref:`Table 1 <cce_10_0384__table152481219311>`.
 
@@ -123,36 +123,40 @@ Ensure that you have correctly configure labels because the scheduler does not c
    | No                         | Yes                            | Not triggered or failed. Avoid this configuration. |
    +----------------------------+--------------------------------+----------------------------------------------------+
 
-#. Configure the Volcano add-on.
+#. Use kubectl to access the cluster.
 
-   a. Use kubectl to access the cluster.
+#. Check the Volcano configuration.
 
-   b. Install the Volcano add-on and add the oversubscription add-on to **volcano-scheduler-configmap**. Ensure that the add-on configuration does not contain the overcommit add-on. If **- name: overcommit** exists, delete this configuration. In addition, set **enablePreemptable** and **enableJobStarving** of the gang add-on to **false** and configure a preemption action.
+   .. code-block::
 
-      .. code-block::
+      kubectl edit cm volcano-scheduler-configmap -n kube-system
 
-         # kubectl edit cm volcano-scheduler-configmap -n kube-system
-         apiVersion: v1
-         data:
-           volcano-scheduler.conf: |
-             actions: "allocate, backfill, preempt"   # Configure a preemption action.
-             tiers:
-             - plugins:
-               - name: gang
-                 enablePreemptable: false
-                 enableJobStarving: false
-               - name: priority
-               - name: conformance
-               - name: oversubscription
-             - plugins:
-               - name: drf
-               - name: predicates
-               - name: nodeorder
-               - name: binpack
-             - plugins:
-               - name: cce-gpu-topology-predicate
-               - name: cce-gpu-topology-priority
-               - name: cce-gpu
+   Check the oversubscription configuration in **volcano-scheduler-configmap**. Ensure that the add-on configuration does not contain the overcommit add-on. If **- name: overcommit** exists, delete this configuration.
+
+   .. code-block::
+
+      ...
+      data:
+        volcano-scheduler.conf: |
+          actions: "allocate, backfill, preempt"   # Configure a preemption action.
+          tiers:
+          - plugins:
+            - name: gang
+              enablePreemptable: false
+              enableJobStarving: false
+            - name: priority
+            - name: conformance
+            - name: oversubscription
+          - plugins:
+            - name: drf
+            - name: predicates
+            - name: nodeorder
+            - name: binpack
+          - plugins:
+            - name: cce-gpu-topology-predicate
+            - name: cce-gpu-topology-priority
+            - name: cce-gpu
+      ...
 
 #. Enable node oversubscription.
 
@@ -192,33 +196,33 @@ Ensure that you have correctly configure labels because the scheduler does not c
 
    .. table:: **Table 2** Node oversubscription annotations
 
-      +-------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Name                                      | Description                                                                                                                                                      |
-      +===========================================+==================================================================================================================================================================+
-      | volcano.sh/evicting-cpu-high-watermark    | Upper limit for CPU usage. When the CPU usage of a node exceeds the specified value, offline job eviction is triggered and the node becomes unschedulable.       |
-      |                                           |                                                                                                                                                                  |
-      |                                           | The default value is **80**, indicating that offline job eviction is triggered when the CPU usage of a node exceeds 80%.                                         |
-      +-------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | volcano.sh/evicting-cpu-low-watermark     | Lower limit for CPU usage. After eviction is triggered, the scheduling starts again when the CPU usage of a node is lower than the specified value.              |
-      |                                           |                                                                                                                                                                  |
-      |                                           | The default value is **30**, indicating that scheduling starts again when the CPU usage of a node is lower than 30%.                                             |
-      +-------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | volcano.sh/evicting-memory-high-watermark | Upper limit for memory usage. When the memory usage of a node exceeds the specified value, offline job eviction is triggered and the node becomes unschedulable. |
-      |                                           |                                                                                                                                                                  |
-      |                                           | The default value is **60**, indicating that offline job eviction is triggered when the memory usage of a node exceeds 60%.                                      |
-      +-------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | volcano.sh/evicting-memory-low-watermark  | Lower limit for memory usage. After eviction is triggered, the scheduling starts again when the memory usage of a node is lower than the specified value.        |
-      |                                           |                                                                                                                                                                  |
-      |                                           | The default value is **30**, indicating that the scheduling starts again when the memory usage of a node is less than 30%.                                       |
-      +-------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | volcano.sh/oversubscription-types         | Oversubscribed resource type. Options:                                                                                                                           |
-      |                                           |                                                                                                                                                                  |
-      |                                           | -  **cpu**: oversubscribed CPU                                                                                                                                   |
-      |                                           | -  **memory**: oversubscribed memory                                                                                                                             |
-      |                                           | -  **cpu,memory**: oversubscribed CPU and memory                                                                                                                 |
-      |                                           |                                                                                                                                                                  |
-      |                                           | The default value is **cpu,memory**.                                                                                                                             |
-      +-------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                                 | Description                                                                                                                                                                                                                               |
+      +===========================================+===========================================================================================================================================================================================================================================+
+      | volcano.sh/evicting-cpu-high-watermark    | Upper limit for CPU usage. When the CPU usage of a node exceeds the specified value, offline job eviction is triggered and the node becomes unschedulable.                                                                                |
+      |                                           |                                                                                                                                                                                                                                           |
+      |                                           | The default value is **80**, indicating that offline job eviction is triggered when the CPU usage of a node exceeds 80%.                                                                                                                  |
+      +-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | volcano.sh/evicting-cpu-low-watermark     | Lower limit for CPU usage. When the CPU usage of a node is higher than the upper limit, offline jobs will be evicted. The node accepts the offline jobs again only when the CPU usage of the node is lower than the lower limit.          |
+      |                                           |                                                                                                                                                                                                                                           |
+      |                                           | The default value is **30**, indicating that offline jobs are accepted again when the CPU usage of a node is lower than 30%.                                                                                                              |
+      +-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | volcano.sh/evicting-memory-high-watermark | Upper limit for memory usage. When the memory usage of a node exceeds the specified value, offline job eviction is triggered and the node becomes unschedulable.                                                                          |
+      |                                           |                                                                                                                                                                                                                                           |
+      |                                           | The default value is **60**, indicating that offline job eviction is triggered when the memory usage of a node exceeds 60%.                                                                                                               |
+      +-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | volcano.sh/evicting-memory-low-watermark  | Lower limit for memory usage. When the memory usage of a node is higher than the upper limit, offline jobs will be evicted. The node accepts the offline jobs again only when the memory usage of the node is lower than the lower limit. |
+      |                                           |                                                                                                                                                                                                                                           |
+      |                                           | The default value is **30**, indicating that offline jobs are accepted again when the memory usage of a node is less than 30%.                                                                                                            |
+      +-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | volcano.sh/oversubscription-types         | Oversubscribed resource type. Options:                                                                                                                                                                                                    |
+      |                                           |                                                                                                                                                                                                                                           |
+      |                                           | -  **cpu**: oversubscribed CPU                                                                                                                                                                                                            |
+      |                                           | -  **memory**: oversubscribed memory                                                                                                                                                                                                      |
+      |                                           | -  **cpu,memory**: oversubscribed CPU and memory                                                                                                                                                                                          |
+      |                                           |                                                                                                                                                                                                                                           |
+      |                                           | The default value is **cpu,memory**.                                                                                                                                                                                                      |
+      +-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Create resources at a high- and low-priorityClass, respectively.
 
@@ -230,7 +234,7 @@ Ensure that you have correctly configure labels because the scheduler does not c
       description: Used for high priority pods
       kind: PriorityClass
       metadata:
-        name: production
+        name: volcano-production
       preemptionPolicy: PreemptLowerPriority
       value: 999999
       ---
@@ -238,19 +242,19 @@ Ensure that you have correctly configure labels because the scheduler does not c
       description: Used for low priority pods
       kind: PriorityClass
       metadata:
-        name: testing
+        name: volcano-free
       preemptionPolicy: PreemptLowerPriority
-      value: -99999
+      value: -90000
 
       EOF
 
 #. Deploy online and offline jobs and configure priorityClasses for these jobs.
 
-   The **volcano.sh/qos-level** label needs to be added to annotation to distinguish offline jobs. The value is an integer ranging from -7 to 7. If the value is less than 0, the job is an offline job. If the value is greater than or equal to 0, the job is a high-priority job, that is, online job. You do not need to set this label for online jobs. For both online and offline jobs, set **schedulerName** to **volcano** to enable Volcano Scheduler.
+   The **volcano.sh/qos-level** annotation needs to be added to distinguish offline jobs. The value is an integer ranging from -7 to 7. If the value is less than 0, the job is an offline job. If the value is greater than or equal to 0, the job is an online job. You do not need to set this annotation for online jobs. For both online and offline jobs, set **schedulerName** to **volcano** to enable Volcano.
 
    .. note::
 
-      The priorities of online/online and offline/offline jobs are not differentiated, and the value validity is not verified. If the value of **volcano.sh/qos-level** of an offline job is not a negative integer ranging from -7 to 0, the job is processed as an online job.
+      The priorities between online jobs and between offline jobs are not differentiated, and the value validity is not verified. If the value of **volcano.sh/qos-level** of an offline job is not a negative integer ranging from -7 to 0, the job is processed as an online job.
 
    For an offline job:
 
@@ -264,10 +268,10 @@ Ensure that you have correctly configure labels because the scheduler does not c
           metadata:
             annotations:
               metrics.alpha.kubernetes.io/custom-endpoints: '[{"api":"","path":"","port":"","names":""}]'
-              volcano.sh/qos-level: "-1"       # Offline job label
+              volcano.sh/qos-level: "-1"       # Offline job annotation
           spec:
             schedulerName: volcano             # Volcano is used.
-            priorityClassName: testing         # Configure the testing priorityClass.
+            priorityClassName: volcano-free         # volcano-free priorityClass
             ...
 
    For an online job:
@@ -284,7 +288,7 @@ Ensure that you have correctly configure labels because the scheduler does not c
               metrics.alpha.kubernetes.io/custom-endpoints: '[{"api":"","path":"","port":"","names":""}]'
           spec:
             schedulerName: volcano          # Volcano is used.
-            priorityClassName: production   # Configure the production priorityClass.
+            priorityClassName: volcano-production   # volcano-production priorityClass
             ...
 
 #. Run the following command to check the number of oversubscribed resources and the resource usage:
@@ -311,7 +315,7 @@ Ensure that you have correctly configure labels because the scheduler does not c
         cpu                 4950m (126%)  4950m (126%)
         memory             1712Mi (27%)  1712Mi (27%)
 
-   In the preceding command, CPU and memory are in the unit of mCPUs and MiB, respectively.
+   In the preceding command, CPU and memory are in the unit of m CPU cores and MiB, respectively.
 
 Deployment Example
 ------------------
@@ -363,7 +367,7 @@ The following uses an example to describe how to deploy online and offline jobs 
               volcano.sh/qos-level: "-1"       # Offline job label
           spec:
             schedulerName: volcano             # Volcano is used.
-            priorityClassName: testing         # Configure the testing priorityClass.
+            priorityClassName: volcano-free         # volcano-free priorityClass
             containers:
               - name: container-1
                 image: nginx:latest
@@ -409,7 +413,7 @@ The following uses an example to describe how to deploy online and offline jobs 
               app: online
           spec:
             schedulerName: volcano                 # Volcano is used.
-            priorityClassName: production          # Configure the production priorityClass.
+            priorityClassName: volcano-production          # volcano-production priorityClass
             containers:
               - name: container-1
                 image: resource_consumer:latest
@@ -464,7 +468,7 @@ The following uses an example to describe how to deploy online and offline jobs 
                       values:
                       - 192.168.0.173
             schedulerName: volcano                 # Volcano is used.
-            priorityClassName: production          # Configure the production priorityClass.
+            priorityClassName: volcano-production          # volcano-production priorityClass
             containers:
               - name: container-1
                 image: resource_consumer:latest
@@ -490,7 +494,7 @@ The following uses an example to describe how to deploy online and offline jobs 
       online-6f44bb68bd-b8z9p  1/1     Running     0     3m4s   192.168.10.18   192.168.0.173
       online-6f44bb68bd-g6xk8  1/1     Running     0     3m12s   192.168.10.69   192.168.0.173
 
-   Check the oversubscribed node with IP address 192.168.0.173. It is found that resources are oversubscribed, where there are 2343 mCPUs and 3073653200 MiB of memory. Additionally, the CPU allocation rate exceeded 100%.
+   Check the oversubscribed node with IP address 192.168.0.173. It is found that resources are oversubscribed, where there are 2343m CPU cores and 3073653200 MiB of memory. Additionally, the CPU allocation rate exceeded 100%.
 
    .. code-block::
 

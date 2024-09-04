@@ -94,4 +94,4 @@ Custom Settings at the Node Pool Level
 #. In the window that slides out from the right, click **Networking Components** and enable node pool container ENI pre-binding. For details about the parameter configurations, see :ref:`Configuration Example <cce_bestpractice_10010__section1688214241613>`.
 #. After the configuration is complete, click **OK**. Wait for about 10 seconds for the configuration to take effect.
 
-.. |image1| image:: /_static/images/en-us_image_0000001898024381.png
+.. |image1| image:: /_static/images/en-us_image_0000001981434893.png

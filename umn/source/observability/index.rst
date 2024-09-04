@@ -6,13 +6,13 @@ Observability
 =============
 
 -  :ref:`Logging <cce_10_0553>`
+-  :ref:`Log Auditing <cce_10_0024>`
 -  :ref:`Best Practices <cce_10_0811>`
--  :ref:`Cloud Trace Service <cce_10_0024>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
    logging/index
+   log_auditing/index
    best_practices/index
-   cloud_trace_service/index

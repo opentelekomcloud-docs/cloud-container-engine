@@ -33,7 +33,7 @@ If a job involves multiple resources, the resource with the largest share value 
 For example, there are two workloads, job 1 and job 2. The following figure shows the resources requested by the two jobs. After DRF calculation, the dominant resource of job 1 is memory, and its share value is 0.4; the dominant resource of job 2 is CPU, and its share value is 0.5. Since the dominant resource share of job 1 is less than that of job 2, job 1 takes precedence over job 2 in scheduling according to the max-min fairness policy.
 
 
-.. figure:: /_static/images/en-us_image_0000001898026021.png
+.. figure:: /_static/images/en-us_image_0000001950317396.png
    :alt: **Figure 1** DRF scheduling
 
    **Figure 1** DRF scheduling
@@ -45,7 +45,7 @@ After Volcano is installed, you can enable or disable DRF scheduling on the **Sc
 
 #. Log in to the CCE console.
 
-#. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane and click the **Scheduling** tab.
+#. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane. In the right pane, click the **Scheduling** tab.
 
 #. In the **AI task performance enhanced scheduling** pane, select whether to enable DRF.
 

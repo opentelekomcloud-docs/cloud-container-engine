@@ -32,10 +32,10 @@ Diagnosis
 
 Perform the following steps to check your CCE clusters of v1.21 or later:
 
-#. Use kubectl to connect to the cluster and run the **kubectl get --raw "/metrics" \| grep stale** command to obtain the metrics. Check the metric named **serviceaccount_stale_tokens_total**.
+#. Use kubectl to access the cluster and run the **kubectl get --raw "/metrics" \| grep stale** command to obtain the metrics. Check the metric named **serviceaccount_stale_tokens_total**.
 
    If the value is greater than 0, some workloads in the cluster may be using an earlier client-go version. In this case, check whether this problem occurs in your deployed applications. If yes, upgrade client-go to the version specified by the community as soon as possible. The version must be at least two major versions of the CCE cluster. For example, if your cluster version is 1.23, the Kubernetes dependency library version must be at least 1.19.
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000001851746544.png
+.. |image1| image:: /_static/images/en-us_image_0000001981436873.png

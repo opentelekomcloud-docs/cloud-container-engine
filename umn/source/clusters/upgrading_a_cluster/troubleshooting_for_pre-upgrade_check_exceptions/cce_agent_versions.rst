@@ -40,7 +40,7 @@ Solution
       The OBS configuration address field in the configuration file is **packageFrom.addr**.
 
 
-      .. figure:: /_static/images/en-us_image_0000001897906125.png
+      .. figure:: /_static/images/en-us_image_0000001950317032.png
          :alt: **Figure 1** OBS address
 
          **Figure 1** OBS address

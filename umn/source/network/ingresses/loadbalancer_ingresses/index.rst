@@ -10,10 +10,12 @@ LoadBalancer Ingresses
 -  :ref:`Configuring a LoadBalancer Ingress Using Annotations <cce_10_0695>`
 -  :ref:`Configuring an HTTPS Certificate for a LoadBalancer Ingress <cce_10_0687>`
 -  :ref:`Configuring SNI for a LoadBalancer Ingress <cce_10_0688>`
--  :ref:`LoadBalancer Ingresses to Multiple Services <cce_10_0689>`
+-  :ref:`Routing a LoadBalancer Ingress to Multiple Services <cce_10_0689>`
 -  :ref:`Configuring HTTP/2 for a LoadBalancer Ingress <cce_10_0694>`
--  :ref:`Interconnecting LoadBalancer Ingresses with HTTPS Backend Services <cce_10_0691>`
+-  :ref:`Configuring HTTPS Backend Services for a LoadBalancer Ingress <cce_10_0691>`
 -  :ref:`Configuring Timeout for a LoadBalancer Ingress <cce_10_0730>`
+-  :ref:`Configuring a Blocklist/Trustlist Access Policy for a LoadBalancer Ingress <cce_10_0832>`
+-  :ref:`Configuring a Custom Header Forwarding Policy for a LoadBalancer Ingress <cce_10_0896>`
 
 .. toctree::
    :maxdepth: 1
@@ -24,7 +26,9 @@ LoadBalancer Ingresses
    configuring_a_loadbalancer_ingress_using_annotations
    configuring_an_https_certificate_for_a_loadbalancer_ingress
    configuring_sni_for_a_loadbalancer_ingress
-   loadbalancer_ingresses_to_multiple_services
+   routing_a_loadbalancer_ingress_to_multiple_services
    configuring_http_2_for_a_loadbalancer_ingress
-   interconnecting_loadbalancer_ingresses_with_https_backend_services
+   configuring_https_backend_services_for_a_loadbalancer_ingress
    configuring_timeout_for_a_loadbalancer_ingress
+   configuring_a_blocklist_trustlist_access_policy_for_a_loadbalancer_ingress
+   configuring_a_custom_header_forwarding_policy_for_a_loadbalancer_ingress

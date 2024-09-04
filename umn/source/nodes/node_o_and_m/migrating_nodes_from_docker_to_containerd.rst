@@ -5,9 +5,6 @@
 Migrating Nodes from Docker to containerd
 =========================================
 
-Context
--------
-
 Kubernetes has removed dockershim from v1.24 and does not support Docker by default. CCE is going to stop the support for Docker. Change the node container engine from Docker to containerd.
 
 Prerequisites
@@ -20,7 +17,7 @@ Precautions
 -----------
 
 -  Theoretically, migration during container running will interrupt services for a short period of time. Therefore, it is strongly recommended that the services to be migrated have been deployed as multi-instance. In addition, you are advised to test the migration impact in the test environment to minimize potential risks.
--  containerd cannot build images. Do not use the **docker build** command to build images on containerd nodes. For other differences between Docker and containerd, see :ref:`Container Engine <cce_10_0462>`.
+-  containerd cannot build images. Do not use the **docker build** command to build images on containerd nodes. For other differences between Docker and containerd, see :ref:`Container Engines <cce_10_0462>`.
 
 Migrating a Node
 ----------------

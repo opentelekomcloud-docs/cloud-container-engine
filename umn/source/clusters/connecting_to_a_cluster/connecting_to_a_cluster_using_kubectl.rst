@@ -22,7 +22,7 @@ For details about user permissions, see :ref:`Cluster Permissions (IAM-based) an
 Using kubectl
 -------------
 
-To connect to a Kubernetes cluster from a PC, you can use kubectl, a Kubernetes command line tool. You can log in to the CCE console and click the name of the target cluster to access the cluster console. On the ****Overview**** page, view the access address and kubectl connection procedure.
+To connect to a Kubernetes cluster from a PC, you can use kubectl, a Kubernetes command line tool. You can log in to the CCE console and click the name of the target cluster to access the cluster console. On the **Overview** page, view the access address and kubectl connection procedure.
 
 CCE allows you to access a cluster through a private network or a public network.
 
@@ -33,7 +33,7 @@ CCE allows you to access a cluster through a private network or a public network
 
       To bind an EIP to the cluster, go to the **Overview** page and click **Bind** next to **EIP** in the **Connection Information** area. In a cluster with an EIP bound, kube-apiserver will be exposed to the Internet and may be attacked. To solve this problem, you can configure Advanced Anti-DDoS for the EIP of the node on which kube-apiserver runs.
 
-Download kubectl and the configuration file. Copy the file to your client, and configure kubectl. After the configuration is complete, you can access your Kubernetes clusters. Procedure:
+Download kubectl and the configuration file. Copy the file to your client, and configure kubectl. After the configuration is complete, you can access your Kubernetes clusters. The process is as follows:
 
 #. **Download kubectl.**
 
@@ -48,7 +48,7 @@ Download kubectl and the configuration file. Copy the file to your client, and c
          cd /home
          curl -LO https://dl.k8s.io/release/{v1.25.0}/bin/linux/amd64/kubectl
 
-      **{v1.25.0}** specifies the version number. Replace it as required.
+      *{v1.25.0}* specifies the version. Replace it as required.
 
    b. Install kubectl.
 
@@ -59,9 +59,9 @@ Download kubectl and the configuration file. Copy the file to your client, and c
 
 #. .. _cce_10_0107__li34691156151712:
 
-   **Obtain the kubectl configuration file (kubeconfig).**
+   **Obtain the kubectl configuration file.**
 
-   On the ****Overview**** page, locate the **Connection Info** area, click **Configure** next to **kubectl**. On the page displayed, download the configuration file.
+   In the **Connection Info** pane on the **Overview** page, click **Configure** next to **kubectl** to check the kubectl connection. On the displayed page, choose **Intranet access** or **Public network access** and download the configuration file.
 
    .. note::
 
@@ -75,7 +75,7 @@ Download kubectl and the configuration file. Copy the file to your client, and c
 
    Configure kubectl (A Linux OS is used).
 
-   a. Log in to your client and copy the **kubeconfig.yaml** file downloaded in :ref:`2 <cce_10_0107__li34691156151712>` to the **/home** directory on your client.
+   a. Log in to your client and copy the configuration file (for example, **kubeconfig.yaml**) downloaded in :ref:`2 <cce_10_0107__li34691156151712>` to the **/home** directory on your client.
 
    b. Configure the kubectl authentication file.
 
@@ -126,7 +126,7 @@ CCE supports two-way authentication for domain names.
 
    .. _cce_10_0107__fig1941342411:
 
-   .. figure:: /_static/images/en-us_image_0000001851587804.png
+   .. figure:: /_static/images/en-us_image_0000001981436769.png
       :alt: **Figure 1** Two-way authentication disabled for domain names
 
       **Figure 1** Two-way authentication disabled for domain names

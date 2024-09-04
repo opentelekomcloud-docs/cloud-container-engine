@@ -7,8 +7,8 @@ Importing an EV to a Storage Pool
 
 CCE allows you to use LVM to combine data volumes on nodes into a storage pool (VolumeGroup) and create LVs for containers to mount. Before creating a local EV, import the data disk of the node to the storage pool.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  Local EVs are supported only when the cluster version is v1.21.2-r0 or later and the Everest add-on version is 1.2.29 or later.
 
@@ -26,11 +26,11 @@ When creating a node, you can add a data disk to the node in **Storage Settings*
 
 **Imported manually**
 
-If no EV is imported during node creation, or the capacity of the current storage volume is insufficient, you can manually import a storage pool.
+If no EV is imported during node creation, or the capacity of the current storage volume is insufficient, you can manually import an EV.
 
 #. Go to the ECS console and add a SCSI disk to the node.
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. Choose **Storage** in the navigation pane and click the **Storage Pool** tab.
+#. Choose **Storage** in the navigation pane. In the right pane, click the **Storage Pool** tab.
 #. View the node to which the disk has been added and select **Import as EV**. You can select a write mode during the import.
 
    .. note::

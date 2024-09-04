@@ -10,8 +10,8 @@ Symptom
 
 A node fails to be accepted into a cluster.
 
-Possible Cause
---------------
+Possible Causes
+---------------
 
 Log in to the node and check the **/var/paas/sys/log/baseagent/baseagent.log** installation log. The following error information is displayed:
 
@@ -31,4 +31,4 @@ Run the following command to manually create a logical volume:
 
 After the node is reset on the GUI, the node becomes normal.
 
-.. |image1| image:: /_static/images/en-us_image_0000001897904309.jpg
+.. |image1| image:: /_static/images/en-us_image_0000001981275177.jpg

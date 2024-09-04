@@ -39,7 +39,7 @@ Using the CCE Console
    -  **Workload Type**: Select **DaemonSet**. For details about workload types, see :ref:`Overview <cce_10_0006>`.
    -  **Workload Name**: Enter the name of the workload. Enter 1 to 63 characters starting with a lowercase letter and ending with a lowercase letter or digit. Only lowercase letters, digits, and hyphens (-) are allowed.
    -  **Namespace**: Select the namespace of the workload. The default value is **default**. You can also click **Create Namespace** to create one. For details, see :ref:`Creating a Namespace <cce_10_0278>`.
-   -  **Container Runtime**: A CCE standard cluster uses runC by default, whereas a CCE Turbo cluster supports both runC and Kata. For details about the differences, see :ref:`Kata Runtime and Common Runtime <cce_10_0463>`.
+   -  **Container Runtime**: A CCE standard cluster uses runC by default, whereas a CCE Turbo cluster supports both runC and Kata. For details about the differences, see :ref:`Secure Runtime and Common Runtime <cce_10_0463>`.
    -  **Time Zone Synchronization**: Specify whether to enable time zone synchronization. After time zone synchronization is enabled, the container and node use the same time zone. The time zone synchronization function depends on the local disk mounted to the container. Do not modify or delete the time zone. For details, see :ref:`Configuring Time Zone Synchronization <cce_10_0354>`.
 
    **Container Settings**
@@ -116,7 +116,7 @@ Using the CCE Console
 
    **(Optional) Advanced Settings**
 
-   -  **Upgrade**: Specify the upgrade mode and parameters of the workload. **Rolling upgrade** and **Replace upgrade** are available. For details, see :ref:`Workload Upgrade Policies <cce_10_0397>`.
+   -  **Upgrade**: Specify the upgrade mode and parameters of the workload. **Rolling upgrade** and **Replace upgrade** are available. For details, see :ref:`Configuring Workload Upgrade Policies <cce_10_0397>`.
 
    -  **Scheduling**: Configure affinity and anti-affinity policies for flexible workload scheduling. Node affinity is provided.
 
@@ -126,8 +126,8 @@ Using the CCE Console
          -  **Specified node pool scheduling**: Workload pods can be deployed in a specified node pool through node affinity (**nodeAffinity**). If no node pool is specified, the pods will be randomly scheduled based on the default scheduling policy of the cluster.
          -  **Custom policies**: Affinity and anti-affinity policies can be customized as needed. For details, see :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
 
-   -  **Toleration**: Using both taints and tolerations allows (not forcibly) the pod to be scheduled to a node with the matching taints, and controls the pod eviction policies after the node where the pod is located is tainted. For details, see :ref:`Taints and Tolerations <cce_10_0728>`.
-   -  **Labels and Annotations**: Add labels or annotations for pods using key-value pairs. After entering the key and value, click **Confirm**. For details about how to use and configure labels and annotations, see :ref:`Labels and Annotations <cce_10_0386>`.
+   -  **Toleration**: Using both taints and tolerations allows (not forcibly) the pod to be scheduled to a node with the matching taints, and controls the pod eviction policies after the node where the pod is located is tainted. For details, see :ref:`Configuring Tolerance Policies <cce_10_0728>`.
+   -  **Labels and Annotations**: Add labels or annotations for pods using key-value pairs. After entering the key and value, click **Confirm**. For details about how to use and configure labels and annotations, see :ref:`Configuring Labels and Annotations <cce_10_0386>`.
    -  **DNS**: Configure a separate DNS policy for the workload. For details, see :ref:`DNS Configuration <cce_10_0365>`.
    -  **Network Configuration**
 
@@ -141,7 +141,7 @@ Using kubectl
 
 The following procedure uses Nginx as an example to describe how to create a workload using kubectl.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create and edit the **nginx-daemonset.yaml** file. **nginx-daemonset.yaml** is an example file name, and you can change it as required.
 

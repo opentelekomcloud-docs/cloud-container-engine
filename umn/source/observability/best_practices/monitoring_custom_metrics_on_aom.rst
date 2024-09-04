@@ -8,7 +8,7 @@ Monitoring Custom Metrics on AOM
 CCE allows you to upload custom metrics to AOM. ICAgent on a node periodically calls the metric monitoring API configured on a workload to read monitoring data and then uploads the data to AOM.
 
 
-.. figure:: /_static/images/en-us_image_0000001851745204.png
+.. figure:: /_static/images/en-us_image_0000001981436085.png
    :alt: **Figure 1** Using ICAgent to collect monitoring metrics
 
    **Figure 1** Using ICAgent to collect monitoring metrics
@@ -155,7 +155,7 @@ Deploying Applications and Converting Nginx Metrics
 The format of the monitoring data provided by **nginx:exporter** does not meet the requirements of Prometheus. Convert the data format to the format required by Prometheus. To convert the format of Nginx metrics, use `nginx-prometheus-exporter <https://github.com/nginxinc/nginx-prometheus-exporter>`__, as shown in the following figure.
 
 
-.. figure:: /_static/images/en-us_image_0000001851586460.png
+.. figure:: /_static/images/en-us_image_0000001981436089.png
    :alt: **Figure 2** Using exporter to convert the data format
 
    **Figure 2** Using exporter to convert the data format
@@ -258,4 +258,4 @@ After an application is deployed, you can access Nginx to construct some access 
 
 #. Log in to AOM. In the navigation pane, choose **Monitoring** > **Metric Monitoring** to view Nginx-related metrics, for example, **nginx_connections_active**.
 
-.. |image1| image:: /_static/images/en-us_image_0000001851745196.png
+.. |image1| image:: /_static/images/en-us_image_0000001950316676.png

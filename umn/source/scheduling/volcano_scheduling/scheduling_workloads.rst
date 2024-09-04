@@ -9,8 +9,8 @@ Scheduling Workloads
 
 Kubernetes typically uses its default scheduler to schedule workloads. To use Volcano, specify Volcano for your workloads. For details about the Kubernetes scheduler, see `Specify schedulers for pods <https://kubernetes.io/docs/tasks/extend-kubernetes/configure-multiple-schedulers/#specify-schedulers-for-pods>`__.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 When a large number of workloads are scheduled, Volcano prints a large number of logs. In this case, you can use Volcano with LTS. Otherwise, the disk space of the node where Volcano resides may be used up. For details, see :ref:`Collecting Container Logs <cce_10_0182>`.
 
@@ -62,7 +62,7 @@ Additionally, Volcano supports the workload queues and preemption, which can be 
 .. table:: **Table 1** Pod annotations supported by Volcano
 
    +--------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | Pod Annotations                                  | Remarks                                                                                          |
+   | Pod Annotations                                  | Description                                                                                      |
    +==================================================+==================================================================================================+
    | scheduling.volcano.sh/queue-name: "<queue-name>" | Specifies the queue to which the workload belongs. *<queue-name>* indicates the queue name.      |
    +--------------------------------------------------+--------------------------------------------------------------------------------------------------+

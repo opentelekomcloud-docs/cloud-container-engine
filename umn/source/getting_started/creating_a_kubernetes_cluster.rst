@@ -15,7 +15,7 @@ Creating a Cluster
 
 #. Log in to the CCE console.
 
-   -  If you have no clusters, click **Create CCE Standard Cluster** under **CCE Standard Cluster** on the wizard page.
+   -  If you have no clusters, click **Create CCE Standard Cluster** on the wizard page.
    -  If your have CCE clusters, choose **Clusters** in the navigation pane, click **Create Cluster** and select the CCE standard cluster.
 
 #. On the page displayed, configure parameters following instructions.

@@ -37,7 +37,7 @@ Kubernetes provides various volume types, which can be classified as in-tree and
 +===================================+===============================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
 | In-tree                           | Maintained through the Kubernetes code repository and built, edited, and released with Kubernetes binary files. Kubernetes does not accept this volume type anymore.                                                                                                                                                                                                                                                                                                          |
 |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|                                   | Kubernetes-native volumes such as HostPath, EmptyDir, Secret, and ConfigMap are all the in-tree type.                                                                                                                                                                                                                                                                                                                                                                         |
+|                                   | Kubernetes-native volumes such as hostPath, emptyDir, Secret, and ConfigMap are all the in-tree type.                                                                                                                                                                                                                                                                                                                                                                         |
 |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 |                                   | PVCs are a special in-tree volume. Kubernetes uses this type of volume to convert from in-tree to out-of-tree. PVCs allow you to request for PVs created using the underlying storage resources provided by different storage vendors.                                                                                                                                                                                                                                        |
 +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -55,7 +55,7 @@ Kubernetes provides PersistentVolumes (PVs) and PersistentVolumeClaims (PVCs) to
 You can bind PVCs to PVs in a pod so that the pod can use storage resources. The following figure shows the relationship between PVs and PVCs.
 
 
-.. figure:: /_static/images/en-us_image_0000001851745528.png
+.. figure:: /_static/images/en-us_image_0000001981436609.png
    :alt: **Figure 1** PVC-to-PV binding
 
    **Figure 1** PVC-to-PV binding
@@ -79,15 +79,15 @@ Storage volumes can be mounted to the host system only in the mode supported by 
 
 .. table:: **Table 1** Access modes supported by storage volumes
 
-   ============ ============= =============
-   Storage Type ReadWriteOnce ReadWriteMany
-   ============ ============= =============
-   EVS          Y             x
-   SFS          x             Y
-   OBS          x             Y
-   SFS Turbo    x             Y
-   Local PV     Y             x
-   ============ ============= =============
+   =========== ============= =============
+   Volume Type ReadWriteOnce ReadWriteMany
+   =========== ============= =============
+   EVS         Y             x
+   SFS         x             Y
+   OBS         x             Y
+   SFS Turbo   x             Y
+   Local PV    Y             x
+   =========== ============= =============
 
 Mounting a Storage Volume
 -------------------------
@@ -99,7 +99,7 @@ Use PVs to describe existing storage resources, and then create PVCs to use the 
 .. table:: **Table 2** Modes of mounting volumes
 
    +-----------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+--------------------------------+
-   | Mounting Mode                                                         | Description                                                                                                                                                                                                                                                                                                                                                                            | Supported Volume Type       | Other Constraints              |
+   | Mount Mode                                                            | Description                                                                                                                                                                                                                                                                                                                                                                            | Supported Volume Type       | Other Constraints              |
    +=======================================================================+========================================================================================================================================================================================================================================================================================================================================================================================+=============================+================================+
    | Statically creating storage volume (using existing storage)           | Use existing storage (such as EVS disks and SFS file systems) to create PVs and mount the PVs to the workload through PVCs. Kubernetes binds PVCs to the matching PVs so that workloads can access storage services.                                                                                                                                                                   | All volumes                 | None                           |
    +-----------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+--------------------------------+
@@ -115,9 +115,9 @@ PV Reclaim Policy
 
 A PV reclaim policy is used to delete or reclaim underlying volumes when a PVC is deleted. The value can be **Delete** or **Retain**.
 
--  **Delete**: Deleting a PVC will remove the PV from Kubernetes, so the associated underlying storage assets from the external infrastructure.
+-  **Delete**: Deleting a PVC will remove the PV from Kubernetes, and the associated underlying storage assets will also be removed from the external infrastructure.
 
--  **Retain**: When a PVC is deleted, the PV and underlying storage resources are not deleted. Instead, you must manually delete these resources. After that, the PV resources are in the **Released** state and cannot be directly bound to the PVC.
+-  **Retain**: When a PVC is deleted, both the PV and underlying storage resources will be retained. You need to manually delete these resources. After the PVC is deleted, the PV is in the **Released** state and cannot be bound to a PVC again.
 
    You can manually delete and reclaim volumes by performing the following operations:
 
@@ -186,4 +186,4 @@ Documentation
 -  For more information about Kubernetes storage, see `Storage <https://kubernetes.io/docs/concepts/storage/>`__.
 -  For more information about CCE container storage, see :ref:`Overview <cce_10_0307>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000001897906185.png
+.. |image1| image:: /_static/images/en-us_image_0000001981276749.png

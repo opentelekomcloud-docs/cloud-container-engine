@@ -10,17 +10,27 @@ How HPA Works
 
 HPA is a controller that controls horizontal pod scaling. HPA periodically checks the pod metrics, calculates the number of replicas required to meet the target values configured for HPA resources, and then adjusts the value of the **replicas** field in the target resource object (such as a Deployment).
 
-A prerequisite for auto scaling is that your container running data can be collected, such as number of cluster nodes/pods, and CPU and memory usage of containers. Kubernetes does not provide such monitoring capabilities itself. You can use extensions to monitor and collect your data. CCE integrates `Metrics Server <https://github.com/kubernetes-sigs/metrics-server>`__ to realize such capabilities:
+A prerequisite for auto scaling is that your container running data can be collected, such as number of cluster nodes/pods, and CPU and memory usage of containers. Kubernetes does not have built-in monitoring capabilities, but you can use extensions like `Prometheus <https://prometheus.io/>`__ and `Metrics Server <https://github.com/kubernetes-sigs/metrics-server>`__ to monitor and collect data.
 
+-  `Prometheus <https://prometheus.io/>`__ is an open-source monitoring and alarming framework that can collect multiple types of metrics. Prometheus has been a standard monitoring solution of Kubernetes.
 -  `Metrics Server <https://github.com/kubernetes-sigs/metrics-server>`__ is a cluster-wide aggregator of resource utilization data. Metrics Server collects metrics from the Summary API exposed by kubelet. These metrics are set for core Kubernetes resources, such as pods, nodes, containers, and Services. Metrics Server provides a set of standard APIs for external systems to collect these metrics.
 
 HPA can work with Metrics Server to implement auto scaling based on the CPU and memory usage.
+
+:ref:`Figure 1 <cce_10_0290__fig4979183710538>` shows how HPA works.
+
+.. _cce_10_0290__fig4979183710538:
+
+.. figure:: /_static/images/en-us_image_0000001950317216.png
+   :alt: **Figure 1** HPA working process
+
+   **Figure 1** HPA working process
 
 **Two core modules of HPA:**
 
 -  Data Source Monitoring
 
-   The community provided only CPU- and memory-based HPA at the early stage. With the population of Kubernetes, developers need more custom metrics or monitoring information at the access layer for their own applications, for example, the QPS of the load balancer and the number of online users of the website. In response, the community defines a set of standard metric APIs to provide services externally through these aggregated APIs.
+   The community provided only CPU- and memory-based HPA at the early stage. With the population of Kubernetes and Prometheus, developers need more custom metrics or monitoring information at the access layer for their own applications, for example, the QPS of the load balancer and the number of online users of the website. In response, the community defines a set of standard metric APIs to provide services externally through these aggregated APIs.
 
    -  **metrics.k8s.io** provides monitoring metrics related to the CPU and memory of pods and nodes.
    -  **custom.metrics.k8s.io** provides custom monitoring metrics related to Kubernetes objects.

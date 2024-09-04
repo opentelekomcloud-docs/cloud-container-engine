@@ -10,14 +10,14 @@ CCE allows you to create Kubernetes clusters 1.28. This section describes the ch
 Indexes
 -------
 
--  :ref:`Important Notes <cce_bulletin_0068__en-us_topic_0000001851583716_section611420132265>`
--  :ref:`New and Enhanced Features <cce_bulletin_0068__en-us_topic_0000001851583716_section14972102702312>`
--  :ref:`API Changes and Removals <cce_bulletin_0068__en-us_topic_0000001851583716_section1898982110241>`
--  :ref:`Feature Gate and Command Line Parameter Changes and Removals <cce_bulletin_0068__en-us_topic_0000001851583716_section7619242123210>`
--  :ref:`Enhanced Kubernetes 1.28 on CCE <cce_bulletin_0068__en-us_topic_0000001851583716_section115291322132513>`
--  :ref:`References <cce_bulletin_0068__en-us_topic_0000001851583716_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583>`
+-  :ref:`Important Notes <cce_bulletin_0068__en-us_topic_0000001692158708_section611420132265>`
+-  :ref:`New and Enhanced Features <cce_bulletin_0068__en-us_topic_0000001692158708_section14972102702312>`
+-  :ref:`API Changes and Removals <cce_bulletin_0068__en-us_topic_0000001692158708_section1898982110241>`
+-  :ref:`Feature Gate and Command Line Parameter Changes and Removals <cce_bulletin_0068__en-us_topic_0000001692158708_section7619242123210>`
+-  :ref:`Enhanced Kubernetes 1.28 on CCE <cce_bulletin_0068__en-us_topic_0000001692158708_section115291322132513>`
+-  :ref:`References <cce_bulletin_0068__en-us_topic_0000001692158708_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583>`
 
-.. _cce_bulletin_0068__en-us_topic_0000001851583716_section611420132265:
+.. _cce_bulletin_0068__en-us_topic_0000001692158708_section611420132265:
 
 Important Notes
 ---------------
@@ -26,12 +26,12 @@ Important Notes
 -  The Ceph FS in-tree plugin has been deprecated in Kubernetes 1.28 and will be removed in Kubernetes 1.31. (The community does not plan to support CSI migration.) Use `Ceph CSI driver <https://github.com/ceph/ceph-csi>`__ instead.
 -  The Ceph RBD in-tree plugin has been deprecated in Kubernetes 1.28 and will be removed in Kubernetes 1.31. (The community does not plan to support CSI migration.) Use RBD `Ceph CSI driver <https://github.com/ceph/ceph-csi>`__ instead.
 
-.. _cce_bulletin_0068__en-us_topic_0000001851583716_section14972102702312:
+.. _cce_bulletin_0068__en-us_topic_0000001692158708_section14972102702312:
 
 New and Enhanced Features
 -------------------------
 
-Features in alpha stage are disabled by default, those in beta stage are enabled by default, and those in General Availability (GA) stage are always enabled and they cannot be disabled. The function of turning on or off the features in GA stage will be removed in later Kubernetes versions. CCE policies for new features are the same as those in the community.
+Features in alpha stage are disabled by default, those in beta stage are enabled by default, and those in GA stage are always enabled and they cannot be disabled. The function of turning on or off the features in GA stage will be removed in later Kubernetes versions. CCE policies for new features are the same as those in the community.
 
 -  The version skew policy is expanded to three versions.
 
@@ -41,7 +41,7 @@ Features in alpha stage are disabled by default, those in beta stage are enabled
 
    The retroactive default StorageClass assignment graduates to GA. This enhancement brings a significant improvement to how default StorageClasses are assigned to PersistentVolumeClaims (PVCs).
 
-   The PersistentVolume (PV) controller has been modified to automatically assign a default StorageClass to any unbound PVC with **storageClassName** not configured. Additionally, the PVC admission validation mechanism within the API server has been adjusted to allow changing values from an unset state to an actual StorageClass name. For details, see `Retroactive default StorageClass assignment <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#retroactive-default-storageclass-assignment>`__.
+   The PV controller has been modified to automatically assign a default StorageClass to any unbound PVC with **storageClassName** not configured. Additionally, the PVC admission validation mechanism within the API server has been adjusted to allow changing values from an unset state to an actual StorageClass name. For details, see `Retroactive default StorageClass assignment <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#retroactive-default-storageclass-assignment>`__.
 
 -  Native sidecar containers are introduced.
 
@@ -61,17 +61,17 @@ Features in alpha stage are disabled by default, those in beta stage are enabled
 
 -  Two Job-related features are added.
 
-   Two alpha features are introduced: `Delayed creation of replacement pods <https://kubernetes.io/docs/concepts/workloads/controllers/job/#pod-replacement-policy>`__ and `Backoff limit per index <https://kubernetes.io/docs/concepts/workloads/controllers/job/#backoff-limit-per-index>`__.
+   Two alpha features are introduced: `delayed creation of replacement pods <https://kubernetes.io/docs/concepts/workloads/controllers/job/#pod-replacement-policy>`__ and `backoff limit per index <https://kubernetes.io/docs/concepts/workloads/controllers/job/#backoff-limit-per-index>`__.
 
    -  Delayed creation of replacement pods
 
       By default, when a pod enters the terminating state (for example, due to the preemption or eviction), Kubernetes immediately creates a replacement pod. Therefore, both pods are running concurrently.
 
-      In Kubernetes 1.28, this feature can be enabled by turning on the JobPodReplacementPolicy feature gate. With this feature gate enabled, you can set the **podReplacementPolicy** field under **spec** of a Job to **Failed**. In this way, pods would only be replaced when they reached the failed phase, and not when they are terminating. Additionally, you can check the **.status.termination** field of a Job. The value of this field is the number of pods owned by the Job that are currently terminating.
+      In Kubernetes 1.28, this feature can be enabled by turning on the JobPodReplacementPolicy feature gate. With this feature gate enabled, you can set the **podReplacementPolicy** field under **spec** of a Job to **Failed**. In this way, pods would only be replaced when they reached the failed phase, and not when they are terminating. Additionally, you can check the **.status.termination** field of a job. The value of this field is the number of pods owned by the Job that are currently terminating.
 
    -  Backoff limit per index
 
-      By default, pod failures for indexed Jobs are counted and restricted by the global limit of retries, specified by **.spec.backoffLimit**. This means that if there is a consistently failing index in a Job, pods specified by the Job will be restarted repeatedly until pod failures exhaust the limit. Once the limit is reached, the Job is marked failed and pods for other indexes in the Job may never be even started. In this case, the backoff limit per index configuration is useful.
+      By default, pod failures for indexed jobs are recorded and restricted by the global limit of retries, specified by **.spec.backoffLimit**. This means that if there is a consistently failing index in a job, pods specified by the job will be restarted repeatedly until pod failures exhaust the limit. Once the limit is reached, the Job is marked failed and pods for other indexes in the Job may never be even started.
 
       In Kubernetes 1.28, this feature can be enabled by turning on the JobBackoffLimitPerIndex feature gate of a cluster. With this feature gate enabled, **.spec.backoffLimitPerIndex** can be specified when an indexed Job is created. Only if the failures of pods with all indexes specified in this Job exceed the upper limit, pods specified by the Job will not be restarted.
 
@@ -102,7 +102,7 @@ Features in alpha stage are disabled by default, those in beta stage are enabled
    -  The alpha feature CRDValidationRatcheting is added. This feature allows CRs with failing validations to pass if a Patch or Update request does not alter any of the invalid fields.
    -  **--concurrent-cron-job-syncs** is added to kube-controller-manager to configure the number of workers for the cron job controller.
 
-.. _cce_bulletin_0068__en-us_topic_0000001851583716_section1898982110241:
+.. _cce_bulletin_0068__en-us_topic_0000001692158708_section1898982110241:
 
 API Changes and Removals
 ------------------------
@@ -125,7 +125,7 @@ API Changes and Removals
 -  API groups ValidatingAdmissionPolicy and ValidatingAdmissionPolicyBinding are promoted to betav1.
 -  A ValidatingAdmissionPolicy now has its **messageExpression** field checked against resolved types.
 
-.. _cce_bulletin_0068__en-us_topic_0000001851583716_section7619242123210:
+.. _cce_bulletin_0068__en-us_topic_0000001692158708_section7619242123210:
 
 Feature Gate and Command Line Parameter Changes and Removals
 ------------------------------------------------------------
@@ -137,7 +137,7 @@ Feature Gate and Command Line Parameter Changes and Removals
 -  KMS v1 is deprecated and will only receive security updates. Use KMS v2 instead. In later Kubernetes versions, use **--feature-gates=KMSv1=true** to configure a KMS v1 provider.
 -  The DelegateFSGroupToCSIDriver, DevicePlugins, KubeletCredentialProviders, MixedProtocolLBService, ServiceInternalTrafficPolicy, ServiceIPStaticSubrange, and EndpointSliceTerminatingCondition feature gates are removed.
 
-.. _cce_bulletin_0068__en-us_topic_0000001851583716_section115291322132513:
+.. _cce_bulletin_0068__en-us_topic_0000001692158708_section115291322132513:
 
 Enhanced Kubernetes 1.28 on CCE
 -------------------------------
@@ -146,7 +146,7 @@ During a version maintenance period, CCE periodically updates Kubernetes 1.28 an
 
 For details about cluster version updates, see :ref:`Release Notes for CCE Cluster Versions <cce_10_0405>`.
 
-.. _cce_bulletin_0068__en-us_topic_0000001851583716_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583:
+.. _cce_bulletin_0068__en-us_topic_0000001692158708_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583:
 
 References
 ----------

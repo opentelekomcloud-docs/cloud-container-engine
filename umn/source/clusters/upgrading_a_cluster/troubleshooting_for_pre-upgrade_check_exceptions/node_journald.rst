@@ -18,7 +18,7 @@ Log in to the node and run the **systemctl is-active systemd-journald** command 
 The normal command output is as follows:
 
 
-.. figure:: /_static/images/en-us_image_0000001851586944.png
+.. figure:: /_static/images/en-us_image_0000001981436649.png
    :alt: **Figure 1** Running status of journald
 
    **Figure 1** Running status of journald

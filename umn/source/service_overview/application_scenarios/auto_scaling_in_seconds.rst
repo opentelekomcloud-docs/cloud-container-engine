@@ -8,7 +8,7 @@ Auto Scaling in Seconds
 Application Scenarios
 ---------------------
 
--  Shopping apps and websites, especially during promotions
+-  Shopping apps and websites, especially during promotions and flash sales
 -  Live streaming, where service loads often fluctuate
 -  Games, where many players may go online in certain time periods
 
@@ -37,11 +37,11 @@ Related Services
 
 Add-ons: autoscaler and cce-hpa-controller
 
--  Auto scaling for workloads: HPA (Horizontal Pod Autoscaling)
+-  Auto scaling for workloads: CronHPA (CronHorizontalPodAutoscaler) + HPA (Horizontal Pod Autoscaling)
 -  Auto scaling for clusters: CA (Cluster AutoScaling)
 
 
-.. figure:: /_static/images/en-us_image_0000001697958210.png
+.. figure:: /_static/images/en-us_image_0000001851742792.png
    :alt: **Figure 1** How auto scaling works
 
    **Figure 1** How auto scaling works

@@ -18,7 +18,7 @@ When a third-party enterprise needs to use this application, a suit of **Tomcat 
 
 .. _cce_bestpractice_0003__fig78809934014:
 
-.. figure:: /_static/images/en-us_image_0000001851585812.png
+.. figure:: /_static/images/en-us_image_0000001981275457.png
    :alt: **Figure 1** Application architecture
 
    **Figure 1** Application architecture

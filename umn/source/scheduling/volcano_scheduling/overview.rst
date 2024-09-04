@@ -13,7 +13,7 @@ Volcano Scheduler
 Volcano Scheduler is a pod scheduling component, which consists of a series of actions and plugins. Actions should be executed in every step. Plugins provide the action algorithm details in different scenarios. Volcano Scheduler features high scalability. You can specify actions and plugins as needed.
 
 
-.. figure:: /_static/images/en-us_image_0000001898025401.png
+.. figure:: /_static/images/en-us_image_0000001950316688.png
    :alt: **Figure 1** Volcano Scheduler workflow
 
    **Figure 1** Volcano Scheduler workflow

@@ -17,10 +17,10 @@ Check these causes one by one until you find the cause of the fault.
 -  :ref:`Check Item 1: Whether the Security Group Is Modified <cce_faq_00039__section48059154014>`
 -  :ref:`Check Item 2: Whether There Are Residual Listeners and Backend Server Groups on the Load Balancer <cce_faq_00039__section1821659134014>`
 
-If the fault persists, and contact the customer service to help you locate the fault.
+If the fault persists, contact the customer service to help you locate the fault.
 
 
-.. figure:: /_static/images/en-us_image_0000001851743880.png
+.. figure:: /_static/images/en-us_image_0000001950315976.png
    :alt: **Figure 1** Fault locating
 
    **Figure 1** Fault locating
@@ -36,7 +36,7 @@ Check Item 1: Whether the Security Group Is Modified
 
 #. Click the security group. On the details page displayed, ensure that the security group rules of the master node are correct.
 
-   For details, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`.
+   For details, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`
 
 .. _cce_faq_00039__section1821659134014:
 

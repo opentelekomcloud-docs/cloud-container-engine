@@ -34,7 +34,7 @@ Configuring Priority-based Scheduling Policies
 ----------------------------------------------
 
 #. Log in to the CCE console.
-#. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane and click the **Scheduling** tab.
+#. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane. In the right pane, click the **Scheduling** tab.
 #. In the **Business priority scheduling** area, configure priority-based scheduling.
 
    -  **Scheduling based on priority**: The scheduler preferentially guarantees the running of high-priority pods, but will not evict low-priority pods that are running. Priority-based scheduling is enabled by default and cannot be disabled.

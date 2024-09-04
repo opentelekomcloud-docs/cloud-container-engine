@@ -13,9 +13,9 @@ Precautions
 -----------
 
 -  The snapshot function is available **only for clusters of v1.15 or later** and requires the CSI-based Everest add-on.
--  The subtype (common I/O, high I/O, or ultra-high I/O), disk mode (SCSI or VBD), data encryption, sharing status, and capacity of an EVS disk created from a snapshot must be the same as those of the disk associated with the snapshot. These attributes cannot be modified after being queried or set.
+-  The subtype (common I/O, high I/O, or ultra-high I/O), disk mode (SCSI or VBD), data encryption, sharing status, and capacity of an EVS disk created from a snapshot must be the same as those of the disk associated with the snapshot. These attributes cannot be modified after being checked or configured.
 -  Snapshots can be created only for EVS disks that are available or in use, and a maximum of seven snapshots can be created for a single EVS disk.
--  Snapshots can be created only for PVCs created using the storage class (whose name starts with csi) provided by the Everest add-on. Snapshots cannot be created for PVCs created using the Flexvolume storage class whose name is ssd, sas, or sata.
+-  Snapshots can be created only for PVCs created using the storage class (whose name starts with csi) provided by the Everest add-on. Snapshots cannot be created for PVCs created using the FlexVolume storage class whose name is ssd, sas, or sata.
 -  Snapshot data of encrypted disks is stored encrypted, and that of non-encrypted disks is stored non-encrypted.
 -  A PVC of the xfs file system type can generate snapshots. The file system of the disk associated with the PVC created using these snapshots remains xfs.
 
@@ -48,7 +48,7 @@ Creating a Snapshot
 **Using the CCE console**
 
 #. Log in to the CCE console.
-#. Click the cluster name to go to the cluster console. Choose **Storage** in the navigation pane and click the **Snapshots and Backups** tab.
+#. Click the cluster name to go to the cluster console. Choose **Storage** in the navigation pane. In the right pane, click the **Snapshots and Backups** tab.
 #. Click **Create Snapshot** in the upper right corner. In the dialog box displayed, set related parameters.
 
    -  **Snapshot Name**: Enter a snapshot name.
@@ -81,7 +81,7 @@ The disk type, encryption setting, and disk mode of the created EVS PVC are cons
 **Using the CCE console**
 
 #. Log in to the CCE console.
-#. Click the cluster name to go to the cluster console. Choose **Storage** in the navigation pane and click the **Snapshots and Backups** tab.
+#. Click the cluster name to go to the cluster console. Choose **Storage** in the navigation pane. In the right pane, click the **Snapshots and Backups** tab.
 #. Locate the snapshot that you want to use for creating a PVC, click **Create PVC**, and configure PVC parameters in the displayed dialog box.
 
    -  **PVC Name**: Enter a PVC name.
@@ -106,7 +106,7 @@ The disk type, encryption setting, and disk mode of the created EVS PVC are cons
      annotations:
        everest.io/disk-volume-type: SSD     # EVS disk type, which must be the same as that of the snapshot's source EVS disk.
        everest.io/disk-volume-tags: '{"key1":"value1","key2":"value2"}' # (Optional) Custom resource tags
-       csi.storage.k8s.io/fstype: xfs    # (Optional) Configure this field when the snapshot file system type is xfs.
+       csi.storage.k8s.io/fstype: xfs    # (Optional) Configure this field when the snapshot file system is of the xfs type.
      labels:
        failure-domain.beta.kubernetes.io/region: <your_region>   # Replace the region with the one where the EVS disk is located.
        failure-domain.beta.kubernetes.io/zone: <your_zone>       # Replace the AZ with the one where the EVS disk is located.

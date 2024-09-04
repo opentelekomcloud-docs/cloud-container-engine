@@ -12,9 +12,9 @@ EVS Disk Performance Specifications
 
 EVS performance metrics include:
 
--  IOPS: number of read/write operations performed by an EVS disk per second
--  Throughput: amount of data read from and written into an EVS disk per second
--  Read/write I/O latency: minimum interval between two consecutive read/write operations on an EVS disk
+-  IOPS: the number of input/output operations performed by an EVS disk per second
+-  Throughput: the amount of data read from and written into an EVS disk per second
+-  I/O latency: the minimum interval between two consecutive I/O operations on an EVS disk
 
 .. table:: **Table 1** EVS disk performance specifications
 
@@ -44,6 +44,6 @@ Application Scenarios
 
 EVS disks can be mounted in the following modes based on application scenarios:
 
--  :ref:`Using an Existing EVS Disk Through a Static PV <cce_10_0614>`: static creation mode, where you use an existing EVS disk to create a PV and then mount storage to the workload through a PVC. This mode applies to scenarios where the underlying storage is available.
--  :ref:`Using an EVS Disk Through a Dynamic PV <cce_10_0615>`: dynamic creation mode, where you do not need to create EVS volumes in advance. Instead, specify a StorageClass during PVC creation and an EVS disk and a PV will be automatically created. This mode applies to scenarios where no underlying storage is available.
--  :ref:`Dynamically Mounting an EVS Disk to a StatefulSet <cce_10_0616>`: Only StatefulSets support this mode. Each pod is associated with a unique PVC and PV. After a pod is rescheduled, the original data can still be mounted to it based on the PVC name. This mode applies to StatefulSets with multiple pods.
+-  :ref:`Using an Existing EVS Disk Through a Static PV <cce_10_0614>`: static creation mode, where you use an existing EVS disk to create a PV and then mount storage to the workload through a PVC. This mode applies if the underlying storage is available.
+-  :ref:`Using an EVS Disk Through a Dynamic PV <cce_10_0615>`: dynamic creation mode, in which you do not need to create EVS volumes beforehand. Instead, specify a StorageClass when creating a PVC. Then, an EVS volume and PV will be created automatically. This mode applies to scenarios where no underlying storage is available.
+-  :ref:`Dynamically Mounting an EVS Disk to a StatefulSet <cce_10_0616>`: available only for StatefulSets. In this mode, each pod is associated with a unique PVC and PV. After a pod is rescheduled, the original data can still be mounted to it based on the PVC name. This mode applies to StatefulSets with multiple pods.

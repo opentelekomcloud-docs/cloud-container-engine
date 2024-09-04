@@ -13,11 +13,11 @@ Scenario
 Prerequisites
 -------------
 
--  The :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on version must be 1.2.8 or later.
+-  The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be 1.2.8 or later.
 -  The cluster version must be 1.15.11 or later.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  When an OBS volume is mounted using a custom access key (AK/SK), the access key cannot be deleted or disabled. Otherwise, the service container cannot access the mounted OBS volume.
 -  Custom access keys cannot be configured for Kata containers.
@@ -142,18 +142,18 @@ After a secret is created using the AK/SK, you can associate the secret with the
         persistentVolumeReclaimPolicy: Delete
         storageClassName: csi-obs
 
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Parameter                         | Description                                                                                                                                                                                                                                                              |
-   +===================================+==========================================================================================================================================================================================================================================================================+
-   | nodePublishSecretRef              | Secret specified during the mounting.                                                                                                                                                                                                                                    |
-   |                                   |                                                                                                                                                                                                                                                                          |
-   |                                   | -  **name**: name of the secret                                                                                                                                                                                                                                          |
-   |                                   | -  **namespace**: namespace of the secret                                                                                                                                                                                                                                |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | fsType                            | File type. The value can be **obsfs** or **s3fs**. If the value is **s3fs**, an OBS bucket is created and mounted using s3fs. If the value is **obsfs**, an OBS parallel file system is created and mounted using obsfs. You are advised to set this field to **obsfs**. |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | volumeHandle                      | OBS bucket name.                                                                                                                                                                                                                                                         |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter                         | Description                                                                                                                                                           |
+   +===================================+=======================================================================================================================================================================+
+   | nodePublishSecretRef              | Secret specified during the mounting.                                                                                                                                 |
+   |                                   |                                                                                                                                                                       |
+   |                                   | -  **name**: name of the secret                                                                                                                                       |
+   |                                   | -  **namespace**: namespace of the secret                                                                                                                             |
+   +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | fsType                            | File type, which can be **s3fs** or **obsfs**. If the value is **s3fs**, an OBS bucket is created. If the value is **obsfs**, an OBS parallel file system is created. |
+   +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | volumeHandle                      | OBS bucket name.                                                                                                                                                      |
+   +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Create a PV.
 
@@ -288,5 +288,5 @@ You can use a secret of an IAM user to mount an OBS volume. Assume that a worklo
 
       -rwxrwxrwx 1 root root 0 Jun  7 01:52 test
 
-.. |image1| image:: /_static/images/en-us_image_0000001898026001.png
-.. |image2| image:: /_static/images/en-us_image_0000001851745808.png
+.. |image1| image:: /_static/images/en-us_image_0000001950317256.png
+.. |image2| image:: /_static/images/en-us_image_0000001950317252.png
