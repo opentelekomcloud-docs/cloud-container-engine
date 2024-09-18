@@ -210,9 +210,23 @@ Request
    | SecurityGroup | No        | String | Default worker node security group ID of the cluster. If specified, the cluster will be bound to the target security group. Otherwise, the system will automatically create a default worker node security group for you. The default worker node security group needs to allow access from certain ports to ensure normal communications. |
    +---------------+-----------+--------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+.. _cce_02_0236__request_publicaccess:
+
+.. table:: **Table 7** PublicAccess
+
+   +-----------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter       | Mandatory       | Type             | Description                                                                                                                                                                                                            |
+   +=================+=================+==================+========================================================================================================================================================================================================================+
+   | cidrs           | No              | Array of strings | Trustlist of network CIDRs that are allowed to access cluster APIs. You are advised to allow the traffic from VPC and container network CIDRs. By default, no trustlist is configured, and the value is ["0.0.0.0/0"]. |
+   |                 |                 |                  |                                                                                                                                                                                                                        |
+   |                 |                 |                  | .. note::                                                                                                                                                                                                              |
+   |                 |                 |                  |                                                                                                                                                                                                                        |
+   |                 |                 |                  |    This parameter is valid only when a cluster is created.                                                                                                                                                             |
+   +-----------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
 .. _cce_02_0236__table71529332533:
 
-.. table:: **Table 7** Data structure of the **authentication** field
+.. table:: **Table 8** Data structure of the **authentication** field
 
    +---------------------+-----------------+----------------------------------------------------------------------+-------------------------------------------------------------+
    | Parameter           | Mandatory       | Type                                                                 | Description                                                 |
@@ -607,7 +621,7 @@ Response
 
 .. _cce_02_0236__table14385916163118:
 
-.. table:: **Table 17** Data structure of the **hostNetwork** field
+.. table:: **Table 18** Data structure of the **hostNetwork** field
 
    +---------------+--------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Parameter     | Type   | Description                                                                                                                                                                                                                                                                                                                                |
