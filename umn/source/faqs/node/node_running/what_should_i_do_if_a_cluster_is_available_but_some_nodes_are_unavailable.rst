@@ -98,9 +98,9 @@ Check Item 4: Whether the Security Group Is Modified
 
 Log in to the VPC console. In the navigation pane, choose **Access Control** > **Security Groups** and locate the security group of the cluster master node.
 
-The name of this security group is in the format of *Cluster name*-cce-**control**\ ``-``\ *ID*. You can search for the security group by cluster name.
+The name of this security group is in the format of *Cluster name*-cce-**control**\ ``-``\ *ID*. You can search for the security group by cluster name and **-cce-control-**.
 
-Check whether the rules in the security group are modified. For details, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`.
+Check whether the security group rules have been modified. For details about security groups, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`
 
 .. _cce_faq_00120__section64919515161:
 
@@ -111,7 +111,7 @@ Check whether such a security group policy exists.
 
 When a node is added to an existing cluster, if an extended CIDR block is added to the VPC corresponding to the subnet and the subnet is an extended CIDR block, you need to add the following three security group rules to the master node security group (the group name is in the format of **Cluster name-cce-control-Random number**). These rules ensure that the nodes added to the cluster are available. (This step is not required if an extended CIDR block has been added to the VPC during cluster creation.)
 
-For details about security, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`.
+For details about security groups, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`.
 
 .. _cce_faq_00120__section165209286116:
 
@@ -201,5 +201,5 @@ Check Item 10: Whether the Docker Service Is Normal
 
    In this case, stop repeated creation and deletion of the workload or use more nodes to share the workload. Generally, the nodes will be restored after a period of time. If necessary, run the **docker rm** {*container_id*} command to manually clear abnormal containers.
 
-.. |image1| image:: /_static/images/en-us_image_0000001898024237.png
-.. |image2| image:: /_static/images/en-us_image_0000001851744004.png
+.. |image1| image:: /_static/images/en-us_image_0000001981275677.png
+.. |image2| image:: /_static/images/en-us_image_0000001950316192.png

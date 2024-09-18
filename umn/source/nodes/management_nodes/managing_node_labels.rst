@@ -41,6 +41,10 @@ After a node is created, some fixed labels exist and cannot be deleted. For deta
    |                                                     |                                                             |
    | Old: failure-domain.beta.kubernetes.io/is-baremetal | **false** indicates that the node is not a bare metal node. |
    +-----------------------------------------------------+-------------------------------------------------------------+
+   | node.kubernetes.io/container-engine                 | Container engine                                            |
+   |                                                     |                                                             |
+   |                                                     | Example: **docker** or **containerd**                       |
+   +-----------------------------------------------------+-------------------------------------------------------------+
    | node.kubernetes.io/instance-type                    | Node specifications                                         |
    +-----------------------------------------------------+-------------------------------------------------------------+
    | kubernetes.io/arch                                  | Node processor architecture                                 |
@@ -59,8 +63,6 @@ After a node is created, some fixed labels exist and cannot be deleted. For deta
    +-----------------------------------------------------+-------------------------------------------------------------+
    | os.version                                          | Node OS kernel version                                      |
    +-----------------------------------------------------+-------------------------------------------------------------+
-   | node.kubernetes.io/container-engine                 | Container engine used by the node.                          |
-   +-----------------------------------------------------+-------------------------------------------------------------+
    | accelerator                                         | GPU node labels.                                            |
    +-----------------------------------------------------+-------------------------------------------------------------+
    | cce.cloud.com/cce-nodepool                          | The dedicated label of a node in a node pool.               |
@@ -73,7 +75,7 @@ Adding or Deleting a Node Label
 
 #. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab, select the target node and click **Labels and Taints** in the upper left corner.
 
-#. In the displayed dialog box, click **Add batch operations** under **Batch Operation**, and then choose **Add/Update** or **Delete**.
+#. In the displayed dialog box, click **Add operation** under **Batch Operation**, and then choose **Add/Update** or **Delete**.
 
    Enter the key and value of the label to be added or deleted, and click **OK**.
 

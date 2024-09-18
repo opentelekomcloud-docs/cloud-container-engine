@@ -6,8 +6,8 @@ Nodes
 =====
 
 -  :ref:`Node Overview <cce_10_0180>`
--  :ref:`Container Engine <cce_10_0462>`
--  :ref:`Node OS <cce_10_0476>`
+-  :ref:`Container Engines <cce_10_0462>`
+-  :ref:`Node OSs <cce_10_0476>`
 -  :ref:`Creating a Node <cce_10_0363>`
 -  :ref:`Accepting Nodes for Management <cce_10_0198>`
 -  :ref:`Logging In to a Node <cce_10_0185>`
@@ -19,8 +19,8 @@ Nodes
    :hidden: 
 
    node_overview
-   container_engine
-   node_os
+   container_engines
+   node_oss
    creating_a_node
    accepting_nodes_for_management
    logging_in_to_a_node

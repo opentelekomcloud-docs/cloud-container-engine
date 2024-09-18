@@ -53,7 +53,9 @@ Assume that a cluster administrator has a Consul DNS server located at 10.150.0.
 
       .:5353 {
           bind {$POD_IP}
-          cache 30
+          cache 30 {
+              servfail 5s
+          }
           errors
           health {$POD_IP}:8080
           kubernetes cluster.local in-addr.arpa ip6.arpa {

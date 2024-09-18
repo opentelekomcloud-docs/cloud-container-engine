@@ -19,7 +19,7 @@ As shown in :ref:`Figure 1 <cce_faq_00266__fig43963373019>`, a region may compri
 
 .. _cce_faq_00266__fig43963373019:
 
-.. figure:: /_static/images/en-us_image_0000001898024049.png
+.. figure:: /_static/images/en-us_image_0000001981275445.png
    :alt: **Figure 1** Relationship between clusters, VPCs, and subnets
 
    **Figure 1** Relationship between clusters, VPCs, and subnets

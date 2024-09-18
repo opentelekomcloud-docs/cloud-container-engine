@@ -20,7 +20,7 @@ A cluster network can be divided into three network types:
 
 When you create a cluster, select a proper CIDR block for each network. Ensure that the CIDR blocks do not conflict with each other and have sufficient available IP addresses. **You cannot change the container network model after the cluster is created.** Plan the container network model properly in advance.
 
-You are advised to learn about the cluster network and container network models before creating a cluster. For details, see :ref:`Container Network Models <cce_10_0280>`.
+You are advised to learn about the cluster network and container network models before creating a cluster. For details, see :ref:`Container Network <cce_10_0280>`.
 
 Master Nodes and Cluster Scale
 ------------------------------

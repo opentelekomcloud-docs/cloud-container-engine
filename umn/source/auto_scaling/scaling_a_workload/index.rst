@@ -6,8 +6,8 @@ Scaling a Workload
 ==================
 
 -  :ref:`Workload Scaling Rules <cce_10_0290>`
--  :ref:`HPA Policies <cce_10_0208>`
--  :ref:`CronHPA Policies <cce_10_0415>`
+-  :ref:`Creating an HPA Policy <cce_10_0208>`
+-  :ref:`Creating a Scheduled CronHPA Policy <cce_10_0415>`
 -  :ref:`Managing Workload Scaling Policies <cce_10_0083>`
 
 .. toctree::
@@ -15,6 +15,6 @@ Scaling a Workload
    :hidden: 
 
    workload_scaling_rules
-   hpa_policies
-   cronhpa_policies
+   creating_an_hpa_policy
+   creating_a_scheduled_cronhpa_policy
    managing_workload_scaling_policies

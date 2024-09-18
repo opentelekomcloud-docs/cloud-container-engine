@@ -2,7 +2,7 @@
 
 .. _cce_10_0448:
 
-Kubelet
+kubelet
 =======
 
 Check Items

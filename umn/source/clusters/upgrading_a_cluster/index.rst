@@ -5,7 +5,7 @@
 Upgrading a Cluster
 ===================
 
--  :ref:`Upgrade Overview <cce_10_0197>`
+-  :ref:`Process and Method of Upgrading a Cluster <cce_10_0197>`
 -  :ref:`Before You Start <cce_10_0302>`
 -  :ref:`Performing Post-Upgrade Verification <cce_10_0560>`
 -  :ref:`Migrating Services Across Clusters of Different Versions <cce_10_0210>`
@@ -15,7 +15,7 @@ Upgrading a Cluster
    :maxdepth: 1
    :hidden: 
 
-   upgrade_overview
+   process_and_method_of_upgrading_a_cluster
    before_you_start
    performing_post-upgrade_verification/index
    migrating_services_across_clusters_of_different_versions

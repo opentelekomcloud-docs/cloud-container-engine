@@ -5,7 +5,7 @@
 Configuring HTTP/2 for a LoadBalancer Ingress
 =============================================
 
-Ingresses can use HTTP/2 to expose Services. Connections from the load balancer to your application use HTTP/1.X by default. If your application is capable of receiving HTTP2 requests, you can add the following field to the ingress annotation to enable the use of HTTP/2:
+Ingresses can use HTTP/2 to expose Services. Connections from the load balancer to your application use HTTP/1.x by default. If your application is capable of receiving HTTP/2 requests, you can add the following field to the ingress annotation to enable the use of HTTP/2:
 
 .. code-block::
 
@@ -15,7 +15,7 @@ Ingresses can use HTTP/2 to expose Services. Connections from the load balancer 
 
    -  An HTTPS-compliant load balancer supports HTTP/2.
    -  This function is available in clusters of version v1.23.13-r0, v1.25.8-r0, v1.27.5-r0, or v1.28.3-r0.
-   -  If the advanced configuration for enabling HTTP/2 or the target annotation is deleted, the ELB configuration will not be modified.
+   -  After HTTP/2 is configured, if you delete the advanced configuration for enabling HTTP/2 on the CCE console or delete the target annotation from the YAML file, the configuration on the ELB will be retained.
 
 The following shows an example YAML file where an existing load balancer is associated:
 
@@ -60,5 +60,5 @@ The following shows an example YAML file where an existing load balancer is asso
    |                                |                 |                 | -  **true**: enabled                                                                                                                                                                                                                 |
    |                                |                 |                 | -  **false**: disabled (default value)                                                                                                                                                                                               |
    |                                |                 |                 |                                                                                                                                                                                                                                      |
-   |                                |                 |                 | Note: **HTTP/2 can be enabled or disabled only when the listener uses HTTPS.** This parameter is invalid when the listener protocol is HTTP, and defaults to **false**.                                                              |
+   |                                |                 |                 | Note: **HTTP/2 can be enabled or disabled only when the listener uses HTTPS.** This parameter is invalid and defaults to **false** when the listener protocol is HTTP.                                                               |
    +--------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

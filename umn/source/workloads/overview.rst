@@ -80,10 +80,10 @@ DaemonSets are closely related to nodes. If a node becomes faulty, the DaemonSet
 Overview of Job and CronJob
 ---------------------------
 
-Jobs and cron jobs allow you to run short lived, one-off tasks in batch. They ensure the task pods run to completion.
+Jobs and CronJobs allow you to run short lived, one-off tasks in batch. They ensure the task pods run to completion.
 
 -  A job is a resource object used by Kubernetes to control batch tasks. Jobs are different from long-term servo tasks (such as Deployments and StatefulSets). The former is started and terminated at specific times, while the latter runs unceasingly unless being terminated. The pods managed by a job will be automatically removed after successfully completing tasks based on user configurations.
--  A cron job runs a job periodically on a specified schedule. A cron job object is similar to a line of a crontab file in Linux.
+-  A CronJob runs a job periodically on a specified schedule. A CronJob object is similar to a line of a crontab file in Linux.
 
 This run-to-completion feature of jobs is especially suitable for one-off tasks, such as continuous integration (CI).
 

@@ -10,7 +10,7 @@ CCE provides a console for managing Helm charts, helping you easily deploy appli
 Helm
 ----
 
-`Helm <https://helm.sh/>`__ is a package manager for Kubernetes and manages charts. A Helm chart is a series of YAML files used to encapsulate native Kubernetes applications. When deploying an application, you can customize some metadata of the application for easy application distribution. Application releasers can use Helm to package applications, manage application dependencies and application versions, and release applications to the software repository. After using Helm, users do not need to compile complex application deployment files. They can easily search for, install, upgrade, roll back, and uninstall applications on Kubernetes.
+`Helm <https://helm.sh/>`__ is a package manager for Kubernetes and manages charts. A Helm chart is a series of YAML files used to encapsulate native Kubernetes applications. When deploying an application, you can customize some metadata of the application for easy application distribution. Application releasors can use Helm to package applications, manage application dependencies and application versions, and release applications to the software repository. After using Helm, users do not need to compile complex application deployment files. They can easily search for, install, upgrade, roll back, and uninstall applications on Kubernetes.
 
 The relationship between Helm and Kubernetes is as follows:
 
@@ -33,4 +33,4 @@ Helm can help application orchestration for Kubernetes:
 -  Controls phases in a deployment cycle.
 -  Tests and verifies the released version.
 
-.. |image1| image:: /_static/images/en-us_image_0000001851586336.png
+.. |image1| image:: /_static/images/en-us_image_0000001981276109.png

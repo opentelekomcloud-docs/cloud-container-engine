@@ -5,7 +5,7 @@
 Overview
 ========
 
-CCE supports different types of resource scheduling and task scheduling, improving application performance and overall cluster resource utilization. This section describes the main functions of CPU resource scheduling, GPU/NPU heterogeneous resource scheduling, and Volcano scheduling.
+CCE supports different types of resource scheduling and task scheduling, improving application performance and overall cluster resource utilization. This section describes the main functions of CPU resource scheduling, GPU heterogeneous resource scheduling, and Volcano scheduling.
 
 CPU Scheduling
 --------------
@@ -50,7 +50,7 @@ Volcano is a Kubernetes-based batch processing platform that supports machine le
 | NUMA affinity scheduling              | Volcano targets to lift the limitation to make scheduler NUMA topology aware so that:                                                                                 | :ref:`NUMA Affinity Scheduling <cce_10_0425>`        |
 |                                       |                                                                                                                                                                       |                                                      |
 |                                       | -  Pods are not scheduled to the nodes that NUMA topology does not match.                                                                                             |                                                      |
-|                                       | -  Pods are scheduled to the best node for NUMA topology.                                                                                                             |                                                      |
+|                                       | -  Pods are scheduled to the most suitable node for NUMA topology.                                                                                                    |                                                      |
 +---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------+
 
 Cloud Native Hybrid Deployment

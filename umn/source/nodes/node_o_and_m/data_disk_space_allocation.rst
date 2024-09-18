@@ -19,6 +19,10 @@ When creating a node, configure data disks for the node. You can also click **Ex
       -  Container engine and container image space (90% by default): stores the container runtime working directories, container image data, and image metadata.
       -  kubelet and emptyDir space (10% by default): stores pod configuration files, secrets, and mounted storage such as emptyDir volumes.
 
+      .. note::
+
+         If the sum of the container engine and container image space and the kubelet and emptyDir space is less than 100%, the remaining space will be allocated for user data. You can mount the storage volume to a service path. Do not leave the path empty or set it to a key OS path such as the root directory.
+
 -  :ref:`Space Allocation for Pods <cce_10_0341__section12119191161518>`: indicates the basesize of a pod. You can set an upper limit for the disk space occupied by each workload pod (including the space occupied by container images). This setting prevents the pods from taking all the disk space available, which may cause service exceptions. It is recommended that the value is less than or equal to 80% of the container engine space. This parameter is related to the node OS and container storage rootfs and is not supported in some scenarios. For details, see :ref:`Mapping Between OS and Container Storage Rootfs <cce_10_0341__section1473612279214>`.
 -  Write Mode
 
@@ -43,7 +47,7 @@ For a node using a non-shared data disk (100 GiB for example), the division of t
       The thin pool is dynamically mounted. You can view it by running the **lsblk** command on a node, but not the **df -h** command.
 
 
-   .. figure:: /_static/images/en-us_image_0000001897905733.png
+   .. figure:: /_static/images/en-us_image_0000001981276145.png
       :alt: **Figure 1** Space allocation for container engines of Device Mapper
 
       **Figure 1** Space allocation for container engines of Device Mapper
@@ -53,7 +57,7 @@ For a node using a non-shared data disk (100 GiB for example), the division of t
    No separate thin pool. The entire container engine and container image space (90% of the data disk by default) are in the **/var/lib/docker** directory.
 
 
-   .. figure:: /_static/images/en-us_image_0000001851745096.png
+   .. figure:: /_static/images/en-us_image_0000001950316608.png
       :alt: **Figure 2** Space allocation for container engines of OverlayFS
 
       **Figure 2** Space allocation for container engines of OverlayFS
@@ -68,11 +72,11 @@ The customized pod container space (basesize) is related to the node OS and cont
 -  Device Mapper supports custom pod basesize. The default value is 10 GiB.
 -  In OverlayFS mode, the pod container space is not limited by default.
 
-When configuring **basesize**, consider the maximum number of pods on a node. The container engine space should be greater than the total disk space used by containers. Formula: **the container engine space and container image space (90% by default)** > **Number of containers** x **basesize**. Otherwise, the container engine space allocated to the node may be insufficient and the container cannot be started.
+When configuring **basesize**, you need to consider the maximum number of pods during node creation. The container engine space should be greater than the total disk space used by containers. Formula: **Container engine space and container image space (90% by default)** > **Number of containers** x **basesize**. Otherwise, the container engine space allocated to the node may be insufficient and the container cannot be started.
 
-For nodes that support **basesize**, when Device Mapper is used, although you can limit the size of the **/home** directory of a single container (to 10 GB by default), all containers on the node still share the thin pool of the node for storage. They are not completely isolated. When the sum of the thin pool space used by certain containers reaches the upper limit, other containers cannot run properly.
+For nodes that support **basesize**, when Device Mapper is used, although you can limit the size of the **/home** directory of a single container (to 10 GiB by default), all containers on the node still share the thin pool of the node for storage. They are not completely isolated. When the sum of the thin pool space used by certain containers reaches the upper limit, other containers cannot run properly.
 
-In addition, after a file is deleted in the **/home** directory of the container, the thin pool space occupied by the file is not released immediately. Therefore, even if **basesize** is set to 10 GB, the thin pool space occupied by files keeps increasing until 10 GB when files are created in the container. The space released after file deletion will be reused but after a while. If **the number of containers on the node multiplied by basesize** is greater than the thin pool space size of the node, there is a possibility that the thin pool space has been used up.
+In addition, after a file is deleted in the **/home** directory of the container, the thin pool space occupied by the file is not released immediately. Therefore, even if **basesize** is set to 10 GiB, the thin pool space occupied by files keeps increasing until 10 GiB when files are created in the container. The space released after file deletion will be reused but after a while. If **the number of containers on the node multiplied by basesize** is greater than the thin pool space size of the node, there is a possibility that the thin pool space has been used up.
 
 .. _cce_10_0341__section1473612279214:
 
@@ -81,29 +85,29 @@ Mapping Between OS and Container Storage Rootfs
 
 .. table:: **Table 1** Node OSs and container engines in CCE clusters
 
-   +-----------------------+--------------------------+-----------------------------------------------------------------------------------------------------+
-   | OS                    | Container Storage Rootfs | Customized Basesize                                                                                 |
-   +=======================+==========================+=====================================================================================================+
-   | EulerOS 2.9           | OverlayFS                | Supported only by clusters of v1.19.16, v1.21.3, v1.23.3, or later. There are no limits by default. |
-   |                       |                          |                                                                                                     |
-   |                       |                          | Not supported if the cluster versions are earlier than v1.19.16, v1.21.3, or v1.23.3.               |
-   +-----------------------+--------------------------+-----------------------------------------------------------------------------------------------------+
-   | Ubuntu 22.04          | OverlayFS                | Not supported.                                                                                      |
-   +-----------------------+--------------------------+-----------------------------------------------------------------------------------------------------+
-   | HCE OS 2.0            | OverlayFS                | Supported only by Docker clusters. There are no limits by default.                                  |
-   +-----------------------+--------------------------+-----------------------------------------------------------------------------------------------------+
+   +-----------------------+--------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | OS                    | Container Storage Rootfs | Customized Basesize                                                                                                                      |
+   +=======================+==========================+==========================================================================================================================================+
+   | EulerOS 2.9           | OverlayFS                | Supported by clusters of v1.19.16, v1.21.3, v1.23.3, or later. Both Docker and containerd are supported. There are no limits by default. |
+   |                       |                          |                                                                                                                                          |
+   |                       |                          | Not supported if the cluster versions are earlier than v1.19.16, v1.21.3, or v1.23.3.                                                    |
+   +-----------------------+--------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | Ubuntu 22.04          | OverlayFS                | Not supported.                                                                                                                           |
+   +-----------------------+--------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | HCE OS 2.0            | OverlayFS                | Supported only by Docker clusters. There are no limits by default.                                                                       |
+   +-----------------------+--------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. table:: **Table 2** Node OSs and container engines in CCE Turbo clusters
 
-   +--------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
-   | OS           | Container Storage Rootfs | Customized Basesize                                                                                                                  |
-   +==============+==========================+======================================================================================================================================+
-   | Ubuntu 22.04 | OverlayFS                | Not supported.                                                                                                                       |
-   +--------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
-   | EulerOS 2.9  | ECS VMs use OverlayFS.   | Supported only when Rootfs is set to OverlayFS and the container engine is Docker. The container basesize is not limited by default. |
-   +--------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
-   | HCE OS 2.0   | OverlayFS                | Supported only by Docker clusters. There are no limits by default.                                                                   |
-   +--------------+--------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+   +--------------+--------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | OS           | Container Storage Rootfs | Customized Basesize                                                                                                |
+   +==============+==========================+====================================================================================================================+
+   | Ubuntu 22.04 | OverlayFS                | Not supported.                                                                                                     |
+   +--------------+--------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | EulerOS 2.9  | ECS VMs use OverlayFS.   | Supported only when Rootfs is set to OverlayFS and the container engine is Docker. There are no limits by default. |
+   +--------------+--------------------------+--------------------------------------------------------------------------------------------------------------------+
+   | HCE OS 2.0   | OverlayFS                | Supported only by Docker clusters. There are no limits by default.                                                 |
+   +--------------+--------------------------+--------------------------------------------------------------------------------------------------------------------+
 
 Garbage Collection Policies for Container Images
 ------------------------------------------------

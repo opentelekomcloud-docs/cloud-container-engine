@@ -185,7 +185,9 @@ Perform the following operations to clear unused images:
 
 To expand a disk capacity, perform the following steps:
 
-#. Expand the capacity of the data disk on the EVS console.
+#. Expand the capacity of a data disk on the EVS console.
+
+   Only the storage capacity of the EVS disk is expanded. You also need to perform the following steps to expand the capacity of the logical volume and file system.
 
 #. Log in to the CCE console and click the cluster. In the navigation pane, choose **Nodes**. Click **More** > **Sync Server Data** in the row containing the target node.
 
@@ -195,7 +197,9 @@ To expand a disk capacity, perform the following steps:
 
    A data disk is divided depending on the container storage **Rootfs**:
 
-   -  Overlayfs: No independent thin pool is allocated. Image data is stored in the **dockersys** disk.
+   Overlayfs: No independent thin pool is allocated. Image data is stored in **dockersys**.
+
+   a. Check the disk and partition sizes of the device.
 
       .. code-block::
 
@@ -203,19 +207,57 @@ To expand a disk capacity, perform the following steps:
          NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
          vda                   8:0    0   50G  0 disk
          └─vda1                8:1    0   50G  0 part /
-         vdb                   8:16   0  200G  0 disk
-         ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/docker               # Space used by the container engine
+         vdb                   8:16   0  200G  0 disk      # Data disk has been expanded but not allocated
+         ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/containerd          # Space used by the container engine
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet  # Space used by Kubernetes
 
-      Run the following commands on the node to add the new disk capacity to the **dockersys** disk:
+   b. Expand the disk capacity.
 
-      .. code-block::
+      Add the new disk capacity to the **dockersys** logical volume used by the container engine.
 
-         pvresize /dev/vdb
-         lvextend -l+100%FREE -n vgpaas/dockersys
-         resize2fs /dev/vgpaas/dockersys
+      #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where dockersys is located.
 
-   -  Devicemapper: A thin pool is allocated to store image data.
+         .. code-block::
+
+            pvresize /dev/vdb
+
+         Information similar to the following is displayed:
+
+         .. code-block::
+
+            Physical volume "/dev/vdb" changed
+            1 physical volume(s) resized or updated / 0 physical volume(s) not resized
+
+      #. Expand 100% of the free capacity to the logical volume. *vgpaas/dockersys* specifies the logical volume used by the container engine.
+
+         .. code-block::
+
+            lvextend -l+100%FREE -n vgpaas/dockersys
+
+         Information similar to the following is displayed:
+
+         .. code-block::
+
+            Size of logical volume vgpaas/dockersys changed from <90.00 GiB (23039 extents) to <190.00 GiB (48639 extents).
+            Logical volume vgpaas/dockersys successfully resized.
+
+      #. Adjust the size of the file system. */dev/vgpaas/dockersys* specifies the file system path of the container engine.
+
+         .. code-block::
+
+            resize2fs /dev/vgpaas/dockersys
+
+         Information similar to the following is displayed:
+
+         .. code-block::
+
+            Filesystem at /dev/vgpaas/dockersys is mounted on /var/lib/containerd; on-line resizing required
+            old_desc_blocks = 12, new_desc_blocks = 24
+            The filesystem on /dev/vgpaas/dockersys is now 49807360 (4k) blocks long.
+
+   Devicemapper: A thin pool is allocated to store image data.
+
+   a. Check the disk and partition sizes of the device.
 
       .. code-block::
 
@@ -233,20 +275,79 @@ To expand a disk capacity, perform the following steps:
          │   ...
          └─vgpaas-kubernetes                 253:4    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
-      -  Run the following commands on the node to add the new disk capacity to the **thinpool** disk:
+   b. Expand the disk capacity.
+
+      Option 1: Add the new disk capacity to the thin pool disk.
+
+      #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where thinpool is located.
 
          .. code-block::
 
             pvresize /dev/vdb
+
+         Information similar to the following is displayed:
+
+         .. code-block::
+
+            Physical volume "/dev/vdb" changed
+            1 physical volume(s) resized or updated / 0 physical volume(s) not resized
+
+      #. Expand 100% of the free capacity to the logical volume. *vgpaas/thinpool* specifies the logical volume used by the container engine.
+
+         .. code-block::
+
             lvextend -l+100%FREE -n vgpaas/thinpool
 
-      -  Run the following commands on the node to add the new disk capacity to the **dockersys** disk:
+         Information similar to the following is displayed:
+
+         .. code-block::
+
+            Size of logical volume vgpaas/thinpool changed from <67.00 GiB (23039 extents) to <167.00 GiB (48639 extents).
+            Logical volume vgpaas/thinpool successfully resized.
+
+      #. Do not need to adjust the size of the file system, because the thin pool is not mounted to any devices.
+
+      Option 2: Add the new disk capacity to the **dockersys** disk.
+
+      #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where dockersys is located.
 
          .. code-block::
 
             pvresize /dev/vdb
+
+         Information similar to the following is displayed:
+
+         .. code-block::
+
+            Physical volume "/dev/vdb" changed
+            1 physical volume(s) resized or updated / 0 physical volume(s) not resized
+
+      #. Expand 100% of the free capacity to the logical volume. *vgpaas/dockersys* specifies the logical volume used by the container engine.
+
+         .. code-block::
+
             lvextend -l+100%FREE -n vgpaas/dockersys
+
+         Information similar to the following is displayed:
+
+         .. code-block::
+
+            Size of logical volume vgpaas/dockersys changed from <18.00 GiB (7679 extents) to <118.00 GiB (33279 extents).
+            Logical volume vgpaas/dockersys successfully resized.
+
+      #. Adjust the size of the file system. */dev/vgpaas/dockersys* specifies the file system path of the container engine.
+
+         .. code-block::
+
             resize2fs /dev/vgpaas/dockersys
+
+         Information similar to the following is displayed:
+
+         .. code-block::
+
+            Filesystem at /dev/vgpaas/dockersys is mounted on /var/lib/docker; on-line resizing required
+            old_desc_blocks = 4, new_desc_blocks = 16
+            The filesystem on /dev/vgpaas/dockersys is now 49807360 (4k) blocks long.
 
 .. _cce_faq_00015__section1026851817369:
 
@@ -385,4 +486,4 @@ Docker Hub sets the maximum number of container image pull requests. For details
 
 Push the frequently used image to SWR and then pull the image from SWR.
 
-.. |image1| image:: /_static/images/en-us_image_0000001851585232.jpg
+.. |image1| image:: /_static/images/en-us_image_0000001981275417.jpg

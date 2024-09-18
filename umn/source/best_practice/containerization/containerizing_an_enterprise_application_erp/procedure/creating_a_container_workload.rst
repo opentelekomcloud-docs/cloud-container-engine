@@ -59,7 +59,7 @@ Procedure
       |                       |                       |                                                                                                                                                                                                |
       |                       |                       | c. In the navigation pane, choose **Key Pair Service**. On the **Private Key Pairs** tab, click **Create Key Pair**.                                                                           |
       |                       |                       |                                                                                                                                                                                                |
-      |                       |                       | d. Enter a key pair name, select **I agree to have the private key managed on the cloud** and **I have read and agree to the Key Pair Service Disclaimer**, and click **OK**.                  |
+      |                       |                       | d. Enter a key pair name, select **I agree to host the private key of the key pair.** and **I have read and agree to the Key Pair Service Disclaimer**, and click **OK**.                      |
       |                       |                       |                                                                                                                                                                                                |
       |                       |                       | e. In the dialog box displayed, click **OK**.                                                                                                                                                  |
       |                       |                       |                                                                                                                                                                                                |
@@ -143,4 +143,4 @@ In the preceding configuration, the NodePort mode is selected to access the work
 
 You can obtain the access mode from the **Access Mode** tab on the workload details page.
 
-.. |image1| image:: /_static/images/en-us_image_0000001897904609.png
+.. |image1| image:: /_static/images/en-us_image_0000001981434421.png

@@ -73,7 +73,7 @@ Check results will be recorded in kubelet logs of the node. You can run the foll
 
 .. code-block::
 
-   cat /var/paas/sys/log/kubernetes/kubelet.log | grep -i Evicted -C3
+   cat /var/log/cce/kubernetes/kubelet.log | grep -i Evicted -C3
 
 Troubleshooting Process
 -----------------------

@@ -17,20 +17,20 @@ Prerequisites
 
 At least one cluster has been created.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 A maximum of 6000 Services can be created in each namespace. The Services mentioned here indicate the Kubernetes Service resources added for workloads.
 
 Namespace Types
 ---------------
 
-Namespaces can be created in either of the following ways:
+Namespaces can be created automatically or manually.
 
 -  Created automatically: When a cluster is up, the **default**, **kube-public**, **kube-system**, and **kube-node-lease** namespaces are created by default.
 
    -  **default**: All objects for which no namespace is specified are allocated to this namespace.
-   -  **kube-public**: Resources in this namespace can be accessed by all users (including unauthenticated users), such as public add-ons and container charts.
+   -  **kube-public**: Resources in this namespace can be accessed by all users (including unauthenticated users) so that some resources in the cluster can be readable in the entire cluster. This is a reserved Kubernetes namespace. Its common attributes are only conventions but not requirements.
    -  **kube-system**: All resources created by Kubernetes are in this namespace.
    -  **kube-node-lease**: Each node has an associated Lease object in this namespace. The object is periodically updated by the node. Both NodeStatus and NodeLease are considered as heartbeats from a node. In versions earlier than v1.13, only NodeStatus is available. The NodeLease feature is introduced in v1.13. NodeLease is more lightweight than NodeStatus. This feature significantly improves the cluster scalability and performance.
 

@@ -22,8 +22,8 @@ On the CCE console, you can also batch manage nodes' taints.
 
 #. After the taint is added, check the added taint in node data.
 
-Procedure for Operations Performed Through kubectl Commands
------------------------------------------------------------
+Procedure for Operations Performed Through kubectl
+--------------------------------------------------
 
 A taint is a key-value pair associated with an effect. The following effects are available:
 
@@ -73,6 +73,8 @@ To remove a taint, add a hyphen (-) at the end of the command for adding a taint
    ...
    Taints:             <none>
    ...
+
+.. _cce_10_0352__section184717137266:
 
 Configuring a Node Scheduling Policy in One-Click Mode
 ------------------------------------------------------

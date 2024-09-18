@@ -6,7 +6,7 @@ Related Services
 ================
 
 
-.. figure:: /_static/images/en-us_image_0000001726059253.png
+.. figure:: /_static/images/en-us_image_0000001897903549.png
    :alt: **Figure 1** Relationships between CCE and other services
 
    **Figure 1** Relationships between CCE and other services

@@ -8,14 +8,8 @@ Deleting a Cluster
 Precautions
 -----------
 
--  Deleting a cluster will delete the nodes in the cluster (excluding accepted nodes), data disks attached to the nodes, workloads, and Services. Related services cannot be restored. Before performing this operation, ensure that data has been backed up or migrated. Deleted data cannot be restored.
-
-   Resources that are not created in CCE will not be deleted:
-
-   -  Accepted nodes (only the nodes created in CCE are deleted)
-   -  ELB load balancers associated with Services and ingresses (only the automatically created load balancers are deleted)
-   -  Manually created cloud storage resources associated with PVs or imported cloud storage resources (only the cloud storage resources automatically created by PVCs are deleted)
-
+-  Deleting a cluster will delete the workloads and Services in the cluster, and the deleted data cannot be recovered. Before performing this operation, ensure that related data has been backed up or migrated.
+-  If you choose to delete a cluster with the nodes in it, the system disks and data disks attached to the nodes will also be deleted. Back up data before the deletion.
 -  If you delete a cluster that is not running (for example, unavailable), associated resources, such as storage and networking resources, will remain.
 
 

@@ -55,7 +55,7 @@ You can upgrade CoreDNS separately after confirming the configuration difference
       diff corefile_now.txt corefile_record.txt -y;
 
 
-   .. figure:: /_static/images/en-us_image_0000001851587144.png
+   .. figure:: /_static/images/en-us_image_0000001950317284.png
       :alt: **Figure 1** Viewing output differences
 
       **Figure 1** Viewing output differences

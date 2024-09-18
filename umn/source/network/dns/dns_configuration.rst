@@ -56,8 +56,9 @@ Kubernetes provides DNS-related configuration options for applications. The use 
       -  **timeout**: Timeout interval, in seconds.
       -  **ndots**: Number of dots (.) that must be present in a domain name. If a domain name has dots fewer than this value, the operating system will look up the name in the search domain. If not, the name is a fully qualified domain name (FQDN) and will be tried first as an absolute name.
 
-   -  **IP Address**: **nameservers** in the :ref:`dnsConfig <cce_10_0365__table16581121652515>`. You can configure the domain name server for the custom domain name. The value is one or a group of DNS IP addresses.
+   -  **IP Address of DNS Server**: **nameservers** in :ref:`dnsConfig <cce_10_0365__table16581121652515>`. You can configure a domain name server for a custom domain name. The value is one or a group of DNS IP addresses.
    -  **Search Domain**: **searches** in the :ref:`dnsConfig <cce_10_0365__table16581121652515>`. A list of DNS search domains for hostname lookup in the pod. This property is optional. When specified, the provided list will be merged into the search domain names generated from the chosen DNS policy in **dnsPolicy**. Duplicate domain names are removed.
+   -  **Host Alias**: Add the mapping between domain names and IP addresses to the local configuration file **/etc/hosts** of a pod for simplified local domain name resolution. For details, see `Adding entries to Pod /etc/hosts with HostAliases <https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/>`__
 
 #. Click **Create Workload**.
 

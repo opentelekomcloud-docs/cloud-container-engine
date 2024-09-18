@@ -8,15 +8,13 @@ Stopping a Node
 Scenario
 --------
 
-After a node in the cluster is stopped, services on the node are also stopped. Before stopping a node, ensure that discontinuity of the services on the node will not result in adverse impacts.
+When a node in the cluster is stopped, all services on that node will also be stopped, and the node will no longer be available for scheduling. Check if your services will be affected before stopping a node.
 
-Constraints
+Precautions
 -----------
 
--  Deleting a node will lead to pod migration, which may affect services. Therefore, delete nodes during off-peak hours.
--  Unexpected risks may occur during the operation. Back up related data in advance.
--  While the node is being deleted, the backend will set the node to the unschedulable state.
--  Only worker nodes can be stopped.
+-  Deleting a node will lead to pod migration, which may affect services. Perform this operation during off-peak hours.
+-  Unexpected risks may occur during the operation. Back up data beforehand.
 
 Procedure
 ---------
@@ -30,7 +28,7 @@ Procedure
 #. In the upper right corner of the ECS details page, click **Stop**. In the displayed dialog box, click **Yes**.
 
 
-   .. figure:: /_static/images/en-us_image_0000001851745864.png
+   .. figure:: /_static/images/en-us_image_0000001981276729.png
       :alt: **Figure 1** ECS details page
 
       **Figure 1** ECS details page

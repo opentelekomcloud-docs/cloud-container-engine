@@ -35,7 +35,7 @@ The WordPress and MySQL images used in this example can be pulled from SWR. Ther
 Updating Services
 -----------------
 
-After the cluster is migrated, the Service of the source cluster may fail to take effect. You can perform the following steps to update the Service. If ingresses are configured in the source cluster, connect the new cluster to ELB again after the migration. For details, see `Using kubectl to Create an ELB Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
+After the cluster is migrated, the Service of the source cluster may fail to take effect. You can perform the following steps to update the Service. If ingresses are configured in the source cluster, connect the new cluster to ELB again after the migration. For details, see :ref:`Using kubectl to Create an ELB Ingress <cce_10_0252>`.
 
 #. Connect to the cluster using kubectl.
 

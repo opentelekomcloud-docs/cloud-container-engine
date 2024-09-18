@@ -11,17 +11,17 @@ Scenario
 A Service is exposed on each node's IP address at a static port (NodePort). When you create a NodePort Service, Kubernetes automatically allocates an internal IP address (ClusterIP) of the cluster. When clients outside the cluster access <NodeIP>:<NodePort>, the traffic will be forwarded to the target pod through the ClusterIP of the NodePort Service.
 
 
-.. figure:: /_static/images/en-us_image_0000001851586420.png
+.. figure:: /_static/images/en-us_image_0000001950316596.png
    :alt: **Figure 1** NodePort access
 
    **Figure 1** NodePort access
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  By default, a NodePort Service is accessed within a VPC. To use an EIP to access a NodePort Service through public networks, bind an EIP to the node in the cluster in advance.
 -  After a Service is created, if the affinity setting is switched from the cluster level to the node level, the connection tracing table will not be cleared. Do not modify the Service affinity setting after the Service is created. To modify it, create a Service again.
--  CCE Turbo clusters support only cluster-level service affinity.
+-  In a CCE Turbo cluster, node-level affinity is supported only when the Service backend is connected to a HostNetwork pod.
 -  In VPC network mode, when container A is published through a NodePort service and the service affinity is set to the node level (that is, **externalTrafficPolicy** is set to **local**), container B deployed on the same node cannot access container A through the node IP address and NodePort service.
 -  When a NodePort service is created in a cluster of v1.21.7 or later, the port on the node is not displayed using **netstat** by default. If the cluster forwarding mode is **iptables**, run the **iptables -t nat -L** command to view the port. If the cluster forwarding mode is **IPVS**, run the **ipvsadm -Ln** command to view the port.
 
@@ -34,19 +34,19 @@ Creating a NodePort Service
 
    -  **Service Name**: Specify a Service name, which can be the same as the workload name.
    -  **Service Type**: Select **NodePort**.
-   -  **Namespace**: Namespace to which the workload belongs.
+   -  **Namespace**: namespace that the workload belongs to.
    -  **Service Affinity**: For details, see :ref:`externalTrafficPolicy (Service Affinity) <cce_10_0249__section18134208069>`.
 
       -  **Cluster level**: The IP addresses and access ports of all nodes in a cluster can access the workload associated with the Service. Service access will cause performance loss due to route redirection, and the source IP address of the client cannot be obtained.
       -  **Node level**: Only the IP address and access port of the node where the workload is located can access the workload associated with the Service. Service access will not cause performance loss due to route redirection, and the source IP address of the client can be obtained.
 
-   -  **Selector**: Add a label and click **Confirm**. A Service selects a pod based on the added label. You can also click **Reference Workload Label** to use the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
+   -  **Selector**: Add a label and click **Confirm**. The Service will use this label to select pods. You can also click **Reference Workload Label** to use the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
    -  **IPv6**: This function is disabled by default. After this function is enabled, the cluster IP address of the Service changes to an IPv6 address. **This parameter is available only in clusters of v1.15 or later with IPv6 enabled (set during cluster creation).**
-   -  **Port Settings**
+   -  **Ports**
 
       -  **Protocol**: protocol used by the Service.
       -  **Service Port**: port used by the Service. The port number ranges from 1 to 65535.
-      -  **Container Port**: port on which the workload listens. For example, Nginx uses port 80 by default.
+      -  **Container Port**: listener port of the workload. For example, Nginx uses port 80 by default.
       -  **Node Port**: You are advised to select **Auto**. You can also specify a port. The default port ranges from 30000 to 32767.
 
 #. Click **OK**.
@@ -54,9 +54,9 @@ Creating a NodePort Service
 Using kubectl
 -------------
 
-You can run kubectl commands to set the access type. This section uses an Nginx workload as an example to describe how to set a NodePort Service using kubectl.
+You can configure Service access using kubectl. This section uses an Nginx workload as an example to describe how to configure a NodePort Service using kubectl.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create and edit the **nginx-deployment.yaml** and **nginx-nodeport-svc.yaml** files.
 

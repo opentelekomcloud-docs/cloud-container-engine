@@ -16,7 +16,7 @@ The cluster-internal domain name format is *<Service name>*.\ *<Namespace of the
 
 .. _cce_10_0011__fig192245420557:
 
-.. figure:: /_static/images/en-us_image_0000001898025885.png
+.. figure:: /_static/images/en-us_image_0000001981436829.png
    :alt: **Figure 1** Intra-cluster access (ClusterIP)
 
    **Figure 1** Intra-cluster access (ClusterIP)
@@ -30,23 +30,23 @@ Creating a ClusterIP Service
 
    -  **Service Name**: Specify a Service name, which can be the same as the workload name.
    -  **Service Type**: Select **ClusterIP**.
-   -  **Namespace**: Namespace to which the workload belongs.
-   -  **Selector**: Add a label and click **Confirm**. A Service selects a pod based on the added label. You can also click **Reference Workload Label** to use the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
+   -  **Namespace**: namespace that the workload belongs to.
+   -  **Selector**: Add a label and click **Confirm**. The Service will use this label to select pods. You can also click **Reference Workload Label** to use the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
    -  **IPv6**: This function is disabled by default. After this function is enabled, the cluster IP address of the Service changes to an IPv6 address. **This parameter is available only in clusters of v1.15 or later with IPv6 enabled (set during cluster creation).**
-   -  **Port Settings**
+   -  **Ports**
 
       -  **Protocol**: protocol used by the Service.
       -  **Service Port**: port used by the Service. The port number ranges from 1 to 65535.
-      -  **Container Port**: port on which the workload listens. For example, Nginx uses port 80 by default.
+      -  **Container Port**: listener port of the workload. For example, Nginx uses port 80 by default.
 
 #. Click **OK**.
 
 Setting the Access Type Using kubectl
 -------------------------------------
 
-You can run kubectl commands to set the access type (Service). This section uses an Nginx workload as an example to describe how to implement intra-cluster access using kubectl.
+You can configure Service access using kubectl. This section uses an Nginx workload as an example to describe how to implement intra-cluster access using kubectl.
 
-#. Use kubectl to connect to the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create and edit the **nginx-deployment.yaml** and **nginx-clusterip-svc.yaml** files.
 
@@ -136,7 +136,7 @@ You can run kubectl commands to set the access type (Service). This section uses
       kubernetes        ClusterIP   10.247.0.1     <none>        443/TCP    4d6h
       nginx-clusterip   ClusterIP   10.247.74.52   <none>        8080/TCP   14m
 
-#. Access a Service.
+#. Access the Service.
 
    A Service can be accessed from containers or nodes in a cluster.
 

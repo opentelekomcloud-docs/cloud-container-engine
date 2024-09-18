@@ -28,7 +28,7 @@ Scenario 1: The node is skipped during the cluster upgrade.
 #. Check the kubelet version of the corresponding node. The following information is expected:
 
 
-   .. figure:: /_static/images/en-us_image_0000001851745852.png
+   .. figure:: /_static/images/en-us_image_0000001981436653.png
       :alt: **Figure 1** kubelet version
 
       **Figure 1** kubelet version

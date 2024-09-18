@@ -12,17 +12,17 @@ In a rolling upgrade, a new node is created, existing workloads are migrated to 
 
 .. _cce_10_0276__fig1689610598118:
 
-.. figure:: /_static/images/en-us_image_0000001851586648.png
+.. figure:: /_static/images/en-us_image_0000001981436293.png
    :alt: **Figure 1** Workload migration
 
    **Figure 1** Workload migration
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  The original node and the target node to which the workload is to be migrated must be in the same cluster.
 -  The cluster must be of v1.13.10 or later.
--  The default node pool DefaultPool does not support this configuration.
+-  The default node pool does not support this configuration.
 
 Scenario 1: The Original Node Is in DefaultPool
 -----------------------------------------------

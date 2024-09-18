@@ -5,8 +5,8 @@
 Logging In to a Node
 ====================
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  If you use SSH to log in to a node (an ECS), ensure that the ECS already has an EIP (a public IP address).
 -  Only login to a running ECS is allowed.

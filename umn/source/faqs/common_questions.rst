@@ -30,8 +30,6 @@ Workload Management
 Networking
 ----------
 
-:ref:`Why Does the Browser Return Error Code 404 When I Access a Deployed Application? <cce_faq_00203>`
-
-:ref:`What Should I Do If a Node Fails to Connect to the Internet (Public Network)? <cce_faq_00022>`
-
-:ref:`How Do I Optimize the Configuration If the External Domain Name Resolution Is Slow or Times Out? <cce_faq_00195>`
+-  :ref:`Why Does the Browser Return Error Code 404 When I Access a Deployed Application? <cce_faq_00203>`
+-  :ref:`What Should I Do If a Node Fails to Connect to the Internet (Public Network)? <cce_faq_00022>`
+-  :ref:`How Do I Optimize the Configuration If the External Domain Name Resolution Is Slow or Times Out? <cce_faq_00195>`

@@ -9,7 +9,7 @@ CCE cluster-level permissions are assigned based on **IAM system policies** and 
 
 .. caution::
 
-   -  Cluster permissions are granted for users to operate cluster-related resources only (such as clusters and nodes). To operate Kubernetes resources like workloads and Services, you must be granted the :ref:`namespace permissions <cce_10_0189>` at the same time.
+   -  Cluster permissions are granted to users for operating cluster-related resources only (such as clusters and nodes). To operate Kubernetes resources like workloads and Services, you must be granted the :ref:`namespace permissions <cce_10_0189>` at the same time.
    -  When viewing a cluster on the CCE console, the information displayed depends on the namespace permissions. If you have no namespace permissions, you cannot view the resources in the cluster. For details, see :ref:`Permission Dependency of the CCE Console <cce_10_0190>`.
 
 Prerequisites
@@ -26,7 +26,7 @@ Process Flow
 ------------
 
 
-.. figure:: /_static/images/en-us_image_0000001897906293.png
+.. figure:: /_static/images/en-us_image_0000001981276821.png
    :alt: **Figure 1** Process of assigning CCE permissions
 
    **Figure 1** Process of assigning CCE permissions
@@ -103,7 +103,7 @@ This section provides examples of common custom CCE policies.
 
 -  Example 2: Denying node deletion
 
-   A policy with only "Deny" permissions must be used in conjunction with other policies to take effect. If the permissions assigned to a user contain both "Allow" and "Deny", the "Deny" permissions take precedence over the "Allow" permissions.
+   A policy with only "Deny" permissions must be used with other policies. If the permissions assigned to a user contain both "Allow" and "Deny", the "Deny" permissions take precedence over the "Allow" permissions.
 
    The following method can be used if you need to assign permissions of the **CCEFullAccess** policy to a user but you want to prevent the user from deleting nodes (**cce:node:delete**). Create a custom policy for denying node deletion, and attach both policies to the group to which the user belongs. Then, the user can perform all operations on CCE except deleting nodes. The following is an example of a deny policy:
 
@@ -146,7 +146,7 @@ This section provides examples of common custom CCE policies.
 CCE Cluster Permissions and IAM RBAC
 ------------------------------------
 
-CCE is compatible with IAM system roles for permissions management. You are advised to use fine-grained policies provided by IAM to simplify permissions management.
+CCE is compatible with IAM system roles for permissions management. Use fine-grained policies provided by IAM to simplify permissions management.
 
 CCE supports the following roles:
 
@@ -163,11 +163,11 @@ CCE supports the following roles:
 
    If the user is the cluster creator, the cluster-admin permissions in Kubernetes RBAC are granted to the user by default. The permissions can be manually removed after the cluster is created.
 
-   -  Method 1: Choose **Permissions Management** > **Namespace-Level Permissions** > **Delete** at the same role as cluster-creator on the CCE console.
+   -  Method 1: Choose **Permissions Management** > **Namespace-Level Permissions** > **Delete** in the same role as cluster-creator on the CCE console.
    -  Method 2: Delete **ClusterRoleBinding: cluster-creator** through the API or kubectl.
 
-When RBAC and IAM policies co-exist, the backend authentication logic for open APIs or console operations on CCE is as follows:
+When RBAC and IAM policies co-exist, the backend authentication logic for open APIs or console operations on CCE is as follows.
 
 |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000001851745632.png
+.. |image1| image:: /_static/images/en-us_image_0000001950317280.png

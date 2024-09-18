@@ -31,6 +31,6 @@ This document describes the principles and practices of grayscale release and bl
 
    |image3|
 
-.. |image1| image:: /_static/images/en-us_image_0000001851585000.gif
-.. |image2| image:: /_static/images/en-us_image_0000001851743740.gif
-.. |image3| image:: /_static/images/en-us_image_0000001898023913.gif
+.. |image1| image:: /_static/images/en-us_image_0000001981434241.gif
+.. |image2| image:: /_static/images/en-us_image_0000001981274409.gif
+.. |image3| image:: /_static/images/en-us_image_0000001981274401.gif

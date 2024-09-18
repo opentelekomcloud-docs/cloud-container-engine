@@ -6,6 +6,7 @@ Scaling a Node
 ==============
 
 -  :ref:`Node Scaling Rules <cce_10_0296>`
+-  :ref:`Priorities for Scaling Node Pools <cce_10_0649>`
 -  :ref:`Creating a Node Scaling Policy <cce_10_0209>`
 -  :ref:`Managing Node Scaling Policies <cce_10_0063>`
 
@@ -14,5 +15,6 @@ Scaling a Node
    :hidden: 
 
    node_scaling_rules
+   priorities_for_scaling_node_pools
    creating_a_node_scaling_policy
    managing_node_scaling_policies

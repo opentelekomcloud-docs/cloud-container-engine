@@ -10,7 +10,7 @@ Application Scenarios
 
 The best way to handle surging traffic is to automatically adjust the number of machines based on the traffic volume or resource usage, which is called scaling.
 
-When pods or containers are used for deploying applications, the upper limit of available resources is typically required to set for pods or containers to prevent unlimited usage of node resources during peak hours. However, after the upper limit is reached, an application error may occur. To resolve this issue, scale in the number of pods to share workloads. If the node resource usage increases to a certain extent that newly added pods cannot be scheduled, scale in the number of nodes based on the node resource usage.
+When deploying applications in pods, you can configure requested resources and resource limits for the pods to prevent unlimited usage of resources during peak hours. However, after the upper limit is reached, an application error may occur. Pod scaling can effectively resolve this issue. If the resource usage on the node increases to a certain extent, newly added pods cannot be scheduled to this node. In this case, CCE will add nodes accordingly.
 
 Solution
 --------
@@ -23,7 +23,7 @@ As shown in :ref:`Figure 1 <cce_bestpractice_00282__fig6540132372015>`, HPA perf
 
 .. _cce_bestpractice_00282__fig6540132372015:
 
-.. figure:: /_static/images/en-us_image_0000001851744000.png
+.. figure:: /_static/images/en-us_image_0000001981434645.png
    :alt: **Figure 1** HPA and CA working flows
 
    **Figure 1** HPA and CA working flows
@@ -83,7 +83,7 @@ Preparations
 
    d. .. _cce_bestpractice_00282__li108181514125:
 
-      (Optional) Log in to the SWR console, choose **Organizations** in the navigation pane, and click **Create Organization** in the upper right corner to create an organization.
+      (Optional) Log in to the SWR console, choose **Organizations** in the navigation pane, and click **Create Organization** in the upper right corner.
 
       Skip this step if you already have an organization.
 
@@ -263,7 +263,7 @@ Observing the Auto Scaling Process
 
    .. note::
 
-      If no EIP is displayed, the cluster node has not been assigned any EIP. Allocate one, bind it to the node, and synchronize node data. .
+      If no EIP is displayed, the cluster node has not been assigned any EIP. Allocate one, bind it to the node, and synchronize node data.
 
    Observe the scaling process of the workload.
 
@@ -379,5 +379,5 @@ Summary
 
 Using HPA and CA can easily implement auto scaling in most scenarios. In addition, the scaling process of nodes and pods can be easily observed.
 
-.. |image1| image:: /_static/images/en-us_image_0000001898024157.png
-.. |image2| image:: /_static/images/en-us_image_0000001851585272.png
+.. |image1| image:: /_static/images/en-us_image_0000001950315240.png
+.. |image2| image:: /_static/images/en-us_image_0000001950315260.png

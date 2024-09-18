@@ -8,24 +8,21 @@ Deleting a Node
 Scenario
 --------
 
-When a node in a CCE cluster is deleted, services running on the node will also be deleted. Exercise caution when performing this operation.
+You can delete a pay-per-use node that is not needed from the node list.
 
-Constraints
------------
-
--  VM nodes that are being used by CCE do not support deletion on the ECS page.
--  Deleting a node will cause PVC/PV data loss for the :ref:`local PVs <cce_10_0391>` associated with the node. These PVCs and PVs cannot be restored or used again. In this scenario, the pod that uses the local PV is evicted from the node. A new pod is created and stays in the pending state. This is because the PVC used by the pod has a node label, due to which the pod cannot be scheduled.
+Deleting or unsubscribing from a node in a CCE cluster will release the node and services running on the node. Drain the node and back up data before the deletion or unsubscription to prevent services running on the node from being affected.
 
 Precautions
 -----------
 
--  Deleting a node will lead to pod migration, which may affect services. Perform this operation during off-peak hours.
--  Unexpected risks may occur during the operation. Back up related data in advance.
--  While the node is being deleted, the backend will set the node to the unschedulable state.
--  Only worker nodes can be deleted.
+-  Deleting a node will lead to pod migration, which may affect services. Perform this operation during off-peak hours. It is a good practice to drain the node before deletion. For details, see :ref:`Draining a Node <cce_10_0605>`.
+-  Unexpected risks may occur during the operation. Back up data beforehand.
 
-Procedure
----------
+-  Deleting a node will cause PVC/PV data loss for the :ref:`local PV <cce_10_0391>` associated with the node. These PVCs and PVs cannot be restored or used again. In this scenario, the pod that uses the local PV is evicted from the node. A new pod is created and stays in the pending state. This is because the PVC used by the pod has a node label, due to which the pod cannot be scheduled.
+
+
+Deleting a Node
+---------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.

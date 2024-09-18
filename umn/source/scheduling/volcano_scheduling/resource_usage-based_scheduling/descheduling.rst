@@ -17,7 +17,7 @@ Features
 During Kubernetes cluster management, over-utilized nodes are due to high CPU or memory usage, which affects the stable running of pods on these nodes and increases the probability of node faults. To dynamically balance the resource usage between nodes in a cluster, a cluster resource view is required based on node monitoring metrics. During cluster management, real-time monitoring can be used to detect issues such as high resource usage on a node, node faults, and excessive number of pods on a node so that the system can take measures promptly, for example, by migrating some pods from an over-utilized node to under-utilized nodes.
 
 
-.. figure:: /_static/images/en-us_image_0000001851746056.png
+.. figure:: /_static/images/en-us_image_0000001950317428.png
    :alt: **Figure 1** Load-aware descheduling
 
    **Figure 1** Load-aware descheduling
@@ -38,8 +38,8 @@ Prerequisites
 -  A cluster of v1.19.16 or later is available. For details, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
 -  Volcano of v1.11.5 or later has been installed in the cluster. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  Pods need to be rescheduled using a scheduler, and no scheduler can label pods or nodes. Therefore, an evicted pod might be rescheduled to the original node.
 -  Descheduling does not support anti-affinity between pods. An evicted pod is in anti-affinity relationship with other running pods. Therefore, the scheduler may still schedule the pod back to the node where the pod was evicted from.
@@ -495,7 +495,7 @@ If an input parameter is incorrect, for example, the entered value is beyond the
 
 |image4|
 
-.. |image1| image:: /_static/images/en-us_image_0000001851587336.png
-.. |image2| image:: /_static/images/en-us_image_0000001851587348.png
-.. |image3| image:: /_static/images/en-us_image_0000001851746060.png
-.. |image4| image:: /_static/images/en-us_image_0000001897906729.png
+.. |image1| image:: /_static/images/en-us_image_0000001981276965.png
+.. |image2| image:: /_static/images/en-us_image_0000001981276977.png
+.. |image3| image:: /_static/images/en-us_image_0000001981276973.png
+.. |image4| image:: /_static/images/en-us_image_0000001950317436.png

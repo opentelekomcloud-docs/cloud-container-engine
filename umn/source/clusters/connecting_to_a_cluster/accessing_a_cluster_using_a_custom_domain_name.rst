@@ -18,16 +18,16 @@ If you have particular proxy access requirements or need to access resources in 
 -  Use domain name access in the intranet. DNS allows you to configure mappings between cluster EIPs and custom domain names. After an EIP is updated, you can continue to use two-way authentication and the domain name to access the cluster without downloading the **kubeconfig.json** file again.
 -  Add A records on a self-built DNS server.
 
-Constraints
------------
+Prerequisites
+-------------
 
-This feature is available only to clusters of v1.19 and later.
+A cluster of v1.19 or later is available.
 
 Customizing a SAN
 -----------------
 
 #. Log in to the CCE console.
-#. Click the target cluster in the cluster list to go to the cluster details page.
+#. Click the name of the target cluster in the cluster list to go to the cluster **Overview** page.
 #. In the **Connection Information** area, click |image1| next to **Custom SAN**. In the dialog box displayed, enter the IP address or domain name and click **Save**.
 
    .. note::
@@ -49,7 +49,7 @@ Connecting to a Cluster Using the SAN
 
    b. .. _cce_10_0367__li2323134272411:
 
-      On the ****Overview**** page, locate the **Connection Info** area, click **Configure** next to **kubectl**. On the page displayed, download the configuration file.
+      On the **Overview** page, locate the **Connection Info** area, click **Configure** next to **kubectl**. On the page displayed, download the configuration file.
 
 #. Configure kubectl.
 
@@ -76,12 +76,12 @@ Connecting to a Cluster Using the SAN
 #. After the SAN is modified, download the X509 certificate again.
 
    a. Log in to the CCE console and click the cluster name to access the cluster console.
-   b. On the ****Overview**** page, locate the **Connection Info** area, and click **Download** next to **X.509 certificate**.
+   b. On the **Overview** page, locate the **Connection Info** area, and click **Download** next to **X.509 certificate**.
    c. In the **Obtain Certificate** dialog box displayed, select the certificate expiration time and download the X.509 certificate of the cluster as prompted.
 
 #. Call native Kubernetes APIs using the cluster certificate.
 
-   For example, run the **curl** command to call the APIs to view the pod information. In the following information, *example.com:5443* indicates the custom SAN.
+   For example, run the **curl** command to call an API to obtain the pod information. In the following information, *example.com:5443* indicates the custom SAN.
 
    .. code-block::
 
@@ -89,4 +89,4 @@ Connecting to a Cluster Using the SAN
 
    For more cluster APIs, see `Kubernetes API <https://kubernetes.io/docs/reference/kubernetes-api/>`__.
 
-.. |image1| image:: /_static/images/en-us_image_0000001898026669.png
+.. |image1| image:: /_static/images/en-us_image_0000001981436837.png

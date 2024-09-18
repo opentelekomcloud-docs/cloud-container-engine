@@ -6,27 +6,19 @@ Add-ons
 =======
 
 -  :ref:`Overview <cce_10_0277>`
--  :ref:`CoreDNS <cce_10_0129>`
--  :ref:`CCE Container Storage (Everest) <cce_10_0066>`
--  :ref:`CCE Node Problem Detector <cce_10_0132>`
--  :ref:`CCE Cluster Autoscaler <cce_10_0154>`
--  :ref:`Kubernetes Metrics Server <cce_10_0205>`
--  :ref:`CCE Advanced HPA <cce_10_0240>`
--  :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>`
--  :ref:`Volcano Scheduler <cce_10_0193>`
--  :ref:`FlexVolume (Discarded) <cce_10_0127>`
+-  :ref:`Scheduling and Elasticity Add-ons <cce_10_0907>`
+-  :ref:`Cloud Native Observability Add-ons <cce_10_0908>`
+-  :ref:`Cloud Native Heterogeneous Computing Add-ons <cce_10_0909>`
+-  :ref:`Container Network Add-ons <cce_10_0910>`
+-  :ref:`Container Storage Add-ons <cce_10_0911>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
    overview
-   coredns
-   cce_container_storage_everest
-   cce_node_problem_detector
-   cce_cluster_autoscaler
-   kubernetes_metrics_server
-   cce_advanced_hpa
-   cce_ai_suite_nvidia_gpu
-   volcano_scheduler
-   flexvolume_discarded
+   scheduling_and_elasticity_add-ons/index
+   cloud_native_observability_add-ons/index
+   cloud_native_heterogeneous_computing_add-ons/index
+   container_network_add-ons/index
+   container_storage_add-ons/index

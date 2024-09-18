@@ -42,7 +42,7 @@ You can run the **kubectl drain** command to safely evict all pods from a node.
 
       kubectl drain 192.168.0.160
 
-   If a pod mounted with local storage or controlled by a DaemonSet set exists on the node, the message "error: unable to drain node "192.168.0.160", aborting command... " will be displayed. The eviction command does not take effect. You can add the following parameters to the end of the preceding command to forcibly evict the pod:
+   If a pod mounted with local storage or controlled by a DaemonSet exists on the node, the message "eerror: unable to drain node "192.168.0.160" due to error: cannot delete DaemonSet-managed Pods..." will be displayed. The eviction command does not take effect. You can add the following parameters to the end of the preceding command to forcibly evict the pod:
 
    -  **--delete-emptydir-data**: forcibly evicts pods mounted with local storage, for example, coredns.
    -  **--ignore-daemonsets**: forcibly evicts the DaemonSet pods, for example, everest-csi-driver.

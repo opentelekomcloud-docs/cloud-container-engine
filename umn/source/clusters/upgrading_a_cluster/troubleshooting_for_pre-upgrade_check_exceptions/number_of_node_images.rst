@@ -8,9 +8,9 @@ Number of Node Images
 Check Items
 -----------
 
-Check the number of images on your node. If the number is greater than 1000, Docker startup may be slow.
+Check the number of images on your node. If there are more than 1000 images, it takes a long time for Docker to start, affecting the standard Docker output and functions such as Nginx.
 
 Solution
 --------
 
-Contact O&M personnel to check whether this issue affects the upgrade.
+Manually delete residual images.

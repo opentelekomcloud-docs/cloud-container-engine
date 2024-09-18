@@ -36,8 +36,8 @@ This feature is built on the optimized CPU scheduling in the HCE OS 2.0 kernel. 
    -  When enhanced CPU policy is enabled, the application performance is better than that of the **none**) policy but worse than that of the **static** policy.
    -  CPU would not be exclusively used by burstable pods, it is still in the shared CPU pool. When the burstable pods are in the low tide, other pods can share this CPU.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 To use this feature, the following conditions must be met:
 
@@ -49,7 +49,7 @@ Procedure
 ---------
 
 #. Log in to the CCE console.
-#. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right.
+#. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. In the right pane, click the **Node Pools** tab.
 #. Select a node pool whose OS is HCE OS 2.0 and click **Manage** in the **Operation** column.
 #. In the **Manage Components** window that is displayed, change the **cpu-manager-policy** value of the kubelet component to **enhanced-static**.
 #. Click **OK**.
@@ -117,4 +117,4 @@ Take a node with 8 vCPUs and 32 GB memory as an example. Deploy a workload whose
 
       1
 
-.. |image1| image:: /_static/images/en-us_image_0000001851586476.png
+.. |image1| image:: /_static/images/en-us_image_0000001981276233.png

@@ -43,7 +43,8 @@ Example:
          affinity:
            podAntiAffinity:                   # Workload anti-affinity
              preferredDuringSchedulingIgnoredDuringExecution:    # Ensure that the following conditions are met:
-               - podAffinityTerm:
+               - weight: 100 # Priority that can be configured when the best-effort policy is used. The value ranges from 1 to 100. A larger value indicates a higher priority.
+                 podAffinityTerm:
                    labelSelector:                       # Select the label of the pod, which is anti-affinity with the workload.
                      matchExpressions:
                        - key: app
