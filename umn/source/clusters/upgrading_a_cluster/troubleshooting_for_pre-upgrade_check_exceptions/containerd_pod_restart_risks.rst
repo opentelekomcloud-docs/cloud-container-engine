@@ -13,4 +13,6 @@ Check whether the service pods running on a containerd node are restarted when c
 Solution
 --------
 
-Upgrade the cluster when the impact on services is controllable (for example, during off-peak hours) to minimize the impact. If you need help, contact O&M personnel.
+containerd on your node may need to be restarted. To minimize the impact on service containers, upgrade the cluster during controllable times, such as off-peak hours.
+
+If you need help, submit a service ticket to contact O&M personnel.

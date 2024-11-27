@@ -8,7 +8,9 @@ ELB Listener Access Control
 Check Items
 -----------
 
-Check whether the access control of the ELB listener has been configured for the Service in the current cluster using annotations and whether the configurations are correct.
+Check whether ELB listener access control has been configured for the Services in the current cluster using annotations.
+
+If so, check whether their configurations are correct.
 
 Solution
 --------

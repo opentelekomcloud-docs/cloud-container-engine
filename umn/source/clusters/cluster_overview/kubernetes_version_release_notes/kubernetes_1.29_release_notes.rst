@@ -56,7 +56,7 @@ New and Enhanced Features
 
    The **PodReadyToStartContainers** condition is promoted to beta. Kubernetes 1.29 introduces the **PodReadyToStartContainers** condition to the pods' **status** field. If it is set to **true**, the sandbox of a pod is ready and service containers can be created. This feature enables cluster administrators to gain a clearer and more comprehensive view of pod sandbox creation completion and container readiness. This enhanced visibility allows them to make better-informed decisions and troubleshoot issues more effectively. For details, see `PodReadyToStartContainers Condition Moves to Beta <https://kubernetes.io/blog/2023/12/19/pod-ready-to-start-containers-condition-now-in-beta/>`__.
 
--  Two Job-related features are in the beta state.
+-  Two job-related features are in the beta state.
 
    -  Pod replacement policy (beta)
 
@@ -64,7 +64,7 @@ New and Enhanced Features
 
    -  Backoff limit per index (beta)
 
-      The backoff limit per index moves to beta. By default, pod failures for indexed jobs are counted and restricted by the global limit of retries, specified by **.spec.backoffLimit**. This means that if there is a consistently failing index in a job, pods specified by the job will be restarted repeatedly until pod failures exhaust the limit. Once the limit is reached, the job is marked failed and pods for other indexes in the job may never be even started. The feature allows you to complete execution of all indexes, despite some indexes failing, and to better use the computing resources by avoiding unnecessary retries of consistently failing indexes.
+      The backoff limit per index moves to beta. By default, pod failures for indexed jobs are counted and restricted by the global limit of retries, specified by **.spec.backoffLimit**. This means that if there is a consistently failing index in a job, pods specified by the job will be restarted repeatedly until pod failures exhaust the limit. Once the limit is reached, the job is marked failed and pods for other indexes in the job may never be even started. The feature allows you to complete execution of all indexes, despite some indexes failing, and to better use the compute resources by avoiding unnecessary retries of consistently failing indexes.
 
 -  Native sidecar containers are in the beta state.
 
@@ -82,7 +82,7 @@ New and Enhanced Features
 
    The **PodHostIPs** feature moves to beta. With this feature enabled, Kubernetes adds the **hostIPs** field to **Status** of pods and downward API to expose node IP addresses to workloads. This field specifies the dual-stack protocol version of the host IP address. The first IP address is always the same as the host IP address.
 
--  The API Priority and Fairness feature (APF) is in the General Availability (GA) state.
+-  The API Priority and Fairness feature (APF) is in the GA state.
 
    APF moves to GA. APF classifies and isolates requests in a more fine-grained way. It improves max-inflight limitations. It also introduces a limited amount of queuing, so that the API server does not reject any request in cases of very brief bursts. Requests are dispatched from queues using a fair queuing technique so that, for example, a poorly-behaved controller does not cause others (even at the same priority level) to become abnormal. For details, see `API Priority and Fairness <https://kubernetes.io/docs/concepts/cluster-administration/flow-control/>`__.
 
@@ -106,7 +106,7 @@ New and Enhanced Features
 
    The **CSINodeExpandSecret** feature moves to GA. This feature allows secret authentication data to be passed to a CSI driver for use when a node is added.
 
--  The Common Expression Language (CEL)-based CRD verification capability is in the GA state.
+-  The CEL-based CustomResourceDefinition (CRD) verification capability is in the GA state.
 
    The CEL-based CRD verification capability moves to GA. With this feature enabled, you are allowed to use the CEL to define validation rules in CRDs, which are more efficient than webhook. For details, see `CRD verification rules <https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#validation-rules>`__.
 

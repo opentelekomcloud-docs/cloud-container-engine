@@ -13,4 +13,6 @@ Check whether GPU service pods are rebuilt in a cluster when kubelet is restarte
 Solution
 --------
 
-Upgrade the cluster when the impact on services is controllable (for example, during off-peak hours) to minimize the impact. If you need help, contact O&M personnel.
+Upgrade the cluster when the impact on services is controllable (for example, during off-peak hours) to minimize the impact.
+
+If you need help, submit a service ticket to contact O&M personnel.

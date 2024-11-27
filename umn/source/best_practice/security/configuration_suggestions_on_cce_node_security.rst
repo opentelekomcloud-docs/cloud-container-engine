@@ -2,7 +2,7 @@
 
 .. _cce_bestpractice_0318:
 
-Suggestions on CCE Node Security Configuration
+Configuration Suggestions on CCE Node Security
 ==============================================
 
 Preventing Nodes from Being Exposed to Public Networks

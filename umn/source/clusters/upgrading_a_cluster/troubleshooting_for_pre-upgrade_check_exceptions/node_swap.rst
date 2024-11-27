@@ -8,9 +8,11 @@ Node Swap
 Check Items
 -----------
 
-Check whether swap has been enabled on cluster nodes.
+Check whether swap has been enabled on CCE nodes.
 
 Solution
 --------
 
-By default, swap is disabled on CCE nodes. Check the necessity of enabling swap manually and determine the impact of disabling this function. Run the **swapoff -a** command to disable swap.
+By default, swap is disabled on CCE nodes. Check the necessity of enabling swap manually and determine the impact of disabling this function.
+
+If there is no impact, run the **swapoff -a** command to disable swap and perform the check again.

@@ -175,7 +175,7 @@ The interval after a failed scale-in indicates the period during which the clust
 Change History
 --------------
 
-.. table:: **Table 6** Updates of the add-on adapted to clusters 1.29
+.. table:: **Table 6** Release history for add-on adapted to clusters 1.29
 
    +----------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version | Supported Cluster Version | New Feature                  | Community Version                                                                            |
@@ -185,7 +185,7 @@ Change History
    | 1.29.13        | v1.29                     | Clusters 1.29 are supported. | `1.29.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.29.1>`__ |
    +----------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 7** Updates of the add-on adapted to clusters 1.28
+.. table:: **Table 7** Release history for add-on adapted to clusters 1.28
 
    +----------------+---------------------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version | Supported Cluster Version | New Feature                                                                                           | Community Version                                                                            |
@@ -199,7 +199,7 @@ Change History
    | 1.28.17        | v1.28                     | Fixed the issue that scale-in cannot be performed when there are custom pod controllers in a cluster. | `1.28.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.28.1>`__ |
    +----------------+---------------------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 8** Updates of the add-on adapted to clusters 1.27
+.. table:: **Table 8** Release history for add-on adapted to clusters 1.27
 
    +----------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version | Supported Cluster Version | New Feature                                                                                                                             | Community Version                                                                            |
@@ -213,7 +213,7 @@ Change History
    | 1.27.14        | v1.27                     | Fixed the scale-in failure of nodes of different specifications in the same node pool and unexpected **PreferNoSchedule** taint issues. | `1.27.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.27.1>`__ |
    +----------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 9** Updates of the add-on adapted to clusters 1.25
+.. table:: **Table 9** Release history for add-on adapted to clusters 1.25
 
    +-----------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                                                                                       | Community Version                                                                            |
@@ -236,7 +236,7 @@ Change History
    |                 |                           | -  Enabled to report an event indicating that scaling cannot be performed in a node pool with auto scaling disabled.                              |                                                                                              |
    +-----------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 10** Updates of the add-on adapted to clusters 1.23
+.. table:: **Table 10** Release history for add-on adapted to clusters 1.23
 
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                                                                                                 | Community Version                                                                            |
@@ -266,7 +266,7 @@ Change History
    |                 |                           | -  Supported scale-in waiting so that operations such as data dump can be performed before a node is deleted.                                               |                                                                                              |
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 11** Updates of the add-on adapted to clusters 1.21
+.. table:: **Table 11** Release history for add-on adapted to clusters 1.21
 
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                                                                                                 | Community Version                                                                            |
@@ -300,7 +300,7 @@ Change History
    | 1.21.1          | v1.21                     | Fixed the issue that the node pool modification in the existing periodic auto scaling rule does not take effect.                                            | `1.21.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.21.0>`__ |
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 12** Updates of the add-on adapted to clusters 1.19
+.. table:: **Table 12** Release history for add-on adapted to clusters 1.19
 
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                                                                                                 | Community Version                                                                            |
@@ -335,7 +335,7 @@ Change History
    | 1.19.7          | v1.19                     | Regular upgrade of add-on dependencies                                                                                                                      | `1.19.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.19.0>`__ |
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 13** Updates of the add-on adapted to clusters 1.17
+.. table:: **Table 13** Release history for add-on adapted to clusters 1.17
 
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                                                                                                 | Community Version                                                                            |

@@ -5,6 +5,8 @@
 Related Services
 ================
 
+CCE works with the following cloud services and requires permissions to access them.
+
 
 .. figure:: /_static/images/en-us_image_0000001897903549.png
    :alt: **Figure 1** Relationships between CCE and other services

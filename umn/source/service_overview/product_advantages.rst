@@ -8,11 +8,11 @@ Product Advantages
 Why CCE?
 --------
 
-CCE is a container service built on Docker and Kubernetes. A wealth of features enable you to run container clusters at scale. CCE eases containerization thanks to its reliability, performance, and open source engagement.
+CCE is a container service developed on Docker and Kubernetes. It offers a wide range of features that allow you to run containers on a large scale. CCE containers are highly reliable, have high-performance, and compatible with open-source communities, making them an ideal choice for enterprise needs.
 
 **Easy to Use**
 
--  Creating a Kubernetes cluster is as easy as a few clicks on the web console. You can deploy and manage VMs and BMSs together.
+-  Creating a Kubernetes cluster is as easy as a few clicks on the web user interface (WebUI). The Kubernetes cluster supports management of VM nodes and applies to the scenario where VMs and physical machines are used together.
 -  CCE automates deployment and O&M of containerized applications throughout their lifecycle.
 -  You can resize clusters and workloads by setting auto scaling policies. In-the-moment load spikes are no longer headaches.
 -  The console walks you through the steps to upgrade Kubernetes clusters.
@@ -21,7 +21,7 @@ CCE is a container service built on Docker and Kubernetes. A wealth of features 
 **High Performance**
 
 -  CCE draws on years of field experience in compute, networking, storage, and heterogeneous infrastructure and provides you high-performance cluster services. You can concurrently launch containers at scale.
--  AI computing is 3x to 5x better with NUMA BMSs and high-speed InfiniBand network cards.
+-  AI computing is 3x to 5x better with NUMA bare metal servers and high-speed InfiniBand network cards.
 
 **Highly Available and Secure**
 

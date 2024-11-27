@@ -8,9 +8,11 @@ Historical Upgrade Records
 Check Items
 -----------
 
-Check whether the source version of the cluster is earlier than v1.11 and the target version is later than v1.23.
+Check the historical upgrade records of the cluster and confirm that the current version of the cluster meets the requirements for upgrading to the target version.
 
 Solution
 --------
 
-If the source version of the cluster is earlier than v1.11, it is risky to upgrade the cluster to a version later than v1.23. In this case, contact technical support.
+Upgrading your cluster from an earlier version can be risky and may result in this issue. To avoid this, it is recommended that you migrate the cluster beforehand.
+
+If you still want to proceed with the cluster upgrade, submit a service ticket to contact technical support for evaluation.

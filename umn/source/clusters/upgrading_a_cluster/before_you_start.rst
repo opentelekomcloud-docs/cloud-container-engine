@@ -98,6 +98,8 @@ Deprecated APIs
 
 With the evolution of Kubernetes APIs, APIs are periodically reorganized or upgraded, and certain APIs are deprecated and finally deleted. The following tables list the deprecated APIs in each Kubernetes community version. For details about more deprecated APIs, see `Deprecated API Migration Guide <https://kubernetes.io/docs/reference/using-api/deprecation-guide/>`__.
 
+-  :ref:`APIs Deprecated in Kubernetes v1.29 <cce_10_0302__table18961727153719>`
+-  No APIs deprecated in Kubernetes v1.28
 -  :ref:`APIs Deprecated in Kubernetes v1.27 <cce_10_0302__table98562251167>`
 -  :ref:`APIs Deprecated in Kubernetes v1.25 <cce_10_0302__table555192311179>`
 -  :ref:`APIs Deprecated in Kubernetes v1.22 <cce_10_0302__table133341432194513>`
@@ -107,9 +109,25 @@ With the evolution of Kubernetes APIs, APIs are periodically reorganized or upgr
 
    When an API is deprecated, the existing resources are not affected. However, when you create or edit the resources, the API version will be intercepted.
 
+.. _cce_10_0302__table18961727153719:
+
+.. table:: **Table 2** APIs deprecated in Kubernetes v1.29
+
+   +-------------------------------------------+--------------------------------------+--------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Resource                                  | Deprecated API Version               | Substitute API Version                     | Change Description                                                                                                                                                                                                                                            |
+   +===========================================+======================================+============================================+===============================================================================================================================================================================================================================================================+
+   | FlowSchema and PriorityLevelConfiguration | flowcontrol.apiserver.k8s.io/v1beta2 | flowcontrol.apiserver.k8s.io/v1            | -  Significant changes in **flowcontrol.apiserver.k8s.io/v1**:                                                                                                                                                                                                |
+   |                                           |                                      |                                            |                                                                                                                                                                                                                                                               |
+   |                                           |                                      | (This API has been available since v1.29.) |    **spec.limited.assuredConcurrencyShares** of **PriorityLevelConfiguration** has been renamed **spec.limited.nominalConcurrencyShares**. The default value is **30** only when it is not specified, and the explicit value **0** does not change to **30**. |
+   |                                           |                                      |                                            |                                                                                                                                                                                                                                                               |
+   |                                           |                                      | flowcontrol.apiserver.k8s.io/v1beta3       | -  Key changes in **flowcontrol.apiserver.k8s.io/v1beta3**:                                                                                                                                                                                                   |
+   |                                           |                                      |                                            |                                                                                                                                                                                                                                                               |
+   |                                           |                                      | (This API has been available since v1.26.) |    **spec.limited.assuredConcurrencyShares** of **PriorityLevelConfiguration** has been renamed **spec.limited.nominalConcurrencyShares**.                                                                                                                    |
+   +-------------------------------------------+--------------------------------------+--------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
 .. _cce_10_0302__table98562251167:
 
-.. table:: **Table 2** APIs deprecated in Kubernetes v1.27
+.. table:: **Table 3** APIs deprecated in Kubernetes v1.27
 
    +-------------------------------------------+--------------------------------------+--------------------------------------+--------------------+
    | Resource Name                             | Deprecated API Version               | Substitute API Version               | Change Description |
@@ -129,7 +147,7 @@ With the evolution of Kubernetes APIs, APIs are periodically reorganized or upgr
 
 .. _cce_10_0302__table555192311179:
 
-.. table:: **Table 3** APIs deprecated in Kubernetes v1.25
+.. table:: **Table 4** APIs deprecated in Kubernetes v1.25
 
    +-------------------------+--------------------------+-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Resource Name           | Deprecated API Version   | Substitute API Version                              | Change Description                                                                                                                                                                                                                                                                                            |
@@ -172,7 +190,7 @@ With the evolution of Kubernetes APIs, APIs are periodically reorganized or upgr
 
 .. _cce_10_0302__table133341432194513:
 
-.. table:: **Table 4** APIs deprecated in Kubernetes v1.22
+.. table:: **Table 5** APIs deprecated in Kubernetes v1.22
 
    +--------------------------------+--------------------------------------+--------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Resource Name                  | Deprecated API Version               | Substitute API Version               | Change Description                                                                                                                                                                                                                                                                                                                     |
@@ -262,7 +280,7 @@ With the evolution of Kubernetes APIs, APIs are periodically reorganized or upgr
 
 .. _cce_10_0302__table115511655135720:
 
-.. table:: **Table 5** APIs deprecated in Kubernetes v1.16
+.. table:: **Table 6** APIs deprecated in Kubernetes v1.16
 
    +-------------------+------------------------+--------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Resource Name     | Deprecated API Version | Substitute API Version               | Change Description                                                                                                                                                                                                                                      |

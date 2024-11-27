@@ -6,11 +6,12 @@ Log Auditing
 ============
 
 -  :ref:`CCE Operations Supported by Cloud Trace Service <cce_10_0025>`
--  :ref:`Querying Real-Time Traces <cce_10_0026>`
+   Cloud Trace Service (CTS) records operations on cloud service resources, allowing users to query, audit, and backtrack the resource operation requests initiated from the management console or open APIs as well as responses to the requests.
+-  :ref:`Viewing CTS Traces in the Trace List <cce_10_0026>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
    cce_operations_supported_by_cloud_trace_service
-   querying_real-time_traces
+   viewing_cts_traces_in_the_trace_list

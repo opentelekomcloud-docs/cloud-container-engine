@@ -155,6 +155,7 @@ The following describes how to run the kubectl command to automatically create a
                 ],
                 "l7_flavor_name": "L7_flavor.elb.s1.small"
              }'
+          kubernetes.io/elb.tags: key1=value1,key2=value2           # ELB resource tags
       spec:
         rules:
         - host: ''

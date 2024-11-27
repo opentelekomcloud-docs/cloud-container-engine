@@ -2,7 +2,7 @@
 
 .. _cce_bestpractice_0317:
 
-Suggestions on CCE Cluster Security Configuration
+Configuration Suggestions on CCE Cluster Security
 =================================================
 
 For security purposes, you are advised to configure a cluster as follows.

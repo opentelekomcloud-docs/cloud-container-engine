@@ -13,4 +13,6 @@ Check whether the flavor of the master nodes in the cluster is the same as the a
 Solution
 --------
 
-Flavor inconsistency is typically due to a modification made on the master nodes. After the cluster is upgraded, the modification of the master nodes may be restored. If the impact of the restoration cannot be evaluated, contact O&M personnel.
+This issue is typically caused by modifications made to the master node. This upgrade may reset the node.
+
+If you are unsure about the impact, submit a service ticket to contact O&M personnel.

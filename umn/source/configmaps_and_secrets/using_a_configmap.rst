@@ -5,6 +5,8 @@
 Using a ConfigMap
 =================
 
+After a ConfigMap is created, it can be used in three workload scenarios: environment variables, command line parameters, and data volumes.
+
 -  :ref:`Configuring Environment Variables of a Workload <cce_10_0015__section1737733192813>`
 -  :ref:`Configuring Command Line Parameters <cce_10_0015__section17930105710189>`
 -  :ref:`Mounting a ConfigMap to the Workload Data Volume <cce_10_0015__section1490261161916>`

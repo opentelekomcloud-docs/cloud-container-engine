@@ -19,7 +19,7 @@ This section describes how to troubleshoot the problems occurred when you accept
 Notes and Constraints
 ---------------------
 
--  ECSs and BMSs can be managed.
+-  ECSs can be managed.
 
 Prerequisites
 -------------

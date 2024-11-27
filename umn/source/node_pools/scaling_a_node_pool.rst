@@ -14,14 +14,16 @@ You can specify a specification in a node pool for scaling.
 #. Log in to the CCE console.
 #. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. In the right pane, click the **Node Pools** tab.
 #. Choose **Scaling** next to the target node pool.
-#. In the displayed window, configure scaling parameters.
+#. In the displayed **Node Pool Scaling** window, configure scaling parameters.
 
-   -  **Number of Scaling Targets**: The number of target nodes cannot exceed the management scale of the current cluster.
-   -  **Node Configuration**: Use the selected flavor to add nodes. If the flavor resources are insufficient, the scale-out will fail.
+   -  Add or reduce nodes for scaling.
+   -  Use the selected flavor to increase or decrease the number of nodes.
+   -  Configure the number of nodes to be added or deleted.
 
-      .. note::
+      -  When scaling out a node pool, make sure that the total number of nodes, both existing and new, does not exceed the management scale of the current cluster.
 
-         -  If there are fewer nodes running in the node pool than the desired number of nodes, some nodes will be added. If there are more nodes than the desired number of nodes, some nodes will be deleted.
-         -  During scale-in, if there are not enough nodes of the specified flavor to be deleted, nodes of other flavors will be removed.
+      -  When scaling in a node pool, make sure that the number of nodes to be removed does not exceed the number of nodes currently in the pool.
+
+         Scaling in can result in the unavailability of resources associated with a node, such as local storage and workloads that were scheduled to that node. Exercise caution when performing this operation to avoid impact on running services.
 
 #. Click **OK**.

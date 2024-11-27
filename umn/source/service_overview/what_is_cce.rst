@@ -5,6 +5,8 @@
 What Is CCE?
 ============
 
+Cloud Container Engine (CCE) is a hosted Kubernetes cluster service for enterprises. It offers complete lifecycle management for containerized applications and delivers scalable, high-performance solutions for deploying and managing cloud native applications.
+
 Why CCE?
 --------
 

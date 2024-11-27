@@ -5,6 +5,8 @@
 Using a Secret
 ==============
 
+After secrets are created, they can be mounted as data volumes or be exposed as environment variables to be used by a container in a pod.
+
 .. important::
 
    Do not perform any operation on the following secrets. For details, see :ref:`Cluster Secrets <cce_10_0388>`.

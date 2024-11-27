@@ -34,6 +34,8 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
    -  **Name**: Customize the name of an ingress, for example, **ingress-demo**.
 
+   -  **Interconnect with Nginx**: This option is displayed only after the :ref:`NGINX Ingress Controller <cce_10_0034>` add-on is installed. If this option is available, the NGINX Ingress Controller add-on has been installed. Enabling this option will create an Nginx ingress. Disable it if you want to create a LoadBalancer ingress. For details, see :ref:`Creating Nginx Ingresses on the Console <cce_10_0390>`.
+
    -  **Load Balancer**: Select a load balancer type and creation mode.
 
       A load balancer can be dedicated or shared. A dedicated load balancer must be of the application type (HTTP/HTTPS) and support private networks.

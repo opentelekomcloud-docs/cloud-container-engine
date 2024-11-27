@@ -8,9 +8,11 @@ SSH Connectivity of Master Nodes
 Check Items
 -----------
 
-Check whether CCE can connect to your master nodes.
+Check whether your master nodes can be accessed using SSH.
 
 Solution
 --------
 
-Contact technical support.
+There is a low probability that the SSH connectivity check fails due to network fluctuations. Perform the pre-upgrade check again.
+
+If the check still fails, submit a service ticket to contact technical support.
