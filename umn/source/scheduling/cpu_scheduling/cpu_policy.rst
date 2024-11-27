@@ -8,7 +8,7 @@ CPU Policy
 Scenarios
 ---------
 
-By default, kubelet uses `CFS quotas <https://www.kernel.org/doc/html/latest/scheduler/sched-design-CFS.html>`__ to enforce pod CPU limits. When a node runs many CPU-bound pods, the workload can move to different CPU cores depending on whether the pod is throttled and which CPU cores are available at scheduling time. Many workloads are not sensitive to this migration and thus work fine without any intervention. Some applications are CPU-sensitive. They are sensitive to:
+By default, kubelet uses `CFS quotas <https://www.kernel.org/doc/html/next/scheduler/sched-design-CFS.html>`__ to enforce pod CPU limits. When a node runs many CPU-bound pods, the workload can move to different CPU cores depending on whether the pod is throttled and which CPU cores are available at scheduling time. Many workloads are not sensitive to this migration and thus work fine without any intervention. Some applications are CPU-sensitive. They are sensitive to:
 
 -  CPU throttling
 -  Context switching

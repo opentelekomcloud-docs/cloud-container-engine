@@ -7,6 +7,7 @@ Ingresses
 
 -  :ref:`Overview <cce_10_0094>`
 -  :ref:`LoadBalancer Ingresses <cce_10_0686>`
+-  :ref:`Nginx Ingresses <cce_10_0692>`
 
 .. toctree::
    :maxdepth: 1
@@ -14,3 +15,4 @@ Ingresses
 
    overview
    loadbalancer_ingresses/index
+   nginx_ingresses/index

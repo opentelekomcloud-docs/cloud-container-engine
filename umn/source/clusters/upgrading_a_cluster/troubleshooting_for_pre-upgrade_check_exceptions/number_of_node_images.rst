@@ -14,3 +14,5 @@ Solution
 --------
 
 Manually delete residual images.
+
+Perform the pre-upgrade check again.

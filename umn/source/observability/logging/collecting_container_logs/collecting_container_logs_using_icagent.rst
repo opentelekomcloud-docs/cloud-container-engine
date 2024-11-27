@@ -250,7 +250,7 @@ After the log collection is complete, go to the workload details page and click 
 
 You can also view logs on the AOM console.
 
-You can also run the **kubectl logs** command to view the standard output of a container.
+You can also run the **kubectl logs** command to view the container stdout.
 
 .. code-block::
 

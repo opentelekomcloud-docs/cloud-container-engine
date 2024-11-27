@@ -37,7 +37,7 @@ Node pools are scaled according to their priorities and flavor priorities.
 
 #. Troubleshooting if resources are insufficient or a creation failed
 
-   If the preferred flavor is unavailable due to insufficient resources or quota in the AZ, CCE will try to use the next priority flavor in the node pool, and the original instance will enter a 5-minute cooldown period.
+   If the preferred flavor is unavailable due to insufficient quota in the AZ, CCE will try to use the next priority flavor in the node pool, and the original instance will enter a 5-minute cooldown period.
 
    If none of the flavors in a node pool can be used to create instances, CCE will try to use the next priority node pool to create instances.
 

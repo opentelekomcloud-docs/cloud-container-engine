@@ -5,9 +5,9 @@
 Installing the Migration Tool
 =============================
 
-Velero is an open-source backup and migration tool for Kubernetes clusters. It integrates the persistent volume (PV) data backup capability of the Restic tool and can be used to back up Kubernetes resource objects (such as Deployments, jobs, Services, and ConfigMaps) in the source cluster. Data in the PV mounted to the pod is backed up and uploaded to the object storage. When a disaster occurs or migration is required, the target cluster can use Velero to obtain the corresponding backup data from OBS and restore cluster resources as required.
+Velero is an open-source backup and migration tool for Kubernetes clusters. With Restic's PV data backup capability integrated into it, Velero can back up Kubernetes resource objects (such as Deployments, jobs, Services, and ConfigMaps) in source clusters and data in PVs mounted to pods and uploaded them to object storage. When a disaster occurs or migration is required, a target cluster can obtain the corresponding backup data from the object storage using Velero and restore cluster resources as required.
 
-According to :ref:`Migration Solution <cce_bestpractice_0307__section96147345128>`, prepare temporary object storage to store backup files before the migration. Velero supports OSB or `MinIO <https://min.io/>`__ as the object storage. OBS requires sufficient storage space for storing backup files. You can estimate the storage space based on your cluster scale and data volume. You are advised to use OBS for backup. For details about how to deploy Velero, see :ref:`Installing Velero <cce_bestpractice_0310__section138392220432>`.
+According to :ref:`Migration Solution <cce_bestpractice_0307__section96147345128>`, prepare temporary object storage to store backup files before the migration. Velero supports OBS or `MinIO <https://min.io/>`__ as the object storage. The object storage requires sufficient storage space for storing backup files. You can estimate the storage space based on your cluster scale and data volume. OBS buckets are recommended for data backup. For details about how to deploy Velero, see :ref:`Installing Velero <cce_bestpractice_0310__section138392220432>`.
 
 Prerequisites
 -------------
@@ -31,7 +31,7 @@ MinIO can be installed in any of the following locations:
 
 -  Idle nodes in the cluster
 
-   You can remotely log in to a node to install MinIO or install the containerized MinIO. For details, see `Velero official document <https://velero.io/docs/v1.13/contributions/minio/#set-up-server>`__.
+   You can remotely log in to a node and install MinIO or install the containerized MinIO. For details, see `Velero official documentation <https://velero.io/docs/v1.13/contributions/minio/#set-up-server>`__.
 
    .. important::
 
@@ -58,7 +58,7 @@ In this example, MinIO is installed on a temporary ECS outside the cluster.
 
    Set the username and password of MinIO.
 
-   The username and password set using this method are temporary environment variables and must be reset after the service is restarted. Otherwise, the default root credential **minioadmin:minioadmin** will be used to create the service.
+   The username and password configured using this method are temporary environment variables and must be reset after the service is restarted. Otherwise, the default root credential **minioadmin:minioadmin** will be used to create the service.
 
    .. code-block::
 

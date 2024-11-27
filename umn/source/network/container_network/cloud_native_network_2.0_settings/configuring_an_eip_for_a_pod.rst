@@ -45,7 +45,7 @@ Notes and Constraints
 -  To access a pod bound with an EIP from the Internet, add security group rules to allow the target request traffic.
 -  Only one EIP can be bound to a pod.
 -  Configure the EIP-related annotation when creating a pod. After the pod is created, the annotations related to the EIP cannot be modified.
--  Do not perform operations on the EIP associated with a pod through the EIP console or API. Otherwise, the EIP may malfunction. The operations include changing the EIP name, deleting, unbinding, or binding the EIP, and changing the billing mode of the EIP.
+-  Do not perform operations on the EIP associated with a pod through the EIP console or API. Otherwise, the EIP may malfunction. The operations include changing the EIP name, deleting, and unbinding or binding the EIP.
 -  After an automatically allocated EIP is manually deleted, the network malfunctions. In this case, rebuild the pod.
 
 Allocating an EIP with a Pod

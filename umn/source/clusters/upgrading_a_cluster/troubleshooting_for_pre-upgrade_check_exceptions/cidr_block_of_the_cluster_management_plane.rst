@@ -13,4 +13,6 @@ Check whether the CIDR block of the cluster management plane is the same as that
 Solution
 --------
 
-If the CIDR block of the cluster management plane is different from that configured on the backbone network, contact technical support.
+The CIDR block of the management plane has been modified in your region. As a result, the CIDR block of the management plane and that of the backbone network are inconsistent.
+
+Submit a service ticket to contact technical support to modify the settings, and recheck the configurations.

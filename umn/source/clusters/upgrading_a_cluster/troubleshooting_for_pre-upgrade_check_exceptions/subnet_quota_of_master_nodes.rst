@@ -13,4 +13,6 @@ Check whether the number of available IP addresses in the cluster subnet support
 Solution
 --------
 
-If the number of IP addresses in the selected cluster subnet is insufficient, rolling upgrade is not supported. Contact O&M personnel for support.
+Rolling upgrade is not supported if there are not enough IP addresses in the selected cluster subnet.
+
+Move nodes out of the target subnet and check again. If you are unsure about the impact of migration, submit a service ticket to contact O&M personnel.

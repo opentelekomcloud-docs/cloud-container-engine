@@ -5,7 +5,7 @@
 Kubernetes 1.25 Release Notes
 =============================
 
-CCE has passed the Certified Kubernetes Conformance Program and is a certified Kubernetes offering. This section describes the changes made in Kubernetes 1.25 compared with Kubernetes 1.23.
+This section describes the changes made in Kubernetes 1.25 compared with Kubernetes 1.23.
 
 Indexes
 -------
@@ -52,7 +52,7 @@ New Features
 
 -  The CRD verification expression language moves to beta.
 
-   This makes it possible to declare how to validate custom resources using `Common Expression Language (CEL) <https://github.com/google/cel-spec>`__. For details, see `Extend the Kubernetes API with CustomResourceDefinitions <https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/>`__.
+   This makes it possible to declare how to validate custom resources using `CEL <https://github.com/google/cel-spec>`__. For details, see `Extend the Kubernetes API with CustomResourceDefinitions <https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/>`__.
 
 -  KMS v2 APIs are introduced.
 

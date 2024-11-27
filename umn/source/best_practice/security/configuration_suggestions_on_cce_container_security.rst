@@ -2,13 +2,15 @@
 
 .. _cce_bestpractice_0319:
 
-Security Configuration Suggestions for Using Containers in CCE Clusters
-=======================================================================
+Configuration Suggestions on CCE Container Security
+===================================================
 
 Controlling the Pod Scheduling Scope
 ------------------------------------
 
 The nodeSelector or nodeAffinity is used to limit the range of nodes to which applications can be scheduled, preventing the entire cluster from being threatened due to the exceptions of a single application.
+
+To achieve strong isolation, like in logical multi-tenancy situations, it is important to have system add-ons run on separate nodes or node pools. This helps keep them separated from service pods and reduces the risk of privilege escalation within a cluster. To do this, you can set the node affinity policy to either **Node Affinity** or **Specified Node Pool Scheduling** on the add-on installation page.
 
 Suggestions on Container Security Configuration
 -----------------------------------------------
@@ -124,7 +126,7 @@ If application containers on a node do not need to access Kubernetes, you can pe
 
       *{container_cidr}* indicates the container CIDR of the cluster, for example, 10.0.0.0/16.
 
-      To ensure configuration persistence, you are advised to write the command to the **/etc/rc.local** script.
+      To ensure configuration persistence, write the command to the **/etc/rc.local** script.
 
    -  CCE Turbo cluster: Add an outbound rule to the ENI security group of the cluster.
 

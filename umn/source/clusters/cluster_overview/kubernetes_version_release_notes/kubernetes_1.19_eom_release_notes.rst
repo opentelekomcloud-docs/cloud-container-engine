@@ -5,7 +5,7 @@
 Kubernetes 1.19 (EOM) Release Notes
 ===================================
 
-CCE has passed the Certified Kubernetes Conformance Program and is a certified Kubernetes offering. This section describes the updates in CCE Kubernetes 1.19.
+This section describes the updates in CCE Kubernetes 1.19.
 
 Resource Changes and Deprecations
 ---------------------------------

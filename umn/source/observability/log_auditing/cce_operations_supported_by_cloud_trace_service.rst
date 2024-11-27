@@ -5,6 +5,8 @@
 CCE Operations Supported by Cloud Trace Service
 ===============================================
 
+Cloud Trace Service (CTS) records operations on cloud service resources, allowing users to query, audit, and backtrack the resource operation requests initiated from the management console or open APIs as well as responses to the requests.
+
 .. table:: **Table 1** CCE Operations Supported by CTS
 
    +--------------------------------------------------------+---------------------+------------------------------+

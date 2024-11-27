@@ -2,8 +2,8 @@
 
 .. _cce_bestpractice_0320:
 
-Security Configuration Suggestions for Using Secrets in CCE Clusters
-====================================================================
+Configuration Suggestions on CCE Secret Security
+================================================
 
 Currently, CCE has configured static encryption for secret resources. The secrets created by users will be encrypted and stored in etcd of the CCE cluster. Secrets can be used in two modes: environment variable and file mounting. No matter which mode is used, CCE still transfers the configured data to users. Therefore, it is recommended that:
 
@@ -64,7 +64,7 @@ Currently, CCE has configured static encryption for secret resources. The secret
             readOnly: true
             mountPath: "/etc/secret-volume"
 
-   In this way, **.secret-file** cannot be viewed by running the **ls -l** command in the **/etc/secret-volume/** directory, but can be viewed by running the **ls -al** command.
+   In this way, **.secret-file** cannot be seen by running **ls -l** in the **/etc/secret-volume/** directory, but can be viewed by running **ls -al**.
 
 #. Encrypt sensitive information before creating a secret and decrypt the information when using it.
 
@@ -119,4 +119,4 @@ The secret-based ServiceAccount token does not support expiration time or auto u
                            fieldPath: metadata.namespace
                          path: namespace
 
-For details, visit https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/.
+For details, see `Managing Service Accounts <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/>`__.

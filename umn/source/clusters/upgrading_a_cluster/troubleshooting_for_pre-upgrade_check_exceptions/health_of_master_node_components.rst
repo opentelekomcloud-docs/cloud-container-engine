@@ -8,9 +8,11 @@ Health of Master Node Components
 Check Items
 -----------
 
-Check whether the Kubernetes, container runtime, and network components of the master nodes are healthy.
+Check whether cluster components such as the Kubernetes component, container runtime component, and network component are running properly before the upgrade.
 
 Solution
 --------
 
-If a master node component malfunctions, contact technical support.
+Perform the pre-upgrade check again.
+
+If it fails again, submit a service ticket to contact technical support.

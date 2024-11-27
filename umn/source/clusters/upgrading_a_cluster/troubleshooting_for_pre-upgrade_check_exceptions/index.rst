@@ -26,16 +26,16 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Node Memory <cce_10_0449>`
 -  :ref:`Node Clock Synchronization Server <cce_10_0450>`
 -  :ref:`Node OS <cce_10_0451>`
--  :ref:`Node CPUs <cce_10_0452>`
+-  :ref:`Node CPU Cores <cce_10_0452>`
 -  :ref:`Node Python Commands <cce_10_0453>`
 -  :ref:`Node Readiness <cce_10_0455>`
 -  :ref:`Node journald <cce_10_0456>`
 -  :ref:`containerd.sock <cce_10_0457>`
--  :ref:`Internal Errors <cce_10_0458>`
+-  :ref:`Internal Error <cce_10_0458>`
 -  :ref:`Node Mount Points <cce_10_0459>`
 -  :ref:`Kubernetes Node Taints <cce_10_0460>`
 -  :ref:`Everest Restrictions <cce_10_0478>`
--  :ref:`cce-hpa-controller Restrictions <cce_10_0479>`
+-  :ref:`cce-hpa-controller Limitations <cce_10_0479>`
 -  :ref:`Enhanced CPU Policies <cce_10_0480>`
 -  :ref:`Health of Worker Node Components <cce_10_0484>`
 -  :ref:`Health of Master Node Components <cce_10_0485>`
@@ -61,6 +61,7 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Residual Package Version Data <cce_10_0505>`
 -  :ref:`Node Commands <cce_10_0506>`
 -  :ref:`Node Swap <cce_10_0507>`
+-  :ref:`nginx-ingress Upgrade <cce_10_0508>`
 -  :ref:`containerd Pod Restart Risks <cce_10_0510>`
 -  :ref:`Key GPU Add-on Parameters <cce_10_0511>`
 -  :ref:`GPU Pod Rebuild Risks <cce_10_0512>`
@@ -96,16 +97,16 @@ Troubleshooting for Pre-upgrade Check Exceptions
    node_memory
    node_clock_synchronization_server
    node_os
-   node_cpus
+   node_cpu_cores
    node_python_commands
    node_readiness
    node_journald
    containerd.sock
-   internal_errors
+   internal_error
    node_mount_points
    kubernetes_node_taints
    everest_restrictions
-   cce-hpa-controller_restrictions
+   cce-hpa-controller_limitations
    enhanced_cpu_policies
    health_of_worker_node_components
    health_of_master_node_components
@@ -131,6 +132,7 @@ Troubleshooting for Pre-upgrade Check Exceptions
    residual_package_version_data
    node_commands
    node_swap
+   nginx-ingress_upgrade
    containerd_pod_restart_risks
    key_gpu_add-on_parameters
    gpu_pod_rebuild_risks

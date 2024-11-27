@@ -19,7 +19,7 @@ In CCE, you can create a node (:ref:`Creating a Node <cce_10_0363>`) or add exis
 Notes and Constraints
 ---------------------
 
--  ECSs and BMSs can be managed.
+-  ECSs can be managed.
 
 Prerequisites
 -------------

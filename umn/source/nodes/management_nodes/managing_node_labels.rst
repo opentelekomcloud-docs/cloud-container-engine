@@ -5,6 +5,8 @@
 Managing Node Labels
 ====================
 
+You can add different labels to nodes and define different attributes for labels. By using these node labels, you can quickly understand the characteristics of each node.
+
 Node Label Usage Scenario
 -------------------------
 

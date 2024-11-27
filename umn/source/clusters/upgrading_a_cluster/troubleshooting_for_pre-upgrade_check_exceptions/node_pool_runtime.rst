@@ -13,4 +13,4 @@ Check whether an alarm is generated when a cluster is upgraded to v1.27 or later
 Solution
 --------
 
-If the runtime on your node pool is not containerd, change the runtime of the node pool to containerd by updating the node pool.
+If your node pool's runtime is not containerd, change it to containerd by updating the node pool.
