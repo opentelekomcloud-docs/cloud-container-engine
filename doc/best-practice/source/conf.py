@@ -110,7 +110,7 @@ html_copy_source = False
 latex_documents = [
     ('index',
      'cce-best-practice.tex',
-     u'Cloud Container Engine - Best Practice',
+    u'Cloud Container Engine - Best Practice',
      u'OpenTelekomCloud', 'manual'),
 ]
 

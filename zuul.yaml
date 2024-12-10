@@ -4,6 +4,11 @@
     default-branch: main
     templates:
       - helpcenter-base-jobs
+    vars:
+      sphinx_pdf_files:
+        - cce-umn.pdf
+        - cce-best-practice.pdf
+        - cce-api-ref.pdf
     check:
       jobs:
         - noop
