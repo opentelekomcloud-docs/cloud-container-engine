@@ -107,7 +107,12 @@ templates_path = ['_templates']
 html_copy_source = False
 
 # -- Options for PDF output --------------------------------------------------
-latex_documents = []
+latex_documents = [
+    ('index',
+     'cce-umn.tex',
+    u'Cloud Container Engine - User Guide',
+     u'OpenTelekomCloud', 'manual'),
+]
 
 # Get the Git commit values for last updated timestamp on each page
 repo = Repo(search_parent_directories=True)
