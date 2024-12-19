@@ -110,7 +110,7 @@ html_copy_source = False
 latex_documents = [
     ('index',
      'cce-api-ref.tex',
-     u'Cloud Container Engine - API Reference',
+    u'Cloud Container Engine - API Reference',
      u'OpenTelekomCloud', 'manual'),
 ]
 
