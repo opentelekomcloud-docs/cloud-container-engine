@@ -21,15 +21,15 @@ Node Flavor Description
 
       .. table:: **Table 1** x86 nodes
 
-         ====================== =============================
+         ====================== ==============================
          Node Type              Flavor
-         ====================== =============================
+         ====================== ==============================
          General computing-plus c4, c3, c7n
          General-purpose        s3, s2, s7n
          Memory-optimized       m4, m3, m7n
          Disk-intensive         d2
-         GPU-accelerated        pi2, p3, p2v, p2s, g6, and g7
-         ====================== =============================
+         GPU-accelerated        pi2, p3, p2v, p2s, g6, g7, p5s
+         ====================== ==============================
 
 -  **CCE Turbo clusters**
 
