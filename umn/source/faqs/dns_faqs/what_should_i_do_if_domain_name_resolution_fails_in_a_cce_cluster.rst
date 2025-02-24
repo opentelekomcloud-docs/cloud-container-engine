@@ -10,7 +10,7 @@ Check Item 1: Whether the coredns Add-on Has Been Installed
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Add-ons** and check whether the CoreDNS add-on has been installed.
-#. If not, install the add-on. For details, see :ref:`Why Does a Container in a CCE Cluster Fail to Perform DNS Resolution? <cce_faq_00107>`.
+#. If not, install the add-on. For details, see :ref:`Why Does a Container in a CCE Cluster Fail to Perform DNS Resolution? <cce_faq_00107>`
 
 .. _cce_faq_00197__section19878113435:
 
@@ -21,11 +21,11 @@ CoreDNS QPS is positively correlated with the CPU usage. If the QPS is high, adj
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation tree, choose **Add-ons** and verify that CoreDNS is running.
+#. In the navigation pane, choose **Add-ons** and verify that CoreDNS is running.
 
-#. Click the coredns add-on name to view the add-on list.
+#. Click the CoreDNS add-on name to view the add-on pod list.
 
-#. Click **Monitor** of the coredns add-on to view the CPU and memory usage.
+#. Click **Monitor** of the add-on pods to view the CPU and memory usage.
 
    If the add-on performance reaches the bottleneck, adjust the coredns add-on specifications.
 
@@ -98,7 +98,7 @@ If the host name and DNS settings are correct, you can use the following optimiz
 
 .. note::
 
-   -  **Increasing the cache time of coredns** helps resolve the same domain name for the N time, reducing the number of cascading DNS requests.
+   -  **Increasing the cache time of coredns** helps resolve the same domain name for the *N* time, reducing the number of cascading DNS requests.
    -  **Configuring the stub domain** can reduce the number of DNS request links.
 
 **How to modify:**

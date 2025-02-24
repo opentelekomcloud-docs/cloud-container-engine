@@ -51,4 +51,4 @@ Configuring Priorities
 
 For details about how to configure the priorities of node pool flavors, see :ref:`Configuring an Auto Scaling Policy for a Cluster <cce_10_0209__section6521214191020>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000001981276429.png
+.. |image1| image:: /_static/images/en-us_image_0000002065638794.png

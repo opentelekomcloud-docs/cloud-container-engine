@@ -259,6 +259,6 @@ Step 3: Implement Blue-Green Deployment
       Nginx-v2
       Nginx-v2
 
-.. |image1| image:: /_static/images/en-us_image_0000001950315604.png
-.. |image2| image:: /_static/images/en-us_image_0000001981434997.png
-.. |image3| image:: /_static/images/en-us_image_0000001981275141.png
+.. |image1| image:: /_static/images/en-us_image_0000002065637794.png
+.. |image2| image:: /_static/images/en-us_image_0000002065637802.png
+.. |image3| image:: /_static/images/en-us_image_0000002101596357.png

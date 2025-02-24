@@ -5,11 +5,13 @@
 Creating a LoadBalancer Ingress on the Console
 ==============================================
 
+In Kubernetes, an ingress is a resource object that controls how Services within a cluster can be accessed from outside the cluster. You can use ingresses to configure different forwarding rules to access pods in a cluster. The following uses an :ref:`Nginx workload <cce_10_0047__section155246177178>` as an example to describe how to create a LoadBalancer ingress on the console.
+
 Prerequisites
 -------------
 
--  An ingress provides network access for backend workloads. Ensure that a workload is available in a cluster. If no workload is available, deploy a workload by referring to :ref:`Creating a Deployment <cce_10_0047>`, :ref:`Creating a StatefulSet <cce_10_0048>`, or :ref:`Creating a DaemonSet <cce_10_0216>`.
--  :ref:`Services Supported by Ingresses <cce_10_0094__section3565202819276>` lists the Service types supported by LoadBalancer ingresses.
+-  An available workload has been deployed in the cluster for external access. If no workload is available, deploy a workload by referring to :ref:`Creating a Deployment <cce_10_0047>`, :ref:`Creating a StatefulSet <cce_10_0048>`, or :ref:`Creating a DaemonSet <cce_10_0216>`.
+-  A Service for external access has been configured for the workload. :ref:`Services Supported by LoadBalancer Ingresses <cce_10_0094__section3565202819276>` lists the Service types supported by LoadBalancer ingresses.
 
 Notes and Constraints
 ---------------------
@@ -34,7 +36,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
    -  **Name**: Customize the name of an ingress, for example, **ingress-demo**.
 
-   -  **Interconnect with Nginx**: This option is displayed only after the :ref:`NGINX Ingress Controller <cce_10_0034>` add-on is installed. If this option is available, the NGINX Ingress Controller add-on has been installed. Enabling this option will create an Nginx ingress. Disable it if you want to create a LoadBalancer ingress. For details, see :ref:`Creating Nginx Ingresses on the Console <cce_10_0390>`.
+   -  **Interconnect with Nginx**: This option is displayed only after the :ref:`NGINX Ingress Controller <cce_10_0034>` add-on is installed. If this option is available, the NGINX Ingress Controller add-on has been installed. Enabling this option will create an Nginx ingress. Disable it if you want to create a LoadBalancer ingress. For details, see :ref:`Creating an Nginx Ingress on the Console <cce_10_0390>`.
 
    -  **Load Balancer**: Select a load balancer type and creation mode.
 
@@ -46,23 +48,23 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
       .. table:: **Table 1** Load balancer configurations
 
-         +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | How to Create                     | Configuration                                                                                                                                                                                                                                                                             |
-         +===================================+===========================================================================================================================================================================================================================================================================================+
-         | Use existing                      | Only the load balancers in the same VPC as the cluster can be selected. If no load balancer is available, click **Create Load Balancer** to create one on the ELB console.                                                                                                                |
-         +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Auto create                       | -  **Instance Name**: Enter a load balancer name.                                                                                                                                                                                                                                         |
-         |                                   | -  **AZ**: available only to dedicated load balancers. You can create load balancers in multiple AZs to improve service availability. You can deploy a load balancer in multiple AZs for high availability.                                                                               |
-         |                                   | -  **Frontend Subnet**: available only to dedicated load balancers. It is used to allocate IP addresses for load balancers to provide services externally.                                                                                                                                |
-         |                                   | -  **Backend Subnet**: available only to dedicated load balancers. It is used to allocate IP addresses for load balancers to access the backend service.                                                                                                                                  |
-         |                                   | -  **Network/Application-oriented Specifications** (available only to dedicated load balancers)                                                                                                                                                                                           |
-         |                                   |                                                                                                                                                                                                                                                                                           |
-         |                                   |    -  **Elastic**: applies to fluctuating traffic, billed based on total traffic. Clusters of v1.21.10-r10, v1.23.8-r10, v1.25.3-r10, and later versions support elastic specifications.                                                                                                  |
-         |                                   |    -  **Fixed**: applies to stable traffic, billed based on specifications.                                                                                                                                                                                                               |
-         |                                   |                                                                                                                                                                                                                                                                                           |
-         |                                   | -  **EIP**: If you select **Auto create**, you can configure the billing mode and size of the public network bandwidth.                                                                                                                                                                   |
-         |                                   | -  **Resource Tag**: You can add resource tags to classify resources. You can create predefined tags on the TMS console. The predefined tags are available to all resources that support tags. You can use predefined tags to improve the tag creation and resource migration efficiency. |
-         +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | How to Create                     | Configuration                                                                                                                                                                                                                                                                            |
+         +===================================+==========================================================================================================================================================================================================================================================================================+
+         | Use existing                      | Only the load balancers in the same VPC as the cluster can be selected. If no load balancer is available, click **Create Load Balancer** to create one on the ELB console.                                                                                                               |
+         +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Auto create                       | -  **Instance Name**: Enter a load balancer name.                                                                                                                                                                                                                                        |
+         |                                   | -  **AZ**: available only to dedicated load balancers. You can create load balancers in multiple AZs to improve service availability. You can deploy a load balancer in multiple AZs for high availability.                                                                              |
+         |                                   | -  **Frontend Subnet**: available only to dedicated load balancers. It is used to allocate IP addresses for load balancers to provide services externally.                                                                                                                               |
+         |                                   | -  **Backend Subnet**: available only to dedicated load balancers. It is used to allocate IP addresses for load balancers to access the backend service.                                                                                                                                 |
+         |                                   | -  **Network Specifications**, **Application-oriented Specifications**, or **Specifications** (available only to dedicated load balancers)                                                                                                                                               |
+         |                                   |                                                                                                                                                                                                                                                                                          |
+         |                                   |    -  **Elastic**: applies to fluctuating traffic, billed based on total traffic. Clusters of v1.21.10-r10, v1.23.8-r10, v1.25.3-r10, and later versions support elastic specifications.                                                                                                 |
+         |                                   |    -  **Fixed**: applies to stable traffic, billed based on specifications.                                                                                                                                                                                                              |
+         |                                   |                                                                                                                                                                                                                                                                                          |
+         |                                   | -  **EIP**: If you select **Auto create**, you can configure the size of the public network bandwidth.                                                                                                                                                                                   |
+         |                                   | -  **Resource Tag**: You can add resource tags to classify resources. You can create **predefined tags** on the TMS console. The predefined tags are available to all resources that support tags. You can use these tags to improve the tag creation and resource migration efficiency. |
+         +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    -  .. _cce_10_0251__li6851318392:
 
@@ -74,16 +76,17 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
       -  **Access Control**
 
+         -  **Inherit ELB Configurations**: CCE does not modify the existing access control configurations on the ELB console.
          -  **Allow all IP addresses**: No access control is configured.
          -  **Trustlist**: Only the selected IP address group can access the load balancer.
          -  **Blocklist**: The selected IP address group cannot access the load balancer.
 
-      -  **Certificate Source**: TLS secret and ELB server certificate are supported.
-
-      -  **Server Certificate**: When an HTTPS listener is created for a load balancer, bind a certificate to the load balancer to support encrypted authentication for HTTPS data transmission.
+      -  **Certificate Source**: TLS secret and ELB server certificates are supported.
 
          -  **TLS secret**: For details about how to create a secret certificate, see :ref:`Creating a Secret <cce_10_0153>`.
-         -  **ELB server certificate**: Use the certificate created in the ELB service.
+         -  **ELB server certificate**: Use a certificate created in the ELB service.
+
+      -  **Server Certificate**: When an HTTPS listener is created for a load balancer, bind a certificate to the load balancer to support encrypted authentication for HTTPS data transmission.
 
          .. note::
 
@@ -95,7 +98,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
             -  The **SNI** option is available only when **HTTPS** is used.
 
-            -  This function is supported only in clusters of v1.15.11 and later.
+            -  This function is supported only in clusters of v1.15.11 or later.
             -  Only one domain name can be specified for each SNI certificate. Wildcard-domain certificates are supported.
             -  For ingresses connected to the same ELB port, do not configure SNIs with the same domain name but different certificates. Otherwise, the SNIs will be overwritten.
 
@@ -106,7 +109,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
          .. note::
 
             -  **Security Policy** is available only when **HTTPS** is selected.
-            -  This function is supported only in clusters of v1.17.9 and later.
+            -  This function is supported only in clusters of v1.17.9 or later.
 
       -  **Backend Protocol**:
 
@@ -133,14 +136,14 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
    -  **Forwarding Policy**: When the access address of a request matches the forwarding policy (a forwarding policy consists of a domain name and URL, for example, 10.117.117.117:80/helloworld), the request is forwarded to the corresponding target Service for processing. You can click |image1| to add multiple forwarding policies.
 
-      -  **Domain Name**: actual domain name. Ensure that the domain name has been registered and archived. Once a domain name rule is configured, you must use the domain name for access.
-      -  **URL Matching Rule**
+      -  **Domain Name**: Enter an actual domain name to be accessed. If it is left blank, the ingress can be accessed through the IP address. Ensure that the domain name has been registered and licensed. Once a forwarding policy is configured with a domain name specified, you must use the domain name for access.
+      -  **Path Matching Rule**:
 
          -  **Prefix match**: If the URL is set to **/healthz**, the URL that meets the prefix can be accessed, for example, **/healthz/v1** and **/healthz/v2**.
          -  **Exact match**: The URL can be accessed only when it is fully matched. For example, if the URL is set to **/healthz**, only /healthz can be accessed.
          -  **RegEX match**: The URL is matched based on the regular expression. For example, if the regular expression is **/[A-Za-z0-9_.-]+/test**, all URLs that comply with this rule can be accessed, for example, **/abcA9/test** and **/v1-Ab/test**. Two regular expression standards are supported: POSIX and Perl.
 
-      -  **URL**: access path to be registered, for example, **/healthz**.
+      -  **Path**: access path, for example, **/healthz**
 
          .. note::
 
@@ -148,7 +151,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
             For example, the default access URL of the Nginx application is **/usr/share/nginx/html**. When adding **/test** to the ingress forwarding policy, ensure the access URL of your Nginx application contains **/usr/share/nginx/html/test**. Otherwise, error 404 will be returned.
 
-      -  **Destination Service**: Select an existing Service or create a Service. Services that do not meet search criteria are automatically filtered out.
+      -  **Destination Service**: Select an existing Service or create a Service. Any Services that do not match the search criteria will be filtered out automatically.
       -  **Destination Service Port**: Select the access port of the destination Service.
       -  **Set ELB**:
 
@@ -194,7 +197,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
       -  **Operation**: Click **Delete** to delete the configuration.
 
-   -  **Annotation**: Ingresses provide some advanced CCE functions, which are implemented by annotations. When you use kubectl to create a container, annotations will be used. For details, see :ref:`Creating an Ingress - Automatically Creating a Load Balancer <cce_10_0252__section3675115714214>` or :ref:`Creating an Ingress - Interconnecting with an Existing Load Balancer <cce_10_0252__section32300431736>`.
+   -  **Annotation**: Ingresses provide some advanced CCE functions, which are implemented by annotations. When you use kubectl to create a container, annotations will be used. For details, see :ref:`Automatically Creating a Load Balancer While Creating an Ingress <cce_10_0252__section3675115714214>` or :ref:`Associating an Existing Load Balancer to an Ingress While Creating the Ingress <cce_10_0252__section32300431736>`.
 
 #. Click **OK**. After the ingress is created, it is displayed in the ingress list.
 
@@ -212,9 +215,9 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
       .. _cce_10_0251__fig17115192714367:
 
-      .. figure:: /_static/images/en-us_image_0000001981276741.png
+      .. figure:: /_static/images/en-us_image_0000002101679001.png
          :alt: **Figure 1** Accessing the /healthz interface of defaultbackend
 
          **Figure 1** Accessing the /healthz interface of defaultbackend
 
-.. |image1| image:: /_static/images/en-us_image_0000001950317192.png
+.. |image1| image:: /_static/images/en-us_image_0000002065638946.png

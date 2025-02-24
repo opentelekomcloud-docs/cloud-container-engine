@@ -38,4 +38,14 @@ If no PV is imported during node creation, or the capacity of the current PV is 
       If the manually attached disk is not displayed in the storage pool, wait for 1 minute and refresh the list.
 
    -  **Linear**: A linear logical volume integrates one or more physical volumes. Data is written to the next physical volume when the previous one is used up.
-   -  **Striped**: A striped logical volume stripes data into blocks of the same size and stores them in multiple physical volumes in sequence, allowing data to be concurrently read and written. Select this option only when there are multiple volumes.
+   -  **Striped**: A striped logical volume stripes data into blocks of the same size and stores them in multiple physical volumes in sequence. This allows data to be concurrently read and written. Select this option only when there are multiple volumes.
+
+Expanding a Storage Pool
+------------------------
+
+The capacity of a storage pool can be expanded in either of the following ways:
+
+#. Add more large-capacity disks to the pool using the preceding manual import method.
+#. Increase the size of the existing disks on the ECS console. Then, the storage pool capacity will be automatically expanded.
+
+Either of these methods will work.

@@ -40,7 +40,7 @@ Common causes of cluster overload are as follows:
 CCE Overload Control
 --------------------
 
--  **Overload control**: CCE clusters have supported overload control since v1.23, which reduces the number of LIST requests outside the system when the control plane experiences high resource usage pressure. To use this function, enable overload control for your clusters. For details, see :ref:`Cluster Overload Control <cce_10_0602>`.
+-  **Overload control**: CCE clusters have supported overload control since v1.23, which reduces the number of LIST requests outside the system when the control plane experiences high resource usage pressure. To use this function, enable overload control for your clusters. For details, see :ref:`Enabling Overload Control for a Cluster <cce_10_0602>`.
 -  **Optimized processes on LIST requests**: Starting from CCE clusters of v1.23.8-r0 and v1.25.3-r0, processes on LIST requests have been optimized. Even if a client does not specify the **resourceVersion** parameter, kube-apiserver responds to requests based on its cache to avoid additional etcd queries and ensure that the response data is up to date. Additionally, namespace indexes are now added to the kube-apiserver cache. This means that when a client requests a specified resource in a specified namespace, it no longer needs to obtain resources belonging to the namespace based on full data. This effectively reduces the response delay and control plane memory overhead.
 -  **Refined traffic limiting policy on the server**: The API Priority and Fairness (APF) feature is used to implement fine-grained control on concurrent requests. For details, see `API Priority and Fairness <https://kubernetes.io/docs/concepts/cluster-administration/flow-control/>`__.
 
@@ -49,10 +49,32 @@ Suggestions
 
 This section describes measures and suggestions you can take to prevent clusters from being overloaded.
 
++-------------+----------------------------------------------------------------------------------------+
+| Category    | Reference                                                                              |
++=============+========================================================================================+
+| Cluster     | :ref:`Upgrading the Cluster Version <cce_bestpractice_10024__section88153516598>`      |
++-------------+----------------------------------------------------------------------------------------+
+|             | :ref:`Enabling Overload Control <cce_bestpractice_10024__section1962889101>`           |
++-------------+----------------------------------------------------------------------------------------+
+|             | :ref:`Changing the Cluster Scale <cce_bestpractice_10024__section148752272013>`        |
++-------------+----------------------------------------------------------------------------------------+
+|             | :ref:`Splitting the Cluster <cce_bestpractice_10024__section136511410151811>`          |
++-------------+----------------------------------------------------------------------------------------+
+| O&M         | :ref:`Enabling Observability <cce_bestpractice_10024__section128547158020>`            |
++-------------+----------------------------------------------------------------------------------------+
+|             | :ref:`Clearing Unused Resources <cce_bestpractice_10024__section16249619707>`          |
++-------------+----------------------------------------------------------------------------------------+
+| Application | :ref:`Optimizing the Client Access Mode <cce_bestpractice_10024__section203538231209>` |
++-------------+----------------------------------------------------------------------------------------+
+
+.. _cce_bestpractice_10024__section88153516598:
+
 Upgrading the Cluster Version
 -----------------------------
 
 As the CCE cluster version evolves, new overload protection features and optimizations are regularly introduced. It is recommended that you promptly upgrade your clusters to the latest version. For details, see :ref:`Upgrading a Cluster <cce_10_0197>`.
+
+.. _cce_bestpractice_10024__section1962889101:
 
 Enabling Overload Control
 -------------------------
@@ -60,6 +82,8 @@ Enabling Overload Control
 After overload control is enabled, concurrent LIST requests outside the system will be dynamically controlled based on the resource demands received by master nodes to ensure the stable running of the master nodes and the cluster.
 
 For details, see :ref:`Cluster Overload Control <cce_10_0602>`.
+
+.. _cce_bestpractice_10024__section128547158020:
 
 Enabling Observability
 ----------------------
@@ -85,10 +109,14 @@ When the resource data volume in a cluster is too large, it can negatively impac
    | etcd data volume of a single type of resources | 50Mi     | 100Mi     | 400Mi       | 800Mi       |
    +------------------------------------------------+----------+-----------+-------------+-------------+
 
-Clearing Up Unused Resources
-----------------------------
+.. _cce_bestpractice_10024__section16249619707:
+
+Clearing Unused Resources
+-------------------------
 
 To prevent a large number of pending pods from consuming extra resources on the control plane, it is recommended that you promptly clear up Kubernetes resources that are no longer in use, such as ConfigMaps, Secrets, and PVCs.
+
+.. _cce_bestpractice_10024__section203538231209:
 
 Optimizing the Client Access Mode
 ---------------------------------
@@ -110,6 +138,8 @@ Optimizing the Client Access Mode
 
 -  Use the more efficient Protobuf format instead of the JSON format. By default, Kubernetes returns objects serialized to JSON with content type **application/json**. This is the default serialization format for the API. However, clients may request the more efficient Protobuf representation of these objects for better performance. For details, see `Alternate representations of resources <https://kubernetes.io/docs/reference/using-api/api-concepts/#alternate-representations-of-resources>`__.
 
+.. _cce_bestpractice_10024__section148752272013:
+
 Changing the Cluster Scale
 --------------------------
 
@@ -119,6 +149,8 @@ If the resource usage on the master nodes in a cluster remains high for a long t
 
    -  The performance of the master nodes improves and their specifications become higher as the management scale of a cluster increases.
    -  The CCE cluster management scale is the maximum number of nodes that a cluster can manage. It is used as a reference during service deployment planning, and the actual quantity of nodes in use may not reach the maximum number of nodes selected. The actual scale depends on various factors, including the type, quantity, and size of resource objects in the cluster, as well as the number of external accesses to the cluster control plane.
+
+.. _cce_bestpractice_10024__section136511410151811:
 
 Splitting the Cluster
 ---------------------

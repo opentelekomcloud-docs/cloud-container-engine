@@ -117,8 +117,9 @@ Using the CCE Console
 
          -  Due to the definition of cron, the fixed period is not a strict period. The time unit range is divided from 0 by period. For example, if the unit is minute, the value ranges from 0 to 59. If the value cannot be exactly divided, the last period is reset. Therefore, an accurate period can be represented only when the period can be evenly divided.
 
-            Take a cron job that is executed by hour as an example. As **/2, /3, /4, /6, /8, and /12** can exactly divide 24 hours, an accurate period can be represented. If another period is used, the last period will be reset at the beginning of a new day. For example, if the cron expression is **\* \*/12 \* \* \***, the execution time is **00:00:00** and **12:00:00** every day. If the cron expression is **\* \*/13 \* \* \***, the execution time is **00:00:00** and **13:00:00** every day. At 00:00 on the next day, the execution time is updated even if the period does not reach 13 hours.
+            Take a cron job that runs hourly as an example. If an interval that can divide 24 hours exactly, such as **/2, /3, /4, /6, /8, and /12**, the period can be accurately represented. However, if a different period is used, the last period will reset at the beginning of each new day. For example, if the cron expression is **\* \*/12 \* \* \***, the task will run at **00:00:00** and **12:00:00** every day. Similarly, if the cron expression is **\* \*/13 \* \* \***, the task will run at **00:00:00** and **13:00:00** every day. Note that the last period will reset at 00:00:00 on the following day, even if it has not reached 13 hours.
 
+   -  **Time Zone**: You can specify a time zone. If this parameter is not specified, the time zone of the master node will be used by default.
    -  **Job Records**: You can set the number of jobs that are successfully executed or fail to be executed. Setting a limit to **0** corresponds to keeping none of the jobs after they finish.
 
    **(Optional) Advanced Settings**
@@ -128,6 +129,8 @@ Using the CCE Console
    -  **Network Configuration**
 
       -  Pod ingress/egress bandwidth limitation: You can set ingress/egress bandwidth limitation for pods. For details, see :ref:`Configuring QoS for a Pod <cce_10_0382>`.
+      -  Whether to enable a specified container network configuration: available only for clusters that support this function. After you enable a specified container network configuration, the workload will be created using the container subnet and security group in the configuration. For details, see :ref:`Binding a Subnet and Security Group to a Namespace or Workload Using a Container Network Configuration <cce_10_0196>`.
+      -  Specify the container network configuration name: Only the custom container network configuration whose associated resource type is workload can be selected.
       -  IPv6 shared bandwidth: available only for clusters that support this function. After this function is enabled, you can configure a shared bandwidth for a pod with IPv6 dual-stack ENIs. For details, see :ref:`Configuring Shared Bandwidth for a Pod with IPv6 Dual-Stack ENIs <cce_10_0604>`.
 
 #. Click **Create Workload** in the lower right corner.
@@ -140,7 +143,7 @@ A cron job has the following configuration parameters:
 -  **.spec.schedule**: takes a `Cron <https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#cron-schedule-syntax>`__ format string, for example, **0 \* \* \* \*** or **@hourly**, as schedule time of jobs to be created and executed.
 -  **.spec.jobTemplate**: specifies jobs to be run, and has the same schema as when you are :ref:`Creating a Job Using kubectl <cce_10_0150__section450152719412>`.
 -  **.spec.startingDeadlineSeconds**: specifies the deadline for starting a job.
--  **.spec.concurrencyPolicy**: specifies how to treat concurrent executions of a job created by the Cron job. The following options are supported:
+-  **.spec.concurrencyPolicy**: specifies how to treat concurrent executions of a job created by the CronJob. The following options are supported:
 
    -  **Allow** (default value): allows concurrently running jobs.
    -  **Forbid**: forbids concurrent runs, skipping next run if previous has not finished yet.
@@ -179,7 +182,7 @@ The following is an example cron job, which is saved in the **cronjob.yaml** fil
 
 **Run the job.**
 
-#. Create a cron job.
+#. Create a CronJob.
 
    **kubectl create -f cronjob.yaml**
 
@@ -251,5 +254,5 @@ After a CronJob is created, you can perform operations listed in :ref:`Table 1 <
    |                                   |                                                                                                    |
    |                                   | #. Click **Yes**.                                                                                  |
    |                                   |                                                                                                    |
-   |                                   |    Deleted jobs cannot be restored. Therefore, exercise caution when deleting a job.               |
+   |                                   |    Deleted jobs cannot be restored. Exercise caution when deleting a job.                          |
    +-----------------------------------+----------------------------------------------------------------------------------------------------+

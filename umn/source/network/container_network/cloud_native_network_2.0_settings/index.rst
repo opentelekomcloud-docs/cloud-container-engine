@@ -6,7 +6,7 @@ Cloud Native Network 2.0 Settings
 =================================
 
 -  :ref:`Cloud Native 2.0 Network Model <cce_10_0284>`
--  :ref:`Adding a Pod Subnet for a Cluster <cce_10_0906>`
+-  :ref:`Configuring Pod Subnets of a Cluster <cce_10_0906>`
 -  :ref:`Binding a Security Group to a Pod Using an Annotation <cce_10_0897>`
 -  :ref:`Binding a Security Group to a Workload Using a Security Group Policy <cce_10_0288>`
 -  :ref:`Binding a Subnet and Security Group to a Namespace or Workload Using a Container Network Configuration <cce_10_0196>`
@@ -20,7 +20,7 @@ Cloud Native Network 2.0 Settings
    :hidden: 
 
    cloud_native_2.0_network_model
-   adding_a_pod_subnet_for_a_cluster
+   configuring_pod_subnets_of_a_cluster
    binding_a_security_group_to_a_pod_using_an_annotation
    binding_a_security_group_to_a_workload_using_a_security_group_policy
    binding_a_subnet_and_security_group_to_a_namespace_or_workload_using_a_container_network_configuration

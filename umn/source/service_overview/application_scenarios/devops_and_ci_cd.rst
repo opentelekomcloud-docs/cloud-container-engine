@@ -36,7 +36,7 @@ Related Services
 Software Repository for Container (SWR), Object Storage Service (OBS), Virtual Private Network (VPN)
 
 
-.. figure:: /_static/images/en-us_image_0000001898023049.png
+.. figure:: /_static/images/en-us_image_0000002101594929.png
    :alt: **Figure 1** How DevOps works
 
    **Figure 1** How DevOps works

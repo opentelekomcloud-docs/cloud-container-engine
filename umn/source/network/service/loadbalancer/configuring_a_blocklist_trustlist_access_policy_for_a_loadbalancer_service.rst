@@ -5,10 +5,14 @@
 Configuring a Blocklist/Trustlist Access Policy for a LoadBalancer Service
 ==========================================================================
 
-When using a LoadBalancer Service, you can configure a trustlist or blocklist to specify the IP addresses that are allowed or denied to access a load balancer listener.
+When using a LoadBalancer Service, you can configure a trustlist or blocklist to specify the IP addresses that are allowed or denied accessing a load balancer listener.
 
 -  Trustlist: Only the IP addresses in the list can access the listener.
 -  Blocklist: The IP addresses in the list are not allowed to access the listener.
+
+.. note::
+
+   After the blocklist or trustlist access policy is configured, if you delete the blocklist or trustlist access policy configuration on the CCE console or delete the target annotation from the YAML file, the configuration on the ELB will be retained.
 
 Prerequisites
 -------------
@@ -21,7 +25,7 @@ Prerequisites
    -  v1.28: v1.28.2-r0 or later
    -  Other clusters of later versions
 
--  An IP address group has been created on the ELB console. For details, see .
+-  An IP address group has been created on the ELB console.
 
 Using the CCE Console
 ---------------------
@@ -52,6 +56,7 @@ Using the CCE Console
 
    -  **Access Control**
 
+      -  **Inherit ELB Configurations**: CCE does not modify the existing access control configurations on the ELB console.
       -  **Allow all IP addresses**: No access control is configured.
       -  **Trustlist**: Only the selected IP address group can access the load balancer.
       -  **Blocklist**: The selected IP address group cannot access the load balancer.

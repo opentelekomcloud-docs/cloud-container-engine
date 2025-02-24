@@ -21,11 +21,11 @@ The function of setting environment variables on CCE is the same as that of spec
 Environment variables can be set in the following modes:
 
 -  **Custom**: Enter the environment variable name and parameter value.
--  **Added from ConfigMap key**: Import all keys in a ConfigMap as environment variables.
--  **Added from ConfigMap**: Import a key in a ConfigMap as the value of an environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import **configmap_value** of **configmap_key** in **configmap-example** as the value of environment variable **key1**, an environment variable named **key1** whose value is **configmap_value** is available in the container.
--  **Added from secret**: Import all keys in a secret as environment variables.
+-  **Added from ConfigMap**: Import all key values in a ConfigMap as environment variables.
+-  **Added from ConfigMap key**: Import the value of a key in a ConfigMap as the value of an environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import **configmap_value** of **configmap_key** in **configmap-example** as the value of environment variable **key1**, an environment variable named **key1** whose value is **configmap_value** is available in the container.
+-  **Added from secret**: Import all key values in a secret as environment variables.
 -  **Added from secret key**: Import the value of a key in a secret as the value of an environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import **secret_value** of **secret_key** in **secret-example** as the value of environment variable **key2**, an environment variable named **key2** whose value is **secret_value** is available in the container.
--  **Variable value/reference**: Use the field defined by a pod as the value of the environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if the pod name is imported as the value of environment variable **key3**, an environment variable named **key3** whose value is the pod name is available in the container.
+-  **Variable Value/Reference**: Use the field defined by a pod as the value of the environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if the pod name is imported as the value of environment variable **key3**, an environment variable named **key3** whose value is the pod name is available in the container.
 -  **Resource Reference**: The value of **Request** or **Limit** defined by the container is used as the value of the environment variable. As shown in :ref:`Figure 1 <cce_10_0113__fig164568529317>`, if you import the CPU limit of container-1 as the value of environment variable **key4**, an environment variable named **key4** whose value is the CPU limit of container-1 is available in the container.
 
 Adding Environment Variables
@@ -39,9 +39,12 @@ Adding Environment Variables
 
 #. Configure environment variables.
 
+   -  To add environment variables one by one, click **Adding a Variable** and configure its parameters.
+   -  To add environment variables in batches, click **Editing Custom Variables in Batches**. Then, in the displayed dialog box, enter environment variables in the format of "Variable name=Variable or variable reference".
+
    .. _cce_10_0113__fig164568529317:
 
-   .. figure:: /_static/images/en-us_image_0000001950317180.png
+   .. figure:: /_static/images/en-us_image_0000002101597485.png
       :alt: **Figure 1** Configuring environment variables
 
       **Figure 1** Configuring environment variables
@@ -141,7 +144,7 @@ The environment variables in the pod are as follows:
    $ kubectl exec env-example-695b759569-lx9jp  -- printenv
    / # env
    key=value                             # Custom environment variable
-   ey1=configmap_value                  # Added from ConfigMap key
+   key1=configmap_value                  # Added from ConfigMap key
    key2=secret_value                     # Added from secret key
    key3=env-example-695b759569-lx9jp     # metadata.name defined by the pod
    key4=1                                # limits.cpu defined by container1. The value is rounded up, in unit of cores.

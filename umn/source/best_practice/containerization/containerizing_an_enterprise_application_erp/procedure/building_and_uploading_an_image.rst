@@ -31,16 +31,14 @@ Procedure
 
    **cd apptest**
 
-   **ll**
-
    Ensure that files used to build the image are stored in the same directory.
 
    |image1|
 
 #. Build an image.
 
-   **docker build -t apptest .**
+   **docker build -t apptest:v1 .**
 
 #. Upload the image to SWR. For details, see `Uploading an Image Through the Client <https://docs.otc.t-systems.com/usermanual/swr/swr_01_0011.html>`__.
 
-.. |image1| image:: /_static/images/en-us_image_0000001981274417.png
+.. |image1| image:: /_static/images/en-us_image_0000002065478702.png

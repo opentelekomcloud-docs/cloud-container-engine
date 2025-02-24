@@ -11,7 +11,7 @@ Model Definition
 The VPC network model seamlessly combines VPC routing with the underlying network, making it ideal for high-performance scenarios. However, the maximum number of nodes allowed in a cluster is determined by the VPC route quota. In the VPC network model, container CIDR blocks are separate from node CIDR blocks. To allocate IP addresses to containers running on a node in a cluster, each node in the cluster is allocated with a container CIDR block for a fixed number of IP addresses. The VPC network model outperforms the container tunnel network model in terms of performance because it does not have tunnel encapsulation overhead. When using the VPC network model in a cluster, the VPC routing table automatically configures the routes between container CIDR blocks and VPC CIDR blocks. This means that pods within the cluster can be accessed directly from cloud servers in the same VPC, even if they are outside the cluster.
 
 
-.. figure:: /_static/images/en-us_image_0000001981276441.png
+.. figure:: /_static/images/en-us_image_0000002101678893.png
    :alt: **Figure 1** VPC network model
 
    **Figure 1** VPC network model
@@ -20,7 +20,7 @@ In a cluster using the VPC network model, network communication paths are as fol
 
 -  Inter-pod communication on the same node: Packets are directly forwarded through IPvlan.
 -  Inter-pod communication on different nodes: The traffic accesses the default gateway by following the route specified in the VPC routing table and then is forwarded to the target pod on another node using VPC routing.
--  Pod communication outside a cluster: When a container in a cluster needs to access a network outside of the cluster, CCE uses NAT to translate the container's IP address into the node IP address so that the pod communicates externally using the node IP address.
+-  Pod communication with the Internet: When a container in a cluster needs to access the Internet, CCE uses NAT to translate the container's IP address into the node IP address so that the pod communicates externally using the node IP address.
 
 Advantages and Disadvantages
 ----------------------------
@@ -59,12 +59,12 @@ The VPC network model assigns container IP addresses based on the following guid
 -  IP addresses from the CIDR blocks assigned to a node are allocated to pods scheduled to that node in a cyclical manner.
 
 
-.. figure:: /_static/images/en-us_image_0000001950316896.png
+.. figure:: /_static/images/en-us_image_0000002101597409.png
    :alt: **Figure 2** IP address management of the VPC network
 
    **Figure 2** IP address management of the VPC network
 
-Maximum number of nodes that can be created in the cluster using the VPC network = Number of IP addresses in the container CIDR block /Number of IP addresses in the CIDR block allocated to the node by the container CIDR block
+Maximum number of nodes that can be created in the cluster using the VPC network = Number of IP addresses in the container CIDR block/Number of IP addresses in the CIDR block allocated to the node by the container CIDR block
 
 For example, if the container CIDR block is 172.16.0.0/16, the number of IP addresses is 65536. The mask of the container CIDR block allocated to a node is 25. That is, the number of container IP addresses on each node is 128. Therefore, a maximum of 512 (65536/128) nodes can be created. The number of nodes that can be added to a cluster is also determined by the available IP addresses in the node subnet and the scale of the cluster. For details, see :ref:`Recommendation for CIDR Block Planning <cce_10_0283__section14586813191914>`.
 

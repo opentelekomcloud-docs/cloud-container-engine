@@ -9,6 +9,6 @@ CoreDNS provides simple functions and is compatible with different Kubernetes ve
 
 You can upgrade CoreDNS in a cluster by performing the following procedure:
 
-#. Log in to the CCE console, select a cluster, and click **Add-ons** in the navigation pane.
-#. In the **Add-on Installed**, locate the coredns add-on and click **Upgrade**.
+#. Log in to the CCE console and click the name of the target cluster to access the cluster console. In the navigation pane, choose **Add-ons**.
+#. Locate the CoreDNS add-on and click **Upgrade**.
 #. Set parameters.

@@ -12,15 +12,15 @@ Prerequisites
 
 -  A cluster of v1.21 or later is available. For details, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
 -  The Volcano add-on of v1.11.14 or later has been installed. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
--  The kube-prometheus-stack add-on has been installed and it works in server mode. For details, see :ref:`Cloud Native Cluster Monitoring <cce_10_0406>`.
+-  The Cloud Native Cluster Monitoring add-on (kube-prometheus-stack) has been installed and it runs in local data storage mode. For details, see :ref:`Cloud Native Cluster Monitoring <cce_10_0406>`.
 
 Features
 --------
 
-The native Kubernetes scheduler schedules resources only based on requested resources. However, the actual resource usage of a pod differs greatly from the requested or limited value of the requested resources, which is the cause of cluster load imbalancing.
+The native Kubernetes scheduler schedules resources only based on requested resources. However, the actual resource usage of a pod differs greatly from the requested or limited value of the requested resources, which is the cause of cluster load imbalance.
 
 #. The actual resource usage of certain nodes in a cluster is far lower than the resource allocation rate, but no more pods are scheduled onto the nodes, leading to resource waste.
-#. Certain nodes in a cluster have been overloaded, but this could not been detected by the scheduler. This may greatly affect service stability.
+#. The scheduler failed to detect that some nodes in the cluster are overloaded, which could significantly affect the stability of the service.
 
 Volcano resolves the preceding issues based on actual loads. If there are plenty of resources, pods are preferentially scheduled to nodes with the lightest load to balance the load on each node in the cluster.
 

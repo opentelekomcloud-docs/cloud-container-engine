@@ -15,7 +15,7 @@ You can use NAT Gateway to enable container pods in a VPC to access the Internet
 
 .. _cce_10_0400__en-us_topic_0261817696_en-us_topic_0241700138_en-us_topic_0144420145_fig34611314153619:
 
-.. figure:: /_static/images/en-us_image_0000001981276877.png
+.. figure:: /_static/images/en-us_image_0000002101679233.png
    :alt: **Figure 1** SNAT
 
    **Figure 1** SNAT
@@ -61,6 +61,6 @@ To enable a container to access the Internet, perform the following steps:
 
    After the SNAT rule is configured, workloads can access the Internet from the container. The Internet can be pinged from the container.
 
-.. |image1| image:: /_static/images/en-us_image_0000001950317352.png
-.. |image2| image:: /_static/images/en-us_image_0000001981276889.png
-.. |image3| image:: /_static/images/en-us_image_0000001950317344.png
+.. |image1| image:: /_static/images/en-us_image_0000002065480858.png
+.. |image2| image:: /_static/images/en-us_image_0000002101597757.png
+.. |image3| image:: /_static/images/en-us_image_0000002101679237.png

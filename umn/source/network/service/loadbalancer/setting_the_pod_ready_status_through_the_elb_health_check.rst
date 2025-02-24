@@ -26,7 +26,7 @@ Notes and Constraints
 Setting the Pod Ready Status Through the ELB Health Check
 ---------------------------------------------------------
 
-To use Pod readiness Gates, perform the following steps:
+To use pod readiness gates, perform the following steps:
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 

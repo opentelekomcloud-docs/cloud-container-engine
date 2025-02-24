@@ -5,20 +5,20 @@
 Configuring Passthrough Networking for a LoadBalancer Service
 =============================================================
 
-Background
-----------
+Application Scenarios
+---------------------
 
-A Kubernetes cluster can publish applications running on a group of pods as Services, which provide unified layer-4 access entries. For a Loadbalancer Service, kube-proxy configures the LoadbalanceIP in **status** of the Service to the local forwarding rule of the node by default. When a pod accesses the load balancer from within the cluster, the traffic is forwarded within the cluster instead of being forwarded by the load balancer.
+kube-proxy, which is responsible for forwarding intra-cluster traffic, adds the IP addresses of load balancers associated with the LoadBalancer Services to nodes' local forwarding rules by default. When a client from within a cluster accesses the IP address of a load balancer, the traffic is directly forwarded to the destination instead of being forwarded by the load balancer.
 
-kube-proxy is responsible for intra-cluster forwarding. kube-proxy has two forwarding modes: iptables and IPVS. iptables is a simple polling forwarding mode. IPVS has multiple forwarding modes but it requires modifying the startup parameters of kube-proxy. Compared with iptables and IPVS, load balancers provide more flexible forwarding policies as well as health check capabilities.
+If node-level affinity is configured for a Service (with **externalTrafficPolicy** set to **Local**), the Service will forward traffic only to pods on the node that run these pods. When a node or pod accesses another pod in the same cluster, if the node where the client runs does not have the corresponding backend pod, the access may fail.
 
 Solution
 --------
 
-CCE supports passthrough networking. You can configure the **annotation** of **kubernetes.io/elb.pass-through** for the Loadbalancer Service. Intra-cluster access to the Service load balancer address is then forwarded to backend pods by the load balancer.
+CCE supports passthrough networking. You can configure the **kubernetes.io/elb.pass-through** annotation for the LoadBalancer Service so that the load balancer forwards the intra-cluster access to the IP address of the load balancer associated with the Service to backend pods.
 
 
-.. figure:: /_static/images/en-us_image_0000001981275425.png
+.. figure:: /_static/images/en-us_image_0000002101596525.png
    :alt: **Figure 1** Passthrough networking illustration
 
    **Figure 1** Passthrough networking illustration
@@ -46,7 +46,11 @@ Procedure
 
 This section describes how to create a Deployment using an Nginx image and create a Service with passthrough networking enabled.
 
+#. Use the kubectl command line tool to connect to the cluster.
+
 #. Use the Nginx image to create a Deployment.
+
+   Create an **nginx-deployment.yaml** file. The file content is as follows:
 
    .. code-block::
 
@@ -77,7 +81,15 @@ This section describes how to create a Deployment using an Nginx image and creat
             imagePullSecrets:
             - name: default-secret
 
-#. For a LoadBalance Service, set **kubernetes.io/elb.pass-through** to **true**. In this example, a shared load balancer named **james** is automatically created.
+   Run the following command to deploy the workload:
+
+   .. code-block::
+
+      kubectl create -f nginx-deployment.yaml
+
+#. Create a LoadBalancer Service and set **kubernetes.io/elb.pass-through** to **true**.
+
+   The content of the **nginx-elb-svc.yaml** file is as follows. (In this example, a shared load balancer named **james** is automatically created.)
 
    .. code-block::
 
@@ -102,45 +114,49 @@ This section describes how to create a Deployment using an Nginx image and creat
           app: nginx
         type: LoadBalancer
 
+#. Run the following command to create the Service:
+
+   .. code-block::
+
+      kubectl create -f nginx-elb-svc.yaml
+
 Verification
 ------------
 
-Check the load balancer associated with the created Service. The load balancer name is **james**. The number of load balancer connections is **0**.
+#. Log in to the ELB console and check the load balancer (named **james** in this example) associated with the Service.
 
-Use kubectl to connect to the cluster, go to an Nginx container, and access the ELB address. The access is successful.
+#. Click the load balancer name and click the **Monitoring** tab.
 
-.. code-block::
+   There is 0 connections to the load balancer.
 
-   # kubectl get pod
-   NAME                     READY   STATUS    RESTARTS   AGE
-   nginx-7c4c5cc6b5-vpncx   1/1     Running   0          9m47s
-   nginx-7c4c5cc6b5-xj5wl   1/1     Running   0          9m47s
-   # kubectl exec -it nginx-7c4c5cc6b5-vpncx -- /bin/sh
-   # curl 120.46.141.192
-   <!DOCTYPE html>
-   <html>
-   <head>
-   <title>Welcome to nginx!</title>
-   <style>
-       body {
-           width: 35em;
-           margin: 0 auto;
-           font-family: Tahoma, Verdana, Arial, sans-serif;
-       }
-   </style>
-   </head>
-   <body>
-   <h1>Welcome to nginx!</h1>
-   <p>If you see this page, the nginx web server is successfully installed and
-   working. Further configuration is required.</p>
+#. Log in to an Nginx container in the cluster using kubectl and access the IP address of the load balancer.
 
-   <p>For online documentation and support please refer to
-   <a href="http://nginx.org/">nginx.org</a>.<br/>
-   Commercial support is available at
-   <a href="http://nginx.com/">nginx.com</a>.</p>
+   a. Obtain the Nginx containers in the cluster.
 
-   <p><em>Thank you for using nginx.</em></p>
-   </body>
-   </html>
+      .. code-block::
 
-Wait for a period of time and view the ELB monitoring data. A new access connection is created for the ELB, indicating that the access passes through the ELB load balancer as expected.
+         kubectl get pod
+
+      Information similar to the following is displayed:
+
+      .. code-block::
+
+         NAME                     READY   STATUS    RESTARTS   AGE
+         nginx-7c4c5cc6b5-vpncx   1/1     Running   0          9m47s
+         nginx-7c4c5cc6b5-xj5wl   1/1     Running   0          9m47s
+
+   b. Log in to an Nginx container container.
+
+      .. code-block::
+
+         kubectl exec -it nginx-7c4c5cc6b5-vpncx -- /bin/sh
+
+   c. Access the load balancer IP address.
+
+      .. code-block::
+
+         curl **.**.**.**
+
+#. Wait for a while and check the monitoring data on the ELB console.
+
+   If a new access connection is displayed, the access is forwarded by the load balancer as expected.

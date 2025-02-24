@@ -17,7 +17,7 @@ Features
 During Kubernetes cluster management, over-utilized nodes are due to high CPU or memory usage, which affects the stable running of pods on these nodes and increases the probability of node faults. To dynamically balance the resource usage between nodes in a cluster, a cluster resource view is required based on node monitoring metrics. During cluster management, real-time monitoring can be used to detect issues such as high resource usage on a node, node faults, and excessive number of pods on a node so that the system can take measures promptly, for example, by migrating some pods from an over-utilized node to under-utilized nodes.
 
 
-.. figure:: /_static/images/en-us_image_0000001950317428.png
+.. figure:: /_static/images/en-us_image_0000002101597817.png
    :alt: **Figure 1** Load-aware descheduling
 
    **Figure 1** Load-aware descheduling
@@ -50,11 +50,11 @@ Configuring a Load-aware Descheduling Policy
 
 When configuring a load-aware descheduling policy, do as follows to enable load-aware scheduling on Volcano Scheduler:
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Settings** and click the **Scheduling** tab on the right side of the page. Then, enable load-aware scheduling.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Settings** and click the **Scheduling** tab on the right side of the page. Then, enable load-aware scheduling. For details, see :ref:`Load-aware Scheduling <cce_10_0789>`.
 
-#. In the navigation pane, choose **Add-ons**. Locate **Volcano Scheduler** on the right and click **Install** or **Edit**.
+#. On the **Scheduling** tab page, select **Volcano scheduler**, find the expert mode, and click **Try Now**.
 
-#. In the **Parameters** area, modify **Advanced Settings** to configure the load-aware descheduling policy. The following shows a configuration example for Volcano 1.11.21 or later:
+#. Configure a load-aware descheduling policy. The following shows a configuration example in JSON format for Volcano v1.11.21 or later:
 
    .. code-block::
 
@@ -267,7 +267,7 @@ When configuring a load-aware descheduling policy, do as follows to enable load-
       |                                       |            "memory": 65                                                                                                                                                                                                                                                                           |
       |                                       |          }                                                                                                                                                                                                                                                                                        |
       |                                       |                                                                                                                                                                                                                                                                                                   |
-      |                                       |    -  **thresholds**: threshold for a node to run pods. If the node value is less than the threshold, the node allows evicted pods to run. Example:                                                                                                                                               |
+      |                                       |    -  **thresholds**: threshold for a node to run pods. When the CPU or memory usage of a node is less than the threshold, the node allows evicted pods to run. Example:                                                                                                                          |
       |                                       |                                                                                                                                                                                                                                                                                                   |
       |                                       |       .. code-block::                                                                                                                                                                                                                                                                             |
       |                                       |                                                                                                                                                                                                                                                                                                   |
@@ -286,9 +286,9 @@ When configuring a HighNodeUtilization policy, do as follows to enable the bin p
 
 #. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Settings** and click the **Scheduling** tab on the right side of the page. Then, enable bin packing. For details, see :ref:`Bin Packing <cce_10_0773>`.
 
-#. In the navigation pane, choose **Add-ons**. Locate **Volcano Scheduler** on the right and click **Install** or **Edit**.
+#. On the **Scheduling** tab page, select **Volcano scheduler**, find the expert mode, and click **Try Now**.
 
-#. In the **Parameters** area, modify **Advanced Settings** to configure the HighNodeUtilization policy.
+#. Configure a resource defragmentation policy. The following shows a configuration example in JSON format:
 
    .. code-block::
 
@@ -478,24 +478,18 @@ Use Cases
 
 #. Check the nodes in a cluster. It is found that some nodes are under-utilized.
 
-   |image1|
-
 #. Edit the Volcano parameters to enable the descheduler and set the CPU and memory usage thresholds to **25**. When the CPU and memory usage of a node is less than 25%, pods on the node will be evicted.
 
-   |image2|
+   |image1|
 
 #. After the policy takes effect, pods on the node with IP address 192.168.44.152 will be migrated to the node with IP address 192.168.54.65 for minimized resource fragments.
-
-   |image3|
 
 Common Issues
 -------------
 
 If an input parameter is incorrect, for example, the entered value is beyond the accepted value range or in an incorrect format, an event will be generated. In this case, modify the parameter setting as prompted.
 
-|image4|
+|image2|
 
-.. |image1| image:: /_static/images/en-us_image_0000001981276965.png
-.. |image2| image:: /_static/images/en-us_image_0000001981276977.png
-.. |image3| image:: /_static/images/en-us_image_0000001981276973.png
-.. |image4| image:: /_static/images/en-us_image_0000001950317436.png
+.. |image1| image:: /_static/images/en-us_image_0000002101597829.png
+.. |image2| image:: /_static/images/en-us_image_0000002101597825.png

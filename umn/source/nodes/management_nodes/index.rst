@@ -6,7 +6,6 @@ Management Nodes
 ================
 
 -  :ref:`Managing Node Labels <cce_10_0004>`
-   You can add different labels to nodes and define different attributes for labels. By using these node labels, you can quickly understand the characteristics of each node.
 -  :ref:`Managing Node Taints <cce_10_0352>`
 -  :ref:`Resetting a Node <cce_10_0003>`
 -  :ref:`Removing a Node <cce_10_0338>`

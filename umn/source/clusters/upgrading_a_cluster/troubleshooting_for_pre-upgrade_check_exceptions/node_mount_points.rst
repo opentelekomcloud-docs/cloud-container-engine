@@ -8,7 +8,7 @@ Node Mount Points
 Check Items
 -----------
 
-Check whether inaccessible mount points exist on the node.
+Check whether there are inaccessible mount points on the node.
 
 Solution
 --------
@@ -19,23 +19,42 @@ If NFS (such as obsfs or SFS) is used by the node and the node is disconnected f
 
 #. Log in to the node.
 
-#. Run the following commands on the node in sequence:
+#. Create a script file, for example, **/tmp/check_hang_mount.sh** on the node. The content of the script file is as follows:
 
    .. code-block::
 
-      - df -h
-      - for dir in `df -h | grep -v "Mounted on" | awk "{print \\$NF}"`;do cd $dir; done && echo "ok"
+      for mount_path in `cat /proc/self/mountinfo | awk '{print $5}' | grep -v netns`
+      do
+          timeout 10 sh -c "cd $mount_path"
+          if [ $? == 124 ];then
+              echo "$mount_path hang mount"
+          fi
+      done
 
-#. If **ok** is returned, no problem occurs.
+#. Run the saved script and check the output.
 
-   Otherwise, start another terminal and run the following command to check whether the previous command is in the D state:
+   |image1|
+
+   The mount points of the **/root/foo** and **/root/bar** folders are incorrect.
+
+#. Run the following command to check the suspended mount points:
 
    .. code-block::
 
-      - ps aux | grep "D "
+      mount -n | grep /root/foo
 
-#. If a process is in the D state, the problem occurs. You can restart the node to solve the problem. Restart the node and upgrade the cluster again.
+   |image2|
 
-   .. note::
+   When a mount point is suspended, it typically indicates that services are not using it anymore. After confirming that the mount point is no longer required, run the following command to unmount it and then re-execute the previously mentioned script:
 
-      Workloads running on the node will be rescheduled after a node is restarted. Check whether services will be affected before restarting the node.
+   .. code-block::
+
+      umount -l -f localhost:/tmp/nfs
+
+   |image3|
+
+   After the execution, perform the check again on the pre-upgrade check page.
+
+.. |image1| image:: /_static/images/en-us_image_0000002101597333.png
+.. |image2| image:: /_static/images/en-us_image_0000002101678821.png
+.. |image3| image:: /_static/images/en-us_image_0000002065638766.png

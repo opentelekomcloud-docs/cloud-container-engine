@@ -10,6 +10,7 @@ Managing a Cluster
 -  :ref:`Changing Cluster Scale <cce_10_0403>`
 -  :ref:`Changing the Default Security Group of a Node <cce_10_0426>`
 -  :ref:`Deleting a Cluster <cce_10_0212>`
+-  :ref:`Preventing Cluster Deletion <cce_10_0927>`
 -  :ref:`Hibernating or Waking Up a Cluster <cce_10_0214>`
 
 .. toctree::
@@ -21,4 +22,5 @@ Managing a Cluster
    changing_cluster_scale
    changing_the_default_security_group_of_a_node
    deleting_a_cluster
+   preventing_cluster_deletion
    hibernating_or_waking_up_a_cluster

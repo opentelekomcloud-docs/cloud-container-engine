@@ -7,39 +7,41 @@ Configuring Timeout for a LoadBalancer Service
 
 LoadBalancer Services allow you to configure timeout, which is the maximum duration for keeping a connection if no request is received from the client. If no request is received during this period, the load balancer closes the connection and establishes a new one with the client when the next request arrives.
 
+.. note::
+
+   After timeout is configured, if you delete the timeout configuration on the CCE console or delete the target annotation from the YAML file, the configuration on the ELB will be retained.
+
 Notes and Constraints
 ---------------------
 
--  The following table lists the scenarios where timeout can be configured for a Service.
+The following table lists the scenarios where timeout can be configured for a Service.
 
-   +------------------+----------------------+------------------------------------+-------------------------------------+
-   | Timeout Type     | Load Balancer Type   | Restrictions                       | Supported Cluster Version           |
-   +==================+======================+====================================+=====================================+
-   | Idle timeout     | Dedicated            | None                               | -  v1.19: v1.19.16-r30 or later     |
-   |                  |                      |                                    | -  v1.21: v1.21.10-r10 or later     |
-   |                  |                      |                                    | -  v1.23: v1.23.8-r10 or later      |
-   |                  |                      |                                    | -  v1.25: v1.25.3-r10 or later      |
-   |                  |                      |                                    | -  Other clusters of later versions |
-   +------------------+----------------------+------------------------------------+-------------------------------------+
-   | Idle timeout     | Shared               | UDP is not supported.              | -  v1.23: v1.23.13-r0 or later      |
-   |                  |                      |                                    | -  v1.25: v1.25.8-r0 or later       |
-   |                  |                      |                                    | -  v1.27: v1.27.5-r0 or later       |
-   |                  |                      |                                    | -  v1.28: v1.28.3-r0 or later       |
-   |                  |                      |                                    | -  Other clusters of later versions |
-   +------------------+----------------------+------------------------------------+-------------------------------------+
-   | Request timeout  | Dedicated and shared | Only HTTP and HTTPS are supported. |                                     |
-   +------------------+----------------------+------------------------------------+-------------------------------------+
-   | Response timeout | Dedicated and shared | Only HTTP and HTTPS are supported. |                                     |
-   +------------------+----------------------+------------------------------------+-------------------------------------+
-
--  After timeout is configured, if you delete the timeout configuration on the CCE console or delete the target annotation from the YAML file, the configuration on the ELB will be retained.
++------------------+----------------------+------------------------------------+-------------------------------------+
+| Timeout Type     | Load Balancer Type   | Restrictions                       | Supported Cluster Version           |
++==================+======================+====================================+=====================================+
+| Idle timeout     | Dedicated            | None                               | -  v1.19: v1.19.16-r30 or later     |
+|                  |                      |                                    | -  v1.21: v1.21.10-r10 or later     |
+|                  |                      |                                    | -  v1.23: v1.23.8-r10 or later      |
+|                  |                      |                                    | -  v1.25: v1.25.3-r10 or later      |
+|                  |                      |                                    | -  Other clusters of later versions |
++------------------+----------------------+------------------------------------+-------------------------------------+
+| Idle timeout     | Shared               | UDP is not supported.              | -  v1.23: v1.23.13-r0 or later      |
+|                  |                      |                                    | -  v1.25: v1.25.8-r0 or later       |
+|                  |                      |                                    | -  v1.27: v1.27.5-r0 or later       |
+|                  |                      |                                    | -  v1.28: v1.28.3-r0 or later       |
+|                  |                      |                                    | -  Other clusters of later versions |
++------------------+----------------------+------------------------------------+-------------------------------------+
+| Request timeout  | Dedicated and shared | Only HTTP and HTTPS are supported. |                                     |
++------------------+----------------------+------------------------------------+-------------------------------------+
+| Response timeout | Dedicated and shared | Only HTTP and HTTPS are supported. |                                     |
++------------------+----------------------+------------------------------------+-------------------------------------+
 
 Using the CCE Console
 ---------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Services & Ingresses**. In the upper right corner, click **Create Service**.
-#. Configure Service parameters. In this example, only mandatory parameters required for configuring timeout are listed. For details about how to configure other parameters, see :ref:`Creating a LoadBalancer Service <cce_10_0681__section84162025538>`.
+#. Configure Service parameters. In this example, only mandatory parameters required for configuring timeout are listed. For details about how to configure other parameters, see :ref:`Using the Console <cce_10_0681__section84162025538>`.
 
    -  **Service Name**: Specify a Service name, which can be the same as the workload name.
    -  **Service Type**: Select **LoadBalancer**.
@@ -93,6 +95,7 @@ Use annotations to configure timeout. The following shows an example:
      annotations:
        kubernetes.io/elb.id: <your_elb_id>    # In this example, an existing dedicated load balancer is used. Replace its ID with the ID of your dedicated load balancer.
        kubernetes.io/elb.class: performance  # Load balancer type
+       kubernetes.io/elb.protocol-port: http:80 # The HTTP port 80 is used.
        kubernetes.io/elb.keepalive_timeout: '300'  # Timeout setting for client connections
        kubernetes.io/elb.client_timeout: '60'      # Timeout for waiting for a request from a client
        kubernetes.io/elb.member_timeout: '60'      # Timeout for waiting for a response from a backend server

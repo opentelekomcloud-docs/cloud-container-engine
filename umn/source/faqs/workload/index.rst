@@ -5,7 +5,7 @@
 Workload
 ========
 
--  :ref:`Workload Abnormalities <cce_faq_00029>`
+-  :ref:`Workload Exception Troubleshooting <cce_faq_00029>`
 -  :ref:`Container Configuration <cce_faq_00095>`
 -  :ref:`Scheduling Policies <cce_faq_00284>`
 -  :ref:`Others <cce_faq_00186>`
@@ -14,7 +14,7 @@ Workload
    :maxdepth: 1
    :hidden: 
 
-   workload_abnormalities/index
+   workload_exception_troubleshooting/index
    container_configuration/index
    scheduling_policies/index
    others/index

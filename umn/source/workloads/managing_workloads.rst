@@ -8,7 +8,7 @@ Managing Workloads
 Scenario
 --------
 
-After a workload is created, you can upgrade, monitor, roll back, or delete the workload, as well as edit its YAML file.
+After a workload is created, you can upgrade, log, monitor, roll back, or delete the workload, as well as edit its YAML file.
 
 .. table:: **Table 1** Workload/Job management
 
@@ -141,7 +141,7 @@ Only Deployments support this operation.
 
    If you are performing a rolling upgrade, the rolling upgrade stops after the disabling upgrade command is delivered. In this case, the new and old pods co-exist.
 
--  If a Deployment is being upgraded, it can be upgraded or rolled back. Its pods will inherit the latest updates of the Deployment. If they are inconsistent, the pods are upgraded automatically according to the latest information of the Deployment.
+-  After the upgrade is enabled, a Deployment can be upgraded or rolled back. Its pods will inherit the latest updates of the Deployment. If they are inconsistent, the pods will be upgraded automatically according to the latest information of the Deployment.
 
 .. important::
 
@@ -160,7 +160,7 @@ Labels are key-value pairs and can be attached to workloads. You can manage and 
 
 #. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and choose **More** > **Manage Label** in the **Operation** column of the target workload.
-#. Click **Add**, enter a key and a value, and click **OK**.
+#. Click |image1|, enter a key and a value, and click **OK**.
 
    .. note::
 
@@ -199,3 +199,5 @@ This section uses a Deployment as an example to describe how to view events of a
    .. note::
 
       Event data will be retained for one hour and then automatically deleted.
+
+.. |image1| image:: /_static/images/en-us_image_0000002065638710.png

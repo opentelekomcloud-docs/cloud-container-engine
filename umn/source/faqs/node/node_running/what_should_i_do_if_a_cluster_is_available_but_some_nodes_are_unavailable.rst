@@ -5,7 +5,7 @@
 What Should I Do If a Cluster Is Available But Some Nodes Are Unavailable?
 ==========================================================================
 
-If the cluster status is available but some nodes in the cluster are unavailable, perform the following operations to rectify the fault:
+If the cluster status is available but some nodes in the cluster are unavailable, perform the following operations to rectify the fault.
 
 Mechanism for Detecting Node Unavailability
 -------------------------------------------
@@ -49,15 +49,15 @@ The node connection in the cluster is abnormal. Multiple nodes report write erro
 
 **Solution**
 
-#. You are advised to migrate services to reduce the workloads on the node and set the resource upper limit for the workloads.
+#. Migrate services to reduce the workloads on the node and configure resource limits for the workloads.
 #. Clear data on the CCE nodes in the cluster.
 #. Limit the CPU and memory quotas of each container.
 #. Add more nodes to the cluster.
-#. You can also restart the node on the ECS console.
+#. Restart the node on the ECS console.
 #. Add nodes to deploy memory-intensive containers separately.
-#. Reset the node.
+#. Reset the nodes.
 
-After the node becomes available, the workload is restored.
+After the nodes become available, the workload is restored.
 
 .. _cce_faq_00120__section19793128323:
 
@@ -111,14 +111,14 @@ Check whether such a security group policy exists.
 
 When a node is added to an existing cluster, if an extended CIDR block is added to the VPC corresponding to the subnet and the subnet is an extended CIDR block, you need to add the following three security group rules to the master node security group (the group name is in the format of **Cluster name-cce-control-Random number**). These rules ensure that the nodes added to the cluster are available. (This step is not required if an extended CIDR block has been added to the VPC during cluster creation.)
 
-For details about security groups, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`.
+For details about security groups, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`
 
 .. _cce_faq_00120__section165209286116:
 
 Check Item 6: Whether the Disk Is Abnormal
 ------------------------------------------
 
-A 100 GiB data disk dedicated for Docker is attached to the new node. If the data disk is uninstalled or damaged, the Docker service becomes abnormal and the node becomes unavailable.
+A 100-GiB data disk dedicated for Docker is attached to the new node. If the data disk is uninstalled or damaged, the Docker service becomes abnormal and the node becomes unavailable.
 
 Click the node name to check whether the data disk mounted to the node is uninstalled. If the disk is uninstalled, mount a data disk to the node again and restart the node. Then the node can be recovered.
 
@@ -131,7 +131,7 @@ Check Item 7: Whether Internal Components Are Normal
 
 #. Run the following command to check whether the PaaS components are normal:
 
-   systemctl status kubelet
+   **systemctl status kubelet**
 
    If the command is successfully executed, the status of each component is displayed as **active**, as shown in the following figure.
 
@@ -197,9 +197,9 @@ Check Item 10: Whether the Docker Service Is Normal
 
       docker ps -a | wc -l
 
-   If the command is suspended, the command execution takes a long time, or there are more than 1000 abnormal containers, check whether workloads are repeatedly created and deleted. If a large number of containers are frequently created and deleted, a large number of abnormal containers may occur and cannot be cleared in a timely manner.
+   If the command is suspended, the command execution takes a long time, or there are more than 1000 abnormal containers, check whether workloads are repeatedly created and deleted. If a large number of containers are frequently created and deleted, there may be a large number of abnormal containers, and these containers cannot be cleared in a timely manner.
 
    In this case, stop repeated creation and deletion of the workload or use more nodes to share the workload. Generally, the nodes will be restored after a period of time. If necessary, run the **docker rm** {*container_id*} command to manually clear abnormal containers.
 
-.. |image1| image:: /_static/images/en-us_image_0000001981275677.png
-.. |image2| image:: /_static/images/en-us_image_0000001950316192.png
+.. |image1| image:: /_static/images/en-us_image_0000002065637706.png
+.. |image2| image:: /_static/images/en-us_image_0000002101677721.png

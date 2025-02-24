@@ -30,7 +30,7 @@ CCE works closely with multiple cloud services to support computing, storage, ne
 
 -  Compute services
 
-   When you create a node in a cluster, a cloud server is created accordingly. The prerequisite is that CCE has obtained the permissions to access Elastic Cloud Service (ECS) and Bare Metal Server (BMS).
+   When you create a node in a cluster, a cloud server is created accordingly. The prerequisite is that CCE has obtained the permissions to access Elastic Cloud Server (ECS).
 
 -  Storage services
 

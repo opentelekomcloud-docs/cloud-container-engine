@@ -56,6 +56,6 @@ Check whether the CUDA version supported by the NVIDIA driver version of the nod
 Helpful Links
 -------------
 
-:ref:`What Should I Do If an Error Occurs When Deploying a Service on the GPU Node? <cce_faq_00109>`
+:ref:`What Should I Do If an Error Occurs When I Deploy a Service on the GPU Node? <cce_faq_00109>`
 
-.. |image1| image:: /_static/images/en-us_image_0000001981275029.png
+.. |image1| image:: /_static/images/en-us_image_0000002065637230.png

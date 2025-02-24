@@ -13,7 +13,7 @@ Precautions
 -----------
 
 -  The snapshot function is available **only for clusters of v1.15 or later** and requires the CSI-based Everest add-on.
--  The subtype (common I/O, high I/O, or ultra-high I/O), disk mode (SCSI or VBD), data encryption, sharing status, and capacity of an EVS disk created from a snapshot must be the same as those of the disk associated with the snapshot. These attributes cannot be modified after being checked or configured.
+-  The subtype (common I/O, high I/O, or ultra-high I/O), disk mode (VBD or SCSI), data encryption, sharing status, and capacity of an EVS disk created from a snapshot must be the same as those of the disk associated with the snapshot. These attributes cannot be modified after being checked or configured.
 -  Snapshots can be created only for EVS disks that are available or in use, and a maximum of seven snapshots can be created for a single EVS disk.
 -  Snapshots can be created only for PVCs created using the storage class (whose name starts with csi) provided by the Everest add-on. Snapshots cannot be created for PVCs created using the FlexVolume storage class whose name is ssd, sas, or sata.
 -  Snapshot data of encrypted disks is stored encrypted, and that of non-encrypted disks is stored non-encrypted.
@@ -63,9 +63,6 @@ Creating a Snapshot
    kind: VolumeSnapshot
    apiVersion: snapshot.storage.k8s.io/v1beta1
    metadata:
-     finalizers:
-       - snapshot.storage.kubernetes.io/volumesnapshot-as-source-protection
-       - snapshot.storage.kubernetes.io/volumesnapshot-bound-protection
      name: cce-disksnap-test   # Snapshot name
      namespace: default
    spec:
@@ -88,7 +85,7 @@ The disk type, encryption setting, and disk mode of the created EVS PVC are cons
 
    -  **Resource Tag**: Resource tags can be added to classify resources, which is supported only when the Everest version in the cluster is 2.1.39 or later.
 
-      You can create **predefined tags** on the TMS console. The predefined tags are available to all resources that support tags. You can use predefined tags to improve the tag creation and resource migration efficiency.
+      You can create **predefined tags** on the TMS console. The predefined tags are available to all resources that support tags. You can use these tags to improve the tag creation and resource migration efficiency.
 
       CCE automatically creates system tags **CCE-Cluster-ID=**\ *{Cluster ID}*, **CCE-Cluster-Name=**\ *{Cluster name}*, and **CCE-Namespace=**\ *{Namespace name}*. These tags cannot be modified.
 

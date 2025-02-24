@@ -54,7 +54,14 @@ Phases of CCE Cluster Versions
 CCE Cluster Versions
 --------------------
 
-CCE clusters are updated according to the versions available in the Kubernetes community. This means that a CCE cluster version is made up of both the Kubernetes community version number and the CCE patch version number. The CCE cluster version is in the format for *vX.Y.Z-rN*, such as **v1.28.2-r0**.
+CCE clusters are updated according to the versions available in the Kubernetes community. This means that a CCE cluster version is made up of both the Kubernetes community version number and the CCE patch version number. The CCE cluster version is in the format for *vX.Y.Z-rN*, such as **v1.30.4-r0**.
 
--  A Kubernetes version is in the format of *X.Y*, which inherits the community version policy. The major Kubernetes version is represented by *X*, while the minor Kubernetes version is represented by *Y*. For details, see `the Kubernetes version policies <https://kubernetes.io/releases/version-skew-policy/#supported-versions>`__.
--  A CCE patch version is in the format of *Z-rN*, for example, **v1.28**. New patches are released on an irregular basis for Kubernetes versions that are still in the maintenance period. If a new patch version offers new features that were not present in the previous version, the *Z* number will increase. If a new patch version provides bug fixes, vulnerability fixes, or scenario optimization compared to the previous version, the *N* number will increase.
+-  A Kubernetes version is in the format of *X.Y.Z*, which inherits the community version policy. The major Kubernetes version is represented by *X*, the minor Kubernetes version is represented by *Y*, and the Kubernetes patch version is represented by *Z*. For details, see `the Kubernetes version policies <https://kubernetes.io/releases/version-skew-policy/#supported-versions>`__. For details about the Kubernetes versions supported by CCE, see :ref:`Kubernetes Version Release Notes <cce_10_0068>`.
+-  A CCE patch version is in the format of, for example, v1.30.\ **4-rN**. New patches are released on an irregular basis for Kubernetes versions that are still in the maintenance period. If a new patch version provides new features, bug fixes, vulnerability fixes, or scenario optimizations compared with the previous version, the *N* version number increases. For details about the patch versions, see :ref:`Patch Versions <cce_10_0405>`.
+
+Cluster Upgrade
+---------------
+
+Periodically upgrade CCE clusters for better user experience. Using an EOS version, you cannot obtain technical support and CCE SLA assurance. Upgrade CCE clusters in a timely manner.
+
+On the CCE console, you can easily upgrade clusters in a visualized manner, improving the stability and reliability of clusters. For details, see :ref:`Upgrade Overview <cce_10_0197>`.

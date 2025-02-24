@@ -10,7 +10,7 @@ If you want to add a newly created ECS to a node pool in a cluster, or remove a 
 .. important::
 
    -  When an ECS is accepted for management, the ECS OS will be reset to the standard image provided by CCE to ensure node stability.
-   -  LVM information, including volume groups (VGs), logical volumes (LVs), and physical volumes (PVs) will be deleted from the system disks and data disks attached to the selected ECSs during acceptance. Ensure that the information has been backed up.
+   -  LVM information, including volume groups (VGs), logical volumes (LVs), and physical volumes (PVs), will be deleted from the system disks and data disks attached to the selected ECSs during acceptance. Ensure that the information has been backed up.
    -  During the acceptance of an ECS, do not perform any operation on the ECS through the ECS console.
    -  After a node is managed by a node pool, if a scaling-in task is triggered in the node pool, the node will be deleted.
 
@@ -27,7 +27,7 @@ Procedure
    -  The billing mode of the nodes must be the same as that of the current node pool. For example, a pay-per-use node pool can accept only pay-per-use nodes.
    -  The cloud server group of the nodes must be the same as that of the current node pool.
    -  The nodes must be running and cannot be labeled with **CCE-Dynamic-Provisioning-Node**.
-   -  Data disks must be attached to the nodes. A local disk (disk-intensive disk) or a data disk of at least 20 GiB can be attached to the node, and any data disks already attached cannot be smaller than 10 GiB.
+   -  Data disks must be attached to the nodes to be managed if the system components of these nodes are separately stored. A local disk (disk-intensive disk) or a data disk of at least 20 GiB can be attached to the node, and any data disks already attached cannot be smaller than 10 GiB.
    -  The flavor of the nodes must be at least 2 vCPUs and 4 GiB memory, and only one NIC can be bound to each of the nodes.
    -  Only the cloud servers that have the same flavor, AZ, resource reservation, system disk, and data disk configurations as the node pool can be added for batch acceptance.
    -  Partitioned disks on cloud servers will not be accepted as data disks. Back up data and clear the disks before node acceptance.

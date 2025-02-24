@@ -38,12 +38,12 @@ CCE supports containerd and Docker. **containerd is recommended for its shorter 
 
 .. _cce_10_0462__section159298451879:
 
-Mapping between Node OSs and Container Engines
+Mapping Between Node OSs and Container Engines
 ----------------------------------------------
 
 .. note::
 
-   -  VPC network clusters of v1.23 or later versions support containerd. Tunnel network clusters of v1.23.2-r0 or later versions support containerd.
+   VPC network clusters of v1.23 or later versions support containerd. Tunnel network clusters of v1.23.2-r0 or later versions support containerd.
 
 .. table:: **Table 2** Node OSs and container engines in CCE clusters
 
@@ -170,6 +170,10 @@ Container Engine Versions
 
 -  Docker
 
-   -  EulerOS/CentOS: docker-engine 18.9.0, a Docker version customized for CCE. Security vulnerabilities will be fixed in a timely manner.
+   -  EulerOS/CentOS: docker-engine 18.9.0, a Docker version customized for CCE. Security vulnerabilities will be fixed promptly.
 
 -  containerd: 1.6.14
+
+   .. note::
+
+      If the cluster version is v1.28.8-r0, v1.29.4-r0, v1.30.1-r0, or later, upgrade containerd to 1.7.16.

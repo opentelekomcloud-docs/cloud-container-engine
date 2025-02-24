@@ -1,6 +1,6 @@
-:original_name: cce_bestpractice_00253.html
+:original_name: cce_bestpractice_00253_0.html
 
-.. _cce_bestpractice_00253:
+.. _cce_bestpractice_00253_0:
 
 Dynamically Creating an SFS Turbo Subdirectory Using StorageClass
 =================================================================

@@ -23,9 +23,9 @@ Notes and Constraints
 Precautions
 -----------
 
--  Removing a node will lead to pod migration, which may affect services. Perform this operation during off-peak hours.
+-  When you remove a node, the pods running on it will need to migrate to another node, which could potentially impact your services. To avoid any disruptions, drain the node so that pods can be gracefully evicted to other available nodes. Additionally, perform this task during off-peak hours.
 -  Unexpected risks may occur during the operation. Back up data beforehand.
--  While the node is being deleted, the backend will set the node to the unschedulable state.
+-  When a node is removed, the backend will make it unschedulable.
 -  After you remove the node and re-install the OS, the original LVM partitions will be cleared and the data managed by LVM will be cleared. Therefore, back up data in advance.
 
 Procedure

@@ -10,7 +10,7 @@ Application Scenarios
 
 This section describes how to migrate services from a cluster of an earlier version to a cluster of a later version in CCE.
 
-This operation is applicable when a cross-version cluster upgrade is required (for example, upgrade from v1.7.\* or v1.9.\* to 1.17.*) and new clusters can be created for service migration.
+This operation is applicable when a cross-version cluster upgrade is required (for example, upgrade from v1.19.\* to v1.28.*) and new clusters can be created for service migration.
 
 Prerequisites
 -------------
@@ -20,7 +20,7 @@ Prerequisites
    +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Category                          | Description                                                                                                                                                                                                                    |
    +===================================+================================================================================================================================================================================================================================+
-   | Cluster                           | NodeIP-related: Check whether node IP addresses (including EIPs) of the cluster before the migration have been used in other configurations or whitelists.                                                                     |
+   | Cluster                           | NodeIP-related: Check whether node IP addresses (including EIPs) of the cluster before the migration have been used in other configurations or trustlists.                                                                     |
    +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Workloads                         | Record the number of workloads for post-migration check.                                                                                                                                                                       |
    +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

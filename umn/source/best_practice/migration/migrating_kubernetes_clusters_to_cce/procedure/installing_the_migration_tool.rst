@@ -31,7 +31,7 @@ MinIO can be installed in any of the following locations:
 
 -  Idle nodes in the cluster
 
-   You can remotely log in to a node and install MinIO or install the containerized MinIO. For details, see `Velero official documentation <https://velero.io/docs/v1.13/contributions/minio/#set-up-server>`__.
+   You can remotely log in to a node to install MinIO or install the containerized MinIO. For details, see `Velero official document <https://velero.io/docs/v1.13/contributions/minio/#set-up-server>`__.
 
    .. important::
 
@@ -58,7 +58,7 @@ In this example, MinIO is installed on a temporary ECS outside the cluster.
 
    Set the username and password of MinIO.
 
-   The username and password configured using this method are temporary environment variables and must be reset after the service is restarted. Otherwise, the default root credential **minioadmin:minioadmin** will be used to create the service.
+   The username and password set using this method are temporary environment variables and must be reset after the service is restarted. Otherwise, the default root credential **minioadmin:minioadmin** will be used to create the service.
 
    .. code-block::
 

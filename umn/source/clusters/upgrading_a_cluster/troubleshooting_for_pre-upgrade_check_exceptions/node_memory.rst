@@ -8,7 +8,7 @@ Node Memory
 Check Items
 -----------
 
-Check whether the memory usage of the node exceeds 90%.
+Check whether the node's memory usage is above 90%.
 
 Solution
 --------

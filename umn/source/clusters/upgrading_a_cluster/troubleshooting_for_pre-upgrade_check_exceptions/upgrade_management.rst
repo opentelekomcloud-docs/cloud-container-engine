@@ -18,4 +18,4 @@ CCE may temporarily restrict the cluster upgrade due to the following reasons:
 -  The cluster is identified as the core production cluster.
 -  Other O&M tasks are being or will be performed, for example, 3-AZ reconstruction on master nodes.
 
-To resolve this issue, contact technical support.
+To resolve this issue, contact technical support based on logs displayed on the console.

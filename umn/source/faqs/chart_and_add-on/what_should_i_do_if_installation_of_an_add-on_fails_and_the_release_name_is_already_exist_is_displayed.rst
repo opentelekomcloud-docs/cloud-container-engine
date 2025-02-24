@@ -18,7 +18,7 @@ The add-on release record remains in the Kubernetes cluster. Generally, it is be
 Solution
 --------
 
-Use kubectl to connect to the cluster and manually clear the Secret and Configmap corresponding to add-on release. The following uses autoscaler add-on release as an example.
+Use kubectl to connect to the cluster and manually clear the Secret and ConfigMap corresponding to the add-on release. The following uses autoscaler add-on release as an example.
 
 #. Connect to the cluster using kubectl, and run the following command to view the Secret list of add-on releases:
 
@@ -36,7 +36,7 @@ Use kubectl to connect to the cluster and manually clear the Secret and Configma
 
    |image2|
 
-#. If the add-on is created when Helm v2 is used, CCE automatically bumps the v2 release in Configmaps to v3 release in Secrets when viewing the add-ons and their details. The v2 release in the original Configmap is not deleted. Run the following command to view the ConfigMap list of add-on releases:
+#. If the add-on is created when Helm v2 is used, CCE automatically bumps the v2 release in ConfigMaps to v3 release in Secrets when viewing the add-ons and their details. The v2 release in the original ConfigMap is not deleted. Run the following command to view the ConfigMap list of add-on releases:
 
    **kubectl get configmap -A \| grep cceaddon**
 
@@ -56,13 +56,13 @@ Use kubectl to connect to the cluster and manually clear the Secret and Configma
 
       Deleting resources in kube-system is a high-risk operation. Ensure that the command is correct before running it to prevent resources from being deleted by mistake.
 
-#. On the CCE console, install add-on and then uninstall it. Ensure that the residual add-on resources are cleared. After the uninstall is complete, install the add-on again.
+#. On the CCE console, install the add-on and then uninstall it. Ensure that the residual add-on resources are cleared. After the uninstallation is complete, install the add-on again.
 
    .. note::
 
-      When installing the add-on for the first time, you may find it abnormal after the installation due to the residual resources of the previous add-on release, which is normal. In this case, you can uninstall the add-on on the console to ensure that the residual resources are cleared and the add-on can run properly after being installed again.
+      During the initial installation of the add-on, it is possible to encounter abnormal behavior caused by residual resources from a previous add-on release. This is a normal occurrence. In such cases, you can resolve the issue by uninstalling the add-on from the console. This will ensure that any remaining resources are cleared, allowing for a proper installation of the add-on again.
 
-.. |image1| image:: /_static/images/en-us_image_0000001981435441.png
-.. |image2| image:: /_static/images/en-us_image_0000001981435457.png
-.. |image3| image:: /_static/images/en-us_image_0000001950316060.png
-.. |image4| image:: /_static/images/en-us_image_0000001950316068.png
+.. |image1| image:: /_static/images/en-us_image_0000002065637598.png
+.. |image2| image:: /_static/images/en-us_image_0000002101596161.png
+.. |image3| image:: /_static/images/en-us_image_0000002065637590.png
+.. |image4| image:: /_static/images/en-us_image_0000002065637614.png

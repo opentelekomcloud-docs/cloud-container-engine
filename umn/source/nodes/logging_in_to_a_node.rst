@@ -5,10 +5,11 @@
 Logging In to a Node
 ====================
 
-Notes and Constraints
----------------------
+Prerequisites
+-------------
 
--  If you use SSH to log in to a node (an ECS), ensure that the ECS already has an EIP (a public IP address).
+-  Before you log in to a node using SSH, ensure that the SSH port (22 by default) is enabled in the security group of the node.
+-  Before you log in to a node (an ECS) using SSH through the Internet, ensure that the ECS already has an EIP bound.
 -  Only login to a running ECS is allowed.
 -  Only the user linux can log in to a Linux server.
 

@@ -52,7 +52,7 @@ The Everest add-on in CCE presets the options described in :ref:`Table 1 <cce_10
    |                         |                       |    The **nosharecache** setting will affect the performance. The mounting information must be obtained for each mounting, which increases the communication overhead with the NFS server and the memory consumption of the NFS clients. In addition, the **nosharecache** setting on the NFS clients may lead to inconsistent caches. Determine whether to use **nosharecache** based on site requirements. |
    +-------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-You can set other mount options if needed. For details, see `Mounting an NFS File System to ECSs (Linux) <https://docs.otc.t-systems.com/en-us/usermanual/sfs/en-us_topic_0034428728.html>`__.
+You can set other mount options if needed. For details, see `Mounting an NFS File System to ECSs (Linux) <https://docs.otc.t-systems.com/en-us/usermanual/sfs/sfs_01_1001.html>`__.
 
 Configuring Mount Options in a PV
 ---------------------------------
@@ -85,7 +85,7 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
 
             storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
         persistentVolumeReclaimPolicy: Retain    # Reclaim policy
-        storageClassName: csi-sfsturbo           # Storage class name of the SFS Turbo file system
+        storageClassName: csi-sfsturbo           # StorageClass name of the SFS Turbo file system
         mountOptions:                            # Mount options
         - vers=3
         - nolock
@@ -104,7 +104,7 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
 
          kubectl get pod | grep web-sfsturbo
 
-      Command output:
+      The command output is as follows:
 
       .. code-block::
 

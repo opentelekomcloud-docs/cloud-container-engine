@@ -8,7 +8,7 @@ What Should I Do If a Namespace Fails to Be Deleted Due to an APIService Object 
 Symptom
 -------
 
-The namespace remains in the Deleting state. The error message "DiscoveryFailed" is displayed in **status** in the YAML file.
+The namespace remains in the **Deleting** state. The error message "DiscoveryFailed" is displayed in **status** in the YAML file.
 
 |image1|
 
@@ -33,4 +33,4 @@ Use either of the following methods:
 -  Rectify the APIService object in the error message. If the object is created by an add-on, ensure that the pod where the add-on locates is running properly.
 -  Delete the APIService object in the error message. If the object is created by an add-on, uninstall the add-on.
 
-.. |image1| image:: /_static/images/en-us_image_0000001981275621.png
+.. |image1| image:: /_static/images/en-us_image_0000002065479290.png

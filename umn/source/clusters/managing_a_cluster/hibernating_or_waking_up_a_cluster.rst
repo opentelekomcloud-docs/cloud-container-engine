@@ -8,7 +8,7 @@ Hibernating or Waking Up a Cluster
 Scenario
 --------
 
-If a pay-per-use cluster is not needed temporarily, hibernate it to reduce costs.
+If a cluster is not needed temporarily, hibernate it to reduce costs.
 
 After a cluster is hibernated, resources such as workloads cannot be created or managed in the cluster.
 

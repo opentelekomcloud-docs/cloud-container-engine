@@ -11,7 +11,7 @@ Scenario
 A Service is exposed on each node's IP address at a static port (NodePort). When you create a NodePort Service, Kubernetes automatically allocates an internal IP address (ClusterIP) of the cluster. When clients outside the cluster access <NodeIP>:<NodePort>, the traffic will be forwarded to the target pod through the ClusterIP of the NodePort Service.
 
 
-.. figure:: /_static/images/en-us_image_0000001950316596.png
+.. figure:: /_static/images/en-us_image_0000002101678557.png
    :alt: **Figure 1** NodePort access
 
    **Figure 1** NodePort access
@@ -130,7 +130,7 @@ You can configure Service access using kubectl. This section uses an Nginx workl
 
    **kubectl create -f nginx-nodeport-svc.yaml**
 
-   If information similar to the following is displayed, the Service is being created.
+   If information similar to the following is displayed, the Service is being created:
 
    .. code-block::
 
@@ -138,7 +138,7 @@ You can configure Service access using kubectl. This section uses an Nginx workl
 
    **kubectl get svc**
 
-   If information similar to the following is displayed, the Service has been created.
+   If information similar to the following is displayed, the Service has been created:
 
    .. code-block::
 

@@ -5,7 +5,7 @@
 Configuring Tolerance Policies
 ==============================
 
-Tolerations allow the scheduler to schedule pods to nodes with target taints. Tolerances work with :ref:`node taints <cce_10_0352>`. Each node allows one or more taints. If no tolerance is configured for a pod, the scheduler will schedule the pod based on node taint policies to prevent the pod from being scheduled to an inappropriate node.
+Tolerations allow the scheduler to schedule pods to nodes with target taints. Tolerances work with :ref:`node taints <cce_10_0352>`. Each node allows one or more taints. If no tolerance is configured for a pod, the scheduler will schedule the pod based on node taint policies to prevent the pod from being scheduled to an inappropriate node. For more examples, see `Taints and Tolerations <https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/>`__.
 
 The following table shows how taint policies and tolerations affect pod running.
 

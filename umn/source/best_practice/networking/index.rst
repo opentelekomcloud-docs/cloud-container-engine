@@ -11,7 +11,7 @@ Networking
 -  :ref:`Obtaining the Client Source IP Address for a Container <cce_bestpractice_00035>`
 -  :ref:`CoreDNS Configuration Optimization <cce_bestpractice_10006>`
 -  :ref:`Pre-Binding Container ENI for CCE Turbo Clusters <cce_bestpractice_10010>`
--  :ref:`Retaining the Original IP Address of a Pod <cce_bestpractice_10041>`
+-  :ref:`Accessing an IP Address Outside a Cluster That Uses a VPC Network Using Source Pod IP Addresses in the Cluster <cce_bestpractice_10041>`
 
 .. toctree::
    :maxdepth: 1
@@ -23,4 +23,4 @@ Networking
    obtaining_the_client_source_ip_address_for_a_container
    coredns_configuration_optimization/index
    pre-binding_container_eni_for_cce_turbo_clusters
-   retaining_the_original_ip_address_of_a_pod
+   accessing_an_ip_address_outside_a_cluster_that_uses_a_vpc_network_using_source_pod_ip_addresses_in_the_cluster

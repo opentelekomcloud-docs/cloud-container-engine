@@ -5,7 +5,7 @@
 (Recommended) Creating an SFS Turbo Subdirectory Using a Dynamic PV
 ===================================================================
 
-When an SFS Turbo volume is mounted to a workload container, the root directory is mounted to the container by default. However, the minimum capacity of an SFS Turbo volume is 500 GiB, which exceeds the capacity required by most workloads, leading to a waste of storage resources. To properly use the storage capacity, CCE allows you to dynamically create an SFS Turbo subdirectory when creating a PVC so that different workloads can share one SFS Turbo volume.
+When an SFS Turbo volume is mounted to a workload container, the root directory is mounted to the container by default. However, the minimum capacity of an SFS Turbo volume is 500 GiB, which exceeds the capacity required by most workloads, leading to a waste of storage resources. CCE enables efficient utilization of storage capacity by creating SFS Turbo subdirectories dynamically when you create a PVC. This allows multiple workloads to share the SFS Turbo file system.
 
 Prerequisites
 -------------
@@ -30,7 +30,7 @@ Dynamically Creating an SFS Turbo Subdirectory on the Console
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Creation Method                   | Select **New subdirectory**.                                                                                                                                                                                              |
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Storage Classes                   | Choose **csi-sfsturbo**.                                                                                                                                                                                                  |
+   | Storage Classes                   | Choose **csi-sfsturbo**. You can customize a StorageClass and configure its reclaim policy and binding mode. For details, see :ref:`Creating a StorageClass Using the CCE Console <cce_10_0380__section11263115719212>`.  |
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Access Mode                       | SFS Turbo volumes support only **ReadWriteMany**, indicating that a storage volume can be mounted to multiple nodes in read/write mode. For details, see :ref:`Volume Access Modes <cce_10_0378__section43881411172418>`. |
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -76,8 +76,8 @@ Dynamically Creating an SFS Turbo Subdirectory Using kubectl
           - ReadWriteMany      # ReadWriteMany must be selected for SFS Turbo.
         resources:
           requests:
-            storage: 10Gi      # This parameter is only used for verification for the PVCs of the SFS Turbo subdirectory type. The value cannot be empty or 0.
-        storageClassName: csi-sfsturbo     # Storage class name of the SFS Turbo file system
+            storage: 10Gi      # For SFS Turbo subdirectory PVCs, this configuration is meaningless and only used for verification (the value cannot be empty or 0) (the value cannot be empty or 0).
+        storageClassName: csi-sfsturbo     # StorageClass name of the SFS Turbo file system
 
    .. table:: **Table 1** Key parameters
 
@@ -103,7 +103,7 @@ Dynamically Creating an SFS Turbo Subdirectory Using kubectl
       +------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | storage                      | Yes                   | Requested capacity in the PVC, in Gi.                                                                                                                                                                                                                           |
       |                              |                       |                                                                                                                                                                                                                                                                 |
-      |                              |                       | This parameter is only used for verification for the PVCs of the SFS Turbo subdirectory type. The value cannot be empty or **0**, and can be fixed at **10** because any value you set does not take effect.                                                    |
+      |                              |                       | This parameter is only used for verification for SFS Turbo subdirectory PVCs. The value cannot be empty or **0**, and can be fixed at **10** because any value you set does not take effect.                                                                    |
       +------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Run the following command to create a PVC:

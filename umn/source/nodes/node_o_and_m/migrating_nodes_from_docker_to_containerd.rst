@@ -10,7 +10,7 @@ Kubernetes has removed dockershim from v1.24 and does not support Docker by defa
 Prerequisites
 -------------
 
--  At least one cluster that supports containerd nodes has been created. For details, see :ref:`Mapping between Node OSs and Container Engines <cce_10_0462__section159298451879>`.
+-  At least one cluster that supports containerd nodes has been created. For details, see :ref:`Mapping Between Node OSs and Container Engines <cce_10_0462__section159298451879>`.
 -  There is a Docker node or Docker node pool in your cluster.
 
 Precautions
@@ -19,8 +19,8 @@ Precautions
 -  Theoretically, migration during container running will interrupt services for a short period of time. Therefore, it is strongly recommended that the services to be migrated have been deployed as multi-instance. In addition, you are advised to test the migration impact in the test environment to minimize potential risks.
 -  containerd cannot build images. Do not use the **docker build** command to build images on containerd nodes. For other differences between Docker and containerd, see :ref:`Container Engines <cce_10_0462>`.
 
-Migrating a Node
-----------------
+Procedure for Migrating Nodes in the Default Node Pool
+------------------------------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
@@ -34,8 +34,8 @@ Migrating a Node
 
    When the node status is **Running**, you can see that the node version is switched to containerd. You can log in to the node and run containerd commands such as **crictl** to view information about the containers running on the node.
 
-Migrating a Node Pool
----------------------
+Procedure for Migrating Nodes in a Custom Node Pool
+---------------------------------------------------
 
 You can :ref:`copy a node pool <cce_10_0655>`, set the container engine of the new node pool to containerd, and keep other configurations the same as those of the original Docker node pool.
 
@@ -43,7 +43,7 @@ You can :ref:`copy a node pool <cce_10_0655>`, set the container engine of the n
 
 #. In the navigation pane, choose **Nodes**. On the **Node Pools** tab page, locate the Docker node pool to be copied and choose **More** > **Copy** in the **Operation** column.
 
-#. On the **Compute Settings** area, set **Container Engine** to **containerd** and modify other parameters as required.
+#. In the **Configurations** area, set **Container Engine** to **containerd** and modify other parameter settings as needed to create the node pool.
 
 #. Scale the number of created containerd node pools to the number of original Docker node pools and delete nodes from the Docker node pools one by one.
 

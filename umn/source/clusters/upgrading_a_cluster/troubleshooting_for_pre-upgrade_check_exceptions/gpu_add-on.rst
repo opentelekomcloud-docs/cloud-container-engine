@@ -17,13 +17,9 @@ The GPU add-on driver needs to be configured by yourself. Check the compatibilit
 
 Perform the following operations to check the upgrade of the GPU driver to the target version and current driver configuration of GPU add-on:
 
-#. Log in to the CCE console and click **Add-ons** to view the GPU add-on.
+#. Log in to the CCE console. In the navigation pane, choose **Add-ons**. Then, check the CCE AI Suite (NVIDIA GPU) add-on.
 
-   .. note::
-
-      **gpu-beta** is the same as **gpu-device-plugin**. **gpu-beta** is renamed **gpu-device-plugin** in versions later than 2.0.0.
-
-#. Click **Upgrade** of the add-on to view the target version and driver configuration of the add-on.
+#. Click **Upgrade** of the add-on and check the target version and driver version of the add-on.
 
 #. Verify the upgrade of the GPU driver to the target version in the test environment, configure the current GPU driver, and check whether the created GPU node can run properly.
 

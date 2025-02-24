@@ -6,7 +6,7 @@ Product Bulletin
 ================
 
 -  :ref:`Kubernetes Version Policy <cce_bulletin_0033>`
--  :ref:`CCE Console Upgrade <cce_bulletin_0061>`
+-  :ref:`EOM of CentOS <cce_bulletin_0098>`
 -  :ref:`Security Vulnerability Responses <cce_bulletin_0169>`
 
 .. toctree::
@@ -14,5 +14,5 @@ Product Bulletin
    :hidden: 
 
    kubernetes_version_policy
-   cce_console_upgrade
+   eom_of_centos
    security_vulnerability_responses/index

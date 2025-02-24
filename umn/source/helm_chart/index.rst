@@ -5,7 +5,7 @@
 Helm Chart
 ==========
 
--  :ref:`Overview <cce_10_0191>`
+-  :ref:`Overview of a Chart <cce_10_0191>`
 -  :ref:`Deploying an Application from a Chart <cce_10_0146>`
 -  :ref:`Differences Between Helm v2 and Helm v3 and Adaptation Solutions <cce_10_0421>`
 -  :ref:`Deploying an Application Through the Helm v2 Client <cce_10_0420>`
@@ -16,7 +16,7 @@ Helm Chart
    :maxdepth: 1
    :hidden: 
 
-   overview
+   overview_of_a_chart
    deploying_an_application_from_a_chart
    differences_between_helm_v2_and_helm_v3_and_adaptation_solutions
    deploying_an_application_through_the_helm_v2_client

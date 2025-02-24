@@ -16,7 +16,7 @@ The cluster-internal domain name format is *<Service name>*.\ *<Namespace of the
 
 .. _cce_10_0011__fig192245420557:
 
-.. figure:: /_static/images/en-us_image_0000001981436829.png
+.. figure:: /_static/images/en-us_image_0000002101679261.png
    :alt: **Figure 1** Intra-cluster access (ClusterIP)
 
    **Figure 1** Intra-cluster access (ClusterIP)
@@ -32,7 +32,7 @@ Creating a ClusterIP Service
    -  **Service Type**: Select **ClusterIP**.
    -  **Namespace**: namespace that the workload belongs to.
    -  **Selector**: Add a label and click **Confirm**. The Service will use this label to select pods. You can also click **Reference Workload Label** to use the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
-   -  **IPv6**: This function is disabled by default. After this function is enabled, the cluster IP address of the Service changes to an IPv6 address. **This parameter is available only in clusters of v1.15 or later with IPv6 enabled (set during cluster creation).**
+   -  **Protocol Version**: Select the IP address of different versions based on service requirements. **This parameter is available only in clusters of v1.15 or later with IPv6 enabled (set during cluster creation).**
    -  **Ports**
 
       -  **Protocol**: protocol used by the Service.
@@ -119,7 +119,7 @@ You can configure Service access using kubectl. This section uses an Nginx workl
 
    **kubectl create -f nginx-clusterip-svc.yaml**
 
-   If information similar to the following is displayed, the Service is being created.
+   If information similar to the following is displayed, the Service is being created:
 
    .. code-block::
 

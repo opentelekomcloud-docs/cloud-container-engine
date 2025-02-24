@@ -23,24 +23,29 @@ Notes and Constraints
 Installing the Add-on
 ---------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane, locate **CCE AI Suite (NVIDIA GPU)** on the right, and click **Install**.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate **CCE AI Suite (NVIDIA GPU)** on the right, and click **Install**.
 #. Configure the add-on parameters.
 
-   -  **NVIDIA Driver**: Enter the link for downloading the NVIDIA driver. All GPU nodes in the cluster will use this driver.
+   .. table:: **Table 1** Add-on parameters
 
-      .. important::
+      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                |
+      +===================================+============================================================================================================================================================================================================================================================================================================================================+
+      | Default Cluster Driver            | All GPU nodes in a cluster use the same driver. You can select a proper GPU driver version or customize the driver link and enter the download link of the NVIDIA driver.                                                                                                                                                                  |
+      |                                   |                                                                                                                                                                                                                                                                                                                                            |
+      |                                   | .. important::                                                                                                                                                                                                                                                                                                                             |
+      |                                   |                                                                                                                                                                                                                                                                                                                                            |
+      |                                   |    NOTICE:                                                                                                                                                                                                                                                                                                                                 |
+      |                                   |                                                                                                                                                                                                                                                                                                                                            |
+      |                                   |    -  If the download link is a public network address, for example, **https://us.download.nvidia.com/tesla/470.103.01/NVIDIA-Linux-x86_64-470.103.01.run**, bind an EIP to each GPU node. For details about how to obtain the driver link, see :ref:`Obtaining the Driver Link from Public Network <cce_10_0141__section95451728192112>`. |
+      |                                   |    -  If the download link is an OBS URL, you do not need to bind an EIP to GPU nodes. For details about how to obtain the driver link, see :ref:`Obtaining the Driver Link from OBS <cce_10_0141__section14922133914508>`.                                                                                                                |
+      |                                   |    -  Ensure that the NVIDIA driver version matches the GPU node.                                                                                                                                                                                                                                                                          |
+      |                                   |    -  If the driver version is changed, restart the node to apply the change.                                                                                                                                                                                                                                                              |
+      +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-         -  If the download link is a public network address, for example, **https://us.download.nvidia.com/tesla/470.103.01/NVIDIA-Linux-x86_64-470.103.01.run**, bind an EIP to each GPU node. For details about how to obtain the driver link, see :ref:`Obtaining the Driver Link from Public Network <cce_10_0141__section95451728192112>`.
-         -  If the download link is an OBS URL, you do not need to bind an EIP to GPU nodes. For details about how to obtain the driver link, see :ref:`Obtaining the Driver Link from OBS <cce_10_0141__section14922133914508>`.
-         -  Ensure that the NVIDIA driver version matches the GPU node.
-         -  After the driver version is changed, restart the node for the change to take effect.
+   .. note::
 
-   -  **Driver Selection**: If you do not want all GPU nodes in a cluster to use the same driver, CCE allows you to install a different GPU driver for each node pool.
-
-      .. note::
-
-         -  The add-on installs the driver with the version specified by the node pool. The driver takes effect only for new pool nodes.
-         -  After the driver version is updated, it takes effect on the nodes newly added to the node pool. Existing nodes must restart to apply the changes.
+      After the add-on is installed, you can configure GPU virtualization and node pool drivers on the **Heterogeneous Resources** tab in **Settings**.
 
 #. Click **Install**.
 
@@ -87,7 +92,7 @@ Obtaining the Driver Link from Public Network
 
    .. _cce_10_0141__fig11696366517:
 
-   .. figure:: /_static/images/en-us_image_0000001981436885.png
+   .. figure:: /_static/images/en-us_image_0000002101679293.png
       :alt: **Figure 1** Setting parameters
 
       **Figure 1** Setting parameters
@@ -96,7 +101,7 @@ Obtaining the Driver Link from Public Network
 
    .. _cce_10_0141__fig7873421145213:
 
-   .. figure:: /_static/images/en-us_image_0000001981277029.png
+   .. figure:: /_static/images/en-us_image_0000002065480910.png
       :alt: **Figure 2** Driver information
 
       **Figure 2** Driver information
@@ -109,7 +114,7 @@ Obtaining the Driver Link from Public Network
 
       .. _cce_10_0141__fig5901194614534:
 
-      .. figure:: /_static/images/en-us_image_0000001981436901.png
+      .. figure:: /_static/images/en-us_image_0000002065639262.png
          :alt: **Figure 3** Obtaining the link
 
          **Figure 3** Obtaining the link
@@ -132,22 +137,32 @@ Obtaining the Driver Link from OBS
 Components
 ----------
 
-.. table:: **Table 1** Add-on components
+.. table:: **Table 2** Add-on components
 
-   +-------------------------+----------------------------------------------------+---------------+
-   | Component               | Description                                        | Resource Type |
-   +=========================+====================================================+===============+
-   | nvidia-driver-installer | Used for installing an NVIDIA driver on GPU nodes. | DaemonSet     |
-   +-------------------------+----------------------------------------------------+---------------+
+   +--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
+   | Component                | Description                                                                                                                                                                      | Resource Type |
+   +==========================+==================================================================================================================================================================================+===============+
+   | nvidia-driver-installer  | A workload for installing the NVIDIA GPU driver on a node, which only uses resources during the installation process (Once the installation is finished, no resources are used.) | DaemonSet     |
+   +--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
+   | nvidia-gpu-device-plugin | A Kubernetes device plugin that provides NVIDIA GPU heterogeneous compute for containers                                                                                         | DaemonSet     |
+   +--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
+   | nvidia-operator          | A component that provides NVIDIA GPU node management capabilities for clusters                                                                                                   | Deployment    |
+   +--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
 
 Change History
 --------------
 
-.. table:: **Table 2** Release history
+.. table:: **Table 3** Release history
 
    +-----------------------+---------------------------+---------------------------------------------------------------------+
    | Add-on Version        | Supported Cluster Version | New Feature                                                         |
    +=======================+===========================+=====================================================================+
+   | 2.7.13                | v1.28                     | -  Supported xGPU configuration by node pool.                       |
+   |                       |                           | -  Supported GPU rendering.                                         |
+   |                       | v1.29                     | -  Clusters 1.30 are supported.                                     |
+   |                       |                           |                                                                     |
+   |                       | v1.30                     |                                                                     |
+   +-----------------------+---------------------------+---------------------------------------------------------------------+
    | 2.6.4                 | v1.28                     | Updated the isolation logic of GPU cards.                           |
    |                       |                           |                                                                     |
    |                       | v1.29                     |                                                                     |
@@ -225,4 +240,4 @@ Change History
    |                       | v1.19                     |                                                                     |
    +-----------------------+---------------------------+---------------------------------------------------------------------+
 
-.. |image1| image:: /_static/images/en-us_image_0000001981277037.png
+.. |image1| image:: /_static/images/en-us_image_0000002065639258.png

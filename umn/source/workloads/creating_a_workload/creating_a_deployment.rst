@@ -122,15 +122,17 @@ Using the CCE Console
 
       -  **Load Affinity**: Common load affinity policies are offered for quick load affinity deployment.
 
-         -  **Multi-AZ deployment is preferred**: Workload pods are preferentially scheduled to nodes in different AZs through pod anti-affinity (**podAntiAffinity**). If all the nodes in the cluster are deployed in the same AZ, the pods will be scheduled to that AZ but onto different nodes for high availability. If there are fewer nodes than pods, the extra pods will fail to run.
+         -  **Not configured**: No load affinity policy is configured.
+         -  **Multi-AZ deployment preferred**: Workload pods are **preferentially** scheduled to nodes in different AZs through pod anti-affinity.
          -  **Forcible multi-AZ deployment**: Workload pods are forcibly scheduled to nodes in different AZs through pod anti-affinity (**podAntiAffinity**). If there are fewer AZs than pods, the extra pods will fail to run.
-         -  **Custom policies**: Affinity and anti-affinity policies can be customized as needed. For details, see :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
+         -  **Custom policies**: Affinity and anti-affinity policies can be customized. For details, see :ref:`Configuring Workload Affinity or Anti-affinity Scheduling (podAffinity or podAntiAffinity) <cce_10_0893>`.
 
       -  **Node Affinity**: Common load affinity policies are offered for quick load affinity deployment.
 
+         -  **Not configured**: No node affinity policy is configured.
          -  **Node Affinity**: Workload pods can be deployed on specified nodes through node affinity (**nodeAffinity**). If no node is specified, the pods will be randomly scheduled based on the default scheduling policy of the cluster.
          -  **Specified node pool scheduling**: Workload pods can be deployed in a specified node pool through node affinity (**nodeAffinity**). If no node pool is specified, the pods will be randomly scheduled based on the default scheduling policy of the cluster.
-         -  **Custom policies**: Affinity and anti-affinity policies can be customized as needed. For details, see :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
+         -  **Custom policies**: Affinity and anti-affinity policies can be customized. For details, see :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`.
 
    -  **Toleration**: Using both taints and tolerations allows (not forcibly) the pod to be scheduled to a node with the matching taints, and controls the pod eviction policies after the node where the pod is located is tainted. For details, see :ref:`Configuring Tolerance Policies <cce_10_0728>`.
 
@@ -143,6 +145,8 @@ Using the CCE Console
    -  **Network Configuration**
 
       -  Pod ingress/egress bandwidth limitation: You can set ingress/egress bandwidth limitation for pods. For details, see :ref:`Configuring QoS for a Pod <cce_10_0382>`.
+      -  Whether to enable a specified container network configuration: available only for clusters that support this function. After you enable a specified container network configuration, the workload will be created using the container subnet and security group in the configuration. For details, see :ref:`Binding a Subnet and Security Group to a Namespace or Workload Using a Container Network Configuration <cce_10_0196>`.
+      -  Specify the container network configuration name: Only the custom container network configuration whose associated resource type is workload can be selected.
       -  IPv6 shared bandwidth: available only for clusters that support this function. After this function is enabled, you can configure a shared bandwidth for a pod with IPv6 dual-stack ENIs. For details, see :ref:`Configuring Shared Bandwidth for a Pod with IPv6 Dual-Stack ENIs <cce_10_0604>`.
 
 #. Click **Create Workload** in the lower right corner.
@@ -261,7 +265,7 @@ The following procedure uses Nginx as an example to describe how to create a wor
       NAME           READY     UP-TO-DATE   AVAILABLE   AGE
       nginx          1/1       1            1           4m5s
 
-   **Parameter description**
+   **Parameters**
 
    -  **NAME**: Name of the application running in the pod.
    -  **READY**: indicates the number of available workloads. The value is displayed as "the number of available pods/the number of expected pods".

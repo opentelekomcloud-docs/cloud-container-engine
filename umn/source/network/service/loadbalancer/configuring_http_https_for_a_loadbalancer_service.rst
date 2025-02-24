@@ -21,10 +21,10 @@ Notes and Constraints
       +-------------------------+------------------------------------------------+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       |                         | Automatically creating a load balancer         | Yes                              | None                                                                                                                                                                               |
       +-------------------------+------------------------------------------------+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Dedicated load balancer | Interconnecting with an existing load balancer | Yes (A YAML file is required.)   | -  For versions earlier than v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10 and v1.27.1-r10, the load balancer flavor must **support both the layer-4 and layer-7 routing**. |
+      | Dedicated load balancer | Interconnecting with an existing load balancer | Supported                        | -  For versions earlier than v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10 and v1.27.1-r10, the load balancer flavor must **support both the layer-4 and layer-7 routing**. |
       |                         |                                                |                                  | -  For v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10, v1.27.1-r10, and later versions, the load balancer flavor **must support layer-7 routing**.                           |
       +-------------------------+------------------------------------------------+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      |                         | Automatically creating a load balancer         | Yes (A YAML file is required.)   | -  For versions earlier than v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10 and v1.27.1-r10, the load balancer flavor must **support both the layer-4 and layer-7 routing**. |
+      |                         | Automatically creating a load balancer         | Supported                        | -  For versions earlier than v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10 and v1.27.1-r10, the load balancer flavor must **support both the layer-4 and layer-7 routing**. |
       |                         |                                                |                                  | -  For v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10, v1.27.1-r10, and later versions, the load balancer flavor **must support layer-7 routing**.                           |
       +-------------------------+------------------------------------------------+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
@@ -35,7 +35,7 @@ Using the CCE Console
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Services & Ingresses**. In the upper right corner, click **Create Service**.
-#. Configure Service parameters. In this example, only mandatory parameters required for using HTTP/HTTPS are listed. For details about how to configure other parameters, see :ref:`Creating a LoadBalancer Service <cce_10_0681__section84162025538>`.
+#. Configure Service parameters. In this example, only mandatory parameters required for using HTTP/HTTPS are listed. For details about how to configure other parameters, see :ref:`Using the Console <cce_10_0681__section84162025538>`.
 
    -  **Service Name**: Specify a Service name, which can be the same as the workload name.
    -  **Service Type**: Select **LoadBalancer**.
@@ -82,20 +82,12 @@ Using the CCE Console
 Using kubectl
 -------------
 
-If a Service is HTTP/HTTPS-compliant, add the following annotations:
-
--  **kubernetes.io/elb.protocol-port**: "https:443,http:80"
-
-   The value of **protocol-port** must be the same as the port in the **spec.ports** field of the Service. The format is *Protocol:Port*. The port matches the one in the **service.spec.ports** field and is released as the corresponding protocol.
-
--  **kubernetes.io/elb.cert-id**: "17e3b4f4bc40471c86741dc3aa211379"
-
-   **cert-id** indicates the certificate ID in ELB certificate management. When **https** is configured for **protocol-port**, the certificate of the ELB listener will be set to the server certificate. When multiple HTTPS Services are released, they will use the same certificate.
-
-The following is a configuration example for automatically creating a dedicated load balancer, in which key configurations are marked in red:
+If a Service uses the HTTP or HTTPS protocol, it is important to take note of the following configuration requirements:
 
 -  Different ELB types and cluster versions have different requirements on flavors. For details, see :ref:`Table 1 <cce_10_0683__table13284135311563>`.
 -  The two ports in **spec.ports** must correspond to those in **kubernetes.io/elb.protocol-port**. In this example, ports 443 and 80 are enabled with HTTPS and HTTP, respectively.
+
+The following is a configuration example for automatically creating a dedicated load balancer, in which key configurations are marked in red:
 
 .. code-block::
 
@@ -142,4 +134,21 @@ The following is a configuration example for automatically creating a dedicated 
      sessionAffinity: None
      type: LoadBalancer
 
-Use the preceding example configurations to create a Service. In the new ELB load balancer, you can see that the listeners on ports 443 and 80 are created.
+.. table:: **Table 2** Key parameters
+
+   +---------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter                       | Type                  | Description                                                                                                                                                                                                                                             |
+   +=================================+=======================+=========================================================================================================================================================================================================================================================+
+   | kubernetes.io/elb.protocol-port | String                | If a Service is TLS/HTTP/HTTPS-compliant, configure the protocol and port number in the format of "protocol:port".                                                                                                                                      |
+   |                                 |                       |                                                                                                                                                                                                                                                         |
+   |                                 |                       | Specifically:                                                                                                                                                                                                                                           |
+   |                                 |                       |                                                                                                                                                                                                                                                         |
+   |                                 |                       | -  **protocol**: specifies the protocol used by the listener port. The value can be **tls**, **http**, or **https**.                                                                                                                                    |
+   |                                 |                       | -  **port**: Service port specified by **spec.ports[].port**.                                                                                                                                                                                           |
+   |                                 |                       |                                                                                                                                                                                                                                                         |
+   |                                 |                       | In this example, ports 443 and 80 are enabled with HTTPS and HTTP, respectively. Therefore, the parameter value is *https:443,http:80*.                                                                                                                 |
+   +---------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | kubernetes.io/elb.cert-id       | String                | ID of an ELB certificate, which is used as the TLS/HTTPS server certificate.                                                                                                                                                                            |
+   |                                 |                       |                                                                                                                                                                                                                                                         |
+   |                                 |                       | To obtain the certificate, log in to the CCE console, choose **Service List** > **Networking** > **Elastic Load Balance**, and click **Certificates** in the navigation pane. In the load balancer list, copy the ID under the target certificate name. |
+   +---------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

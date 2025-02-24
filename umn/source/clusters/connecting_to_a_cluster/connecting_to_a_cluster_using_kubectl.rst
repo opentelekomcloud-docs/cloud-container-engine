@@ -126,7 +126,7 @@ CCE supports two-way authentication for domain names.
 
    .. _cce_10_0107__fig1941342411:
 
-   .. figure:: /_static/images/en-us_image_0000001981436769.png
+   .. figure:: /_static/images/en-us_image_0000002101597765.png
       :alt: **Figure 1** Two-way authentication disabled for domain names
 
       **Figure 1** Two-way authentication disabled for domain names

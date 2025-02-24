@@ -46,32 +46,34 @@ A larger bin packing weight leads to a higher score. A larger resource weight le
 -  **GPU.score**: calculated GPU score; **GPU.weight**: customized GPU weight
 
 
-.. figure:: /_static/images/en-us_image_0000001981436701.png
+.. figure:: /_static/images/en-us_image_0000002101679209.png
    :alt: **Figure 1** Bin packing example
 
    **Figure 1** Bin packing example
 
-As shown in the figure, there are two nodes in the cluster. When pods need to be scheduled, the bin packing policy scores the two nodes separately.
+In this figure, there are two nodes in the cluster. When pods need to be scheduled, the bin packing policy scores the two nodes separately.
 
-#. The scoring for node 1 is as follows:
+For example, **CPU.weight** is set to **1**, **Memory.weight** is set to **1**, **GPU.weight** is set to **2**, and **binpack.weight** is set to **5** in a cluster.
 
-   Each resource is scored using the following formula: CPU.weight x (Requested + Used)/Allocatable
+#. Scoring for node 1
 
-   -  CPU score: 1 x (2 + 4)/8 = 0.75
-   -  Memory score: 1 x (4 + 8)/16 = 0.75
-   -  GPU score: 2 x (4 + 4)/8 = 1
+   The score of each resource type is calculated using the following formulas:
+
+   -  CPU: CPU.weight x (Requested + Used)/Allocatable = 1 x (2 + 4)/8 = 0.75
+   -  Memory: Memory.weight x (Requested + Used)/Allocatable = 1 x (4 + 8)/16 = 0.75
+   -  GPU: GPU.weight x (Requested + Used)/Allocatable = 2 x (4 + 4)/8 = 2
 
    The total score of each node is calculated using the following formula: Binpack.weight x (CPU.score + Memory.score + GPU.score)/(CPU.weight + Memory.weight + GPU.weight) x 100
 
-   Score of node 1: 5 x (0.75 + 0.75 + 1)/(1 + 1 + 2) x 100 = 312.5
+   If **binpack.weight** is set to **5**, the score of node 1 is calculated as follows: 5 x (0.75 + 0.75 + 2)/(1 + 1 + 2) x 100 = 437.5
 
-#. The scoring for node 2 is as follows:
+#. Scoring for node 2
 
-   -  CPU score: 1 x (2 + 6)/8 = 1
-   -  Memory score: 1 x (4 + 8)/16 = 0.75
-   -  GPU score: 2 x (4 + 4)/8 = 1
+   -  CPU: CPU.weight x (Requested + Used)/Allocatable = 1 x (2 + 6)/8 = 1
+   -  Memory: Memory.weight x (Requested + Used)/Allocatable = 1 x (4 + 8)/16 = 0.75
+   -  GPU: GPU.weight x (Requested + Used)/Allocatable = 2 x (4 + 4)/8 = 2
 
-   Score of node 2: 5 x (1 + 0.75 + 1)/(1 + 1 + 2) x 100 = 343.75
+   Score of node 2: 5 x (1 + 0.75 + 2)/(1 + 1 + 2) x 100 = 468.75
 
 The calculation results show that the score of node 2 is greater than that of node 1. According to the bin packing policy, new pods will be preferentially scheduled to node 2.
 
@@ -82,9 +84,9 @@ After Volcano is installed, bin packing takes effect by default. If the default 
 
 #. Log in to the CCE console.
 #. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane. In the right pane, click the **Scheduling** tab.
-#. In the **Resource utilization optimization scheduling** area, modify the bin packing settings.
+#. In the **Resource utilization optimization scheduling** configuration, enable bin packing.
 
-   .. table:: **Table 1** Bin packing weight
+   .. table:: **Table 1** Bin packing weights
 
       +------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
       | Item                               | Description                                                                                                                                                | Default Value |

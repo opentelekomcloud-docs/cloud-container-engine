@@ -5,7 +5,7 @@
 FAQs
 ====
 
--  :ref:`Common Questions <cce_faq_00006>`
+-  :ref:`Common FAQ <cce_faq_00006>`
 -  :ref:`Cluster <cce_faq_00024>`
 -  :ref:`Node <cce_faq_00021>`
 -  :ref:`Node Pool <cce_faq_00163>`
@@ -23,7 +23,7 @@ FAQs
    :maxdepth: 1
    :hidden: 
 
-   common_questions
+   common_faq
    cluster/index
    node/index
    node_pool/index

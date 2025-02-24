@@ -9,7 +9,7 @@ CCE cluster-level permissions are assigned based on **IAM system policies** and 
 
 .. caution::
 
-   -  Cluster permissions are granted to users for operating cluster-related resources only (such as clusters and nodes). To operate Kubernetes resources like workloads and Services, you must be granted the :ref:`namespace permissions <cce_10_0189>` at the same time.
+   -  Cluster permissions are granted to users for operating cluster-related resources only (such as clusters and nodes). To operate Kubernetes resources like workloads and Services, you must be granted the :ref:`namespace permissions <cce_10_0189>` as well.
    -  When viewing a cluster on the CCE console, the information displayed depends on the namespace permissions. If you have no namespace permissions, you cannot view the resources in the cluster. For details, see :ref:`Permission Dependency of the CCE Console <cce_10_0190>`.
 
 Prerequisites
@@ -26,7 +26,7 @@ Process Flow
 ------------
 
 
-.. figure:: /_static/images/en-us_image_0000001981276821.png
+.. figure:: /_static/images/en-us_image_0000002065639146.png
    :alt: **Figure 1** Process of assigning CCE permissions
 
    **Figure 1** Process of assigning CCE permissions
@@ -44,6 +44,10 @@ Process Flow
 #. Create a user and add it to a user group.
 
    Create a user on the IAM console and add the user to the group created in :ref:`1 <cce_10_0188__li10176121316284>`.
+
+   .. important::
+
+      IAM users need programmatic and management console access to use CCE.
 
 #. Log in and verify permissions.
 
@@ -69,7 +73,7 @@ The system policies preset for CCE in IAM are **CCE FullAccess** and **CCE ReadO
 
 .. note::
 
-   The **CCE Admin** and **CCE Viewer** roles will be discarded soon. You are advised to use **CCE FullAccess** and **CCE ReadOnlyAccess**.
+   The **CCE Admin** and **CCE Viewer** roles will be discarded soon. Use **CCE FullAccess** and **CCE ReadOnlyAccess**.
 
 Custom Policies
 ---------------
@@ -170,4 +174,4 @@ When RBAC and IAM policies co-exist, the backend authentication logic for open A
 
 |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000001950317280.png
+.. |image1| image:: /_static/images/en-us_image_0000002101679193.png

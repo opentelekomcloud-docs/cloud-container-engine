@@ -19,7 +19,7 @@ You can regulate users' or user groups' access to Kubernetes resources in a sing
 Role and ClusterRole specify actions that can be performed on specific resources. RoleBinding and ClusterRoleBinding bind roles to specific users, user groups, or ServiceAccounts. Illustration:
 
 
-.. figure:: /_static/images/en-us_image_0000001981436845.png
+.. figure:: /_static/images/en-us_image_0000002101679273.png
    :alt: **Figure 1** Role binding
 
    **Figure 1** Role binding
@@ -192,7 +192,7 @@ Example: Assigning Cluster Administrator Permissions (cluster-admin)
 
 You can use the cluster-admin role to assign all permissions on a cluster. This role contains the permissions for all cluster resources.
 
-In the following example kubectl output, a ClusterRoleBinding has been created and binds the cluster-admin role to the user group **cce-role-group**.
+In the following example kubectl output, a ClusterRoleBinding has been created and the cluster-admin role is bound to the user group **cce-role-group**.
 
 .. code-block::
 

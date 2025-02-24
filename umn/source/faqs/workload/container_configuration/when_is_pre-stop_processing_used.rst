@@ -5,4 +5,10 @@
 When Is Pre-stop Processing Used?
 =================================
 
+**Question**
+
+When is pre-stop processing used?
+
+**Answer**
+
 Service processing takes a long time. Pre-stop processing makes sure that during an upgrade, a pod is killed only when the service in the pod has been processed.

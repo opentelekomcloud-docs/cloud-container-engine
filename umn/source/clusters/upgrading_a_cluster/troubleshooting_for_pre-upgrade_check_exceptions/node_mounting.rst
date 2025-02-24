@@ -30,7 +30,7 @@ Solution
 #. Run the **lsblk** command to check whether **vgpaas-share** is mounted to **/mnt/paas**. If yes, a shared disk is used.
 
 
-   .. figure:: /_static/images/en-us_image_0000001981276309.png
+   .. figure:: /_static/images/en-us_image_0000002101597157.png
       :alt: **Figure 1** Checking whether a shared disk is used
 
       **Figure 1** Checking whether a shared disk is used

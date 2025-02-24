@@ -17,29 +17,15 @@ Solution
 
    Executing the **rpm** or **dpkg** command failed. In this case, log in to the affected node and check whether the following commands are available:
 
-   -  rpm:
+   .. code-block::
 
-      .. code-block::
+      rpm -qa
 
-         rpm -qa
+   If the preceding command is unavailable, run the following command:
 
-      Run the following command for recovery:
+   .. code-block::
 
-      .. code-block::
-
-         rpm --rebuilddb
-
-   -  dpkg:
-
-      .. code-block::
-
-         dpkg -l
-
-      Run the following command for recovery:
-
-      .. code-block::
-
-         dpkg --configure -a
+      rpm --rebuilddb
 
 -  Scenario 2: The **systemctl status** command fails to be executed.
 
@@ -49,10 +35,4 @@ Solution
 
       systemctl status kubelet
 
--  Scenario 3: Executing the Python command failed.
-
-   Check whether the command can be executed on the node.
-
-   .. code-block::
-
-      /usr/bin/python --version
+   If the fault persists, reset the node. For details, see :ref:`Resetting a Node <cce_10_0003>`.

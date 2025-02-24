@@ -27,6 +27,21 @@ When creating a cluster of v1.23 or later, you can enable overload control durin
 #. Log in to the CCE console and click the name of an existing cluster whose version is v1.23 or later.
 #. On the **Overview** page, check the master node information. If overload control is not enabled, a message will be displayed. You can click **Enable** to enable the function.
 
+Overload Monitoring
+-------------------
+
+#. Log in to the CCE console and click the name of an existing cluster whose version is v1.23 or later.
+
+#. On the **Overview** page, check the master node information. The overload level metric will be displayed.
+
+   The overload levels are as follows:
+
+   -  Circuit breaking: Rejects all external traffic.
+   -  Severe overload: Rejects 75% external traffic.
+   -  Moderate overload: Rejects 50% external traffic.
+   -  Slight overload: Rejects 25% external traffic.
+   -  Normal: Does not reject external traffic.
+
 Disabling Cluster Overload Control
 ----------------------------------
 

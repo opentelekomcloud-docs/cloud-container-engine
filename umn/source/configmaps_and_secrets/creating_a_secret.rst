@@ -245,4 +245,4 @@ To Base64-encode a string, run the **echo -n content to be encoded \| base64** c
    root@ubuntu:~# echo -n "content to be encoded" | base64
    ******
 
-.. |image1| image:: /_static/images/en-us_image_0000001950317212.png
+.. |image1| image:: /_static/images/en-us_image_0000002101597689.png

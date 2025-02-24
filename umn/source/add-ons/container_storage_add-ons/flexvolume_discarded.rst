@@ -30,5 +30,5 @@ This add-on has been installed by default. If it is uninstalled due to some reas
 
 If storage-driver is not installed in a cluster, perform the following steps to install it:
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane, locate **CCE Container Storage (FlexVolume)** on the right, and click **Install**.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate **CCE Container Storage (FlexVolume)** on the right, and click **Install**.
 #. Click **Install** to install the add-on. Note that the storage-driver has no configurable parameters and can be directly installed.

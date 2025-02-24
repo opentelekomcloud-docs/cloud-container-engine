@@ -29,7 +29,7 @@ Isolating Namespaces
       The following figure shows namespaces created for the development, joint debugging, and testing environments, respectively.
 
 
-      .. figure:: /_static/images/en-us_image_0000001981276157.png
+      .. figure:: /_static/images/en-us_image_0000002065638502.png
          :alt: **Figure 1** One namespace for one environment
 
          **Figure 1** One namespace for one environment
@@ -39,7 +39,7 @@ Isolating Namespaces
    You are advised to use this method if a large number of workloads are deployed in the same environment. For example, in the following figure, different namespaces (APP1 and APP2) are created to logically manage workloads as different groups. Workloads in the same namespace access each other using the Service name, and workloads in different namespaces access each other using the Service name or namespace name.
 
 
-   .. figure:: /_static/images/en-us_image_0000001981436029.png
+   .. figure:: /_static/images/en-us_image_0000002065480162.png
       :alt: **Figure 2** Grouping workloads into different namespaces
 
       **Figure 2** Grouping workloads into different namespaces
@@ -55,7 +55,7 @@ Managing Namespace Labels
 
       For example, the key is **project** and the value is **cicd**, indicating that the namespace is used to deploy CICD.
 
-   -  Deleting a label: Click |image1| next the label to be deleted and then **OK**.
+   -  Deleting a label: Click **Delete** next the label to be deleted and then **OK**.
 
 #. Switch to the **Manage Label** dialog box again and check the modified labels.
 
@@ -66,7 +66,7 @@ After node affinity is enabled in a namespace, the workloads newly created in th
 
 #. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Namespaces**.
 
-#. Locate the target namespace and click |image2| in the **Node Affinity** column.
+#. Locate the target namespace and click |image1| in the **Node Affinity** column.
 
 #. In the displayed dialog box, select **Enable** and click **OK**.
 
@@ -85,5 +85,4 @@ If a namespace is deleted, all resources (such as workloads, jobs, and ConfigMap
 
    Follow the prompts to delete the namespace. The default namespaces cannot be deleted.
 
-.. |image1| image:: /_static/images/en-us_image_0000001981436009.png
-.. |image2| image:: /_static/images/en-us_image_0000001981276161.png
+.. |image1| image:: /_static/images/en-us_image_0000002101597069.png

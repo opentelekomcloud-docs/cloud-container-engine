@@ -23,4 +23,4 @@ Solution
 
 #. Check whether the **UpdateStrategy** value is changed to **OnDelete**. If so, change it back to **RollingUpdate**.
 
-#. Check whether the **NVIDIA_DRIVER_DOWNLOAD_URL** value is the same as the add-on IP address on the add-on details page. If no, change the value on the web page.
+#. Check whether the **NVIDIA_DRIVER_DOWNLOAD_URL** value is the same as the GPU driver version on the add-on page. If not, correct the version on the add-on page.

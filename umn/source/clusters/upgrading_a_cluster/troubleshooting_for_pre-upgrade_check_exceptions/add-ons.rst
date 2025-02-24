@@ -11,7 +11,7 @@ Check Items
 Check the following items:
 
 -  Check whether the add-on status is normal.
--  Check whether the add-on support the target version.
+-  Check whether the add-on supports the target version.
 
 Solution
 --------
@@ -20,15 +20,17 @@ Solution
 
    Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane and obtain add-ons. Then, handle malfunctional add-ons.
 
--  **Scenario 2: The target cluster version does not support the current add-on version.**
+-  **Scenario 2: The target version of the cluster upgrade does not support the add-on.**
 
-   The add-on cannot be automatically upgraded with the cluster due to compatibility issues. In this case, log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane and manually upgrade the add-on.
+   The following error information is displayed during the pre-upgrade check:
 
--  **Scenario 3: After the add-on is upgraded to the latest version, it is still not supported by the target cluster version.**
+   .. code-block::
+
+      addon [***] does not support cluster target version, check and try again
 
    Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane and manually uninstall the add-on. For details about the supported add-on versions and substitutions, see the :ref:`Help <cce_10_0277>` document.
 
--  **Scenario 4: The add-on configuration does not meet the upgrade requirements. Upgrade the add-on and try again.**
+-  **Scenario 3: The add-on configuration does not meet the upgrade requirements. Upgrade the add-on and try again.**
 
    The following error information is displayed during the pre-upgrade check:
 

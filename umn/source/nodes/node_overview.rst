@@ -64,21 +64,19 @@ A lifecycle indicates the node statuses recorded from the time when the node is 
    |                       |                       |                                                                                                                                    |
    |                       |                       | Nodes in this state can provide services.                                                                                          |
    +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-   | Unavailable           | Stable state          | The node is not running properly.                                                                                                  |
+   | Unavailable           | Stable state          | The node is not functioning correctly, which includes being in a stopped state.                                                    |
    |                       |                       |                                                                                                                                    |
-   |                       |                       | Instances in this state no longer provide services. In this case, perform the operations in :ref:`Resetting a Node <cce_10_0003>`. |
+   |                       |                       | Instances in this state cannot provide services.                                                                                   |
    +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
    | Creating              | Intermediate state    | The node has been created but is not running.                                                                                      |
    +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
    | Installing            | Intermediate state    | The Kubernetes software is being installed on the node.                                                                            |
    +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
+   | Upgrading             | Intermediate state    | The node is being upgraded.                                                                                                        |
+   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
    | Deleting              | Intermediate state    | The node is being deleted.                                                                                                         |
    |                       |                       |                                                                                                                                    |
    |                       |                       | If this state stays for a long time, an exception occurred.                                                                        |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-   | Stopped               | Stable state          | The node is stopped properly.                                                                                                      |
-   |                       |                       |                                                                                                                                    |
-   |                       |                       | A node in this state cannot provide services. You can start the node on the ECS console.                                           |
    +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
    | Error                 | Stable state          | The node is abnormal.                                                                                                              |
    |                       |                       |                                                                                                                                    |
