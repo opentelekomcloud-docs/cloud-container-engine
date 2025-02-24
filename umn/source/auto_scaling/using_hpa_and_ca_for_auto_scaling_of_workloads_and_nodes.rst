@@ -23,12 +23,12 @@ As shown in :ref:`Figure 1 <cce_10_0300__cce_bestpractice_00282_fig6540132372015
 
 .. _cce_10_0300__cce_bestpractice_00282_fig6540132372015:
 
-.. figure:: /_static/images/en-us_image_0000001981434645.png
+.. figure:: /_static/images/en-us_image_0000002101596297.png
    :alt: **Figure 1** HPA and CA working flows
 
    **Figure 1** HPA and CA working flows
 
-Using HPA and CA can easily implement auto scaling in most scenarios. In addition, the scaling process of nodes and pods can be easily observed.
+Using HPA and CA enables automatic scaling for most scenarios while also providing monitoring capabilities.
 
 This section uses an example to describe the auto scaling process using HPA and CA policies together.
 
@@ -132,7 +132,7 @@ Creating a Node Pool and a Node Scaling Policy
 
 #. Configure the node pool.
 
-   -  **Nodes**: Set it to **1**, indicating that one node is created by default when a node pool is created.
+   -  **Node Type**: Select a node type.
    -  **Specifications**: 2 vCPUs \| 4 GiB
 
    Retain the defaults for other parameters. For details, see `Creating a Node Pool <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0012.html>`__.
@@ -141,11 +141,9 @@ Creating a Node Pool and a Node Scaling Policy
 
    If the CCE Cluster Autoscaler add-on is not installed in the cluster, install it first. For details, see `autoscaler <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0154.html>`__.
 
-   -  **Automatic scale-out**: If this function is enabled, nodes in a node pool will be automatically added based on the cluster load.
-   -  **Customized Rule**: Click **Add Rule**. In the dialog box displayed, configure parameters. If the CPU allocation rate is greater than 70%, a node is added to each associated node pool. A node scaling policy needs to be associated with a node pool. Multiple node pools can be associated. When you need to scale nodes, node with proper specifications will be added or reduced from the node pool based on the minimum waste principle.
-   -  **Automatic scale-in**: If this function is enabled, nodes in a node pool will be automatically deleted based on the cluster load. For example, trigger scale-in when the node resource utilization is less than 50%.
-   -  **AS Configuration**: Modify the node quantity range. During autoscaling, the number of nodes in a node pool is always within the configured quantity range.
-   -  **AS Object**: Enable autoscaling for node specifications in a node pool.
+   -  **Customize scale-out rules.**: Click **Add Rule**. In the dialog box displayed, configure parameters. If the CPU allocation rate is greater than 70%, a node is added to each associated node pool. A node scaling policy needs to be associated with a node pool. Multiple node pools can be associated. When you need to scale nodes, node with proper specifications will be added or reduced from the node pool based on the minimum waste principle.
+   -  **Nodes**: Modify the node quantity range. The number of nodes in a node pool will always be within the range during auto scaling.
+   -  **Cooldown Period**: a period during which the nodes added in the current node pool cannot be scaled in
 
 #. Click **OK**.
 
@@ -283,7 +281,7 @@ Observing the Auto Scaling Process
       hpa-policy   Deployment/hpa-example   51%/50%    1         100       7          10m
       hpa-policy   Deployment/hpa-example   58%/50%    1         100       7          11m
 
-   You can see that the CPU usage of the workload is 190% at 4m23s, which exceeds the target value. In this case, scaling is triggered to expand the workload to four replicas/pods. In the subsequent several minutes, the CPU usage does not decrease until 7m16s. This is because the new pods may not be successfully created. The possible cause is that resources are insufficient and the pods are in Pending state. During this period, nodes are added.
+   You can see that the CPU usage of the workload is 190% at 4m23s, which exceeds the target value. In this case, scaling is triggered to expand the workload to four replicas/pods. In the subsequent several minutes, the CPU usage does not decrease until 7m16s. This is because the new pods may not be successfully created. The possible cause is that resources are insufficient and the pods are in the pending state. During this period, nodes are being scaled out.
 
    At 7m16s, the CPU usage decreases, indicating that the pods are successfully created and start to bear traffic. The CPU usage decreases to 81% at 8m, still greater than the target value (50%) and the high threshold (70%). Therefore, 7 pods are added at 9m16s, and the CPU usage decreases to 51%, which is within the range of 30% to 70%. From then on, the number of pods remains 7.
 
@@ -377,7 +375,7 @@ Observing the Auto Scaling Process
 Summary
 -------
 
-Using HPA and CA can easily implement auto scaling in most scenarios. In addition, the scaling process of nodes and pods can be easily observed.
+By using HPA and CA, auto scaling can be effortlessly implemented in various scenarios. Additionally, the scaling process of nodes and pods can be conveniently tracked.
 
-.. |image1| image:: /_static/images/en-us_image_0000001950315240.png
-.. |image2| image:: /_static/images/en-us_image_0000001950315260.png
+.. |image1| image:: /_static/images/en-us_image_0000002065637710.png
+.. |image2| image:: /_static/images/en-us_image_0000002101596289.png

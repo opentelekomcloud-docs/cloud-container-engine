@@ -14,7 +14,7 @@ If an ECS cannot be managed by a node pool due to the reasons listed in this sec
 +-----------------------------------+----------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+
 | Different data disk configuration | Change the data disk configuration of the ECS to be the same as that of the node pool. | :ref:`Changing Data Disk Configuration of an ECS <cce_faq_00443__section132294014488>` |
 +-----------------------------------+----------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+
-| Different ECS groups              | Change the ECS group of the ECS to be the same as that of the node pool.               | :ref:`Change the ECS Group of an ECS <cce_faq_00443__section19769166194919>`           |
+| Different ECS groups              | Change the ECS group of the ECS to be the same as that of the node pool.               | :ref:`Changing the ECS Group of an ECS <cce_faq_00443__section19769166194919>`         |
 +-----------------------------------+----------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+
 
 .. _cce_faq_00443__section61147281444:
@@ -27,7 +27,7 @@ Modifying the Flavor of an ECS
    The flavor of the ECS to be managed must be changed to that contained in the target node pool.
 
 #. Log in to the ECS console.
-#. Click the name of the target ECS. On the page displayed, click **Stop** in the upper right corner. After the ECS is stopped, choose **More** > **Modify Specifications** in the **Operation** column.
+#. Click the name of the target ECS. On the page displayed, click **Stop**. After the ECS is stopped, choose **More** > **Modify Specifications** in the **Operation** column.
 #. On the **Modify ECS Specifications** page, select the needed flavor and submit the application.
 #. Go back to the ECS list page and start the ECS.
 
@@ -64,14 +64,14 @@ Changing Data Disk Configuration of an ECS
 
 #. Log in to the ECS console.
 #. Click the name of the target ECS to access the ECS details page.
-#. Click the **Disks** tab and click **Modify Specifications** on the right of the right of the EVS disk to be expanded.
+#. Click the **Disks** tab and click **Modify Specifications** on the right of the EVS disk to be expanded.
 #. Configure **Disk Type** following instructions.
 #. Click **Submit**.
 
 .. _cce_faq_00443__section19769166194919:
 
-Change the ECS Group of an ECS
-------------------------------
+Changing the ECS Group of an ECS
+--------------------------------
 
 .. note::
 

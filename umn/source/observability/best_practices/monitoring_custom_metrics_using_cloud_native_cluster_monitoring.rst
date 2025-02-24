@@ -23,17 +23,10 @@ The following procedure uses an Nginx application as an example to describe how 
 
    Use one of the following methods to monitor custom metrics:
 
-   -  :ref:`Method 1: Configuring Pod Annotations for Monitoring Custom Metrics <cce_10_0373__section179021319175>`
-   -  :ref:`Method 2: Configuring Service Annotations for Monitoring Custom Metrics <cce_10_0373__section103284201722>`
-   -  :ref:`Method 3: Configuring PodMonitor for Monitoring Custom Metrics <cce_10_0373__section3497144813213>`
-   -  :ref:`Method 4: Configuring ServiceMonitor for Monitoring Custom Metrics <cce_10_0373__section92241661317>`
-
-Constraints
------------
-
--  To use Prometheus to monitor custom metrics, the application needs to provide a metric monitoring API. For details, see :ref:`Prometheus Monitoring Data Collection <cce_10_0373__section173671127160>`.
--  Currently, metrics in the **kube-system** and **monitoring** namespaces cannot be collected when pod and service annotations are used. To collect metrics in the two namespaces, use PodMonitor and ServiceMonitor.
--  The nginx/nginx-prometheus-exporter:0.9.0 image is pulled for the Nginx application. You need to add an EIP for the node where the application is deployed or upload the image to SWR to prevent application deployment failures.
+   -  :ref:`Method 1: Configuring Pod Annotations <cce_10_0373__section179021319175>`
+   -  :ref:`Method 2: Configuring Service Annotations <cce_10_0373__section103284201722>`
+   -  :ref:`Method 3: Configuring PodMonitor <cce_10_0373__section3497144813213>`
+   -  :ref:`Method 4: Configuring ServiceMonitor <cce_10_0373__section92241661317>`
 
 .. _cce_10_0373__section173671127160:
 
@@ -51,6 +44,13 @@ Prometheus periodically calls the metric monitoring API (**/metrics** by default
 
 Prometheus provides clients in various languages. For details about the clients, see `Prometheus CLIENT LIBRARIES <https://prometheus.io/docs/instrumenting/clientlibs/>`__. For details about how to develop an exporter, see `WRITING EXPORTERS <https://prometheus.io/docs/instrumenting/writing_exporters/>`__. The Prometheus community provides various third-party exporters that can be directly used. For details, see `EXPORTERS AND INTEGRATIONS <https://prometheus.io/docs/instrumenting/exporters/>`__.
 
+Constraints
+-----------
+
+-  To use Prometheus to monitor custom metrics, the application needs to provide a metric monitoring API. For details, see :ref:`Prometheus Monitoring Data Collection <cce_10_0373__section173671127160>`.
+-  Currently, metrics in the **kube-system** and **monitoring** namespaces cannot be collected when pod and service annotations are used. To collect metrics in the two namespaces, use PodMonitor and ServiceMonitor.
+-  The nginx/nginx-prometheus-exporter:0.9.0 image is pulled for the Nginx application. You need to add an EIP for the node where the application is deployed or upload the image to SWR to prevent application deployment failures.
+
 .. _cce_10_0373__section1135613420551:
 
 Installing and Accessing Cloud Native Cluster Monitoring
@@ -58,18 +58,19 @@ Installing and Accessing Cloud Native Cluster Monitoring
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane on the left, choose **Add-ons**. On the displayed page, locate the Cloud Native Cluster Monitoring add-on and click **Install**.
+#. In the navigation pane, choose **Add-ons**. On the displayed page, locate the Cloud Native Cluster Monitoring add-on and click **Install**.
 
    When installing this add-on, pay attention to the following configurations. Configure other parameters as required. For details, see :ref:`Cloud Native Cluster Monitoring <cce_10_0406>`.
 
    -  For 3.8.0 or later, enable custom metric collection.
+
    -  For 3.8.0 or earlier, do not enable custom metric collection.
 
 #. After this add-on is installed, deploy workloads and Services. The Prometheus server will be deployed as a StatefulSet in the **monitoring** namespace.
 
    You can create a public network :ref:`LoadBalancer Service <cce_10_0014>` so that Prometheus can be accessed from external networks.
 
-   a. Log in to the CCE console and click the name of the cluster with Prometheus installed to access the cluster console. In the navigation pane on the left, choose **Services & Ingresses**.
+   a. Log in to the CCE console and click the name of the cluster with Prometheus installed to access the cluster console. In the navigation pane, choose **Services & Ingresses**.
 
    b. Click **Create from YAML** in the upper right corner to create a public network LoadBalancer Service.
 
@@ -162,9 +163,9 @@ This section uses Nginx as an example to describe how to collect monitoring data
       EXPOSE 80
       CMD ["nginx", "-g", "daemon off;"]
 
-#. Use this Dockerfile to build an image and upload it to SWR. The image name is **nginx:exporter**.
+#. Use this Dockerfile to create an image and upload it to SWR. The image name is **nginx:exporter**.
 
-   a. In the navigation pane, choose **My Images**. In the upper right corner, click **Upload Through Client**. On the displayed dialog box, click **Generate a temporary login command** and click |image1| to copy the command.
+   a. In the navigation pane, choose **My Images**. In the upper right corner, click **Upload Through Client**. In the displayed dialog box, click **Generate a temporary login command**. Then, click |image1| to copy the command.
 
    b. Run the login command copied in the previous step on the node. If the login is successful, the message "Login Succeeded" is displayed.
 
@@ -197,8 +198,8 @@ This section uses Nginx as an example to describe how to collect monitoring data
 
 .. _cce_10_0373__section179021319175:
 
-Method 1: Configuring Pod Annotations for Monitoring Custom Metrics
--------------------------------------------------------------------
+Method 1: Configuring Pod Annotations
+-------------------------------------
 
 When the annotation settings of pods comply with the Prometheus data collection rules, Prometheus automatically collects the metrics exposed by the pods.
 
@@ -254,7 +255,7 @@ Where,
 
 After the application is successfully deployed, :ref:`access Prometheus <cce_10_0373__section1135613420551>` to query custom metrics by job name.
 
-The custom metrics related to Nginx can be obtained. In the following, the job name indicates that the metrics are reported based on the pod configuration.
+The custom metrics related to Nginx can be queried. In the following, the job name indicates that the metrics are reported based on the pod configuration.
 
 .. code-block::
 
@@ -262,8 +263,8 @@ The custom metrics related to Nginx can be obtained. In the following, the job n
 
 .. _cce_10_0373__section103284201722:
 
-Method 2: Configuring Service Annotations for Monitoring Custom Metrics
------------------------------------------------------------------------
+Method 2: Configuring Service Annotations
+-----------------------------------------
 
 When the annotation settings of Services comply with the Prometheus data collection rules, Prometheus automatically collects the metrics exposed by the Services.
 
@@ -346,8 +347,8 @@ After the application is successfully deployed, :ref:`access Prometheus <cce_10_
 
 .. _cce_10_0373__section3497144813213:
 
-Method 3: Configuring PodMonitor for Monitoring Custom Metrics
---------------------------------------------------------------
+Method 3: Configuring PodMonitor
+--------------------------------
 
 Cloud Native Cluster Monitoring allows you to configure metric collection tasks based on PodMonitor and ServiceMonitor. Prometheus Operator watches PodMonitor. The reload mechanism of Prometheus is used to trigger a hot update of the Prometheus collection tasks to the Prometheus instance.
 
@@ -427,8 +428,8 @@ After the application is successfully deployed, :ref:`access Prometheus <cce_10_
 
 .. _cce_10_0373__section92241661317:
 
-Method 4: Configuring ServiceMonitor for Monitoring Custom Metrics
-------------------------------------------------------------------
+Method 4: Configuring ServiceMonitor
+------------------------------------
 
 Cloud Native Cluster Monitoring allows you to configure metric collection tasks based on PodMonitor and ServiceMonitor. Prometheus Operator watches ServiceMonitor. The reload mechanism of Prometheus is used to trigger a hot update of the Prometheus collection tasks to the Prometheus instance.
 
@@ -528,4 +529,4 @@ After the application is successfully deployed, :ref:`access Prometheus <cce_10_
 
    nginx_connections_accepted{cluster="2048c170-8359-11ee-9527-0255ac1000cf", cluster_category="CCE", cluster_name="cce-test", endpoint="servicemonitor-ports", instance="10.0.0.47:9113", job="nginx-test3", namespace="default", pod="nginx-test3-6f8bccd9-f27hv", prometheus="monitoring/server", service="nginx-test3"}
 
-.. |image1| image:: /_static/images/en-us_image_0000001950316676.png
+.. |image1| image:: /_static/images/en-us_image_0000002101597061.png

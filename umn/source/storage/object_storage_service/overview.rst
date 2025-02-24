@@ -21,11 +21,12 @@ OBS Specifications
 
 OBS provides multiple storage classes to meet customers' requirements on storage performance and costs.
 
--  Parallel File System (PFS): an optimized high-performance file system provided by OBS for speedy processing of HPC workloads. PFS boasts millisecond-level access latency, TB/s-level bandwidth, and million-level IOPS, making it a reliable choice for those seeking top-notch performance. PFS outperforms OBS buckets.
--  Object bucket
+-  Object buckets provide reliable, high-performance, secure, and budget-friendly storage for data. They have no restrictions on the quantity of files or storage capacity.
 
    -  Standard: features low latency and high throughput. It is therefore good for storing frequently (multiple times per month) accessed files or small files (less than 1 MB). Its application scenarios include big data analytics, mobile apps, hot videos, and social apps.
    -  OBS Infrequent Access: applicable to storing semi-frequently accessed (less than 12 times a year) data requiring quick response. Its application scenarios include file synchronization or sharing, and enterprise-level backup. This storage class has the same durability, low latency, and high throughput as the Standard storage class, with a lower cost, but its availability is slightly lower than the Standard storage class.
+
+-  Parallel file systems are a sub-product of OBS designed to provide high-performance file semantics for big data scenarios.
 
 Performance
 -----------

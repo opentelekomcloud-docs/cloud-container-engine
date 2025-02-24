@@ -5,23 +5,42 @@
 Workload Scaling Rules
 ======================
 
+CCE supports multiple workload scaling modes. Comparisons between the scaling policies are listed in the following table.
+
+.. table:: **Table 1** Comparisons between auto scaling policies
+
+   +-----------------+--------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Item            | HPA                                                                                                          | CronHPA                                                                                                             | AHPA                                                                                                                                                                                        |
+   +=================+==============================================================================================================+=====================================================================================================================+=============================================================================================================================================================================================+
+   | Introduction    | `Horizontal Pod Autoscaling <https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/>`__  | Enhanced based on HPA, CronHPA is mainly used if the resource usage of applications changes periodically.           | Advanced Horizontal Pod Autoscaler, which performs scaling beforehand based on historical data.                                                                                             |
+   +-----------------+--------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Rule            | Scales Deployment **pods** based on **metrics** (CPU usage and memory usage).                                | Scales Deployment **pods** **periodically** (daily, weekly, monthly, or yearly at a specific time).                 | Predicts the resources needed based on the **historical usage** of container resources (CPU and memory) and automatically scales workload **pods** beforehand.                              |
+   +-----------------+--------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Enhancement     | Adds the application-level cooldown time window and scaling threshold functions based on the Kubernetes HPA. | Compatible with HPA objects, allowing you to use both CronHPA and HPA.                                              | Identifies periods of pod scaling and predicts future fluctuations by analyzing historical service metrics. This proactive approach can resolve the issue of delayed scaling in native HPA. |
+   |                 |                                                                                                              |                                                                                                                     |                                                                                                                                                                                             |
+   |                 |                                                                                                              | -  If both CronHPA and HPA are used, CronHPA runs based on HPA and periodically adjusts the number of pods for HPA. |                                                                                                                                                                                             |
+   |                 |                                                                                                              | -  If CronHPA is separately used: CronHPA periodically adjusts the number of pods for workloads.                    |                                                                                                                                                                                             |
+   +-----------------+--------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Usage           | :ref:`Creating an HPA Policy <cce_10_0208>`                                                                  | :ref:`Creating a Scheduled CronHPA Policy <cce_10_0415>`                                                            | :ref:`Creating an AHPA Policy <cce_10_0934>`                                                                                                                                                |
+   +-----------------+--------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
 How HPA Works
 -------------
 
-HPA is a controller that controls horizontal pod scaling. HPA periodically checks the pod metrics, calculates the number of replicas required to meet the target values configured for HPA resources, and then adjusts the value of the **replicas** field in the target resource object (such as a Deployment).
+HPA is a controller that controls horizontal pod scaling. HPA periodically checks the pod metrics, calculates the number of pods required to meet the target values configured for HPA resources, and then adjusts the value of the **replicas** field in the target resource object (such as a Deployment).
 
 A prerequisite for auto scaling is that your container running data can be collected, such as number of cluster nodes/pods, and CPU and memory usage of containers. Kubernetes does not have built-in monitoring capabilities, but you can use extensions like `Prometheus <https://prometheus.io/>`__ and `Metrics Server <https://github.com/kubernetes-sigs/metrics-server>`__ to monitor and collect data.
 
 -  `Prometheus <https://prometheus.io/>`__ is an open-source monitoring and alarming framework that can collect multiple types of metrics. Prometheus has been a standard monitoring solution of Kubernetes.
 -  `Metrics Server <https://github.com/kubernetes-sigs/metrics-server>`__ is a cluster-wide aggregator of resource utilization data. Metrics Server collects metrics from the Summary API exposed by kubelet. These metrics are set for core Kubernetes resources, such as pods, nodes, containers, and Services. Metrics Server provides a set of standard APIs for external systems to collect these metrics.
 
-HPA can work with Metrics Server to implement auto scaling based on the CPU and memory usage.
+HPA can work with Metrics Server for auto scaling based on the CPU and memory usage. It can also work with Prometheus for auto scaling based on custom monitoring metrics.
 
 :ref:`Figure 1 <cce_10_0290__fig4979183710538>` shows how HPA works.
 
 .. _cce_10_0290__fig4979183710538:
 
-.. figure:: /_static/images/en-us_image_0000001950317216.png
+.. figure:: /_static/images/en-us_image_0000002101597649.png
    :alt: **Figure 1** HPA working process
 
    **Figure 1** HPA working process
@@ -40,15 +59,15 @@ HPA can work with Metrics Server to implement auto scaling based on the CPU and 
 
    The HPA controller calculates the scaling ratio based on the current metric values and desired metric values using the following formula:
 
-   **desiredReplicas = ceil[currentReplicas x (currentMetricValue/desiredMetricValue)]**
+   **Desired number of pods = Rounded up value of [Number of current pods x (Current metric value/Target value)]**
 
    For example, if the current metric value is 200m and the target value is 100m, the desired number of pods will be doubled according to the formula. In practice, pods may be constantly added or reduced. To ensure stability, the HPA controller is optimized from the following aspects:
 
-   -  Cooldown interval: In v1.11 and earlier versions, Kubernetes introduced the startup parameters **horizontal-pod-autoscaler-downscale-stabilization-window** and **horizontal-pod-autoScaler-upscale-stabilization-window** to indicate the cooldown intervals after a scale-in and scale-out, respectively, in which no scaling operation will not be performed. In versions later than v1.14, the scheduling queue is introduced to store all decision-making suggestions detected within a period of time. Then, the system makes decisions based on all valid decision-making suggestions to minimize changes of the desired number of replicas to ensure stability.
+   -  Cooldown interval: In v1.11 and earlier versions, Kubernetes introduced the startup parameters **horizontal-pod-autoscaler-downscale-stabilization-window** and **horizontal-pod-autoScaler-upscale-stabilization-window** to indicate the cooldown intervals after a scale-in and scale-out, respectively, in which no scaling operation will not be performed. In versions later than v1.14, the scheduling queue is introduced to store all decision-making suggestions detected within a period of time. Then, the system makes decisions based on all valid decision-making suggestions to minimize changes of the desired number of pods to ensure stability.
 
    -  Tolerance: It can be considered as a buffer zone. If the pod number changes can be tolerated, the number of pods remains unchanged.
 
-      Use the formula: ratio = currentMetricValue/desiredMetricValue
+      **ratio = Current metric value/Target value**
 
       When \|ratio - 1.0\| <= tolerance, scaling will not be performed.
 

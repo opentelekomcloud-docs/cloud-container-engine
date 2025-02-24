@@ -29,6 +29,8 @@ When you create a cluster on CCE, you can have one or three master nodes. Three 
 
 The master node specifications decide the number of nodes that can be managed by a cluster. You can select the cluster management scale, for example, 50 or 200 nodes.
 
+.. _cce_10_0430__section2048514305592:
+
 Cluster Lifecycle
 -----------------
 

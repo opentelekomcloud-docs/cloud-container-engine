@@ -16,7 +16,7 @@ Solution
 
 -  **Scenario: The node pool malfunctions.**
 
-   Log in to the CCE console and click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane and view the status of the affected node pool on the **Node Pools** tab. If the node pool is being scaled, wait until the node pool scaling is complete.
+   Log in to the CCE console and click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane and check the status of the affected node pool on the **Node Pools** tab. If the node pool is being scaled, wait until the node pool scaling is complete.
 
 -  **Scenario: The node pool OS is not supported.**
 

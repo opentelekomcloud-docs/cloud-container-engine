@@ -9,7 +9,7 @@ Check Items
 -----------
 
 -  Check item 1: Check whether there is an Nginx Ingress route whose ingress type is not specified (**kubernetes.io/ingress.class: nginx** is not added to **annotations**) in the cluster.
--  Check item 2: Check whether the DefaultBackend Service specified by the Nginx Ingress Controller backend is available.
+-  Check item 2: Check whether the DefaultBackend Service specified by the NGINX Ingress Controller backend is available.
 
 .. _cce_10_0508__section18775201773016:
 
@@ -18,9 +18,9 @@ Fault Locating
 
 **For Check Item 1**
 
-For Nginx Ingress, check the YAML. If the ingress type is not specified in the YAML file and the ingress is managed by the Nginx Ingress Controller, the ingress is at risk.
+For Nginx Ingress, check the YAML. If the ingress type is not specified in the YAML file and the ingress is managed by the NGINX Ingress Controller, the ingress is at risk.
 
-#. Check the Ingress type.
+#. Check the ingress type.
 
    Run the following command:
 
@@ -28,13 +28,13 @@ For Nginx Ingress, check the YAML. If the ingress type is not specified in the Y
 
       kubectl get ingress <ingress-name> -oyaml | grep -E ' kubernetes.io/ingress.class: | ingressClassName:'
 
-   -  Fault scenario: If the command output is empty, the Ingress type is not specified.
+   -  Fault scenario: If the command output is empty, the ingress type is not specified.
 
-   -  Normal scenario: The command output is not empty, indicating that the Ingress type has been specified by **annotations** or **ingressClassName**.
+   -  Normal scenario: The command output is not empty, indicating that the ingress type has been specified by **annotations** or **ingressClassName**.
 
       |image1|
 
-#. Ensure that the Ingress is managed by the Nginx Ingress Controller. The LoadBalancer Ingresses are not affected by this issue.
+#. Ensure that the ingress is managed by the Nginx ingress Controller. The LoadBalancer Ingresses are not affected by this issue.
 
    -  For clusters of v1.19, confirm this issue using **managedFields**.
 
@@ -44,7 +44,7 @@ For Nginx Ingress, check the YAML. If the ingress type is not specified in the Y
 
       |image2|
 
-   -  For clusters of other versions, check the logs of the Nginx Ingress Controller pod.
+   -  For clusters of other versions, check the logs of the NGINX Ingress Controller pod.
 
       .. code-block::
 
@@ -52,11 +52,11 @@ For Nginx Ingress, check the YAML. If the ingress type is not specified in the Y
 
       |image3|
 
-   If the fault persists, contact technical support personnel.
+   If the fault persists, contact technical support.
 
 **For Check Item 2**
 
-#. View the DefaultBackend Service in the namespace where the Nginx Ingress Controller is deployed.
+#. View the DefaultBackend Service in the namespace where the NGINX Ingress Controller is deployed.
 
    .. code-block::
 
@@ -70,9 +70,9 @@ For Nginx Ingress, check the YAML. If the ingress type is not specified in the Y
 
       - '--default-backend-service=<namespace>/<backend-svc-name>'
 
-   In the preceding command, *<backend-svc-name>* is the name of the DefaultBackend Service for the Nginx Ingress Controller.
+   In the preceding command, *<backend-svc-name>* is the name of the DefaultBackend Service for the NGINX Ingress Controller.
 
-#. Check whether the DefaultBackend Service of the Nginx Ingress Controller is available.
+#. Check whether the DefaultBackend Service of the NGINX Ingress Controller is available.
 
    .. code-block::
 
@@ -93,7 +93,7 @@ Add an annotation to the Nginx ingresses as follows:
 
 .. important::
 
-   There is no need to add this annotation to LoadBalancer ingresses. :ref:`Verify <cce_10_0508__section18775201773016>` that these ingresses are managed by Nginx Ingress Controller.
+   There is no need to add this annotation to LoadBalancer ingresses. :ref:`Verify <cce_10_0508__section18775201773016>` that these ingresses are managed by NGINX Ingress Controller.
 
 **For Check Item 2**
 
@@ -137,6 +137,6 @@ Create the DefaultBackend Service again.
         ipFamilyPolicy: SingleStack
         internalTrafficPolicy: Cluster
 
-.. |image1| image:: /_static/images/en-us_image_0000001981275653.png
-.. |image2| image:: /_static/images/en-us_image_0000001981275657.png
-.. |image3| image:: /_static/images/en-us_image_0000001981435505.png
+.. |image1| image:: /_static/images/en-us_image_0000002065637662.png
+.. |image2| image:: /_static/images/en-us_image_0000002101596229.png
+.. |image3| image:: /_static/images/en-us_image_0000002101677725.png

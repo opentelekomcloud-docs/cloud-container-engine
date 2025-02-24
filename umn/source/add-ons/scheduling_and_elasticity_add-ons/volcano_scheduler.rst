@@ -29,75 +29,98 @@ Install and configure the Volcano add-on in CCE clusters. For details, see :ref:
 Installing the Add-on
 ---------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane, locate **Volcano Scheduler** on the right, and click **Install**.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate **Volcano Scheduler** on the right, and click **Install**.
 
-#. On the **Install Add-on** page, configure the specifications.
+#. On the **Install Add-on** page, configure the specifications as needed.
 
-   .. table:: **Table 1** Add-on configuration
+   -  If you selected **Preset**, the system will configure the number of pods and resource quotas for the add-on based on the preset specifications. You can see the configurations on the console.
 
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                                          |
-      +===================================+======================================================================================================================================================================================================================================================================================================================================================================+
-      | Add-on Specifications             | Select **Standalone**, **Custom**, or **HA** for **Add-on Specifications**.                                                                                                                                                                                                                                                                                          |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Pods                              | Number of pods that will be created to match the selected add-on specifications.                                                                                                                                                                                                                                                                                     |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   | If you select **Custom**, you can adjust the number of pods as required.                                                                                                                                                                                                                                                                                             |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   | High availability is not possible with a single pod. If an error occurs on the node where the add-on instance runs, the add-on will fail.                                                                                                                                                                                                                            |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Containers                        | CPU and memory quotas of the container allowed for the selected add-on specifications.                                                                                                                                                                                                                                                                               |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   | If you select **Custom**, the recommended values for **volcano-controller** and **volcano-scheduler** are as follows:                                                                                                                                                                                                                                                |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   | -  If the number of nodes is less than 100, retain the default configuration. The requested vCPUs are 500m, and the limit is 2000m. The requested memory is 500 MiB, and the limit is 2000 MiB.                                                                                                                                                                      |
-      |                                   | -  If the number of nodes is greater than 100, increase the requested vCPUs by 500m and the requested memory by 1000 MiB each time 100 nodes (10,000 pods) are added. Increase the vCPU limit by 1500m and the memory limit by 1000 MiB.                                                                                                                             |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   |    .. note::                                                                                                                                                                                                                                                                                                                                                         |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   |       Recommended formula for calculating the requested value:                                                                                                                                                                                                                                                                                                       |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   |       -  Requested vCPUs: Calculate the number of target nodes multiplied by the number of target pods, perform interpolation search based on the number of nodes in the cluster multiplied by the number of target pods in :ref:`Table 2 <cce_10_0193__table4742829185912>`, and round up the request value and limit value that are closest to the specifications. |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   |          For example, for 2000 nodes and 20,000 pods, Number of target nodes x Number of target pods = 40 million, which is close to the specification of 700/70,000 (Number of cluster nodes x Number of pods = 49 million). According to the following table, set the requested vCPUs to 4000m and the limit value to 5500m.                                       |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   |       -  Requested memory: It is recommended that 2.4 GiB memory be allocated to every 1000 nodes and 1 GiB memory be allocated to every 10,000 pods. The requested memory is the sum of these two values. (The obtained value may be different from the recommended value in :ref:`Table 2 <cce_10_0193__table4742829185912>`. You can use either of them.)         |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   |          Requested memory = Number of target nodes/1000 x 2.4 GiB + Number of target pods/10,000 x 1 GiB                                                                                                                                                                                                                                                             |
-      |                                   |                                                                                                                                                                                                                                                                                                                                                                      |
-      |                                   |          For example, for 2000 nodes and 20,000 pods, the requested memory is 6.8 GiB (2000/1000 x 2.4 GiB + 20,000/10,000 x 1 GiB).                                                                                                                                                                                                                                 |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   -  If you selected **Custom**, you can adjust the number of pods and resource quotas as needed. High availability is not possible with a single pod. If an error occurs on the node where the add-on instance runs, the add-on will fail.
 
-   .. _cce_10_0193__table4742829185912:
+      The resource quotas of the volcano-admission component are irrelevant to the number of cluster nodes and pods. You can retain the default value. The resource quotas of volcano-controller and volcano-scheduler are related to the number of cluster nodes and pods. The recommended values are as follows:
 
-   .. table:: **Table 2** Recommended values for volcano-controller and volcano-scheduler
+      -  If the number of nodes is less than 100, retain the default configuration. The requested vCPUs are 500m, and the limit is 2000m. The requested memory is 500 MiB, and the limit is 2000 MiB.
+      -  If the number of nodes is greater than 100, increase the requested vCPUs by 500m and the requested memory by 1000 MiB each time 100 nodes (10,000 pods) are added. Increase the vCPU limit by 1500m and the memory limit by 1000 MiB.
 
-      +-------------------------+---------------------+----------------+------------------------+--------------------+
-      | Nodes/Pods in a Cluster | Requested vCPUs (m) | vCPU Limit (m) | Requested Memory (MiB) | Memory Limit (MiB) |
-      +=========================+=====================+================+========================+====================+
-      | 50/5000                 | 500                 | 2000           | 500                    | 2000               |
-      +-------------------------+---------------------+----------------+------------------------+--------------------+
-      | 100/10,000              | 1000                | 2500           | 1500                   | 2500               |
-      +-------------------------+---------------------+----------------+------------------------+--------------------+
-      | 200/20,000              | 1500                | 3000           | 2500                   | 3500               |
-      +-------------------------+---------------------+----------------+------------------------+--------------------+
-      | 300/30,000              | 2000                | 3500           | 3500                   | 4500               |
-      +-------------------------+---------------------+----------------+------------------------+--------------------+
-      | 400/40,000              | 2500                | 4000           | 4500                   | 5500               |
-      +-------------------------+---------------------+----------------+------------------------+--------------------+
-      | 500/50,000              | 3000                | 4500           | 5500                   | 6500               |
-      +-------------------------+---------------------+----------------+------------------------+--------------------+
-      | 600/60,000              | 3500                | 5000           | 6500                   | 7500               |
-      +-------------------------+---------------------+----------------+------------------------+--------------------+
-      | 700/70,000              | 4000                | 5500           | 7500                   | 8500               |
-      +-------------------------+---------------------+----------------+------------------------+--------------------+
+         .. note::
 
-#. Configure the add-on parameters.
+            Recommended formula for calculating the requested value:
 
-   -  **Application Scaling Priority Policy**: After this function is enabled, application scale-in is performed based on the default priority policy and customized policies. If application scale-out is required, you need to set the default scheduler of the cluster to volcano.
-   -  **Advanced Settings**: You can configure the default scheduler parameters. For details, see :ref:`Table 4 <cce_10_0193__table562185146>`.
+            -  Requested vCPUs: Calculate the number of target nodes multiplied by the number of target pods, perform interpolation search based on the number of nodes in the cluster multiplied by the number of target pods in :ref:`Table 1 <cce_10_0193__table443465675016>`, and round up the request value and limit value that are closest to the specifications.
 
-   Example:
+               For example, for 2000 nodes and 20,000 pods, Number of target nodes x Number of target pods = 40 million, which is close to the specification of 700/70,000 (Number of cluster nodes x Number of pods = 49 million). According to the following table, set the requested vCPUs to 4000m and the limit value to 5500m.
+
+            -  Requested memory: It is recommended that 2.4 GiB memory be allocated to every 1000 nodes and 1 GiB memory be allocated to every 10,000 pods. The requested memory is the sum of these two values. (The obtained value may be different from the recommended value in :ref:`Table 1 <cce_10_0193__table443465675016>`. You can use either of them.)
+
+               Requested memory = Number of target nodes/1000 x 2.4 GiB + Number of target pods/10,000 x 1 GiB
+
+               For example, for 2000 nodes and 20,000 pods, the requested memory is 6.8 GiB (2000/1000 x 2.4 GiB + 20,000/10,000 x 1 GiB).
+
+      .. _cce_10_0193__table443465675016:
+
+      .. table:: **Table 1** Recommended requested resources and resource limits for volcano-controller and volcano-scheduler
+
+         +-------------------------+-----------------+---------------+----------------------+--------------------+
+         | Nodes/Pods in a Cluster | CPU Request (m) | CPU Limit (m) | Memory Request (MiB) | Memory Limit (MiB) |
+         +=========================+=================+===============+======================+====================+
+         | 50/5000                 | 500             | 2000          | 500                  | 2000               |
+         +-------------------------+-----------------+---------------+----------------------+--------------------+
+         | 100/10000               | 1000            | 2500          | 1500                 | 2500               |
+         +-------------------------+-----------------+---------------+----------------------+--------------------+
+         | 200/20000               | 1500            | 3000          | 2500                 | 3500               |
+         +-------------------------+-----------------+---------------+----------------------+--------------------+
+         | 300/30000               | 2000            | 3500          | 3500                 | 4500               |
+         +-------------------------+-----------------+---------------+----------------------+--------------------+
+         | 400/40000               | 2500            | 4000          | 4500                 | 5500               |
+         +-------------------------+-----------------+---------------+----------------------+--------------------+
+         | 500/50000               | 3000            | 4500          | 5500                 | 6500               |
+         +-------------------------+-----------------+---------------+----------------------+--------------------+
+         | 600/60000               | 3500            | 5000          | 6500                 | 7500               |
+         +-------------------------+-----------------+---------------+----------------------+--------------------+
+         | 700/70000               | 4000            | 5500          | 7500                 | 8500               |
+         +-------------------------+-----------------+---------------+----------------------+--------------------+
+
+#. Configure the extended functions supported by the add-on.
+
+   -  **Descheduling**: After this function is enabled, the volcano-descheduler component is automatically deployed. The scheduler will evict and reschedule pods that do not meet your policy configuration requirements. This helps to balance cluster load and reduce resource fragmentation. For details, see :ref:`Descheduling <cce_10_0766>`.
+   -  **Hybrid Service Deployment**: After this function is enabled, the volcano-agent component is automatically deployed in the node pool with the hybrid deployment capability enabled, which improves resource utilization by ensuring node QoS, enabling CPU bursts, and allowing for dynamic resource oversubscription. This helps to reduce resource usage costs.
+   -  **NUMA Topology Scheduling**: After this function is enabled, the resource-exporter component is automatically deployed. The scheduler will schedule pods in NUMA affinity mode, which enhances the performance of high-performance training jobs. For details, see :ref:`NUMA Affinity Scheduling <cce_10_0425>`.
+
+#. Configure deployment policies for the add-on pods.
+
+   .. note::
+
+      -  Scheduling policies do not take effect on add-on instances of the DaemonSet type.
+      -  When configuring multi-AZ deployment or node affinity, ensure that there are nodes meeting the scheduling policy and that resources are sufficient in the cluster. Otherwise, the add-on cannot run.
+
+   .. table:: **Table 2** Configurations for add-on scheduling
+
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                                                                                                     |
+      +===================================+=================================================================================================================================================================================================================================================================================================+
+      | Multi-AZ Deployment               | -  **Preferred**: Deployment pods of the add-on will be preferentially scheduled to nodes in different AZs. If all the nodes in the cluster are deployed in the same AZ, the pods will be scheduled to different nodes in that AZ.                                                              |
+      |                                   | -  **Forcible**: Deployment pods of the add-on are forcibly scheduled to nodes in different AZs. There can be at most one pod in each AZ. If nodes in a cluster are not in different AZs, some add-on pods cannot run properly. If a node is faulty, add-on pods on it may fail to be migrated. |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Node Affinity                     | -  **Not configured**: Node affinity is disabled for the add-on.                                                                                                                                                                                                                                |
+      |                                   |                                                                                                                                                                                                                                                                                                 |
+      |                                   | -  **Specify node**: Specify the nodes where the add-on is deployed. If you do not specify the nodes, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                     |
+      |                                   |                                                                                                                                                                                                                                                                                                 |
+      |                                   | -  **Specify node pool**: Specify the node pool where the add-on is deployed. If you do not specify the node pool, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                        |
+      |                                   |                                                                                                                                                                                                                                                                                                 |
+      |                                   | -  **Customize affinity**: Enter the labels of the nodes where the add-on is to be deployed for more flexible scheduling policies. If you do not specify node labels, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                     |
+      |                                   |                                                                                                                                                                                                                                                                                                 |
+      |                                   |    If multiple custom affinity policies are configured, ensure that there are nodes that meet all the affinity policies in the cluster. Otherwise, the add-on cannot run.                                                                                                                       |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Toleration                        | Using both taints and tolerations allows (not forcibly) the add-on Deployment to be scheduled to a node with the matching taints, and controls the Deployment eviction policies after the node where the Deployment is located is tainted.                                                      |
+      |                                   |                                                                                                                                                                                                                                                                                                 |
+      |                                   | The add-on adds the default tolerance policy for the **node.kubernetes.io/not-ready** and **node.kubernetes.io/unreachable** taints, respectively. The tolerance time window is 60s.                                                                                                            |
+      |                                   |                                                                                                                                                                                                                                                                                                 |
+      |                                   | For details, see :ref:`Configuring Tolerance Policies <cce_10_0728>`.                                                                                                                                                                                                                           |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+#. Click **Install**.
+
+   After the add-on is installed, you can choose **Settings** in the navigation pane, switch to the **Scheduling** tab, select **Volcano scheduler**, and find the corresponding expert mode. You can customize advanced scheduling policies based on actual service scenarios. The following is an example:
 
    .. code-block::
 
@@ -161,7 +184,7 @@ Installing the Add-on
       |                        |                                                                                                                                                                                                   | -  **backfill**: schedules pending tasks as much as possible to maximize the utilization of node resources.                                                                                                               |                                                                         |
       |                        |                                                                                                                                                                                                   |                                                                                                                                                                                                                           |    When configuring **actions**, use either **preempt** or **enqueue**. |
       +------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+
-      | plugins                | Implementation details of algorithms in actions based on different scenarios. For details, see `Plugins <https://volcano.sh/en/docs/plugins/>`__.                                                 | For details, see :ref:`Table 4 <cce_10_0193__table562185146>`.                                                                                                                                                            | None                                                                    |
+      | plugins                | Implementation details of algorithms in actions based on different scenarios. For details, see `Plugins <https://volcano.sh/en/docs/plugins/>`__.                                                 | For details, see :ref:`Table 4 <cce_10_0193__table1227612123306>`.                                                                                                                                                        | None                                                                    |
       +------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+
       | tolerations            | Tolerance of the add-on to node taints.                                                                                                                                                           | By default, the add-on can run on nodes with the **node.kubernetes.io/not-ready** or **node.kubernetes.io/unreachable** taint and the taint effect value is **NoExecute**, but it'll be evicted in 60 seconds.            | .. code-block::                                                         |
       |                        |                                                                                                                                                                                                   |                                                                                                                                                                                                                           |                                                                         |
@@ -176,7 +199,7 @@ Installing the Add-on
       |                        |                                                                                                                                                                                                   |                                                                                                                                                                                                                           |        tolerationSeconds: 60                                            |
       +------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+
 
-   .. _cce_10_0193__table562185146:
+   .. _cce_10_0193__table1227612123306:
 
    .. table:: **Table 4** Supported plugins
 
@@ -254,7 +277,7 @@ Installing the Add-on
       |                            |    This plugin is supported in Volcano 1.6.5 and later versions.                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                         |        arguments:                                                                                                                                                                                                                                                                          |
       |                            |                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                                                         |          overcommit-factor: 2.0                                                                                                                                                                                                                                                            |
       +----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | drf                        | The Dominant Resource Fairness (DRF) scheduling algorithm, which schedules jobs based on their dominant resource share. Jobs with a smaller resource share will be scheduled with a higher priority.                                                                                         | ``-``                                                                                                                                                                                                                                                                                                                                   | .. code-block::                                                                                                                                                                                                                                                                            |
+      | drf                        | The Dominant Resource Fairness (DRF) scheduling algorithm, which schedules jobs based on their dominant resource share. Jobs with a smaller resource share will be scheduled with a higher priority.                                                                                         | None                                                                                                                                                                                                                                                                                                                                    | .. code-block::                                                                                                                                                                                                                                                                            |
       |                            |                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                                                         |                                                                                                                                                                                                                                                                                            |
       |                            |                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                                                         |    - plugins:                                                                                                                                                                                                                                                                              |
       |                            |                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                                                         |      - name: 'drf'                                                                                                                                                                                                                                                                         |
@@ -303,7 +326,7 @@ Installing the Add-on
       |                            |                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                                                         |      - name: 'cce-gpu-topology-priority'                                                                                                                                                                                                                                                   |
       |                            |                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                                                         |      - name: 'cce-gpu'                                                                                                                                                                                                                                                                     |
       +----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | numa-aware                 | NUMA affinity scheduling.                                                                                                                                                                                                                                                                    | **arguments**:                                                                                                                                                                                                                                                                                                                          | .. code-block::                                                                                                                                                                                                                                                                            |
+      | numa-aware                 | NUMA affinity scheduling. For details, see :ref:`NUMA Affinity Scheduling <cce_10_0425>`.                                                                                                                                                                                                    | **arguments**:                                                                                                                                                                                                                                                                                                                          | .. code-block::                                                                                                                                                                                                                                                                            |
       |                            |                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                                                         |                                                                                                                                                                                                                                                                                            |
       |                            |                                                                                                                                                                                                                                                                                              | -  **weight**: weight of the numa-aware plugin                                                                                                                                                                                                                                                                                          |    - plugins:                                                                                                                                                                                                                                                                              |
       |                            |                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                                                         |      - name: 'nodelocalvolume'                                                                                                                                                                                                                                                             |
@@ -351,73 +374,45 @@ Installing the Add-on
       |                            |                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                                                         |      - name: 'networkresource'                                                                                                                                                                                                                                                             |
       +----------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-#. Configure scheduling policies for the add-on.
-
-   .. note::
-
-      -  Scheduling policies do not take effect on add-on instances of the DaemonSet type.
-      -  When configuring multi-AZ deployment or node affinity, ensure that there are nodes meeting the scheduling policy and that resources are sufficient in the cluster. Otherwise, the add-on cannot run.
-
-   .. table:: **Table 5** Configurations for add-on scheduling
-
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                                                                                                                              |
-      +===================================+==========================================================================================================================================================================================================================================================+
-      | Multi AZ                          | -  **Preferred**: Deployment pods of the add-on will be preferentially scheduled to nodes in different AZs. If all the nodes in the cluster are deployed in the same AZ, the pods will be scheduled to that AZ.                                          |
-      |                                   | -  **Required**: Deployment pods of the add-on will be forcibly scheduled to nodes in different AZs. If there are fewer AZs than pods, the extra pods will fail to run.                                                                                  |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Node Affinity                     | -  **Not configured**: Node affinity is disabled for the add-on.                                                                                                                                                                                         |
-      |                                   |                                                                                                                                                                                                                                                          |
-      |                                   | -  **Node Affinity**: Specify the nodes where the add-on is deployed. If you do not specify the nodes, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                             |
-      |                                   |                                                                                                                                                                                                                                                          |
-      |                                   | -  **Specified Node Pool Scheduling**: Specify the node pool where the add-on is deployed. If you do not specify the node pool, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                    |
-      |                                   |                                                                                                                                                                                                                                                          |
-      |                                   | -  **Custom Policies**: Enter the labels of the nodes where the add-on is to be deployed for more flexible scheduling policies. If you do not specify node labels, the add-on will be randomly scheduled based on the default cluster scheduling policy. |
-      |                                   |                                                                                                                                                                                                                                                          |
-      |                                   |    If multiple custom affinity policies are configured, ensure that there are nodes that meet all the affinity policies in the cluster. Otherwise, the add-on cannot run.                                                                                |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Toleration                        | Using both taints and tolerations allows (not forcibly) the add-on Deployment to be scheduled to a node with the matching taints, and controls the Deployment eviction policies after the node where the Deployment is located is tainted.               |
-      |                                   |                                                                                                                                                                                                                                                          |
-      |                                   | The add-on adds the default tolerance policy for the **node.kubernetes.io/not-ready** and **node.kubernetes.io/unreachable** taints, respectively. The tolerance time window is 60s.                                                                     |
-      |                                   |                                                                                                                                                                                                                                                          |
-      |                                   | For details, see :ref:`Configuring Tolerance Policies <cce_10_0728>`.                                                                                                                                                                                    |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-#. Click **Install**.
-
 Components
 ----------
 
-.. table:: **Table 6** Add-on components
+.. table:: **Table 5** Add-on components
 
-   +--------------------+-------------------------------------------------------------------------------------------------------------------+---------------+
-   | Component          | Description                                                                                                       | Resource Type |
-   +====================+===================================================================================================================+===============+
-   | volcano-scheduler  | Schedule pods.                                                                                                    | Deployment    |
-   +--------------------+-------------------------------------------------------------------------------------------------------------------+---------------+
-   | volcano-controller | Synchronize CRDs.                                                                                                 | Deployment    |
-   +--------------------+-------------------------------------------------------------------------------------------------------------------+---------------+
-   | volcano-admission  | Webhook server, which verifies and modifies resources such as pods and jobs                                       | Deployment    |
-   +--------------------+-------------------------------------------------------------------------------------------------------------------+---------------+
-   | volcano-agent      | Cloud native hybrid agent, which is used for node QoS assurance, CPU burst, and dynamic resource oversubscription | DaemonSet     |
-   +--------------------+-------------------------------------------------------------------------------------------------------------------+---------------+
-   | resource-exporter  | Report the NUMA topology information of nodes.                                                                    | DaemonSet     |
-   +--------------------+-------------------------------------------------------------------------------------------------------------------+---------------+
+   +----------------------------------------+---------------------------------------------------------------------------------------------------------------------------+---------------+
+   | Component                              | Description                                                                                                               | Resource Type |
+   +========================================+===========================================================================================================================+===============+
+   | volcano-scheduler                      | Schedule pods.                                                                                                            | Deployment    |
+   +----------------------------------------+---------------------------------------------------------------------------------------------------------------------------+---------------+
+   | volcano-controller                     | Synchronize CRDs.                                                                                                         | Deployment    |
+   +----------------------------------------+---------------------------------------------------------------------------------------------------------------------------+---------------+
+   | volcano-admission                      | Webhook server, which verifies and modifies resources such as pods and jobs                                               | Deployment    |
+   +----------------------------------------+---------------------------------------------------------------------------------------------------------------------------+---------------+
+   | volcano-agent                          | Cloud native hybrid agent, which is used for node QoS assurance, CPU burst, and dynamic resource oversubscription         | DaemonSet     |
+   +----------------------------------------+---------------------------------------------------------------------------------------------------------------------------+---------------+
+   | resource-exporter                      | Report the NUMA topology information of nodes.                                                                            | DaemonSet     |
+   +----------------------------------------+---------------------------------------------------------------------------------------------------------------------------+---------------+
+   | volcano-descheduler                    | Reschedule pods in a cluster. After the rescheduling capability is enabled, pods will be automatically deployed on nodes. | Deployment    |
+   +----------------------------------------+---------------------------------------------------------------------------------------------------------------------------+---------------+
+   | volcano-recommender                    | Generate recommendations for CPU and memory requests based on the historical CPU and memory usage of a container.         | Deployment    |
+   +----------------------------------------+---------------------------------------------------------------------------------------------------------------------------+---------------+
+   | volcano-recommender-prometheus-adapter | Collect historical CPU and memory metrics of containers from Prometheus.                                                  | Deployment    |
+   +----------------------------------------+---------------------------------------------------------------------------------------------------------------------------+---------------+
 
 Modifying the volcano-scheduler Configurations Using the Console
 ----------------------------------------------------------------
 
 volcano-scheduler is the component responsible for pod scheduling. It consists of a series of actions and plugins. Actions should be executed in every step. Plugins provide the action algorithm details in different scenarios. volcano-scheduler is highly scalable. You can specify and implement actions and plugins based on your requirements.
 
-Volcano allows you to configure the scheduler during installation, upgrade, and editing. The configuration will be synchronized to volcano-scheduler-configmap.
+After the add-on is installed, you can choose **Settings** in the navigation pane, switch to the **Scheduling** tab, and configure the basic scheduling capabilities. You can also use the expert mode of the Volcano scheduler to customize advanced scheduling policies based on service scenarios.
 
 This section describes how to configure volcano-scheduler.
 
 .. note::
 
-   Only Volcano of v1.7.1 and later support this function. On the new add-on page, options such as **resource_exporter_enable** are replaced by **default_scheduler_conf**.
+   Only Volcano of v1.7.1 and later support this function.
 
-Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane. On the right of the page, locate **Volcano Scheduler** and click **Install** or **Upgrade**. In the **Parameters** area, configure the Volcano parameters.
+Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Settings** and click the **Scheduling** tab. In the **Select Cluster Scheduler** area, select **Volcano scheduler**, find the expert mode, and click **Try Now**.
 
 -  Using **resource_exporter**:
 
@@ -491,127 +486,6 @@ Log in to the CCE console and click the cluster name to access the cluster conso
 
    After this function is enabled, you can use the functions of both numa-aware and resource_exporter.
 
-Retaining the Original volcano-scheduler-configmap Configurations
------------------------------------------------------------------
-
-If you want to use the original configuration after the plugin is upgraded, perform the following steps:
-
-#. Check and back up the original volcano-scheduler-configmap configuration.
-
-   Example:
-
-   .. code-block::
-
-      # kubectl edit cm volcano-scheduler-configmap -n kube-system
-      apiVersion: v1
-      data:
-        default-scheduler.conf: |-
-          actions: "enqueue, allocate, backfill"
-          tiers:
-          - plugins:
-            - name: priority
-            - name: gang
-            - name: conformance
-          - plugins:
-            - name: drf
-            - name: predicates
-            - name: nodeorder
-            - name: binpack
-              arguments:
-                binpack.cpu: 100
-                binpack.weight: 10
-                binpack.resources: nvidia.com/gpu
-                binpack.resources.nvidia.com/gpu: 10000
-          - plugins:
-            - name: cce-gpu-topology-predicate
-            - name: cce-gpu-topology-priority
-            - name: cce-gpu
-          - plugins:
-            - name: nodelocalvolume
-            - name: nodeemptydirvolume
-            - name: nodeCSIscheduling
-            - name: networkresource
-
-#. Enter the customized content in the **Parameters** area on the console.
-
-   .. code-block::
-
-      ...
-          "default_scheduler_conf": {
-              "actions": "enqueue, allocate, backfill",
-              "tiers": [
-                  {
-                      "plugins": [
-                          {
-                              "name": "priority"
-                          },
-                          {
-                              "name": "gang"
-                          },
-                          {
-                              "name": "conformance"
-                          }
-                      ]
-                  },
-                  {
-                      "plugins": [
-                          {
-                              "name": "drf"
-                          },
-                          {
-                              "name": "predicates"
-                          },
-                          {
-                              "name": "nodeorder"
-                          },
-                          {
-                              "name": "binpack",
-                              "arguments": {
-                                  "binpack.cpu": 100,
-                                  "binpack.weight": 10,
-                                  "binpack.resources": "nvidia.com/gpu",
-                                  "binpack.resources.nvidia.com/gpu": 10000
-                              }
-                          }
-                      ]
-                  },
-                  {
-                      "plugins": [
-                          {
-                              "name": "cce-gpu-topology-predicate"
-                          },
-                          {
-                              "name": "cce-gpu-topology-priority"
-                          },
-                          {
-                              "name": "cce-gpu"
-                          }
-                      ]
-                  },
-                  {
-                      "plugins": [
-                          {
-                              "name": "nodelocalvolume"
-                          },
-                          {
-                              "name": "nodeemptydirvolume"
-                          },
-                          {
-                              "name": "nodeCSIscheduling"
-                          },
-                          {
-                              "name": "networkresource"
-                          }
-                      ]
-                  }
-              ]
-          },
-      ...
-
-   .. note::
-
-      When this function is used, the original content in volcano-scheduler-configmap will be overwritten. Therefore, you must check whether volcano-scheduler-configmap has been modified during the upgrade. If yes, synchronize the modification to the upgrade page.
-
 Collecting Prometheus Metrics
 -----------------------------
 
@@ -621,7 +495,7 @@ volcano-scheduler exposes Prometheus metrics through port 8080. You can build a 
 
    Prometheus metrics can be exposed only by the Volcano add-on of version 1.8.5 or later.
 
-.. table:: **Table 7** Key metrics
+.. table:: **Table 6** Key metrics
 
    +-----------------------------------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+
    | Metric                                  | Type      | Description                                                                                                                                                      | Label                                         |
@@ -654,11 +528,11 @@ volcano-scheduler exposes Prometheus metrics through port 8080. You can build a 
 Uninstalling the Volcano Add-on
 -------------------------------
 
-After the add-on is uninstalled, all custom Volcano resources (:ref:`Table 8 <cce_10_0193__table148801381540>`) will be deleted, including the created resources. Reinstalling the add-on will not inherit or restore the tasks before the uninstallation. It is a good practice to uninstall the Volcano add-on only when no custom Volcano resources are being used in the cluster.
+After the add-on is uninstalled, all custom Volcano resources (:ref:`Table 7 <cce_10_0193__table148801381540>`) will be deleted, including the created resources. Reinstalling the add-on will not inherit or restore the tasks before the uninstallation. It is a good practice to uninstall the Volcano add-on only when no custom Volcano resources are being used in the cluster.
 
 .. _cce_10_0193__table148801381540:
 
-.. table:: **Table 8** Custom Volcano resources
+.. table:: **Table 7** Custom Volcano resources
 
    ============ ===================== =========== ==============
    Item         API Group             API Version Resource Level
@@ -677,11 +551,23 @@ Change History
 
    It is a good practice to upgrade Volcano to the latest version that is supported by the cluster.
 
-.. table:: **Table 9** Release history
+.. table:: **Table 8** Release history
 
    +-----------------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Add-on Version        | Supported Cluster Version | New Feature                                                                                                                                                                        |
    +=======================+===========================+====================================================================================================================================================================================+
+   | 1.15.6                | v1.23                     | Resources can be oversubscribed based on pod profiling.                                                                                                                            |
+   |                       |                           |                                                                                                                                                                                    |
+   |                       | v1.25                     |                                                                                                                                                                                    |
+   |                       |                           |                                                                                                                                                                                    |
+   |                       | v1.27                     |                                                                                                                                                                                    |
+   |                       |                           |                                                                                                                                                                                    |
+   |                       | v1.28                     |                                                                                                                                                                                    |
+   |                       |                           |                                                                                                                                                                                    |
+   |                       | v1.29                     |                                                                                                                                                                                    |
+   |                       |                           |                                                                                                                                                                                    |
+   |                       | v1.30                     |                                                                                                                                                                                    |
+   +-----------------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | 1.13.3                | v1.21                     | -  Supported scale-in of customized resources based on node priorities.                                                                                                            |
    |                       |                           | -  Optimized the association between preemption and node scale-out.                                                                                                                |
    |                       | v1.23                     |                                                                                                                                                                                    |

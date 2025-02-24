@@ -11,7 +11,7 @@ Model Definition
 Cloud Native 2.0 network model is a proprietary, next-generation container network model that combines the elastic network interfaces (ENIs) and supplementary network interfaces (sub-ENIs) of the Virtual Private Cloud (VPC). This allows ENIs or sub-ENIs to be directly bound to pods, giving each pod its own unique IP address within the VPC. Furthermore, it supports additional features like ELB passthrough container, pod binding to a security group, and pod binding to an EIP. Because container tunnel encapsulation and NAT are not required, the Cloud Native 2.0 network model enables higher network performance than the container tunnel network model and VPC network model.
 
 
-.. figure:: /_static/images/en-us_image_0000001981276281.png
+.. figure:: /_static/images/en-us_image_0000002101597161.png
    :alt: **Figure 1** Cloud Native 2.0 network model
 
    **Figure 1** Cloud Native 2.0 network model
@@ -23,8 +23,8 @@ In a cluster using the Cloud Native 2.0 network model, pods rely on ENIs or sub-
 -  To run a pod, it is necessary to bind ENIs to it. The number of pods that can run on a node depends on the number of ENIs that can be bound to the node and the number of ENI ports available on the node.
 -  Traffic for communications between pods on a node, communications between pods on different nodes, and access to networks outside a cluster is forwarded through the ENI or sub-ENI of the VPC.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 This network model is available only to CCE Turbo clusters.
 
@@ -130,7 +130,7 @@ The number of pre-binding ENIs on the node remains in the following range:
 -  **Minimum number of ENIs to be pre-bound = min(max(nic-minimum-target - Number of bound ENIs, nic-warm-target), nic-maximum-target - Number of bound ENIs)**
 -  **Maximum number of ENIs to be pre-bound = max(nic-warm-target + nic-max-above-warm-target, Number of bound ENIs - nic-minimum-target)**
 
-When a pod is created, an idle ENI (the earliest unused one) is preferentially allocated from the pool. If no idle ENI is available, a new sub-ENI is bound to the pod.
+When a pod is created, an idle pre-bound ENI (the earliest unused one) will be preferentially allocated from the pool. If no idle ENI is available, a new ENI will be created or a new sub-ENI will be bound to the pod.
 
 When the pod is deleted, the corresponding ENI is released back to the pre-bound ENI pool of the node, enters a 2 minutes cooldown period, and can be bind to another pod. If the ENI is not bound to any pod within 2 minutes, it will be released.
 
@@ -150,7 +150,7 @@ In the Cloud Native 2.0 network model, the container CIDR block and node CIDR bl
 In addition, a subnet can be added to the container CIDR block after a cluster is created to increase the number of available IP addresses. In this case, ensure that the added subnet does not conflict with other subnets in the container CIDR block.
 
 
-.. figure:: /_static/images/en-us_image_0000001981276293.png
+.. figure:: /_static/images/en-us_image_0000002065638606.png
    :alt: **Figure 2** Configuring CIDR blocks
 
    **Figure 2** Configuring CIDR blocks

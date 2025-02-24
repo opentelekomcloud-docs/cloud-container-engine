@@ -48,7 +48,7 @@ New Features
 
 -  Local ephemeral storage capacity isolation is stable.
 
-   This feature provides support for capacity isolation of local ephemeral storage between pods, such as EmptyDir. If a pod's consumption of shared resources exceeds the limit, it will be evicted.
+   This feature provides support for capacity isolation of local ephemeral storage between pods, such as emptyDir. If a pod's consumption of shared resources exceeds the limit, it will be evicted.
 
 -  The CRD verification expression language moves to beta.
 

@@ -5,15 +5,15 @@
 Managing Node Labels
 ====================
 
-You can add different labels to nodes and define different attributes for labels. By using these node labels, you can quickly understand the characteristics of each node.
-
 Node Label Usage Scenario
 -------------------------
 
 Node labels are mainly used in the following scenarios:
 
 -  Node management: Node labels are used to classify nodes.
--  Node affinity or anti-affinity for workloads: By adding labels to nodes, you can schedule pods to specific nodes through node affinity or prevent pods from being scheduled to specific nodes through node anti-affinity. For details, see :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
+-  Node affinity or anti-affinity for workloads: By adding labels to nodes, you can schedule pods to specific nodes through node affinity or prevent pods from being scheduled to specific nodes through node anti-affinity. For details, see :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`.
+
+.. _cce_10_0004__section74111324152813:
 
 Inherent Label of a Node
 ------------------------
@@ -55,7 +55,7 @@ After a node is created, some fixed labels exist and cannot be deleted. For deta
    +-----------------------------------------------------+-------------------------------------------------------------+
    | kubernetes.io/os                                    | Node OS type                                                |
    +-----------------------------------------------------+-------------------------------------------------------------+
-   | node.kubernetes.io/subnetid                         | ID of the subnet where the node is located.                 |
+   | node.kubernetes.io/subnetid                         | ID of the subnet where the node is located                  |
    +-----------------------------------------------------+-------------------------------------------------------------+
    | os.architecture                                     | Node processor architecture                                 |
    |                                                     |                                                             |
@@ -65,10 +65,12 @@ After a node is created, some fixed labels exist and cannot be deleted. For deta
    +-----------------------------------------------------+-------------------------------------------------------------+
    | os.version                                          | Node OS kernel version                                      |
    +-----------------------------------------------------+-------------------------------------------------------------+
-   | accelerator                                         | GPU node labels.                                            |
+   | accelerator                                         | GPU node labels                                             |
    +-----------------------------------------------------+-------------------------------------------------------------+
-   | cce.cloud.com/cce-nodepool                          | The dedicated label of a node in a node pool.               |
+   | cce.cloud.com/cce-nodepool                          | The dedicated label of a node in a node pool                |
    +-----------------------------------------------------+-------------------------------------------------------------+
+
+.. _cce_10_0004__section33951611481:
 
 Adding or Deleting a Node Label
 -------------------------------

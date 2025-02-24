@@ -13,9 +13,9 @@ Configuring CoreDNS Specifications
 ----------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Add-ons**. On the displayed page, click **Edit** under **CoreDNS**. The add-on details page is displayed.
+#. In the navigation pane, choose **Add-ons**. Then, click **Edit** under **CoreDNS**.
 #. In the **Specifications** area, configure coredns specifications.
-#. Change the number of pods, CPU quotas, and memory quotas as needed to adjust the domain name resolution QPS provided by CoreDNS.
+#. Change the number of replicas, CPU quotas, and memory quotas as needed to adjust the domain name resolution QPS provided by CoreDNS.
 #. Click **OK**.
 
 Properly Configuring the Stub Domain for DNS
@@ -27,11 +27,7 @@ Properly Configuring the Stub Domain for DNS
 
 #. Add a stub domain in the **Parameters** area. The format is a key-value pair. The key is a DNS suffix domain name, and the value is a DNS IP address or a group of DNS IP addresses, for example, **consul.local -- 10.150.0.1**.
 
-#. Click **OK**.
-
-#. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.
-
-   The corresponding Corefile content is as follows:
+   Corefile:
 
    .. code-block::
 
@@ -61,6 +57,10 @@ Properly Configuring the Stub Domain for DNS
           forward . 10.150.0.1
       }
 
+#. Click **OK**.
+
+#. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.
+
 Properly Configuring the Host
 -----------------------------
 
@@ -70,7 +70,7 @@ To specify hosts for a specific domain name, you can use the hosts add-on. An ex
 
 #. In the navigation pane, choose **Add-ons**. Then, click **Edit** under **CoreDNS**.
 
-#. Edit the advanced configuration under **Parameters** and add the following content to the **plugins** field:
+#. Edit extended parameters in **Parameters** and add the following content to the **plugins** field:
 
    .. code-block::
 
@@ -81,15 +81,11 @@ To specify hosts for a specific domain name, you can use the hosts add-on. An ex
 
    .. important::
 
-      The **fallthrough** field must be configured. **fallthrough** indicates that when the domain name to be resolved cannot be found in the hosts file, the resolution task is transferred to the next CoreDNS plug-in. If **fallthrough** is not specified, the task ends and the domain name resolution stops. As a result, the domain name resolution in the cluster fails.
+      The **fallthrough** field must be configured. **fallthrough** indicates that when the domain name to be resolved cannot be found in the hosts file, the resolution task is transferred to the next add-on of CoreDNS. If **fallthrough** is not specified, the task ends and the domain name resolution stops. As a result, the domain name resolution in the cluster fails.
 
       For details about how to configure the hosts file, visit https://coredns.io/plugins/hosts/.
 
-#. Click **OK**.
-
-#. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.
-
-   The corresponding Corefile content is as follows:
+   Corefile:
 
    .. code-block::
 
@@ -115,6 +111,10 @@ To specify hosts for a specific domain name, you can use the hosts add-on. An ex
           ready {$POD_IP}:8081
       }
 
+#. Click **OK**.
+
+#. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.
+
 Configuring IPv6 Resolution Properly
 ------------------------------------
 
@@ -124,9 +124,9 @@ CoreDNS provides the template plug-in. After being configured, CoreDNS can immed
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Add-ons**. On the displayed page, click **Edit** under **CoreDNS**.
+#. In the navigation pane, choose **Add-ons**. Then, click **Edit** under **CoreDNS**.
 
-#. Edit the advanced configuration under **Parameters** and add the following content to the **plugins** field:
+#. Edit extended parameters in **Parameters** and add the following content to the **plugins** field.
 
    -  AAAA indicates an IPv6 resolution request. If **NXDOMAIN** is returned in the **rcode** control response, meaning that no resolution result is returned.
 
@@ -176,9 +176,9 @@ If you configure CoreDNS with an upstream DNS server, you can implement a cache 
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Add-ons**. On the displayed page, click **Edit** under **CoreDNS**.
+#. In the navigation pane, choose **Add-ons**. Then, click **Edit** under **CoreDNS**.
 
-#. In the window that slides out from the right, in the **Parameters** area, modify the cache content in the **plugins** field for **Advance Config**. For details about how to configure the cache, see https://coredns.io/plugins/cache/.
+#. Edit extended parameters in **Parameters** and modify the cache content in the **plugins** field. For details about how to configure the cache, see https://coredns.io/plugins/cache/.
 
    .. code-block::
 
@@ -219,4 +219,4 @@ If you configure CoreDNS with an upstream DNS server, you can implement a cache 
           ready {$POD_IP}:8081
       }
 
-.. |image1| image:: /_static/images/en-us_image_0000001950315828.png
+.. |image1| image:: /_static/images/en-us_image_0000002101596637.png

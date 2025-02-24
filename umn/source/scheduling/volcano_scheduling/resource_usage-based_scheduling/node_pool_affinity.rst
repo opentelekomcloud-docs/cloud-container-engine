@@ -16,7 +16,7 @@ Soft affinity scheduling of a node pool is implemented based on labels in the no
 
 The rule is to schedule pods to nodes with specified labels as far as possible.
 
-The formula for scoring a node is as follows:
+The scoring formula is as follows:
 
 Node score = Weight x MaxNodeScore x haveLabel
 
@@ -41,7 +41,9 @@ Configuring Soft Affinity Scheduling for Volcano Node Pools
    b. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. In the right pane, click the **Node Pools** tab.
    c. Click **Update** of the target node pool. On the page that is displayed, configure labels in the **Kubernetes Label** area.
 
-#. Choose **Add-ons** in the navigation pane, locate **Volcano Scheduler** on the right, click **Install** or **Edit**, and configure Volcano scheduler parameters in the **Parameters** area.
+#. On the **Scheduling** tab page, select **Volcano scheduler**, find the expert mode, and click **Try Now**.
+
+#. Configure Volcano scheduler parameters. The following shows a configuration example in JSON format:
 
    .. code-block::
 

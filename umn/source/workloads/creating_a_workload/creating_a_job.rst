@@ -124,6 +124,8 @@ Using the CCE Console
    -  **Network Configuration**
 
       -  Pod ingress/egress bandwidth limitation: You can set ingress/egress bandwidth limitation for pods. For details, see :ref:`Configuring QoS for a Pod <cce_10_0382>`.
+      -  Whether to enable a specified container network configuration: available only for clusters that support this function. After you enable a specified container network configuration, the workload will be created using the container subnet and security group in the configuration. For details, see :ref:`Binding a Subnet and Security Group to a Namespace or Workload Using a Container Network Configuration <cce_10_0196>`.
+      -  Specify the container network configuration name: Only the custom container network configuration whose associated resource type is workload can be selected.
       -  IPv6 shared bandwidth: available only for clusters that support this function. After this function is enabled, you can configure a shared bandwidth for a pod with IPv6 dual-stack ENIs. For details, see :ref:`Configuring Shared Bandwidth for a Pod with IPv6 Dual-Stack ENIs <cce_10_0604>`.
 
 #. Click **Create Workload** in the lower right corner.
@@ -230,14 +232,14 @@ After a one-off job is created, you can perform operations listed in :ref:`Table
 
 .. table:: **Table 2** Other operations
 
-   +-----------------------------------+-------------------------------------------------------------------------------------------------------------+
-   | Operation                         | Description                                                                                                 |
-   +===================================+=============================================================================================================+
-   | Editing a YAML file               | Click **More** > **Edit YAML** next to the job name to edit the YAML file corresponding to the current job. |
-   +-----------------------------------+-------------------------------------------------------------------------------------------------------------+
-   | Deleting a job                    | #. Select the target job and choose **More** > **Delete** in the **Operation** column.                      |
-   |                                   |                                                                                                             |
-   |                                   | #. Click **Yes**.                                                                                           |
-   |                                   |                                                                                                             |
-   |                                   |    Deleted jobs cannot be restored. Exercise caution when deleting a job.                                   |
-   +-----------------------------------+-------------------------------------------------------------------------------------------------------------+
+   +-----------------------------------+-----------------------------------------------------------------------------------------------+
+   | Operation                         | Description                                                                                   |
+   +===================================+===============================================================================================+
+   | Editing a YAML file               | Click **More** > **Edit YAML** next to the job name to edit the YAML file of the current job. |
+   +-----------------------------------+-----------------------------------------------------------------------------------------------+
+   | Deleting a job                    | #. Select the target job and choose **More** > **Delete** in the **Operation** column.        |
+   |                                   |                                                                                               |
+   |                                   | #. Click **Yes**.                                                                             |
+   |                                   |                                                                                               |
+   |                                   |    Deleted jobs cannot be restored. Exercise caution when deleting a job.                     |
+   +-----------------------------------+-----------------------------------------------------------------------------------------------+

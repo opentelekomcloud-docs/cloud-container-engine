@@ -21,6 +21,8 @@ Solution
 
       sudo echo hello
 
+   If the sudo command is unavailable, copy this command from another node to the target node.
+
 -  Scenario 2: Key files cannot be modified.
 
    During the in-place cluster upgrade, the **/etc/sudoers** and **/etc/sudoers.d/sudoerspaas** files are modified to obtain the sudo permission and update the components (such as Docker and kubelet) whose owner and owner group are **root** and related configuration files on the node. Log in to the node and run the following command to check whether the file can be modified:

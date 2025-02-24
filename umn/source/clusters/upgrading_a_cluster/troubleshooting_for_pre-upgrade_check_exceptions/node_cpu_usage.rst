@@ -8,7 +8,7 @@ Node CPU Usage
 Check Items
 -----------
 
-Check whether the CPU usage of the node exceeds 90%.
+Check whether the node's CPU usage is above 90%.
 
 Solution
 --------

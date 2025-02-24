@@ -35,7 +35,7 @@ The WordPress and MySQL images used in this example can be pulled from SWR. Ther
 Updating Services
 -----------------
 
-After the cluster is migrated, the Service of the source cluster may fail to take effect. You can perform the following steps to update the Service. If ingresses are configured in the source cluster, connect the new cluster to ELB again after the migration. For details, see :ref:`Using kubectl to Create an ELB Ingress <cce_10_0252>`.
+After the cluster is migrated, the Service of the source cluster may fail to take effect. You can perform the following steps to update the Service. If ingresses are configured in the source cluster, connect the new cluster to ELB again after the migration. For details, see `Using kubectl to Create a LoadBalancer Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
 
 #. Connect to the cluster using kubectl.
 
@@ -45,15 +45,15 @@ After the cluster is migrated, the Service of the source cluster may fail to tak
 
       kubectl edit svc wordpress
 
-   To update load balancer resources, connect to ELB again. Add the annotations by following the procedure described in `LoadBalancer <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0014.html>`__.
+   To update load balancer resources, connect to ELB again. Add the annotations by following the procedure described in `Creating a LoadBalancer Service <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0681.html>`__.
 
    .. code-block::
 
       annotations:
         kubernetes.io/elb.class: union # Shared load balancer
         kubernetes.io/elb.id: 9d06a39d-xxxx-xxxx-xxxx-c204397498a3    # Load balancer ID, which can be queried on the ELB console.
-        kubernetes.io/elb.subnet-id: f86ba71c-xxxx-xxxx-xxxx-39c8a7d4bb36    # ID of the cluster where the subnet resides
-        kubernetes.io/session-affinity-mode: SOURCE_IP    # Enable the sticky session based on the source IP address.
+        kubernetes.io/elb.subnet-id: f86ba71c-xxxx-xxxx-xxxx-39c8a7d4bb36    # ID of the subnet where the load balancer resides
+        kubernetes.io/elb.session-affinity-mode: SOURCE_IP    # Enable the sticky session based on the source IP address.
 
 #. Use a browser to check whether the Service is available.
 
@@ -109,7 +109,7 @@ As the storage infrastructures of clusters may be different, storage volumes can
       NAME                PROVISIONER                     RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
       csi-disk            everest-csi-provisioner         Delete          Immediate              true                   3d23h
       csi-disk-topology   everest-csi-provisioner         Delete          WaitForFirstConsumer   true                   3d23h
-      csi-nas             everest-csi-provisioner         Delete          Immediate              true                   3d23h
+      csi-sfs             everest-csi-provisioner         Delete          Immediate              false                   3d23h
       csi-obs             everest-csi-provisioner         Delete          Immediate              false                  3d23h
       csi-sfsturbo        everest-csi-provisioner         Delete          Immediate              true                   3d23h
 
@@ -120,7 +120,7 @@ As the storage infrastructures of clusters may be different, storage volumes can
       ================= ========================
       csi-disk          EVS
       csi-disk-topology EVS with delayed binding
-      csi-nas           SFS
+      csi-sfs           SFS
       csi-obs           OBS
       csi-sfsturbo      SFS Turbo
       ================= ========================

@@ -14,7 +14,8 @@ The storage classes that can be expanded for CCE nodes are as follows:
    +===================+=====================+===========================================================================================================================================================+========================================================================================================================================+
    | Node disk         | System disk         | A disk attached to a node for installing the operating system                                                                                             | :ref:`Expanding System Disk Capacity <cce_bestpractice_00198__en-us_topic_0196817407_section9671812194910>`                            |
    +-------------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
-   |                   | Data disk           | The first data disk attached to a node for container engine and kubelet                                                                                   | :ref:`Expanding Data Disk Capacity <cce_bestpractice_00198__section1372753811531>`                                                     |
+   |                   | Data disk           | The first data disk attached to a node for container engine and kubelet                                                                                   | -  :ref:`Expanding the Container Engine Capacity <cce_bestpractice_00198__en-us_topic_0196817407_section155006183017>`                 |
+   |                   |                     |                                                                                                                                                           | -  :ref:`Expanding the kubelet Capacity <cce_bestpractice_00198__section181915191968>`                                                 |
    +-------------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
    | Container storage | Pod container space | The base size of a container, which is, the upper limit of the disk space occupied by each pod (including the storage space occupied by container images) | :ref:`Expanding the Capacity of a Data Disk Used by Pod (basesize) <cce_bestpractice_00198__en-us_topic_0196817407_section3621141347>` |
    +-------------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
@@ -161,12 +162,7 @@ EulerOS 2.9 is used as the sample OS. There is only one partition (**/dev/vda1**
 
 #. Log in to the CCE console and click the cluster. In the navigation pane, choose **Nodes**. Click **More** > **Sync Server Data** in the row containing the target node.
 
-.. _cce_bestpractice_00198__section1372753811531:
-
-Expanding Data Disk Capacity
-----------------------------
-
-The first data disk of a CCE node is composed of container engine and kubelet space by default. If either of them reaches full capacity, you can expand the disk space as needed.
+.. _cce_bestpractice_00198__en-us_topic_0196817407_section155006183017:
 
 Expanding the Container Engine Capacity
 ---------------------------------------
@@ -193,27 +189,27 @@ The available container engine space affects image pulls and container startup a
 
          # lsblk
          NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-         vda                   8:0    0   50G  0 disk
-         └─vda1                8:1    0   50G  0 part /
-         vdb                   8:16   0  200G  0 disk      # Data disk has been expanded but not allocated
-         ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/containerd          # Space used by the container engine
-         └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet  # Space used by Kubernetes
+         sda                   8:0    0   50G  0 disk
+         └─sda1                8:1    0   50G  0 part /
+         sdb                   8:16   0  150G  0 disk      # The data disk has been expanded to 150 GiB, but 50 GiB space is not allocated.
+         ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/containerd
+         └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
    b. Expand the disk capacity.
 
       Add the new disk capacity to the **dockersys** logical volume used by the container engine.
 
-      #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where dockersys is located.
+      #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/sdb* specifies the physical volume where dockersys is located.
 
          .. code-block::
 
-            pvresize /dev/vdb
+            pvresize /dev/sdb
 
          Information similar to the following is displayed:
 
          .. code-block::
 
-            Physical volume "/dev/vdb" changed
+            Physical volume "/dev/sdb" changed
             1 physical volume(s) resized or updated / 0 physical volume(s) not resized
 
       #. Expand 100% of the free capacity to the logical volume. *vgpaas/dockersys* specifies the logical volume used by the container engine.
@@ -226,7 +222,7 @@ The available container engine space affects image pulls and container startup a
 
          .. code-block::
 
-            Size of logical volume vgpaas/dockersys changed from <90.00 GiB (23039 extents) to <190.00 GiB (48639 extents).
+            Size of logical volume vgpaas/dockersys changed from <90.00 GiB (23039 extents) to 140.00 GiB (35840 extents).
             Logical volume vgpaas/dockersys successfully resized.
 
       #. Adjust the size of the file system. */dev/vgpaas/dockersys* specifies the file system path of the container engine.
@@ -240,8 +236,20 @@ The available container engine space affects image pulls and container startup a
          .. code-block::
 
             Filesystem at /dev/vgpaas/dockersys is mounted on /var/lib/containerd; on-line resizing required
-            old_desc_blocks = 12, new_desc_blocks = 24
-            The filesystem on /dev/vgpaas/dockersys is now 49807360 (4k) blocks long.
+            old_desc_blocks = 12, new_desc_blocks = 18
+            The filesystem on /dev/vgpaas/dockersys is now 36700160 blocks long.
+
+   c. Check whether the capacity is expanded.
+
+      .. code-block::
+
+         # lsblk
+         NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+         sda                   8:0    0   50G  0 disk
+         └─sda1                8:1    0   50G  0 part /
+         sdb                   8:16   0  150G  0 disk
+         ├─vgpaas-dockersys  253:0    0   140G  0 lvm  /var/lib/containerd
+         └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
    Devicemapper: A thin pool is allocated to store image data.
 
@@ -295,6 +303,24 @@ The available container engine space affects image pulls and container startup a
 
       #. Do not need to adjust the size of the file system, because the thin pool is not mounted to any devices.
 
+      #. Check whether the capacity is expanded. Run the **lsblk** command to check the disk and partition sizes of the device. If the new disk capacity has been added to the thin pool, the capacity is expanded.
+
+         .. code-block::
+
+            # lsblk
+            NAME                                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+            vda                                   8:0    0   50G  0 disk
+            └─vda1                                8:1    0   50G  0 part /
+            vdb                                   8:16   0  200G  0 disk
+            ├─vgpaas-dockersys                  253:0    0   18G  0 lvm  /var/lib/docker
+            ├─vgpaas-thinpool_tmeta             253:1    0    3G  0 lvm
+            │ └─vgpaas-thinpool                 253:3    0   167G  0 lvm             # Thin pool space after capacity expansion
+            │   ...
+            ├─vgpaas-thinpool_tdata             253:2    0   67G  0 lvm
+            │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm
+            │   ...
+            └─vgpaas-kubernetes                 253:4    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
+
       Option 2: Add the new disk capacity to the **dockersys** disk.
 
       #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where dockersys is located.
@@ -320,7 +346,7 @@ The available container engine space affects image pulls and container startup a
 
          .. code-block::
 
-            Size of logical volume vgpaas/dockersys changed from <18.00 GiB (7679 extents) to <118.00 GiB (33279 extents).
+            Size of logical volume vgpaas/dockersys changed from <18.00 GiB (4607 extents) to <118.00 GiB (30208 extents).
             Logical volume vgpaas/dockersys successfully resized.
 
       #. Adjust the size of the file system. */dev/vgpaas/dockersys* specifies the file system path of the container engine.
@@ -334,8 +360,28 @@ The available container engine space affects image pulls and container startup a
          .. code-block::
 
             Filesystem at /dev/vgpaas/dockersys is mounted on /var/lib/docker; on-line resizing required
-            old_desc_blocks = 4, new_desc_blocks = 16
-            The filesystem on /dev/vgpaas/dockersys is now 49807360 (4k) blocks long.
+            old_desc_blocks = 3, new_desc_blocks = 15
+            The filesystem on /dev/vgpaas/dockersys is now 30932992 blocks long.
+
+      #. Check whether the capacity is expanded. Run the **lsblk** command to check the disk and partition sizes of the device. If the new disk capacity has been added to the dockersys, the capacity is expanded.
+
+         .. code-block::
+
+            # lsblk
+            NAME                                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+            vda                                   8:0    0   50G  0 disk
+            └─vda1                                8:1    0   50G  0 part /
+            vdb                                   8:16   0  200G  0 disk
+            ├─vgpaas-dockersys                  253:0    0   118G  0 lvm  /var/lib/docker     # dockersys after capacity expansion
+            ├─vgpaas-thinpool_tmeta             253:1    0    3G  0 lvm
+            │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm
+            │   ...
+            ├─vgpaas-thinpool_tdata             253:2    0   67G  0 lvm
+            │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm
+            │   ...
+            └─vgpaas-kubernetes                 253:4    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
+
+.. _cce_bestpractice_00198__section181915191968:
 
 Expanding the kubelet Capacity
 ------------------------------
@@ -356,25 +402,25 @@ The kubelet space serves as a temporary storage location for kubelet components 
 
       # lsblk
       NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-      vda                   8:0    0   50G  0 disk
-      └─vda1                8:1    0   50G  0 part /
-      vdb                   8:16   0  200G  0 disk      # Data disk has been expanded but not allocated
-      ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/containerd            # Space used by the container engine
-      └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet  # Space used by Kubernetes
+      sda                   8:0    0   50G  0 disk
+      └─sda1                8:1    0   50G  0 part /
+      sdb                   8:16   0  200G  0 disk       #The data disk has been expanded to 200 GiB, but 50 GiB space is not allocated.
+      ├─vgpaas-dockersys  253:0    0  140G  0 lvm  /var/lib/containerd
+      └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
 #. Perform the following operations on the node to add the new disk capacity to the kubelet space:
 
-   a. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where kubelet is located.
+   a. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/sdb* specifies the physical volume where kubelet is located.
 
       .. code-block::
 
-         pvresize /dev/vdb
+         pvresize /dev/sdb
 
       Information similar to the following is displayed:
 
       .. code-block::
 
-         Physical volume "/dev/vdb" changed
+         Physical volume "/dev/sdb" changed
          1 physical volume(s) resized or updated / 0 physical volume(s) not resized
 
    b. Expand 100% of the free capacity to the logical volume. *vgpaas/kubernetes* specifies the logical volume used by kubelet.
@@ -387,7 +433,7 @@ The kubelet space serves as a temporary storage location for kubelet components 
 
       .. code-block::
 
-         Size of logical volume vgpaas/kubernetes changed from <10.00 GiB (2559 extents) to <110.00 GiB (28159 extents).
+         Size of logical volume vgpaas/kubernetes changed from <10.00 GiB (2559 extents) to <60.00 GiB (15359 extents).
          Logical volume vgpaas/kubernetes successfully resized.
 
    c. Adjust the size of the file system. */dev/vgpaas/kubernetes* specifies the file system path of the container engine.
@@ -401,8 +447,20 @@ The kubelet space serves as a temporary storage location for kubelet components 
       .. code-block::
 
          Filesystem at /dev/vgpaas/kubernetes is mounted on /mnt/paas/kubernetes/kubelet; on-line resizing required
-         old_desc_blocks = 2, new_desc_blocks = 14
-         The filesystem on /dev/vgpaas/kubernetes is now 28834816 (4k) blocks long.
+         old_desc_blocks = 2, new_desc_blocks = 8
+         The filesystem on /dev/vgpaas/kubernetes is now 15727616 blocks long.
+
+#. Run **lsblk** to view the block device information of the node.
+
+   .. code-block::
+
+      # lsblk
+      NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+      sda                   8:0    0   50G  0 disk
+      └─sda1                8:1    0   50G  0 part /
+      sdb                   8:16   0  200G  0 disk
+      ├─vgpaas-dockersys  253:0    0  140G  0 lvm  /var/lib/containerd
+      └─vgpaas-kubernetes 253:1    0   60G  0 lvm  /mnt/paas/kubernetes/kubelet  # Allocate the new disk to the kubelet space.
 
 .. _cce_bestpractice_00198__en-us_topic_0196817407_section3621141347:
 
@@ -413,29 +471,56 @@ Expanding the Capacity of a Data Disk Used by Pod (basesize)
 
 #. Choose **Nodes** from the navigation pane.
 
-#. Click the Nodes tab, locate the row containing the target node, and choose **More** > **Reset Node** in the **Operation** column.
+#. Click the **Nodes** tab, locate the row containing the target node, and choose **More** > **Reset Node** in the **Operation** column.
 
    .. important::
 
-      Resetting a node may make unavailable the node-specific resources (such as local storage and workloads scheduled to this node). Exercise caution when performing this operation to avoid impact on running services.
-
-#. Click **Yes**.
+      Resetting a node may make the node-specific resources (such as local storage and workloads scheduled to this node) unavailable. Exercise caution when performing this operation to avoid impact on running services.
 
 #. Reconfigure node parameters.
 
    If you need to adjust the container storage space, pay attention to the following configurations:
 
-   **Storage Settings**: Click **Expand** next to the data disk to set the following parameters:
+   **Storage Settings**: Click **Expand** next to the data disk to set the following parameter:
 
    **Space Allocation for Pods**: indicates the base size of a pod. It is the maximum size that a workload's pods (including the container images) can grow to in the disk space. Proper settings can prevent pods from taking all the disk space available and avoid service exceptions. It is recommended that the value is less than or equal to 80% of the container engine space. This parameter is related to the node OS and container storage rootfs and is not supported in some scenarios. For details, see :ref:`Data Disk Space Allocation <cce_10_0341>`.
 
-#. After the node is reset, log in to the node and run the following command to access the container and check whether the container storage capacity has been expanded:
+#. After the node is reset, log in to the node and check whether the container capacity has been expanded. The command output varies with the container storage rootfs.
 
-   **docker exec -it** *container_id* **/bin/sh** or **kubectl exec -it** *container_id* **/bin/sh**
+   -  Overlayfs: No independent thin pool is allocated. Image data is stored in **dockersys**. Run the following command to check whether the container capacity has been expanded:
 
-   **df -h**
+      **docker exec -it** *container_id* **/bin/sh** or **kubectl exec -it** *container_id* **/bin/sh**
 
-   |image1|
+      **df -h**
+
+      If the information similar to the following is displayed, the overlay capacity has been expanded from 10 GiB to 15 GiB.
+
+      .. code-block::
+
+         Filesystem                    Size   Used   Avail   Use%   Mounted on
+         overlay                        15G   104K     15G     1%   /
+         tmpfs                          64M      0     64M     0%   /dev
+         tmpfs                         3.6G      0    3.6G     0%   /sys/fs/cgroup
+         /dev/mapper/vgpaas-share       98G   4.0G     89G     5%   /etc/hosts
+         ...
+
+   -  Devicemapper: A thin pool is allocated to store image data. Run the following command to check whether the container capacity has been expanded:
+
+      **docker exec -it** *container_id* **/bin/sh** or **kubectl exec -it** *container_id* **/bin/sh**
+
+      **df -h**
+
+      If the information similar to the following is displayed, the thin pool capacity has been expanded from 10 GiB to 15 GiB.
+
+      .. code-block::
+
+         Filesystem                            Size   Used   Avail   Use%   Mounted on
+         /dev/mapper/vgpaas-thinpool-snap-84    15G   232M     15G     2%   /
+         tmpfs                                  64M      0     64M     0%   /dev
+         tmpfs                                 3.6G      0    3.6G     0%   /sys/fs/cgroup
+         /dev/mapper/vgpaas-kubernetes          11G    41M     11G     1%   /etc/hosts
+         /dev/mapper/vgpaas-dockersys           20G   1.1G     18G     6%   /etc/hostname
+         ...
 
 .. _cce_bestpractice_00198__section1623491210348:
 
@@ -452,6 +537,4 @@ Cloud storage:
       #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** tab. Click **More** in the **Operation** column of the target PVC and select **Scale-out**.
       #. Enter the capacity to be added and click **OK**.
 
--  For SFS Turbo, expand the capacity on the SFS console and then change the capacity in the PVC.
-
-.. |image1| image:: /_static/images/en-us_image_0000001981275269.png
+-  SFS Turbo: You can expand the capacity on the SFS console and then change the capacity in the PVC.

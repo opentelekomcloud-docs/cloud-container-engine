@@ -104,7 +104,7 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
             name: <your_secret_name>       # Custom secret name
             namespace: <your_namespace>    # Namespace of the custom secret
         persistentVolumeReclaimPolicy: Retain    # Reclaim policy
-        storageClassName: csi-obs               # Storage class name
+        storageClassName: csi-obs               # StorageClass name
         mountOptions:                            # Mount options
         - umask=027
 
@@ -135,7 +135,7 @@ You can use the **mountOptions** field to configure mount options in a StorageCl
 
 #. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
 
-#. Create a customized StorageClass. Example:
+#. Create a custom StorageClass. Example:
 
    .. code-block::
 

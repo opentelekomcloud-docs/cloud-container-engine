@@ -12,7 +12,7 @@ In a rolling upgrade, a new node is created, existing workloads are migrated to 
 
 .. _cce_10_0276__fig1689610598118:
 
-.. figure:: /_static/images/en-us_image_0000001981436293.png
+.. figure:: /_static/images/en-us_image_0000002101678765.png
    :alt: **Figure 1** Workload migration
 
    **Figure 1** Workload migration
@@ -24,8 +24,8 @@ Notes and Constraints
 -  The cluster must be of v1.13.10 or later.
 -  The default node pool does not support this configuration.
 
-Scenario 1: The Original Node Is in DefaultPool
------------------------------------------------
+Procedure If the Original Node Is in the Default Pool
+-----------------------------------------------------
 
 #. .. _cce_10_0276__li375022715214:
 
@@ -61,16 +61,16 @@ Scenario 1: The Original Node Is in DefaultPool
 
    .. note::
 
-      During workload migration, if node affinity is configured for the workload, the workload keeps displaying a message indicating that the workload is not ready. In this case, click the workload name to go to the workload details page. On the **Scheduling Policies** tab page, delete the affinity configuration of the original node and configure the affinity and anti-affinity policies of the new node. For details, see :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
+      During workload migration, if node affinity is configured for the workload, the workload keeps displaying a message indicating that the workload is not ready. In this case, click the workload name to go to the workload details page. On the **Scheduling Policies** tab page, delete the affinity configuration of the original node and configure the affinity and anti-affinity policies of the new node. For details, see :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`.
 
-   After the workload is migrated, you can view that the workload is migrated to the node created in :ref:`1 <cce_10_0276__li375022715214>` on the **Pods** tab page of the workload details page.
+   After the workload is migrated, you can view that the workload has been migrated to the node created in :ref:`1 <cce_10_0276__li375022715214>` on the **Pods** tab page of the workload details page.
 
 5. Delete the original node.
 
    After the workload is successfully migrated and runs properly, delete the original node.
 
-Scenario 2: The Original Node Is Not in DefaultPool
----------------------------------------------------
+Procedure If the Original Node Is Not in the Default Pool
+---------------------------------------------------------
 
 #. .. _cce_10_0276__li1992616214312:
 
@@ -96,9 +96,9 @@ Scenario 2: The Original Node Is Not in DefaultPool
 
    .. note::
 
-      During workload migration, if node affinity is configured for the workload, the workload keeps displaying a message indicating that the workload is not ready. In this case, click the workload name to go to the workload details page. On the **Scheduling Policies** tab page, delete the affinity configuration of the original node and configure the affinity and anti-affinity policies of the new node. For details, see :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
+      During workload migration, if node affinity is configured for the workload, the workload keeps displaying a message indicating that the workload is not ready. In this case, click the workload name to go to the workload details page. On the **Scheduling Policies** tab page, delete the affinity configuration of the original node and configure the affinity and anti-affinity policies of the new node. For details, see :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`.
 
-   After the workload is migrated, you can view that the workload is migrated to the node created in :ref:`1 <cce_10_0276__li1992616214312>` on the **Pods** tab page of the workload details page.
+   After the workload is migrated, you can view that the workload has been migrated to the node created in :ref:`1 <cce_10_0276__li1992616214312>` on the **Pods** tab page of the workload details page.
 
 4. Delete the original node.
 

@@ -15,4 +15,4 @@ If so, check whether their configurations are correct.
 Solution
 --------
 
-In case of an incorrect configuration, contact O&M personnel.
+In case of an incorrect configuration, correct it by following the instructions provided in :ref:`Configuring a Blocklist/Trustlist Access Policy for a LoadBalancer Service <cce_10_0831>`.

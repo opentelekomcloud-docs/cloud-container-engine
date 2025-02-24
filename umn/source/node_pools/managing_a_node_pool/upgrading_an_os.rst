@@ -48,13 +48,13 @@ Procedure for Default Node Pools
 
    -  Pre-installation script:
 
-      Pre-installation script command, in which Chinese characters are not allowed. The script command will be Base64-transcoded. The characters of both the pre-installation and post-installation scripts are centrally calculated, and the total number of characters after transcoding cannot exceed 10240.
+      Installation script command, in which Chinese characters are not allowed. The script command will be Base64-transcoded. The characters of both the pre-installation and post-installation scripts are centrally calculated, and the total number of characters after transcoding cannot exceed 10240.
 
       The script will be executed before Kubernetes software is installed. Note that if the script is incorrect, Kubernetes software may fail to be installed.
 
    -  Post-installation script:
 
-      Pre-installation script command, in which Chinese characters are not allowed. The script command will be Base64-transcoded. The characters of both the pre-installation and post-installation scripts are centrally calculated, and the total number of characters after transcoding cannot exceed 10240.
+      Installation script command, in which Chinese characters are not allowed. The script command will be Base64-transcoded. The characters of both the pre-installation and post-installation scripts are centrally calculated, and the total number of characters after transcoding cannot exceed 10240.
 
       The script will be executed after Kubernetes software is installed, which does not affect the installation.
 

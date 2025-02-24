@@ -2,7 +2,7 @@
 
 .. _cce_faq_00038:
 
-What Are the Differences Among CCE Storage Classes in Terms of Persistent Storage and Multi-node Mounting?
+What Are the Differences Among CCE Storage Classes in Terms of Persistent Storage and Multi-Node Mounting?
 ==========================================================================================================
 
 Container storage provides storage for container workloads. It supports multiple storage classes. A pod can use any amount of storage.
@@ -14,7 +14,7 @@ The following table lists the differences among these storage classes.
 .. table:: **Table 1** Differences among storage classes
 
    +---------------+--------------------+-------------------------------------+----------------------------------------------------------------------------------+
-   | Storage Class | Persistent Storage | Automatic Migration with Containers | Multi-node Mounting                                                              |
+   | Storage Class | Persistent Storage | Automatic Migration with Containers | Multi-Node Mounting                                                              |
    +===============+====================+=====================================+==================================================================================+
    | Local disks   | Supported          | Not supported                       | Not supported                                                                    |
    +---------------+--------------------+-------------------------------------+----------------------------------------------------------------------------------+

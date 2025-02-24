@@ -40,7 +40,7 @@ The type of **default-secret** is **kubernetes.io/dockerconfigjson**. The data i
      imagePullSecrets:
      - name: default-secret
 
-The data of **default-secret** is updated periodically, and the current data will expire after a certain period of time. You can run the **describe** command to view the expiration time in of default-secret.
+The data of **default-secret** is updated periodically, and the current data will expire after a certain period of time. You can run the **describe** command to view the expiration time in default-secret.
 
 .. important::
 
@@ -63,9 +63,9 @@ The data of **default-secret** is updated periodically, and the current data wil
 paas.elb
 --------
 
-The data of **paas.elb** is the temporary AK/SK data, which is used to create ELB load balancers during Service and ingress creation. The data of paas.elb is periodically updated and expires after a certain period of time.
+The **paas.elb** data stores a temporary AK/SK that is used when a node is created or a load balancer is automatically created. The **paas.elb** data is updated periodically and has a specific time limit before it expires.
 
-In practice, you will not directly use paas.elb. However, do not delete it. Otherwise, ELB load balancers will fail to be created.
+In practice, you will not directly use **paas.elb**. Do not delete it, as doing so will result in the failure of creating a node or load balancer. will fail.
 
 default-token-xxxxx
 -------------------

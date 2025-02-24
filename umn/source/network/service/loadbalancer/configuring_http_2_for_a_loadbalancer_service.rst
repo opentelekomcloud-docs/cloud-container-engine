@@ -30,7 +30,7 @@ Using the CCE Console
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Services & Ingresses**. In the upper right corner, click **Create Service**.
-#. Configure Service parameters. In this example, only mandatory parameters are listed. For details about how to configure other parameters, see :ref:`Creating a LoadBalancer Service <cce_10_0681__section84162025538>`.
+#. Configure Service parameters. In this example, only mandatory parameters are listed. For details about how to configure other parameters, see :ref:`Using the Console <cce_10_0681__section84162025538>`.
 
    -  **Service Name**: Specify a Service name, which can be the same as the workload name.
    -  **Service Type**: Select **LoadBalancer**.

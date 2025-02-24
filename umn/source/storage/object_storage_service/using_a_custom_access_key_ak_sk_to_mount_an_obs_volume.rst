@@ -8,7 +8,7 @@ Using a Custom Access Key (AK/SK) to Mount an OBS Volume
 Scenario
 --------
 
-:ref:`CCE Container Storage (Everest) <cce_10_0066>` of version 1.2.8 or later supports custom access keys. In this way, IAM users can use their own custom access keys to mount an OBS volume.
+:ref:`CCE Container Storage (Everest) <cce_10_0066>` of v1.2.8 or later supports custom access keys. In this way, IAM users can use their own custom access keys to mount an OBS volume.
 
 Prerequisites
 -------------
@@ -25,7 +25,7 @@ Notes and Constraints
 Disabling Auto Key Mounting
 ---------------------------
 
-The key you uploaded is used by default when mounting an OBS volume. That is, all IAM users under your account will use the same key to mount OBS buckets, and they have the same permissions on buckets. This setting does not allow you to configure differentiated permissions for different IAM users.
+On the earlier version's console, you need to upload the AK/SK, which is then used by default for mounting an OBS volume. As a result, all IAM users within your account will use the same key to mount OBS buckets, and they will have identical permissions on the buckets. However, this setting does not allow you to set different permissions for individual IAM users.
 
 If you have uploaded the AK/SK, disable the automatic mounting of access keys by enabling the **disable_auto_mount_secret** parameter in the Everest add-on to prevent IAM users from performing unauthorized operations. In this way, the access keys uploaded on the console will not be used when creating OBS volumes.
 
@@ -288,5 +288,5 @@ You can use a secret of an IAM user to mount an OBS volume. Assume that a worklo
 
       -rwxrwxrwx 1 root root 0 Jun  7 01:52 test
 
-.. |image1| image:: /_static/images/en-us_image_0000001950317256.png
-.. |image2| image:: /_static/images/en-us_image_0000001950317252.png
+.. |image1| image:: /_static/images/en-us_image_0000002065639022.png
+.. |image2| image:: /_static/images/en-us_image_0000002065480682.png

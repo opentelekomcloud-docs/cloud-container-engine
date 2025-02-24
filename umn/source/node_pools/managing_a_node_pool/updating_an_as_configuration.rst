@@ -20,7 +20,7 @@ Procedure
 #. In the navigation pane, choose **Nodes**. On the **Node Pools** tab, locate the row containing the target node pool and click **Auto Scaling**.
 
    -  If Autoscaler has not been installed, configure add-on parameters based on service requirements, click **Install**, and wait until the add-on is installed. For details about add-on configurations, see :ref:`CCE Cluster Autoscaler <cce_10_0154>`.
-   -  If Autoscaler has been installed, directly configure auto scaling policies.
+   -  If Autoscaler has been installed, directly configure scaling policies.
 
 #. Configure auto scaling policies.
 

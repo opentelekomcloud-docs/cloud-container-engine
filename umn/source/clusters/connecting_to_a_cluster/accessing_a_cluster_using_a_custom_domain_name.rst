@@ -14,7 +14,7 @@ If the client cannot directly access the private IP or EIP of the cluster, you c
 
 If you have particular proxy access requirements or need to access resources in other regions, you can customize a SAN. Typical domain name access scenarios:
 
--  Add the response domain name mapping when specifying the DNS domain name address in the host domain name configuration on the client, or configuring **/etc/hosts** on the client host.
+-  Add the domain name mapping by either adding the DNS domain name address in the host domain name configuration on the client or configuring **/etc/hosts** on the client host.
 -  Use domain name access in the intranet. DNS allows you to configure mappings between cluster EIPs and custom domain names. After an EIP is updated, you can continue to use two-way authentication and the domain name to access the cluster without downloading the **kubeconfig.json** file again.
 -  Add A records on a self-built DNS server.
 
@@ -89,4 +89,4 @@ Connecting to a Cluster Using the SAN
 
    For more cluster APIs, see `Kubernetes API <https://kubernetes.io/docs/reference/kubernetes-api/>`__.
 
-.. |image1| image:: /_static/images/en-us_image_0000001981436837.png
+.. |image1| image:: /_static/images/en-us_image_0000002101597693.png

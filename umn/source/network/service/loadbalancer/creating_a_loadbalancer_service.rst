@@ -13,7 +13,7 @@ LoadBalancer Services can access workloads from the public network through a loa
 In this access mode, requests are transmitted through an ELB load balancer to a node and then forwarded to the destination pod through the Service.
 
 
-.. figure:: /_static/images/en-us_image_0000001981436113.png
+.. figure:: /_static/images/en-us_image_0000002101678569.png
    :alt: **Figure 1** LoadBalancer
 
    **Figure 1** LoadBalancer
@@ -23,7 +23,7 @@ When **CCE Turbo clusters and dedicated load balancers** are used, passthrough n
 External access requests are directly forwarded from a load balancer to pods. Internal access requests can be forwarded to a pod through a Service.
 
 
-.. figure:: /_static/images/en-us_image_0000001981276257.png
+.. figure:: /_static/images/en-us_image_0000002101678573.png
    :alt: **Figure 2** Passthrough networking
 
    **Figure 2** Passthrough networking
@@ -46,9 +46,8 @@ Notes and Constraints
 
 .. _cce_10_0681__section84162025538:
 
-
-Creating a LoadBalancer Service
--------------------------------
+Using the Console
+-----------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Services & Ingresses**. In the upper right corner, click **Create Service**.
@@ -62,16 +61,16 @@ Creating a LoadBalancer Service
 
    -  **Service Affinity**: For details, see :ref:`externalTrafficPolicy (Service Affinity) <cce_10_0249__section18134208069>`.
 
-      -  **Cluster level**: The IP addresses and access ports of all nodes in a cluster can access the workload associated with the Service. Service access will cause performance loss due to route redirection, and the source IP address of the client cannot be obtained.
-      -  **Node level**: Only the IP address and access port of the node where the workload is located can access the workload associated with the Service. Service access will not cause performance loss due to route redirection, and the source IP address of the client can be obtained.
+      -  **Cluster-level**: The IP addresses and access ports of all nodes in a cluster can access the workload associated with the Service. Service access will cause performance loss due to route redirection, and the source IP address of the client cannot be obtained.
+      -  **Node-level**: Only the IP address and access port of the node where the workload is located can access the workload associated with the Service. Service access will not cause performance loss due to route redirection, and the source IP address of the client can be obtained.
 
    -  **Selector**: Add a label and click **Confirm**. The Service will use this label to select pods. You can also click **Reference Workload Label** to use the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
 
-   -  **IPv6**: This function is disabled by default. After this function is enabled, the cluster IP address of the Service changes to an IPv6 address. **This parameter is available only in clusters of v1.15 or later with IPv6 enabled (set during cluster creation).**
+   -  **Protocol Version**: This function is disabled by default. After this function is enabled, the cluster IP address of the Service can be set to an IPv6 address. **This parameter is available only in clusters of v1.15 or later with IPv6 enabled (set during cluster creation).**
 
    -  **Load Balancer**: Select a load balancer type and creation mode.
 
-      A load balancer can be dedicated or shared. A dedicated load balancer supports **Network (TCP/UD)**, **Application (HTTP/HTTPS)**, or **Network (TCP/UD) & Application (HTTP/HTTPS)**.
+      A load balancer can be dedicated or shared. A dedicated load balancer supports **Network (TCP/UDP)**, **Application (HTTP/HTTPS)**, or **Network (TCP/UDP) & Application (HTTP/HTTPS)**.
 
       You can select **Use existing** or **Auto create** to obtain a load balancer. For details about the configuration of different creation modes, see :ref:`Table 1 <cce_10_0681__table026610571395>`.
 
@@ -79,25 +78,25 @@ Creating a LoadBalancer Service
 
       .. table:: **Table 1** Load balancer configurations
 
-         +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | How to Create                     | Configuration                                                                                                                                                                                                                                                                             |
-         +===================================+===========================================================================================================================================================================================================================================================================================+
-         | Use existing                      | Only the load balancers in the same VPC as the cluster can be selected. If no load balancer is available, click **Create Load Balancer** to create one on the ELB console.                                                                                                                |
-         +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Auto create                       | -  **Instance Name**: Enter a load balancer name.                                                                                                                                                                                                                                         |
-         |                                   | -  **AZ**: available only to dedicated load balancers. You can create load balancers in multiple AZs to improve service availability. You can deploy a load balancer in multiple AZs for high availability.                                                                               |
-         |                                   | -  **Frontend Subnet**: available only to dedicated load balancers. It is used to allocate IP addresses for load balancers to provide services externally.                                                                                                                                |
-         |                                   | -  **Backend Subnet**: available only to dedicated load balancers. It is used to allocate IP addresses for load balancers to access the backend service.                                                                                                                                  |
-         |                                   | -  **Network/Application-oriented Specifications** (available only to dedicated load balancers)                                                                                                                                                                                           |
-         |                                   |                                                                                                                                                                                                                                                                                           |
-         |                                   |    -  **Elastic**: applies to fluctuating traffic, billed based on total traffic. Clusters of v1.21.10-r10, v1.23.8-r10, v1.25.3-r10, and later versions support elastic specifications.                                                                                                  |
-         |                                   |    -  **Fixed**: applies to stable traffic, billed based on specifications.                                                                                                                                                                                                               |
-         |                                   |                                                                                                                                                                                                                                                                                           |
-         |                                   | -  **EIP**: If you select **Auto create**, you can configure the billing mode and size of the public network bandwidth.                                                                                                                                                                   |
-         |                                   | -  **Resource Tag**: You can add resource tags to classify resources. You can create predefined tags on the TMS console. The predefined tags are available to all resources that support tags. You can use predefined tags to improve the tag creation and resource migration efficiency. |
-         +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | How to Create                     | Configuration                                                                                                                                                                                                                                                                            |
+         +===================================+==========================================================================================================================================================================================================================================================================================+
+         | Use existing                      | Only the load balancers in the same VPC as the cluster can be selected. If no load balancer is available, click **Create Load Balancer** to create one on the ELB console.                                                                                                               |
+         +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Auto create                       | -  **Instance Name**: Enter a load balancer name.                                                                                                                                                                                                                                        |
+         |                                   | -  **AZ**: available only to dedicated load balancers. You can create load balancers in multiple AZs to improve service availability. You can deploy a load balancer in multiple AZs for high availability.                                                                              |
+         |                                   | -  **Frontend Subnet**: available only to dedicated load balancers. It is used to allocate IP addresses for load balancers to provide services externally.                                                                                                                               |
+         |                                   | -  **Backend Subnet**: available only to dedicated load balancers. It is used to allocate IP addresses for load balancers to access the backend service.                                                                                                                                 |
+         |                                   | -  **Network Specifications**, **Application-oriented Specifications**, or **Specifications** (available only to dedicated load balancers)                                                                                                                                               |
+         |                                   |                                                                                                                                                                                                                                                                                          |
+         |                                   |    -  **Elastic**: applies to fluctuating traffic, billed based on total traffic. Clusters of v1.21.10-r10, v1.23.8-r10, v1.25.3-r10, and later versions support elastic specifications.                                                                                                 |
+         |                                   |    -  **Fixed**: applies to stable traffic, billed based on specifications.                                                                                                                                                                                                              |
+         |                                   |                                                                                                                                                                                                                                                                                          |
+         |                                   | -  **EIP**: If you select **Auto create**, you can configure the size of the public network bandwidth.                                                                                                                                                                                   |
+         |                                   | -  **Resource Tag**: You can add resource tags to classify resources. You can create **predefined tags** on the TMS console. The predefined tags are available to all resources that support tags. You can use these tags to improve the tag creation and resource migration efficiency. |
+         +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-      You can click |image1| in the **Set ELB** area and configure load balancer parameters in the **Set ELB** dialog box.
+      **Set ELB**: You can click **Edit** and configure the load balancing algorithm and sticky session.
 
       -  .. _cce_10_0681__li8170555132211:
 
@@ -109,7 +108,7 @@ Creating a LoadBalancer Service
             -  **Weighted least connections**: In addition to the weight assigned to each server, the number of connections processed by each backend server is considered. Requests are forwarded to the server with the lowest connections-to-weight ratio. Building on **least connections**, the **weighted least connections** algorithm assigns a weight to each server based on their processing capability. This algorithm is often used for persistent connections, such as database connections.
             -  **Source IP hash**: The source IP address of each request is calculated using the hash algorithm to obtain a unique hash key, and all backend servers are numbered. The generated key allocates the client to a particular server. This enables requests from different clients to be distributed in load balancing mode and ensures that requests from the same client are forwarded to the same server. This algorithm applies to TCP connections without cookies.
 
-      -  **Type**: This function is disabled by default. You can select **Source IP address**. Source IP address-based sticky session means that access requests from the same IP address are forwarded to the same backend server.
+      -  **Sticky Session**: This function is disabled by default. You can use source IP addresses. Source IP address-based sticky session means that access requests from the same IP address are forwarded to the same backend server.
 
          .. note::
 
@@ -151,9 +150,9 @@ Creating a LoadBalancer Service
 
       -  **Protocol**: protocol used by the Service.
 
-      -  **Service Port**: port used by the Service. The port number ranges from 1 to 65535.
-
       -  **Container Port**: listener port of the workload. For example, Nginx uses port 80 by default.
+
+      -  **Service Port**: port used by the Service. The port number ranges from 1 to 65535.
 
       -  .. _cce_10_0681__li8911126175719:
 
@@ -186,6 +185,7 @@ Creating a LoadBalancer Service
 
       -  **Access Control**
 
+         -  **Inherit ELB Configurations**: CCE does not modify the existing access control configurations on the ELB console.
          -  **Allow all IP addresses**: No access control is configured.
          -  **Trustlist**: Only the selected IP address group can access the load balancer.
          -  **Blocklist**: The selected IP address group cannot access the load balancer.
@@ -207,7 +207,7 @@ Creating a LoadBalancer Service
          | HTTP2                 | Whether to use HTTP/2 for a client to communicate with a load balancer. Request forwarding using HTTP/2 improves the access performance between your application and the load balancer. However, the load balancer still uses HTTP/1.x to forward requests to the backend server. | This parameter is available only after :ref:`HTTPS <cce_10_0681__li8911126175719>` is enabled on ports.      |
          +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
 
-   -  **Annotation**: The LoadBalancer Service has some advanced CCE functions, which are implemented by annotations. For details, see :ref:`Using Annotations to Balance Load <cce_10_0385>`.
+   -  **Annotation**: The LoadBalancer Service has some advanced CCE functions, which are implemented by annotations. For details, see :ref:`Configuring LoadBalancer Services Using Annotations <cce_10_0385>`.
 
 #. Click **OK**.
 
@@ -252,7 +252,7 @@ You can configure Service access using kubectl when creating a workload. This se
 
    .. note::
 
-      To enable sticky session, ensure anti-affinity is configured for the workload pods so that the pods are deployed onto different nodes. For details, see :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
+      To enable sticky session, ensure anti-affinity is configured for the workload pods so that the pods are deployed onto different nodes. For details, see :ref:`Configuring Workload Affinity or Anti-affinity Scheduling (podAffinity or podAntiAffinity) <cce_10_0893>`.
 
    .. code-block::
 
@@ -286,7 +286,7 @@ You can configure Service access using kubectl when creating a workload. This se
 
    The preceding example uses annotations to implement some advanced functions of load balancing, such as sticky session and health check. For details, see :ref:`Table 3 <cce_10_0681__table5352104717398>`.
 
-   For more annotations and examples related to advanced functions, see :ref:`Using Annotations to Balance Load <cce_10_0385>`.
+   For more annotations and examples related to advanced functions, see :ref:`Configuring LoadBalancer Services Using Annotations <cce_10_0385>`.
 
    .. _cce_10_0681__table5352104717398:
 
@@ -426,7 +426,7 @@ You can configure Service access using kubectl when creating a workload. This se
 
    **kubectl get svc**
 
-   If information similar to the following is displayed, the access type has been set, and the workload is accessible.
+   If information similar to the following is displayed, the workload's access mode has been configured.
 
    .. code-block::
 
@@ -439,7 +439,7 @@ You can configure Service access using kubectl when creating a workload. This se
    The Nginx is accessible.
 
 
-   .. figure:: /_static/images/en-us_image_0000001981276265.png
+   .. figure:: /_static/images/en-us_image_0000002101597089.png
       :alt: **Figure 3** Accessing Nginx through the LoadBalancer Service
 
       **Figure 3** Accessing Nginx through the LoadBalancer Service
@@ -485,7 +485,7 @@ You can configure Service access using kubectl when creating a workload. This se
 
    .. note::
 
-      To enable sticky session, ensure anti-affinity is configured for the workload pods so that the pods are deployed onto different nodes. For details, see :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
+      To enable sticky session, ensure anti-affinity is configured for the workload pods so that the pods are deployed onto different nodes. For details, see :ref:`Configuring Workload Affinity or Anti-affinity Scheduling (podAffinity or podAntiAffinity) <cce_10_0893>`.
 
    Example of a Service using a public network shared load balancer:
 
@@ -585,7 +585,7 @@ You can configure Service access using kubectl when creating a workload. This se
 
    The preceding example uses annotations to implement some advanced functions of load balancing, such as sticky session and health check. For details, see :ref:`Table 6 <cce_10_0681__table133089105019>`.
 
-   For more annotations and examples related to advanced functions, see :ref:`Using Annotations to Balance Load <cce_10_0385>`.
+   For more annotations and examples related to advanced functions, see :ref:`Configuring LoadBalancer Services Using Annotations <cce_10_0385>`.
 
    .. _cce_10_0681__table133089105019:
 
@@ -605,11 +605,11 @@ You can configure Service access using kubectl when creating a workload. This se
       |                                           |                 |                                                               |                                                                                                                                                                                            |
       |                                           |                 |                                                               | **Example**                                                                                                                                                                                |
       |                                           |                 |                                                               |                                                                                                                                                                                            |
-      |                                           |                 |                                                               | -  If a public network load balancer will be automatically created, set this parameter to the following value:                                                                             |
+      |                                           |                 |                                                               | -  Automatically created shared load balancer with an EIP bound:                                                                                                                           |
       |                                           |                 |                                                               |                                                                                                                                                                                            |
       |                                           |                 |                                                               |    '{"type":"public","bandwidth_name":"cce-bandwidth-1551163379627","bandwidth_chargemode":"traffic,"bandwidth_size":5,"bandwidth_sharetype":"PER","eip_type":"5_bgp","name":"james"}'     |
       |                                           |                 |                                                               |                                                                                                                                                                                            |
-      |                                           |                 |                                                               | -  If a private network load balancer will be automatically created, set this parameter to the following value:                                                                            |
+      |                                           |                 |                                                               | -  Automatically created shared load balancer with no EIP bound:                                                                                                                           |
       |                                           |                 |                                                               |                                                                                                                                                                                            |
       |                                           |                 |                                                               |    {"type":"inner","name":"A-location-d-test"}                                                                                                                                             |
       +-------------------------------------------+-----------------+---------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -741,7 +741,7 @@ You can configure Service access using kubectl when creating a workload. This se
       |                       |                                       |                  |       "14567f27-8ae4-42b8-ae47-9f847a4690dd"                                                                                                                                                                                                                                                                                                          |
       |                       |                                       |                  |     ]                                                                                                                                                                                                                                                                                                                                                 |
       +-----------------------+---------------------------------------+------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | ipv6_vip_virsubnet_id | No                                    | String           | Specifies the ID of the IPv6 subnet where the load balancer resides. IPv6 must be enabled for the corresponding subnet. This parameter is mandatory only when the dual-stack clusters are used.                                                                                                                                                       |
+      | ipv6_vip_virsubnet_id | No                                    | String           | ID of the IPv6 subnet where the load balancer resides. IPv6 must be enabled for the corresponding subnet. This parameter is mandatory only when the dual-stack clusters are used.                                                                                                                                                                     |
       |                       |                                       |                  |                                                                                                                                                                                                                                                                                                                                                       |
       |                       |                                       |                  | This parameter is available only for dedicated load balancers.                                                                                                                                                                                                                                                                                        |
       +-----------------------+---------------------------------------+------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -777,7 +777,7 @@ You can configure Service access using kubectl when creating a workload. This se
 
    **kubectl get svc**
 
-   If information similar to the following is displayed, the access type has been set, and the workload is accessible.
+   If information similar to the following is displayed, the workload's access mode has been configured.
 
    .. code-block::
 
@@ -790,9 +790,7 @@ You can configure Service access using kubectl when creating a workload. This se
    The Nginx is accessible.
 
 
-   .. figure:: /_static/images/en-us_image_0000001981276269.png
+   .. figure:: /_static/images/en-us_image_0000002065638526.png
       :alt: **Figure 4** Accessing Nginx through the LoadBalancer Service
 
       **Figure 4** Accessing Nginx through the LoadBalancer Service
-
-.. |image1| image:: /_static/images/en-us_image_0000001981276261.png

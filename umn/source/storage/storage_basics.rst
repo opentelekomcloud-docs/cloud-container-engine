@@ -55,7 +55,7 @@ Kubernetes provides PersistentVolumes (PVs) and PersistentVolumeClaims (PVCs) to
 You can bind PVCs to PVs in a pod so that the pod can use storage resources. The following figure shows the relationship between PVs and PVCs.
 
 
-.. figure:: /_static/images/en-us_image_0000001981436609.png
+.. figure:: /_static/images/en-us_image_0000002065638950.png
    :alt: **Figure 1** PVC-to-PV binding
 
    **Figure 1** PVC-to-PV binding
@@ -186,4 +186,4 @@ Documentation
 -  For more information about Kubernetes storage, see `Storage <https://kubernetes.io/docs/concepts/storage/>`__.
 -  For more information about CCE container storage, see :ref:`Overview <cce_10_0307>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000001981276749.png
+.. |image1| image:: /_static/images/en-us_image_0000002065480610.png

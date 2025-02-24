@@ -21,12 +21,6 @@ Using ICAgent to Collect Logs
 
    The following uses Nginx as an example. Log policies vary depending on workloads.
 
-
-   .. figure:: /_static/images/en-us_image_0000001981276785.png
-      :alt: **Figure 1** Adding a log policy
-
-      **Figure 1** Adding a log policy
-
 #. Set **Volume Type** to **hostPath** or **emptyDir**.
 
    .. table:: **Table 1** Configuring log policies
@@ -264,4 +258,4 @@ You can also run the **kubectl logs** command to view the container stdout.
    kubectl logs pod_name -c container_name -n namespace (one-off query)
    kubectl logs -f <pod_name> -n namespace (real-time query in tail -f mode)
 
-.. |image1| image:: /_static/images/en-us_image_0000001950317236.png
+.. |image1| image:: /_static/images/en-us_image_0000002065639042.png

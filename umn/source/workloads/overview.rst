@@ -12,7 +12,7 @@ CCE provides Kubernetes-native container deployment and management and supports 
 Overview of Pod
 ---------------
 
-A pod is the smallest and simplest unit in the Kubernetes object model that you create or deploy. A pod is a group of one or more containers, with shared storage and network resources, and a specification for how to run the containers. Each pod has a separate IP address.
+A pod is the smallest, simplest unit in the Kubernetes object model that you create or deploy. A pod is a group of one or more containers, with shared storage and network resources, and a specification for how to run the containers. Each pod has a separate IP address.
 
 Pods can be used in either of the following ways:
 
@@ -62,9 +62,13 @@ To address the preceding requirements, Kubernetes provides StatefulSets.
 
 #. StatefulSets use a headless Service to allocate a fixed domain name for each pod.
 
-#. StatefulSets create PersistentVolumeClaims (PVCs) with fixed identifiers to ensure that pods can access the same persistent data after being rescheduled.
+#. StatefulSets create PVCs with fixed identifiers to ensure that pods can access the same persistent data after being rescheduled.
 
-   |image1|
+
+   .. figure:: /_static/images/en-us_image_0258203193.png
+      :alt: **Figure 3** StatefulSet
+
+      **Figure 3** StatefulSet
 
 Overview of DaemonSet
 ---------------------
@@ -75,9 +79,9 @@ DaemonSets are closely related to nodes. If a node becomes faulty, the DaemonSet
 
 
 .. figure:: /_static/images/en-us_image_0258871213.png
-   :alt: **Figure 3** DaemonSet
+   :alt: **Figure 4** DaemonSet
 
-   **Figure 3** DaemonSet
+   **Figure 4** DaemonSet
 
 Overview of Job and CronJob
 ---------------------------
@@ -111,5 +115,3 @@ Workload Lifecycle
    +------------+-------------------------------------------------------------------------------------------------------------------------+
    | Deleting   | The workload is being deleted.                                                                                          |
    +------------+-------------------------------------------------------------------------------------------------------------------------+
-
-.. |image1| image:: /_static/images/en-us_image_0258203193.png

@@ -19,9 +19,7 @@ Procedure
 
 #. Log in as user **root** to the device running Docker.
 
-#. Run the following commands to create the directory where the application is to be stored:
-
-   **mkdir apptest**
+#. Run the following command to switch to the directory where the application is to be stored:
 
    **cd apptest**
 

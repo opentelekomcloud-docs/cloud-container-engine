@@ -24,12 +24,12 @@ Procedure
 
    **vi Dockerfile**
 
-   The content is as follows:
+   The Dockerfile content is as follows: (You can pull CentOS images from the `image repository <https://hub.atomgit.com/repos>`__.)
 
    .. code-block::
 
-      # Centos:7.1.1503 is used as the base image.
-      FROM centos:7.1.1503
+      # CentOS 7 is used as the basic image.
+      FROM hub.atomgit.com/amd64/centos:centos7
       # Create a folder to store data and dependency files. You are advised to write multiple commands into one line to reduce the image size.
       RUN mkdir -p /usr/local/mongodb/data \
        && mkdir -p /usr/local/mongodb/bin \

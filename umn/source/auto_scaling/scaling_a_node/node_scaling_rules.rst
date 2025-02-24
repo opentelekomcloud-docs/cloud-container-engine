@@ -46,7 +46,7 @@ Cluster Autoscaler Architecture
 
 .. _cce_10_0296__fig114831750115719:
 
-.. figure:: /_static/images/en-us_image_0000001981436201.png
+.. figure:: /_static/images/en-us_image_0000002065480222.png
    :alt: **Figure 1** Cluster Autoscaler architecture
 
    **Figure 1** Cluster Autoscaler architecture

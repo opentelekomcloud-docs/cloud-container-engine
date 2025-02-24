@@ -10,6 +10,11 @@ Scenario
 
 If you encounter unexpected problems when using a container, you can log in to the container to debug it.
 
+Notes and Constraints
+---------------------
+
+When using CloudShell to access a CCE cluster or container, you can open a maximum of 15 instances simultaneously.
+
 Using kubectl
 -------------
 

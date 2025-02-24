@@ -14,7 +14,6 @@ Configuring a Workload
 -  :ref:`Configuring Container Health Check <cce_10_0112>`
 -  :ref:`Configuring Environment Variables <cce_10_0113>`
 -  :ref:`Configuring Workload Upgrade Policies <cce_10_0397>`
--  :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`
 -  :ref:`Configuring Tolerance Policies <cce_10_0728>`
 -  :ref:`Configuring Labels and Annotations <cce_10_0386>`
 
@@ -31,6 +30,5 @@ Configuring a Workload
    configuring_container_health_check
    configuring_environment_variables
    configuring_workload_upgrade_policies
-   scheduling_policies_affinity_anti-affinity
    configuring_tolerance_policies
    configuring_labels_and_annotations

@@ -24,7 +24,7 @@ Notes and Constraints
 -  If the driver of a GPU node is not installed, Autoscaler determines that the node is not fully available and the node scaling rules triggered using the CPU or memory metrics will not take effect.
 -  When Autoscaler is used, some taints or annotations may affect auto scaling. Therefore, do not use the following taints or annotations in clusters:
 
-   -  **ignore-taint.cluster-autoscaler.kubernetes.io**: The taint works on nodes. Kubernetes-native Autoscaler supports protection against abnormal scale outs and periodically evaluates the proportion of available nodes in the cluster. When the proportion of non-ready nodes exceeds 45%, protection will be triggered. In this case, all nodes with the **ignore-taint.cluster-autoscaler.kubernetes.io** taint in the cluster are filtered out from the Autoscaler template and recorded as non-ready nodes, which affect cluster scaling.
+   -  **ignore-taint.cluster-autoscaler.kubernetes.io**: The taint works on nodes. Kubernetes-native Autoscaler supports protection against abnormal scale outs and periodically evaluates the proportion of available nodes in the cluster. When the proportion of non-ready nodes exceeds 45%, protection will be triggered. In this case, all nodes with the **ignore-taint.cluster-autoscaler.kubernetes.io** taint in the cluster are filtered out from the Autoscaler template and recorded as non-ready nodes, which affects cluster scaling.
    -  **cluster-autoscaler.kubernetes.io/enable-ds-eviction**: The annotation works on pods, which determines whether DaemonSet pods can be evicted by Autoscaler. For details, see `Well-Known Labels, Annotations and Taints <https://kubernetes.io/docs/reference/labels-annotations-taints/#enable-ds-eviction>`__.
 
 Configuring Node Pool Scaling Policies
@@ -35,7 +35,7 @@ Configuring Node Pool Scaling Policies
 #. In the navigation pane, choose **Nodes**. On the **Node Pools** tab, locate the row containing the target node pool and click **Auto Scaling**.
 
    -  If Autoscaler has not been installed, configure add-on parameters based on service requirements, click **Install**, and wait until the add-on is installed. For details about add-on configurations, see :ref:`CCE Cluster Autoscaler <cce_10_0154>`.
-   -  If Autoscaler has been installed, directly configure auto scaling policies.
+   -  If Autoscaler has been installed, directly configure scaling policies.
 
 #. Configure auto scaling policies.
 
@@ -100,7 +100,7 @@ Configuring Node Pool Scaling Policies
 
 #. View cluster-level auto scaling configurations, which take effect for all node pools in the cluster. On this page, you can only view cluster-level auto scaling policies. To modify these policies, go to the **Settings** page. For details, see :ref:`Configuring an Auto Scaling Policy for a Cluster <cce_10_0209__section6521214191020>`.
 
-#. After the configuration is complete, click **OK**.
+#. Click **OK**.
 
 .. _cce_10_0209__section6521214191020:
 
@@ -157,16 +157,16 @@ Configuring an Auto Scaling Policy for a Cluster
 
    -  **Node Recheck Timeout**: interval for rechecking a node that could not be removed. Default value: 5 minutes.
 
-   -  **Cooldown Period**
+   -  **Cooldown Time**
 
-      -  **Scale-in Cooldown Time After Scale-out**: Default value: 10 minutes.
+      -  **Scale-in Cooldown Time After Node Deletion**: cooldown period for starting scale-in evaluation again after an auto scale-in is triggered in a cluster. Default value: 10 minutes.
+      -  **Scale-in Cooldown Time After Scale-out**: cooldown period for starting scale-in evaluation again after an auto scale-out is triggered in a cluster. Default value: 10 minutes.
 
          .. note::
 
             If both auto scale-out and scale-in exist in a cluster, set **Scale-in Cooldown Time After Scale-out** to 0 minutes. This prevents the node scale-in from being blocked due to continuous scale-out of some node pools or retries upon a scale-out failure, which results in unexpected waste of node resources.
 
-      -  **Scale-in Cooldown Time After Node Deletion**: Default value: 10 minutes.
-      -  **Scale-in Cooldown Time After Failure**: Default value: 3 minutes. For details, see :ref:`Cooldown Period <cce_10_0209__section59676731017>`.
+      -  **Scale-in Cooldown Time After Failure**: cooldown period for starting scale-in evaluation again after an auto scale-in is failed in a cluster. Default value: 3 minutes. For details, see :ref:`Cooldown Period <cce_10_0209__section59676731017>`.
 
 #. Click **Confirm configuration**.
 
@@ -276,5 +276,5 @@ The following is a YAML example of a node scaling policy:
    +---------------------------------------------+---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | spec.targetNodepoolIds                      | Array   | All node pools associated with the scaling policy.                                                                                                                                 |
    +---------------------------------------------+---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.targetNodepoolIds[x]                   | String  | ID of the node pool associated with the scaling policy.                                                                                                                            |
+   | spec.targetNodepoolIds[x]                   | String  | UID of the node pool associated with the scaling policy.                                                                                                                           |
    +---------------------------------------------+---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

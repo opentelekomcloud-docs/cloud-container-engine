@@ -38,7 +38,7 @@ Increasing the Number of Pods
 You can adjust the number of CoreDNS pods ensure high performance and HA.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate **CoreDNS** on the right, and click **Edit**.
-#. Increase the number of pods.
+#. Increase the number of replicas.
 #. Click **OK**.
 
 .. _cce_bestpractice_10027__section8921175018146:
@@ -90,7 +90,7 @@ By default, the add-on scheduling policy can handle single-node faults. However,
    b. On the page displayed, select an AZ for the node.
    c. Configure other mandatory parameters following instructions to complete the creation.
 
-#. In the navigation tree, choose **Add-ons**. In the right pane, locate **CoreDNS** and click **Edit**.
+#. In the navigation pane, choose **Add-ons**. In the right pane, locate **CoreDNS** and click **Edit**.
 
 #. In the window that slides out from the right, set **Multi AZ** to **Required** and click **Install**.
 

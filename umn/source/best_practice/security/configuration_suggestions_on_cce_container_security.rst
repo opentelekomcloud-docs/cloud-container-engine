@@ -99,12 +99,24 @@ When using a containerized application, comply with the minimum privilege princi
               - emptyDir: {}
                 name: tmpfs-example-001
 
-Restricting the Access of Containers to the Management Plane
-------------------------------------------------------------
+Restricting the Access of Service Containers to the Management Plane
+--------------------------------------------------------------------
 
-If application containers on a node do not need to access Kubernetes, you can perform the following operations to disable containers from accessing kube-apiserver:
+To avoid unnecessary service interruption when restricting the service containers on a node from accessing the Kubernetes management plane, consider the following:
 
-#. Query the container CIDR block and private API server address.
+-  **Check whether any containers on the node require access to the cluster management plane.**
+
+   Once you have restricted the service containers on the node from accessing the management plane, all containers on that node will be unable to access the kube-apiserver of the cluster. Before making the configuration, make sure that none of the containers on the node need to access the kube-apiserver of the cluster.
+
+   Keep in mind that certain CCE add-ons, like CCE Advanced HPA, still require access to kube-apiserver. It is not recommended that you configure the access restriction on a node where such add-ons are running.
+
+-  **Configure taints and affinity for the node.**
+
+   If the service containers on the node do not need to access kube-apiserver, it is recommended that you configure labels and taints for the node. Additionally, configure `taints, tolerations <https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/>`__, and `node affinity <https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity>`__ for the containers on the node. This will prevent other containers from being scheduled to that node, thus avoiding service exceptions.
+
+To restrict the service containers on a node from accessing the management plane, take the following steps:
+
+#. Obtain the container CIDR block and private API server address.
 
    On the **Clusters** page of the CCE console, click the name of the cluster to find the information on the details page.
 
@@ -112,13 +124,13 @@ If application containers on a node do not need to access Kubernetes, you can pe
 
    -  CCE cluster: Log in to each node in the cluster as user **root** and run the following command:
 
-      -  VPC network:
+      -  VPC network
 
          .. code-block::
 
             iptables -I OUTPUT -s {container_cidr} -d {Private API server IP} -j REJECT
 
-      -  Container tunnel network:
+      -  Container tunnel network
 
          .. code-block::
 

@@ -94,9 +94,9 @@ Workload access scenarios can be categorized as follows:
    -  Accessing a public network: Assign an EIP to the node where the workload runs (when the VPC network or tunnel network model is used), bind an EIP to the pod IP address (when the Cloud Native Network 2.0 model is used), or configure SNAT rules through the NAT gateway. For details, see :ref:`Accessing the Internet from a Container <cce_10_0400>`.
 
 
-.. figure:: /_static/images/en-us_image_0000001981436301.png
+.. figure:: /_static/images/en-us_image_0000002101678773.png
    :alt: **Figure 3** Network access diagram
 
    **Figure 3** Network access diagram
 
-.. |image1| image:: /_static/images/en-us_image_0000001981436297.png
+.. |image1| image:: /_static/images/en-us_image_0000002101597285.png

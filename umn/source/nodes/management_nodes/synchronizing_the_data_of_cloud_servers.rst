@@ -16,7 +16,7 @@ Notes and Constraints
 ---------------------
 
 -  Data, including the VM status, ECS names, number of CPUs, size of memory, ECS specifications, and public IP addresses, can be synchronized.
--  Data, such as the OS and image ID, cannot be synchronized. (Such parameters cannot be modified on the ECS console.)
+-  The following data cannot be synchronized: OS, image ID, and disk configuration.
 
 Synchronizing the Data of a Cloud Server
 ----------------------------------------
@@ -26,11 +26,5 @@ Synchronizing the Data of a Cloud Server
 #. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.
 
 #. Locate the target node and choose **More** > **Sync Server Data** in the **Operation** column.
-
-
-   .. figure:: /_static/images/en-us_image_0000001981436641.png
-      :alt: **Figure 1** Synchronizing server data
-
-      **Figure 1** Synchronizing server data
 
    After the synchronization is complete, the **ECS data synchronization requested** message is displayed in the upper right corner.

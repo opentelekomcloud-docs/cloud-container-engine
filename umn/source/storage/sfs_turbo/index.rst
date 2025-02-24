@@ -9,7 +9,7 @@ SFS Turbo
 -  :ref:`Using an Existing SFS Turbo File System Through a Static PV <cce_10_0625>`
 -  :ref:`Configuring SFS Turbo Mount Options <cce_10_0626>`
 -  :ref:`(Recommended) Creating an SFS Turbo Subdirectory Using a Dynamic PV <cce_10_0839>`
--  :ref:`Dynamically Creating an SFS Turbo Subdirectory Using StorageClass <cce_bestpractice_00253>`
+-  :ref:`Dynamically Creating an SFS Turbo Subdirectory Using StorageClass <cce_bestpractice_00253_0>`
 
 .. toctree::
    :maxdepth: 1

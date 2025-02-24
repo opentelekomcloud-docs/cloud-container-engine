@@ -28,9 +28,9 @@ The cloud servers to be managed must meet the following requirements:
 
 -  The node to be accepted must be in the **Running** state and not used by other clusters. In addition, the node to be accepted does not carry the CCE-Dynamic-Provisioning-Node tag.
 -  The node to be accepted and the cluster must be in the same VPC. (If the cluster version is earlier than v1.13.10, the node to be accepted and the CCE cluster must be in the same subnet.)
--  Data disks must be attached to the nodes to be managed. A local disk (disk-intensive disk) or a data disk of at least 20 GiB can be attached to the node, and any data disks already attached cannot be smaller than 10 GiB.
+-  Data disks must be attached to the nodes to be managed if the system components of these nodes are separately stored. A local disk (disk-intensive disk) or a data disk of at least 20 GiB can be attached to the node, and any data disks already attached cannot be smaller than 10 GiB.
 -  The node to be accepted has 2-core or higher CPU, 4 GiB or larger memory, and only one NIC.
--  Only cloud servers with the same data disk configurations can be added in batches.
+-  Only cloud servers with the same data disk configuration can be accepted in batches for management.
 -  If IPv6 is enabled for a cluster, only nodes in a subnet with IPv6 enabled can be accepted and managed. If IPv6 is not enabled for the cluster, only nodes in a subnet without IPv6 enabled can be accepted.
 -  Nodes in a CCE Turbo cluster must support sub-ENIs or be bound to at least 16 ENIs. For details about the node flavors, see the node flavors that can be selected on the console when you create a node.
 -  Data disks that have been partitioned will be ignored during node management. Ensure that there is at least one unpartitioned data disk meeting the specifications is attached to the node.
@@ -40,7 +40,7 @@ Procedure
 
 View the cluster log information to locate the failure cause and rectify the fault.
 
-#. Log in to the CCE console. In the navigation pane, click **Operation Records** above the cluster list to view operation records.
+#. Log in to the CCE console and click **Operation Records** above the cluster list to view operation records.
 #. Click the record of the **Failed** status to view error information.
 #. Rectify the fault based on the error information and accept the node into a cluster again.
 

@@ -12,8 +12,8 @@ Prerequisites
 
 You have created a cluster and installed the :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on in the cluster.
 
-Procedure for an EVS Disk
--------------------------
+EVS Disk
+--------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. Choose **Storage** in the navigation pane and click the **PersistentVolumeClaims (PVCs)** tab. Click **More** in the **Operation** column of the target PVC and select **Scale-out**.

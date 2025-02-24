@@ -6,7 +6,7 @@ Storage
 =======
 
 -  :ref:`How Do I Expand the Storage Capacity of a Container? <cce_faq_00224>`
--  :ref:`What Are the Differences Among CCE Storage Classes in Terms of Persistent Storage and Multi-node Mounting? <cce_faq_00038>`
+-  :ref:`What Are the Differences Among CCE Storage Classes in Terms of Persistent Storage and Multi-Node Mounting? <cce_faq_00038>`
 -  :ref:`Can I Create a CCE Node Without Adding a Data Disk to the Node? <cce_faq_00089>`
 -  :ref:`What Should I Do If the Host Cannot Be Found When Files Need to Be Uploaded to OBS During the Access to the CCE Service from a Public Network? <cce_faq_00218>`
 -  :ref:`How Can I Achieve Compatibility Between ExtendPathMode and Kubernetes client-go? <cce_faq_00235>`

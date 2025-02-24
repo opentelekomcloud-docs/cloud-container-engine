@@ -23,4 +23,4 @@ If the command output is not 0, the check fails.
 Solution
 --------
 
-Install Python before the upgrade.
+Reset the node or manually install Python before attempting the upgrade again.

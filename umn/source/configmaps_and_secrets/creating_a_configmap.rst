@@ -123,4 +123,4 @@ After creating a ConfigMap, you can update or delete it as described in :ref:`Ta
    |                                   | Follow the prompts to delete the ConfigMap.                                                          |
    +-----------------------------------+------------------------------------------------------------------------------------------------------+
 
-.. |image1| image:: /_static/images/en-us_image_0000001981276633.png
+.. |image1| image:: /_static/images/en-us_image_0000002101597461.png

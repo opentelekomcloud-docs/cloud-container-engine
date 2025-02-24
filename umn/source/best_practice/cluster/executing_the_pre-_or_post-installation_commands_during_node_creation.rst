@@ -51,4 +51,4 @@ Procedure
 
 #. Click **Submit**.
 
-.. |image1| image:: /_static/images/en-us_image_0000001981435221.png
+.. |image1| image:: /_static/images/en-us_image_0000002065479598.png

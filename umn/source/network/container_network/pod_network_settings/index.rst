@@ -7,6 +7,7 @@ Pod Network Settings
 
 -  :ref:`Configuring hostNetwork for Pods <cce_10_0402>`
 -  :ref:`Configuring QoS for a Pod <cce_10_0382>`
+-  :ref:`Configuring Network Policies to Restrict Pod Access <cce_10_0059>`
 
 .. toctree::
    :maxdepth: 1
@@ -14,3 +15,4 @@ Pod Network Settings
 
    configuring_hostnetwork_for_pods
    configuring_qos_for_a_pod
+   configuring_network_policies_to_restrict_pod_access

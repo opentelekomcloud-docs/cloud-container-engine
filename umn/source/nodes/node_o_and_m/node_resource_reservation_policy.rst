@@ -31,6 +31,8 @@ Rules v1 for Reserving Node Memory
 
    For clusters of versions earlier than **v1.21.4-r0** and **v1.23.3-r0**, the v1 model is used for node memory reservation. For clusters of **v1.21.4-r0**, **v1.23.3-r0**, or later, the node memory reservation model is optimized to v2. For details, see :ref:`Rules for Reserving Node Memory v2 <cce_10_0178__section156741258145010>`.
 
+   Upgrading the cluster to **v1.21.4-r0**, **v1.23.3-r0**, or a later version may result in the eviction of the workload on a node that is already fully utilized. This is because system components will need more reserved resources.
+
 You can use the following formula calculate how much memory you should reserve for running containers on a node:
 
 Total reserved amount = :ref:`Reserved memory for system components <cce_10_0178__table19962121035915>` + :ref:`Reserved memory for kubelet to manage pods <cce_10_0178__table124614211528>`

@@ -6,9 +6,9 @@ Workloads
 =========
 
 -  :ref:`Overview <cce_10_0006>`
-   A workload is an application running on Kubernetes. No matter how many components are there in your workload, you can run it in a group of Kubernetes pods. A workload is an abstract model of a group of pods in Kubernetes. Workloads in Kubernetes are classified as Deployments, StatefulSets, DaemonSets, jobs, and cron jobs.
 -  :ref:`Creating a Workload <cce_10_0673>`
 -  :ref:`Configuring a Workload <cce_10_0130>`
+-  :ref:`Scheduling a Workload <cce_10_0889>`
 -  :ref:`Logging In to a Container <cce_10_00356>`
 -  :ref:`Managing Workloads <cce_10_0007>`
 -  :ref:`Managing Custom Resources <cce_10_0833>`
@@ -21,6 +21,7 @@ Workloads
    overview
    creating_a_workload/index
    configuring_a_workload/index
+   scheduling_a_workload/index
    logging_in_to_a_container
    managing_workloads
    managing_custom_resources

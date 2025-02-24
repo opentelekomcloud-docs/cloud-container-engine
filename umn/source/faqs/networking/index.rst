@@ -5,8 +5,8 @@
 Networking
 ==========
 
+-  :ref:`Network Exception Troubleshooting <cce_faq_00205>`
 -  :ref:`Network Planning <cce_faq_00146>`
--  :ref:`Network Fault <cce_faq_00205>`
 -  :ref:`Security Hardening <cce_faq_00264>`
 -  :ref:`Network Configuration <cce_faq_00275>`
 
@@ -14,7 +14,7 @@ Networking
    :maxdepth: 1
    :hidden: 
 
+   network_exception_troubleshooting/index
    network_planning/index
-   network_fault/index
    security_hardening/index
    network_configuration/index

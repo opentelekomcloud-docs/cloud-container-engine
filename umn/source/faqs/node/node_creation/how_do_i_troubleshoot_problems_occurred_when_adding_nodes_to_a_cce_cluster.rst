@@ -5,8 +5,8 @@
 How Do I Troubleshoot Problems Occurred When Adding Nodes to a CCE Cluster?
 ===========================================================================
 
-Note
-----
+Notes
+-----
 
 -  The node images in the same cluster must be the same. Pay attention to this when creating, adding, or accepting nodes in a cluster.
 -  If you need to allocate user space from the data disk when creating a node, do not set the data storage path to any key directory. For example, to store data in the **/home** directory, set the directory to **/home/test** instead of **/home**.
@@ -23,42 +23,39 @@ Note
 
       Do not set it to **/home/paas**, **/var/paas**, **/var/lib**, **/var/script**, **/mnt/paas**, or **/opt/cloud**. Otherwise, the system or node installation will fail.
 
-Check Item 1: Subnet Quota
---------------------------
+Check Item 1: Available IP Addresses in the Subnet
+--------------------------------------------------
 
 **Symptom**
 
-New nodes cannot be added to a CCE cluster, and a message is displayed indicating that the subnet quota is insufficient.
+New nodes cannot be added to a CCE cluster, and a message is displayed, indicating that the available IP addresses in the subnet are insufficient.
 
 **Cause Analysis**
 
-Example:
-
-VPC CIDR block: 192.168.66.0/24
-
-Subnet CIDR block: 192.168.66.0/24
-
-In 192.168.66.0/24, all 251 private IP addresses have been used.
+The default node subnet CIDR block of the cluster is too small, causing all the available private IP addresses in the subnet to be exhausted. Consequently, it is not possible to allocate any private IP addresses to the nodes.
 
 **Solution**
 
-#. Expand the VPC.
+-  **Scenario 1:** **IP addresses in the VPC CIDR block are not used up.**
 
-   Log in to the console and choose **Virtual Private Cloud** from the service list. On the page displayed, locate the row containing the target VPC and click **Edit CIDR Block** in the **Operation** column.
+   When creating a node, you can select a new node subnet in the network configuration. If no node subnet is available, you can go to the VPC console and create a node subnet.
 
-#. Change the subnet mask to **16** and click **OK**.
+-  **Scenario 2: All IP addresses in the VPC CIDR block have been used up.**
 
-#. Click the VPC name. On the **Summary** tab page, click the number next to **Subnets** on the right and click **Create Subnet** to create a subnet.
+   If all IP addresses in the VPC CIDR block have been used up, you need to expand the VPC CIDR block and create a node subnet.
 
-#. Return to the page for adding a node on the CCE console, and select the newly created subnet.
+   #. Log in to the management console. In the service list, choose **Virtual Private Cloud**. In the VPC list, locate the row containing the target VPC and click **Edit CIDR block** in the **Operation** column.
 
-   .. note::
+   #. After adding a secondary CIDR block, click **OK**.
 
-      a. Adding subnets to the VPC does not affect the use of the existing 192.168.66.0/24 CIDR block.
+   #. In the navigation pane, choose **Subnets** and click **Create Subnet** to create a subnet for the VPC where the cluster resides.
 
-         You can select a new subnet when creating a CCE node. The new subnet has a maximum of 251 private IP addresses. If the number of private IP addresses cannot meet service requirements, you can add more subnets.
+   #. Go back to the page for adding a node on the CCE console, and select the newly created subnet.
 
-      b. Subnets in the same VPC can communicate with each other.
+      .. note::
+
+         a. Adding subnets to the VPC does not affect the use of the existing CIDR blocks. If the service requirements still cannot be met, you can add more subnets.
+         b. Subnets in the same VPC can communicate with each other through the private network.
 
 Check Item 2: EIP Quota
 -----------------------
@@ -90,6 +87,17 @@ A node cannot be added to a CCE cluster.
 
 **Solution**
 
-You can click the cluster name to view the cluster details. In the **Networking Configuration** area, click the icon next to **Default security group of the node** to check whether the default security group is deleted and whether the security group rules comply with :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`.
+You can click the cluster name to view the cluster details. In the **Networking Configuration** area, click the icon next to the value of **Default Node Security Group** to check whether the default security group is deleted and whether the security group rules comply with :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`
 
 If your account has multiple clusters and you need to manage network security policies of nodes in a unified manner, you can specify custom security groups.
+
+Check Item 4: Resource Quota
+----------------------------
+
+**Symptom**
+
+When a node is added to a CCE cluster, a message is displayed, indicating that the resource quota is insufficient.
+
+**Solution**
+
+You can click **Increase Quota** to go to the corresponding page and increase the quota.

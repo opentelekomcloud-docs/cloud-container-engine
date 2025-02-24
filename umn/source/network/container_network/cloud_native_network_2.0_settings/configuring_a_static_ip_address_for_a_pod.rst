@@ -12,8 +12,8 @@ In Cloud Native Network 2.0, each pod is associated with an ENI, providing a sta
 
 For example, if a StatefulSet service needs to control the access of a cloud database, you can fix the pod IP address of the service and configure the security group of the cloud database to allow only the service IP address to access the database.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  You can configure a static IP address for a pod only in CCE Turbo clusters of the following versions:
 
@@ -32,8 +32,6 @@ When creating a workload on the console, you can set the static IP address for a
 
 -  **Whether to enable fixed IP addresses**: After the function is enabled, the pod IP address does not change each time the pod is restarted.
 -  **Recycling Interval**: Retention period of related IP addresses after the pod is deleted. During this interval, the original pod IP address cannot be used by other pods.
-
-|image1|
 
 Using kubectl
 -------------
@@ -88,5 +86,3 @@ You can add annotations to a StatefulSet to enable or disable the static IP addr
    |                                          |                 |                                                                                                                                                                                                                                                                                                            |                                                                                                                                        |
    |                                          |                 | The default value is **false**, indicating that the corresponding static IP address ENI will be deleted with the StatefulSet workload. If you want to retain the static IP address for a new StatefulSet with the same name during the interval for reclaiming the expired ENI, set the value to **true**. |                                                                                                                                        |
    +------------------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
-
-.. |image1| image:: /_static/images/en-us_image_0000001950316540.png

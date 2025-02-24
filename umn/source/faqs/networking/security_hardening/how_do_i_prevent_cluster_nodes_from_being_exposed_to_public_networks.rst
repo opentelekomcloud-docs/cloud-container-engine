@@ -5,5 +5,11 @@
 How Do I Prevent Cluster Nodes from Being Exposed to Public Networks?
 =====================================================================
 
+**Question**
+
+How do I prevent cluster nodes from being exposed to public networks?
+
+**Solution**
+
 -  If access to port 22 of a cluster node is not required, you can define a security group rule that disables access to port 22.
 -  Do not bind an EIP to a cluster node unless necessary.

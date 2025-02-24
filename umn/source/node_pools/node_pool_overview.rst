@@ -43,8 +43,8 @@ Description of DefaultPool
 
 DefaultPool is not a real node pool. It only **classifies** nodes that are not in the custom node pools. These nodes are directly created on the console or by calling APIs. DefaultPool does not support any user-created node pool functions, including scaling and parameter configuration. DefaultPool cannot be edited, deleted, expanded, or auto scaled, and nodes in it cannot be migrated.
 
-Application Scenarios
----------------------
+Applicable Scenarios
+--------------------
 
 When a large-scale cluster is required, you are advised to use node pools to manage nodes.
 
@@ -93,7 +93,7 @@ Deploying a Workload in a Specified Node Pool
 
 When creating a workload, you can constrain pods to run in a specified node pool.
 
-For example, on the CCE console, you can set the affinity between the workload and the node on the **Scheduling Policies** tab page on the workload details page to forcibly deploy the workload to a specific node pool. In this way, the workload runs only on nodes in the node pool. To better control where the workload is to be scheduled, you can use affinity or anti-affinity policies between workloads and nodes described in :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`.
+For example, on the CCE console, you can set the affinity between the workload and the node on the **Scheduling Policies** tab page on the workload details page to forcibly deploy the workload to a specific node pool. In this way, the workload runs only on nodes in the node pool. To better control where the workload is to be scheduled, you can use affinity or anti-affinity policies between workloads and nodes described in :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`.
 
 For example, you can use container's resource request as a nodeSelector so that workloads will run only on the nodes that meet the resource request.
 
@@ -107,4 +107,4 @@ You can log in to the CCE console and refer to the following sections to perform
 -  :ref:`Creating a Node Pool <cce_10_0012>`
 -  :ref:`Managing a Node Pool <cce_10_0222>`
 -  :ref:`Creating a Deployment <cce_10_0047>`
--  :ref:`Scheduling Policies (Affinity/Anti-affinity) <cce_10_0232>`
+-  :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`

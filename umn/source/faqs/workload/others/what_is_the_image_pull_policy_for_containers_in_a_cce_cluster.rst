@@ -35,5 +35,5 @@ The **imagePullPolicy** field in the Kubernetes configuration file is used to de
 
 #. If the policy is set to **IfNotPreset**:
 
-   a. If the required image does not exist locally, it will be pulled from the remote repository.
-   b. If the content, except the tag, of the required image is the same as that of the local image, and the image with that tag exists only in the remote repository, Kubernetes will not pull the image from the remote repository.
+   a. When the required image does not exist locally, it will be pulled from the remote repository.
+   b. When the content, except the tag, of the required image is the same as that of the local image, and the image with that tag exists only in the remote repository, Kubernetes will not pull the image from the remote repository.

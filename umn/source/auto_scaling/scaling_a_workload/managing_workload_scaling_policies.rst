@@ -13,11 +13,11 @@ After a workload scaling policy is created, you can update and delete the policy
 Procedure
 ---------
 
-You can view the rules, status, and events of a workload scaling policy and handle exceptions based on the error information displayed.
+You can view the rules, latest status, and events of a workload scaling policy and handle exceptions based on the error information displayed.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Policies**. On the displayed page, click the **HPA**/**CronHPA** **Policies** tab page based on the scaling policy type.
-#. Check the status, rules, and associated workloads of a scaling policy.
+#. In the navigation pane, choose **Policies**. On the **Scaling Policies** tab page, click the **HPA Policies**/**CronHPA Policies** tab based on the scaling policy type.
+#. Check the latest status, rules, and associated workloads of a scaling policy.
 
    .. note::
 

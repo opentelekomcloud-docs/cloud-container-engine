@@ -12,7 +12,7 @@ Resource oversubscription is the process of making use of idle requested resourc
 Hybrid deployment of online and offline jobs in a cluster can better utilize cluster resources.
 
 
-.. figure:: /_static/images/en-us_image_0000001981436361.png
+.. figure:: /_static/images/en-us_image_0000002065638678.png
    :alt: **Figure 1** Resource oversubscription
 
    **Figure 1** Resource oversubscription
@@ -164,7 +164,7 @@ Ensure that you have correctly configure labels because the scheduler does not c
 
    a. Create a node pool.
    b. Choose **Manage** in the **Operation** column of the created node pool.
-   c. On the **Manage Configurations** page, enable **Node oversubscription feature (over-subscription-resource)** and click **OK**.
+   c. On the **Manage Components** page, enable **Node oversubscription feature (over-subscription-resource)** and click **OK**.
 
 #. Set the node oversubscription label.
 

@@ -5,7 +5,7 @@
 CoreDNS Configuration Optimization
 ==================================
 
--  :ref:`Overview <cce_bestpractice_0346>`
+-  :ref:`CoreDNS Optimization Overview <cce_bestpractice_0346>`
 -  :ref:`Client <cce_bestpractice_0347>`
 -  :ref:`Server <cce_bestpractice_0354>`
 
@@ -13,6 +13,6 @@ CoreDNS Configuration Optimization
    :maxdepth: 1
    :hidden: 
 
-   overview
+   coredns_optimization_overview
    client/index
    server/index

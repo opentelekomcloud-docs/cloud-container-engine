@@ -30,21 +30,17 @@ Solution
 
    .. table:: **Table 1** OSs that support the upgrade
 
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
-      | OS                                | Constraint                                                                                                           |
-      +===================================+======================================================================================================================+
-      | EulerOS 2.x                       | If the target version is earlier than v1.27, there are no constraints.                                               |
-      |                                   |                                                                                                                      |
-      |                                   | If the target version is v1.27 or later, only EulerOS 2.9 and EulerOS 2.10 support the upgrade.                      |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
-      | Ubuntu                            | If the check result shows that the upgrade is not supported due to regional restrictions, contact technical support. |
-      |                                   |                                                                                                                      |
-      |                                   | .. note::                                                                                                            |
-      |                                   |                                                                                                                      |
-      |                                   |    If the target version is v1.27 or later, only Ubuntu 22.04 supports the upgrade.                                  |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
-      | HCE OS 2.0                        | If the check result shows that the upgrade is not supported due to regional restrictions, contact technical support. |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+      +-----------------------------------+-------------------------------------------------------------------------------------------------+
+      | OS                                | Constraint                                                                                      |
+      +===================================+=================================================================================================+
+      | EulerOS 2.x                       | If the target version is earlier than v1.27, there are no constraints.                          |
+      |                                   |                                                                                                 |
+      |                                   | If the target version is v1.27 or later, only EulerOS 2.9 and EulerOS 2.10 support the upgrade. |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------+
+      | Ubuntu                            | If the target version is v1.27 or later, only Ubuntu 22.04 supports the upgrade.                |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------+
+      | HCE OS 2.0                        | Unlimited                                                                                       |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------+
 
 #. **The affected node belongs to the default node pool but it is configured with a non-default node pool label, which will affect the upgrade.**
 
@@ -57,9 +53,9 @@ Solution
 
    The node contains a taint whose key is **node.cloudprovider.kubernetes.io/cni-problem**, and the effect is **NoSchedule**. The taint is added by the NPD add-on. Upgrade the NPD add-on to the latest version and check again. If the problem persists, contact technical support.
 
-#. **The Kubernetes node corresponding to the affected node does not exist.**
+#. **The resources for the affected node in Kubernetes are not available. It is possible that the node is being deleted. Try again later.**
 
-   It is possible that the node is being deleted. Check again later.
+   Recheck after the node is deleted.
 
 #. **The OS running on the master node is EulerOS 2.5, which does not support the cluster to be upgraded to v1.27.5-r0.**
 

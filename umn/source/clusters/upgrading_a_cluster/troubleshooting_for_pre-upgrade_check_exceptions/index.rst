@@ -71,6 +71,13 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Node Runtime <cce_10_0516>`
 -  :ref:`Node Pool Runtime <cce_10_0517>`
 -  :ref:`Number of Node Images <cce_10_0518>`
+-  :ref:`Compatibility Check of Secret Encryption <cce_10_0520>`
+-  :ref:`Compatibility Between the Ubuntu Kernel and GPU Driver <cce_10_0521>`
+-  :ref:`Drainage Tasks <cce_10_0522>`
+-  :ref:`Image Layers on a Node <cce_10_0523>`
+-  :ref:`Cluster Rolling Upgrade <cce_10_0524>`
+-  :ref:`Rotation Certificates <cce_10_0525>`
+-  :ref:`Ingress and ELB Configuration Consistency <cce_10_0526>`
 
 .. toctree::
    :maxdepth: 1
@@ -142,3 +149,10 @@ Troubleshooting for Pre-upgrade Check Exceptions
    node_runtime
    node_pool_runtime
    number_of_node_images
+   compatibility_check_of_secret_encryption
+   compatibility_between_the_ubuntu_kernel_and_gpu_driver
+   drainage_tasks
+   image_layers_on_a_node
+   cluster_rolling_upgrade
+   rotation_certificates
+   ingress_and_elb_configuration_consistency

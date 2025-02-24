@@ -29,4 +29,4 @@ The following table lists the files to be checked.
 Solution
 --------
 
-Contact technical support to restore the configuration file and then perform the upgrade.
+Reset the node. For details, see :ref:`Resetting a Node <cce_10_0003>`. Alternatively, contact technical support to restore the file and then perform the upgrade.

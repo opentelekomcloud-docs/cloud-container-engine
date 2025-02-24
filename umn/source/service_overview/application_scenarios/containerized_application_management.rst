@@ -5,17 +5,17 @@
 Containerized Application Management
 ====================================
 
-Application Scenario
---------------------
+Application Scenarios
+---------------------
 
-In CCE, you can run clusters with x86 and Arm nodes. Create and manage Kubernetes clusters. Deploy containerized applications in them. All done in CCE.
+CCE clusters enable the management of both x86 and Arm resources. With CCE, you can effortlessly create Kubernetes clusters, deploy containerized applications, and effectively manage and maintain them.
 
 -  Containerized web applications: CCE clusters interconnect with middleware such as GaussDB and Redis and support HA DR, auto scaling, public network release, and gray upgrade, helping you quickly deploy web service applications.
 -  Middleware deployment platform: CCE clusters can be used as middleware deployment platforms to implement stateful applications with StatefulSets and PVCs. In addition, load balancers can be used to expose middleware services.
 -  Jobs and cron jobs: Job and cron job applications can be containerized to reduce the dependency on the host system. Global resource scheduling secures the resource usage during task running and improves the overall resource usage in the cluster.
 
 
-.. figure:: /_static/images/en-us_image_0000001851584048.png
+.. figure:: /_static/images/en-us_image_0000002065636326.png
    :alt: **Figure 1** CCE cluster
 
    **Figure 1** CCE cluster
@@ -41,7 +41,7 @@ Advantages
    Auto scales your nodes and workloads according to the policies you set.
 
 
-.. figure:: /_static/images/en-us_image_0000001851742760.png
+.. figure:: /_static/images/en-us_image_0000002101594869.png
    :alt: **Figure 2** Workload
 
    **Figure 2** Workload

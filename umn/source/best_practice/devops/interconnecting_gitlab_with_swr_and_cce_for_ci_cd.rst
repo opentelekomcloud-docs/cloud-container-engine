@@ -13,7 +13,7 @@ GitLab is an open-source version management system developed with Ruby on Rails 
 GitLab provides powerful CI/CD functions and is widely used in software development.
 
 
-.. figure:: /_static/images/en-us_image_0000001981274977.png
+.. figure:: /_static/images/en-us_image_0000002065637534.png
    :alt: **Figure 1** GitLab CI/CD process
 
    **Figure 1** GitLab CI/CD process
@@ -24,7 +24,9 @@ Preparations
 ------------
 
 #. Create a CCE cluster and a node and bind an EIP to the node for downloading an image during GitLab Runner installation.
+
 #. Download and configure kubectl to connect to the cluster.
+
 #. `Install Helm 3 <https://helm.sh/docs/intro/install/>`__.
 
 Installing GitLab Runner
@@ -97,11 +99,11 @@ Log in to `GitLab <https://www.gitlab.com/>`__, choose **Settings** > **CI/CD** 
 
 -  **project**: project name.
 
-   Log in to the management console, hover over your username in the upper right corner, and choose **My Credentials**. In the **Projects** area on the **API Credentials** page, check the name of the project in your current region.
+   Log in to the management console, hover the cursor on your username in the upper right corner, and choose **My Credentials**. In the **Projects** area on the **API Credentials** page, check the name of the project in your current region.
 
 -  **swr_ak**: access key.
 
-   Log in to the management console, hover over your username in the upper right corner, and choose **My Credentials**. In the navigation pane, choose **Access Keys**. Click **Create Access Key**, enter the description, and click **OK**. In the displayed **Information** dialog box, click **Download**. After the certificate is downloaded, obtain the AK and SK information from the **credentials** file.
+   Log in to the management console, hover the cursor on your username in the upper right corner, and choose **My Credentials**. In the navigation pane, choose **Access Keys**. Click **Create Access Key**, enter the description, and click **OK**. In the displayed **Information** dialog box, click **Download**. After the certificate is downloaded, obtain the AK and SK information from the **credentials** file.
 
 -  **swr_sk**: secret key for logging in to SWR.
 
@@ -202,12 +204,6 @@ Common Issues
    .. code-block::
 
       ...
-      deploy:
-        # Use the kubectl image.
-        image:
-          name: bitnami/kubectl:latest
-          entrypoint: [""]
-        stage: deploy
         script:
           # Configure the kubeconfig file.
           - mkdir -p $HOME/.kube
@@ -222,14 +218,11 @@ Common Issues
 
    The **privileged: true** parameter fails to be transferred during GitLab Runner installation. As a result, you do not have the permission to run the docker command. To resolve this issue, find GitLab Runner in the workload list on the CCE console, add the environment variable **KUBERNETES_PRIVILEGED**, and set its value to **true**.
 
-   |image9|
-
-.. |image1| image:: /_static/images/en-us_image_0000001950315436.png
-.. |image2| image:: /_static/images/en-us_image_0000001950315464.png
-.. |image3| image:: /_static/images/en-us_image_0000001981274973.png
-.. |image4| image:: /_static/images/en-us_image_0000001950315444.png
-.. |image5| image:: /_static/images/en-us_image_0000001950315472.png
-.. |image6| image:: /_static/images/en-us_image_0000001981434829.png
-.. |image7| image:: /_static/images/en-us_image_0000001950315456.png
-.. |image8| image:: /_static/images/en-us_image_0000001981274989.png
-.. |image9| image:: /_static/images/en-us_image_0000001950315440.png
+.. |image1| image:: /_static/images/en-us_image_0000002101677557.png
+.. |image2| image:: /_static/images/en-us_image_0000002101677605.png
+.. |image3| image:: /_static/images/en-us_image_0000002101596077.png
+.. |image4| image:: /_static/images/en-us_image_0000002065479218.png
+.. |image5| image:: /_static/images/en-us_image_0000002065479210.png
+.. |image6| image:: /_static/images/en-us_image_0000002065479186.png
+.. |image7| image:: /_static/images/en-us_image_0000002065479222.png
+.. |image8| image:: /_static/images/en-us_image_0000002101596097.png

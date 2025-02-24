@@ -5,7 +5,7 @@
 Configuration Suggestions on CCE Cluster Security
 =================================================
 
-For security purposes, you are advised to configure a cluster as follows.
+To ensure security, it is recommended that you configure a cluster in the following manner.
 
 Using the CCE Cluster of the Latest Version
 -------------------------------------------
@@ -138,7 +138,7 @@ Configuring Network Isolation in a Cluster
 
 -  Cloud Native 2.0 network
 
-   In the Cloud Native Network 2.0 model, you can configure security groups to isolate networks between pods. For details, see :ref:`SecurityGroups <cce_10_0288>`.
+   In the Cloud Native Network 2.0 model, you can configure security groups to isolate networks between pods. For details, see :ref:`Binding a Security Group to a Workload Using a Security Group Policy <cce_10_0288>`.
 
 -  VPC network
 
@@ -155,7 +155,7 @@ Enabling the Webhook Authentication Mode with kubelet
 
 When creating a node, you can enable the kubelet authentication mode by injecting the **postinstall** file (by setting the kubelet startup parameter **--authorization-node=Webhook**).
 
-#. Run the following command to create clusterrolebinding:
+#. Run the following command to create a ClusterRoleBinding:
 
    **kubectl create clusterrolebinding kube-apiserver-kubelet-admin --clusterrole=system:kubelet-api-admin --user=system:kube-apiserver**
 

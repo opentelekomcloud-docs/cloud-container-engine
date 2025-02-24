@@ -31,19 +31,13 @@ Solution
 
    Solution
 
-   #. Log in to a node where the check succeeded, obtain the path of the cce-agent configuration file, and obtain the OBS address.
+   #. Log in to the affected node and run the following command to obtain a valid OBS address:
 
       .. code-block::
 
-         cat `ps aux | grep cce-agent | grep -v grep | awk -F '-f ' '{print $2}'`
+         cat /home/paas/upgrade/agentConfig | python -m json.tool
 
-      The OBS configuration address field in the configuration file is **packageFrom.addr**.
-
-
-      .. figure:: /_static/images/en-us_image_0000001950317032.png
-         :alt: **Figure 1** OBS address
-
-         **Figure 1** OBS address
+      |image1|
 
    #. Log in to a where the check failed, obtain the OBS address again by referring to the previous step, and check whether the OBS addresses are the same. If they are different, change the OBS address of the abnormal node to the correct address.
 
@@ -86,3 +80,5 @@ Solution
          systemctl restart cce-agent
 
       If you have any questions about the preceding operations, contact technical support.
+
+.. |image1| image:: /_static/images/en-us_image_0000002065480470.png

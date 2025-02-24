@@ -21,12 +21,10 @@ Procedure
 
 #. Log in to the CCE console. In the navigation pane, choose **Clusters**.
 #. Click the cluster name to access the **Overview** page.
-#. In the **Network Configuration** area, click |image1| next to the **Default Node Security Group**.
+#. In the **Networking Configuration** area, click **Edit** next to the **Default Node Security Group**.
 #. Select an existing security group, confirm that the security group rules meet the cluster requirements, and click **OK**.
 
    .. important::
 
       -  Ensure that correct port rules are configured for the selected security group. Otherwise, the node cannot be created. The port rules that a security group must comply with vary with the cluster type.
       -  The new security group takes effect only for newly created or managed nodes. For existing nodes, modify the security group rules and reset the nodes in real time. The original security group is still used.
-
-.. |image1| image:: /_static/images/en-us_image_0000001981436137.png

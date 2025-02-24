@@ -13,7 +13,7 @@ Check whether nodes need to be migrated.
 Solution
 --------
 
-For the 1.15 cluster that is upgraded from 1.13 in rolling mode, migrate (reset or create and replace) all nodes before performing the upgrade again.
+This issue is caused by either an error in the node's package pull component or the absence of key system components on the node, which could be due to an upgrade from an earlier version.
 
 **Solution 1**
 

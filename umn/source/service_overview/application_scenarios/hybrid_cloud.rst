@@ -27,7 +27,7 @@ Application Scenarios
 Benefits
 --------
 
-Thanks to containers' environment-independent feature, CCE manages containers in a unified manner, and these containers can access each other on CCE. You can seamlessly migrate your apps and data on and off the cloud. This meets complex services' requirements for auto scaling, flexibility, security, and compliance. Additionally, resources in different cloud environments can be operated and maintained in a unified manner, providing easier resource scheduling and DR.
+Thanks to containers' environment-independent feature, CCE manages containers in a unified manner, and these containers can access each other. You can seamlessly migrate your apps and data on and off the cloud. This meets complex services' requirements for auto scaling, flexibility, security, and compliance. Additionally, resources in different cloud environments can be operated and maintained in a unified manner, providing easier resource scheduling and DR.
 
 Advantages
 ----------
@@ -46,7 +46,7 @@ Advantages
 
 -  Lower costs
 
-   Cloud resource pools, backed by auto scaling, can respond to load spikes in time. Manual operations are no longer needed and you can save big.
+   Cloud resource pools can quickly be scaled out to handle traffic bursts. Manual operations are no longer needed and you can save big.
 
 Related Services
 ----------------
@@ -54,7 +54,7 @@ Related Services
 Elastic Cloud Server (ECS), Virtual Private Network (VPN), SoftWare Repository for Container (SWR)
 
 
-.. figure:: /_static/images/en-us_image_0000001851584036.png
+.. figure:: /_static/images/en-us_image_0000002065636318.png
    :alt: **Figure 1** How hybrid cloud works
 
    **Figure 1** How hybrid cloud works

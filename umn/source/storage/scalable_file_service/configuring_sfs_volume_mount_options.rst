@@ -58,7 +58,7 @@ The Everest add-on in CCE presets the options described in :ref:`Table 1 <cce_10
    |                         |                       |    The **nosharecache** setting will affect the performance. The mounting information must be obtained for each mounting, which increases the communication overhead with the NFS server and the memory consumption of the NFS clients. In addition, the **nosharecache** setting on the NFS clients may lead to inconsistent caches. Determine whether to use **nosharecache** based on site requirements. |
    +-------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-You can set other mount options if needed. For details, see `Mounting an NFS File System to ECSs (Linux) <https://docs.otc.t-systems.com/en-us/usermanual/sfs/en-us_topic_0034428728.html>`__.
+You can set other mount options if needed. For details, see `Mounting an NFS File System to ECSs (Linux) <https://docs.otc.t-systems.com/en-us/usermanual/sfs/sfs_01_1001.html>`__.
 
 Configuring Mount Options in a PV
 ---------------------------------
@@ -148,7 +148,7 @@ You can use the **mountOptions** field to configure mount options in a StorageCl
         csi.storage.k8s.io/csi-driver-name: nas.csi.everest.io
         csi.storage.k8s.io/fstype: nfs
       everest.io/share-access-to: <your_vpc_id> # VPC ID of the cluster
-       reclaimPolicy: Delete
+      reclaimPolicy: Delete
       volumeBindingMode: Immediate
       mountOptions:                            # Mount options
       - vers=3

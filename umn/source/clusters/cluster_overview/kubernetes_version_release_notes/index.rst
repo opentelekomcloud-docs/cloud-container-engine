@@ -5,6 +5,7 @@
 Kubernetes Version Release Notes
 ================================
 
+-  :ref:`Kubernetes 1.30 Release Notes <cce_bulletin_0095>`
 -  :ref:`Kubernetes 1.29 Release Notes <cce_bulletin_0089>`
 -  :ref:`Kubernetes 1.28 Release Notes <cce_bulletin_0068>`
 -  :ref:`Kubernetes 1.27 Release Notes <cce_bulletin_0059>`
@@ -18,6 +19,7 @@ Kubernetes Version Release Notes
    :maxdepth: 1
    :hidden: 
 
+   kubernetes_1.30_release_notes
    kubernetes_1.29_release_notes
    kubernetes_1.28_release_notes
    kubernetes_1.27_release_notes

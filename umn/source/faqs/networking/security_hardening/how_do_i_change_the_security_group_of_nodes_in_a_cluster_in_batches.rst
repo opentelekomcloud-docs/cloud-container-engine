@@ -19,7 +19,7 @@ Procedure
 
 #. On the **Security Groups** page, click **Manage Instance** in the **Operation** column.
 
-#. On the **Servers** tab page, click **Add**.
+#. On the **Servers** tab, click **Add**.
 
 #. Select the servers to be added to the security group and click **OK**. You can also search for servers by name, ID, private IP address, status, enterprise project, or tag.
 
