@@ -9,6 +9,7 @@ APIs
 -  :ref:`Cluster Management <cce_02_0092>`
 -  :ref:`Add-on Management <cce_02_0320>`
 -  :ref:`Quota Management <quota_lifecycle_management>`
+-  :ref:`Chart Management <chart_lifecycle_management>`
 -  :ref:`Add-on Instance Parameters <cce_02_0366>`
 
 .. toctree::
@@ -19,4 +20,5 @@ APIs
    cluster_management/index
    add-on_management/index
    quota_management/index
+   chart_management/index
    add-on_instance_parameters/index
