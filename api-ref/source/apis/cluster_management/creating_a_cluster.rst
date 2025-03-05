@@ -104,6 +104,22 @@ Request
    |                 |                 |                 |    -  Annotations are not used to identify or select objects. The metadata in **annotations** may be small or large, structured or unstructured, and may include characters that are not allowed in labels.       |
    |                 |                 |                 |    -  This field is not stored in the database and is used only to specify the add-ons to be installed in the cluster.                                                                                            |
    +-----------------+-----------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | timezone        | No              | String          | **Details**:                                                                                                                                                                                                      |
+   |                 |                 |                 |                                                                                                                                                                                                                   |
+   |                 |                 |                 | Cluster time zone                                                                                                                                                                                                 |
+   |                 |                 |                 |                                                                                                                                                                                                                   |
+   |                 |                 |                 | **Constraints**:                                                                                                                                                                                                  |
+   |                 |                 |                 |                                                                                                                                                                                                                   |
+   |                 |                 |                 | None                                                                                                                                                                                                              |
+   |                 |                 |                 |                                                                                                                                                                                                                   |
+   |                 |                 |                 | **Options**:                                                                                                                                                                                                      |
+   |                 |                 |                 |                                                                                                                                                                                                                   |
+   |                 |                 |                 | N/A                                                                                                                                                                                                               |
+   |                 |                 |                 |                                                                                                                                                                                                                   |
+   |                 |                 |                 | **Default value**:                                                                                                                                                                                                |
+   |                 |                 |                 |                                                                                                                                                                                                                   |
+   |                 |                 |                 | N/A                                                                                                                                                                                                               |
+   +-----------------+-----------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. _cce_02_0236__table1034041612134:
 
@@ -525,6 +541,22 @@ Response
    |                       |                       |    -  **annotations** is not used to identify or select objects. Metadata in **annotations** can be small or large, structured or unstructured, and can include characters that are not allowed in labels.        |
    |                       |                       |    -  This field is not stored in the database and is used only to specify the add-ons to be installed the cluster.                                                                                               |
    +-----------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | timezone              | String                | **Details**:                                                                                                                                                                                                      |
+   |                       |                       |                                                                                                                                                                                                                   |
+   |                       |                       | Cluster time zone                                                                                                                                                                                                 |
+   |                       |                       |                                                                                                                                                                                                                   |
+   |                       |                       | **Constraints**:                                                                                                                                                                                                  |
+   |                       |                       |                                                                                                                                                                                                                   |
+   |                       |                       | None                                                                                                                                                                                                              |
+   |                       |                       |                                                                                                                                                                                                                   |
+   |                       |                       | **Options**:                                                                                                                                                                                                      |
+   |                       |                       |                                                                                                                                                                                                                   |
+   |                       |                       | N/A                                                                                                                                                                                                               |
+   |                       |                       |                                                                                                                                                                                                                   |
+   |                       |                       | **Default value**:                                                                                                                                                                                                |
+   |                       |                       |                                                                                                                                                                                                                   |
+   |                       |                       | N/A                                                                                                                                                                                                               |
+   +-----------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. _cce_02_0236__table195921039143517:
 
@@ -774,6 +806,7 @@ Response
            "annotations": {
                "foo2": "bar2"
            }
+           "timezone" : "******"
        },
        "spec": {
            "type": "VirtualMachine",
