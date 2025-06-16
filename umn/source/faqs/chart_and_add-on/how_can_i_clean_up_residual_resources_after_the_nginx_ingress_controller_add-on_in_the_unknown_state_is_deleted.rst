@@ -18,7 +18,7 @@ Involved Kubernetes resources include:
 Solution
 --------
 
-#. Use kubectl to access a cluster.
+#. Use kubectl to access the cluster.
 
 #. Search for related resources.
 

@@ -22,7 +22,7 @@ Solution
       kubectl get drainage
 
 
-   .. figure:: /_static/images/en-us_image_0000002065480366.png
+   .. figure:: /_static/images/en-us_image_0000002253620029.png
       :alt: **Figure 1** An in-progress drainage task
 
       **Figure 1** An in-progress drainage task

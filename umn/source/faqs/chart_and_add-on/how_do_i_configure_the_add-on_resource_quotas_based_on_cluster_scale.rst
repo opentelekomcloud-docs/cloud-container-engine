@@ -96,7 +96,7 @@ After the cluster scale is increased, the resource quotas required by volcano ne
 
       Formulas for calculating the requests:
 
-      -  CPU request: Calculate the number of nodes multiplied by the number of pods, perform interpolation search using the product of the number of nodes in the cluster multiplied by the number of pods in :ref:`Table 4 <cce_faq_00429__table1518116718431>`, and round up the request and limit that are closest to the specifications.
+      -  CPU request: Calculate the number of nodes multiplied by the number of pods, perform interpolation search using the product of the number of nodes in the cluster multiplied by the number of pods in :ref:`Table 4 <cce_faq_00429__table1518116718431>`, and round up the request and limit which are closest to the specifications.
 
          For example, for 2000 nodes (20,000 pods), the product of the number of nodes multiplied by the number of pods is 40 million, which is close to 700/70,000 in the specification (Number of nodes x Number of pods = 49 million). Set the CPU request to 4000m and the limit to 5500m.
 
@@ -135,4 +135,4 @@ Configuring Resource Quotas for Other Add-ons
 
 Resource quotas of other add-ons may also be insufficient due to cluster scale expansion. If, for example, the CPU or memory usage of the add-on pods increases and even OOM occurs, modify the resource quotas as required.
 
-For example, the resources occupied by the kube-prometheus-stack add-on are related to the number of pods in the cluster. If the cluster scale is expanded, the number of pods may also grow. In this case, increase the resource quotas of the prometheus pods.
+For example, the resources occupied by the Cloud Native Cluster Monitoring add-on are related to the number of pods in the cluster. If the cluster scale is expanded, the number of pods may also grow. In this case, increase the resource quotas of the add-on pods.

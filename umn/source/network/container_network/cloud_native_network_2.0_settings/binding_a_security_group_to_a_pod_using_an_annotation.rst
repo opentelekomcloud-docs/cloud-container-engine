@@ -8,7 +8,7 @@ Binding a Security Group to a Pod Using an Annotation
 Application Scenarios
 ---------------------
 
-In Cloud Native 2.0 network mode, pods use ENIs or sub-ENIs of the VPC. You can configure a security group for a pod using a pod's annotation.
+In Cloud Native Network 2.0, pods use ENIs or sub-ENIs of the VPC. You can configure a security group for a pod using a pod's annotation.
 
 Configure a security group in either of the following cases:
 

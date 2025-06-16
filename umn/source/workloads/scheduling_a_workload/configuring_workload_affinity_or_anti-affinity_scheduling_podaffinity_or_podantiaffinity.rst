@@ -22,7 +22,7 @@ For example, frontend workload pods and backend workload pods that frequently co
    In this example, the workload labeled with **app=backend** is assigned to topology key 1. Therefore, workloads that have an affinity with the **app=backend** workload can be scheduled to topology key 1. Conversely, workloads that have an anti-affinity with the **app=backend** workload can only be scheduled to topology key 2 or 3.
 
 
-.. figure:: /_static/images/en-us_image_0000002065480278.png
+.. figure:: /_static/images/en-us_image_0000002218659930.png
    :alt: **Figure 1** Workload affinity or anti-affinity scheduling
 
    **Figure 1** Workload affinity or anti-affinity scheduling
@@ -36,18 +36,18 @@ In this example, a backend workload with the **app=backend** label has been crea
 
 #. Click the cluster name to go to the cluster console, choose **Workloads** in the navigation pane, and click the **Create Workload** in the upper right corner.
 
-#. In **Advanced Settings**, choose **Scheduling** and select a policy for **Load Affinity**. In this example, **Custom policies** is selected. For details about how to create a workload, see :ref:`Creating a Workload <cce_10_0673>`.
+#. In **Advanced Settings**, choose **Scheduling** and select a policy for **Load Affinity**. In this example, **Customize affinity** is selected. For details about how to create a workload, see :ref:`Creating a Workload <cce_10_0673>`.
 
    .. table:: **Table 1** Scheduling policies
 
-      +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Parameter             | Description                                                                                                                                                                                                                                                                                                                             | Example               |
-      +=======================+=========================================================================================================================================================================================================================================================================================================================================+=======================+
-      | Load affinity         | -  **Not configured**: No load affinity policy is configured.                                                                                                                                                                                                                                                                           | Custom policies       |
-      |                       | -  **Multi-AZ deployment preferred**: Workload pods are **preferentially** scheduled to nodes in different AZs through pod anti-affinity. The AZs serve as topology keys in this process.                                                                                                                                               |                       |
-      |                       | -  **Forcible multi-AZ deployment**: Workload pods are **forcibly** scheduled to nodes in different AZs through pod anti-affinity. The AZs serve as topology keys in this process. When this scheduling policy is used, if there are fewer nodes than pods or node resources are insufficient, the extra pods will fail to run.         |                       |
-      |                       | -  **Custom policies**: allow flexible scheduling of workload pods based on pod labels. For details about the supported scheduling policies, see :ref:`Table 2 <cce_10_0893__table1186153412529>`. Select a proper policy type and add a policy. For details about the parameters, see :ref:`Table 3 <cce_10_0893__table113899313578>`. |                       |
-      +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      | Parameter             | Description                                                                                                                                                                                                                                                                                                                                | Example               |
+      +=======================+============================================================================================================================================================================================================================================================================================================================================+=======================+
+      | Load affinity         | -  **Not configured**: No load affinity policy is configured.                                                                                                                                                                                                                                                                              | Customize affinity    |
+      |                       | -  **Multi-AZ deployment preferred**: Workload pods are **preferentially** scheduled to nodes in different AZs through pod anti-affinity. The AZs serve as topology keys in this process.                                                                                                                                                  |                       |
+      |                       | -  **Forcible multi-AZ deployment**: Workload pods are **forcibly** scheduled to nodes in different AZs through pod anti-affinity. The AZs serve as topology keys in this process. When this scheduling policy is used, if there are fewer nodes than pods or node resources are insufficient, the extra pods will fail to run.            |                       |
+      |                       | -  **Customize affinity**: allow flexible scheduling of workload pods based on pod labels. For details about the supported scheduling policies, see :ref:`Table 2 <cce_10_0893__table1186153412529>`. Select a proper policy type and add a policy. For details about the parameters, see :ref:`Table 3 <cce_10_0893__table113899313578>`. |                       |
+      +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
 
 #. Select a proper load affinity rule and click |image1| to add a scheduling policy. In this example, a scheduling policy is added in the **Required** area under **Workload Affinity**. This policy specifies that the newly created workload can only be scheduled to a node if a workload with specific labels is already running on that node.
 
@@ -266,4 +266,4 @@ Using YAML
 
       For workload anti-affinity, when **requiredDuringSchedulingIgnoredDuringExecution** is used, the default access controller **LimitPodHardAntiAffinityTopology** of Kubernetes requires that **topologyKey** can only be **kubernetes.io/hostname**. To use other custom topology logic, modify or disable the access controller.
 
-.. |image1| image:: /_static/images/en-us_image_0000002065638630.png
+.. |image1| image:: /_static/images/en-us_image_0000002218819774.png

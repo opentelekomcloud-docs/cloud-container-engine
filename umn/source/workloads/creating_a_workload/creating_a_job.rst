@@ -38,7 +38,7 @@ Using the CCE Console
    -  **Workload Name**: Enter the name of the workload. Enter 1 to 63 characters starting with a lowercase letter and ending with a lowercase letter or digit. Only lowercase letters, digits, and hyphens (-) are allowed.
    -  **Namespace**: Select the namespace of the workload. The default value is **default**. You can also click **Create Namespace** to create one. For details, see :ref:`Creating a Namespace <cce_10_0278>`.
    -  **Pods**: Enter the number of pods of the workload.
-   -  **Container Runtime**: A CCE standard cluster uses runC by default, whereas a CCE Turbo cluster supports both runC and Kata. For details about the differences, see :ref:`Secure Runtime and Common Runtime <cce_10_0463>`.
+   -  **Container Runtime**: A CCE standard cluster uses a common runtime by default, whereas a CCE Turbo cluster supports both common and secure runtimes. For details about the differences, see :ref:`Secure Runtime and Common Runtime <cce_10_0463>`.
 
    **Container Settings**
 
@@ -57,7 +57,7 @@ Using the CCE Console
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | Image Name                        | Click **Select Image** and select the image used by the container.                                                                                                                                                                                                                                                                                                                                                                  |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-         |                                   | To use a third-party image, see :ref:`Using Third-Party Images <cce_10_0009>`.                                                                                                                                                                                                                                                                                                                                                      |
+         |                                   | To use a third-party image, directly enter image path. Ensure that the :ref:`image access credential <cce_10_0047__li1487514116369>` can be used to access the image repository. For details, see :ref:`Using Third-Party Images <cce_10_0009>`.                                                                                                                                                                                    |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | Image Tag                         | Select the image tag to be deployed.                                                                                                                                                                                                                                                                                                                                                                                                |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -71,11 +71,11 @@ Using the CCE Console
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                     |
          |                                   | If **Request** and **Limit** are not specified, the quota is not limited. For more information and suggestions about **Request** and **Limit**, see :ref:`Configuring Container Specifications <cce_10_0163>`.                                                                                                                                                                                                                      |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | (Optional) GPU Quota              | Configurable only when the cluster contains GPU nodes and the :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>` add-on is installed.                                                                                                                                                                                                                                                                                                   |
+         | (Optional) GPU Quota              | Configurable only when the cluster contains GPU nodes and the :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>` add-on has been installed.                                                                                                                                                                                                                                                                                             |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-         |                                   | -  **All**: No GPU will be used.                                                                                                                                                                                                                                                                                                                                                                                                    |
-         |                                   | -  **Dedicated**: GPU resources are dedicated for the container.                                                                                                                                                                                                                                                                                                                                                                    |
-         |                                   | -  **Shared**: percentage of GPU resources used by the container. For example, if this parameter is set to **10%**, the container uses 10% of GPU resources.                                                                                                                                                                                                                                                                        |
+         |                                   | -  **Do not use**: No GPU will be used.                                                                                                                                                                                                                                                                                                                                                                                             |
+         |                                   | -  **GPU card**: The GPU is dedicated for the container.                                                                                                                                                                                                                                                                                                                                                                            |
+         |                                   | -  **GPU Virtualization**: percentage of GPU resources used by the container. For example, if this parameter is set to **10%**, the container will use 10% of GPU resources.                                                                                                                                                                                                                                                        |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                     |
          |                                   | For details about how to use GPUs in the cluster, see :ref:`Default GPU Scheduling in Kubernetes <cce_10_0345>`.                                                                                                                                                                                                                                                                                                                    |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -86,6 +86,14 @@ Using the CCE Console
          | (Optional) Init Container         | Whether to use the container as an init container. An init container does not support health check.                                                                                                                                                                                                                                                                                                                                 |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                     |
          |                                   | An init container is a special container that runs before other app containers in a pod are started. Each pod can contain multiple containers. In addition, a pod can contain one or more init containers. Application containers in a pod are started and run only after the running of all init containers completes. For details, see `Init Containers <https://kubernetes.io/docs/concepts/workloads/pods/init-containers/>`__. |
+         +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | (Optional) Run Option             | Add run options for the container. For details, see `Pod <https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/>`__. CCE supports the following run options:                                                                                                                                                                                                                                               |
+         |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+         |                                   | -  **stdin**: allows containers to receive input from external sources, such as terminals or other input streams.                                                                                                                                                                                                                                                                                                                   |
+         |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+         |                                   | -  **tty**: allocates a pseudo terminal to containers, allowing you to send commands to them as if you were using a local terminal.                                                                                                                                                                                                                                                                                                 |
+         |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+         |                                   |    In most cases, tty is enabled along with stdin, indicating that the terminal (tty) is associated with the standard input (stdin) of the container. This allows for interactive operations, similar to the **kubectl exec -i -t** command. The difference is that this parameter has been configured when the pod is launched.                                                                                                    |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
       -  (Optional) **Lifecycle**: Configure operations to be performed in a specific phase of the container lifecycle, such as Startup Command, Post-Start, and Pre-Stop. For details, see :ref:`Configuring Container Lifecycle Parameters <cce_10_0105>`.
@@ -102,7 +110,7 @@ Using the CCE Console
 
          To disable the standard output of the current workload, add the annotation **kubernetes.AOM.log.stdout: []** in :ref:`Labels and Annotations <cce_10_0047__li179714209414>`. For details about how to use this annotation, see :ref:`Table 1 <cce_10_0386__table194691458405>`.
 
-   -  **Image Access Credential**: Select the credential used for accessing the image repository. The default value is **default-secret**. You can use default-secret to access images in SWR. For details about **default-secret**, see :ref:`default-secret <cce_10_0388__section11760122012591>`.
+   -  **Image Access Credential**: Select the credential used for accessing the image repository. The default value is **default-secret**. You can use default-secret to access images in SWR Shared Edition. For details about **default-secret**, see :ref:`default-secret <cce_10_0388__section11760122012591>`.
 
    -  (Optional) **GPU**: **All** is selected by default. The workload instance will be scheduled to the node of the specified GPU type.
 
@@ -128,7 +136,7 @@ Using the CCE Console
       -  Specify the container network configuration name: Only the custom container network configuration whose associated resource type is workload can be selected.
       -  IPv6 shared bandwidth: available only for clusters that support this function. After this function is enabled, you can configure a shared bandwidth for a pod with IPv6 dual-stack ENIs. For details, see :ref:`Configuring Shared Bandwidth for a Pod with IPv6 Dual-Stack ENIs <cce_10_0604>`.
 
-#. Click **Create Workload** in the lower right corner.
+#. Click **Create Workload** in the lower right corner. After a period of time, if the workload status changes to processing, each task will be processed in sequence. After all tasks are processed, the workload status changes to **Executed**.
 
 .. _cce_10_0150__section450152719412:
 
@@ -140,7 +148,7 @@ A job has the following configuration parameters:
 -  **.spec.completions**: indicates the number of pods that need to run successfully to end a job. The default value is **1**.
 -  **.spec.parallelism**: indicates the number of pods that run concurrently. The default value is **1**.
 -  **.spec.backoffLimit**: indicates the maximum number of retries performed if a pod fails. When the limit is reached, the pod will not try again.
--  **.spec.activeDeadlineSeconds**: indicates the running time of pods. Once the time is reached, all pods of the job are terminated. The priority of .spec.activeDeadlineSeconds is higher than that of .spec.backoffLimit. That is, if a job reaches the .spec.activeDeadlineSeconds, the spec.backoffLimit is ignored.
+-  **.spec.activeDeadlineSeconds**: indicates the running time of pods. Once the time is reached, the job and its pods are terminated. **.spec.activeDeadlineSeconds** has a higher priority than **.spec.backoffLimit**. If a job reaches **.spec.activeDeadlineSeconds**, **spec.backoffLimit** is ignored.
 
 Based on the **.spec.completions** and **.spec.parallelism** settings, jobs are classified into the following types.
 
@@ -184,18 +192,26 @@ The following is an example job, which calculates Pi till the 2000\ :sup:`th` di
 
 #. Start the job.
 
-   .. code-block:: console
+   .. code-block::
 
-      [root@k8s-master k8s]# kubectl apply -f myjob.yaml
+      kubectl apply -f myjob.yaml
+
+   The command output is as follows:
+
+   .. code-block::
+
       job.batch/myjob created
 
 #. View the job details.
 
-   **kubectl get job**
+   .. code-block::
 
-   .. code-block:: console
+      kubectl get job
 
-      [root@k8s-master k8s]# kubectl get job
+   The command output is as follows:
+
+   .. code-block::
+
       NAME    COMPLETIONS   DURATION   AGE
       myjob   50/50         23s        3m45s
 
@@ -203,11 +219,14 @@ The following is an example job, which calculates Pi till the 2000\ :sup:`th` di
 
 #. View the pod status.
 
-   **kubectl get pod**
+   .. code-block::
 
-   .. code-block:: console
+      kubectl get pod
 
-      [root@k8s-master k8s]# kubectl get pod
+   The command output is as follows:
+
+   .. code-block::
+
       NAME          READY   STATUS      RESTARTS   AGE
       myjob-29qlw   0/1     Completed   0          4m5s
       ...
@@ -216,12 +235,9 @@ The following is an example job, which calculates Pi till the 2000\ :sup:`th` di
 
 #. View the pod logs.
 
-   **kubectl logs <pod_name>**
-
    .. code-block::
 
-      # kubectl logs myjob-29qlw
-      3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989380952572010654858632788659361533818279682303019520353018529689957736225994138912497217752834791315155748572424541506959508295331168617278558890750983817546374649393192550604009277016711390098488240128583616035637076601047101819429555961989467678374494482553797747268471040475346462080466842590694912933136770289891521047521620569660240580381501935112533824300355876402474964732639141992726042699227967823547816360093417216412199245863150302861829745557067498385054945885869269956909272107975093029553211653449872027559602364806654991198818347977535663698074265425278625518184175746728909777727938000816470600161452491921732172147723501414419735685481613611573525521334757418494684385233239073941433345477624168625189835694855620992192221842725502542568876717904946016534668049886272327917860857843838279679766814541009538837863609506800642251252051173929848960841284886269456042419652850222106611863067442786220391949450471237137869609563643719172874677646575739624138908658326459958133904780275901
+      kubectl logs myjob-29qlw
 
 Related Operations
 ------------------
@@ -232,14 +248,14 @@ After a one-off job is created, you can perform operations listed in :ref:`Table
 
 .. table:: **Table 2** Other operations
 
-   +-----------------------------------+-----------------------------------------------------------------------------------------------+
-   | Operation                         | Description                                                                                   |
-   +===================================+===============================================================================================+
-   | Editing a YAML file               | Click **More** > **Edit YAML** next to the job name to edit the YAML file of the current job. |
-   +-----------------------------------+-----------------------------------------------------------------------------------------------+
-   | Deleting a job                    | #. Select the target job and choose **More** > **Delete** in the **Operation** column.        |
-   |                                   |                                                                                               |
-   |                                   | #. Click **Yes**.                                                                             |
-   |                                   |                                                                                               |
-   |                                   |    Deleted jobs cannot be restored. Exercise caution when deleting a job.                     |
-   +-----------------------------------+-----------------------------------------------------------------------------------------------+
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------+
+   | Operation                         | Description                                                                                                    |
+   +===================================+================================================================================================================+
+   | Viewing a YAML file               | Locate the row containing the target job and choose **More** > **View YAML** to view the YAML file of the job. |
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------+
+   | Deleting a job                    | #. Select the target job and choose **More** > **Delete** in the **Operation** column.                         |
+   |                                   |                                                                                                                |
+   |                                   | #. Click **Yes**.                                                                                              |
+   |                                   |                                                                                                                |
+   |                                   |    Deleted jobs cannot be restored. Exercise caution when deleting a job.                                      |
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------+

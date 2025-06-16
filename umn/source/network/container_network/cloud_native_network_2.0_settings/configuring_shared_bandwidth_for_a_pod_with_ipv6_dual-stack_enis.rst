@@ -19,7 +19,7 @@ Notes and Constraints
    -  The cluster version is v1.23.8-r0, v1.25.3-r0, or later.
 
 -  The number of IPv6 ENIs that can be added to a shared bandwidth is limited by the tenant quota. The default value is 20.
--  HostNetwork Pods are not supported.
+-  hostNetwork Pods are not supported.
 -  All types of workloads are supported. When configuring IPv6 shared bandwidth for workloads with the replicas attribute, such as Deployment and StatefulSet, ensure that the number of replicas and the maximum number of pods during the upgrade are less than the remaining quota of IPv6 ENIs that can be added to the shared bandwidth.
 -  IPv6 dual-stack pod configured with shared bandwidth: When a pod is created, the CNI returns a success message only after the IPv6 dual-stack ENI is inserted into the shared bandwidth. When a pod is deleted, the IPv6 dual-stack ENI is removed from the shared bandwidth after the pod is completely deleted or the pod is in the deleting status for 30 seconds.
 -  If the IPv6 dual-stack ENI corresponding to the pod fails to be added to the shared bandwidth, an alarm event **FailedIPv6InsertBandwidth** is generated on the pod, for example, when the quota is exceeded or flow control is triggered. Rectify the fault based on the alarm event.

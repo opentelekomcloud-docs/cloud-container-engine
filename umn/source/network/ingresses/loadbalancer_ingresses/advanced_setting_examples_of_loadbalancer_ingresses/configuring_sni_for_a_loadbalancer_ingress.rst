@@ -63,7 +63,7 @@ Using the CCE Console to Configure an SNI Certificate
       | Forwarding Policy     | -  **Domain Name**: Enter an actual domain name to be accessed. If it is left blank, the ingress can be accessed through the IP address. Ensure that the domain name has been registered and licensed. Once a forwarding policy is configured with a domain name specified, you must use the domain name for access. | -  Domain Name: example.com         |
       |                       | -  **Path Matching Rule**: Select **Prefix match**, **Exact match**, or **RegEx match**.                                                                                                                                                                                                                             | -  Path Matching Rule: Prefix match |
       |                       | -  **Path**: Enter the path provided by a backend application for external access. The path added must be valid in the backend application, or the forwarding cannot take effect.                                                                                                                                    | -  Path: /                          |
-      |                       | -  **Destination Service**: Select an existing Service or create a Service. Any Services that do not match the search criteria will be filtered out automatically.                                                                                                                                                   | -  Destination Service: nginx       |
+      |                       | -  **Destination Service**: Select an existing Service. Only Services that meet the requirements are automatically displayed in the Service list.                                                                                                                                                                    | -  Destination Service: nginx       |
       |                       | -  **Destination Service Port**: Select the access port of the destination Service.                                                                                                                                                                                                                                  | -  Destination Service Port: 80     |
       +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------+
 
@@ -81,7 +81,7 @@ Using kubectl to Configure an SNI Certificate
 
 In this example, the **sni-test-secret** SNI certificate is used as an example. The specified domain name must be the same as that of the SNI certificate.
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a YAML file named **ingress-test.yaml**. The file name can be customized.
 
@@ -120,9 +120,9 @@ In this example, the **sni-test-secret** SNI certificate is used as an example. 
           kubernetes.io/elb.tls-ciphers-policy: tls-1-2
       spec:
         tls:
-        - secretName: ingress-test-secret
+        - secretName: ingress-test-secret # A server certificate must be specified.
         - hosts:
-            - example.com  # Domain name specified when a certificate is issued
+            - example.com  # Domain name specified when an SNI certificate is issued
           secretName: sni-test-secret   #SNI certificate
         rules:
         - host: example.com   #The domain name must be the same as the value of hosts in the tls field.
@@ -163,12 +163,12 @@ In this example, the **sni-test-secret** SNI certificate is used as an example. 
           kubernetes.io/elb.tls-ciphers-policy: tls-1-2
       spec:
         tls:
-        - secretName: ingress-test-secret
+        - secretName: ingress-test-secret  # A server certificate must be specified.
         - hosts:
-            - example.com  # Domain name specified when a certificate is issued
-          secretName: sni-test-secret #SNI certificate
+            - example.com  # Domain name specified when an SNI certificate is issued
+          secretName: sni-test-secret # SNI certificate
         rules:
-        - host: example.com   #The domain name must be the same as the value of hosts in the tls field.
+        - host: example.com   # The domain name must be the same as the value of hosts in the tls field.
           http:
             paths:
             - path: '/'
@@ -258,7 +258,7 @@ Using the CCE Console to Configure an SNI Certificate Created on the ELB Console
       | Forwarding Policy     | -  **Domain Name**: Enter an actual domain name to be accessed. If it is left blank, the ingress can be accessed through the IP address. Ensure that the domain name has been registered and licensed. Once a forwarding policy is configured with a domain name specified, you must use the domain name for access. | -  Domain Name: You do not need to configure this parameter. |
       |                       | -  **Path Matching Rule**: Select **Prefix match**, **Exact match**, or **RegEx match**.                                                                                                                                                                                                                             | -  Path Matching Rule: Prefix match                          |
       |                       | -  **Path**: Enter the path provided by a backend application for external access. The path added must be valid in the backend application, or the forwarding cannot take effect.                                                                                                                                    | -  Path: /                                                   |
-      |                       | -  **Destination Service**: Select an existing Service or create a Service. Any Services that do not match the search criteria will be filtered out automatically.                                                                                                                                                   | -  Destination Service: nginx                                |
+      |                       | -  **Destination Service**: Select an existing Service. Only Services that meet the requirements are automatically displayed in the Service list.                                                                                                                                                                    | -  Destination Service: nginx                                |
       |                       | -  **Destination Service Port**: Select the access port of the destination Service.                                                                                                                                                                                                                                  | -  Destination Service Port: 80                              |
       +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------+
 
@@ -275,7 +275,7 @@ To use an ELB certificate for an ingress, you can specify the **kubernetes.io/el
    -  CCE does not check whether an ELB certificate is valid. It only checks whether the certificate is present.
    -  Only ingresses in clusters of v1.19.16-r2, v1.21.5-r0, v1.23.3-r0, or later support ELB certificates.
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a YAML file named **ingress-test.yaml**. The file name can be customized.
 

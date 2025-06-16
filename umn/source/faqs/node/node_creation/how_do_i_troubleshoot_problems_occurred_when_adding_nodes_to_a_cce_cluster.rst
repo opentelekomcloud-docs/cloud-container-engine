@@ -36,7 +36,7 @@ The default node subnet CIDR block of the cluster is too small, causing all the 
 
 **Solution**
 
--  **Scenario 1:** **IP addresses in the VPC CIDR block are not used up.**
+-  **Scenario 1**: **IP addresses in the VPC CIDR block are not used up.**
 
    When creating a node, you can select a new node subnet in the network configuration. If no node subnet is available, you can go to the VPC console and create a node subnet.
 
@@ -50,7 +50,7 @@ The default node subnet CIDR block of the cluster is too small, causing all the 
 
    #. In the navigation pane, choose **Subnets** and click **Create Subnet** to create a subnet for the VPC where the cluster resides.
 
-   #. Go back to the page for adding a node on the CCE console, and select the newly created subnet.
+   #. Go back to the page for adding a node on the CCE console and select the newly created subnet.
 
       .. note::
 
@@ -87,7 +87,7 @@ A node cannot be added to a CCE cluster.
 
 **Solution**
 
-You can click the cluster name to view the cluster details. In the **Networking Configuration** area, click the icon next to the value of **Default Node Security Group** to check whether the default security group is deleted and whether the security group rules comply with :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`
+You can click the cluster name to view the cluster details. In the **Networking Configuration** area, click the icon next to the value of **Default Node Security Group** to check whether the default security group is deleted and whether the security group rules comply with :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
 
 If your account has multiple clusters and you need to manage network security policies of nodes in a unified manner, you can specify custom security groups.
 

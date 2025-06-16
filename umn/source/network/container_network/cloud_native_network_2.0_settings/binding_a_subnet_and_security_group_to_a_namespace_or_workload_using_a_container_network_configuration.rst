@@ -11,7 +11,7 @@ Scenario
 In a CCE Turbo cluster, you can configure subnets and security groups for containers by namespace or workload using NetworkAttachmentDefinition `CRDs <https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/>`__. To configure a particular container subnet and security group for a specified namespace or workload, create a container network configuration (NetworkAttachmentDefinition) and associate it with the target namespace or workload. In this way, service subnets can be planned or services can be securely isolated.
 
 
-.. figure:: /_static/images/en-us_image_0000002065639038.png
+.. figure:: /_static/images/en-us_image_0000002218820382.png
    :alt: **Figure 1** Custom container network settings
 
    **Figure 1** Custom container network settings
@@ -52,7 +52,7 @@ Operations on the Console for the Namespace Type
 
 #. Log in to the CCE console.
 #. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane. In the right pane, click the **Network** tab.
-#. View the **Container Network Security Policy Configuration (Namespace Level)** and click **Add**. In the window that is displayed, configure parameters such as the pod subnet and security group.
+#. Locate the **Container Network** area and click **Add**. In the **Create Network Configurations** dialog box, configure parameters such as the pod subnet and security group.
 
    -  **Name**: Enter a name that contains a maximum of 63 characters. Do not use **default-network**, **default**, **mgnt0**, or **mgnt1**.
    -  **Associated Resource Type**: resource type associated with the custom container network configuration. For details, see :ref:`Table 1 <cce_10_0196__table17616165517211>`. To create a container network configuration of the namespace type, select **Namespace**.
@@ -67,7 +67,7 @@ Operations Using kubectl for the Namespace Type
 
 This section describes how to use kubectl to create a container network configuration of the namespace type.
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Modify the **networkattachment-test.yaml** file.
 
@@ -202,7 +202,7 @@ Operations on the Console for the Workload Type
 
 #. Log in to the CCE console.
 #. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane. In the right pane, click the **Network** tab.
-#. View the **Container Network Security Policy Configuration (Namespace Level)** and click **Add**. In the window that is displayed, configure parameters such as the pod subnet and security group.
+#. Locate the **Container Network** area and click **Add**. In the **Create Network Configurations** dialog box, configure parameters such as the pod subnet and security group.
 
    -  **Name**: Enter a name that contains a maximum of 63 characters. Do not use **default-network**, **default**, **mgnt0**, or **mgnt1**.
    -  **Associated Resource Type**: resource type associated with the custom container network configuration. For details, see :ref:`Table 1 <cce_10_0196__table17616165517211>`. To create a container network configuration of the workload type, select **Workload**.
@@ -227,7 +227,7 @@ Operations Using kubectl for the Workload Type
 
 This section describes how to use kubectl to create a container network configuration of the workload type.
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Modify the **networkattachment-test.yaml** file.
 
@@ -324,7 +324,7 @@ This section describes how to use kubectl to create a container network configur
 
       kubectl create -f networkattachment-test.yaml
 
-   If information similar to the following is displayed, the NetworkAttachmentDefinition has been created.
+   If information similar to the following is displayed, the configuration has been created.
 
    .. code-block::
 
@@ -381,7 +381,7 @@ You can delete the new container network configuration or view its YAML file.
 
       .. code-block::
 
-         kubectl get pod -A -o=jsonpath="{.items[?(@.metadata.annotations.cni\.yangtse\.io/network-status=='[{\"name\":\"example\"}]')]['metadata.namespace', 'metadata.name']}"
+         kubectl get pod -A -o=jsonpath="{range .items[?(@.metadata.annotations.cni\\.yangtse\\.io/network-status=='[{\"name\":\"example\"}]')]}{.metadata.namespace}{'\t'}{.metadata.name}{'\n'}{end}"
 
       The command output contains the pod name and namespace associated with the configuration.
 

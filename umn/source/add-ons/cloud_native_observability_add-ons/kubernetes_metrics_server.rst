@@ -5,7 +5,7 @@
 Kubernetes Metrics Server
 =========================
 
-From version 1.8 onwards, Kubernetes provides resource usage metrics, such as the container CPU and memory usage, through the Metrics API. These metrics can be directly accessed by users (for example, by using the **kubectl top** command) or used by controllers (for example, Horizontal Pod Autoscaler) in a cluster for decision-making. The specific component is metrics-server, which is used to substitute for heapster for providing the similar functions. heapster has been gradually abandoned since v1.11.
+From version 1.8 onwards, Kubernetes provides resource usage metrics, such as the container CPU and memory usage, through the Metrics API. These metrics can be directly accessed by users (for example, by using the **kubectl top** command) or used by controllers (for example, Horizontal Pod Autoscaler) in a cluster for decision-making. The specific component is metrics-server, which is used to substitute for Heapster for providing the similar functions. Heapster has been gradually abandoned since v1.11.
 
 metrics-server is an aggregator for monitoring data of core cluster resources. You can quickly install this add-on on the CCE console.
 
@@ -21,7 +21,7 @@ Installing the Add-on
 
    -  If you selected **Preset**, you can choose between **Small** or **Large** as needed. The system will automatically set the number of add-on pods and resource quotas according to the preset specifications. You can see the configurations on the console.
 
-      With the **Small** option selected, the add-on lacks HA capabilities, while with the **Large** option selected, the add-on has HA capabilities. However, deploying multiple pods requires more compute resources.
+      The **smaller specification** lacks HA capabilities, while the **large specification** has them. However, deploying multiple pods requires more compute resources.
 
    -  If you selected **Custom**, you can adjust the number of pods and resource quotas as needed. High availability is not possible with a single pod. If an error occurs on the node where the add-on instance runs, the add-on will fail.
 
@@ -29,7 +29,7 @@ Installing the Add-on
 
    .. note::
 
-      -  Scheduling policies do not take effect on add-on instances of the DaemonSet type.
+      -  Scheduling policies do not take effect on add-on pods of the DaemonSet type.
       -  When configuring multi-AZ deployment or node affinity, ensure that there are nodes meeting the scheduling policy and that resources are sufficient in the cluster. Otherwise, the add-on cannot run.
 
    .. table:: **Table 1** Configurations for add-on scheduling
@@ -45,7 +45,7 @@ Installing the Add-on
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
       |                                   | -  **Specify node**: Specify the nodes where the add-on is deployed. If you do not specify the nodes, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                                                                                    |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-      |                                   | -  **Specify node pool**: Specify the node pool where the add-on is deployed. If you do not specify the node pool, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                                                                       |
+      |                                   | -  **Specify node pool**: Specify the node pool where the add-on is deployed. If you do not specify the node pools, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                                                                      |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
       |                                   | -  **Customize affinity**: Enter the labels of the nodes where the add-on is to be deployed for more flexible scheduling policies. If you do not specify node labels, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                    |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -79,7 +79,19 @@ Change History
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                     | Community Version                                                                 |
    +=================+===========================+=================================================================================+===================================================================================+
-   | 1.3.68          | v1.21                     | CCE clusters 1.30 are supported.                                                | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   | 1.3.90          | v1.25                     | CCE clusters v1.31 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.27                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.28                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.29                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.30                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.31                     |                                                                                 |                                                                                   |
+   +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
+   | 1.3.68          | v1.21                     | CCE clusters v1.30 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.23                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |
@@ -93,7 +105,7 @@ Change History
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.30                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | 1.3.60          | v1.21                     | CCE clusters 1.29 are supported.                                                | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   | 1.3.60          | v1.21                     | CCE clusters v1.29 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.23                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |
@@ -115,7 +127,7 @@ Change History
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.28                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | 1.3.37          | v1.21                     | CCE clusters 1.28 are supported.                                                | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   | 1.3.37          | v1.21                     | CCE clusters v1.28 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.23                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |
@@ -143,7 +155,7 @@ Change History
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.25                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | 1.3.2           | v1.19                     | CCE clusters 1.25 are supported.                                                | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   | 1.3.2           | v1.19                     | CCE clusters v1.25 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.21                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |
@@ -151,13 +163,13 @@ Change History
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.25                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | 1.2.1           | v1.19                     | CCE clusters 1.23 are supported.                                                | `0.4.4 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.4.4>`__ |
+   | 1.2.1           | v1.19                     | CCE clusters v1.23 are supported.                                               | `0.4.4 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.4.4>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.21                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.23                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | 1.1.10          | v1.15                     | CCE clusters 1.21 are supported.                                                | `0.4.4 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.4.4>`__ |
+   | 1.1.10          | v1.15                     | CCE clusters v1.21 are supported.                                               | `0.4.4 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.4.4>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.17                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |

@@ -25,7 +25,7 @@ The maximum number of pods that can be created on a node is calculated based on 
 Number of Allocatable Container IP Addresses on a Node
 ------------------------------------------------------
 
-When creating a cluster in the VPC network model, specify the number of container IP addresses that can be allocated on each node using alpha.cce/fixPoolMask based on the rules for managing container IP addresses.
+When creating a cluster in the VPC network model, follow the and specify the number of container IP addresses that can be allocated to each node using alpha.cce/fixPoolMask.
 
 The maximum number of pods that can be created on a node is determined by the number of container IP addresses that can be allocated to it. In a :ref:`container network <cce_10_0348__li13739132619599>`, each pod needs its own IP address. If there are not enough pre-allocated container IP addresses on the node, pods cannot be created. If **hostNetwork: true** is configured in the YAML file, pods will use the :ref:`host network <cce_10_0348__li13752132911597>` instead of the allocatable container IP addresses. For details, see :ref:`Pod IP Address Allocation Differences Between the Container Network and Host Network <cce_10_0348__section12428143711548>`.
 

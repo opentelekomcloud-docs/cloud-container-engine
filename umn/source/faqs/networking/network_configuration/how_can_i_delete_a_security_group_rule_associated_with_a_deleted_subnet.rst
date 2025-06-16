@@ -19,5 +19,5 @@ Procedure
 #. In the navigation pane, choose **Settings** and click the **Network** tab.
 #. In the **Container Network** area, copy the IPv4 CIDR block of the subnet. (The default-network is used as an example.)
 #. In the navigation pane, choose **Overview**. In the **Networking Configuration** area, click the name of the default node security group.
-#. On the page displayed, click the **Inbound Rules** tab, locate the row containing the subnet CIDR block based on the source IP address, and find the corresponding security group rule.
+#. On the page displayed, click the **Inbound Rules** tab, locate the row containing the target subnet CIDR block based on the source IP address, and find the corresponding security group rule.
 #. Click **Delete** in the **Operation** column.

@@ -25,7 +25,7 @@ Prerequisites
    -  Other clusters of later versions
 
 -  You have created one or more SNI certificates in ELB and specified a domain name in these certificates.
--  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 Using the CCE Console
 ---------------------

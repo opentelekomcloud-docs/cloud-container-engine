@@ -11,7 +11,7 @@ Prerequisites
 -------------
 
 -  You have created a cluster and installed the :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on in the cluster.
--  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 -  You have created an available SFS Turbo file system, and the SFS Turbo file system and the cluster are in the same VPC.
 
 Notes and Constraints
@@ -19,7 +19,7 @@ Notes and Constraints
 
 -  Multiple PVs can use the same SFS or SFS Turbo file system with the following restrictions:
 
-   -  Do not mount the PVCs/PVs that use the same underlying SFS or SFS Turbo volume to one pod. This will lead to a pod startup failure because not all PVCs can be mounted to the pod due to the same **volumeHandle** value.
+   -  Do not mount multiple PVCs or PVs that use the same underlying SFS or SFS Turbo volume to a single pod. Doing so will cause pod startup failures, as not all PVCs can be mounted due to identical **volumeHandle** value.
    -  The **persistentVolumeReclaimPolicy** parameter in the PVs must be set to **Retain**. Otherwise, when a PV is deleted, the associated underlying volume may be deleted. In this case, other PVs associated with the underlying volume malfunction.
    -  When the underlying volume is repeatedly used, enable isolation and protection for ReadWriteMany at the application layer to prevent data overwriting and loss.
 
@@ -78,7 +78,7 @@ Using an Existing SFS Turbo File System on the Console
 
    a. Choose **Workloads** in the navigation pane. In the right pane, click the **Deployments** tab.
 
-   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Settings** area and click **Add Volume** to select **PVC**.
+   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Information** area under **Container Settings** and choose **Add Volume** > **PVC**.
 
       Mount and use storage volumes, as shown in :ref:`Table 1 <cce_10_0625__table2529244345>`. For details about other parameters, see :ref:`Workloads <cce_10_0046>`.
 
@@ -143,7 +143,6 @@ Using an Existing SFS Turbo File System Through kubectl
              volumeHandle: <your_volume_id>   # SFS Turbo volume ID
              volumeAttributes:
                everest.io/share-export-location: <your_location>   # Shared path of the SFS Turbo volume
-
                storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
            persistentVolumeReclaimPolicy: Retain    # Reclaim policy
            storageClassName: csi-sfsturbo          # StorageClass name of the SFS Turbo file system
@@ -202,7 +201,6 @@ Using an Existing SFS Turbo File System Through kubectl
            namespace: default
            annotations:
              volume.beta.kubernetes.io/storage-provisioner: everest-csi-provisioner
-
          spec:
            accessModes:
            - ReadWriteMany                  # The value must be ReadWriteMany for SFS Turbo.
@@ -305,12 +303,13 @@ Using Subdirectories of an Existing SFS Turbo File System Through kubectl
            csi:
              driver: sfsturbo.csi.everest.io    # Dependent storage driver for the mounting
              fsType: nfs
-             volumeHandle: pv-sfsturbo   # PV name when subdirectories are used
+             volumeHandle: pv-sfsturbo   # PV name
              volumeAttributes:
                everest.io/share-export-location: <sfsturbo_path>:/<absolute_path>   # Shared path and subdirectory of the SFS Turbo file system
 
                storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
-               everest.io/volume-as: absolute-path   # (Optional) An SFS Turbo subdirectory is used.
+               everest.io/volume-as: absolute-path   # An SFS Turbo subdirectory is used.
+               everest.io/sfsturbo-share-id: <sfsturbo_id>    # SFS Turbo ID
            persistentVolumeReclaimPolicy: Retain    # Reclaim policy, which can be set to Delete when subdirectories are automatically created
            storageClassName: csi-sfsturbo          # StorageClass name of the SFS Turbo file system
            mountOptions: []                         # Mount options
@@ -361,9 +360,13 @@ Using Subdirectories of an Existing SFS Turbo File System Through kubectl
          |                                  |                       |                                                                                                                                                                                                                                                  |
          |                                  |                       |       When a subdirectory is deleted, only the absolute path of the subdirectory configured in the PVC will be deleted. The upper-layer directory will not be deleted.                                                                           |
          +----------------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | everest.io/volume-as             | No                    | The value is fixed at **absolute-path**, indicating that a dynamically created SFS Turbo subdirectory is used.                                                                                                                                   |
+         | everest.io/volume-as             | Yes                   | The value is fixed at **absolute-path**, indicating that a dynamically created SFS Turbo subdirectory is used.                                                                                                                                   |
          |                                  |                       |                                                                                                                                                                                                                                                  |
          |                                  |                       | Ensure Everest of v2.3.23 or later has been installed in the cluster.                                                                                                                                                                            |
+         +----------------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | everest.io/sfsturbo-share-id     | Yes                   | Shared path of the SFS Turbo volume.                                                                                                                                                                                                             |
+         |                                  |                       |                                                                                                                                                                                                                                                  |
+         |                                  |                       | Log in to the CCE console, choose **Service List** > **Storage** > **Scalable File Service**, and select **SFS Turbo**. You can obtain the shared path of the file system.                                                                       |
          +----------------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | storage                          | Yes                   | Requested capacity in the PVC, in Gi. If a subdirectory is used, this parameter serves no purpose other than for verification and must have a non-empty, non-zero value.                                                                         |
          +----------------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

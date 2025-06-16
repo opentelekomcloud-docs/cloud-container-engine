@@ -25,7 +25,7 @@ AHPA and CronHPA share the same approach for adjusting the maximum and minimum p
 Prerequisites
 -------------
 
--  The CCE Advanced HPA add-on of v1.5.2 or later has been installed in the cluster. For details, see :ref:`CCE Advanced HPA <cce_10_0240>`.
+-  :ref:`CCE Advanced HPA <cce_10_0240>` of v1.5.2 or later has been installed in the cluster.
 -  The Cloud Native Cluster Monitoring add-on has been installed in the cluster, and the **monitoring data is reported to AOM**. For details, see :ref:`Cloud Native Cluster Monitoring <cce_10_0406>`.
 
 Notes and Constraints
@@ -41,7 +41,7 @@ Notes and Constraints
 Using AHPA
 ----------
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Deploy a sample workload. If a workload already runs in the cluster, skip this step. It is advised to use a workload that has been monitored for over seven days, as AHPA requires a minimum of seven days of monitoring data.
 
@@ -143,7 +143,7 @@ Using AHPA
 
       kubectl get ahpa hamster-ahpa -oyaml
 
-   The command output is as follows:
+   Command output:
 
    .. code-block::
 
@@ -207,4 +207,16 @@ Using AHPA
         desiredReplicas: 10
         lastScaleTime: "2024-10-07T13:24:19Z"
 
-.. |image1| image:: /_static/images/en-us_image_0000002101597289.png
+#. If you no longer need an AHPA policy, run the following command to delete it:
+
+   .. code-block::
+
+      kubectl delete ahpa hamster-ahpa
+
+   During the validity period of AHPA, you can use custom ahpacheckpoint resources to keep the recommended settings for the next 6 hours. If you do not need this configuration, manually delete it.
+
+   .. code-block::
+
+      kubectl delete ahpacheckpoint hamster-ahpa
+
+.. |image1| image:: /_static/images/en-us_image_0000002218660018.png

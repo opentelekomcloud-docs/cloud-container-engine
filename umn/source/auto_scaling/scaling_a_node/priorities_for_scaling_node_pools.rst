@@ -20,8 +20,8 @@ Node pools are scaled according to their priorities and flavor priorities.
 #. Predictive flavor filtering:
 
    -  The predictive algorithm chooses proper flavors that meet the scheduling needs of pending pods from all node pools.
-   -  To schedule pods, various factors are considered, including whether the node resources meet the requested resources of the pods, and if the nodeSelector, nodeAffinity, and taints satisfy the conditions for pod scheduling.
-   -  Additionally, if certain node pool flavors experience scale-out failures, such as insufficient resources, and enter a 5-minute cooldown period, the scale-out algorithm will automatically exclude them from consideration during that time.
+   -  When pods are scheduled, several factors are taken into account. These include checking if the node resources meet the requested resources of the pods, and verifying if the nodeSelector, nodeAffinity, and taints meet the conditions for pod scheduling.
+   -  If certain node pool flavors experience scale-out failures, for example, due to insufficient resources, they will enter a 5-minute cooldown period. During this time, the scale-out algorithm will automatically exclude them from being considered.
 
 #. Node pool sorting by priority
 
@@ -51,4 +51,4 @@ Configuring Priorities
 
 For details about how to configure the priorities of node pool flavors, see :ref:`Configuring an Auto Scaling Policy for a Cluster <cce_10_0209__section6521214191020>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000002065638794.png
+.. |image1| image:: /_static/images/en-us_image_0000002218820038.png

@@ -15,7 +15,7 @@ Solution
 
 -  **Scenario 1: The kubelet status is abnormal.**
 
-   If the kubelet malfunctions, the node is unavailable. Restore the node and check again. For details, see :ref:`What Should I Do If a Cluster Is Available But Some Nodes Are Unavailable? <cce_faq_00120>`
+   If the kubelet malfunctions, the node will be unavailable. Restore the node and check again. For details, see :ref:`What Should I Do If a Cluster Is Available But Some Nodes Are Unavailable? <cce_faq_00120>`
 
 -  **Scenario 2: The cce-pause version is incorrect.**
 

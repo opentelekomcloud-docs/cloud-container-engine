@@ -56,7 +56,7 @@ Mapping Between Node OSs and Container Engines
    |              |                |                                                 |                          |                   |
    |              |                | Clusters of v1.23 and later support containerd. |                          |                   |
    +--------------+----------------+-------------------------------------------------+--------------------------+-------------------+
-   | Ubuntu 22.04 | 4.x            | Docker                                          | OverlayFS                | runC              |
+   | Ubuntu 22.04 | 5.x            | Docker                                          | OverlayFS                | runC              |
    |              |                |                                                 |                          |                   |
    |              |                | Clusters of v1.23 and later support containerd. |                          |                   |
    +--------------+----------------+-------------------------------------------------+--------------------------+-------------------+
@@ -67,15 +67,21 @@ Mapping Between Node OSs and Container Engines
 
 .. table:: **Table 3** Node OSs and container engines in CCE Turbo clusters
 
-   +-----------+-------------+----------------+------------------+--------------------------+-------------------+
-   | Node Type | OS          | Kernel Version | Container Engine | Container Storage Rootfs | Container Runtime |
-   +===========+=============+================+==================+==========================+===================+
-   | ECS (VM)  | EulerOS 2.9 | 4.x            | Docker           | OverlayFS                | runC              |
-   |           |             |                |                  |                          |                   |
-   |           |             |                | containerd       |                          |                   |
-   +-----------+-------------+----------------+------------------+--------------------------+-------------------+
-   |           | HCE OS 2.0  | 5.x            |                  |                          |                   |
-   +-----------+-------------+----------------+------------------+--------------------------+-------------------+
+   +-----------+--------------+----------------+------------------+--------------------------+-------------------+
+   | Node Type | OS           | Kernel Version | Container Engine | Container Storage Rootfs | Container Runtime |
+   +===========+==============+================+==================+==========================+===================+
+   | ECS (VM)  | EulerOS 2.9  | 4.x            | Docker           | OverlayFS                | runC              |
+   |           |              |                |                  |                          |                   |
+   |           |              |                | containerd       |                          |                   |
+   +-----------+--------------+----------------+------------------+--------------------------+-------------------+
+   | ECS (VM)  | Ubuntu 22.04 | 5.x            | Docker           | OverlayFS                | runC              |
+   |           |              |                |                  |                          |                   |
+   |           |              |                | containerd       |                          |                   |
+   +-----------+--------------+----------------+------------------+--------------------------+-------------------+
+   | ECS (VM)  | HCE OS 2.0   | 5.x            | Docker           | OverlayFS                | runC              |
+   |           |              |                |                  |                          |                   |
+   |           |              |                | containerd       |                          |                   |
+   +-----------+--------------+----------------+------------------+--------------------------+-------------------+
 
 Common Commands of containerd and Docker
 ----------------------------------------
@@ -176,4 +182,4 @@ Container Engine Versions
 
    .. note::
 
-      If the cluster version is v1.28.8-r0, v1.29.4-r0, v1.30.1-r0, or later, upgrade containerd to 1.7.16.
+      If the cluster version is v1.28.8-r0, v1.29.4-r0, v1.30.1-r0, or later, the containerd version of new nodes is 1.7.16.

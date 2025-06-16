@@ -1,6 +1,6 @@
-:original_name: cce_bestpractice_00253_0.html
+:original_name: cce_bestpractice_00253.html
 
-.. _cce_bestpractice_00253_0:
+.. _cce_bestpractice_00253:
 
 Dynamically Creating an SFS Turbo Subdirectory Using StorageClass
 =================================================================
@@ -12,8 +12,8 @@ The minimum capacity of an SFS Turbo file system is 500 GiB. By default, the roo
 
 The everest add-on allows you to dynamically create subdirectories in an SFS Turbo file system and mount these subdirectories to containers. In this way, an SFS Turbo file system can be shared by multiple containers to increase storage efficiency.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  Only clusters of v1.15 or later are supported.
 
@@ -42,8 +42,8 @@ Creating an SFS Turbo Volume of the subPath Type
       allowVolumeExpansion: true
       kind: StorageClass
       metadata:
-        name: sfsturbo-subpath-sc
-      mountOptions:
+        name: sfsturbo-subpath-sc # Storage class name
+      mountOptions:  #Mount options
       - lock
       parameters:
         csi.storage.k8s.io/csi-driver-name: sfsturbo.csi.everest.io
@@ -51,11 +51,11 @@ Creating an SFS Turbo Volume of the subPath Type
         everest.io/archive-on-delete: "true"
         everest.io/share-access-to: 7ca2dba2-1234-1234-1234-626371a8fb3a
         everest.io/share-expand-type: bandwidth
-        everest.io/share-export-location: 192.168.1.1:/sfsturbo/
+        everest.io/share-export-location: 192.168.1.1:/sfsturbo/  # Mount directory configuration
         everest.io/share-source: sfs-turbo
         everest.io/share-volume-type: STANDARD
         everest.io/volume-as: subpath
-        everest.io/volume-id: 0d773f2e-1234-1234-1234-de6a35074696
+        everest.io/volume-id: 0d773f2e-1234-1234-1234-de6a35074696  # ID of an SFS Turbo volume
       provisioner: everest-csi-provisioner
       reclaimPolicy: Delete
       volumeBindingMode: Immediate
@@ -97,7 +97,7 @@ Creating an SFS Turbo Volume of the subPath Type
       apiVersion: v1
       kind: PersistentVolumeClaim
       metadata:
-        name: sfs-turbo-test
+        name: sfs-turbo-test  # PVC name
         namespace: default
       spec:
         accessModes:
@@ -105,7 +105,7 @@ Creating an SFS Turbo Volume of the subPath Type
         resources:
           requests:
             storage: 50Gi
-        storageClassName: sfsturbo-subpath-sc
+        storageClassName: sfsturbo-subpath-sc  # Storage class name
         volumeMode: Filesystem
 
    In this example:
@@ -132,7 +132,7 @@ Creating a Deployment and Mounting an Existing Volume
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: test-turbo-subpath-example
+        name: test-turbo-subpath-example   # Name of the created workload
         namespace: default
         generation: 1
         labels:
@@ -148,10 +148,10 @@ Creating a Deployment and Mounting an Existing Volume
               app: test-turbo-subpath-example
           spec:
             containers:
-            - image: nginx:latest
+            - image: nginx:latest  # Image of the workload
               name: container-0
               volumeMounts:
-              - mountPath: /tmp
+              - mountPath: /tmp   #Mount path in a container
                 name: pvc-sfs-turbo-example
             restartPolicy: Always
             imagePullSecrets:
@@ -159,7 +159,7 @@ Creating a Deployment and Mounting an Existing Volume
             volumes:
             - name: pvc-sfs-turbo-example
               persistentVolumeClaim:
-                claimName: sfs-turbo-test
+                claimName: sfs-turbo-test   # Name of an existing PVC
 
    In this example:
 
@@ -184,7 +184,7 @@ Dynamically Creating a subPath Volume for a StatefulSet
       apiVersion: apps/v1
       kind: StatefulSet
       metadata:
-        name: test-turbo-subpath
+        name: test-turbo-subpath # Name of the created workload
         namespace: default
         generation: 1
         labels:
@@ -204,11 +204,11 @@ Dynamically Creating a subPath Volume for a StatefulSet
           spec:
             containers:
               - name: container-0
-                image: 'nginx:latest'
+                image: 'nginx:latest'  # Image of the workload
                 resources: {}
                 volumeMounts:
                   - name: sfs-turbo-160024548582479676
-                    mountPath: /tmp
+                    mountPath: /tmp  # Mount path in a container
                 terminationMessagePath: /dev/termination-log
                 terminationMessagePolicy: File
                 imagePullPolicy: IfNotPresent
@@ -227,11 +227,11 @@ Dynamically Creating a subPath Volume for a StatefulSet
               annotations: {}
             spec:
               accessModes:
-                - ReadWriteOnce
+                - ReadWriteMany
               resources:
                 requests:
                   storage: 10Gi
-              storageClassName: sfsturbo-subpath-sc
+              storageClassName: sfsturbo-subpath-sc # Enter the name of a self-managed storage class.
         serviceName: wwww
         podManagementPolicy: OrderedReady
         updateStrategy:

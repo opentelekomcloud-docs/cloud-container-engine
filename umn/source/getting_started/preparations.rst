@@ -101,12 +101,12 @@ If you have no key pair, create one on the management console. The procedure is 
 #. In the navigation pane, choose **Key Pair**.
 #. On the displayed page, click **Create Key Pair**.
 #. Enter the key pair name and click **OK**.
-#. A key pair name consists **KeyPair** and four random digits. You can enter an easy-to-remember name, for example, **KeyPair-xxxx_ecs**.
+#. Enter an easy-to-remember name for the key pair. The name of a key pair is in the format of **KeyPair-**\ *{Four random digits}*, for example, **KeyPair-xxxx_ecs**.
 #. Manually or automatically download the private key file. The file name is a specified key pair name with a suffix of .pem. Securely store the private key file. In the dialog box displayed, click **OK**.
 
    .. note::
 
-      The private key file can be downloaded only once. Keep it secure. When creating an ECS, provide the name of your desired key pair. Each time you SSH into the ECS, provide the private key.
+      The private key file can be downloaded only once. Keep it secure. When creating an ECS, specify the name of your preferred key pair. Use the private key each time you SSH into the ECS.
 
-.. |image1| image:: /_static/images/en-us_image_0000001798307873.png
-.. |image2| image:: /_static/images/en-us_image_0000001751467114.png
+.. |image1| image:: /_static/images/en-us_image_0000001851742516.png
+.. |image2| image:: /_static/images/en-us_image_0000001898022705.png

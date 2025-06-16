@@ -118,7 +118,7 @@ Configuring Priority-based Scheduling Policies
 Example of Priority-based Scheduling
 ------------------------------------
 
-For example, there are two idle nodes and several workloads with three priorities (high-priority, medium-priority, and low-priority). Run the high-priority workload to exhaust all cluster resources, and issue the medium-priority and low-priority workloads. Then, the two types of workloads are pending due to insufficient resources. When the high-priority workload ends, the pods of the medium-priority workload will be scheduled ahead of the pods of the low-priority workload according to the priority-based scheduling setting.
+For example, if there are two idle nodes and high-, medium-, and low-priority Volcano jobs in the cluster, run the high-priority job first to exhaust the cluster resources. Then, run the medium- and low-priority jobs. The medium- and low-priority jobs are pending because the high-priority Volcano job is using all cluster resources. After the high-priority job completes, the medium-priority job is scheduled next.
 
 #. Add three `PriorityClasses <https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass>`__ (**high-priority**, **med-priority**, and **low-priority**) in **priority.yaml**.
 
@@ -173,7 +173,7 @@ For example, there are two idle nodes and several workloads with three prioritie
       system-cluster-critical   2000000000   false            6d6h
       system-node-critical      2000001000   false            6d6h
 
-#. Create a high-priority workload named **high-priority-job** to exhaust all cluster resources.
+#. Create a high-priority Volcano job to exhaust all cluster resources.
 
    **high-priority-job.yaml**
 
@@ -206,7 +206,7 @@ For example, there are two idle nodes and several workloads with three prioritie
 
    .. code-block::
 
-      kubectl apply -f high_priority_job.yaml
+      kubectl apply -f high-priority-job.yaml
 
    Run the **kubectl get pod** command to check pod statuses:
 
@@ -220,7 +220,7 @@ For example, there are two idle nodes and several workloads with three prioritie
 
    The command output shows that all cluster resources have been used up.
 
-#. Create a medium-priority workload **med-priority-job** and a low-priority workload **low-priority-job**.
+#. Create a medium-priority and a low-priority Volcano job.
 
    **med-priority-job.yaml**
 
@@ -280,8 +280,8 @@ For example, there are two idle nodes and several workloads with three prioritie
 
    .. code-block::
 
-      kubectl apply -f med_priority_job.yaml
-      kubectl apply -f low_priority_job.yaml
+      kubectl apply -f med-priority-job.yaml
+      kubectl apply -f low-priority-job.yaml
 
    Run the **kubectl get pod** command to check the statuses of the pods for the newly created workloads. The command output shows that the pods are pending due to insufficient resources:
 
@@ -301,9 +301,9 @@ For example, there are two idle nodes and several workloads with three prioritie
       priority-medium-test-2   0/1     Pending   0          2m36s
       priority-medium-test-3   0/1     Pending   0          2m36s
 
-#. Delete the **high_priority_job** workload to release resources and check whether the pods of the **med-priority-job** workload will be preferentially scheduled.
+#. Delete the high-priority job to release cluster resources. The medium-priority job will be scheduled next.
 
-   Run the **kubectl delete -f high_priority_job.yaml** command to release cluster resources and check pod scheduling.
+   Run the **kubectl delete -f high-priority-job.yaml** command to release cluster resources and check pod scheduling.
 
    .. code-block::
 

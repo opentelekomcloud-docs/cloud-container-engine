@@ -21,7 +21,7 @@ All nodes in the cluster are located in a VPC and use the VPC network. The conta
 
 -  **Node Network**
 
-   A node network assigns IP addresses to hosts (nodes in the figure above) in a cluster. Select a VPC subnet as the node network of the CCE cluster. The number of available IP addresses in a subnet determines the maximum number of nodes (including master nodes and worker nodes) that can be created in a cluster. This quantity is also affected by the container network. For details, see the container network model.
+   A node network assigns IP addresses to hosts (nodes in the figure above) in a cluster. Select a VPC subnet as the node network of the CCE cluster. The number of available IP addresses in a subnet determines the maximum number of nodes (including master nodes and worker nodes) that can be created in a cluster. This number is also affected by the container network. For details, see the container network model.
 
 -  **Container Network**
 
@@ -31,7 +31,7 @@ All nodes in the cluster are located in a VPC and use the VPC network. The conta
 
    -  Container tunnel network: The container tunnel network is constructed on but independent of the node network through tunnel encapsulation. This network model uses VXLAN to encapsulate Ethernet packets into UDP packets and transmits them in tunnels. Open vSwitch serves as the backend virtual switch.
    -  VPC network: The VPC network model seamlessly combines VPC routing with the underlying network, making it ideal for high-performance scenarios. However, the maximum number of nodes allowed in a cluster is determined by the VPC route quota. Each node is assigned a CIDR block of a fixed size. The VPC network model outperforms the container tunnel network model in terms of performance because it does not have tunnel encapsulation overhead. In addition, as VPC routing includes routes to node IP addresses and the container CIDR block, container pods in a cluster can be directly accessed from outside the cluster.
-   -  Developed by CCE, Cloud Native 2.0 network deeply integrates Elastic Network Interfaces (ENIs) and Sub Network Interfaces (sub-ENIs) of VPC. Container IP addresses are allocated from the VPC CIDR block. ELB passthrough networking is supported to direct access requests to containers. Security groups and EIPs are bound to deliver high performance.
+   -  Developed by CCE, Cloud Native Network 2.0 deeply integrates Elastic Network Interfaces (ENIs) and Sub Network Interfaces (sub-ENIs) of VPC. Container IP addresses are allocated from the VPC CIDR block. ELB passthrough networking is supported to direct access requests to containers. Security groups and EIPs are bound to deliver high performance.
 
    The performance, networking scale, and application scenarios of a container network vary according to the container network model. For details about the functions and features of different container network models, see :ref:`Overview <cce_10_0281>`.
 
@@ -91,12 +91,12 @@ Workload access scenarios can be categorized as follows:
 -  The workload can access the external network as follows:
 
    -  Accessing an intranet: The workload accesses the intranet address, but the implementation method varies depending on container network models. Ensure that the peer security group allows the access requests from the container CIDR block.
-   -  Accessing a public network: Assign an EIP to the node where the workload runs (when the VPC network or tunnel network model is used), bind an EIP to the pod IP address (when the Cloud Native Network 2.0 model is used), or configure SNAT rules through the NAT gateway. For details, see :ref:`Accessing the Internet from a Container <cce_10_0400>`.
+   -  Accessing a public network: Assign an EIP to the node where the workload runs (when a VPC network or tunnel network is used), bind an EIP to the pod IP address (when Cloud Native Network 2.0 is used), or configure SNAT rules through the NAT gateway. For details, see :ref:`Accessing the Internet from a Container <cce_10_0400>`.
 
 
-.. figure:: /_static/images/en-us_image_0000002101678773.png
+.. figure:: /_static/images/en-us_image_0000002253619737.png
    :alt: **Figure 3** Network access diagram
 
    **Figure 3** Network access diagram
 
-.. |image1| image:: /_static/images/en-us_image_0000002101597285.png
+.. |image1| image:: /_static/images/en-us_image_0000002218819838.png

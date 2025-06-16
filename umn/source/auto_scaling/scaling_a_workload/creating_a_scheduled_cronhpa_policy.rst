@@ -14,7 +14,7 @@ CronHPA can periodically adjust the maximum and minimum numbers of pods in the H
 Prerequisites
 -------------
 
-The add-on :ref:`CCE Advanced HPA <cce_10_0240>` of v1.2.13 or later has been installed.
+:ref:`CCE Advanced HPA <cce_10_0240>` of v1.2.13 or later has been installed in the cluster.
 
 .. _cce_10_0415__section858719277369:
 
@@ -29,16 +29,16 @@ HPA and CronHPA associate scaling objects using the **scaleTargetRef** field. If
 
 When CronHPA and HPA are used together, CronHPA rules take effect based on the HPA policy. CronHPA uses HPA to perform operations on the Deployment. Understanding the following parameters can better understand the working rules of the CronHPA.
 
--  **targetReplicas**: Number of pods set for CronHPA. When CronHPA takes effect, this parameter adjusts the maximum or minimum number of pods in HPA policies to adjust the number of Deployment pods.
--  **minReplicas**: Minimum number of Deployment pods.
--  **maxReplicas**: Maximum number of Deployment pods.
--  **replicas**: Number of pods in a Deployment before the CronHPA policy takes effect.
+-  **targetReplicas**: number of pods set for CronHPA. When CronHPA takes effect, this parameter adjusts the maximum or minimum number of pods in HPA policies to adjust the number of Deployment pods.
+-  **minReplicas**: minimum number of Deployment pods.
+-  **maxReplicas**: maximum number of Deployment pods.
+-  **replicas**: number of pods in a Deployment before the CronHPA policy takes effect.
 
-When the CronHPA rule takes effect, the maximum or minimum number of pods are adjusted by comparing the number of **targetReplicas** with the actual number of pods and combining the minimum or maximum number of pods in the HPA policy.
+When a CronHPA rule is triggered, the maximum or minimum number of pods is adjusted by comparing the **targetReplicas** value with the actual pod count, while also considering the HPA policy's minimum or maximum pod limits.
 
 .. _cce_10_0415__fig8528823151719:
 
-.. figure:: /_static/images/en-us_image_0000002065480242.png
+.. figure:: /_static/images/en-us_image_0000002253779625.png
    :alt: **Figure 1** CronHPA scaling scenarios
 
    **Figure 1** CronHPA scaling scenarios
@@ -182,7 +182,7 @@ When the CronHPA rule takes effect, the maximum or minimum number of pods are ad
       | Enable                            | Enable or disable the policy rule.                                                                                                                                            |
       +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-#. After configuring the preceding parameters, click **OK**. Then, the added policy rule is displayed in the rule list. Repeat the preceding steps to add multiple policy rules, but the triggering time of the policies must be different.
+#. After configuring the preceding parameters, click **OK**. Then, the added policy rule is displayed in the rule list. Repeat the preceding steps to add a maximum of 10 policy rules, but the triggering time of these policies must be different.
 
 #. Click **Create**.
 
@@ -331,7 +331,7 @@ CronHPA adjusts associated Deployments separately to periodically adjust the num
         targetReplicas: 3
         disable: false
 
-.. |image1| image:: /_static/images/en-us_image_0000002065638574.png
-.. |image2| image:: /_static/images/en-us_image_0000002065480234.png
-.. |image3| image:: /_static/images/en-us_image_0000002065480238.png
-.. |image4| image:: /_static/images/en-us_image_0000002065638582.png
+.. |image1| image:: /_static/images/en-us_image_0000002253779605.png
+.. |image2| image:: /_static/images/en-us_image_0000002253619701.png
+.. |image3| image:: /_static/images/en-us_image_0000002253779617.png
+.. |image4| image:: /_static/images/en-us_image_0000002253619713.png

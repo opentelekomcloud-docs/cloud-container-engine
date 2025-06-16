@@ -483,7 +483,7 @@ Procedure
 
       The PVC naming rule of the **volumeClaimTemplates** is fixed. When a PVC that meets the naming rule exists, this PVC is used.
 
-      Therefore, disassociate the original PVC first, and then create a PVC with the same name in the CSI format.
+      Therefore, disassociate the original PVC first and then create a PVC with the same name in the CSI format.
 
    6. (Optional) Recreate the stateful application to ensure that a CSI PVC is used when the application is scaled out. Otherwise, FlexVolume PVCs are used in scaling out.
 
@@ -592,4 +592,4 @@ Procedure
 
       kubectl patch pv {pv_name} -p '{"metadata":{"finalizers":null}}'
 
-.. |image1| image:: /_static/images/en-us_image_0000002065637722.png
+.. |image1| image:: /_static/images/en-us_image_0000002253618457.png

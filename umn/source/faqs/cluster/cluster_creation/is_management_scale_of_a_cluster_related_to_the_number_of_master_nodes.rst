@@ -5,8 +5,12 @@
 Is Management Scale of a Cluster Related to the Number of Master Nodes?
 =======================================================================
 
-Management scale indicates the maximum number of nodes that can be managed by a cluster. If you select **50 nodes**, the cluster can manage a maximum of 50 nodes.
+In a CCE cluster, the management scale is not directly related to the number of master nodes. These are cluster parameters that operate in different dimensions. Here are the details:
 
-The number of master nodes varies according to the cluster specification, but is not affected by the management scale.
+-  Cluster management scale: indicates the maximum number of nodes that a cluster can manage. For example, if you choose 50 nodes, the cluster can manage up to 50 worker nodes.
 
-After the multi-master node mode is enabled, three master nodes will be created. If one of them is faulty, the cluster can still run properly. The services will not be affected.
+   The flavors of master nodes may vary with the cluster scale. However, the number of master nodes is not affected by the management scale.
+
+-  Number of master nodes: The number of master nodes impacts the high availability of the cluster. To enhance the cluster's DR capabilities, you can choose multiple master nodes.
+
+   For example, you can choose three masters for your cluster. If one of them is faulty, the cluster can still run properly. The services will not be affected.

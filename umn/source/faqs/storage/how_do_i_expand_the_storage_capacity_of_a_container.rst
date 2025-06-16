@@ -5,8 +5,8 @@
 How Do I Expand the Storage Capacity of a Container?
 ====================================================
 
-Application Scenarios
----------------------
+Application Scenario
+--------------------
 
 The default storage size of a container is 10 GiB. If a large volume of data is generated in the container, expand the capacity using the method described in this topic.
 
@@ -27,7 +27,7 @@ Solution
 
    If you need to adjust the container storage space, pay attention to the following configurations:
 
-   **Storage Settings**: Click **Expand** next to the data disk to set the following parameter:
+   **Storage Settings**: Click **Expand** next to the data disk to configure the following parameter:
 
    **Space Allocation for Pods**: indicates the base size of a pod. It is the maximum size that a workload's pods (including the container images) can grow to in the disk space. Proper settings can prevent pods from taking all the disk space available and avoid service exceptions. It is recommended that the value is less than or equal to 80% of the container engine space. This parameter is related to the node OS and container storage rootfs and is not supported in some scenarios. For details, see :ref:`Data Disk Space Allocation <cce_10_0341>`.
 
@@ -35,9 +35,10 @@ Solution
 
    -  Overlayfs: No independent thin pool is allocated. Image data is stored in **dockersys**. Run the following command to check whether the container capacity has been expanded:
 
-      **docker exec -it** *container_id* **/bin/sh** or **kubectl exec -it** *container_id* **/bin/sh**
+      .. code-block::
 
-      **df -h**
+         kubectl exec -it pod_name -- /bin/sh
+         df -h
 
       If the information similar to the following is displayed, the overlay capacity has been expanded from 10 GiB to 15 GiB.
 
@@ -50,11 +51,12 @@ Solution
          /dev/mapper/vgpaas-share       98G   4.0G     89G     5%   /etc/hosts
          ...
 
-   -  Devicemapper: A thin pool is allocated to store image data. Run the following command to check whether the container capacity has been expanded:
+   -  Device Mapper: A thin pool is allocated to store image data. Run the following command to check whether the container capacity has been expanded:
 
-      **docker exec -it** *container_id* **/bin/sh** or **kubectl exec -it** *container_id* **/bin/sh**
+      .. code-block::
 
-      **df -h**
+         kubectl exec -it pod_name -- /bin/sh
+         df -h
 
       If the information similar to the following is displayed, the thin pool capacity has been expanded from 10 GiB to 15 GiB.
 

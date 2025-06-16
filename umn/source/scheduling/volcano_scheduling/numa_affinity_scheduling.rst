@@ -34,7 +34,7 @@ After a topology policy is configured for pods, Volcano predicts the nodes that 
 +-----------------------+------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | none                  | Nodes with the following topology policies will not be filtered during scheduling: | None                                                                                                                                                                                                                                                    |
 |                       |                                                                                    |                                                                                                                                                                                                                                                         |
-|                       | -  **none**: schedulable                                                           |                                                                                                                                                                                                                                                         |
+|                       | -  **none**: unschedulable                                                         |                                                                                                                                                                                                                                                         |
 |                       | -  **best-effort**: schedulable                                                    |                                                                                                                                                                                                                                                         |
 |                       | -  **restricted**: schedulable                                                     |                                                                                                                                                                                                                                                         |
 |                       | -  **single-numa-node**: schedulable                                               |                                                                                                                                                                                                                                                         |
@@ -86,7 +86,7 @@ For example, two NUMA nodes provide resources, each with a total of 32 CPU cores
 
 .. _cce_10_0425__fig1216082014438:
 
-.. figure:: /_static/images/en-us_image_0000002101597253.png
+.. figure:: /_static/images/en-us_image_0000002253619765.png
    :alt: **Figure 1** Comparison of NUMA scheduling policies
 
    **Figure 1** Comparison of NUMA scheduling policies
@@ -149,7 +149,7 @@ Enabling NUMA Affinity Scheduling for Volcano
 
    **Volcano earlier than 1.7.1**
 
-   a. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Settings** and click the **Scheduling** tab. In the **Select Cluster Scheduler** area, select **Volcano scheduler**, find the expert mode, and click **Try Now**.
+   a. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Settings** and click the **Scheduling** tab. Select **Volcano scheduler**, find the expert mode, and click **Try Now**.
 
    b. Enable **resource_exporter_enable** to collect node NUMA information. The following is an example in JSON format:
 

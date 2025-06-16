@@ -11,6 +11,7 @@ Storage
 -  :ref:`What Should I Do If the Host Cannot Be Found When Files Need to Be Uploaded to OBS During the Access to the CCE Service from a Public Network? <cce_faq_00218>`
 -  :ref:`How Can I Achieve Compatibility Between ExtendPathMode and Kubernetes client-go? <cce_faq_00235>`
 -  :ref:`Can CCE PVCs Detect Underlying Storage Faults? <cce_faq_00316>`
+-  :ref:`Why Cannot I Delete a PV or PVC Using the kubectl delete Command? <cce_faq_00418>`
 
 .. toctree::
    :maxdepth: 1
@@ -22,3 +23,4 @@ Storage
    what_should_i_do_if_the_host_cannot_be_found_when_files_need_to_be_uploaded_to_obs_during_the_access_to_the_cce_service_from_a_public_network
    how_can_i_achieve_compatibility_between_extendpathmode_and_kubernetes_client-go
    can_cce_pvcs_detect_underlying_storage_faults
+   why_cannot_i_delete_a_pv_or_pvc_using_the_kubectl_delete_command

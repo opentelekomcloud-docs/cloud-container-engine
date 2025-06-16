@@ -5,8 +5,8 @@
 What Should I Do If Error Message "Auth is empty" Is Displayed When a Private Image Is Pulled?
 ==============================================================================================
 
-Problem Description
--------------------
+Symptom
+-------
 
 When you replace the image of a container in a created workload and use an uploaded image on the CCE console, an error message "Auth is empty, only accept X-Auth-Token or Authorization" is displayed when the uploaded image is pulled.
 

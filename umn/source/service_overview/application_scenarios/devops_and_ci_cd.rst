@@ -5,8 +5,8 @@
 DevOps and CI/CD
 ================
 
-Application Scenario
---------------------
+Application Scenarios
+---------------------
 
 You may receive a lot feedback and requirements for your apps or services. You may want to boost user experience with new features. Continuous integration (CI) and delivery (CD) can help. CI/CD automates builds, tests, and merges, making app delivery faster.
 
@@ -36,7 +36,7 @@ Related Services
 Software Repository for Container (SWR), Object Storage Service (OBS), Virtual Private Network (VPN)
 
 
-.. figure:: /_static/images/en-us_image_0000002101594929.png
+.. figure:: /_static/images/en-us_image_0000002253777197.png
    :alt: **Figure 1** How DevOps works
 
    **Figure 1** How DevOps works

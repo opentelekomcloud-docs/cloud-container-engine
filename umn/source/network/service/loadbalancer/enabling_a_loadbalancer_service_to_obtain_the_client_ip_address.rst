@@ -24,7 +24,7 @@ Prerequisites
    -  v1.29: v1.29.3-r0 or later
    -  Other clusters of later versions
 
--  The cluster can be accessed using kubectl. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  The cluster can be accessed using kubectl. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 Notes and Constraints
 ---------------------

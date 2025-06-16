@@ -16,8 +16,8 @@ Cloud Container Engine - User Guide
    scheduling/index
    network/index
    storage/index
-   observability/index
    auto_scaling/index
+   o_and_m/index
    namespaces/index
    configmaps_and_secrets/index
    add-ons/index

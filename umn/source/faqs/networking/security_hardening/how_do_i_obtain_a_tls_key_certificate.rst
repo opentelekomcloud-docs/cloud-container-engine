@@ -10,7 +10,7 @@ Scenario
 
 If your ingress needs to use HTTPS, you must configure a secret of the IngressTLS or kubernetes.io/tls type when creating an ingress.
 
-The certificate file uploaded in the secret data must match the private key file. Otherwise, the certificate file becomes invalid.
+When creating a secret, ensure that the certificate file uploaded in the secret data must match the private key file. Otherwise, the certificate file becomes invalid.
 
 Solution
 --------

@@ -74,7 +74,7 @@ Storage Volumes
 
    -  Multiple PVs can use the same SFS or SFS Turbo file system with the following restrictions:
 
-      -  Do not mount the PVCs/PVs that use the same underlying SFS or SFS Turbo volume to one pod. This will lead to a pod startup failure because not all PVCs can be mounted to the pod due to the same **volumeHandle** value.
+      -  Do not mount multiple PVCs or PVs that use the same underlying SFS or SFS Turbo volume to a single pod. Doing so will cause pod startup failures, as not all PVCs can be mounted due to identical **volumeHandle** value.
       -  The **persistentVolumeReclaimPolicy** parameter in the PVs must be set to **Retain**. Otherwise, when a PV is deleted, the associated underlying volume may be deleted. In this case, other PVs associated with the underlying volume malfunction.
       -  When the underlying volume is repeatedly used, enable isolation and protection for ReadWriteMany at the application layer to prevent data overwriting and loss.
 
@@ -84,7 +84,7 @@ Storage Volumes
 
    -  If OBS volumes are used, the owner group and permission of the mount point cannot be modified.
    -  Every time an OBS volume is mounted to a workload through a PVC, a resident process is created in the backend. When a workload uses too many OBS volumes or reads and writes a large number of object storage files, resident processes will consume a significant amount of memory. To ensure stable running of the workload, make sure that the number of OBS volumes used does not exceed the requested memory. For example, if the workload requests for 4 GiB of memory, the number of OBS volumes should be **no more than** 4.
-   -  Kata containers do not support OBS volumes.
+   -  Secure containers do not support OBS volumes.
    -  Hard links are not supported when common buckets are mounted.
 
 -  Constraints on local PVs:
@@ -108,6 +108,10 @@ Storage Volumes
    -  Snapshots can be created only for PVCs created using the storage class (whose name starts with csi) provided by the Everest add-on. Snapshots cannot be created for PVCs created using the FlexVolume storage class whose name is ssd, sas, or sata.
    -  Snapshot data of encrypted disks is stored encrypted, and that of non-encrypted disks is stored non-encrypted.
    -  A PVC of the xfs file system type can generate snapshots. The file system of the disk associated with the PVC created using these snapshots remains xfs.
+
+-  Constraints on LVM:
+
+   The default backup configuration that is stored in the **/etc/lvm/lvm.conf** path for the node LVM has been changed. Once the CCE Container Storage (Everest) add-on (version >= 2.4.98) is installed, archive logs will only be kept for one day to avoid filling up disk space with historical metadata from numerous LVM operations.
 
 Add-ons
 -------

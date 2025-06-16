@@ -18,11 +18,11 @@ Enhanced configurations of the Volcano scheduler:
 
 -  :ref:`Priority-based Scheduling <cce_10_0785__section61971703016>`
 -  :ref:`Resource Utilization Optimization Scheduling (Supported by the Volcano Scheduler) <cce_10_0785__section15912157011>`
--  :ref:`AI Task Performance Enhanced Scheduling (Supported by the Volcano Scheduler) <cce_10_0785__section56816252018>`
+-  :ref:`AI Job Performance Enhancement Scheduling (Supported by the Volcano Scheduler) <cce_10_0785__section56816252018>`
 -  :ref:`Heterogeneous Resource Scheduling (Supported by the Volcano Scheduler) <cce_10_0785__section1697213291411>`
 
-Scheduler Configuration
------------------------
+Scheduler Performance Configuration
+-----------------------------------
 
 .. note::
 
@@ -47,7 +47,7 @@ Priority-based Scheduling
 
 **Scheduling based on priority**
 
-This is a basic scheduling capability and cannot be disabled. The scheduler preferentially guarantees the running of high-priority pods, and will not evict low-priority pods that are running.
+This is a basic scheduling capability and cannot be disabled. The scheduler preferentially guarantees the running of high-priority pods, and will not evict low-priority pods that are running. For details, see :ref:`Priority-based Scheduling <cce_10_0775>`.
 
 .. _cce_10_0785__section15912157011:
 
@@ -76,14 +76,14 @@ For details about the bin packing weight and weights for each resource to score 
    | Custom Resource Type               | Other custom resource types requested by pods, for example, **nvidia.com/gpu**. A larger value indicates a higher usage of the specified cluster resource. | None          |
    +------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
 
-**Enable load-aware scheduling (usage)**
+**Load-aware scheduling (usage)**
 
 This function uses the Cloud Native Cluster Monitoring (kube-prometheus-stack) add-on to obtain the actual CPU and memory load of each node, calculates the average load of each node based on the specified period, and preferentially schedules jobs to the node with the lightest load to balance load. For details, see :ref:`Load-aware Scheduling <cce_10_0789>`.
 
 .. _cce_10_0785__section56816252018:
 
-AI Task Performance Enhanced Scheduling (Supported by the Volcano Scheduler)
-----------------------------------------------------------------------------
+AI Job Performance Enhancement Scheduling (Supported by the Volcano Scheduler)
+------------------------------------------------------------------------------
 
 **Fair Scheduling Policy (DRF)**
 

@@ -5,7 +5,7 @@
 Before You Start
 ================
 
-Before the upgrade, you can check whether your cluster can be upgraded and which versions are available on the CCE console. For details, see :ref:`Process and Method of Upgrading a Cluster <cce_10_0197>`.
+Before the upgrade, you can check whether your cluster can be upgraded and which versions are available on the CCE console. For details, see :ref:`Cluster Upgrade Overview <cce_10_0197>`.
 
 .. _cce_10_0302__section16520163082115:
 
@@ -31,6 +31,7 @@ During a cluster upgrade, pay attention to the following points that may affect 
    -  v1.23 clusters with patch versions earlier than or equal to v1.23.5-r0
 
 -  Clusters of version 1.27 or later do not support nodes running EulerOS 2.5 or CentOS 7.7. If a node running EulerOS 2.5 or CentOS 7.7 is used, migrate the node OS to EulerOS release 2.9, Ubuntu 22.04, or HCE OS 2.0 before the cluster upgrade. For details, see :ref:`Resetting a Node <cce_10_0003>`.
+-  During a cluster upgrade, if an add-on is also upgraded and cluster resources are limited, add-on pods can use resources that would otherwise be allocated to service pods. This may result in the eviction of service pods. After the add-on is upgraded, the evicted service pods will automatically recover.
 
 Notes and Constraints
 ---------------------
@@ -72,19 +73,19 @@ Version Differences
    +----------------------------------------------------------+---------------------------------------------------------+-------------------------------------------------------------------+-----------------+
    | Init Container (Calculated Based on spec.initContainers) | Service Container (Calculated Based on spec.containers) | Pod (Calculated Based on spec.containers and spec.initContainers) | Impacted or Not |
    +==========================================================+=========================================================+===================================================================+=================+
-   | Guaranteed                                               | Besteffort                                              | Burstable                                                         | Yes             |
+   | Guaranteed                                               | BestEffort                                              | Burstable                                                         | Yes             |
    +----------------------------------------------------------+---------------------------------------------------------+-------------------------------------------------------------------+-----------------+
    | Guaranteed                                               | Burstable                                               | Burstable                                                         | No              |
    +----------------------------------------------------------+---------------------------------------------------------+-------------------------------------------------------------------+-----------------+
    | Guaranteed                                               | Guaranteed                                              | Guaranteed                                                        | No              |
    +----------------------------------------------------------+---------------------------------------------------------+-------------------------------------------------------------------+-----------------+
-   | Besteffort                                               | Besteffort                                              | Besteffort                                                        | No              |
+   | BestEffort                                               | BestEffort                                              | BestEffort                                                        | No              |
    +----------------------------------------------------------+---------------------------------------------------------+-------------------------------------------------------------------+-----------------+
-   | Besteffort                                               | Burstable                                               | Burstable                                                         | No              |
+   | BestEffort                                               | Burstable                                               | Burstable                                                         | No              |
    +----------------------------------------------------------+---------------------------------------------------------+-------------------------------------------------------------------+-----------------+
-   | Besteffort                                               | Guaranteed                                              | Burstable                                                         | Yes             |
+   | BestEffort                                               | Guaranteed                                              | Burstable                                                         | Yes             |
    +----------------------------------------------------------+---------------------------------------------------------+-------------------------------------------------------------------+-----------------+
-   | Burstable                                                | Besteffort                                              | Burstable                                                         | Yes             |
+   | Burstable                                                | BestEffort                                              | Burstable                                                         | Yes             |
    +----------------------------------------------------------+---------------------------------------------------------+-------------------------------------------------------------------+-----------------+
    | Burstable                                                | Burstable                                               | Burstable                                                         | No              |
    +----------------------------------------------------------+---------------------------------------------------------+-------------------------------------------------------------------+-----------------+

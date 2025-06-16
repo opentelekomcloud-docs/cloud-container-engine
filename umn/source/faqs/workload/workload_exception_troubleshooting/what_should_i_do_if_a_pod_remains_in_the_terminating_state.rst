@@ -26,8 +26,8 @@ Running **kubectl delete pods <podname> -n <namespace>** cannot delete the pods.
 
    kubectl delete pods aos-apiserver-5f8f5b5585-s9l92 -n aos
 
-Possible Causes
----------------
+Possible Cause
+--------------
 
 The following lists some possible causes:
 

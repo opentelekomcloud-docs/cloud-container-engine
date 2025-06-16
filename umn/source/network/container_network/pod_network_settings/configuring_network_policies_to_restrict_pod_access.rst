@@ -9,38 +9,67 @@ Network policies are designed by Kubernetes to restrict pod access. It is equiva
 
 By default, if a namespace does not have any policy, pods in the namespace accept traffic from any source and send traffic to any destination.
 
-Network policies are classified into the following types:
+The following selectors are available for network policies:
 
--  **namespaceSelector**: selects particular namespaces for which all pods should be allowed as ingress sources.
--  **podSelector**: selects particular pods in the same namespace as the network policy which should be allowed as ingress sources.
--  **IPBlock**: selects particular IP blocks to allow as ingress sources. (Only egress support IP blocks.)
+-  **namespaceSelector**: selects particular namespaces for which all pods should be allowed as ingress sources or egress destinations.
+-  **podSelector**: selects particular pods in the same namespace as the network policy which should be allowed as ingress sources or egress destinations.
+-  **IPBlock**: selects particular IP blocks to allow as ingress sources or egress destinations.
 
-Notes and Constraints
----------------------
+Relationships Between Network Policies and Cluster Types
+--------------------------------------------------------
 
--  Only clusters that use the tunnel network model support network policies. Network policies are classified into the following types:
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| Cluster Type                                                 | CCE Standard Cluster  | CCE Turbo Cluster                                                                           |
++==============================================================+=======================+=============================================================================================+
+| Network Model                                                | Tunnel                | Cloud Native Network 2.0                                                                    |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| NetworkPolicy                                                | Enabled by default    | Disabled by default (To use network policies, enable DataPlane V2 when creating a cluster.) |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| Data plane implementation                                    | OpenvSwitch           | eBPF                                                                                        |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| Cluster version for inbound rules                            | All versions          | v1.27.16-r10, v1.28.15-r0, v1.29.10-r0, v1.30.6-r0, or later                                |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| Cluster version for outbound rules                           | v1.23 and later       |                                                                                             |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| Selector for inbound rules                                   | namespaceSelector     | namespaceSelector                                                                           |
+|                                                              |                       |                                                                                             |
+|                                                              | podSelector           | podSelector                                                                                 |
+|                                                              |                       |                                                                                             |
+|                                                              |                       | IPBlock                                                                                     |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| Selector for outbound rules                                  | namespaceSelector     |                                                                                             |
+|                                                              |                       |                                                                                             |
+|                                                              | podSelector           |                                                                                             |
+|                                                              |                       |                                                                                             |
+|                                                              | IPBlock               |                                                                                             |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| Supported OS                                                 | EulerOS               | HCE OS 2.0                                                                                  |
+|                                                              |                       |                                                                                             |
+|                                                              | HCE 2.0               |                                                                                             |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| IPv6 network policies                                        | Not supported         | Supported                                                                                   |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| Secure containers                                            | Not supported         | Not supported                                                                               |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| IPBlock scope                                                | Not limited           | The CIDR blocks and node IP addresses in the container CIDR block cannot be configured.     |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| Limit ClusterIP access through workload labels               | Not supported         | Supported                                                                                   |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| Limit the internal cloud server CIDR block of 100.125.0.0/16 | Supported             | Not supported                                                                               |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| SCTP                                                         | Not supported         | Not supported                                                                               |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| Always allow access to pods on a node from other nodes       | Supported             | Supported                                                                                   |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+| Configure EndPort in network policies                        | Not supported         | Not supported                                                                               |
++--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
 
-   -  Ingress: All versions support this type.
-   -  Egress: Only the following OSs and cluster versions support egress rules.
+.. note::
 
-      +-----------------------+-----------------------+-------------------------------------------+
-      | OS                    | Cluster Version       | Verified Kernel Version                   |
-      +=======================+=======================+===========================================+
-      | EulerOS 2.9           | v1.23 or later        | 4.18.0-147.5.1.6.h541.eulerosv2r9.x86_64  |
-      |                       |                       |                                           |
-      |                       |                       | 4.18.0-147.5.1.6.h766.eulerosv2r9.x86_64  |
-      |                       |                       |                                           |
-      |                       |                       | 4.18.0-147.5.1.6.h998.eulerosv2r9.x86_64  |
-      |                       |                       |                                           |
-      |                       |                       | 4.18.0-147.5.1.6.h1305.eulerosv2r9.x86_64 |
-      +-----------------------+-----------------------+-------------------------------------------+
-      | HCE OS 2.0            | v1.25 or later        | 5.10.0-60.18.0.50.r865_35.hce2.x86_64     |
-      |                       |                       |                                           |
-      |                       |                       | 5.10.0-182.0.0.95.r1941_123.hce2.x86_64   |
-      +-----------------------+-----------------------+-------------------------------------------+
-
--  Network isolation is not supported for IPv6 addresses.
--  If you upgrade a CCE cluster to a version that supports egress rules in in-place mode, the rules will not work because the node OS is not upgraded. In this case, reset the node.
+   -  CCE DataPlane V2 is released with restrictions. To use this feature, submit a service ticket to CCE.
+   -  Secure containers (such as Kata as the container runtime) are not supported by network policies.
+   -  If you upgrade a CCE standard cluster with a tunnel network to a version that supports egress rules in in-place mode, the rules will not work because the node OS is not upgraded. In this case, reset the node.
+   -  When a network policy is enabled for a cluster that uses a tunnel network, the source IP address of a pod accessing the CIDR block of a Service will be recorded in the optional field of the reported IP address data. This enables the configuration of network policy rules on the destination pod, taking into account the source IP address of the pod.
 
 Using Ingress Rules Through YAML
 --------------------------------
@@ -48,7 +77,7 @@ Using Ingress Rules Through YAML
 -  **Scenario 1: Use a network policy to limit access to a pod to only pods with specific labels.**
 
 
-   .. figure:: /_static/images/en-us_image_0000002065638906.png
+   .. figure:: /_static/images/en-us_image_0000002218820158.png
       :alt: **Figure 1** podSelector
 
       **Figure 1** podSelector
@@ -98,7 +127,7 @@ Using Ingress Rules Through YAML
 -  **Scenario 2: Use a network policy to limit access to a pod to only pods in a specific namespace.**
 
 
-   .. figure:: /_static/images/en-us_image_0000002101678937.png
+   .. figure:: /_static/images/en-us_image_0000002218660286.png
       :alt: **Figure 2** namespaceSelector
 
       **Figure 2** namespaceSelector
@@ -147,27 +176,27 @@ Using Ingress Rules Through YAML
 Using Egress Rules Through YAML
 -------------------------------
 
-Egress supports podSelector, namespaceSelector, and IPBlock.
-
 .. note::
 
-   Only clusters of v1.23 or later support egress rules. Only nodes running EulerOS 2.9 or HCE OS 2.0 are supported.
+   The clusters of v1.23 or later using a tunnel network support egress rules. Only nodes running EulerOS 2.9 or HCE OS 2.0 are supported.
+
+   Egress rules are only supported by CCE Turbo clusters of v1.27.16-r10, v1.28.15-r0, v1.29.10-r0, v1.30.6-r0, or later with DataPlane V2 enabled. Additionally, nodes in these clusters must only run HCE OS 2.0.
 
 -  **Scenario 1: Use a network policy to limit a pod's access to specific addresses.**
 
 
-   .. figure:: /_static/images/en-us_image_0000002065638890.png
+   .. figure:: /_static/images/en-us_image_0000002253779941.png
       :alt: **Figure 3** IPBlock
 
       **Figure 3** IPBlock
 
-   The pod labeled with **role=db** only permits access to the 172.16.0.16/16 CIDR block, excluding 172.16.0.40/32 within it. To do so, perform the following operations:
+   The pod labeled with **role=db** only permits access to the 172.16.0.0/16 CIDR block, excluding 172.16.0.40/32 within it. To do so, perform the following operations:
 
    #. Create the **access-demo3.yaml** file.
 
       .. code-block::
 
-         vim access-demo2.yaml
+         vim access-demo3.yaml
 
       File content:
 
@@ -187,7 +216,7 @@ Egress supports podSelector, namespaceSelector, and IPBlock.
            egress:                       # Egress rule
            - to:
              - ipBlock:
-                 cidr: 172.16.0.16/16    # Allow access to this CIDR block in the outbound direction.
+                 cidr:172.16.0.0/16    # Allow access to this CIDR block in the outbound direction.
                  except:
                  - 172.16.0.40/32        # Block access to this address in the CIDR block.
 
@@ -206,7 +235,7 @@ Egress supports podSelector, namespaceSelector, and IPBlock.
 -  **Scenario 2: Use a network policy to limit access to a pod to only pods with specific labels and this pod can only access specific pods.**
 
 
-   .. figure:: /_static/images/en-us_image_0000002065638898.png
+   .. figure:: /_static/images/en-us_image_0000002253779949.png
       :alt: **Figure 4** Using both ingress and egress
 
       **Figure 4** Using both ingress and egress
@@ -217,7 +246,7 @@ Egress supports podSelector, namespaceSelector, and IPBlock.
 
       .. code-block::
 
-         vim access-demo2.yaml
+         vim access-demo4.yaml
 
       File content:
 
@@ -281,37 +310,43 @@ Creating a Network Policy on the Console
 
       .. table:: **Table 1** Adding an inbound rule
 
-         +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Parameter        | Description                                                                                                                                           |
-         +==================+=======================================================================================================================================================+
-         | Protocol & Port  | Select the protocol type and port. Currently, TCP and UDP are supported.                                                                              |
-         +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Source Namespace | Select a namespace whose objects can be accessed. If this parameter is not specified, the object belongs to the same namespace as the current policy. |
-         +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Source Pod Label | Allow accessing the pods with this label. If this parameter is not specified, all pods in the namespace can be accessed.                              |
-         +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+         +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                               |
+         +===================================+===========================================================================================================================================================================================================================================================================================================================================================================================================================================+
+         | Protocol & Port                   | Select the protocol type and port. Currently, TCP and UDP are supported.                                                                                                                                                                                                                                                                                                                                                                  |
+         +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Source CIDR Block                 | For clusters of v1.27.16-r10, v1.28.15-r0, v1.29.10-r0, v1.30.6-r0, or later versions with DataPlane V2 enabled, you can configure the source CIDR block.                                                                                                                                                                                                                                                                                 |
+         |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+         |                                   | The specified source CIDR block allows traffic from a destination CIDR block (multiple exception CIDR blocks can be specified). Separate the destination and exception CIDR blocks using a vertical bar (|). If there are multiple exception CIDR blocks, separate them using commas (,). For example, 172.17.0.0/16|172.17.1.0/24,172.17.2.0/24 indicates that 172.17.0.0/16 is accessible, but not for 172.17.1.0/24 and 172.17.2.0/24. |
+         +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Source Namespace                  | Select a namespace whose objects can be accessed. If this parameter is not specified, the object belongs to the same namespace as the current policy.                                                                                                                                                                                                                                                                                     |
+         +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Source Pod Label                  | Allow accessing the pods with this label. If this parameter is not specified, all pods in the namespace can be accessed.                                                                                                                                                                                                                                                                                                                  |
+         +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-   -  **Outbound Rule**: Click |image3| to add an outbound rule. For details about parameter settings, see :ref:`Table 1 <cce_10_0059__table166419994515>`.
+   -  **Outbound Rule**: Click |image3| to add an outbound rule. For details about parameter settings, see :ref:`Table 2 <cce_10_0059__table940510264284>`.
 
       |image4|
 
+      .. _cce_10_0059__table940510264284:
+
       .. table:: **Table 2** Adding an outbound rule
 
-         +------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Parameter              | Description                                                                                                                                                                                                                                                                                                                                                                        |
-         +========================+====================================================================================================================================================================================================================================================================================================================================================================================+
-         | Protocol & Port        | Select the protocol type and port. Currently, TCP and UDP are supported. If this parameter is not specified, the protocol type is not limited.                                                                                                                                                                                                                                     |
-         +------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Destination CIDR Block | Allows requests to be routed to a specified CIDR block (and not to the exception CIDR blocks). Separate the destination and exception CIDR blocks by vertical bars (|), and separate multiple exception CIDR blocks by commas (,). For example, 172.17.0.0/16|172.17.1.0/24,172.17.2.0/24 indicates that 172.17.0.0/16 is accessible, but not for 172.17.1.0/24 and 172.17.2.0/24. |
-         +------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Destination Namespace  | Select a namespace whose objects can be accessed. If this parameter is not specified, the object belongs to the same namespace as the current policy.                                                                                                                                                                                                                              |
-         +------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Destination Pod Label  | Allow accessing the pods with this label. If this parameter is not specified, all pods in the namespace can be accessed.                                                                                                                                                                                                                                                           |
-         +------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Parameter              | Description                                                                                                                                                                                                                                                                                                                                                                                              |
+         +========================+==========================================================================================================================================================================================================================================================================================================================================================================================================+
+         | Protocol & Port        | Select the protocol type and port. Currently, TCP and UDP are supported. If this parameter is not specified, the protocol type is not limited.                                                                                                                                                                                                                                                           |
+         +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Destination CIDR Block | Allows requests to be routed to a specified CIDR block (and not to the exception CIDR blocks). Separate the destination and exception CIDR blocks using a vertical bar (|). If there are multiple exception CIDR blocks, separate them using commas (,). For example, 172.17.0.0/16|172.17.1.0/24,172.17.2.0/24 indicates that 172.17.0.0/16 is accessible, but not for 172.17.1.0/24 and 172.17.2.0/24. |
+         +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Destination Namespace  | Select a namespace whose objects can be accessed. If this parameter is not specified, the object belongs to the same namespace as the current policy.                                                                                                                                                                                                                                                    |
+         +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Destination Pod Label  | Allow accessing the pods with this label. If this parameter is not specified, all pods in the namespace can be accessed.                                                                                                                                                                                                                                                                                 |
+         +------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Click **OK**.
 
-.. |image1| image:: /_static/images/en-us_image_0000002101678953.png
-.. |image2| image:: /_static/images/en-us_image_0000002065638886.png
-.. |image3| image:: /_static/images/en-us_image_0000002065480558.png
-.. |image4| image:: /_static/images/en-us_image_0000002065480554.png
+.. |image1| image:: /_static/images/en-us_image_0000002253620049.png
+.. |image2| image:: /_static/images/en-us_image_0000002253620033.png
+.. |image3| image:: /_static/images/en-us_image_0000002218660298.png
+.. |image4| image:: /_static/images/en-us_image_0000002218660294.png

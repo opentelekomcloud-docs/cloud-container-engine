@@ -13,7 +13,7 @@ This section describes how to locate and rectify the fault if you fail to upgrad
 Procedure
 ---------
 
-#. If the add-on fails to be upgraded, try again first. If the retry fails, perform the following steps to rectify the fault.
+#. If the add-on fails to be upgraded, try again first. If the retry fails, perform the following operations to rectify the fault.
 #. If a failure message is displayed on the upgrade page, go to the **Add-ons** page to view the add-on status. For an abnormal add-on, click the add-on name to view details.
 #. On the pod details page, click **View Events** in the **Operation** column of the abnormal pod.
 #. Rectify the fault based on the exception information. For example, delete the pod that is not started or restart it.

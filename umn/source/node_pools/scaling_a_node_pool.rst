@@ -13,10 +13,10 @@ You can specify a specification in a node pool for scaling.
 
 #. Log in to the CCE console.
 #. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. In the right pane, click the **Node Pools** tab.
-#. Choose **Scaling** next to the target node pool.
-#. In the displayed **Node Pool Scaling** window, configure scaling parameters.
+#. Choose **Resize** next to the target node pool.
+#. In the **Resize Node Pool** dialog box, configure scaling parameters.
 
-   -  Add or reduce nodes for scaling.
+   -  **Resize**: Add or reduce nodes for scaling.
    -  Use the selected flavor to increase or decrease the number of nodes.
    -  Configure the number of nodes to be added or deleted.
 

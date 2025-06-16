@@ -25,10 +25,10 @@ CCE is a container service developed on Docker and Kubernetes. It offers a wide 
 
 **Highly Available and Secure**
 
--  HA: Three master nodes in different AZs for your cluster control plane. Multi-active DR for your nodes and workloads. All these ensure service continuity when one of the nodes is down or an AZ gets hit by natural disasters.
+-  HA: Three master nodes in different AZs for your cluster management plane. Multi-active DR for your nodes and workloads. All these ensure service continuity when one of the nodes is down or an AZ gets hit by natural disasters.
 
 
-   .. figure:: /_static/images/en-us_image_0000002065477978.png
+   .. figure:: /_static/images/en-us_image_0000002253617217.png
       :alt: **Figure 1** Achieving cluster HA
 
       **Figure 1** Achieving cluster HA
@@ -81,7 +81,7 @@ Docker has moved forward to enhance container isolation. Containers have their o
 VMs use a hypervisor to virtualize and allocate hardware resources (such as memory, CPU, network, and disk) of a host machine. A complete operating system runs on a VM. Each VM needs to run its own system processes. On the contrary, a container does not require hardware resource virtualization. It runs an application process directly in the host machine OS kernel. No resource overheads are incurred by running system processes. Therefore, Docker is lighter and faster than VMs.
 
 
-.. figure:: /_static/images/en-us_image_0000002101676373.png
+.. figure:: /_static/images/en-us_image_0000002253777129.png
    :alt: **Figure 2** Comparison between Docker containers and VMs
 
    **Figure 2** Comparison between Docker containers and VMs
@@ -122,7 +122,7 @@ A Docker image is built up from a series of layers and these layers are stacked.
    Feature              Containers              VMs
    ==================== ======================= ===========
    Start speed          In seconds              In minutes
-   Disk capacity        MB                      GB
-   Performance          Near-native performance Weak
+   Disk capacity        MiB                     GiB
+   Performance          Near-native             Weak
    Per-machine capacity Thousands of containers Tens of VMs
    ==================== ======================= ===========

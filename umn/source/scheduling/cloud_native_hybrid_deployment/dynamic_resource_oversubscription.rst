@@ -12,7 +12,7 @@ Resource oversubscription is the process of making use of idle requested resourc
 Hybrid deployment of online and offline jobs in a cluster can better utilize cluster resources.
 
 
-.. figure:: /_static/images/en-us_image_0000002065638678.png
+.. figure:: /_static/images/en-us_image_0000002218820034.png
    :alt: **Figure 1** Resource oversubscription
 
    **Figure 1** Resource oversubscription
@@ -83,7 +83,7 @@ Compatible kubelet Oversubscription
       -  v1.23: v1.23.5-r0 or later
       -  v1.25 or later
 
-   -  Cluster type: CCE standard or CCE Turbo
+   -  Cluster type: CCE standard or Turbo
    -  Node OS: EulerOS 2.9 (kernel-4.18.0-147.5.1.6.h729.6.eulerosv2r9.x86_64) or HCE OS 2.0
    -  Node type: ECS
    -  Volcano version: 1.7.0 or later
@@ -213,7 +213,7 @@ Ensure that you have correctly configure labels because the scheduler does not c
       +-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | volcano.sh/evicting-memory-low-watermark  | Lower limit for memory usage. When the memory usage of a node is higher than the upper limit, offline jobs will be evicted. The node accepts the offline jobs again only when the memory usage of the node is lower than the lower limit. |
       |                                           |                                                                                                                                                                                                                                           |
-      |                                           | The default value is **30**, indicating that offline jobs are accepted again when the memory usage of a node is less than 30%.                                                                                                            |
+      |                                           | The default value is **30**, indicating that offline jobs are accepted again when the memory usage of a node is lower than 30%.                                                                                                           |
       +-------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | volcano.sh/oversubscription-types         | Oversubscribed resource type. Options:                                                                                                                                                                                                    |
       |                                           |                                                                                                                                                                                                                                           |
@@ -248,7 +248,7 @@ Ensure that you have correctly configure labels because the scheduler does not c
 
       EOF
 
-#. Deploy online and offline jobs and configure priorityClasses for these jobs.
+#. Deploy online and offline jobs and configure PriorityClasses for these jobs.
 
    The **volcano.sh/qos-level** annotation needs to be added to distinguish offline jobs. The value is an integer ranging from -7 to 7. If the value is less than 0, the job is an offline job. If the value is greater than or equal to 0, the job is an online job. You do not need to set this annotation for online jobs. For both online and offline jobs, set **schedulerName** to **volcano** to enable Volcano.
 

@@ -5,7 +5,7 @@
 Secure Runtime and Common Runtime
 =================================
 
-The most significant difference is that each Kata container (pod) runs on an independent micro-VM, has an independent OS kernel, and is securely isolated at the virtualization layer. With a secure runtime, kernels, compute resources, and networks are isolated between containers to protect pod resources and data from being preempted and stolen by other pods.
+Compared with a common runtime, a secure runtime allows each container (pod) to run on its own micro-VM with a separate OS kernel. This ensures secure isolation at the virtualization layer. With a secure runtime, kernels, compute resources, and networks are isolated between containers to protect pod resources and data from being preempted and stolen by other pods.
 
 CCE Turbo clusters allow you to create workloads using a common runtime or secure runtime as required. The differences between them are as follows.
 

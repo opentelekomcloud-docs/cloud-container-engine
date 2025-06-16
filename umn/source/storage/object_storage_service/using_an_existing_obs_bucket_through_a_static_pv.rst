@@ -11,19 +11,19 @@ Prerequisites
 -------------
 
 -  You have created a cluster and installed the :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on in the cluster.
--  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 Notes and Constraints
 ---------------------
 
 -  If OBS volumes are used, the owner group and permission of the mount point cannot be modified.
 -  Every time an OBS volume is mounted to a workload through a PVC, a resident process is created in the backend. When a workload uses too many OBS volumes or reads and writes a large number of object storage files, resident processes will consume a significant amount of memory. To ensure stable running of the workload, make sure that the number of OBS volumes used does not exceed the requested memory. For example, if the workload requests for 4 GiB of memory, the number of OBS volumes should be **no more than** 4.
--  Kata containers do not support OBS volumes.
+-  Secure containers do not support OBS volumes.
 -  Hard links are not supported when common buckets are mounted.
 
 -  Multiple PVs can use the same OBS storage volume with the following restrictions:
 
-   -  Do not mount the PVCs/PVs that use the same underlying OBS volume to one pod. This will lead to a pod startup failure because not all PVCs can be mounted to the pod due to the same **volumeHandle** value.
+   -  Do not mount multiple PVCs or PVs that use the same underlying OBS volume to a single pod. Doing so will cause pod startup failures, as not all PVCs can be mounted due to identical **volumeHandle** value.
    -  The **persistentVolumeReclaimPolicy** parameter in the PVs must be set to **Retain**. Otherwise, when a PV is deleted, the associated underlying volume may be deleted. In this case, other PVs associated with the underlying volume malfunction.
    -  If underlying storage is repeatedly used, you are required to maintain data consistency. Enable isolation and protection for ReadWriteMany at the application layer and prevent multiple clients from writing the same file to prevent data overwriting and loss.
 
@@ -88,7 +88,7 @@ Using an Existing OBS Bucket on the Console
 
    a. Choose **Workloads** in the navigation pane. In the right pane, click the **Deployments** tab.
 
-   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Settings** area and click **Add Volume** to select **PVC**.
+   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Information** area under **Container Settings** and choose **Add Volume** > **PVC**.
 
       Mount and use storage volumes, as shown in :ref:`Table 1 <cce_10_0379__table2529244345>`. For details about other parameters, see :ref:`Workloads <cce_10_0046>`.
 
@@ -154,7 +154,6 @@ Using an Existing OBS Bucket Through kubectl
                storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
                everest.io/obs-volume-type: STANDARD
                everest.io/region: <your_region>                        # Region where the OBS volume is
-
              nodePublishSecretRef:            # Custom secret of the OBS volume
                name: <your_secret_name>       # Custom secret name
                namespace: <your_namespace>    # Namespace of the custom secret
@@ -180,9 +179,9 @@ Using an Existing OBS Bucket Through kubectl
          +-----------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | volumeHandle                                  | Yes                   | OBS volume name.                                                                                                                                                                                                                                                                                        |
          +-----------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | everest.io/obs-volume-type                    | Yes                   | OBS storage class.                                                                                                                                                                                                                                                                                      |
+         | everest.io/obs-volume-type                    | Yes                   | OBS StorageClass.                                                                                                                                                                                                                                                                                       |
          |                                               |                       |                                                                                                                                                                                                                                                                                                         |
-         |                                               |                       | -  If **fsType** is set to **s3fs**, **STANDARD** (standard bucket) and **WARM** (infrequent access bucket) are supported.                                                                                                                                                                              |
+         |                                               |                       | -  If **fsType** is set to **s3fs**, standard buckets (**STANDARD**) and infrequent access buckets (**WARM**) are supported.                                                                                                                                                                            |
          |                                               |                       | -  This parameter is invalid when **fsType** is set to **obsfs**.                                                                                                                                                                                                                                       |
          +-----------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | everest.io/region                             | Yes                   | Region where the OBS bucket is deployed.                                                                                                                                                                                                                                                                |
@@ -191,7 +190,7 @@ Using an Existing OBS Bucket Through kubectl
          +-----------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | nodePublishSecretRef                          | No                    | Access key (AK/SK) used for mounting the object storage volume. You can use the AK/SK to create a secret and mount it to the PV. For details, see :ref:`Using a Custom Access Key (AK/SK) to Mount an OBS Volume <cce_10_0336>`.                                                                        |
          |                                               |                       |                                                                                                                                                                                                                                                                                                         |
-         |                                               |                       | An example is as follows:                                                                                                                                                                                                                                                                               |
+         |                                               |                       | Example:                                                                                                                                                                                                                                                                                                |
          |                                               |                       |                                                                                                                                                                                                                                                                                                         |
          |                                               |                       | .. code-block::                                                                                                                                                                                                                                                                                         |
          |                                               |                       |                                                                                                                                                                                                                                                                                                         |
@@ -214,7 +213,7 @@ Using an Existing OBS Bucket Through kubectl
          +-----------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | storage                                       | Yes                   | Storage capacity, in Gi.                                                                                                                                                                                                                                                                                |
          |                                               |                       |                                                                                                                                                                                                                                                                                                         |
-         |                                               |                       | For OBS, this field is used only for verification (cannot be empty or 0). Its value is fixed at **1**, and any value you set does not take effect for OBS.                                                                                                                                              |
+         |                                               |                       | For OBS, this parameter is used only for verification (cannot be empty or 0). Its value is fixed at **1**, and any value you set does not take effect for OBS.                                                                                                                                          |
          +-----------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | storageClassName                              | Yes                   | StorageClass name, which is **csi-obs** for an OBS volume.                                                                                                                                                                                                                                              |
          +-----------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -240,9 +239,8 @@ Using an Existing OBS Bucket Through kubectl
              volume.beta.kubernetes.io/storage-provisioner: everest-csi-provisioner
              everest.io/obs-volume-type: STANDARD
              csi.storage.k8s.io/fstype: obsfs
-             csi.storage.k8s.io/node-publish-secret-name: <your_secret_name>  # Custom secret name.
-             csi.storage.k8s.io/node-publish-secret-namespace: <your_namespace>        # Namespace of the custom secret.
-
+             csi.storage.k8s.io/node-publish-secret-name: <your_secret_name>  # Custom secret name
+             csi.storage.k8s.io/node-publish-secret-namespace: <your_namespace>        # Namespace of the custom secret
          spec:
            accessModes:
            - ReadWriteMany                  # The value must be ReadWriteMany for OBS.
@@ -254,23 +252,23 @@ Using an Existing OBS Bucket Through kubectl
 
       .. table:: **Table 3** Key parameters
 
-         +--------------------------------------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Parameter                                        | Mandatory             | Description                                                                                                                                                |
-         +==================================================+=======================+============================================================================================================================================================+
-         | csi.storage.k8s.io/node-publish-secret-name      | No                    | Name of the custom secret specified in the PV.                                                                                                             |
-         +--------------------------------------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | csi.storage.k8s.io/node-publish-secret-namespace | No                    | Namespace of the custom secret specified in the PV.                                                                                                        |
-         +--------------------------------------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | storage                                          | Yes                   | Requested capacity in the PVC, in Gi.                                                                                                                      |
-         |                                                  |                       |                                                                                                                                                            |
-         |                                                  |                       | For OBS, this field is used only for verification (cannot be empty or 0). Its value is fixed at **1**, and any value you set does not take effect for OBS. |
-         +--------------------------------------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | storageClassName                                 | Yes                   | StorageClass name, which must be the same as the StorageClass of the PV in :ref:`1 <cce_10_0379__li162841212145314>`.                                      |
-         |                                                  |                       |                                                                                                                                                            |
-         |                                                  |                       | StorageClass name, which is **csi-obs** for an OBS volume.                                                                                                 |
-         +--------------------------------------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | volumeName                                       | Yes                   | PV name, which must be the same as the PV name in :ref:`1 <cce_10_0379__li162841212145314>`.                                                               |
-         +--------------------------------------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         +--------------------------------------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Parameter                                        | Mandatory             | Description                                                                                                                                                    |
+         +==================================================+=======================+================================================================================================================================================================+
+         | csi.storage.k8s.io/node-publish-secret-name      | No                    | Name of the custom secret specified in the PV.                                                                                                                 |
+         +--------------------------------------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | csi.storage.k8s.io/node-publish-secret-namespace | No                    | Namespace of the custom secret specified in the PV.                                                                                                            |
+         +--------------------------------------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | storage                                          | Yes                   | Requested capacity in the PVC, in Gi.                                                                                                                          |
+         |                                                  |                       |                                                                                                                                                                |
+         |                                                  |                       | For OBS, this parameter is used only for verification (cannot be empty or 0). Its value is fixed at **1**, and any value you set does not take effect for OBS. |
+         +--------------------------------------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | storageClassName                                 | Yes                   | StorageClass name, which must be the same as the StorageClass of the PV in :ref:`1 <cce_10_0379__li162841212145314>`.                                          |
+         |                                                  |                       |                                                                                                                                                                |
+         |                                                  |                       | StorageClass name, which is **csi-obs** for an OBS volume.                                                                                                     |
+         +--------------------------------------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | volumeName                                       | Yes                   | PV name, which must be the same as the PV name in :ref:`1 <cce_10_0379__li162841212145314>`.                                                                   |
+         +--------------------------------------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    b. Run the following command to create a PVC:
 

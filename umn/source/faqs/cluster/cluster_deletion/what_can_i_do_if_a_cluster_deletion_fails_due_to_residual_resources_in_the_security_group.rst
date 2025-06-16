@@ -16,8 +16,8 @@ The cluster cannot be deleted, and the following error information is displayed:
 
    Expected HTTP response code [200 202 204 404] when accessing [DELETE https://vpc.***.com/v2.0/security-groups/46311976-7743-4c7c-8249-ccd293bcae91], but got 409 instead {"code":"VPC.0602","message":"{\"NeutronError\":{\"message\": \"Security Group 46311976-7743-4c7c-8249-ccd293bcae91 in use.\",\"type\":\"SecurityGroupInUse\",\"detail\":\"\"}}"}
 
-Possible Causes
----------------
+Possible Cause
+--------------
 
 The cluster's security group has undeleted resources, preventing its deletion and causing the creation of the cluster to fail.
 
@@ -28,7 +28,7 @@ Procedure
 
 #. Click the security group to view its details, and click the **Associated Instances** tab.
 
-   Obtain other resources associated with the security group, such as servers, ENIs, and sub-ENIs. You can delete residual resources. The sub ENIs will be automatically deleted.
+   Obtain other resources associated with the security group, such as ENIs, sub-ENIs, and servers. You can delete the residual resources. The sub-ENIs will be automatically deleted.
 
 #. For a residual ENI, go to the **Network Interfaces** page and delete the ENI obtained in the previous step.
 

@@ -16,6 +16,7 @@ Details
 **Possible causes:**
 
 #. The Network Time Protocol daemon (ntpd) is not installed or fails to be installed, Kubernetes components fail to pass the pre-verification, or the disk partition is incorrect. The current solution is to create a cluster again. For details about how to locate the fault, see :ref:`Locating the Failure Cause <cce_faq_00111__section398812378182>`.
+#. The cluster does not have sufficient underlying resources. You can create a new cluster with the appropriate type and scale.
 
 .. _cce_faq_00111__section398812378182:
 

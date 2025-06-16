@@ -171,16 +171,20 @@ This section describes configuration examples of secret resource description fil
 Creating a Secret Using kubectl
 -------------------------------
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
-#. Create and edit the Base64-encoded **cce-secret.yaml** file.
+#. Encode the secret value using Base64.
 
    .. code-block::
 
-      # echo -n "content to be encoded" | base64
+      # echo -n "content-to-be-encoded" | base64
       ******
 
-   **vi cce-secret.yaml**
+#. Create a file named **cce-secret.yaml** and edit it.
+
+   .. code-block::
+
+      vi cce-secret.yaml
 
    The following YAML file uses the Opaque type as an example. For details about other types, see :ref:`Secret Resource File Configuration Example <cce_10_0153__section187197531454>`.
 
@@ -196,11 +200,15 @@ Creating a Secret Using kubectl
 
 #. Create a secret.
 
-   **kubectl create -f cce-secret.yaml**
+   .. code-block::
+
+      kubectl create -f cce-secret.yaml
 
    You can query the secret after creation.
 
-   **kubectl get secret -n default**
+   .. code-block::
+
+      kubectl get secret -n default
 
 Related Operations
 ------------------
@@ -213,7 +221,7 @@ After creating a secret, you can update or delete it as described in :ref:`Table
 
 .. _cce_10_0153__table555785274319:
 
-.. table:: **Table 2** Related Operations
+.. table:: **Table 2** Related operations
 
    +-----------------------------------+------------------------------------------------------------------------------------------------------+
    | Operation                         | Description                                                                                          |
@@ -245,4 +253,4 @@ To Base64-encode a string, run the **echo -n content to be encoded \| base64** c
    root@ubuntu:~# echo -n "content to be encoded" | base64
    ******
 
-.. |image1| image:: /_static/images/en-us_image_0000002101597689.png
+.. |image1| image:: /_static/images/en-us_image_0000002253620365.png

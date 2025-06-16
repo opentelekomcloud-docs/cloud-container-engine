@@ -35,4 +35,4 @@ Solution
 
       systemctl status kubelet
 
-   If the fault persists, reset the node. For details, see :ref:`Resetting a Node <cce_10_0003>`.
+If the fault persists, reset the node. For details, see :ref:`Resetting a Node <cce_10_0003>`.

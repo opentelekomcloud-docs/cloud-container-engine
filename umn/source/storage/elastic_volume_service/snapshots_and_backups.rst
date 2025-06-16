@@ -83,9 +83,13 @@ The disk type, encryption setting, and disk mode of the created EVS PVC are cons
 
    -  **PVC Name**: Enter a PVC name.
 
-   -  **Resource Tag**: Resource tags can be added to classify resources, which is supported only when the Everest version in the cluster is 2.1.39 or later.
+   -  **Storage Volume Name Prefix**: specifies the prefix for the name of the underlying storage that is automatically created. The actual underlying storage name is in the format of "PV name prefix + PVC UID". This parameter is optional. If left blank, the default prefix **pvc** will be used. For example, if the storage volume name prefix is set to **test**, the actual underlying storage name is **test-**\ *{UID}*.
 
-      You can create **predefined tags** on the TMS console. The predefined tags are available to all resources that support tags. You can use these tags to improve the tag creation and resource migration efficiency.
+      This parameter is available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest of v2.4.15 or later is installed in the cluster.
+
+   -  **Resource Tag**: You can add resource tags to classify resources, which is supported only when the Everest version in the cluster is 2.1.39 or later.
+
+      You can create **predefined tags** on the TMS console. These tags are available to all resources that support tags. You can use these tags to improve the tag creation and resource migration efficiency.
 
       CCE automatically creates system tags **CCE-Cluster-ID=**\ *{Cluster ID}*, **CCE-Cluster-Name=**\ *{Cluster name}*, and **CCE-Namespace=**\ *{Namespace name}*. These tags cannot be modified.
 

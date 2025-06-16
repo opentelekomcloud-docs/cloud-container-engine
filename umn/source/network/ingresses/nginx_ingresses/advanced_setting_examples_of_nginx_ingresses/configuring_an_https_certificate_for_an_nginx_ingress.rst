@@ -7,7 +7,7 @@ Configuring an HTTPS Certificate for an Nginx Ingress
 
 HTTPS certificates can be configured for ingresses to provide security services.
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Ingress supports two TLS secret types: kubernetes.io/tls and IngressTLS. IngressTLS is used as an example. For details, see :ref:`Creating a Secret <cce_10_0153>`. For details about examples of the kubernetes.io/tls secret and its description, see `TLS secrets <https://kubernetes.io/docs/concepts/configuration/secret/#tls-secret>`__.
 
@@ -80,10 +80,10 @@ HTTPS certificates can be configured for ingresses to provide security services.
       spec:
         tls:
         - hosts:
-          - foo.bar.com
+          - example.com
           secretName: ingress-test-secret  # Replace it with your TLS key certificate.
         rules:
-          - host: foo.bar.com
+          - host: example.com
             http:
               paths:
                 - path: /
@@ -110,17 +110,16 @@ HTTPS certificates can be configured for ingresses to provide security services.
       spec:
         tls:
         - hosts:
-          - foo.bar.com
+          - example.com
           secretName: ingress-test-secret   # Replace it with your TLS key certificate.
         rules:
-        - host: foo.bar.com
+        - host: example.com
           http:
             paths:
             - path: '/'
               backend:
                 serviceName: <your_service_name>  # Replace it with the name of your target Service.
                 servicePort: <your_service_port>  # Replace it with the port number of your target Service.
-        ingressClassName: nginx
 
 #. Create an ingress.
 
@@ -144,9 +143,9 @@ HTTPS certificates can be configured for ingresses to provide security services.
 
    .. code-block::
 
-      NAME          CLASS   HOSTS     ADDRESS          PORTS   AGE
-      ingress-test  nginx   *         121.**.**.**     80      10s
+      NAME          CLASS   HOSTS         ADDRESS    PORTS   AGE
+      ingress-test  nginx   example.com              80,443  10s
 
-#. Enter **https://121.**.**.*\*:443** in the address box of the browser to access the workload (for example, :ref:`Nginx workload <cce_10_0047__section155246177178>`).
+#. Enter **https://example.com** in the address box of the browser to access the workload (for example, :ref:`Nginx workload <cce_10_0047__section155246177178>`).
 
-   **121.**.**.*\*** indicates the IP address of the unified load balancer.
+   Replace **example.com** with your domain name.

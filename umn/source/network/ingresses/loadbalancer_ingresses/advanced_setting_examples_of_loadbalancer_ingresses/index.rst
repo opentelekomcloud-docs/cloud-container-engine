@@ -19,6 +19,7 @@ Advanced Setting Examples of LoadBalancer Ingresses
 -  :ref:`Configuring a Custom Header Forwarding Policy for a LoadBalancer Ingress <cce_10_0896>`
 -  :ref:`Configuring a Custom EIP for a LoadBalancer Ingress <cce_10_0925>`
 -  :ref:`Configuring Advanced Forwarding Rules for a LoadBalancer Ingress <cce_10_0940>`
+-  :ref:`Configuring Advanced Forwarding Actions for a LoadBalancer Ingress <cce_10_0949>`
 
 .. toctree::
    :maxdepth: 1
@@ -38,3 +39,4 @@ Advanced Setting Examples of LoadBalancer Ingresses
    configuring_a_custom_header_forwarding_policy_for_a_loadbalancer_ingress
    configuring_a_custom_eip_for_a_loadbalancer_ingress
    configuring_advanced_forwarding_rules_for_a_loadbalancer_ingress
+   configuring_advanced_forwarding_actions_for_a_loadbalancer_ingress

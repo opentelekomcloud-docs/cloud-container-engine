@@ -16,6 +16,7 @@ Solution
 CCE may temporarily restrict the cluster upgrade due to the following reasons:
 
 -  The cluster is identified as the core production cluster.
--  Other O&M tasks are being or will be performed, for example, 3-AZ reconstruction on master nodes.
+-  Other O&M tasks are either in progress or planned, such as the 3-AZ reconstruction on master nodes.
+-  If the cluster contains Docker nodes but their OSs are different from that of the node pool, reset these nodes and run the pre-upgrade check again.
 
 To resolve this issue, contact technical support based on logs displayed on the console.

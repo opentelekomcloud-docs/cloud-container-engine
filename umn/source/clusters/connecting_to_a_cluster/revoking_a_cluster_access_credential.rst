@@ -5,7 +5,7 @@
 Revoking a Cluster Access Credential
 ====================================
 
-In multi-tenant scenarios, CCE generates a credential (kubeconfig or X.509 certificate) for you to access the corresponding cluster. The credential contains user identity and authorization information so that you can access the cluster and perform authorized operations on it. Credentials ensure security between IAM users for user management and authorization. However, the validity period of a credential is usually fixed. When an employee holding the credential resigns or an authorized credential is disclosed, you need to manually revoke the credential to ensure cluster security.
+In multi-tenant scenarios, CCE generates a unique credential (such as a kubeconfig file or an X.509 certificate) for each user to access their designated cluster. These credentials contain user identity and authorization details, enabling users to perform authorized operations while ensuring secure isolation and management. However, credentials typically have a fixed validity period. If an employee resigns or a credential is compromised, manual revocation is required to maintain cluster security.
 
 The credentials can be revoked in the following scenarios:
 
@@ -29,7 +29,7 @@ Operations Performed by IAM Users
 IAM users can only revoke their own credentials. To revoke a credential, perform the following operations:
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. Choose **Overview** in the navigation pane. In the right pane, locate the **Connection Information** area and click **Revoke** for **Certificate Authentication**.
+#. Choose **Overview** in the navigation pane. In the **Connection Info** area on the right of the page, click **Revoke**.
 #. In the dialog box displayed, enter **REVOKE** in the confirmation box and click **OK** if you are sure you want to revoke the credential.
 
 Operations Performed by Accounts or Administrators
@@ -38,20 +38,28 @@ Operations Performed by Accounts or Administrators
 Accounts or administrators (users in the admin user group) can revoke the credentials of other users or delegated accounts. To revoke a credential, see the following operations:
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. Choose **Overview** in the navigation pane. In the right pane, locate the **Connection Information** area and click **Revoke** for **Certificate Authentication**.
-#. Select a certificate applicant and revoke the certificate. The revoked certificate cannot be restored. Exercise caution when performing this operation.
 
-   -  **User**: Select an IAM user and revoke its credential.
+#. Choose **Overview** in the navigation pane. In the **Connection Info** area on the right of the page, click **Revoke**.
 
-   -  **Account**: Select an agency account and revoke its credentials.
+#. Select a certificate applicant to revoke the certificate. For details about the parameters, see :ref:`Table 1 <cce_10_0744__table1450610254177>`. After the certificate is revoked, the original X.509 certificate and kubectl configuration file become invalid. If the certificate applicant needs to regain access to the cluster, they must download the certificate or kubectl configuration file again.
 
-   -  **Specify User ID/Delegacy ID**: If the user has been deleted or you log in to the system through an identity provider, manually enter the user ID. If the delegated account has been deleted, manually enter the delegated ID.
+   .. _cce_10_0744__table1450610254177:
 
-      You can use the following solution to obtain the ID:
+   .. table:: **Table 1** Certificate applicant
 
-      -  If you can obtain the certificate downloaded by the applicant, the name (**CN - Common Name**) of the certificate is the required ID.
-      -  If you cannot obtain the certificate downloaded by the applicant, use Cloud Trace Service (CTS) to obtain the events of deleting a user (**deleteUser**) and deleting an agency (**deleteAgency**). The resource IDs of the events are the IDs of the deleted user and delegated account, respectively.
-
-      If the required ID cannot be obtained using the preceding methods, submit a service ticket to O&M personnel.
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                                                                |
+      +===================================+============================================================================================================================================================================================================================================================+
+      | User                              | **User**: Select an IAM user and revoke their credential.                                                                                                                                                                                                  |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Account                           | **Account**: Select an agency account and revoke their credential.                                                                                                                                                                                         |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Other user/agency ID              | If your IAM user or account has been deleted, or if you log in to the system through an identity provider, you need to manually enter the user ID or agency ID. To obtain an ID, do as follows:                                                            |
+      |                                   |                                                                                                                                                                                                                                                            |
+      |                                   | -  If you can obtain the certificate downloaded by the applicant, the certificate's common name (CN) serves as the required ID.                                                                                                                            |
+      |                                   | -  If you cannot obtain the certificate downloaded by the applicant, use Cloud Trace Service (CTS) to retrieve the **deleteUser** and **deleteAgency** events. The resource IDs of these events are the IDs of the deleted user and account, respectively. |
+      |                                   |                                                                                                                                                                                                                                                            |
+      |                                   | If the required ID cannot be obtained using the preceding methods, submit a service ticket to O&M personnel.                                                                                                                                               |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. In the dialog box displayed, enter **REVOKE** in the confirmation box and click **OK** if you are sure you want to revoke the credential.

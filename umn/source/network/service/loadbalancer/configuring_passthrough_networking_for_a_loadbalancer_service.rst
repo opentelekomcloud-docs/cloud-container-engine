@@ -18,7 +18,7 @@ Solution
 CCE supports passthrough networking. You can configure the **kubernetes.io/elb.pass-through** annotation for the LoadBalancer Service so that the load balancer forwards the intra-cluster access to the IP address of the load balancer associated with the Service to backend pods.
 
 
-.. figure:: /_static/images/en-us_image_0000002101596525.png
+.. figure:: /_static/images/en-us_image_0000002253618649.png
    :alt: **Figure 1** Passthrough networking illustration
 
    **Figure 1** Passthrough networking illustration
@@ -33,11 +33,11 @@ CCE supports passthrough networking. You can configure the **kubernetes.io/elb.p
 
    When a client accesses a LoadBalancer Service from within the cluster, passthrough is used by default. In this case, the client directly accesses the load balancer private network IP address and then access a container through the load balancer.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  In a CCE standard cluster, after passthrough networking is configured for a dedicated load balancer, the private IP address of the load balancer cannot be accessed from the node where the workload pod resides or other containers on the same node as the workload.
--  Passthrough networking is not supported for clusters of v1.15 or earlier.
+-  Passthrough networking is not supported for clusters of or earlier.
 -  In IPVS network mode, the passthrough settings of Services connected to the same load balancer must be the same.
 -  If node-level (local) service affinity is used, **kubernetes.io/elb.pass-through** is automatically set to **onlyLocal** to enable pass-through.
 
@@ -89,7 +89,7 @@ This section describes how to create a Deployment using an Nginx image and creat
 
 #. Create a LoadBalancer Service and set **kubernetes.io/elb.pass-through** to **true**.
 
-   The content of the **nginx-elb-svc.yaml** file is as follows. (In this example, a shared load balancer named **james** is automatically created.)
+   The content of the **nginx-elb-svc.yaml** file is as follows: (In this example, a shared load balancer named **james** is automatically created.)
 
    .. code-block::
 

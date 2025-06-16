@@ -11,7 +11,7 @@ You can run the **kubectl drain** command to safely evict all pods from a node.
 
    By default, the **kubectl drain** command retains some system pods, for example, everest-csi-driver.
 
-#. Use kubectl to connect to the cluster.
+#. Use kubectl to access the cluster.
 
 #. Check the nodes in the cluster.
 

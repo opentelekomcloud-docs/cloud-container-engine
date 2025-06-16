@@ -12,7 +12,7 @@ This section describes how to use workload identities in CCE.
 Notes and Constraints
 ---------------------
 
-The cluster version must be 1.19.16 or later.
+The cluster version must be v1.19.16 or later.
 
 Procedure
 ---------
@@ -21,7 +21,7 @@ Procedure
 
 #. Create an identity provider on IAM. For details, see :ref:`Step 2: Configure an Identity Provider <cce_bestpractice_0333__en-us_topic_0000001280331044_section18167152865013>`.
 
-#. Obtain an IAM token from the workload to simulate an IAM user to access a cloud service. For details, see :ref:`Step 3: Use a Workload Identity <cce_bestpractice_0333__en-us_topic_0000001280331044_section38531454152611>`.
+#. Obtain an IAM token from the workload and simulate an IAM user to access a cloud service. For details, see :ref:`Step 3: Use a Workload Identity <cce_bestpractice_0333__en-us_topic_0000001280331044_section38531454152611>`.
 
    The procedure is as follows:
 
@@ -44,14 +44,16 @@ Step 1: Obtain the Public Key for Signature of the CCE Cluster
 
 #. Obtain the public key:
 
-   **kubectl get --raw /openid/v1/jwks**
+   .. code-block::
+
+      kubectl get --raw /openid/v1/jwks
+
+   The returned result is the public key of the cluster. The following is an example of the command output:
 
    .. code-block::
 
       # kubectl get --raw /openid/v1/jwks
       {"keys":[{"use":"sig","kty":"RSA","kid":"*****","alg":"RS256","n":"*****","e":"AQAB"}]}
-
-   The returned field is the public key of the cluster.
 
 .. _cce_bestpractice_0333__en-us_topic_0000001280331044_section18167152865013:
 
@@ -68,15 +70,18 @@ Step 2: Configure an Identity Provider
 
    -  **Identity Provider URL**: Enter **https://kubernetes.default.svc.cluster.local**.
    -  **Client ID**: Enter an ID, which will be used when you create a container.
+
+      .. caution::
+
+         You are not advised to use a client ID consisting solely of digits. If the client ID consists only of digits, enclose it in double quotation marks ("") when editing the YAML file for the workload. If the client ID is 123456789, it should be entered as **"123456789"** in the YAML file.
+
    -  **Signing Key**: Enter the JWKS of the CCE cluster obtained in :ref:`Step 1: Obtain the Public Key for Signature of the CCE Cluster <cce_bestpractice_0333__en-us_topic_0000001280331044_section5937204594820>`.
 
    **Identity Conversion Rules**
 
-   An identity conversion rule maps the ServiceAccount of a workload to IAM user.
+   An identity conversion rule maps the ServiceAccount of a workload to an IAM user.
 
-   For example, create a ServiceAccount named **oidc-token** in namespace **default** of the cluster and map it to user group **demo**. If you use the identity provider ID to access cloud services, you have the permissions of the **demo** user group. The attribute must be **sub**. The value format is **system:serviceaccount:Namespace:ServiceAccountName**.
-
-   |image1|
+   For example, create a ServiceAccount named **oidc-token** in namespace **default** of the cluster and map it to user group **demo**. If you use the identity provider ID to access cloud services, you have the permissions of the **demo** user group. The attribute must be **sub**. The value is in the format of **system:serviceaccount:Namespace:ServiceAccountName**.
 
    Rules are in the JSON format as follows:
 
@@ -206,7 +211,5 @@ Step 3: Use a Workload Identity
           }
 
       -  **$.auth.id_token.id**: The value is the content of the **/var/run/secrets/tokens/oidc-token** file in the container.
-      -  **$.auth.scope.project.id**: indicates the project ID. For details about how to obtain the project ID, see `Obtaining a Project ID <https://docs.otc.t-systems.com/en-us/api2/cce/cce_02_0341.html>`__.
+      -  **$.auth.scope.project.id**: indicates the project ID. To obtain the value, see `Obtaining a Project ID <https://docs.otc.t-systems.com/en-us/api2/cce/cce_02_0341.html>`__.
       -  **$.auth.scope.project.name**: indicates the project name.
-
-.. |image1| image:: /_static/images/en-us_image_0000001332989461.png

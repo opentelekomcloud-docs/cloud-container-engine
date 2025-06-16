@@ -5,8 +5,8 @@
 How Do I Fix an Abnormal Container or Node Due to No Thin Pool Disk Space?
 ==========================================================================
 
-Problem Description
--------------------
+Symptom
+-------
 
 When the disk space of a thin pool on a node is about to be used up, the following exceptions occasionally occur:
 
@@ -30,23 +30,23 @@ When the thin pool space of a node is used up, some services can be migrated to 
 
 **Solution 1:**
 
-Properly plan the service distribution and data plane disk space to avoid the scenario where **the number of service containers multiplied by basesize** is greater than the thin pool size of the node. To expand the thin pool size, perform the following steps:
+Properly plan the service distribution and data plane disk space to avoid the scenario where **the number of service containers multiplied by basesize** is greater than the thin pool size of the node. To expand the thin pool size, perform the following operations:
 
 #. Expand the capacity of a data disk on the EVS console.
 
-   Only the storage capacity of the EVS disk is expanded. You also need to perform the following steps to expand the capacity of the logical volume and file system.
+   Only the storage capacity of EVS disks can be expanded. You need to perform the following operations to expand the capacity of logical volumes and file systems.
 
-#. Log in to the CCE console and click the cluster. In the navigation pane, choose **Nodes**. Click **More** > **Sync Server Data** in the row containing the target node.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab, locate the row containing the target node, and choose **More** > **Sync Server Data** in the **Operation** column.
 
 #. Log in to the target node.
 
-#. Run the **lsblk** command to check the block device information of the node.
+#. Run **lsblk** to view the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 
    Overlayfs: No independent thin pool is allocated. Image data is stored in **dockersys**.
 
-   a. Check the disk and partition sizes of the device.
+   a. Check the disk and partition space of the device.
 
       .. code-block::
 
@@ -54,7 +54,7 @@ Properly plan the service distribution and data plane disk space to avoid the sc
          NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
          sda                   8:0    0   50G  0 disk
          └─sda1                8:1    0   50G  0 part /
-         sdb                   8:16   0  150G  0 disk      # The data disk has been expanded to 150 GiB, but 50 GiB space is not allocated.
+         sdb                   8:16   0  150G  0 disk      # The data disk has been expanded to 150 GiB, but 50 GiB space is free.
          ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/containerd
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
@@ -102,7 +102,7 @@ Properly plan the service distribution and data plane disk space to avoid the sc
             old_desc_blocks = 12, new_desc_blocks = 18
             The filesystem on /dev/vgpaas/dockersys is now 36700160 blocks long.
 
-   c. Check whether the capacity is expanded.
+   c. Check whether the capacity has been expanded.
 
       .. code-block::
 
@@ -114,9 +114,9 @@ Properly plan the service distribution and data plane disk space to avoid the sc
          ├─vgpaas-dockersys  253:0    0   140G  0 lvm  /var/lib/containerd
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
-   Devicemapper: A thin pool is allocated to store image data.
+   Device Mapper: A thin pool is allocated to store image data.
 
-   a. Check the disk and partition sizes of the device.
+   a. Check the disk and partition space of the device.
 
       .. code-block::
 
@@ -127,7 +127,7 @@ Properly plan the service distribution and data plane disk space to avoid the sc
          vdb                                   8:16   0  200G  0 disk
          ├─vgpaas-dockersys                  253:0    0   18G  0 lvm  /var/lib/docker
          ├─vgpaas-thinpool_tmeta             253:1    0    3G  0 lvm
-         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Space used by thinpool
+         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Space used by thin pool
          │   ...
          ├─vgpaas-thinpool_tdata             253:2    0   67G  0 lvm
          │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm
@@ -136,9 +136,9 @@ Properly plan the service distribution and data plane disk space to avoid the sc
 
    b. Expand the disk capacity.
 
-      Option 1: Add the new disk capacity to the thin pool disk.
+      Option 1: Add the new disk capacity to the thin pool.
 
-      #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where thinpool is located.
+      #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where thin pool is located.
 
          .. code-block::
 
@@ -166,7 +166,7 @@ Properly plan the service distribution and data plane disk space to avoid the sc
 
       #. Do not need to adjust the size of the file system, because the thin pool is not mounted to any devices.
 
-      #. Check whether the capacity is expanded. Run the **lsblk** command to check the disk and partition sizes of the device. If the new disk capacity has been added to the thin pool, the capacity is expanded.
+      #. Run the **lsblk** command to check the disk and partition space of the device and check whether the capacity has been expanded. If the new disk capacity was added to the thin pool, the capacity has been expanded.
 
          .. code-block::
 
@@ -226,7 +226,7 @@ Properly plan the service distribution and data plane disk space to avoid the sc
             old_desc_blocks = 3, new_desc_blocks = 15
             The filesystem on /dev/vgpaas/dockersys is now 30932992 blocks long.
 
-      #. Check whether the capacity is expanded. Run the **lsblk** command to check the disk and partition sizes of the device. If the new disk capacity has been added to the dockersys, the capacity is expanded.
+      #. Run the **lsblk** command to check the disk and partition space of the device and check whether the capacity has been expanded. If the new disk capacity was added to the dockersys, the capacity has been expanded.
 
          .. code-block::
 
@@ -252,4 +252,4 @@ Create and delete files in service containers in the local storage (such as empt
 
 If the OS uses OverlayFS, services can be deployed on such nodes to prevent the problem that the disk space occupied by files created or deleted in the container is not released immediately.
 
-.. |image1| image:: /_static/images/en-us_image_0000002101677421.png
+.. |image1| image:: /_static/images/en-us_image_0000002218818954.png

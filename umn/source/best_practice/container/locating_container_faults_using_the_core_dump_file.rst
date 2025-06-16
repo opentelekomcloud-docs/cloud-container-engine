@@ -8,12 +8,12 @@ Locating Container Faults Using the Core Dump File
 Application Scenarios
 ---------------------
 
-Linux allows you to create a core dump file if an application crashes, which contains the data the application had in memory at the time of the crash. You can analyze the file to locate the fault.
+A core dump is when the Linux OS saves the memory status to a file after a program crashes or stops unexpectedly. You can analyze the file to locate the fault.
 
 Generally, when a service application crashes, its container exits and is reclaimed and destroyed. Therefore, container core files need to be permanently stored on the host or cloud storage. This topic describes how to configure container core dumps.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 When a container core dump is persistently stored to OBS (parallel file system or object bucket), the default mount option **umask=0** is used. As a result, although the core dump file is generated, the core dump information cannot be written to the core file.
 
@@ -59,27 +59,54 @@ A core file can be stored in your host (using a hostPath volume) or cloud storag
        - mountPath: /tmp/cores
          name: coredump-path
 
-Create a pod using kubectl.
+Create the pod:
 
-**kubectl create -f pod.yaml**
+.. code-block::
+
+   kubectl create -f  pod.yaml
 
 Verification
 ------------
 
-After the pod is created, access the container and trigger a segmentation fault of the current shell terminal.
+#. Obtain the pod name:
 
-.. code-block::
+   .. code-block::
 
-   $ kubectl get pod
-   NAME                          READY   STATUS    RESTARTS   AGE
-   coredump                      1/1     Running   0          56s
-   $ kubectl exec -it coredump -- /bin/bash
-   root@coredump:/# kill -s SIGSEGV $$
-   command terminated with exit code 139
+      kubectl get pod
 
-Log in to the node and check whether a core file is generated in the **/home/coredump** directory. The following example indicates that a core file is generated.
+   Information similar to the following is displayed:
 
-.. code-block::
+   .. code-block::
 
-   # ls /home/coredump
-   core.coredump.bash.18.1650438992
+      NAME        READY   STATUS    RESTARTS   AGE
+      coredump    1/1     Running   0          56s
+
+#. Access the container:
+
+   .. code-block::
+
+      kubectl exec -it coredump -- /bin/sh
+
+   After accessing the container, run the following command to trigger a segmentation fault of the current shell terminal:
+
+   .. code-block::
+
+      kill -s SIGSEGV $$
+
+   Information similar to the following is displayed:
+
+   .. code-block::
+
+      command terminated with exit code 139
+
+#. Log in to the node and check whether the core file has been generated in **/home/coredump**.
+
+   .. code-block::
+
+      ls /home/coredump
+
+   If information similar to the following is displayed, the core file has been generated.
+
+   .. code-block::
+
+      core.coredump.bash.18.1650438992

@@ -5,49 +5,71 @@
 What Should I Do If a Storage Volume Cannot Be Mounted or the Mounting Times Out?
 =================================================================================
 
-Troubleshooting Process
------------------------
+Fault Locating
+--------------
 
-The issues here are described in order of how likely they are to occur.
-
-Check these causes one by one until you find the cause of the fault.
-
--  :ref:`Check Item 1: Whether EVS Volumes Are Mounted Across AZs <cce_faq_00200__section239014414225>`
--  :ref:`Check Item 2: Whether Multiple Permission Configurations Exist in the Storage Volume <cce_faq_00200__section15311186248>`
--  :ref:`Check Item 3: Whether There Is More Than One Replica for a Deployment with EVS Volumes <cce_faq_00200__section151615354218>`
--  :ref:`Check Item 4: Whether the EVS Disk File System Is Damaged <cce_faq_00200__section0802134413523>`
-
-
-.. figure:: /_static/images/en-us_image_0000002065479138.png
-   :alt: **Figure 1** Troubleshooting for storage volume mounting failure or mounting timeout
-
-   **Figure 1** Troubleshooting for storage volume mounting failure or mounting timeout
+-  :ref:`Abnormal EVS Storage Volume Mounting <cce_faq_00200__section239014414225>`
+-  :ref:`Abnormal SFS Turbo Storage Volume Mounting <cce_faq_00200__section1136646649>`
+-  :ref:`Storage Volume Mounting Timed Out <cce_faq_00200__section15311186248>`
 
 .. _cce_faq_00200__section239014414225:
 
-Check Item 1: Whether EVS Volumes Are Mounted Across AZs
---------------------------------------------------------
+Abnormal EVS Storage Volume Mounting
+------------------------------------
 
-**Symptom**
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| Symptom                                                                                                                                                                                                                       | Possible Cause                                                                                                                                                                                                                                                                                                             | Solution                                                                                             |
++===============================================================================================================================================================================================================================+============================================================================================================================================================================================================================================================================================================================+======================================================================================================+
+| Mounting an EVS volume to a StatefulSet times out.                                                                                                                                                                            | The node and the volume are in different AZs, causing a timeout during the mounting process and preventing the volume from being mounted to the workload.                                                                                                                                                                  | Create a volume in the same AZ as the node and mount the volume to the node.                         |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| A pod fails to be created, and an event similar to the following is displayed, indicating that the **volume fails to be mounted** to the pod is reported.                                                                     | The number of pods of the Deployment that uses an EVS volume is greater than 1.                                                                                                                                                                                                                                            | Set the number of pods of the Deployment that uses an EVS volume to 1 or use other types of volumes. |
+|                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                            |                                                                                                      |
+| .. code-block::                                                                                                                                                                                                               | If the Deployment uses an EVS volume, there can only be one Deployment pod. If you specify more than two pods for the Deployment, it will still be created. However, if these pods are scheduled on different nodes, some of them will fail to start because the EVS volume they rely on cannot be mounted to those nodes. |                                                                                                      |
+|                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                            |                                                                                                      |
+|    Multi-Attach error for volume "pvc-62a7a7d9-9dc8-42a2-8366-0f5ef9db5b60" Volume is already used by pod(s) testttt-7b774658cb-lc98h                                                                                         |                                                                                                                                                                                                                                                                                                                            |                                                                                                      |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| A pod fails to be created, and information similar to the following is displayed:                                                                                                                                             | The disk file system has been corrupted.                                                                                                                                                                                                                                                                                   | Back up the disk in EVS and restore the file system:                                                 |
+|                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                            |                                                                                                      |
+| .. code-block::                                                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                            | .. code-block::                                                                                      |
+|                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                            |                                                                                                      |
+|    MountVolume.MountDevice failed for volume "pvc-08178474-c58c-4820-a828-14437d46ba6f" : rpc error: code = Internal desc = [09060def-afd0-11ec-9664-fa163eef47d0] /dev/sda has file system, but it is detected to be damaged |                                                                                                                                                                                                                                                                                                                            |    fsck -y {drive letter}                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
 
-Mounting an EVS volume to a StatefulSet times out.
+.. _cce_faq_00200__section1136646649:
 
-**Fault Locating**
+Abnormal SFS Turbo Storage Volume Mounting
+------------------------------------------
 
-If your node is in **AZ 1** but the volume to be mounted is in **AZ 2**, the mounting times out and the volume cannot be mounted.
-
-**Solution**
-
-Create a volume in the same AZ as the node and mount the volume.
++----------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Symptom                                                                                                                          | Possible Cause                                                                                                             | Solution                                                                                                                                                                                                                         |
++==================================================================================================================================+============================================================================================================================+==================================================================================================================================================================================================================================+
+| -  In a common container scenario, the pod is in the **Processing** state, and the pod events include the following information. | #. The shared address in the PV is incorrect.                                                                              | #. Check whether the shared address in the PV is correct.                                                                                                                                                                        |
+|                                                                                                                                  | #. The network connection between the node where the pod runs and the SFS Turbo file system to be mounted is disconnected. |                                                                                                                                                                                                                                  |
+|    .. code-block::                                                                                                               |                                                                                                                            |    Obtain the YAML file of the PV and check the value of the **everest.io/share-export-location** field in **spec.csi.volumeAttributes**. (The correct shared address is the share path of the specified SFS Turbo file system.) |
+|                                                                                                                                  |                                                                                                                            |                                                                                                                                                                                                                                  |
+|       MountVolume.SetUp failed for volume {pv name}...                                                                           |                                                                                                                            |    .. code-block::                                                                                                                                                                                                               |
+|                                                                                                                                  |                                                                                                                            |                                                                                                                                                                                                                                  |
+| -  In a secure container scenario, the pod is in the **Abnormal** state, and the pod events include the following information:   |                                                                                                                            |       kubectl get pv {pv name} -ojsonpath='{.spec.csi.volumeAttributes.everest\.io\/share-export-location}{"\n"}'                                                                                                                |
+|                                                                                                                                  |                                                                                                                            |                                                                                                                                                                                                                                  |
+|    .. code-block::                                                                                                               |                                                                                                                            |    If a sub-path is specified, it must be a valid existing subdirectory in the correct format, for example, **192.168.135.24:/a/b/c**.                                                                                           |
+|                                                                                                                                  |                                                                                                                            |                                                                                                                                                                                                                                  |
+|       mount {SFS-Turbo-shared-address} to xxx failed                                                                             |                                                                                                                            | #. Verify the network connectivity between the node where the pod runs and the SFS Turbo file system to be mounted.                                                                                                              |
+|                                                                                                                                  |                                                                                                                            |                                                                                                                                                                                                                                  |
+|                                                                                                                                  |                                                                                                                            |    Check whether the SFS Turbo file system can be mounted to a workload:                                                                                                                                                         |
+|                                                                                                                                  |                                                                                                                            |                                                                                                                                                                                                                                  |
+|                                                                                                                                  |                                                                                                                            |    .. code-block::                                                                                                                                                                                                               |
+|                                                                                                                                  |                                                                                                                            |                                                                                                                                                                                                                                  |
+|                                                                                                                                  |                                                                                                                            |       mount -t nfs -o vers=3,nolock,noresvport {SFS-Turbo-shared-address} /tmp                                                                                                                                                   |
++----------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. _cce_faq_00200__section15311186248:
 
-Check Item 2: Whether Multiple Permission Configurations Exist in the Storage Volume
-------------------------------------------------------------------------------------
+Storage Volume Mounting Timed Out
+---------------------------------
 
 If the volume to be mounted stores too much data and involves permission-related configurations, the file permissions need to be modified one by one, which results in mounting timeout.
 
-**Fault Locating**
+**Fault locating**
 
 -  Check whether the **securityContext** field contains **runAsuser** and **fsGroup**. **securityContext** is a Kubernetes field that defines the permission and access control settings of pods or containers.
 -  Check whether the startup commands contain commands used to obtain or modify file permissions, such as **ls**, **chmod**, and **chown**.
@@ -55,45 +77,3 @@ If the volume to be mounted stores too much data and involves permission-related
 **Solution**
 
 Determine whether to modify the settings based on your service requirements.
-
-.. _cce_faq_00200__section151615354218:
-
-Check Item 3: Whether There Is More Than One Replica for a Deployment with EVS Volumes
---------------------------------------------------------------------------------------
-
-**Symptom**
-
-The pod fails to be created, and an event indicating that the storage fails to be added is reported.
-
-.. code-block::
-
-   Multi-Attach error for volume "pvc-62a7a7d9-9dc8-42a2-8366-0f5ef9db5b60" Volume is already used by pod(s) testttt-7b774658cb-lc98h
-
-**Fault Locating**
-
-Check whether the number of replicas of the Deployment is greater than 1.
-
-If the Deployment uses an EVS volume, the number of replicas can only be 1. If you specify more than two pods for the Deployment on the backend, CCE does not restrict the creation of the Deployment. However, if these pods are scheduled to different nodes, some pods cannot be started because the EVS volumes used by the pods cannot be mounted to the nodes.
-
-**Solution**
-
-Set the number of replicas of the Deployment that uses an EVS volume to 1 or use other volume types.
-
-.. _cce_faq_00200__section0802134413523:
-
-Check Item 4: Whether the EVS Disk File System Is Damaged
----------------------------------------------------------
-
-**Symptom**
-
-The pod fails to be created, and information similar to the following is displayed, indicating that the disk file system is damaged.
-
-.. code-block::
-
-   MountVolume.MountDevice failed for volume "pvc-08178474-c58c-4820-a828-14437d46ba6f" : rpc error: code = Internal desc = [09060def-afd0-11ec-9664-fa163eef47d0] /dev/sda has file system, but it is detected to be damaged
-
-**Solution**
-
-Back up the disk in EVS and run the following command to restore the file system:
-
-**fsck -y {Drive letter}**

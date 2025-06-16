@@ -10,8 +10,8 @@ Symptom
 
 When an add-on fails to be installed, the error message "The release name is already exist" is returned.
 
-Possible Causes
----------------
+Possible Cause
+--------------
 
 The add-on release record remains in the Kubernetes cluster. Generally, it is because the cluster etcd has backed up and restored the add-on, or the add-on fails to be installed or deleted.
 
@@ -62,7 +62,7 @@ Use kubectl to connect to the cluster and manually clear the Secret and ConfigMa
 
       During the initial installation of the add-on, it is possible to encounter abnormal behavior caused by residual resources from a previous add-on release. This is a normal occurrence. In such cases, you can resolve the issue by uninstalling the add-on from the console. This will ensure that any remaining resources are cleared, allowing for a proper installation of the add-on again.
 
-.. |image1| image:: /_static/images/en-us_image_0000002065637598.png
-.. |image2| image:: /_static/images/en-us_image_0000002101596161.png
-.. |image3| image:: /_static/images/en-us_image_0000002065637590.png
-.. |image4| image:: /_static/images/en-us_image_0000002065637614.png
+.. |image1| image:: /_static/images/en-us_image_0000002218818994.png
+.. |image2| image:: /_static/images/en-us_image_0000002253778813.png
+.. |image3| image:: /_static/images/en-us_image_0000002253618897.png
+.. |image4| image:: /_static/images/en-us_image_0000002218659174.png

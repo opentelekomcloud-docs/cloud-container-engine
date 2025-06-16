@@ -7,7 +7,7 @@ Storage
 
 -  :ref:`Expanding the Storage Space <cce_bestpractice_00198>`
 -  :ref:`Mounting Object Storage Across Accounts <cce_bestpractice_00199>`
--  :ref:`Dynamically Creating an SFS Turbo Subdirectory Using StorageClass <cce_bestpractice_00253>`
+-  :ref:`Dynamically Creating an SFS Turbo Subdirectory Using StorageClass <cce_bestpractice_00253_0>`
 -  :ref:`Changing the Storage Class Used by a Cluster of v1.15 from FlexVolume to CSI Everest <cce_bestpractice_0107>`
 -  :ref:`Using Custom Storage Classes <cce_bestpractice_00281>`
 -  :ref:`Scheduling EVS Disks Across AZs Using csi-disk-topology <cce_bestpractice_00284>`

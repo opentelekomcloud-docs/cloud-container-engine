@@ -219,4 +219,4 @@ If you configure CoreDNS with an upstream DNS server, you can implement a cache 
           ready {$POD_IP}:8081
       }
 
-.. |image1| image:: /_static/images/en-us_image_0000002101596637.png
+.. |image1| image:: /_static/images/en-us_image_0000002253618549.png

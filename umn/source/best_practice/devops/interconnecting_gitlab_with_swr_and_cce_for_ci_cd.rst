@@ -8,12 +8,12 @@ Interconnecting GitLab with SWR and CCE for CI/CD
 Background
 ----------
 
-GitLab is an open-source version management system developed with Ruby on Rails for Git project repository management. It supports web-based access to public and private projects. Similar to GitHub, GitLab allows you to browse source code, manage bugs and comments, and control team member access to repositories. You will find it very easy to view committed versions and file history database. Team members can communicate with each other using the built-in chat program (Wall).
+GitLab is an open source version management system developed with Ruby on Rails for Git project repository management. It supports web-based access to public and private projects. Similar to GitHub, GitLab allows you to browse source code, manage bugs and comments, and control team member access to repositories. You will find it very easy to view committed versions and file history database. Team members can communicate with each other using the built-in chat program (Wall).
 
 GitLab provides powerful CI/CD functions and is widely used in software development.
 
 
-.. figure:: /_static/images/en-us_image_0000002065637534.png
+.. figure:: /_static/images/en-us_image_0000002218658614.png
    :alt: **Figure 1** GitLab CI/CD process
 
    **Figure 1** GitLab CI/CD process
@@ -73,7 +73,7 @@ Place the application to be created in the GitLab project repository. This secti
 
 The following files are included:
 
--  **.gitlab-ci.yml**: Gitlab CI file, which will be described in detail in :ref:`Creating a Pipeline <cce_bestpractice_0324__section171541431101910>`.
+-  **.gitlab-ci.yml**: GitLab CI file, which will be described in detail in :ref:`Creating a Pipeline <cce_bestpractice_0324__section171541431101910>`.
 -  **Dockerfile**: used to build Docker images.
 -  **index.html**: used to replace the index page of Nginx.
 -  **k8s.yaml**: used to deploy the Nginx app. A Deployment named **nginx-test** and a Service named **nginx-test** will be created.
@@ -118,7 +118,7 @@ Log in to `GitLab <https://www.gitlab.com/>`__, choose **Settings** > **CI/CD** 
 Creating a Pipeline
 -------------------
 
-Log in to `Gitlab <https://www.gitlab.com/>`__ and add the **.gitlab-ci.yml** file to **Repository**.
+Log in to `GitLab <https://www.gitlab.com/>`__ and add the **.gitlab-ci.yml** file to **Repository**.
 
 |image4|
 
@@ -216,13 +216,13 @@ Common Issues
 
    |image8|
 
-   The **privileged: true** parameter fails to be transferred during GitLab Runner installation. As a result, you do not have the permission to run the docker command. To resolve this issue, find GitLab Runner in the workload list on the CCE console, add the environment variable **KUBERNETES_PRIVILEGED**, and set its value to **true**.
+   The **privileged: true** parameter fails to be transferred during GitLab Runner installation. As a result, you do not have the permissions to run the Docker command. To resolve this issue, find GitLab Runner in the workload list on the CCE console, add the environment variable **KUBERNETES_PRIVILEGED**, and set its value to **true**.
 
-.. |image1| image:: /_static/images/en-us_image_0000002101677557.png
-.. |image2| image:: /_static/images/en-us_image_0000002101677605.png
-.. |image3| image:: /_static/images/en-us_image_0000002101596077.png
-.. |image4| image:: /_static/images/en-us_image_0000002065479218.png
-.. |image5| image:: /_static/images/en-us_image_0000002065479210.png
-.. |image6| image:: /_static/images/en-us_image_0000002065479186.png
-.. |image7| image:: /_static/images/en-us_image_0000002065479222.png
-.. |image8| image:: /_static/images/en-us_image_0000002101596097.png
+.. |image1| image:: /_static/images/en-us_image_0000002253778225.png
+.. |image2| image:: /_static/images/en-us_image_0000002218818446.png
+.. |image3| image:: /_static/images/en-us_image_0000002218658606.png
+.. |image4| image:: /_static/images/en-us_image_0000002253778269.png
+.. |image5| image:: /_static/images/en-us_image_0000002253618345.png
+.. |image6| image:: /_static/images/en-us_image_0000002253618329.png
+.. |image7| image:: /_static/images/en-us_image_0000002218818458.png
+.. |image8| image:: /_static/images/en-us_image_0000002253778253.png

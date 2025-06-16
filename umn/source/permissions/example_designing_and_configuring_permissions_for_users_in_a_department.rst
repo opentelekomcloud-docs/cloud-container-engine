@@ -12,8 +12,8 @@ The conventional distributed task scheduling mode is being replaced by Kubernete
 
 To help enterprise administrators manage resource permissions in clusters, CCE provides multi-dimensional, fine-grained permission policies and management measures. CCE permissions are described as follows:
 
--  **Cluster-level permissions**: allowing a user group to perform operations on clusters, nodes, node pools, charts, and add-ons. These permissions are assigned based on IAM system policies.
--  **Namespace-level permissions**: allowing a user or user group to perform operations on Kubernetes resources, such as workloads, networking, storage, and namespaces. These permissions are assigned based on Kubernetes RBAC.
+-  **Cluster-level permissions**: allowing a user group to perform operations on clusters, nodes, charts, and add-ons. These permissions are assigned based on IAM system policies.
+-  **Namespace-level permissions**: allowing a user or user group to perform operations on Kubernetes resources, such as workloads, Services, storage, and namespaces. These permissions are assigned based on Kubernetes RBAC.
 
 Cluster permissions and namespace permissions are independent of each other but must be used together. The permissions set for a user group apply to all users in the user group. When multiple permissions are added to a user or user group, they take effect at the same time (the union set is used).
 
@@ -83,4 +83,4 @@ In the previous steps, Linda and Peter have been assigned the read-only permissi
 
 By now, all the required permissions are assigned to the department members.
 
-.. |image1| image:: /_static/images/en-us_image_0000002101678805.jpg
+.. |image1| image:: /_static/images/en-us_image_0000002253779773.jpg

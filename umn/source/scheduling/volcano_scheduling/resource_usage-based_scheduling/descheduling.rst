@@ -17,7 +17,7 @@ Features
 During Kubernetes cluster management, over-utilized nodes are due to high CPU or memory usage, which affects the stable running of pods on these nodes and increases the probability of node faults. To dynamically balance the resource usage between nodes in a cluster, a cluster resource view is required based on node monitoring metrics. During cluster management, real-time monitoring can be used to detect issues such as high resource usage on a node, node faults, and excessive number of pods on a node so that the system can take measures promptly, for example, by migrating some pods from an over-utilized node to under-utilized nodes.
 
 
-.. figure:: /_static/images/en-us_image_0000002101597817.png
+.. figure:: /_static/images/en-us_image_0000002253780381.png
    :alt: **Figure 1** Load-aware descheduling
 
    **Figure 1** Load-aware descheduling
@@ -50,92 +50,19 @@ Configuring a Load-aware Descheduling Policy
 
 When configuring a load-aware descheduling policy, do as follows to enable load-aware scheduling on Volcano Scheduler:
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Settings** and click the **Scheduling** tab on the right side of the page. Then, enable load-aware scheduling. For details, see :ref:`Load-aware Scheduling <cce_10_0789>`.
+#. Log in to the CCE console and click the cluster name to access the cluster details page. Choose **Add-ons** in the navigation pane, locate **Volcano Scheduler** on the right, and click **Edit**. In the **Extended Functions** area, enable descheduling and click **OK** to update the add-on configuration.
+
+#. In the navigation pane, choose **Settings**. On the **Scheduling** tab page, enable load-aware scheduling. For details, see :ref:`Load-aware Scheduling <cce_10_0789>`.
 
 #. On the **Scheduling** tab page, select **Volcano scheduler**, find the expert mode, and click **Try Now**.
 
-#. Configure a load-aware descheduling policy. The following shows a configuration example in JSON format for Volcano v1.11.21 or later:
+#. Configure a load-aware descheduling policy. If you are using Volcano v1.11.21 or later, refer to the example JSON parameter settings below. For more parameters, see the JSON example in **Getting Started** on the console.
 
    .. code-block::
 
       {
-        "colocation_enable": "",
-        "default_scheduler_conf": {
-          "actions": "allocate, backfill, preempt",
-          "tiers": [
-            {
-              "plugins": [
-                {
-                  "name": "priority"
-                },
-                {
-                  "enablePreemptable": false,
-                  "name": "gang"
-                },
-                {
-                  "name": "conformance"
-                }
-              ]
-            },
-            {
-              "plugins": [
-                {
-                  "enablePreemptable": false,
-                  "name": "drf"
-                },
-                {
-                  "name": "predicates"
-                },
-                {
-                  "name": "nodeorder"
-                },
-                {
-                  "name": "usage",
-                  "enablePredicate": true,
-                  "arguments": {
-                    "usage.weight": 5,
-                    "cpu.weight": 1,
-                    "memory.weight": 1,
-                    "thresholds": {
-                      "cpu": 80,
-                      "mem": 80
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "plugins": [
-                {
-                  "name": "cce-gpu-topology-predicate"
-                },
-                {
-                  "name": "cce-gpu-topology-priority"
-                },
-                {
-                  "name": "cce-gpu"
-                }
-              ]
-            },
-            {
-              "plugins": [
-                {
-                  "name": "nodelocalvolume"
-                },
-                {
-                  "name": "nodeemptydirvolume"
-                },
-                {
-                  "name": "nodeCSIscheduling"
-                },
-                {
-                  "name": "networkresource"
-                }
-              ]
-            }
-          ]
-        },
-        "deschedulerPolicy": {
+      ...
+      "deschedulerPolicy": {
           "profiles": [
             {
               "name": "ProfileName",
@@ -180,22 +107,18 @@ When configuring a load-aware descheduling policy, do as follows to enable load-
         },
         "descheduler_enable": "true",
         "deschedulingInterval": "10m"
+      ...
       }
 
    .. table:: **Table 1** Key parameters of a cluster descheduling policy
 
-      +-----------------------------------+--------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                      |
-      +===================================+==================================================================================================+
-      | descheduler_enable                | Whether to enable a cluster descheduling policy.                                                 |
-      |                                   |                                                                                                  |
-      |                                   | -  **true**: The cluster descheduling policy is enabled.                                         |
-      |                                   | -  **false**: The cluster descheduling policy is disabled.                                       |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------+
-      | deschedulingInterval              | Descheduling period.                                                                             |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------+
-      | deschedulerPolicy                 | Cluster descheduling policy. For details, see :ref:`Table 2 <cce_10_0766__table18576915101217>`. |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------+
+      +----------------------+--------------------------------------------------------------------------------------------------+
+      | Parameter            | Description                                                                                      |
+      +======================+==================================================================================================+
+      | deschedulingInterval | Descheduling period.                                                                             |
+      +----------------------+--------------------------------------------------------------------------------------------------+
+      | deschedulerPolicy    | Cluster descheduling policy. For details, see :ref:`Table 2 <cce_10_0766__table18576915101217>`. |
+      +----------------------+--------------------------------------------------------------------------------------------------+
 
    .. _cce_10_0766__table18576915101217:
 
@@ -284,84 +207,18 @@ Configuring a HighNodeUtilization Policy
 
 When configuring a HighNodeUtilization policy, do as follows to enable the bin packing policy on Volcano Scheduler:
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Settings** and click the **Scheduling** tab on the right side of the page. Then, enable bin packing. For details, see :ref:`Bin Packing <cce_10_0773>`.
+#. Log in to the CCE console and click the cluster name to access the cluster details page. Choose **Add-ons** in the navigation pane, locate **Volcano Scheduler** on the right, and click **Edit**. In the **Extended Functions** area, enable descheduling and click **OK** to update the add-on configuration.
+
+#. In the navigation pane, choose **Settings**. On the **Scheduling** tab page, enable bin packing. For details, see :ref:`Bin Packing <cce_10_0773>`.
 
 #. On the **Scheduling** tab page, select **Volcano scheduler**, find the expert mode, and click **Try Now**.
 
-#. Configure a resource defragmentation policy. The following shows a configuration example in JSON format:
+#. If you are using a resource defragmentation policy, refer to the example JSON parameter settings below. For more parameters, see the JSON example in **Getting Started** on the console.
 
    .. code-block::
 
       {
-        "colocation_enable": "",
-        "default_scheduler_conf": {
-          "actions": "allocate, backfill, preempt",
-          "tiers": [
-            {
-              "plugins": [
-                {
-                  "name": "priority"
-                },
-                {
-                  "enablePreemptable": false,
-                  "name": "gang"
-                },
-                {
-                  "name": "conformance"
-                },
-                {
-                  "arguments": {
-                    "binpack.weight": 5
-                  },
-                  "name": "binpack"
-                }
-              ]
-            },
-            {
-              "plugins": [
-                {
-                  "enablePreemptable": false,
-                  "name": "drf"
-                },
-                {
-                  "name": "predicates"
-                },
-                {
-                  "name": "nodeorder"
-                }
-              ]
-            },
-            {
-              "plugins": [
-                {
-                  "name": "cce-gpu-topology-predicate"
-                },
-                {
-                  "name": "cce-gpu-topology-priority"
-                },
-                {
-                  "name": "cce-gpu"
-                }
-              ]
-            },
-            {
-              "plugins": [
-                {
-                  "name": "nodelocalvolume"
-                },
-                {
-                  "name": "nodeemptydirvolume"
-                },
-                {
-                  "name": "nodeCSIscheduling"
-                },
-                {
-                  "name": "networkresource"
-                }
-              ]
-            }
-          ]
-        },
+      ...
         "deschedulerPolicy": {
           "profiles": [
             {
@@ -400,22 +257,18 @@ When configuring a HighNodeUtilization policy, do as follows to enable the bin p
         },
         "descheduler_enable": "true",
         "deschedulingInterval": "10m"
+      ...
       }
 
    .. table:: **Table 3** Key parameters of a cluster descheduling policy
 
-      +-----------------------------------+--------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                      |
-      +===================================+==================================================================================================+
-      | descheduler_enable                | Whether to enable a cluster descheduling policy.                                                 |
-      |                                   |                                                                                                  |
-      |                                   | -  **true**: The cluster descheduling policy is enabled.                                         |
-      |                                   | -  **false**: The cluster descheduling policy is disabled.                                       |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------+
-      | deschedulingInterval              | Descheduling period.                                                                             |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------+
-      | deschedulerPolicy                 | Cluster descheduling policy. For details, see :ref:`Table 4 <cce_10_0766__table66451245121118>`. |
-      +-----------------------------------+--------------------------------------------------------------------------------------------------+
+      +----------------------+--------------------------------------------------------------------------------------------------+
+      | Parameter            | Description                                                                                      |
+      +======================+==================================================================================================+
+      | deschedulingInterval | Descheduling period.                                                                             |
+      +----------------------+--------------------------------------------------------------------------------------------------+
+      | deschedulerPolicy    | Cluster descheduling policy. For details, see :ref:`Table 4 <cce_10_0766__table66451245121118>`. |
+      +----------------------+--------------------------------------------------------------------------------------------------+
 
    .. _cce_10_0766__table66451245121118:
 
@@ -476,9 +329,11 @@ Use Cases
 
 **HighNodeUtilization**
 
-#. Check the nodes in a cluster. It is found that some nodes are under-utilized.
+#. In the navigation pane of the cluster console, choose **Nodes**. Check the node list for nodes with minimal resource allocation.
 
-#. Edit the Volcano parameters to enable the descheduler and set the CPU and memory usage thresholds to **25**. When the CPU and memory usage of a node is less than 25%, pods on the node will be evicted.
+#. In the navigation pane, choose **Settings** and click the **Scheduling** tab. Select **Volcano scheduler**, find the expert mode, and click **Try Now**.
+
+#. Edit Volcano parameters and set both the CPU and memory thresholds to 25. When the CPU and memory usage of a node is less than 25%, pods on the node will be evicted.
 
    |image1|
 
@@ -491,5 +346,5 @@ If an input parameter is incorrect, for example, the entered value is beyond the
 
 |image2|
 
-.. |image1| image:: /_static/images/en-us_image_0000002101597829.png
-.. |image2| image:: /_static/images/en-us_image_0000002101597825.png
+.. |image1| image:: /_static/images/en-us_image_0000002218820586.png
+.. |image2| image:: /_static/images/en-us_image_0000002253620477.png

@@ -11,8 +11,7 @@ Prerequisites
 -------------
 
 -  You have created a cluster and installed the :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on in the cluster.
--  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
--  You have created an SFS file system that is in the same VPC as the cluster.
+-  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 Automatically Creating an SFS File System on the Console
 --------------------------------------------------------
@@ -32,9 +31,9 @@ Automatically Creating an SFS File System on the Console
       | Creation Method                       | -  If no underlying storage is available, select **Dynamically provision** to create a PVC, PV, and underlying storage on the console in cascading mode.                                                                                                            |
       |                                       | -  If underlying storage is available, create a PV or use an existing PV to statically create a PVC. For details, see :ref:`Using an Existing SFS File System Through a Static PV <cce_10_0619>`.                                                                   |
       |                                       |                                                                                                                                                                                                                                                                     |
-      |                                       | In this document, **Dynamically provision** is selected.                                                                                                                                                                                                            |
+      |                                       | In this example, select **Dynamically provision**.                                                                                                                                                                                                                  |
       +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Storage Classes                       | The default StorageClass for SFS volumes is **csi-nas**.                                                                                                                                                                                                            |
+      | Storage Classes                       | The default StorageClass of SFS volumes is **csi-nas**.                                                                                                                                                                                                             |
       |                                       |                                                                                                                                                                                                                                                                     |
       |                                       | You can customize a StorageClass and configure its reclaim policy and binding mode. For details, see :ref:`Creating a StorageClass Using the CCE Console <cce_10_0380__section11263115719212>`.                                                                     |
       +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -44,11 +43,7 @@ Automatically Creating an SFS File System on the Console
       |                                       |                                                                                                                                                                                                                                                                     |
       |                                       | For example, if the storage volume name prefix is set to **test**, the actual underlying storage name is **test-**\ *{UID}*.                                                                                                                                        |
       +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Capacity (GiB)                        | The value cannot be less than 10.                                                                                                                                                                                                                                   |
-      +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Access Mode                           | SFS volumes support only **ReadWriteMany**, indicating that a storage volume can be mounted to multiple nodes in read/write mode. For details, see :ref:`Volume Access Modes <cce_10_0378__section43881411172418>`.                                                 |
-      +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Encryption                            | Configure whether to encrypt underlying storage if the storage class is **csi-nas**. If you select **Enabled (key)**, an encryption key must be configured.                                                                                                         |
       +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    b. Click **Create** to create a PVC and a PV.
@@ -59,7 +54,7 @@ Automatically Creating an SFS File System on the Console
 
    a. Choose **Workloads** in the navigation pane. In the right pane, click the **Deployments** tab.
 
-   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Settings** area and click **Add Volume** to select **PVC**.
+   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Information** area under **Container Settings** and choose **Add Volume** > **PVC**.
 
       Mount and use storage volumes, as shown in :ref:`Table 1 <cce_10_0620__cce_10_0619_table2529244345>`. For details about other parameters, see :ref:`Workloads <cce_10_0046>`.
 
@@ -109,11 +104,8 @@ Automatically Creating an SFS File System Through kubectl
            name: pvc-sfs-auto
            namespace: default
            annotations:
-             everest.io/crypt-key-id: <your_key_id>      # (Optional) ID of the key for encrypting file systems
 
-             everest.io/crypt-alias: sfs/default         # (Optional) Key name. Mandatory for encrypting volumes.
 
-             everest.io/crypt-domain-id: <your_domain_id>   # (Optional) ID of the tenant to which an encrypted volume belongs. Mandatory for encrypting volumes.
 
              everest.io/csi.volume-name-prefix: test  # (Optional) Storage volume name prefix of the automatically created underlying storage
          spec:
@@ -122,7 +114,7 @@ Automatically Creating an SFS File System Through kubectl
            resources:
              requests:
                storage: 1Gi             # SFS volume capacity
-           storageClassName: csi-nas    # StorageClass is SFS.
+           storageClassName: csi-nas    # The StorageClass is SFS.
 
       .. table:: **Table 2** Key parameters
 
@@ -131,9 +123,9 @@ Automatically Creating an SFS File System Through kubectl
          +===================================+=======================+=====================================================================================================================================================================================================================================================================+
          | storage                           | Yes                   | Requested capacity in the PVC, in Gi.                                                                                                                                                                                                                               |
          |                                   |                       |                                                                                                                                                                                                                                                                     |
-         |                                   |                       | For SFS, this field is used only for verification (cannot be empty or **0**). Its value is fixed at **1**, and any value you set does not take effect for SFS file systems.                                                                                         |
+         |                                   |                       | For SFS, this parameter is used only for verification and cannot be empty or **0**. Its value is fixed at **1**, and any value set will not take effect for SFS file systems.                                                                                       |
          +-----------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | everest.io/crypt-key-id           | No                    | If StorageClass is **csi-nas**, you can determine whether to encrypt the underlying storage.                                                                                                                                                                        |
+         | everest.io/crypt-key-id           | No                    | If the StorageClass is **csi-nas**, you can determine whether to encrypt the underlying storage.                                                                                                                                                                    |
          |                                   |                       |                                                                                                                                                                                                                                                                     |
          |                                   |                       | This parameter is mandatory when an SFS system is encrypted. Enter the encryption key ID selected during SFS system creation. You can use a custom key or the default key named **sfs/default**.                                                                    |
          |                                   |                       |                                                                                                                                                                                                                                                                     |

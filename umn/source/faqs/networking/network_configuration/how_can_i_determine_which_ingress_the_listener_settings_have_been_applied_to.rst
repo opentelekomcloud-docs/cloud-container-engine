@@ -7,14 +7,10 @@ How Can I Determine Which Ingress the Listener Settings Have Been Applied To?
 
 With CCE, you can associate multiple ingresses with a single load balancer listener and establish various forwarding policies. Listener configuration parameters are stored in annotations, which means that a listener can have different configuration parameters on different ingresses. This section describes how to determine which ingress the listener settings are applied to. It covers:
 
--  Obtaining the first ingress
--  Configuring and updating a listener certificate
--  Impacts of deleting the first ingress on listener settings and configuration synchronization
-
 .. _cce_faq_00460__section175820196816:
 
-Obtaining the First Ingress
----------------------------
+Determining Which Ingress the Listener Settings Have Been Applied To
+--------------------------------------------------------------------
 
 Listener parameters can be configured for all ingresses associated with the same listener, so CCE uses the listener annotation configurations (excluding SNI certificates) from the earliest created ingress (the first ingress). The first ingress is determined by sorting the **metadata.createTimestamp** fields of the ingresses in ascending order.
 
@@ -56,7 +52,9 @@ You can configure an ingress certificate in a cluster using either of the follow
 
 To update the listener server certificate created by an ingress using a TLS certificate, follow these steps:
 
-#. Check the command in :ref:`Obtaining the First Ingress <cce_faq_00460__section175820196816>` and obtain all ingresses associated with the same listener.
+#. Check the command in :ref:`Determining Which Ingress the Listener Settings Have Been Applied To <cce_faq_00460__section175820196816>` and obtain all ingresses associated with the same listener.
+
+   The command output is as follows:
 
    .. code-block::
 
@@ -83,7 +81,7 @@ To update the listener server certificate created by an ingress using a TLS cert
             secretName: default-ns-secret-2
       ...
 
-#. Update the configurations of **default-ns-secrert-1** and **default-ns-secret-2** in the first ingress.
+#. Update the configurations of **default-ns-secret-1** and **default-ns-secret-2** in the first ingress.
 
 #. After the key is updated, log in to the network console. In the navigation pane, choose **Elastic Load Balance** > **Certificates**. In the right pane, check whether the server certificate has been updated based on the update time.
 
@@ -118,7 +116,9 @@ Listener settings only apply to the first ingress configuration (excluding SNI c
 
    You can manually synchronize the listener settings using YAML. The procedure is as follows:
 
-   #. Check the command in :ref:`Obtaining the First Ingress <cce_faq_00460__section175820196816>` and obtain all ingresses associated with the same listener.
+   #. Check the command in :ref:`Determining Which Ingress the Listener Settings Have Been Applied To <cce_faq_00460__section175820196816>` and obtain all ingresses associated with the same listener.
+
+      The command output is as follows:
 
       .. code-block::
 
@@ -147,4 +147,4 @@ Listener settings only apply to the first ingress configuration (excluding SNI c
                secretName: default-ns-secret-2
          ...
 
-.. |image1| image:: /_static/images/en-us_image_0000002065478954.png
+.. |image1| image:: /_static/images/en-us_image_0000002218659046.png

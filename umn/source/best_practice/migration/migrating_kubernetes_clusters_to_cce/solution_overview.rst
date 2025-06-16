@@ -45,7 +45,7 @@ Before the migration, analyze all resources in the source clusters and then dete
    |                             |                                                                                        |    CAUTION:                                                                                                                                                                                                                                                                                                                                    |
    |                             |                                                                                        |    If you are migrating or backing up cluster resources in CCE, for example, from a namespace to another, do not back up Secret **paas.elb**. It is because secret **paas.elb** is periodically updated. After the backup is complete, the secret may become invalid when it is restored. As a result, network storage functions are affected. |
    +-----------------------------+----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   |                             | PersistentVolumes (PVs) mounted to containers                                          | Due to restrictions of the Restic tool, migration is not supported for the hostPath storage volume. For details about how to solve the problem, see :ref:`Storage Volumes of the HostPath Type Cannot Be Backed Up <cce_bestpractice_0314__section11197194820367>`.                                                                            |
+   |                             | PersistentVolumes (PVs) mounted to containers                                          | Due to restrictions of the restic tool, migration is not supported for the hostPath storage volume. For details about how to solve the problem, see :ref:`Storage Volumes of the HostPath Type Cannot Be Backed Up <cce_bestpractice_0314__section11197194820367>`.                                                                            |
    +-----------------------------+----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Resources outside a cluster | On-premises image repository                                                           | Resources can be migrated to SoftWare Repository for Container (SWR).                                                                                                                                                                                                                                                                          |
    +-----------------------------+----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -58,7 +58,7 @@ Before the migration, analyze all resources in the source clusters and then dete
 
 .. _cce_bestpractice_0307__fig203631140201419:
 
-.. figure:: /_static/images/en-us_image_0000002101596565.png
+.. figure:: /_static/images/en-us_image_0000002253618813.png
    :alt: **Figure 1** Migration solution diagram
 
    **Figure 1** Migration solution diagram
@@ -72,7 +72,7 @@ The cluster migration process is as follows:
 
 #. **Plan resources for the target cluster.**
 
-   For details about the differences between CCE clusters and on-premises clusters, see **Key Performance Parameter** in :ref:`Planning Resources for the Target Cluster <cce_bestpractice_0014>`. Plan resources as required and ensure that the performance configuration of the target cluster is the same as that of the source cluster.
+   For details about the differences between CCE clusters and on-premises clusters, see **Key Performance Parameter** in :ref:`Resource Planning for the Target Cluster <cce_bestpractice_0014>`. Plan resources as required and ensure that the performance configuration of the target cluster is the same as that of the source cluster.
 
 #. **Migrate resources outside a cluster.**
 
@@ -86,11 +86,11 @@ The cluster migration process is as follows:
 
    Use Velero to back up resources in the source cluster to OBS and restore the resources in the target cluster. For details, see :ref:`Migrating Resources in a Cluster <cce_bestpractice_0024>`.
 
-   -  :ref:`Backing Up Applications in the Source Cluster <cce_bestpractice_0024__section750718193288>`
+   -  :ref:`Backing Up an Application in the Source Cluster <cce_bestpractice_0024__section750718193288>`
 
       To back up resources, use the Velero tool to create a backup object in the original cluster, query and back up cluster data and resources, package the data, and upload the package to the object storage that is compatible with the S3 protocol. Cluster resources are stored in the JSON format.
 
-   -  :ref:`Restoring Applications in the Target Cluster <cce_bestpractice_0024__section482103142819>`
+   -  :ref:`Restoring the Application in the Target Cluster <cce_bestpractice_0024__section482103142819>`
 
       During restoration in the target cluster, Velero specifies the temporary object bucket that stores the backup data, downloads the backup data to the new cluster, and redeploys resources based on the JSON file.
 
@@ -107,4 +107,4 @@ The cluster migration process is as follows:
 
    After cluster resources are properly deployed, verify application functions after the migration and switch service traffic to the target cluster. After confirming that all services are running properly, bring the source cluster offline.
 
-.. |image1| image:: /_static/images/en-us_image_0000002065479674.png
+.. |image1| image:: /_static/images/en-us_image_0000002253778733.png

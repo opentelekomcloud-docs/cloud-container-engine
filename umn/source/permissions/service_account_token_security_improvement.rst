@@ -38,4 +38,4 @@ Perform the following steps to check your CCE clusters of v1.21 or later:
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000002065639282.png
+.. |image1| image:: /_static/images/en-us_image_0000002218660734.png

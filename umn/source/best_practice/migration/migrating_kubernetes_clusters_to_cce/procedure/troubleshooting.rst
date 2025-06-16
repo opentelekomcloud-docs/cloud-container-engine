@@ -10,7 +10,7 @@ Troubleshooting
 Storage Volumes of the HostPath Type Cannot Be Backed Up
 --------------------------------------------------------
 
-Both HostPath and Local volumes are local storage volumes. However, the Restic tool integrated in Velero cannot back up the PVs of the HostPath type and supports only the Local type. Therefore, you need to replace the storage volumes of the HostPath type with the Local type in the source cluster.
+Both hostPath and local volumes are local storage volumes. However, restic, which is integrated into Velero, cannot back up hostPath PVs. It only supports the local type. So, you need to replace the storage volumes of the hostPath type with the local type in the source cluster.
 
 .. note::
 
@@ -75,11 +75,11 @@ Both HostPath and Local volumes are local storage volumes. However, the Restic t
 Backup Tool Resources Are Insufficient
 --------------------------------------
 
-In the production environment, if there are many backup resources, for example, the default resource size of the backup tool is used, the resources may be insufficient. In this case, perform the following steps to adjust the CPU and memory size allocated to the Velero and Restic:
+In a production environment with numerous resources to be backed up, using the backup tool with the default resource size may lead to insufficient resources. In such case, take the following steps to adjust the CPU and memory resources of Velero and restic:
 
 **Before installing Velero:**
 
-You can specify the size of resources used by Velero and Restic when :ref:`installing Velero <cce_bestpractice_0310__li1722825643415>`.
+You can specify the size of resources used by Velero and restic when :ref:`installing Velero <cce_bestpractice_0310__li1722825643415>`.
 
 The following is an example of installation parameters:
 
@@ -105,7 +105,7 @@ The following is an example of installation parameters:
       kubectl edit deploy velero -n velero
       kubectl edit ds node-agent -n velero
 
-#. Modify the resource size under the **resources** field. The modification is the same for the Velero and Restic workloads, as shown in the following:
+#. Modify the resource size under the **resources** field. The modification is the same for the Velero and restic workloads, as shown in the following:
 
    .. code-block::
 

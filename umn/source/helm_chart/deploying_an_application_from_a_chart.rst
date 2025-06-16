@@ -141,7 +141,7 @@ Rolling Back a Chart-based Workload
 
 #. Log in to the CCE console and click the cluster name to access the cluster console. Choose **App Templates** in the navigation pane. In the right pane, click the **Releases** tab.
 
-#. Click **More** > **Roll Back** for the workload to be rolled back, select the workload version, and click **Roll back** **to this version**.
+#. Choose **More** > **Roll Back** for the release to be rolled back, select the target release version, and roll the release back.
 
    In the workload list, if the status is **Rollback successful**, the workload is rolled back successfully.
 

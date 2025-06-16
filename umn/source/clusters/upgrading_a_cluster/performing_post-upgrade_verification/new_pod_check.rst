@@ -24,7 +24,7 @@ After creating a node based on :ref:`New Node Check <cce_10_0565>`, create a Dae
 
    .. note::
 
-      In this test, YAML deploys DaemonSet in the default namespace, uses **ngxin:perl** as the base image, requests 10m vCPUs and 10 MiB memory, and limits 100 MB CPU and 50 MiB memory.
+      In this test, a DaemonSet is deployed in the default namespace using YAML. It uses the **nginx:perl** base image and specifies a request of 10m vCPUs and 10 MiB of memory. The resource limits for this DaemonSet are set to 100m vCPUs and 50 MiB of memory.
 
    .. code-block::
 

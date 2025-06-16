@@ -11,7 +11,7 @@ Prerequisites
 -------------
 
 -  You have created a cluster and installed the :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on in the cluster.
--  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 -  You have created an SFS file system that is in the same VPC as the cluster.
 
 Notes and Constraints
@@ -19,7 +19,7 @@ Notes and Constraints
 
 -  Multiple PVs can use the same SFS or SFS Turbo file system with the following restrictions:
 
-   -  Do not mount the PVCs/PVs that use the same underlying SFS or SFS Turbo volume to one pod. This will lead to a pod startup failure because not all PVCs can be mounted to the pod due to the same **volumeHandle** value.
+   -  Do not mount multiple PVCs or PVs that use the same underlying SFS or SFS Turbo volume to a single pod. Doing so will cause pod startup failures, as not all PVCs can be mounted due to identical **volumeHandle** value.
    -  The **persistentVolumeReclaimPolicy** parameter in the PVs must be set to **Retain**. Otherwise, when a PV is deleted, the associated underlying volume may be deleted. In this case, other PVs associated with the underlying volume malfunction.
    -  When the underlying volume is repeatedly used, enable isolation and protection for ReadWriteMany at the application layer to prevent data overwriting and loss.
 
@@ -76,7 +76,7 @@ Using an Existing SFS File System on the Console
 
    a. Choose **Workloads** in the navigation pane. In the right pane, click the **Deployments** tab.
 
-   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Settings** area and click **Add Volume** to select **PVC**.
+   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Information** area under **Container Settings** and choose **Add Volume** > **PVC**.
 
       Mount and use storage volumes, as shown in :ref:`Table 1 <cce_10_0619__table2529244345>`. For details about other parameters, see :ref:`Workloads <cce_10_0046>`.
 
@@ -164,7 +164,7 @@ Using an Existing SFS Capacity-Oriented File System Through kubectl
          |                                  |                       |                                                                                                                                                                                                                                                                                                         |
          |                                  |                       | On the management console, choose **Service List** > **Storage** > **Scalable File Service**. You can obtain the shared path of the file system from the **Mount Address** column.                                                                                                                      |
          +----------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | mountOptions                     | Yes                   | Mount options.                                                                                                                                                                                                                                                                                          |
+         | mountOptions                     | No                    | Mount options.                                                                                                                                                                                                                                                                                          |
          |                                  |                       |                                                                                                                                                                                                                                                                                                         |
          |                                  |                       | If not specified, the following configurations are used by default. For details, see :ref:`Configuring SFS Volume Mount Options <cce_10_0337>`.                                                                                                                                                         |
          |                                  |                       |                                                                                                                                                                                                                                                                                                         |
@@ -184,9 +184,7 @@ Using an Existing SFS Capacity-Oriented File System Through kubectl
          |                                  |                       |                                                                                                                                                                                                                                                                                                         |
          |                                  |                       | **Delete**: When a PVC is deleted, its PV will also be deleted.                                                                                                                                                                                                                                         |
          +----------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | storage                          | Yes                   | Requested capacity in the PVC, in Gi.                                                                                                                                                                                                                                                                   |
-         |                                  |                       |                                                                                                                                                                                                                                                                                                         |
-         |                                  |                       | For SFS, this field is used only for verification (cannot be empty or **0**). Its value is fixed at **1**, and any value you set does not take effect for SFS file systems.                                                                                                                             |
+         | storage                          | Yes                   | Requested PVC capacity, in Gi. The value must be the same as that of the existing SFS Capacity-Oriented storage.                                                                                                                                                                                        |
          +----------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | storageClassName                 | Yes                   | StorageClass name **csi-nas**, indicating that SFS 1.0 Capacity-Oriented is used for storage.                                                                                                                                                                                                           |
          +----------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

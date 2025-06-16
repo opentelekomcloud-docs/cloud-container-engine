@@ -12,7 +12,7 @@ Prerequisites
 
 -  You have created a cluster and installed the :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on in the cluster.
 -  An available key has been created in DEW.
--  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 Using the Console
 -----------------
@@ -42,7 +42,7 @@ Automatically Creating an Encrypted EVS Disk Using kubectl
         name: pvc-evs-auto
         namespace: default
         annotations:
-          everest.io/disk-volume-type: SAS    # EVS disk
+          everest.io/disk-volume-type: SAS    # EVS disk type
           everest.io/crypt-key-id: 37f202db-a970-4ac1-a506-e5c4f2d7ce69   # Encryption key ID, which can be obtained from DEW
         labels:
           failure-domain.beta.kubernetes.io/region: <your_region>   # Region of the node where the application is to be deployed
@@ -53,7 +53,7 @@ Automatically Creating an Encrypted EVS Disk Using kubectl
         resources:
           requests:
             storage: 10Gi             # EVS disk capacity, ranging from 1 to 32768
-        storageClassName: csi-disk    # The storage class is EVS.
+        storageClassName: csi-disk    # The StorageClass is EVS.
 
 #. Run the following command to create a PVC:
 

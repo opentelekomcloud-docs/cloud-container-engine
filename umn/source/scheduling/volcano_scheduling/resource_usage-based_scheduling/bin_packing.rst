@@ -46,7 +46,7 @@ A larger bin packing weight leads to a higher score. A larger resource weight le
 -  **GPU.score**: calculated GPU score; **GPU.weight**: customized GPU weight
 
 
-.. figure:: /_static/images/en-us_image_0000002101679209.png
+.. figure:: /_static/images/en-us_image_0000002253780457.png
    :alt: **Figure 1** Bin packing example
 
    **Figure 1** Bin packing example

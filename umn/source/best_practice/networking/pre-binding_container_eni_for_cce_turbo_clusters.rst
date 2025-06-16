@@ -7,10 +7,10 @@ Pre-Binding Container ENI for CCE Turbo Clusters
 
 In the Cloud Native 2.0 network model, each pod is allocated an ENI or a sub-ENI (called container ENI). The speed of ENI creation and binding is slower than that of pod scaling, severely affecting the container startup speed in large-scale batch creation. Therefore, the Cloud Native Network 2.0 model provides the dynamic pre-binding of container ENIs to accelerate pod startup while improving IP resource utilization.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
--  CCE Turbo clusters of 1.19.16-r4, 1.21.7-r0, 1.23.5-r0, 1.25.1-r0, or later support ENI pre-binding, global configuration at the cluster level, and custom settings at the node pool level. Custom settings of nodes out of a node pool is not supported.
+-  CCE Turbo clusters of 1.19.16-r4, 1.21.7-r0, 1.23.5-r0, 1.25.1-r0 or later support ENI pre-binding, global configuration at the cluster level, and custom settings at the node pool level. Custom settings of nodes out of a node pool is not supported.
 -  CCE Turbo clusters of 1.19.16-r2, 1.21.5-r0, 1.23.3-r0 to 1.19.16-r4, 1.21.7-r0, 1.23.5-r0 only support two parameters, **nic-minimum-target** and **nic-warm-target**, and do not support custom settings at the node pool level.
 -  Modify the dynamic pre-binding parameters using the console or API instead of the node annotations in the background. Otherwise, the modified annotations will be overwritten by the original values after the cluster is upgraded.
 
@@ -94,4 +94,4 @@ Custom Settings at the Node Pool Level
 #. In the window that slides out from the right, click **Networking Components** and enable node pool container ENI pre-binding. For details about the parameter configurations, see :ref:`Configuration Example <cce_bestpractice_10010__section1688214241613>`.
 #. After the configuration is complete, click **OK**. Wait for about 10 seconds for the configuration to take effect.
 
-.. |image1| image:: /_static/images/en-us_image_0000002101596405.png
+.. |image1| image:: /_static/images/en-us_image_0000002218658938.png

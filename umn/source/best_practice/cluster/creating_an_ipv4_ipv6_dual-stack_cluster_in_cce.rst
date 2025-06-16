@@ -19,8 +19,8 @@ Application Scenarios
 -  If your application needs to both provide Services for users who use IPv6 clients and analyze the access request data, you can use only the IPv4 and IPv6 dual-stack function.
 -  If internal communication is required between your application systems or between your application system and another system (such as the database system), you can use only the IPv4 and IPv6 dual-stack function.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  Clusters that support IPv4/IPv6 dual-stack:
 
@@ -31,7 +31,7 @@ Constraints
    |                      |                          |                     |                                                                                                                      |
    |                      |                          |                     | ELB dual-stack is not supported.                                                                                     |
    +----------------------+--------------------------+---------------------+----------------------------------------------------------------------------------------------------------------------+
-   | CCE Turbo cluster    | Cloud Native 2.0 Network | v1.23.8-r0 or later | Currently, Kata containers do not support IPv4/IPv6 dual-stack.                                                      |
+   | CCE Turbo cluster    | Cloud Native 2.0 network | v1.23.8-r0 or later | Currently, Kata containers do not support IPv4/IPv6 dual-stack.                                                      |
    |                      |                          |                     |                                                                                                                      |
    |                      |                          | v1.25.3-r0 or later | Only ECS-VM or ECS-physical server (c6.22xlarge.4.physical or c7.32xlarge.4.physical) supports IPv4/IPv6 dual-stack. |
    +----------------------+--------------------------+---------------------+----------------------------------------------------------------------------------------------------------------------+
@@ -76,7 +76,7 @@ Perform the following operations to create a VPC named **vpc-ipv6** and its defa
 
 #. Click |image1| in the upper left corner of the management console and select a region and a project.
 
-#. Under **Network**, select **Virtual Private Cloud**.
+#. Choose **Network** > **Virtual Private Cloud**.
 
 #. Click **Create VPC**.
 
@@ -141,10 +141,11 @@ Step 2: Create a CCE Cluster
 
    Complete the network settings as follows:
 
-   -  **Network Model**: Select **Tunnel network**.
    -  **VPC**: Select the created VPC **vpc-ipv6**.
    -  **Default Node Subnet**: Select a subnet with IPv6 enabled.
    -  **IPv6**: Enable this function. After this function is enabled, cluster resources, including nodes and workloads, can be accessed through IPv6 CIDR blocks.
+   -  **Network Model**: Select **Tunnel network**.
+   -  **Network Policies**: This function is enabled by default. It restricts the objects that can be accessed by pods.
    -  **Container CIDR Block**: A proper mask must be set for the container CIDR block. The mask determines the number of available nodes in the cluster. If the mask of the container CIDR block in the cluster is set improperly, there will be only a small number of available nodes in the cluster.
 
 #. Create a node.
@@ -165,7 +166,7 @@ Step 2: Create a CCE Cluster
    -  **Default Node Subnet**: Only subnets with IPv6 enabled can be selected.
    -  **Pod Subnet**: Only subnets with IPv6 enabled can be selected.
    -  **Service CIDR Block**: A proper mask must be set for the container CIDR block. The mask determines the number of available nodes in the cluster. If the mask of the container CIDR block in the cluster is set improperly, there will be only a small number of available nodes in the cluster.
-   -  **IPv6 Service CIDR Block**: determines the maximum number of Services that can be created. The value cannot be changed after being specified. The default value is **fc00::/112**. To customize the CIDR block, ensure that the CIDR block meets the following requirements: .
+   -  **IPv6 Service CIDR Block**: determines the maximum number of Services that can be created. The value cannot be changed after being specified. The default value is **fc00::/112**. To customize the CIDR block, ensure that the CIDR block meets the following requirements:
 
       -  The IPv6 Service CIDR block must belong to the **fc00::/8** CIDR block.
       -  The prefix length of an IPv6 address ranges from 112 to 120. You can adjust the number of IPv6 addresses by adjusting the prefix value. A maximum of 65536 IPv6 addresses are allowed.
@@ -183,7 +184,7 @@ By default, the IPv6 address can only be used for private network communication.
 
 If you already have a shared bandwidth, you can add the IPv6 address to the shared bandwidth without applying for one.
 
-**Applying a Shared Bandwidth**
+**Applying for a Shared Bandwidth**
 
 #. Log in to the management console.
 #. Click |image2| in the upper left corner of the management console and select a region and a project.
@@ -207,7 +208,7 @@ If you already have a shared bandwidth, you can add the IPv6 address to the shar
 
 **Adding an IPv6 Address to a Shared Bandwidth**
 
-#. On the shared bandwidth list page, locate the row containing the target shared bandwidth and click **Add Public IP Address** in the **Operation** column.
+#. On the shared bandwidth list page, locate the row containing the target shared bandwidth and choose **More** > **Add Public IP Address** in the **Operation** column.
 #. Add the IPv6 address to the shared bandwidth.
 #. Click **OK**.
 
@@ -217,10 +218,10 @@ Log in to an ECS and ping an IPv6 address on the Internet to verify the connecti
 
 .. _cce_bestpractice_00222__en-us_topic_0226102195_en-us_topic_0213478735_en-us_topic_0118066459_fig12339172511196:
 
-.. figure:: /_static/images/en-us_image_0000002065479338.png
+.. figure:: /_static/images/en-us_image_0000002218818546.png
    :alt: **Figure 1** Result verification
 
    **Figure 1** Result verification
 
-.. |image1| image:: /_static/images/en-us_image_0000002101677757.png
-.. |image2| image:: /_static/images/en-us_image_0000002065479386.png
+.. |image1| image:: /_static/images/en-us_image_0000002253778377.png
+.. |image2| image:: /_static/images/en-us_image_0000002218818590.png

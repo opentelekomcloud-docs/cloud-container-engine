@@ -12,7 +12,7 @@ In a rolling upgrade, a new node is created, existing workloads are migrated to 
 
 .. _cce_10_0276__fig1689610598118:
 
-.. figure:: /_static/images/en-us_image_0000002101678765.png
+.. figure:: /_static/images/en-us_image_0000002253619725.png
    :alt: **Figure 1** Workload migration
 
    **Figure 1** Workload migration
@@ -33,7 +33,7 @@ Procedure If the Original Node Is in the Default Pool
 
 #. On the node pool list page, click **View Node** in the **Operation** column of the target node pool. The IP address of the new node is displayed in the node list.
 
-3. Install and configure kubectl. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+3. Install and configure kubectl. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 4. Migrate the workload.
 

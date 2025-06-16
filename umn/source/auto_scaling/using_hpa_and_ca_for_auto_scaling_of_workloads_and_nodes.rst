@@ -10,7 +10,7 @@ Application Scenarios
 
 The best way to handle surging traffic is to automatically adjust the number of machines based on the traffic volume or resource usage, which is called scaling.
 
-When deploying applications in pods, you can configure requested resources and resource limits for the pods to prevent unlimited usage of resources during peak hours. However, after the upper limit is reached, an application error may occur. Pod scaling can effectively resolve this issue. If the resource usage on the node increases to a certain extent, newly added pods cannot be scheduled to this node. In this case, CCE will add nodes accordingly.
+To prevent pods from using up node resources without limit during peak hours, it is a common practice to specify request and limit values for pods before deploying an application. However, this approach may encounter a resource bottleneck as an application exception may occur once the upper limit of resource usage is reached. To address this problem, you can scale the pods in or out to distribute the workload. If the node resource usage reaches its upper limit after pods are added and new pods cannot be scheduled, you can scale the nodes in or out depending on the node resource usage.
 
 Solution
 --------
@@ -23,7 +23,7 @@ As shown in :ref:`Figure 1 <cce_10_0300__cce_bestpractice_00282_fig6540132372015
 
 .. _cce_10_0300__cce_bestpractice_00282_fig6540132372015:
 
-.. figure:: /_static/images/en-us_image_0000002101596297.png
+.. figure:: /_static/images/en-us_image_0000002253778437.png
    :alt: **Figure 1** HPA and CA working flows
 
    **Figure 1** HPA and CA working flows
@@ -135,7 +135,7 @@ Creating a Node Pool and a Node Scaling Policy
    -  **Node Type**: Select a node type.
    -  **Specifications**: 2 vCPUs \| 4 GiB
 
-   Retain the defaults for other parameters. For details, see `Creating a Node Pool <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0012.html>`__.
+   Retain the default values for other parameters. For details, see `Creating a Node Pool <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0012.html>`__.
 
 #. Locate the row containing the newly created node pool and click **Auto Scaling** in the upper right corner. For details, see `Creating a Node Scaling Policy <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0209.html>`__.
 
@@ -144,6 +144,7 @@ Creating a Node Pool and a Node Scaling Policy
    -  **Customize scale-out rules.**: Click **Add Rule**. In the dialog box displayed, configure parameters. If the CPU allocation rate is greater than 70%, a node is added to each associated node pool. A node scaling policy needs to be associated with a node pool. Multiple node pools can be associated. When you need to scale nodes, node with proper specifications will be added or reduced from the node pool based on the minimum waste principle.
    -  **Nodes**: Modify the node quantity range. The number of nodes in a node pool will always be within the range during auto scaling.
    -  **Cooldown Period**: a period during which the nodes added in the current node pool cannot be scaled in
+   -  **Specifications**: Configure whether to enable auto scaling for node flavors in a node pool.
 
 #. Click **OK**.
 
@@ -370,12 +371,12 @@ Observing the Auto Scaling Process
 
    You can also view the HPA policy execution history on the console. Wait until the one node is reduced.
 
-   The reason why the other two nodes in the node pool are not reduced is that they both have pods in the kube-system namespace (and these pods are not created by DaemonSets). For details, see `Node Scaling Mechanisms <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0296.html>`__.
+   The reason why the other two nodes in the node pool are not reduced is that they both have pods in the **kube-system** namespace, and these pods are not created by DaemonSets. For details about the conditions in which nodes will not be removed, see `Node Scaling Mechanisms <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0296.html>`__.
 
 Summary
 -------
 
 By using HPA and CA, auto scaling can be effortlessly implemented in various scenarios. Additionally, the scaling process of nodes and pods can be conveniently tracked.
 
-.. |image1| image:: /_static/images/en-us_image_0000002065637710.png
-.. |image2| image:: /_static/images/en-us_image_0000002101596289.png
+.. |image1| image:: /_static/images/en-us_image_0000002218658786.png
+.. |image2| image:: /_static/images/en-us_image_0000002253618517.png

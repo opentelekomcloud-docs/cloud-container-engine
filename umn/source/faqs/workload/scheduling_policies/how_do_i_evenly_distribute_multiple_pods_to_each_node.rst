@@ -11,7 +11,7 @@ BalancedResourceAllocation is only one of the scoring priorities. Other scoring 
 
 You can configure pod anti-affinity policies to evenly distribute pods onto different nodes.
 
-Example:
+An example is as follows:
 
 .. code-block::
 

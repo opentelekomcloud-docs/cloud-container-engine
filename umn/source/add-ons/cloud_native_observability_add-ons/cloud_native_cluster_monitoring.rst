@@ -8,9 +8,9 @@ Cloud Native Cluster Monitoring
 Introduction
 ------------
 
-Cloud Native Cluster Monitoring (kube-prometheus-stack) uses Prometheus-operator and Prometheus to provide easy-to-use, end-to-end Kubernetes cluster monitoring.
+The Cloud Native Cluster Monitoring add-on (formerly kube-prometheus-stack) uses Prometheus-operator and Prometheus and provides easy-to-use, end-to-end Kubernetes cluster monitoring.
 
-Open source community: https://github.com/prometheus/prometheus
+**Open-source community**: https://github.com/prometheus/prometheus
 
 Notes and Constraints
 ---------------------
@@ -57,14 +57,14 @@ Installing the Add-on
    On the **Install Add-on** page, enable at least one item in the **Data Storage Configuration** area.
 
    -  **Reporting Monitoring Data to AOM**: Report Prometheus data to AOM. After this function is enabled, you can select the corresponding AOM instance. The collected basic metrics are free of charge. Custom metrics are charged by AOM. To interconnect with AOM, you must have certain permissions. Only **users in the** **admin** **user group** can perform this operation.
-   -  **Reporting Monitoring Data to a Third-Party Platform**: To report Prometheus data to a third-party monitoring system, you need to enter the address and token of the third-party monitoring system and determine whether to skip certificate authentication.
+   -  **Reporting Monitoring Data to a Third-Party Monitoring Platform**: To report Prometheus data to a third-party monitoring system, you need to enter the address and token of the third-party monitoring system and determine whether to skip certificate authentication.
    -  **Local data storage**: Select the type and size of a disk for storing monitoring data to store Prometheus data in PVCs in the cluster. **Storage volumes are not deleted along with the add-on.** If local data storage is enabled, all components will be deployed. For details, see :ref:`Components <cce_10_0406__section0377457163618>`.
 
       .. note::
 
-         An available PVC named **pvc-prometheus-server** exists in namespace **monitoring** and will be used as the storage source.
+         An available PVC named **pvc-prometheus-server-0** exists in namespace **monitoring** and will be used as the storage source.
 
-#. Configure the add-on specifications as needed.
+#. Configure the add-on **specifications** as needed.
 
    -  **Add-on Specifications**:
 
@@ -72,7 +72,7 @@ Installing the Add-on
       -  If you selected **Custom**, you can adjust the number of pods and resource quotas as needed. High availability is not possible with a single pod. If an error occurs on the node where the add-on instance runs, the add-on will fail.
 
    -  **Prometheus HA**: The Prometheus-server, Prometheus-operator, thanos-query, custom-metrics-apiserver, alertmanager, and kube-state-metrics components are deployed in multi-instance mode in the cluster.
-   -  **Number of collected shards** (available after **Local data storage** is disabled): When there is a lot of Prometheus data, you can configure this parameter to spread the data across a specific number of Prometheus instances. This will help with storage and querying. Increasing the number of shards reduces the data volume carried by each shard. This can increase the upper limit of the metric collection throughput and cause more resources to be consumed. You are advised to increase shards when the cluster scale is large to improve the collection performance. In addition, you need to consider the impact of resource usage and optimize it based on specific scenarios.
+   -  **Number of collected shards** (available after **Local data storage** is disabled): When there is a lot of Prometheus data, you can configure this parameter to spread the data across a specific number of Prometheus instances. This will help with storage and querying. Increasing the number of shards reduces the data volume carried by each shard. This can increase the upper limit of the metric collection throughput and cause more resources to be consumed. By default, CCE automatically determines the number of shards based on the cluster scale. It is advised to allocate one shard for every 50 nodes. If you want to enhance collection performance by increasing the number of shards, carefully assess resource utilization and optimize based on your monitoring needs. To ensure system stability, keep the master node's memory usage below 50%.
 
 #. Configure the add-on parameters.
 
@@ -96,7 +96,7 @@ Installing the Add-on
       a. Collect custom metrics reported by applications to Prometheus. For details, see :ref:`Monitoring Custom Metrics Using Cloud Native Cluster Monitoring <cce_10_0373>`.
       b. Aggregate these custom metrics collected by Prometheus to the API server for the HPA policy to use. For details, see :ref:`Creating an HPA Policy Using Custom Metrics <cce_10_0406__section11927514174016>`.
 
-   -  To provide system resource metrics (such as CPU and memory usage) for workload auto scaling using this add-on, ensure that local data storage is enabled for the add-on and then enable the Metrics API. For details, see :ref:`Providing Resource Metrics Through the Metrics API <cce_10_0406__section17830202915211>`. After the configuration, you can use Prometheus to collect system resource metrics. (This operation is not recommended because it may conflict with the Kubernetes Metric Server add-on.)
+   -  To provide system resource metrics (such as CPU and memory usage) for workload auto scaling using this add-on, ensure that local data storage is enabled for the add-on and then enable the Metrics API. For details, see :ref:`Providing Basic Resource Metrics Through the Metrics API <cce_10_0406__section17830202915211>`. After the configuration, you can use Prometheus to collect system resource metrics. (This operation is not recommended because it may conflict with the Kubernetes Metric Server add-on.)
 
 .. _cce_10_0406__section0377457163618:
 
@@ -147,12 +147,12 @@ All Kubernetes resources created during Cloud Native Cluster Monitoring add-on i
 
 .. _cce_10_0406__section17830202915211:
 
-Providing Resource Metrics Through the Metrics API
---------------------------------------------------
+Providing Basic Resource Metrics Through the Metrics API
+--------------------------------------------------------
 
 .. note::
 
-   Resource metrics can only be provided through Metrics API if local data storage is enabled for the Cloud Native Cluster Monitoring add-on.
+   If local data storage is enabled for the Cloud Native Cluster Monitoring add-on, basic resource metrics can only be provided through Metrics API.
 
 Resource metrics of containers and nodes, such as CPU and memory usage, can be obtained through the Kubernetes Metrics API. Resource metrics can be directly accessed, for example, by using the **kubectl top** command, or used by HPA or CustomedHPA policies for auto scaling.
 
@@ -188,7 +188,6 @@ Run the **kubectl top pod -n monitoring** command. If information similar to the
 
 .. code-block::
 
-   # kubectl top pod -n monitoring
    NAME                                                      CPU(cores)   MEMORY(bytes)
    ......
    custom-metrics-apiserver-d4f556ff9-l2j2m                  38m          44Mi
@@ -276,7 +275,7 @@ Collecting All Labels and Annotations of a Pod
 
       When editing the startup command, do not modify other original startup parameters. Otherwise, the component may be abnormal.
 
-#. **kube-state-metrics** starts to collect the labels/annotations of pods and nodes and checks whether **kube_pod_labels/kube_pod_annotations** is in the collection task of CloudScope.
+#. **kube-state-metrics** starts to collect the labels/annotations of pods and nodes and checks whether **kube_pod_labels/kube_pod_annotations** is in the collection task of Prometheus.
 
    .. code-block::
 
@@ -292,7 +291,23 @@ Change History
    +-----------------+---------------------------+--------------------------------------------------+----------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                      | Community Version                                                          |
    +=================+===========================+==================================================+============================================================================+
-   | 3.11.0          | v1.21                     | CCE clusters 1.30 are supported.                 | `2.37.8 <https://github.com/prometheus/prometheus/releases/tag/v2.37.8>`__ |
+   | 3.12.0          | v1.21                     | -  CCE clusters v1.31 are supported.             | `2.53.2 <https://github.com/prometheus/prometheus/releases/tag/v2.53.2>`__ |
+   |                 |                           | -  Upgraded Prometheus.                          |                                                                            |
+   |                 | v1.23                     |                                                  |                                                                            |
+   |                 |                           |                                                  |                                                                            |
+   |                 | v1.25                     |                                                  |                                                                            |
+   |                 |                           |                                                  |                                                                            |
+   |                 | v1.27                     |                                                  |                                                                            |
+   |                 |                           |                                                  |                                                                            |
+   |                 | v1.28                     |                                                  |                                                                            |
+   |                 |                           |                                                  |                                                                            |
+   |                 | v1.29                     |                                                  |                                                                            |
+   |                 |                           |                                                  |                                                                            |
+   |                 | v1.30                     |                                                  |                                                                            |
+   |                 |                           |                                                  |                                                                            |
+   |                 | v1.31                     |                                                  |                                                                            |
+   +-----------------+---------------------------+--------------------------------------------------+----------------------------------------------------------------------------+
+   | 3.11.0          | v1.21                     | CCE clusters v1.30 are supported.                | `2.37.8 <https://github.com/prometheus/prometheus/releases/tag/v2.37.8>`__ |
    |                 |                           |                                                  |                                                                            |
    |                 | v1.23                     |                                                  |                                                                            |
    |                 |                           |                                                  |                                                                            |

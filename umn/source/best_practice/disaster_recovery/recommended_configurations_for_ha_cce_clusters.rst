@@ -50,7 +50,7 @@ You can also customize the distribution mode. The following two modes are suppor
 Selecting a Network Model
 -------------------------
 
--  Network model: CCE supports VPC network, Cloud Native 2.0 network, and container tunnel network models for your clusters. Different models have different performance and functions. For details, see :ref:`Network Models <cce_bestpractice_10016__section13189203510317>`.
+-  Network model: CCE supports VPC, Cloud Native 2.0, and container tunnel network models for your clusters. Different models have different performance and functions. For details, see :ref:`Network Models <cce_bestpractice_10016__section13189203510317>`.
 -  VPC network: To enable your applications to access other cloud services like RDS, create related services in the same VPC network as your cluster which runs these applications. This is because services using different VPC networks are isolated from each other. If you have created instances, use VPC peering connections to enable communications between VPCs.
 -  Container CIDR block: Do not configure a small container CIDR block. Otherwise, the number of supported nodes will be limited.
 
@@ -89,7 +89,7 @@ CCE allows you to configure resource quotas and limits for your cloud service re
 Partitioning Data Disks Attached to a Node
 ------------------------------------------
 
-By default, the first data disk of a worker node is for storing the container runtime and kubelet components. The remaining capacity of this data disk affects image download and container startup and running. For details, see :ref:`Data Disk Space Allocation <cce_10_0341>`.
+By default, the first data disk of a worker node is for storing the container runtime and kubelet components. The remaining capacity of this data disk affects image download and container startup and running. For details, see :ref:`Space Allocation of a Data Disk <cce_10_0341>`.
 
 The default space of this date disk is 100 GiB. You can adjust the space as required. Images, system logs, and application logs are stored on data disks. Therefore, you need to evaluate the number of pods to be deployed on each node, the size of logs, images, and temporary data of each pod, as well as some reserved space for the system. For details, see :ref:`Selecting a Data Disk for the Node <cce_bestpractice_10012>`.
 

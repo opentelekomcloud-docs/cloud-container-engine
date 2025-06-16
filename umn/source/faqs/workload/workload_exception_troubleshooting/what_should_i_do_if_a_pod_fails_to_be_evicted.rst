@@ -8,13 +8,13 @@ What Should I Do If a Pod Fails to Be Evicted?
 Principle of Eviction
 ---------------------
 
-When a node is abnormal, Kubernetes will evict pods on the node to ensure workload availability.
+When a node is abnormal, Kubernetes will evict some pods on the node to ensure workload availability.
 
 In Kubernetes, both kube-controller-manager and kubelet can evict pods.
 
 -  **Eviction implemented by kube-controller-manager**
 
-   kube-controller-manager consists of multiple controllers, and eviction is implemented by node controller. node controller periodically checks the status of all nodes. If a node is in the **NotReady** state for a period of time, all pods on the node will be evicted.
+   kube-controller-manager consists of multiple controllers, and eviction is implemented by node controller. Node controller periodically checks the status of all nodes. If a node is in the **NotReady** state for a period of time, all pods on the node will be evicted.
 
    kube-controller-manager supports the following startup parameters:
 
@@ -37,7 +37,7 @@ In Kubernetes, both kube-controller-manager and kubelet can evict pods.
       You can configure soft eviction thresholds using the following parameters:
 
       -  **eviction-soft**: indicates a soft eviction threshold. If a node's `eviction signal <https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals>`__ reaches a certain threshold, for example, **memory.available<1.5Gi**, kubelet will not immediately evict some pods on the node but wait for a grace period configured by **eviction-soft-grace-period**. If the threshold is reached after the grace period elapses, kubelet will evict some pods on the node.
-      -  **eviction-soft-grace-period**: indicates an eviction grace period. If a pod reaches the soft eviction threshold, it will be terminated after the configured grace period elapses. This parameter indicates the time difference for a terminating pod to respond to the threshold being met. The default grace period is 90 seconds.
+      -  **eviction-soft-grace-period**: indicates an eviction grace period. If a pod reaches the soft eviction threshold, it will be terminated after the configured grace period elapses. This parameter indicates the time difference for a terminating pod to respond to the threshold being met.
       -  **eviction-max-pod-grace-period**: indicates the maximum allowed grace period to use when terminating pods in response to a soft eviction threshold being met.
 
    -  **Hard eviction thresholds**: Pods are immediately evicted once these thresholds are reached.
@@ -61,7 +61,7 @@ In Kubernetes, both kube-controller-manager and kubelet can evict pods.
 Fault Locating
 --------------
 
-If the pods are not evicted when the node is faulty, perform the following steps to locate the fault:
+If the pods are not evicted when the node is faulty, perform the following operations to locate the fault:
 
 After the following command is executed, the command output shows that many pods are in the **Evicted** state.
 
@@ -75,8 +75,8 @@ Check results will be recorded in kubelet logs of the node. You can run the foll
 
    cat /var/log/cce/kubernetes/kubelet.log | grep -i Evicted -C3
 
-Troubleshooting Process
------------------------
+Troubleshooting
+---------------
 
 The issues here are described in order of how likely they are to occur.
 
@@ -93,7 +93,7 @@ Check these causes one by one until you find the cause of the fault.
 Check Item 1: Whether the Node Is Under Resource Pressure
 ---------------------------------------------------------
 
-If a node suffers resource pressure, kubelet will change the `node status <https://kubernetes.io/docs/reference/node/node-status/#condition>`__ and add taints to the node. Perform the following steps to check whether the corresponding taint exists on the node:
+If a node suffers resource pressure, kubelet will change the `node status <https://kubernetes.io/docs/reference/node/node-status/#condition>`__ and add taints to the node. Perform the following operations to check whether the corresponding taint exists on the node:
 
 .. code-block::
 
@@ -136,7 +136,7 @@ Check Item 4: Whether the Allocated Resources of the Pod Are the Same as Those o
 
 An evicted pod will be frequently scheduled to the original node.
 
-**Possible Causes**
+**Possible cause**
 
 Pods on a node are evicted based on the node resource usage. The evicted pods are scheduled based on the allocated node resources. Eviction and scheduling are based on different rules. Therefore, an evicted container may be scheduled to the original node again.
 
@@ -165,7 +165,7 @@ Run the following command to delete the evicted pods:
 
 .. code-block::
 
-   kubectl get pods <namespace> | grep Evicted | awk '{print $1}' | xargs kubectl delete pod <namespace>
+   kubectl get pods -n <namespace> | grep Evicted | awk '{print $1}' | xargs kubectl delete pod -n <namespace>
 
 In the preceding command, *<namespace>* indicates the namespace name. Configure it based on your requirements.
 

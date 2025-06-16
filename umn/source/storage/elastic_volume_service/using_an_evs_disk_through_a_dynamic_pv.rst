@@ -11,7 +11,7 @@ Prerequisites
 -------------
 
 -  You have created a cluster and installed the :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on in the cluster.
--  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 Notes and Constraints
 ---------------------
@@ -24,8 +24,8 @@ Notes and Constraints
 
 -  Resource tags can be added to dynamically created EVS disks. After the EVS disks are created, the resource tags cannot be updated on CCE. To update them, go to the EVS console. If you use an existing EVS disk to create a PV, you also need to add or update resource tags on the EVS console.
 
-(Console) Automatically Creating an EVS Disk
---------------------------------------------
+Automatically Creating an EVS Disk on the Console
+-------------------------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. Dynamically create a PVC and PV.
@@ -76,7 +76,7 @@ Notes and Constraints
       +---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Resource Tag                          | You can add resource tags to classify resources, which is supported only when the Everest version in the cluster is 2.1.39 or later.                                                                                                                                                                       |
       |                                       |                                                                                                                                                                                                                                                                                                            |
-      |                                       | You can create predefined tags on the TMS console. The predefined tags are available to all resources that support tags. You can use these tags to improve the tag creation and resource migration efficiency.                                                                                             |
+      |                                       | You can create **predefined tags** on the TMS console. These tags are available to all resources that support tags. You can use these tags to improve the tag creation and resource migration efficiency.                                                                                                  |
       |                                       |                                                                                                                                                                                                                                                                                                            |
       |                                       | CCE automatically creates system tags **CCE-Cluster-ID=**\ *{Cluster ID}*, **CCE-Cluster-Name=**\ *{Cluster name}*, and **CCE-Namespace=**\ *{Namespace name}*. These tags cannot be modified.                                                                                                             |
       |                                       |                                                                                                                                                                                                                                                                                                            |
@@ -93,7 +93,7 @@ Notes and Constraints
 
    a. Choose **Workloads** in the navigation pane. In the right pane, click the **StatefulSets** tab.
 
-   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Settings** area and click **Add Volume** to select **PVC**.
+   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Information** area under **Container Settings** and choose **Add Volume** > **PVC**.
 
       Mount and use storage volumes, as shown in :ref:`Table 1 <cce_10_0615__cce_10_0614_table2529244345>`. For details about other parameters, see :ref:`Workloads <cce_10_0046>`.
 
@@ -153,7 +153,6 @@ Automatically Creating an EVS Volume Through kubectl
            annotations:
                everest.io/disk-volume-type: SAS    # EVS disk type
              everest.io/crypt-key-id: <your_key_id>    # (Optional) Encryption key ID. Mandatory for an encrypted disk.
-
              everest.io/disk-volume-tags: '{"key1":"value1","key2":"value2"}' # (Optional) Custom resource tags
              csi.storage.k8s.io/fstype: xfs    # (Optional) The file system is of the xfs type. If it is left blank, ext4 will be used by default.
              everest.io/csi.volume-name-prefix: test  # (Optional) Storage volume name prefix of the automatically created underlying storage
@@ -165,8 +164,8 @@ Automatically Creating an EVS Volume Through kubectl
            - ReadWriteOnce               # The value must be ReadWriteOnce for EVS disks.
            resources:
              requests:
-               storage: 10Gi             # EVS disk capacity, ranging from 1 to 32768.
-           storageClassName: csi-disk    # StorageClass is EVS.
+               storage: 10Gi             # EVS disk capacity, ranging from 1 to 32768
+           storageClassName: csi-disk    # The StorageClass is EVS.
 
       .. table:: **Table 2** Key parameters
 
@@ -193,15 +192,15 @@ Automatically Creating an EVS Volume Through kubectl
          |                                          |                       |                                                                                                                                                                                                                                                                     |
          |                                          |                       | To obtain a key ID, log in to the DEW console, locate the key to be encrypted, and copy the key ID.                                                                                                                                                                 |
          +------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | everest.io/disk-volume-tags              | No                    | This field is optional. It is supported when the Everest version in the cluster is 2.1.39 or later.                                                                                                                                                                 |
+         | everest.io/disk-volume-tags              | No                    | (Optional) This parameter is supported when the Everest version in the cluster is 2.1.39 or later.                                                                                                                                                                  |
          |                                          |                       |                                                                                                                                                                                                                                                                     |
          |                                          |                       | You can add resource tags to classify resources.                                                                                                                                                                                                                    |
          |                                          |                       |                                                                                                                                                                                                                                                                     |
-         |                                          |                       | You can create **predefined tags** on the TMS console. The predefined tags are available to all resources that support tags. You can use these tags to improve the tag creation and resource migration efficiency.                                                  |
+         |                                          |                       | You can create **predefined tags** on the TMS console. These tags are available to all resources that support tags. You can use these tags to improve the tag creation and resource migration efficiency.                                                           |
          |                                          |                       |                                                                                                                                                                                                                                                                     |
          |                                          |                       | CCE automatically creates system tags **CCE-Cluster-ID=**\ *{Cluster ID}*, **CCE-Cluster-Name=**\ *{Cluster name}*, and **CCE-Namespace=**\ *{Namespace name}*. These tags cannot be modified.                                                                      |
          +------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | csi.storage.k8s.io/fstype                | No                    | This field is optional. It specifies the file system type, which defaults to **ext4**.                                                                                                                                                                              |
+         | csi.storage.k8s.io/fstype                | No                    | (Optional) This parameter specifies the file system type, which defaults to **ext4**.                                                                                                                                                                               |
          |                                          |                       |                                                                                                                                                                                                                                                                     |
          |                                          |                       | The value can be **ext4** or **xfs**. The restrictions on using **xfs** are as follows:                                                                                                                                                                             |
          |                                          |                       |                                                                                                                                                                                                                                                                     |
@@ -216,9 +215,11 @@ Automatically Creating an EVS Volume Through kubectl
          |                                          |                       |                                                                                                                                                                                                                                                                     |
          |                                          |                       | For example, if the storage volume name prefix is set to **test**, the actual underlying storage name is **test-**\ *{UID}*.                                                                                                                                        |
          +------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | storage                                  | Yes                   | Requested PVC capacity, in Gi. The value ranges from **1** to **32768**.                                                                                                                                                                                            |
+         | storage                                  | Yes                   | Requested PVC capacity, in Gi. The value is an integer ranging from **1** to **32768**.                                                                                                                                                                             |
+         |                                          |                       |                                                                                                                                                                                                                                                                     |
+         |                                          |                       | If **storage** is set to a decimal, the value will be rounded up for the EVS disk. For example, if **storage** is set to **10.1Gi**, an 11-GiB EVS disk will be created.                                                                                            |
          +------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | storageClassName                         | Yes                   | The StorageClass for EVS disks is **csi-disk**.                                                                                                                                                                                                                     |
+         | storageClassName                         | Yes                   | StorageClass name, which is **csi-disk** for an EVS disk.                                                                                                                                                                                                           |
          +------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    b. Run the following command to create a PVC:
@@ -253,7 +254,7 @@ Automatically Creating an EVS Volume Through kubectl
                - name: container-1
                  image: nginx:latest
                  volumeMounts:
-                 - name: pvc-disk    # Volume name, which must be the same as the volume name in the volumes field.
+                 - name: pvc-disk    # Volume name, which must be the same as the volume name in the volumes field
                    mountPath: /data  # Location where the storage volume is mounted
                imagePullSecrets:
                  - name: default-secret
