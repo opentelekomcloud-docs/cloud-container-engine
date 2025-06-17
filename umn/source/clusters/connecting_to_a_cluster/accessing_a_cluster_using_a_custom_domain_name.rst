@@ -8,7 +8,7 @@ Accessing a Cluster Using a Custom Domain Name
 Scenario
 --------
 
-Subject Alternative Name (SAN) allows multiple values (including IP addresses, domain names, and so on) to be associated with certificates. A SAN is usually used by the client to verify the server validity in TLS handshakes. Specifically, the validity check includes whether the server certificate is issued by a CA trusted by the client and whether the SAN in the certificate matches the IP address or DNS domain name that the client actually accesses.
+Subject Alternative Name (SAN) enables certificates to be associated with multiple values, including IP addresses and domain names. A SAN is usually used by the client to verify the server validity in TLS handshakes. Specifically, the validity check includes whether the server certificate is issued by a CA trusted by the client and whether the SAN in the certificate matches the IP address or DNS domain name that the client actually accesses.
 
 If the client cannot directly access the private IP or EIP of the cluster, you can sign the IP address or DNS domain name that can be directly accessed by the client into the cluster server certificate as a SAN to enable two-way authentication on the client, which improves security. Typical use cases include DNAT access and domain name access.
 
@@ -26,34 +26,33 @@ A cluster of v1.19 or later is available.
 Customizing a SAN
 -----------------
 
+You can add a custom SAN on the CCE console. To do so, perform the following operations:
+
 #. Log in to the CCE console.
 #. Click the name of the target cluster in the cluster list to go to the cluster **Overview** page.
 #. In the **Connection Information** area, click |image1| next to **Custom SAN**. In the dialog box displayed, enter the IP address or domain name and click **Save**.
 
    .. note::
 
-      1. This operation will restart kube-apiserver and update the **kubeconfig.json** file for a short period of time. Do not perform operations on the cluster during this period.
+      -  The kube-apiserver will be restarted and the kubeconfig certificate will be updated, which will take approximately 5 minutes. Do not perform any operations on the cluster during this period. After the operation is complete, download the updated kubeconfig certificate.
+      -  A maximum of 128 domain names or IP addresses, separated by commas (,), are allowed.
+      -  If a custom domain name needs to be bound to an EIP, ensure that you have configured an EIP.
 
-      2. A maximum of 128 domain names or IP addresses, separated by commas (,), are allowed.
+Using kubectl to Access a Cluster
+---------------------------------
 
-      3. If a custom domain name needs to be bound to an EIP, ensure that an EIP has been configured.
+After the SAN is modified, the original **kubeconfig.json** file becomes invalid. If you previously accessed the cluster using kubectl, you need to reconfigure the settings.
 
-Connecting to a Cluster Using the SAN
--------------------------------------
+#. .. _cce_10_0367__li8846101312517:
 
-**Using kubectl to access the cluster**
-
-#. Download the **kubeconfig.json** file again after the SAN is modified.
+   Download the **kubeconfig.json** file again after the SAN is modified.
 
    a. Log in to the CCE console and click the cluster name to access the cluster console.
-
-   b. .. _cce_10_0367__li2323134272411:
-
-      On the **Overview** page, locate the **Connection Info** area, click **Configure** next to **kubectl**. On the page displayed, download the configuration file.
+   b. On the **Overview** page, locate the **Connection Information** area, click **Configure** next to **kubectl**. On the page displayed, download the configuration file.
 
 #. Configure kubectl.
 
-   a. Log in to your client and copy the **kubeconfig.json** file downloaded in :ref:`1.b <cce_10_0367__li2323134272411>` to the **/home** directory on your client.
+   a. Log in to your client and copy the **kubeconfig.json** file downloaded in :ref:`1 <cce_10_0367__li8846101312517>` to the **/home** directory on your client.
 
    b. Configure the kubectl authentication file.
 
@@ -69,17 +68,34 @@ Connecting to a Cluster Using the SAN
 
          kubectl config use-context customSAN-0
 
-      In the preceding command, *customSAN-0* indicates the configuration name of the custom SAN. If multiple SANs are configured, the number in the configuration name of each SAN starts from **0** and increases in ascending order, for example, *customSAN-0*, *customSAN-1*, and so on.
+      In the preceding command, *customSAN-0* indicates the configuration name of the custom SAN. When multiple SANs are configured, each SAN is named with an incrementing number starting from **0**, such as *customSAN-0*, *customSAN-1*, and more.
 
-**Using an X.509 certificate to access the cluster**
+#. Run the following command on the client to check whether the client can access the cluster using kubectl:
 
-#. After the SAN is modified, download the X509 certificate again.
+   .. code-block::
+
+      kubectl cluster-info    # Check the cluster information.
+
+   If the following information is displayed, the client can access the cluster using kubectl:
+
+   .. code-block::
+
+      Kubernetes control plane is running at https://xx.xx.xx.xx:5443
+      CoreDNS is running at https://xx.xx.xx.xx:5443/api/v1/namespaces/kube-system/services/coredns:dns/proxy
+      To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+
+Using an X.509 Certificate to Access a Cluster
+----------------------------------------------
+
+After the SAN is modified, the original X.509 certificate becomes invalid. If you previously accessed the cluster using the X.509 certificate, you need to reconfigure the settings.
+
+#. After the SAN is modified, download the X.509 certificate again.
 
    a. Log in to the CCE console and click the cluster name to access the cluster console.
-   b. On the **Overview** page, locate the **Connection Info** area, and click **Download** next to **X.509 certificate**.
+   b. On the **Overview** page, locate the **Connection Information** area, and click **Download** next to **X.509 certificate**.
    c. In the **Obtain Certificate** dialog box displayed, select the certificate expiration time and download the X.509 certificate of the cluster as prompted.
 
-#. Call native Kubernetes APIs using the cluster certificate.
+#. Call Kubernetes native APIs using the cluster certificate.
 
    For example, run the **curl** command to call an API to obtain the pod information. In the following information, *example.com:5443* indicates the custom SAN.
 
@@ -87,6 +103,15 @@ Connecting to a Cluster Using the SAN
 
       curl --cacert ./ca.crt --cert ./client.crt --key ./client.key  https://example.com:5443/api/v1/namespaces/default/pods/
 
+   If the following information is displayed, the X.509 certificate is correctly configured and the API Server of the cluster is running properly:
+
+   .. code-block::
+
+      {
+        "kind": "PodList",
+        "apiVersion": "v1",
+      ...
+
    For more cluster APIs, see `Kubernetes API <https://kubernetes.io/docs/reference/kubernetes-api/>`__.
 
-.. |image1| image:: /_static/images/en-us_image_0000002101597693.png
+.. |image1| image:: /_static/images/en-us_image_0000002253780433.png

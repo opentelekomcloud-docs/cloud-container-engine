@@ -9,6 +9,7 @@ Scaling a Node
 -  :ref:`Priorities for Scaling Node Pools <cce_10_0649>`
 -  :ref:`Creating a Node Scaling Policy <cce_10_0209>`
 -  :ref:`Managing Node Scaling Policies <cce_10_0063>`
+-  :ref:`Specifying Node Scale-in Conditions for a Node Pool <cce_10_0967>`
 
 .. toctree::
    :maxdepth: 1
@@ -18,3 +19,4 @@ Scaling a Node
    priorities_for_scaling_node_pools
    creating_a_node_scaling_policy
    managing_node_scaling_policies
+   specifying_node_scale-in_conditions_for_a_node_pool

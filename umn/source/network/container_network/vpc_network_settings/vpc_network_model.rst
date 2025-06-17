@@ -8,10 +8,10 @@ VPC Network Model
 Model Definition
 ----------------
 
-The VPC network model seamlessly combines VPC routing with the underlying network, making it ideal for high-performance scenarios. However, the maximum number of nodes allowed in a cluster is determined by the VPC route quota. In the VPC network model, container CIDR blocks are separate from node CIDR blocks. To allocate IP addresses to containers running on a node in a cluster, each node in the cluster is allocated with a container CIDR block for a fixed number of IP addresses. The VPC network model outperforms the container tunnel network model in terms of performance because it does not have tunnel encapsulation overhead. When using the VPC network model in a cluster, the VPC routing table automatically configures the routes between container CIDR blocks and VPC CIDR blocks. This means that pods within the cluster can be accessed directly from cloud servers in the same VPC, even if they are outside the cluster.
+The VPC network model seamlessly combines VPC routing with the underlying network, making it ideal for high-performance scenarios. However, the maximum number of nodes allowed in a cluster is determined by the VPC route quota. In the VPC network model, container CIDR blocks are separate from node CIDR blocks. To allocate IP addresses to containers running on a node in a cluster, each node in the cluster is allocated with a container CIDR block for a fixed number of IP addresses. The VPC network model outperforms the container tunnel network model in terms of performance because it does not have tunnel encapsulation overhead. When using the VPC network model in a cluster, the VPC route table automatically configures the routes between container CIDR blocks and VPC CIDR blocks. This means that pods within the cluster can be accessed directly from cloud servers in the same VPC, even if they are outside the cluster.
 
 
-.. figure:: /_static/images/en-us_image_0000002101678893.png
+.. figure:: /_static/images/en-us_image_0000002253619981.png
    :alt: **Figure 1** VPC network model
 
    **Figure 1** VPC network model
@@ -19,7 +19,7 @@ The VPC network model seamlessly combines VPC routing with the underlying networ
 In a cluster using the VPC network model, network communication paths are as follows:
 
 -  Inter-pod communication on the same node: Packets are directly forwarded through IPvlan.
--  Inter-pod communication on different nodes: The traffic accesses the default gateway by following the route specified in the VPC routing table and then is forwarded to the target pod on another node using VPC routing.
+-  Inter-pod communication on different nodes: The traffic accesses the default gateway by following the route specified in the VPC route table and then is forwarded to the target pod on another node using VPC routing.
 -  Pod communication with the Internet: When a container in a cluster needs to access the Internet, CCE uses NAT to translate the container's IP address into the node IP address so that the pod communicates externally using the node IP address.
 
 Advantages and Disadvantages
@@ -28,11 +28,11 @@ Advantages and Disadvantages
 **Advantages**
 
 -  High performance and simplified network fault locating are achieved by eliminating the need for tunnel encapsulation.
--  A VPC routing table automatically configures routes between container CIDR blocks and VPC CIDR blocks. This enables resources in the VPC to directly communicate with containers in the cluster.
+-  A VPC route table automatically configures routes between container CIDR blocks and VPC CIDR blocks. This enables resources in the VPC to directly communicate with containers in the cluster.
 
    .. note::
 
-      Similarly, if the VPC is accessible to other VPCs or data centers and the VPC routing table includes routes to the container CIDR blocks, resources in other VPCs or data centers can directly communicate with containers in the cluster, provided there are no conflicts between the network CIDR blocks.
+      Similarly, if the VPC is accessible to other VPCs or data centers and the VPC route table includes routes to the container CIDR blocks, resources in other VPCs or data centers can directly communicate with containers in the cluster, provided there are no conflicts between the network CIDR blocks.
 
 **Disadvantages**
 
@@ -44,7 +44,7 @@ Application Scenarios
 ---------------------
 
 -  High performance requirements: As no tunnel encapsulation is required, the VPC network model delivers the performance close to that of a VPC network when compared with the container tunnel network model. Therefore, the VPC network model applies to scenarios that have high requirements on performance, such as AI computing and big data computing.
--  Small- and medium-scale networks: Due to the limitation on VPC routing tables, it is recommended that the number of nodes in a cluster be less than or equal to 1000.
+-  Small- and medium-scale networks: Due to the limitation on VPC route tables, it is recommended that the number of nodes in a cluster be less than or equal to 1000.
 
 .. _cce_10_0283__section1574982552114:
 
@@ -59,7 +59,7 @@ The VPC network model assigns container IP addresses based on the following guid
 -  IP addresses from the CIDR blocks assigned to a node are allocated to pods scheduled to that node in a cyclical manner.
 
 
-.. figure:: /_static/images/en-us_image_0000002101597409.png
+.. figure:: /_static/images/en-us_image_0000002218660238.png
    :alt: **Figure 2** IP address management of the VPC network
 
    **Figure 2** IP address management of the VPC network
@@ -92,13 +92,13 @@ Example of VPC Network Access
 
 In this example, a cluster using the VPC network model is created, and the cluster contains one node.
 
-On the VPC console, locate the VPC to which the cluster belongs and check the VPC routing table.
+On the VPC console, locate the VPC to which the cluster belongs and check the VPC route table.
 
-You can find that CCE has created a custom route in the routing table. This route has a destination address corresponding to the container CIDR block assigned to the node, and the next hop is directed towards the target node. In the example, the container CIDR block for the cluster is 172.16.0.0/16, with 128 container IP addresses assigned to each node. Therefore, the node's container CIDR block is 172.16.0.0/25, providing a total of 128 container IP addresses.
+You can find that CCE has created a custom route in the route table. This route has a destination address corresponding to the container CIDR block assigned to the node, and the next hop is directed towards the target node. In the example, the container CIDR block for the cluster is 172.16.0.0/16, with 128 container IP addresses assigned to each node. Therefore, the node's container CIDR block is 172.16.0.0/25, providing a total of 128 container IP addresses.
 
 When a container IP address is accessed, the VPC route will forward the traffic to the next-hop node that corresponds to the destination address. The following is an example:
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a Deployment in the cluster.
 

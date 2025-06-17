@@ -9,7 +9,7 @@ Creating a Workload
 -  :ref:`Creating a StatefulSet <cce_10_0048>`
 -  :ref:`Creating a DaemonSet <cce_10_0216>`
 -  :ref:`Creating a Job <cce_10_0150>`
--  :ref:`Creating a Cron Job <cce_10_0151>`
+-  :ref:`Creating a CronJob <cce_10_0151>`
 
 .. toctree::
    :maxdepth: 1
@@ -19,4 +19,4 @@ Creating a Workload
    creating_a_statefulset
    creating_a_daemonset
    creating_a_job
-   creating_a_cron_job
+   creating_a_cronjob

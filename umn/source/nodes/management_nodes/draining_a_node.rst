@@ -82,7 +82,7 @@ Drainage Through the Console
 Drainage Using kubectl
 ----------------------
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Edit the YAML file for drainage.
 
@@ -172,7 +172,7 @@ Drainage Through APIs
 
    -  **Endpoint**: endpoint of CCE in the region where the cluster is located.
 
-      For details about the value, see `Regions and Endpoints <https://docs.otc.t-systems.com/regions-and-endpoints/index.html>`__.
+      For details about its value, see `Regions and Endpoints <https://docs.otc.t-systems.com/regions-and-endpoints/index.html>`__.
 
 #. Use the **POST** request method and configure request header parameters.
 
@@ -243,7 +243,7 @@ Cancellation Using kubectl
 
    This operation will abort drainage on nodes, but workloads that have been evicted from these nodes will not be automatically migrated back.
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Check drainage resources.
 
@@ -324,7 +324,7 @@ Cancellation Through APIs
 
    -  **Endpoint**: endpoint of CCE in the region where the cluster is located.
 
-      For details about the value, see `Regions and Endpoints <https://docs.otc.t-systems.com/regions-and-endpoints/index.html>`__.
+      For details about its value, see `Regions and Endpoints <https://docs.otc.t-systems.com/regions-and-endpoints/index.html>`__.
 
    -  **{drainageName}**: name of the drainage resource, which can be obtained by running the **kubectl get drainages** command.
 

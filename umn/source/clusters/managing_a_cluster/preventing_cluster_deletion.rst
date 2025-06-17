@@ -7,8 +7,9 @@ Preventing Cluster Deletion
 
 Unexpected deletion of clusters can occur in practice, especially when multiple users share an account and accidentally delete clusters that do not belong to them. To prevent this issue, you can protect critical clusters against unexpected deletion through the console or APIs.
 
-Procedure
----------
+
+Preventing Cluster Deletion
+---------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Settings**.

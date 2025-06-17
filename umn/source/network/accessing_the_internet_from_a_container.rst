@@ -15,7 +15,7 @@ You can use NAT Gateway to enable container pods in a VPC to access the Internet
 
 .. _cce_10_0400__en-us_topic_0261817696_en-us_topic_0241700138_en-us_topic_0144420145_fig34611314153619:
 
-.. figure:: /_static/images/en-us_image_0000002101679233.png
+.. figure:: /_static/images/en-us_image_0000002218660706.png
    :alt: **Figure 1** SNAT
 
    **Figure 1** SNAT
@@ -48,7 +48,7 @@ To enable a container to access the Internet, perform the following steps:
 
    a. On the page displayed, click the name of the NAT gateway for which you want to add the SNAT rule.
    b. On the **SNAT Rules** tab page, click **Add SNAT Rule**.
-   c. Set parameters as required.
+   c. Configure parameters as required.
 
    .. note::
 
@@ -57,10 +57,10 @@ To enable a container to access the Internet, perform the following steps:
       -  Tunnel network and VPC network: Select the subnet where the node is located, that is, the subnet selected during node creation.
       -  Cloud Native Network 2.0: Select the subnet where the container is located, that is, the container subnet selected during cluster creation.
 
-      If there are multiple CIDR blocks, you can create multiple SNAT rules or customize a CIDR block as long as the CIDR block contains the container subnet (Cloud Native 2.0 network) or the node subnet.
+      If there are multiple CIDR blocks, you can create multiple SNAT rules or customize a CIDR block as long as the CIDR block contains the container subnet (Cloud Native Network 2.0) or the node subnet.
 
    After the SNAT rule is configured, workloads can access the Internet from the container. The Internet can be pinged from the container.
 
-.. |image1| image:: /_static/images/en-us_image_0000002065480858.png
-.. |image2| image:: /_static/images/en-us_image_0000002101597757.png
-.. |image3| image:: /_static/images/en-us_image_0000002101679237.png
+.. |image1| image:: /_static/images/en-us_image_0000002218660718.png
+.. |image2| image:: /_static/images/en-us_image_0000002253620437.png
+.. |image3| image:: /_static/images/en-us_image_0000002218660710.png

@@ -23,7 +23,7 @@ Prerequisites
    -  v1.28: v1.28.3-r0 or later
    -  Other clusters of later versions
 
--  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 Using the CCE Console
 ---------------------

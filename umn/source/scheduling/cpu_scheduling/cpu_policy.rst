@@ -8,7 +8,7 @@ CPU Policy
 Application Scenarios
 ---------------------
 
-By default, kubelet uses `CFS quotas <https://www.kernel.org/doc/html/next/scheduler/sched-design-CFS.html>`__ to enforce pod CPU limits. When a node runs many CPU-bound pods, the workload can move to different CPU cores depending on whether the pod is throttled and which CPU cores are available at scheduling time. Many workloads are not sensitive to this migration and thus work fine without any intervention. Some applications are CPU-sensitive. They are sensitive to:
+By default, kubelet uses `CFS quotas <https://www.kernel.org/doc/html/next/scheduler/sched-design-CFS.html>`__ to enforce pod CPU limits. When a node runs many CPU-bound pods, the workload can move to different CPU cores depending on whether the pod is throttled and which CPU cores are available at scheduling time. Many workloads are not sensitive to this migration and work fine without any intervention. Some applications are CPU-sensitive. They are sensitive to:
 
 -  CPU throttling
 -  Context switching
@@ -26,7 +26,7 @@ A CPU management policy is specified by using kubelet *--cpu-manager-policy*. By
 Notes and Constraints
 ---------------------
 
-The CPU management policy cannot take effect on physical cloud server nodes.
+The CPU management policy does not apply to ECS (PM) nodes in CCE Turbo clusters.
 
 .. _cce_10_0351__section173918176434:
 
@@ -57,7 +57,6 @@ Prerequisites:
 
 -  Enable the **static** policy on the node. For details, see :ref:`Enabling CPU Management for the Default Node Pool <cce_10_0351__section173918176434>`.
 -  Both requests and limits must be configured in pods and their values must be the same integer.
--  If an init container needs to exclusively use CPUs, set its requests to the same as that of the service container. Otherwise, the service container does not inherit the CPU allocation result of the init container, and the CPU manager reserves more CPU resources than supposed. For more information, see `App Containers can't inherit Init Containers CPUs - CPU Manager Static Policy <https://github.com/kubernetes/kubernetes/issues/94220#issuecomment-868489201>`__.
 
 You can use :ref:`node affinity scheduling <cce_10_0892>` to schedule the configured pods to the nodes where the **static** policy is enabled. In this way, the pods can exclusively use the CPU resources.
 
@@ -103,7 +102,7 @@ Log in to the node where the workload is running and check the **/var/lib/kubele
 
    cat /var/lib/kubelet/cpu_manager_state
 
-The command output is as follows:
+Command output:
 
 .. code-block::
 

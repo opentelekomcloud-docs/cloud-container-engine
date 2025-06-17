@@ -13,12 +13,14 @@ If you encounter unexpected problems when using a container, you can log in to t
 Notes and Constraints
 ---------------------
 
-When using CloudShell to access a CCE cluster or container, you can open a maximum of 15 instances simultaneously.
+-  When kubectl is used in CloudShell, permissions are determined by the logged-in user.
+-  When using CloudShell to access a CCE cluster or container, you can open up to 15 instances concurrently.
+-  The kubectl certificate in CloudShell is valid for one day. You can reset its validity period by accessing CloudShell through the CCE console.
 
 Using kubectl
 -------------
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Run the following command to view the created pod:
 

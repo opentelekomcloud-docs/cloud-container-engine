@@ -18,7 +18,7 @@ Configuring a Consistent Hashing Rule
 
 Nginx Ingress can use the **nginx.ingress.kubernetes.io/upstream-hash-by** annotation to configure consistent hashing rules. The following is an example:
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a YAML file named **ingress-test.yaml**. The file name can be customized.
 

@@ -43,21 +43,21 @@ To use this feature, the following conditions must be met:
 
 -  The cluster version must be v1.23 or later.
 -  The node OS is HCE OS 2.0.
--  The CPU management policy cannot take effect on physical cloud server nodes.
+-  The CPU management policy does not apply to ECS (PM) nodes in CCE Turbo clusters.
 
 Procedure
 ---------
 
 #. Log in to the CCE console.
 #. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. In the right pane, click the **Node Pools** tab.
-#. Select a node pool whose OS is HCE OS 2.0 and click **Manage** in the **Operation** column.
-#. On the **Manage Components** page, change the **cpu-manager-policy** value to **enhanced-static** in the **kubelet** area.
+#. Select a node pool whose OS is HCE OS 2.0 and choose **Manage** in the **Operation** column.
+#. On the **Manage Configurations** page, change the **cpu-manager-policy** value to **enhanced-static** in the **kubelet** area.
 #. Click **OK**.
 
 Verification
 ------------
 
-Take a node with 8 vCPUs and 32 GB memory as an example. Deploy a workload whose CPU request is 1 and limit is 2 in the cluster in advance.
+Take a node with 8 vCPUs and 32 GiB of memory as an example. Deploy a workload whose CPU request is 1 and limit is 2 in the cluster beforehand.
 
 #. Log in to a node in the node pool and view the **/var/lib/kubelet/cpu_manager_state** output.
 
@@ -117,4 +117,4 @@ Take a node with 8 vCPUs and 32 GB memory as an example. Deploy a workload whose
 
       1
 
-.. |image1| image:: /_static/images/en-us_image_0000002101597121.png
+.. |image1| image:: /_static/images/en-us_image_0000002253779501.png

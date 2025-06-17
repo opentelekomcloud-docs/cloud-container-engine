@@ -9,7 +9,7 @@ After a ConfigMap is created, it can be used in three workload scenarios: enviro
 
 -  :ref:`Configuring Environment Variables of a Workload <cce_10_0015__section1737733192813>`
 -  :ref:`Configuring Command Line Parameters <cce_10_0015__section17930105710189>`
--  :ref:`Mounting a ConfigMap to the Workload Data Volume <cce_10_0015__section1490261161916>`
+-  :ref:`Mounting a ConfigMap to a Workload Data Volume <cce_10_0015__section1490261161916>`
 
 The following example shows how to use a ConfigMap.
 
@@ -42,7 +42,7 @@ Configuring Environment Variables of a Workload
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Workloads**. Then, click **Create Workload** in the upper right corner.
+#. In the navigation pane, choose **Workloads**. In the dialog box displayed, click **Create Workload** in the upper right corner.
 
    When creating a workload, click **Environment Variables** in the **Container Settings** area, and click **Add Variable**.
 
@@ -63,7 +63,7 @@ Configuring Environment Variables of a Workload
 
       printenv SPECIAL_LEVEL
 
-   The example output is as follows:
+   Example output:
 
    .. code-block::
 
@@ -71,11 +71,13 @@ Configuring Environment Variables of a Workload
 
 **Using kubectl**
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a file named **nginx-configmap.yaml** and edit it.
 
-   **vi nginx-configmap.yaml**
+   .. code-block::
+
+      vi nginx-configmap.yaml
 
    Content of the YAML file:
 
@@ -129,7 +131,7 @@ Configuring Environment Variables of a Workload
                  image: nginx:latest
                  env:                             # Set the environment variable in the workload.
                  - name: SPECIAL_LEVEL           # Name of the environment variable in the workload.
-                   valueFrom:                    # Specify a ConfigMap to be referenced by the environment variable.
+                   valueFrom:                    # Use valueFrom to specify a ConfigMap to be referenced by environment variables.
                      configMapKeyRef:
                        name: cce-configmap       # Name of the referenced ConfigMap.
                        key: SPECIAL_LEVEL        # Key in the referenced ConfigMap.
@@ -143,7 +145,9 @@ Configuring Environment Variables of a Workload
 
 #. Create a workload.
 
-   **kubectl apply -f nginx-configmap.yaml**
+   .. code-block::
+
+      kubectl apply -f nginx-configmap.yaml
 
 #. View the environment variables in the pod.
 
@@ -211,7 +215,7 @@ You can use a ConfigMap as an environment variable to set commands or parameter 
 
       cat /usr/share/nginx/html/index.html
 
-   The example output is as follows:
+   Example output:
 
    .. code-block::
 
@@ -219,11 +223,13 @@ You can use a ConfigMap as an environment variable to set commands or parameter 
 
 **Using kubectl**
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a file named **nginx-configmap.yaml** and edit it.
 
-   **vi nginx-configmap.yaml**
+   .. code-block::
+
+      vi nginx-configmap.yaml
 
    In the following example, the **cce-configmap** ConfigMap is imported to the workload. *SPECIAL_LEVEL* and *SPECIAL_TYPE* are the environment variable names in the workload, which are key names in the **cce-configmap** ConfigMap.
 
@@ -258,7 +264,9 @@ You can use a ConfigMap as an environment variable to set commands or parameter 
 
 #. Create a workload.
 
-   **kubectl apply -f nginx-configmap.yaml**
+   .. code-block::
+
+      kubectl apply -f nginx-configmap.yaml
 
 #. Wait until the workload runs properly. Then, data will be added the **/usr/share/nginx/html/index.html** file in the container.
 
@@ -288,8 +296,8 @@ You can use a ConfigMap as an environment variable to set commands or parameter 
 
 .. _cce_10_0015__section1490261161916:
 
-Mounting a ConfigMap to the Workload Data Volume
-------------------------------------------------
+Mounting a ConfigMap to a Workload Data Volume
+----------------------------------------------
 
 The data stored in a ConfigMap can be referenced in a volume of type ConfigMap. You can mount such a volume to a specified container path. The platform supports the separation of workload codes and configuration files. ConfigMap volumes are used to store workload configuration parameters. Before that, create ConfigMaps in advance. For details, see :ref:`Creating a ConfigMap <cce_10_0152>`.
 
@@ -321,13 +329,13 @@ The data stored in a ConfigMap can be referenced in a volume of type ConfigMap. 
       |                                   | .. important::                                                                                                                                                                                                                                                                                                                                                                                                                                     |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
       |                                   |    NOTICE:                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-      |                                   |    If the container is mounted to a high-risk directory, use an account with minimum permissions to start the container. Otherwise, high-risk files on the host may be damaged.                                                                                                                                                                                                                                                                    |
+      |                                   |    If a volume is mounted to a high-risk directory, use an account with minimum permissions to start the container. Otherwise, high-risk files on the host may be damaged.                                                                                                                                                                                                                                                                         |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Subpath                           | Enter a subpath of the mount path.                                                                                                                                                                                                                                                                                                                                                                                                                 |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
       |                                   | -  A subpath is used to mount a local volume so that the same data volume is used in a single pod. If this parameter is left blank, the root path will be used by default.                                                                                                                                                                                                                                                                         |
-      |                                   | -  The subpath can be the key and value of a ConfigMap or secret. If the subpath is a key-value pair that does not exist, the data import does not take effect.                                                                                                                                                                                                                                                                                    |
-      |                                   | -  The data imported by specifying a subpath will not be updated along with the ConfigMap/secret updates.                                                                                                                                                                                                                                                                                                                                          |
+      |                                   | -  The subpath can be the key and value of a ConfigMap. If the subpath is a key-value pair that does not exist, the data import does not take effect.                                                                                                                                                                                                                                                                                              |
+      |                                   | -  The data imported by specifying a subpath will not be updated along with the ConfigMap updates.                                                                                                                                                                                                                                                                                                                                                 |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Permission                        | Read-only, indicating that data volume in the path is read-only.                                                                                                                                                                                                                                                                                                                                                                                   |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -350,11 +358,13 @@ The data stored in a ConfigMap can be referenced in a volume of type ConfigMap. 
 
 **Using kubectl**
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a file named **nginx-configmap.yaml** and edit it.
 
-   **vi nginx-configmap.yaml**
+   .. code-block::
+
+      vi nginx-configmap.yaml
 
    As shown in the following example, after the ConfigMap volume is mounted, a configuration file with the key as the file name and value as the file content is generated in the **/etc/config** directory of the container.
 
@@ -388,7 +398,9 @@ The data stored in a ConfigMap can be referenced in a volume of type ConfigMap. 
 
 #. Create a workload.
 
-   **kubectl apply -f nginx-configmap.yaml**
+   .. code-block::
+
+      kubectl apply -f nginx-configmap.yaml
 
 #. After the workload runs properly, the **SPECIAL_LEVEL** and **SPECIAL_TYPE** files will be generated in the **/etc/config** directory. The contents of the files are **Hello** and **CCE**, respectively.
 

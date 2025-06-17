@@ -31,7 +31,7 @@ EulerOS 2.9 is used as the sample OS. There is only one partition (**/dev/vda1**
 
 #. Expand the system disk capacity on the EVS console.
 
-   Only the storage capacity of the EVS disk is expanded. You also need to perform the following steps to expand the partition and file system.
+   Only the storage capacity of the EVS disk is expanded. You also need to perform the following operations to expand the partition and file system.
 
 #. Log in to the node and run the **growpart** command to check whether growpart has been installed.
 
@@ -160,7 +160,7 @@ EulerOS 2.9 is used as the sample OS. There is only one partition (**/dev/vda1**
       /dev/mapper/vgpaas-kubernetes ext4       11G   39M   10G   1% /mnt/paas/kubernetes/kubelet
       ...
 
-#. Log in to the CCE console and click the cluster. In the navigation pane, choose **Nodes**. Click **More** > **Sync Server Data** in the row containing the target node.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab, locate the row containing the target node, and choose **More** > **Sync Server Data** in the **Operation** column.
 
 .. _cce_bestpractice_00198__en-us_topic_0196817407_section155006183017:
 
@@ -171,19 +171,19 @@ The available container engine space affects image pulls and container startup a
 
 #. Expand the capacity of a data disk on the EVS console.
 
-   Only the storage capacity of the EVS disk is expanded. You also need to perform the following steps to expand the capacity of the logical volume and file system.
+   Only the storage capacity of EVS disks can be expanded. You need to perform the following operations to expand the capacity of logical volumes and file systems.
 
-#. Log in to the CCE console and click the cluster. In the navigation pane, choose **Nodes**. Click **More** > **Sync Server Data** in the row containing the target node.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab, locate the row containing the target node, and choose **More** > **Sync Server Data** in the **Operation** column.
 
 #. Log in to the target node.
 
-#. Run the **lsblk** command to check the block device information of the node.
+#. Run **lsblk** to view the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 
    Overlayfs: No independent thin pool is allocated. Image data is stored in **dockersys**.
 
-   a. Check the disk and partition sizes of the device.
+   a. Check the disk and partition space of the device.
 
       .. code-block::
 
@@ -191,7 +191,7 @@ The available container engine space affects image pulls and container startup a
          NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
          sda                   8:0    0   50G  0 disk
          └─sda1                8:1    0   50G  0 part /
-         sdb                   8:16   0  150G  0 disk      # The data disk has been expanded to 150 GiB, but 50 GiB space is not allocated.
+         sdb                   8:16   0  150G  0 disk      # The data disk has been expanded to 150 GiB, but 50 GiB space is free.
          ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/containerd
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
@@ -239,7 +239,7 @@ The available container engine space affects image pulls and container startup a
             old_desc_blocks = 12, new_desc_blocks = 18
             The filesystem on /dev/vgpaas/dockersys is now 36700160 blocks long.
 
-   c. Check whether the capacity is expanded.
+   c. Check whether the capacity has been expanded.
 
       .. code-block::
 
@@ -251,9 +251,9 @@ The available container engine space affects image pulls and container startup a
          ├─vgpaas-dockersys  253:0    0   140G  0 lvm  /var/lib/containerd
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
-   Devicemapper: A thin pool is allocated to store image data.
+   Device Mapper: A thin pool is allocated to store image data.
 
-   a. Check the disk and partition sizes of the device.
+   a. Check the disk and partition space of the device.
 
       .. code-block::
 
@@ -264,7 +264,7 @@ The available container engine space affects image pulls and container startup a
          vdb                                   8:16   0  200G  0 disk
          ├─vgpaas-dockersys                  253:0    0   18G  0 lvm  /var/lib/docker
          ├─vgpaas-thinpool_tmeta             253:1    0    3G  0 lvm
-         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Space used by thinpool
+         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Space used by thin pool
          │   ...
          ├─vgpaas-thinpool_tdata             253:2    0   67G  0 lvm
          │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm
@@ -273,9 +273,9 @@ The available container engine space affects image pulls and container startup a
 
    b. Expand the disk capacity.
 
-      Option 1: Add the new disk capacity to the thin pool disk.
+      Option 1: Add the new disk capacity to the thin pool.
 
-      #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where thinpool is located.
+      #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where thin pool is located.
 
          .. code-block::
 
@@ -303,7 +303,7 @@ The available container engine space affects image pulls and container startup a
 
       #. Do not need to adjust the size of the file system, because the thin pool is not mounted to any devices.
 
-      #. Check whether the capacity is expanded. Run the **lsblk** command to check the disk and partition sizes of the device. If the new disk capacity has been added to the thin pool, the capacity is expanded.
+      #. Run the **lsblk** command to check the disk and partition space of the device and check whether the capacity has been expanded. If the new disk capacity was added to the thin pool, the capacity has been expanded.
 
          .. code-block::
 
@@ -363,7 +363,7 @@ The available container engine space affects image pulls and container startup a
             old_desc_blocks = 3, new_desc_blocks = 15
             The filesystem on /dev/vgpaas/dockersys is now 30932992 blocks long.
 
-      #. Check whether the capacity is expanded. Run the **lsblk** command to check the disk and partition sizes of the device. If the new disk capacity has been added to the dockersys, the capacity is expanded.
+      #. Run the **lsblk** command to check the disk and partition space of the device and check whether the capacity has been expanded. If the new disk capacity was added to the dockersys, the capacity has been expanded.
 
          .. code-block::
 
@@ -386,13 +386,13 @@ The available container engine space affects image pulls and container startup a
 Expanding the kubelet Capacity
 ------------------------------
 
-The kubelet space serves as a temporary storage location for kubelet components and EmptyDir. You can follow the following steps to increase the kubelet capacity:
+The kubelet space serves as a temporary storage location for kubelet components and emptyDir. You can follow the following steps to increase the kubelet capacity:
 
 #. Expand the capacity of a data disk on the EVS console.
 
-   Only the storage capacity of the EVS disk is expanded. You also need to perform the following steps to expand the capacity of the logical volume and file system.
+   Only the storage capacity of EVS disks can be expanded. You need to perform the following operations to expand the capacity of logical volumes and file systems.
 
-#. Log in to the CCE console and click the cluster. In the navigation pane, choose **Nodes**. Click **More** > **Sync Server Data** in the row containing the target node.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab, locate the row containing the target node, and choose **More** > **Sync Server Data** in the **Operation** column.
 
 #. Log in to the target node.
 
@@ -481,7 +481,7 @@ Expanding the Capacity of a Data Disk Used by Pod (basesize)
 
    If you need to adjust the container storage space, pay attention to the following configurations:
 
-   **Storage Settings**: Click **Expand** next to the data disk to set the following parameter:
+   **Storage Settings**: Click **Expand** next to the data disk to configure the following parameter:
 
    **Space Allocation for Pods**: indicates the base size of a pod. It is the maximum size that a workload's pods (including the container images) can grow to in the disk space. Proper settings can prevent pods from taking all the disk space available and avoid service exceptions. It is recommended that the value is less than or equal to 80% of the container engine space. This parameter is related to the node OS and container storage rootfs and is not supported in some scenarios. For details, see :ref:`Data Disk Space Allocation <cce_10_0341>`.
 
@@ -489,9 +489,10 @@ Expanding the Capacity of a Data Disk Used by Pod (basesize)
 
    -  Overlayfs: No independent thin pool is allocated. Image data is stored in **dockersys**. Run the following command to check whether the container capacity has been expanded:
 
-      **docker exec -it** *container_id* **/bin/sh** or **kubectl exec -it** *container_id* **/bin/sh**
+      .. code-block::
 
-      **df -h**
+         kubectl exec -it pod_name -- /bin/sh
+         df -h
 
       If the information similar to the following is displayed, the overlay capacity has been expanded from 10 GiB to 15 GiB.
 
@@ -504,11 +505,12 @@ Expanding the Capacity of a Data Disk Used by Pod (basesize)
          /dev/mapper/vgpaas-share       98G   4.0G     89G     5%   /etc/hosts
          ...
 
-   -  Devicemapper: A thin pool is allocated to store image data. Run the following command to check whether the container capacity has been expanded:
+   -  Device Mapper: A thin pool is allocated to store image data. Run the following command to check whether the container capacity has been expanded:
 
-      **docker exec -it** *container_id* **/bin/sh** or **kubectl exec -it** *container_id* **/bin/sh**
+      .. code-block::
 
-      **df -h**
+         kubectl exec -it pod_name -- /bin/sh
+         df -h
 
       If the information similar to the following is displayed, the thin pool capacity has been expanded from 10 GiB to 15 GiB.
 
@@ -532,9 +534,15 @@ Cloud storage:
 -  OBS and SFS: There is no storage restriction and capacity expansion is not required.
 -  EVS:
 
-   -  You can expand the capacity of automatically created volumes on the console. The procedure is as follows:
+   -  You can expand the capacity of automatically created volumes on the CCE console. The procedure is as follows:
 
       #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** tab. Click **More** in the **Operation** column of the target PVC and select **Scale-out**.
       #. Enter the capacity to be added and click **OK**.
 
--  SFS Turbo: You can expand the capacity on the SFS console and then change the capacity in the PVC.
+-  SFS Turbo:
+
+   -  If no subdirectory is used, you can expand the capacity on the CCE console.
+   -  If a subdirectory is used, the following situations may occur:
+
+      -  If the expanded capacity does not surpass the underlying SFS Turbo file system's capacity, you can increase the PVC capacity on the CCE console.
+      -  If the expanded capacity exceeds the underlying SFS Turbo file system's capacity, you can expand the file system capacity on the SFS console first and then adjust the capacity in the PVC on the CCE console.

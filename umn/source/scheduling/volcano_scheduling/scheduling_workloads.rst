@@ -19,43 +19,57 @@ Using Volcano
 
 When using Volcano to schedule workloads, you only need to configure **schedulerName** in the **spec** field of the pod and set the parameter to **volcano**. The following is an example:
 
-.. code-block::
+#. Use YAML to create a queue.
 
-   apiVersion: apps/v1
-   kind: Deployment
-   metadata:
-     name: nginx
-     labels:
-       app: nginx
-   spec:
-     replicas: 4
-     selector:
-       matchLabels:
-         app: nginx
-     template:
-       metadata:
-         annotations:
-           # Submit the job to the q1 queue.
-           scheduling.volcano.sh/queue-name: "q1"
-           volcano.sh/preemptable: "true"
-         labels:
-           app: nginx
-       spec:
-         # Specify Volcano as the scheduler.
-         schedulerName: volcano
-         containers:
-         - name: nginx
-           image: nginx
-           imagePullPolicy: IfNotPresent
-           resources:
-             limits:
-               cpu: 1
-               memory: 100Mi
-             requests:
-               cpu: 1
-               memory: 100Mi
-           ports:
-           - containerPort: 80
+   .. code-block::
+
+      apiVersion: scheduling.volcano.sh/v1beta1
+      kind: Queue
+      metadata:
+        name: q1
+      spec:
+        reclaimable: true
+        weight: 1
+
+#. Set **schedulerName** in the **spec** field of the pod to **volcano**.
+
+   .. code-block::
+
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: nginx
+        labels:
+          app: nginx
+      spec:
+        replicas: 4
+        selector:
+          matchLabels:
+            app: nginx
+        template:
+          metadata:
+            annotations:
+              # Submit the job to the q1 queue.
+              scheduling.volcano.sh/queue-name: "q1"
+              volcano.sh/preemptable: "true"
+            labels:
+              app: nginx
+          spec:
+            # Specify Volcano as the scheduler.
+            schedulerName: volcano
+            containers:
+            - name: nginx
+              image: nginx
+              imagePullPolicy: IfNotPresent
+              resources:
+                limits:
+                  cpu: 1
+                  memory: 100Mi
+                requests:
+                  cpu: 1
+                  memory: 100Mi
+              ports:
+              - containerPort: 80
 
 Additionally, Volcano supports the workload queues and preemption, which can be implemented through pod annotations. The following table lists the supported annotations.
 
@@ -74,31 +88,45 @@ Additionally, Volcano supports the workload queues and preemption, which can be 
    |                                                  | -  **false**: Preemption is disabled.                                                            |
    +--------------------------------------------------+--------------------------------------------------------------------------------------------------+
 
-You can obtain pod details to check whether the pod is scheduled by Volcano and the allocated queue.
+You can obtain pod details to check whether the pod is scheduled by Volcano to the allocated queue.
 
-.. code-block::
+#. Run the following command to check the pod details and obtain the **scheduling.k8s.io/group-name** value:
 
-   kubectl describe pod <pod_name>
+   .. code-block::
 
-Command output:
+      kubectl describe pod <pod_name>
 
-.. code-block::
+   The **scheduling.k8s.io/group-name** value of the pod is displayed.
 
-   Spec:
-     Min Member:  1
-     Min Resources:
-       Cpu:     100m
-       Memory:  100Mi
-     Queue:     q1
-   Status:
-     Conditions:
-       Last Transition Time:  2023-05-30T01:54:43Z
-       Reason:                tasks in gang are ready to be scheduled
-       Status:                True
-       Transition ID:         70be1d7d-3532-41e0-8324-c7644026b38f
-       Type:                  Scheduled
-     Phase:                   Running
-   Events:
-     Type    Reason     Age              From     Message
-     ----    ------     ----             ----     -------
-     Normal  Scheduled  0s (x3 over 2s)  volcano  pod group is ready
+   |image1|
+
+#. Check whether the pod is scheduled by Volcano to the allocated queue.
+
+   .. code-block::
+
+      kubectl describe pg <group_name>
+
+   Command output:
+
+   .. code-block::
+
+      Spec:
+        Min Member:  1
+        Min Resources:
+          Cpu:     100m
+          Memory:  100Mi
+        Queue:     q1
+      Status:
+        Conditions:
+          Last Transition Time:  2023-05-30T01:54:43Z
+          Reason:                tasks in gang are ready to be scheduled
+          Status:                True
+          Transition ID:         70be1d7d-3532-41e0-8324-c7644026b38f
+          Type:                  Scheduled
+        Phase:                   Running
+      Events:
+        Type    Reason     Age              From     Message
+        ----    ------     ----             ----     -------
+        Normal  Scheduled  0s (x3 over 2s)  volcano  pod group is ready
+
+.. |image1| image:: /_static/images/en-us_image_0000002218819982.png

@@ -26,16 +26,16 @@ Process Flow
 ------------
 
 
-.. figure:: /_static/images/en-us_image_0000002065639146.png
-   :alt: **Figure 1** Process of assigning CCE permissions
+.. figure:: /_static/images/en-us_image_0000002274473989.png
+   :alt: **Figure 1** Process of granting CCE permissions
 
-   **Figure 1** Process of assigning CCE permissions
+   **Figure 1** Process of granting CCE permissions
 
 #. .. _cce_10_0188__li10176121316284:
 
    Create a user group and assign permissions to it.
 
-   Create a user group on the IAM console, and assign CCE permissions, for example, the **CCE ReadOnlyAccess** policy to the group.
+   On the IAM console, create a user group and grant it CCE permissions (CCE ReadOnlyAccess as an example).
 
    .. note::
 
@@ -53,15 +53,15 @@ Process Flow
 
    Log in to the management console as the user you created, and verify that the user has the assigned permissions.
 
-   -  Log in to the management console, switch to the CCE console, and create a cluster. If you fail to do so (assuming that only the **CCE ReadOnlyAccess** permission is assigned), the **CCE ReadOnlyAccess** policy has already taken effect.
-   -  Switch to the console of any other service. If a message appears indicating that you do not have the required permissions for accessing the service, the **CCE ReadOnlyAccess** policy has already taken effect.
+   -  Choose **Service List** > **Cloud Container Engine**. Then click **Create Cluster** on the CCE console. If the operation failed, the **CCE ReadOnlyAccess** policy is in effect.
+   -  Choose another service from **Service List**. If a message appears indicating that you have insufficient permissions to perform the operation, the **CCE ReadOnlyAccess** policy is in effect.
 
 System-defined Roles
 --------------------
 
 Roles are a type of coarse-grained authorization mechanism that defines service-level permissions based on user responsibilities. Only a limited number of service-level roles are available for authorization. Roles are not ideal for fine-grained authorization and least privilege access.
 
-The preset system role for CCE in IAM is **CCE Administrator**. When assigning this role to a user group, you must also select other roles and policies on which this role depends, such as **Tenant Guest**, **Server Administrator**, **ELB Administrator**, **OBS Administrator**, **SFS Administrator**, **SWR Admin**, and **APM FullAccess**.
+The preset system role for CCE in IAM is **CCE Administrator**. When assigning this role to a user group, you must also select other roles and policies on which this role depends, such as **Tenant Guest**, **Server Administrator**, **ELB Administrator**, **OBS Administrator**, **SFS Administrator**, **APM FullAccess**, and **SWR Admin**.
 
 System-defined Policies
 -----------------------
@@ -83,11 +83,11 @@ Custom policies can be created as a supplement to the system-defined policies of
 You can create custom policies in either of the following ways:
 
 -  Visual editor: Select cloud services, actions, resources, and request conditions. This does not require knowledge of policy syntax.
--  JSON: Edit JSON policies from scratch or based on an existing policy.
+-  JSON: Create a JSON policy or edit an existing one.
 
-This section provides examples of common custom CCE policies.
+The following lists examples of common CCE custom policies.
 
-**Example Custom Policies:**
+**Examples**
 
 -  Example 1: Creating a cluster named **test**
 
@@ -109,7 +109,7 @@ This section provides examples of common custom CCE policies.
 
    A policy with only "Deny" permissions must be used with other policies. If the permissions assigned to a user contain both "Allow" and "Deny", the "Deny" permissions take precedence over the "Allow" permissions.
 
-   The following method can be used if you need to assign permissions of the **CCEFullAccess** policy to a user but you want to prevent the user from deleting nodes (**cce:node:delete**). Create a custom policy for denying node deletion, and attach both policies to the group to which the user belongs. Then, the user can perform all operations on CCE except deleting nodes. The following is an example of a deny policy:
+   If you want to grant the **CCEFullAccess** permission to a user but prevent them from deleting nodes (**cce:node:delete**), you can create a custom policy that denies node deletion. Then, attach this policy with the **CCEFullAccess** policy to the user. Since an explicit denial in any policy takes precedence over any allowances, the user will have permission to perform all operations on nodes except for deleting them. The following is an example of a deny policy:
 
    .. code-block::
 
@@ -125,9 +125,9 @@ This section provides examples of common custom CCE policies.
           ]
       }
 
--  Example 3: Defining permissions for multiple services in a policy
+-  Example 3: Creating a custom policy containing multiple actions
 
-   A custom policy can contain the actions of multiple services that are of the global or project-level type. The following is an example policy containing actions of multiple services:
+   A custom policy can contain the actions of multiple services that are of the global or project-level type. The following is an example policy containing multiple actions:
 
    .. code-block::
 
@@ -167,11 +167,11 @@ CCE supports the following roles:
 
    If the user is the cluster creator, the cluster-admin permissions in Kubernetes RBAC are granted to the user by default. The permissions can be manually removed after the cluster is created.
 
-   -  Method 1: Choose **Permissions Management** > **Namespace-Level Permissions** > **Delete** in the same role as cluster-creator on the CCE console.
+   -  Method 1: Choose **Permissions** > **Namespace-Level Permissions** > **Delete** in the same role as cluster-creator on the CCE console.
    -  Method 2: Delete **ClusterRoleBinding: cluster-creator** through the API or kubectl.
 
 When RBAC and IAM policies co-exist, the backend authentication logic for open APIs or console operations on CCE is as follows.
 
 |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000002101679193.png
+.. |image1| image:: /_static/images/en-us_image_0000002253780145.png

@@ -11,18 +11,15 @@ Precautions
 -  Deleting a cluster will delete the workloads and Services in the cluster, and the deleted data cannot be recovered. Before performing this operation, ensure that related data has been backed up or migrated.
 -  If you choose to delete a cluster with the nodes in it, the system disks and data disks attached to the nodes will also be deleted. Back up data before the deletion.
 -  If you delete a cluster that is not running (for example, unavailable), associated resources, such as storage and networking resources, will remain.
+-  A hibernated cluster can be deleted only after it is awakened.
 
 
 Deleting a Cluster
 ------------------
 
-.. important::
-
-   A hibernated cluster cannot be deleted. Wake up the cluster and try again.
-
 #. Log in to the CCE console. In the navigation pane, choose **Clusters**.
 
-#. Locate the cluster to be deleted, click **...** to view more operations on the cluster, and choose **Delete Cluster**.
+#. In the cluster list on the right, locate the cluster to be deleted and click |image1|. In the drop-down list, choose **Delete**.
 
 #. In the displayed **Delete Cluster** dialog box, select the resources to be released.
 
@@ -40,7 +37,7 @@ Deleting a Cluster
       +------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | PV Type                | Associated Underlying Storage        | Whether to Delete Underlying Storage                                                                                                                       |
       +========================+======================================+============================================================================================================================================================+
-      | EVS                    | Disks                                | Yes                                                                                                                                                        |
+      | EVS                    | Disks                                | Pay-per-use EVS disks will be deleted.                                                                                                                     |
       +------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | SFS                    | SFS Capacity-Oriented                | Yes                                                                                                                                                        |
       +------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -57,6 +54,10 @@ Deleting a Cluster
 
    -  Delete network resources such as load balancers in a cluster. (Only automatically created load balancers will be deleted).
 
+   -  Delete all log groups, including their log streams, for the cluster in LTS. If you do not select this option, the LTS logs will not be deleted.
+
 #. Enter **DELETE** and click **Yes** to start deleting the cluster.
 
-   The delete operation takes 1 to 3 minutes to complete.
+   The delete operation takes 1 to 3 minutes to complete. If the cluster is removed from the cluster list, the cluster has been deleted.
+
+.. |image1| image:: /_static/images/en-us_image_0000002218820702.png

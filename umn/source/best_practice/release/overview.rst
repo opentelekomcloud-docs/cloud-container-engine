@@ -23,14 +23,38 @@ This document describes the principles and practices of grayscale release and bl
 
    |image1|
 
-   If an exception occurs in the new version when 20% of the traffic goes to the new version, you can quickly switch back to the old version.
-
    |image2|
-
--  Blue-green deployment provides a zero-downtime, predictable manner for releasing applications to reduce service interruption during the release. A new version is deployed while the old version is retained. The two versions are online at the same time. The new and old versions work in hot backup mode. The route weight is switched (0 or 100) to enable different versions to go online or offline. If a problem occurs, the version can be quickly rolled back.
 
    |image3|
 
-.. |image1| image:: /_static/images/en-us_image_0000002101677169.gif
-.. |image2| image:: /_static/images/en-us_image_0000002101595681.gif
-.. |image3| image:: /_static/images/en-us_image_0000002065478774.gif
+   If an exception occurs in the new version when 20% of the traffic goes to the new version, you can quickly switch back to the old version.
+
+   |image4|
+
+   |image5|
+
+   |image6|
+
+   |image7|
+
+-  Blue-green deployment provides a zero-downtime, predictable manner for releasing applications to reduce service interruption during the release. A new version is deployed while the old version is retained. The two versions are online at the same time. The new and old versions work in hot backup mode. The route weight is switched (0 or 100) to enable different versions to go online or offline. If a problem occurs, the version can be quickly rolled back.
+
+   |image8|
+
+   |image9|
+
+   |image10|
+
+   |image11|
+
+.. |image1| image:: /_static/images/en-us_image_0000002254978558.png
+.. |image2| image:: /_static/images/en-us_image_0000002289476265.png
+.. |image3| image:: /_static/images/en-us_image_0000002289589649.png
+.. |image4| image:: /_static/images/en-us_image_0000002254895070.png
+.. |image5| image:: /_static/images/en-us_image_0000002254877052.png
+.. |image6| image:: /_static/images/en-us_image_0000002254877428.png
+.. |image7| image:: /_static/images/en-us_image_0000002254895574.png
+.. |image8| image:: /_static/images/en-us_image_0000002254895914.png
+.. |image9| image:: /_static/images/en-us_image_0000002289592109.png
+.. |image10| image:: /_static/images/en-us_image_0000002254879860.png
+.. |image11| image:: /_static/images/en-us_image_0000002255002834.png

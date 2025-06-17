@@ -12,7 +12,7 @@ By default, the PSP access control component is enabled for clusters of v1.17.17
 .. note::
 
    -  In addition to the global default PSP, the system configures independent PSPs for system components in namespace kube-system. Modifying the psp-global configuration does not affect pod creation in namespace kube-system.
-   -  PodSecurityPolicy was deprecated in Kubernetes v1.21, and removed from Kubernetes in v1.25. You can use pod security admission as a substitute for PodSecurityPolicy. For details, see :ref:`Configuring Pod Security Admission <cce_10_0466>`.
+   -  Starting from Kubernetes v1.21, PSP has been deprecated and will be fully removed in v1.25. Therefore, the information in this section applies only to clusters of a version earlier than v1.25. You can use pod security admission as a substitute for PSP. For details, see :ref:`Configuring Pod Security Admission <cce_10_0466>`.
 
 Modifying the Global Default PSP
 --------------------------------
@@ -68,21 +68,21 @@ Before modifying the global default PSP, ensure that a CCE cluster has been crea
       |                                   |                                                                                                                                                                                                |
       | allowedCapabilities               |                                                                                                                                                                                                |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | seLinux                           | Controls the configuration of seLinux used in pods.                                                                                                                                            |
+      | seLinux                           | Controls the configuration of SELinux used in pods.                                                                                                                                            |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | allowedProcMountTypes             | Controls the ProcMountTypes that can be used by pods.                                                                                                                                          |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | annotations                       | Configures AppArmor or Seccomp used by containers in a pod.                                                                                                                                    |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | forbiddenSysctls                  | Controls the configuration of Sysctl used by containers in a pod.                                                                                                                              |
+      | forbiddenSysctls                  | Controls the configuration of sysctl used by containers in a pod.                                                                                                                              |
       |                                   |                                                                                                                                                                                                |
       | allowedUnsafeSysctls              |                                                                                                                                                                                                |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. _cce_10_0275__section155111941177:
 
-Example of Enabling Unsafe Sysctls in Pod Security Policy
----------------------------------------------------------
+Example of Enabling Unsafe sysctls in a PSP
+-------------------------------------------
 
 You can configure allowed-unsafe-sysctls for a node pool. For CCE clusters of **v1.17.17** and later versions, add configurations in **allowedUnsafeSysctls** of the pod security policy to make the configuration take effect. For details, see :ref:`Table 1 <cce_10_0275__table1928122594918>`.
 

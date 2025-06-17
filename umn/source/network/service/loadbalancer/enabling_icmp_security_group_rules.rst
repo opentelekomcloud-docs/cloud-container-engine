@@ -13,7 +13,7 @@ If a workload uses UDP for both load balancing and health check, enable ICMP sec
 Procedure
 ---------
 
-#. Log in to the CCE console, choose **Service List** > **Networking** > **Virtual Private Cloud**, and choose **Access Control** > **Security Groups** in the navigation pane.
+#. Log in to the CCE console and choose **Networking** > **Virtual Private Cloud** in the service list. In the navigation pane, choose **Access Control** > **Security Groups**.
 #. In the security group list, locate the security group of the cluster. Click the **Inbound Rules** tab page and then **Add Rule**. In the **Add Inbound Rule** dialog box, configure inbound parameters.
 
    +--------------+-------------+---------------------------------------------------------------------------------------------+-----------------+---------------------------------------------+

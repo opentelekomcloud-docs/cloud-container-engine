@@ -5,11 +5,7 @@
 Configuring HTTP/2 for a LoadBalancer Ingress
 =============================================
 
-Ingresses can use HTTP/2 to expose Services. Connections from the load balancer to your application use HTTP/1.x by default. If your application is capable of receiving HTTP/2 requests, you can add the following configuration to the annotation to enable the use of HTTP/2:
-
-.. code-block::
-
-   kubernetes.io/elb.http2-enable: 'true'
+Ingresses can use HTTP/2 to expose Services. Connections from the load balancer to your application use HTTP/1.x by default. If your application is capable of receiving HTTP/2 requests, enable the use of HTTP/2 by referring to :ref:`Using the CCE Console to Configure HTTP/2 <cce_10_0694__section125271123193813>` or :ref:`Using kubectl to Configure HTTP/2 <cce_10_0694__section11493111062611>`.
 
 Prerequisites
 -------------
@@ -31,6 +27,9 @@ Notes and Constraints
 
 -  Only an HTTPS-compliant load balancer supports HTTP/2.
 -  After HTTP/2 is configured, if you delete the advanced configuration for enabling HTTP/2 on the CCE console or delete the target annotation from the YAML file, HTTP/2 will be disabled on the ELB.
+-  If multiple ingresses share the same external port on a load balancer, you are advised to use the same HTTP/2 configuration for these ingresses. Otherwise, the configuration of the first created ingress will take precedence. For details, see :ref:`Configuring Multiple Ingresses to Use the Same External ELB Port <cce_10_0954>`.
+
+.. _cce_10_0694__section125271123193813:
 
 Using the CCE Console to Configure HTTP/2
 -----------------------------------------
@@ -67,16 +66,18 @@ Using the CCE Console to Configure HTTP/2
       | Forwarding Policy     | -  **Domain Name**: Enter an actual domain name to be accessed. If it is left blank, the ingress can be accessed through the IP address. Ensure that the domain name has been registered and licensed. Once a forwarding policy is configured with a domain name specified, you must use the domain name for access. | -  Domain Name: You do not need to configure this parameter. |
       |                       | -  **Path Matching Rule**: Select **Prefix match**, **Exact match**, or **RegEx match**.                                                                                                                                                                                                                             | -  Path Matching Rule: Prefix match                          |
       |                       | -  **Path**: Enter the path provided by a backend application for external access. The path added must be valid in the backend application, or the forwarding cannot take effect.                                                                                                                                    | -  Path: /                                                   |
-      |                       | -  **Destination Service**: Select an existing Service or create a Service. Any Services that do not match the search criteria will be filtered out automatically.                                                                                                                                                   | -  Destination Service: nginx                                |
+      |                       | -  **Destination Service**: Select an existing Service. Only Services that meet the requirements are automatically displayed in the Service list.                                                                                                                                                                    | -  Destination Service: nginx                                |
       |                       | -  **Destination Service Port**: Select the access port of the destination Service.                                                                                                                                                                                                                                  | -  Destination Service Port: 80                              |
       +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------+
 
 #. Click **OK**.
 
+.. _cce_10_0694__section11493111062611:
+
 Using kubectl to Configure HTTP/2
 ---------------------------------
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a YAML file named **ingress-test.yaml**. The file name can be customized.
 

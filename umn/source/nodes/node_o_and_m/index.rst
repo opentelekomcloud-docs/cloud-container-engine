@@ -11,7 +11,7 @@ Node O&M
 -  :ref:`Differences in kubelet and Runtime Component Configurations Between CCE and the Native Community <cce_10_0883>`
 -  :ref:`Migrating Nodes from Docker to containerd <cce_10_0601>`
 -  :ref:`Configuring Node Fault Detection Policies <cce_10_0659>`
--  :ref:`Executing the Pre- or Post-installation Commands During Node Creation <cce_bestpractice_10020_0>`
+-  :ref:`Executing the Pre- or Post-installation Commands During Node Creation <cce_bestpractice_10020>`
 
 .. toctree::
    :maxdepth: 1

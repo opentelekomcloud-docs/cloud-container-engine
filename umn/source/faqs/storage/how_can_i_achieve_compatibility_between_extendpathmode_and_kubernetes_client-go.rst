@@ -5,8 +5,8 @@
 How Can I Achieve Compatibility Between ExtendPathMode and Kubernetes client-go?
 ================================================================================
 
-Application Scenarios
----------------------
+Application Scenario
+--------------------
 
 The Kubernetes pod structure does not contain **ExtendPathMode**. Therefore, when a user calls the API for creating a pod or deployment by using client-go, the created pod does not contain **ExtendPathMode**. CCE provides a solution to ensure compatibility with the Kubernetes client-go.
 

@@ -60,11 +60,15 @@ Procedure
 Creating a ConfigMap Using kubectl
 ----------------------------------
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a file named **cce-configmap.yaml** and edit it.
 
-   **vi cce-configmap.yaml**
+   .. code-block::
+
+      vi cce-configmap.yaml
+
+   File content:
 
    .. code-block::
 
@@ -89,11 +93,17 @@ Creating a ConfigMap Using kubectl
 
 #. Run the following commands to create a ConfigMap.
 
-   **kubectl create -f cce-configmap.yaml**
+   .. code-block::
+
+      kubectl create -f cce-configmap.yaml
 
    Run the following commands to view the created ConfigMap:
 
-   **kubectl get cm**
+   .. code-block::
+
+      kubectl get cm
+
+   Command output:
 
    .. code-block::
 
@@ -123,4 +133,4 @@ After creating a ConfigMap, you can update or delete it as described in :ref:`Ta
    |                                   | Follow the prompts to delete the ConfigMap.                                                          |
    +-----------------------------------+------------------------------------------------------------------------------------------------------+
 
-.. |image1| image:: /_static/images/en-us_image_0000002101597461.png
+.. |image1| image:: /_static/images/en-us_image_0000002253620097.png

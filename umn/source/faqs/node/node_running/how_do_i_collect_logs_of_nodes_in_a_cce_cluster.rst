@@ -5,6 +5,9 @@
 How Do I Collect Logs of Nodes in a CCE Cluster?
 ================================================
 
+Paths of Node Logs
+------------------
+
 The following tables list log files of CCE nodes.
 
 .. table:: **Table 1** Node logs

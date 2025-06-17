@@ -27,7 +27,7 @@ Underlying File Storage System of Containers
 **Docker**
 
 -  In clusters of v1.15.6 or earlier, the underlying Docker file storage system is in XFS format.
--  In clusters of v1.15.11 or later, after a node is created or reset, the underlying Docker file storage system changes to the ext4 format.
+-  In clusters of v1.15.11 or later, after a node is created or reset, the underlying Docker file storage system changes to the ExtFS format.
 
 For containerized applications that use the XFS format, pay attention to the impact of the underlying file storage format change. (The sequence of files in different file systems is different. For example, some Java applications reference a JAR package, but the directory contains multiple versions of the JAR package. If the version is not specified, the actual referenced package is determined by the system file.)
 

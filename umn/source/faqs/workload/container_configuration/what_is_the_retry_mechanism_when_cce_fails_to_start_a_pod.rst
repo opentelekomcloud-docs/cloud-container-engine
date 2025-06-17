@@ -5,7 +5,7 @@
 What Is the Retry Mechanism When CCE Fails to Start a Pod?
 ==========================================================
 
-CCE is a fully managed Kubernetes service and is fully compatible with Kubernetes APIs and kubectl.
+CCE is a cloud container engine service built on native Kubernetes. It fully supports native Kubernetes versions, Kubernetes APIs, and kubectl.
 
 In Kubernetes, the spec of a pod contains a **restartPolicy** field. The value of **restartPolicy** can be **Always**, **OnFailure**, or **Never**. The default value is **Always**.
 

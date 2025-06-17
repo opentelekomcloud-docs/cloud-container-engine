@@ -58,14 +58,14 @@ The Everest add-on in CCE presets the options described in :ref:`Table 1 <cce_10
    |                         |                       |    The **nosharecache** setting will affect the performance. The mounting information must be obtained for each mounting, which increases the communication overhead with the NFS server and the memory consumption of the NFS clients. In addition, the **nosharecache** setting on the NFS clients may lead to inconsistent caches. Determine whether to use **nosharecache** based on site requirements. |
    +-------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-You can set other mount options if needed. For details, see `Mounting an NFS File System to ECSs (Linux) <https://docs.otc.t-systems.com/en-us/usermanual/sfs/sfs_01_1001.html>`__.
+You can configure other mount options if needed. For details, see `Mounting an NFS File System to ECSs (Linux) <https://docs.otc.t-systems.com/en-us/usermanual/sfs/sfs_01_1001.html>`__.
 
 Configuring Mount Options in a PV
 ---------------------------------
 
 You can use the **mountOptions** field to configure mount options in a PV. The options you can configure in **mountOptions** are listed in :ref:`SFS Volume Mount Options <cce_10_0337__section14888047833>`.
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Configure mount options in a PV. Example:
 
@@ -91,7 +91,7 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
             everest.io/share-export-location: <your_location>  # Shared path of the SFS volume
             storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
         persistentVolumeReclaimPolicy: Retain    # Reclaim policy
-        storageClassName: csi-nas                # StorageClass name.
+        storageClassName: csi-nas                # Storage class name.
         mountOptions:                            # Mount options
         - vers=3
         - nolock
@@ -133,7 +133,7 @@ Configuring Mount Options in a StorageClass
 
 You can use the **mountOptions** field to configure mount options in a StorageClass. The options you can configure in **mountOptions** are listed in :ref:`SFS Volume Mount Options <cce_10_0337__section14888047833>`.
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a custom StorageClass. Example:
 

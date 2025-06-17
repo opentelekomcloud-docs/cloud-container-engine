@@ -15,7 +15,7 @@ Solution
 
 -  **Scenario 1: The error message "you cce-agent no update, please restart it" is displayed.**
 
-   cce-agent does not need to be updated but is not restarted. In this case, log in to the node and manually restart cce-agent.
+   This issue occurs if cce-agent is not restarted. To resolve it, log in to the node and manually restart cce-agent.
 
    Solution: Log in to the node and run the following command:
 
@@ -27,7 +27,7 @@ Solution
 
 -  **Scenario 2: The error message "your cce-agent is not the latest version" is displayed.**
 
-   cce-agent is not of the latest version, and the automatic update failed. This issue is typically caused by an invalid OBS path or the component version is outdated.
+   This issue occurs if cce-agent is not of the latest version and the automatic update failed. This issue is typically caused by an invalid OBS path or the component version is outdated.
 
    Solution
 
@@ -81,4 +81,4 @@ Solution
 
       If you have any questions about the preceding operations, contact technical support.
 
-.. |image1| image:: /_static/images/en-us_image_0000002065480470.png
+.. |image1| image:: /_static/images/en-us_image_0000002218660226.png

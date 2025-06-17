@@ -39,7 +39,7 @@ Solution
       +-----------------------------------+-------------------------------------------------------------------------------------------------+
       | Ubuntu                            | If the target version is v1.27 or later, only Ubuntu 22.04 supports the upgrade.                |
       +-----------------------------------+-------------------------------------------------------------------------------------------------+
-      | HCE OS 2.0                        | Unlimited                                                                                       |
+      | HCE OS 2.0                        | None                                                                                            |
       +-----------------------------------+-------------------------------------------------------------------------------------------------+
 
 #. **The affected node belongs to the default node pool but it is configured with a non-default node pool label, which will affect the upgrade.**

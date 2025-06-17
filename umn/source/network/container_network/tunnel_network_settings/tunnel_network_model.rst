@@ -13,7 +13,7 @@ A container tunnel network creates a separate network plane for containers by us
 While there may be some performance costs, packet encapsulation and tunnel transmission allow for greater interoperability and compatibility with advanced features, such as network policy-based isolation, in most common scenarios.
 
 
-.. figure:: /_static/images/en-us_image_0000002065480898.png
+.. figure:: /_static/images/en-us_image_0000002253780305.png
    :alt: **Figure 1** Container tunnel network
 
    **Figure 1** Container tunnel network
@@ -57,7 +57,7 @@ The container tunnel network allocates container IP addresses according to the f
 -  IP addresses from one or more CIDR blocks assigned to a node are allocated to pods scheduled to that node in a cyclical manner.
 
 
-.. figure:: /_static/images/en-us_image_0000002065639238.png
+.. figure:: /_static/images/en-us_image_0000002253620397.png
    :alt: **Figure 2** IP address allocation of the container tunnel network
 
    **Figure 2** IP address allocation of the container tunnel network
@@ -82,7 +82,7 @@ Example of Container Tunnel Network Access
 
 The following is an example of creating a workload in a cluster using the container tunnel network model:
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a Deployment in the cluster.
 

@@ -11,6 +11,8 @@ CCE provides multiple types of add-ons to extend cluster functions and meet feat
 
    CCE uses Helm charts to deploy add-ons. To modify or upgrade an add-on, perform operations on the **Add-ons** page or use open add-on management APIs. Do not directly modify resources related to add-ons in the background. Otherwise, add-on exceptions or other unexpected problems may occur.
 
+   Add-on pods are prioritized over service pods. When cluster resources are limited, the add-on pods can use resources that would otherwise be allocated to service pods. This may result in the eviction of service pods.
+
 Scheduling and Elasticity Add-ons
 ---------------------------------
 
@@ -19,7 +21,7 @@ Scheduling and Elasticity Add-ons
 +=============================================+=============================================================================================================================================================================================================================================================================================+
 | :ref:`Volcano Scheduler <cce_10_0193>`      | This add-on is a scheduler for general-purpose, high-performance computing such as job scheduling, heterogeneous chip management, and job running management, serving end users through computing frameworks for different industries such as AI, big data, gene sequencing, and rendering. |
 +---------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :ref:`CCE Cluster Autoscaler <cce_10_0154>` | This add-on resizes a cluster based on pod scheduling status and resource usage.                                                                                                                                                                                                            |
+| :ref:`CCE Cluster Autoscaler <cce_10_0154>` | This add-on scales in or out the workload nodes in a cluster based on pod scheduling status and resource usage.                                                                                                                                                                             |
 +---------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :ref:`CCE Advanced HPA <cce_10_0240>`       | This add-on is developed by CCE. It can be used to flexibly scale in or out Deployments based on metrics such as CPU usage and memory usage.                                                                                                                                                |
 +---------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -30,7 +32,9 @@ Cloud Native Observability Add-ons
 +------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Add-on Name                                          | Description                                                                                                                                                                                                                                                             |
 +======================================================+=========================================================================================================================================================================================================================================================================+
-| :ref:`Cloud Native Cluster Monitoring <cce_10_0406>` | This add-on uses Prometheus-operator and Prometheus to provide easy-to-use, end-to-end Kubernetes cluster monitoring.                                                                                                                                                   |
+| :ref:`Cloud Native Cluster Monitoring <cce_10_0406>` | This add-on includes the Prometheus-operator and Prometheus components and provides easy-to-use, end-to-end Kubernetes cluster monitoring.                                                                                                                              |
++------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`Cloud Native Log Collection <cce_10_0416>`     | This add-on is developed based on Fluent Bit and OpenTelemetry for collecting logs. It supports CRD-based log collection policies, and collects and forwards standard output logs, container file logs, node logs, and Kubernetes events in a cluster.                  |
 +------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :ref:`CCE Node Problem Detector <cce_10_0132>`       | This add-on monitors abnormal events of cluster nodes and connects to a third-party monitoring platform. It is a daemon running on each node. It collects node issues from different daemons and reports them to the API server. It can run as a DaemonSet or a daemon. |
 +------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -52,7 +56,7 @@ Container Network Add-ons
 +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Add-on Name                                   | Description                                                                                                                                                                        |
 +===============================================+====================================================================================================================================================================================+
-| :ref:`CoreDNS <cce_10_0129>`                  | CoreDNS is a DNS server that provides domain name resolution for Kubernetes clusters through a chain add-on.                                                                       |
+| :ref:`CoreDNS <cce_10_0129>`                  | This add-on is a DNS server that provides domain name resolution for Kubernetes clusters through a chain add-on.                                                                   |
 +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :ref:`NGINX Ingress Controller <cce_10_0034>` | This add-on forwards application data such as the data of virtual hosts, load balancers, SSL proxy, and HTTP routing for Services that can be directly accessed outside a cluster. |
 +-----------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -166,16 +170,15 @@ You can perform the operations listed in :ref:`Table 2 <cce_10_0277__table161953
 
 .. note::
 
-   Add-on rollback is supported in certain add-on versions.
+   Rollback is supported by the following add-ons of certain versions:
 
    -  CoreDNS: 1.25.11 and later versions
-   -  Everest: 2.1.19 and later versions
-   -  Autoscaler:
+   -  CCE Container Storage (Everest): 2.1.19 and later versions
+   -  CCE Cluster Autoscaler
 
       -  v1.21 clusters: v1.21.22 and later versions
       -  v1.23 clusters: v1.23.24 and later versions
       -  v1.25 clusters: v1.25.14 and later versions
 
-   -  kube-prometheus-stack: v3.7.2 and later versions
-   -  Volcano: 1.11.4 and later versions
-   -  NPD: 1.18.22 and later versions
+   -  Volcano Scheduler: 1.11.4 and later versions
+   -  CCE Node Problem Detector: 1.18.22 and later versions

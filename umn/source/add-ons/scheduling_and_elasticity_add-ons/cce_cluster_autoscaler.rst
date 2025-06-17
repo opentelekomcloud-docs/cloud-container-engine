@@ -8,13 +8,9 @@ CCE Cluster Autoscaler
 Introduction
 ------------
 
-Autoscaler is an important Kubernetes controller. It supports microservice scaling and is key to serverless design.
+The CCE Cluster Autoscaler add-on is built on the Autoscaler component of the community. It can automatically adjust the number of cluster nodes based on the resource needs of applications, optimizing resource utilization and performance. Autoscaler is the main controller in Kubernetes. It can automatically scale nodes in or out based on resource requirements. When there are not enough node resources to schedule pods in a cluster, Autoscaler adds more nodes with additional resources for those pods. Furthermore, if the resource utilization of the added nodes is low, Autoscaler will automatically remove them. For details about how to implement node auto scaling, see :ref:`Creating a Node Scaling Policy <cce_10_0209>`.
 
-When the CPU or memory usage of a microservice is too high, horizontal pod autoscaling is triggered to add pods to reduce the load. These pods can be automatically reduced when the load is low, allowing the microservice to run as efficiently as possible.
-
-CCE simplifies the creation, upgrade, and manual scaling of Kubernetes clusters, in which traffic loads change over time. To balance resource usage and workload performance of nodes, Kubernetes introduces the Autoscaler add-on to automatically adjust the number of nodes a cluster based on the resource usage required for workloads deployed in the cluster. For details, see :ref:`Creating a Node Scaling Policy <cce_10_0209>`.
-
-Open source community: https://github.com/kubernetes/autoscaler
+**Open-source community**: https://github.com/kubernetes/autoscaler
 
 How the Add-on Works
 --------------------
@@ -55,12 +51,12 @@ Autoscaler controls auto scale-out and scale-in.
 Notes and Constraints
 ---------------------
 
--  Ensure that there are sufficient resources for installing the add-on.
+-  There must be enough resources in the cluster during the add-on installation.
 -  The default node pool does not support auto scaling. For details, see :ref:`Description of DefaultPool <cce_10_0081__section16928123042115>`.
 -  Node scale-in will cause PVC/PV data loss for the :ref:`local PVs <cce_10_0391>` associated with the node. These PVCs and PVs cannot be restored or used again. In a node scale-in, a pod that uses the local PV will be evicted from the node. A new pod will be created, but it remains in a pending state because the label of the PVC bound to it conflicts with the node label.
--  When Autoscaler is used, some taints or annotations may affect auto scaling. Therefore, do not use the following taints or annotations in clusters:
+-  When CCE Cluster Autoscaler is used, some taints or annotations may affect auto scaling. Therefore, do not use the following taints or annotations in clusters:
 
-   -  **ignore-taint.cluster-autoscaler.kubernetes.io**: The taint works on nodes. Kubernetes-native Autoscaler supports protection against abnormal scale outs and periodically evaluates the proportion of available nodes in the cluster. When the proportion of non-ready nodes exceeds 45%, protection will be triggered. In this case, all nodes with the **ignore-taint.cluster-autoscaler.kubernetes.io** taint in the cluster are filtered out from the Autoscaler template and recorded as non-ready nodes, which affects cluster scaling.
+   -  **ignore-taint.cluster-autoscaler.kubernetes.io**: The taint works on nodes. Kubernetes-native Autoscaler supports protection against abnormal scale-outs and periodically evaluates the proportion of available nodes in the cluster. When the proportion of non-ready nodes exceeds 45%, protection will be triggered. In this case, all nodes with the **ignore-taint.cluster-autoscaler.kubernetes.io** taint in the cluster are filtered out from the Autoscaler template and recorded as non-ready nodes, which affect cluster scaling.
    -  **cluster-autoscaler.kubernetes.io/enable-ds-eviction**: The annotation works on pods, which determines whether DaemonSet pods can be evicted by Autoscaler. For details, see `Well-Known Labels, Annotations and Taints <https://kubernetes.io/docs/reference/labels-annotations-taints/#enable-ds-eviction>`__.
 
 Installing the Add-on
@@ -76,7 +72,7 @@ Installing the Add-on
 
    .. note::
 
-      -  Scheduling policies do not take effect on add-on instances of the DaemonSet type.
+      -  Scheduling policies do not take effect on add-on pods of the DaemonSet type.
       -  When configuring multi-AZ deployment or node affinity, ensure that there are nodes meeting the scheduling policy and that resources are sufficient in the cluster. Otherwise, the add-on cannot run.
 
    .. table:: **Table 1** Configurations for add-on scheduling
@@ -92,7 +88,7 @@ Installing the Add-on
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
       |                                   | -  **Specify node**: Specify the nodes where the add-on is deployed. If you do not specify the nodes, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                                                                                    |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-      |                                   | -  **Specify node pool**: Specify the node pool where the add-on is deployed. If you do not specify the node pool, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                                                                       |
+      |                                   | -  **Specify node pool**: Specify the node pool where the add-on is deployed. If you do not specify the node pools, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                                                                      |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
       |                                   | -  **Customize affinity**: Enter the labels of the nodes where the add-on is to be deployed for more flexible scheduling policies. If you do not specify node labels, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                    |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -121,34 +117,56 @@ Components
 Change History
 --------------
 
-.. table:: **Table 3** Release history for the add-on adapted to clusters 1.30
+.. table:: **Table 3** Release history for the add-on adapted to clusters v1.31
 
-   +-----------------+---------------------------+---------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
-   | Add-on Version  | Supported Cluster Version | New Feature                                                         | Community Version                                                                            |
-   +=================+===========================+=====================================================================+==============================================================================================+
-   | 1.30.18         | v1.30                     | Fixed some issues.                                                  | `1.30.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.30.1>`__ |
-   +-----------------+---------------------------+---------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
-   | 1.30.15         | v1.30                     | -  Clusters 1.30 are supported.                                     | `1.30.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.30.1>`__ |
-   |                 |                           | -  Included the name of the target node pool to the reported event. |                                                                                              |
-   +-----------------+---------------------------+---------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   +----------------+---------------------------+----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | Add-on Version | Supported Cluster Version | New Feature                                                                                  | Community Version                                                                            |
+   +================+===========================+==============================================================================================+==============================================================================================+
+   | 1.31.13        | v1.31                     | The scale-down delay and scale-down utilization thresholds can be configured for node pools. | `1.31.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.31.1>`__ |
+   +----------------+---------------------------+----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.31.8         | v1.31                     | CCE clusters v1.31 are supported.                                                            | `1.31.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.31.1>`__ |
+   +----------------+---------------------------+----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 4** Release history for the add-on adapted to clusters 1.29
+.. table:: **Table 4** Release history for the add-on adapted to clusters v1.30
 
-   +----------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------+
-   | Add-on Version | Supported Cluster Version | New Feature                  | Community Version                                                                            |
-   +================+===========================+==============================+==============================================================================================+
-   | 1.29.53        | v1.29                     | Fixed some issues.           | `1.29.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.29.1>`__ |
-   +----------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------+
-   | 1.29.17        | v1.29                     | Optimized events.            | `1.29.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.29.1>`__ |
-   +----------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------+
-   | 1.29.13        | v1.29                     | Clusters 1.29 are supported. | `1.29.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.29.1>`__ |
-   +----------------+---------------------------+------------------------------+----------------------------------------------------------------------------------------------+
+   +-----------------+---------------------------+----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | Add-on Version  | Supported Cluster Version | New Feature                                                                                  | Community Version                                                                            |
+   +=================+===========================+==============================================================================================+==============================================================================================+
+   | 1.30.51         | v1.30                     | The scale-down delay and scale-down utilization thresholds can be configured for node pools. | `1.30.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.30.1>`__ |
+   +-----------------+---------------------------+----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.30.18         | v1.30                     | Fixed some issues.                                                                           | `1.30.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.30.1>`__ |
+   +-----------------+---------------------------+----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.30.15         | v1.30                     | -  Clusters v1.30 are supported.                                                             | `1.30.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.30.1>`__ |
+   |                 |                           | -  Added the name of the target node pool to the events.                                     |                                                                                              |
+   +-----------------+---------------------------+----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 5** Release history for the add-on adapted to clusters 1.28
+.. table:: **Table 5** Release history for the add-on adapted to clusters v1.29
+
+   +----------------+---------------------------+----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | Add-on Version | Supported Cluster Version | New Feature                                                                                  | Community Version                                                                            |
+   +================+===========================+==============================================================================================+==============================================================================================+
+   | 1.29.84        | v1.29                     | The scale-down delay and scale-down utilization thresholds can be configured for node pools. | `1.29.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.29.1>`__ |
+   +----------------+---------------------------+----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.29.53        | v1.29                     | Fixed some issues.                                                                           | `1.29.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.29.1>`__ |
+   +----------------+---------------------------+----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.29.17        | v1.29                     | Optimized events.                                                                            | `1.29.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.29.1>`__ |
+   +----------------+---------------------------+----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.29.13        | v1.29                     | Clusters v1.29 are supported.                                                                | `1.29.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.29.1>`__ |
+   +----------------+---------------------------+----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+
+.. table:: **Table 6** Release history for the add-on adapted to clusters v1.28
 
    +----------------+---------------------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version | Supported Cluster Version | New Feature                                                                                           | Community Version                                                                            |
    +================+===========================+=======================================================================================================+==============================================================================================+
+   | 1.28.123       | v1.28                     | The scale-down delay and scale-down utilization thresholds can be configured for node pools.          | `1.28.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.28.1>`__ |
+   +----------------+---------------------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.28.92        | v1.28                     | Fixed some issues.                                                                                    | `1.28.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.28.1>`__ |
+   +----------------+---------------------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.28.91        | v1.28                     | Fixed some issues.                                                                                    | `1.28.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.28.1>`__ |
+   +----------------+---------------------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.28.88        | v1.28                     | Added the name of the target node pool to the events.                                                 | `1.28.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.28.1>`__ |
+   +----------------+---------------------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | 1.28.55        | v1.28                     | Optimized events.                                                                                     | `1.28.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.28.1>`__ |
    +----------------+---------------------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | 1.28.22        | v1.28                     | Fixed some issues.                                                                                    | `1.28.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.28.1>`__ |
@@ -158,11 +176,21 @@ Change History
    | 1.28.17        | v1.28                     | Fixed the issue that scale-in cannot be performed when there are custom pod controllers in a cluster. | `1.28.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.28.1>`__ |
    +----------------+---------------------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 6** Release history for the add-on adapted to clusters 1.27
+.. table:: **Table 7** Release history for the add-on adapted to clusters v1.27
 
    +----------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version | Supported Cluster Version | New Feature                                                                                                                             | Community Version                                                                            |
    +================+===========================+=========================================================================================================================================+==============================================================================================+
+   | 1.27.155       | v1.27                     | The scale-down delay and scale-down utilization thresholds can be configured for node pools.                                            | `1.27.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.27.1>`__ |
+   +----------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.27.123       | v1.27                     | Fixed some issues.                                                                                                                      | `1.27.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.27.1>`__ |
+   +----------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.27.122       | v1.27                     | Fixed some issues.                                                                                                                      | `1.27.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.27.1>`__ |
+   +----------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.27.119       | v1.27                     | Added the name of the target node pool to the events.                                                                                   | `1.27.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.27.1>`__ |
+   +----------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.27.88        | v1.27                     | Optimized events.                                                                                                                       | `1.27.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.27.1>`__ |
+   +----------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | 1.27.55        | v1.27                     | Fixed some issues.                                                                                                                      | `1.27.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.27.1>`__ |
    +----------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | 1.27.53        | v1.27                     | Fixed some issues.                                                                                                                      | `1.27.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.27.1>`__ |
@@ -172,11 +200,19 @@ Change History
    | 1.27.14        | v1.27                     | Fixed the scale-in failure of nodes of different specifications in the same node pool and unexpected **PreferNoSchedule** taint issues. | `1.27.1 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.27.1>`__ |
    +----------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 7** Release history for the add-on adapted to clusters 1.25
+.. table:: **Table 8** Release history for the add-on adapted to clusters v1.25
 
    +-----------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                                                                                       | Community Version                                                                            |
    +=================+===========================+===================================================================================================================================================+==============================================================================================+
+   | 1.25.184        | v1.25                     | The scale-down delay and scale-down utilization thresholds can be configured for node pools.                                                      | `1.25.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.25.0>`__ |
+   +-----------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.25.153        | v1.25                     | Fixed some issues.                                                                                                                                | `1.25.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.25.0>`__ |
+   +-----------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.25.152        | v1.25                     | Added the name of the target node pool to the events.                                                                                             | `1.25.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.25.0>`__ |
+   +-----------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.25.120        | v1.25                     | Optimized events.                                                                                                                                 | `1.25.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.25.0>`__ |
+   +-----------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | 1.25.88         | v1.25                     | Fixed some issues.                                                                                                                                | `1.25.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.25.0>`__ |
    +-----------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | 1.25.86         | v1.25                     | Fixed some issues.                                                                                                                                | `1.25.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.25.0>`__ |
@@ -190,16 +226,22 @@ Change History
    |                 |                           | -  The default taint tolerance duration is changed to 60s.                                                                                        |                                                                                              |
    |                 |                           | -  Fixed the issue that scale-out is still triggered after the scale-out rule is disabled.                                                        |                                                                                              |
    +-----------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
-   | 1.25.7          | v1.25                     | -  CCE clusters 1.25 are supported.                                                                                                               | `1.25.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.25.0>`__ |
+   | 1.25.7          | v1.25                     | -  CCE clusters v1.25 are supported.                                                                                                              | `1.25.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.25.0>`__ |
    |                 |                           | -  Modified the memory request and limit of a customized flavor.                                                                                  |                                                                                              |
    |                 |                           | -  Enabled to report an event indicating that scaling cannot be performed in a node pool with auto scaling disabled.                              |                                                                                              |
    +-----------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 8** Release history for the add-on adapted to clusters 1.23
+.. table:: **Table 9** Release history for the add-on adapted to clusters v1.23
 
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                                                                                                 | Community Version                                                                            |
    +=================+===========================+=============================================================================================================================================================+==============================================================================================+
+   | 1.23.157        | v1.23                     | Fixed some issues.                                                                                                                                          | `1.23.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.23.0>`__ |
+   +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.23.156        | v1.23                     | Added the name of the target node pool to the events.                                                                                                       | `1.23.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.23.0>`__ |
+   +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
+   | 1.23.125        | v1.23                     | Optimized events.                                                                                                                                           | `1.23.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.23.0>`__ |
+   +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | 1.23.95         | v1.23                     | Fixed some issues.                                                                                                                                          | `1.23.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.23.0>`__ |
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | 1.23.93         | v1.23                     | Fixed some issues.                                                                                                                                          | `1.23.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.23.0>`__ |
@@ -225,7 +267,7 @@ Change History
    |                 |                           | -  Supported scale-in waiting so that operations such as data dump can be performed before a node is deleted.                                               |                                                                                              |
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 9** Release history for the add-on adapted to clusters 1.21
+.. table:: **Table 10** Release history for the add-on adapted to clusters v1.21
 
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                                                                                                 | Community Version                                                                            |
@@ -259,7 +301,7 @@ Change History
    | 1.21.1          | v1.21                     | Fixed the issue that the node pool modification in the existing periodic auto scaling rule does not take effect.                                            | `1.21.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.21.0>`__ |
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 10** Release history for the add-on adapted to clusters 1.19
+.. table:: **Table 11** Release history for the add-on adapted to clusters v1.19
 
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                                                                                                 | Community Version                                                                            |
@@ -294,7 +336,7 @@ Change History
    | 1.19.7          | v1.19                     | Regular upgrade of add-on dependencies                                                                                                                      | `1.19.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.19.0>`__ |
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
 
-.. table:: **Table 11** Release history for the add-on adapted to clusters 1.17
+.. table:: **Table 12** Release history for the add-on adapted to clusters v1.17
 
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                                                                                                 | Community Version                                                                            |
@@ -315,5 +357,5 @@ Change History
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | 1.17.15         | v1.17                     | Unified resource specification configuration unit.                                                                                                          | `1.17.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.17.0>`__ |
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
-   | 1.17.2          | v1.17                     | Clusters 1.17 are supported.                                                                                                                                | `1.17.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.17.0>`__ |
+   | 1.17.2          | v1.17                     | Clusters v1.17 are supported.                                                                                                                               | `1.17.0 <https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.17.0>`__ |
    +-----------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+

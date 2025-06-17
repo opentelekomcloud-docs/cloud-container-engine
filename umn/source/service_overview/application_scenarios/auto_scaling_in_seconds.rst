@@ -37,7 +37,7 @@ Add-ons: autoscaler and cce-hpa-controller
 -  Auto scaling for clusters: CA (Cluster AutoScaling)
 
 
-.. figure:: /_static/images/en-us_image_0000002101594885.png
+.. figure:: /_static/images/en-us_image_0000002218657514.png
    :alt: **Figure 1** How auto scaling works
 
    **Figure 1** How auto scaling works

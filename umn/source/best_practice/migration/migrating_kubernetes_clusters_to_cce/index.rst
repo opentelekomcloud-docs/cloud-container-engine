@@ -6,7 +6,7 @@ Migrating Kubernetes Clusters to CCE
 ====================================
 
 -  :ref:`Solution Overview <cce_bestpractice_0307>`
--  :ref:`Planning Resources for the Target Cluster <cce_bestpractice_0014>`
+-  :ref:`Resource Planning for the Target Cluster <cce_bestpractice_0014>`
 -  :ref:`Procedure <cce_bestpractice_0326>`
 
 .. toctree::
@@ -14,5 +14,5 @@ Migrating Kubernetes Clusters to CCE
    :hidden: 
 
    solution_overview
-   planning_resources_for_the_target_cluster
+   resource_planning_for_the_target_cluster
    procedure/index

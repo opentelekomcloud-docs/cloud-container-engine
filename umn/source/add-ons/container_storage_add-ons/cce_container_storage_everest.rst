@@ -29,7 +29,7 @@ This add-on has been installed by default. If it is uninstalled due to some reas
 
       The small specification is best for clusters with up to 50 nodes and 500 PVCs. The medium specification works well for clusters with up to 200 nodes and 2000 PVCs. The large specification is perfect for clusters with up to 1000 nodes and 10,000 PVCs.
 
-   -  If you selected **Custom**, you can adjust the number of pods and resource quotas as needed. The requested CPU and memory can be adjusted based on the number of nodes and PVCs. For details, see :ref:`Table 1 <cce_10_0066__table189158231597>`.
+   -  If you selected **Custom**, you can adjust the number of pods and resource quotas as needed. The requested CPUs and memory can be adjusted based on the number of nodes and PVCs. For details, see :ref:`Table 1 <cce_10_0066__table189158231597>`.
 
       In non-typical scenarios, the formulas for estimating the limits are as follows:
 
@@ -112,7 +112,7 @@ This add-on has been installed by default. If it is uninstalled due to some reas
 
    .. note::
 
-      -  Scheduling policies do not take effect on add-on instances of the DaemonSet type.
+      -  Scheduling policies do not take effect on add-on pods of the DaemonSet type.
       -  When configuring multi-AZ deployment or node affinity, ensure that there are nodes meeting the scheduling policy and that resources are sufficient in the cluster. Otherwise, the add-on cannot run.
 
    .. table:: **Table 3** Configurations for add-on scheduling
@@ -128,7 +128,7 @@ This add-on has been installed by default. If it is uninstalled due to some reas
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
       |                                   | -  **Specify node**: Specify the nodes where the add-on is deployed. If you do not specify the nodes, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                                                                                    |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-      |                                   | -  **Specify node pool**: Specify the node pool where the add-on is deployed. If you do not specify the node pool, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                                                                       |
+      |                                   | -  **Specify node pool**: Specify the node pool where the add-on is deployed. If you do not specify the node pools, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                                                                      |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
       |                                   | -  **Customize affinity**: Enter the labels of the nodes where the add-on is to be deployed for more flexible scheduling policies. If you do not specify node labels, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                    |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -207,6 +207,18 @@ Change History
    +-----------------------+---------------------------+--------------------------------------------------------------------------------------------------------+
    | Add-on Version        | Supported Cluster Version | New Feature                                                                                            |
    +=======================+===========================+========================================================================================================+
+   | 2.4.134               | v1.25                     | Fixed some issues.                                                                                     |
+   |                       |                           |                                                                                                        |
+   |                       | v1.27                     |                                                                                                        |
+   |                       |                           |                                                                                                        |
+   |                       | v1.28                     |                                                                                                        |
+   |                       |                           |                                                                                                        |
+   |                       | v1.29                     |                                                                                                        |
+   |                       |                           |                                                                                                        |
+   |                       | v1.30                     |                                                                                                        |
+   |                       |                           |                                                                                                        |
+   |                       | v1.31                     |                                                                                                        |
+   +-----------------------+---------------------------+--------------------------------------------------------------------------------------------------------+
    | 2.4.75                | v1.23                     | On HCE OS 2.0 nodes, you can configure the EVS PVC's fstype to xfs.                                    |
    |                       |                           |                                                                                                        |
    |                       | v1.25                     |                                                                                                        |
@@ -249,7 +261,7 @@ Change History
    |                       |                           |                                                                                                        |
    |                       | v1.28                     |                                                                                                        |
    +-----------------------+---------------------------+--------------------------------------------------------------------------------------------------------+
-   | 2.3.14                | v1.21                     | CCE clusters 1.28 are supported.                                                                       |
+   | 2.3.14                | v1.21                     | CCE clusters v1.28 are supported.                                                                      |
    |                       |                           |                                                                                                        |
    |                       | v1.23                     |                                                                                                        |
    |                       |                           |                                                                                                        |

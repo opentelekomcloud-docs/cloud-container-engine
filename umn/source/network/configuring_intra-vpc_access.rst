@@ -16,7 +16,7 @@ The performance of accessing an intranet from a container varies depending on th
 
 -  **Container tunnel network**
 
-   The container tunnel network encapsulates network data packets through tunnels based on the node network. A container can access other resources in the same VPC as long as the node can access the resources. If the access fails, check whether the security group of the peer resource allows access from the node where the container is located.
+   The container tunnel network encapsulates network data packets through tunnels based on the node network. A container can access other resources in the same VPC as long as the node can access the resources. If the access fails, check whether the security group of peer resources allows the access from the node where the container is located.
 
 -  **Cloud Native Network 2.0**
 
@@ -30,7 +30,7 @@ The performance of accessing an intranet from a container varies depending on th
 
    There is an ECS whose IP address is 192.168.10.52 in the VPC (outside the cluster). The security group of the ECS allows access of only the CIDR block of the cluster node.
 
-   In this case, if you ping 192.168.10.52 from the container, the ping operation fails.
+   In this case, 192.168.10.52 cannot be pinged from the container.
 
    .. code-block::
 
@@ -83,9 +83,9 @@ Cross-VPC access is implemented by establishing a peering connection between VPC
 Accessing Other Cloud Services
 ------------------------------
 
-Common services that communicate with CCE through an intranet include RDS, DCS, Kafka, RabbitMQ, and ModelArts.
+Common services that communicate with CCE through an intranet include RDS, DCS, Kafka, and RabbitMQ.
 
-In addition to the network configurations described in :ref:`Intra-VPC Access <cce_10_0399__section1940319933>` and :ref:`Cross-VPC Access <cce_10_0399__section44190754210>`, you also need to check **whether these cloud services allow external access**. For example, the DCS Redis instance can be accessed only by the IP addresses in its whitelist. Generally, these cloud services can be accessed by IP addresses in the same VPC. However, the container CIDR block in the VPC network model is different from the CIDR block of the VPC. Therefore, you must add the container CIDR block to the whitelist.
+In addition to the network configurations described in :ref:`Intra-VPC Access <cce_10_0399__section1940319933>` and :ref:`Cross-VPC Access <cce_10_0399__section44190754210>`, you also need to check **whether these cloud services allow external access**. For example, the DCS Redis instance can be accessed only by the IP addresses in its trustlist. Generally, these cloud services can be accessed by IP addresses in the same VPC. However, the container CIDR block in the VPC network model is different from the CIDR block of the VPC. Therefore, you must add the container CIDR block to the trustlist.
 
 What If a Container Fails to Access an Intranet?
 ------------------------------------------------
@@ -98,5 +98,5 @@ If an intranet cannot be accessed from a container, perform the following operat
    -  The VPC network model needs to allow the container CIDR block.
    -  The Cloud Native Network 2.0 model needs to allow the subnet where the container is located.
 
-#. Check whether a whitelist is configured for the peer server. For example, the DCS Redis instance can be accessed only by the IP addresses in its whitelist. Add the container and node CIDR blocks to the whitelist.
+#. Check whether a trustlist is configured for the peer server. For example, the DCS Redis instance can be accessed only by the IP addresses in its trustlist. Add the container and node CIDR blocks to the trustlist.
 #. Check whether the container engine is installed on the peer server and whether it conflicts with the container CIDR block in CCE. If a network conflict occurs, the access fails.

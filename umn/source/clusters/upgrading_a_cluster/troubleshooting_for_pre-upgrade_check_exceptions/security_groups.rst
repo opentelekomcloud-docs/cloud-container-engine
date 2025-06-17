@@ -8,7 +8,7 @@ Security Groups
 Check Items
 -----------
 
-Check whether the **Protocol & Port** of the worker node security groups is set to **ICMP: All** and whether the security group with the source IP address set to the master node security group is deleted.
+Check whether the **Protocol & Port** of the worker node security groups is set to **ICMP: All** and whether the security group rule with the source IP address set to the master node security group has been deleted.
 
 .. note::
 
@@ -24,4 +24,4 @@ Log in to the VPC console, choose **Access Control** > **Security Groups**, and 
 
 Click the node security group and ensure that the following rules are configured to allow the master node to access the node using **ICMP**.
 
-If the preceding security group rule is unavailable, add the rule with the following configurations to the node security group: Set **Protocol & Port** to **Protocols/ICMP** and **All**, and **Source** to **Security group** and the master security group.
+If the preceding security group rule is unavailable, add the rule with the following configurations to the node security group: Set **Protocol & Port** to **ICMP: All**, and **Source** to **Security group** and then the master node's security group.

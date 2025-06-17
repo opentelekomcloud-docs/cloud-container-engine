@@ -8,7 +8,7 @@ Deleting a Node
 Scenario
 --------
 
-You can delete a pay-per-use node that is not needed from the node list.
+If a node is no longer needed, delete it from the node list on the CCE console if the node is billed on a pay-per-use basis. Do not manually remove nodes using **kubectl delete node**, as this may lead to unexpected results.
 
 Deleting or unsubscribing from a node in a CCE cluster will release the node and services running on the node. Drain the node and back up data before the deletion or unsubscription to prevent services running on the node from being affected.
 
@@ -16,7 +16,7 @@ Precautions
 -----------
 
 -  Deleting a node will lead to pod migration, which may affect services. Perform this operation during off-peak hours. It is a good practice to drain the node before deletion. For details, see :ref:`Draining a Node <cce_10_0605>`.
--  Unexpected risks may occur during the operation. Back up data beforehand.
+-  After a node is deleted, its data will be destroyed. Back up node data beforehand.
 
 -  Deleting a node will cause PVC/PV data loss for the :ref:`local PV <cce_10_0391>` associated with the node. These PVCs and PVs cannot be restored or used again. In this scenario, the pod that uses the local PV is evicted from the node. A new pod is created and stays in the pending state. This is because the PVC used by the pod has a node label, due to which the pod cannot be scheduled.
 

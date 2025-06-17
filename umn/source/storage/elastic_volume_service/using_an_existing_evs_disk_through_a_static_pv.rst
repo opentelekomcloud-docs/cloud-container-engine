@@ -5,7 +5,7 @@
 Using an Existing EVS Disk Through a Static PV
 ==============================================
 
-CCE allows you to create a PV using an existing EVS disk. After the PV is created, you can create a PVC and bind it to the PV. This mode applies if the underlying storage is available.
+CCE allows you to create a PV using an existing EVS disk. Then, you can create a PVC and bind it to the PV. This method is suitable for scenarios where underlying storage is available.
 
 Prerequisites
 -------------
@@ -20,7 +20,7 @@ Prerequisites
    -  If the EVS disk is encrypted, the key must be available.
    -  EVS disks that have been partitioned are not supported.
 
--  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 Notes and Constraints
 ---------------------
@@ -78,7 +78,7 @@ Using an Existing EVS Disk on the Console
 
    a. Choose **Workloads** in the navigation pane. In the right pane, click the **StatefulSets** tab.
 
-   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Settings** area and click **Add Volume** to select **PVC**.
+   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Information** area under **Container Settings** and choose **Add Volume** > **PVC**.
 
       Mount and use storage volumes, as shown in :ref:`Table 1 <cce_10_0614__table2529244345>`. For details about other parameters, see :ref:`Workloads <cce_10_0046>`.
 
@@ -122,7 +122,7 @@ Using an Existing EVS Disk Through kubectl
 ------------------------------------------
 
 #. Use kubectl to access the cluster.
-#. Create a PV. If a PV has been created in your cluster, skip this step.
+#. Create a PV. If a PV has been created in your cluster, skip this step. When using a YAML file to create a PV, do not use parameters that are not declared in the file, such as **status**, **spec.claimRef**, and **annotation.everest.io/set-disk-metadata**. Otherwise, the PV may be abnormal.
 
    a. .. _cce_10_0614__li162841212145314:
 
@@ -154,7 +154,6 @@ Using an Existing EVS Disk Through kubectl
                everest.io/disk-volume-type: SAS     # EVS disk type
                storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
                everest.io/crypt-key-id: <your_key_id>    # (Optional) Encryption key ID. Mandatory for an encrypted disk.
-
            persistentVolumeReclaimPolicy: Delete    # Reclaim policy
            storageClassName: csi-disk              # StorageClass name. The value must be csi-disk for EVS disks.
 
@@ -211,7 +210,7 @@ Using an Existing EVS Disk Through kubectl
          |                                               |                       |                                                                                                                                                                                                                                                                                                                          |
          |                                               |                       | **Retain**: When a PVC is deleted, both the PV and underlying storage resources will be retained. You need to manually delete these resources. After the PVC is deleted, the PV is in the **Released** state and cannot be bound to a PVC again.                                                                         |
          +-----------------------------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | storageClassName                              | Yes                   | The StorageClass for EVS disks is **csi-disk**.                                                                                                                                                                                                                                                                          |
+         | storageClassName                              | Yes                   | StorageClass name, which is **csi-disk** for an EVS disk.                                                                                                                                                                                                                                                                |
          +-----------------------------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    b. Run the following command to create a PV:
@@ -244,7 +243,7 @@ Using an Existing EVS Disk Through kubectl
            resources:
              requests:
                storage: 10Gi             # EVS disk capacity, ranging from 1 to 32768. The value must be the same as the storage size of the existing PV.
-           storageClassName: csi-disk    # StorageClass is EVS.
+           storageClassName: csi-disk    # The StorageClass is EVS.
            volumeName: pv-evs            # PV name
 
       .. table:: **Table 3** Key parameters
@@ -268,7 +267,7 @@ Using an Existing EVS Disk Through kubectl
          +------------------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------+
          | storageClassName                         | Yes                   | StorageClass name, which must be the same as the StorageClass of the PV in :ref:`1 <cce_10_0614__li162841212145314>`.         |
          |                                          |                       |                                                                                                                               |
-         |                                          |                       | The StorageClass for EVS disks is **csi-disk**.                                                                               |
+         |                                          |                       | The StorageClass for EVS volumes is **csi-disk**.                                                                             |
          +------------------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------+
 
    b. Run the following command to create a PVC:
@@ -303,7 +302,7 @@ Using an Existing EVS Disk Through kubectl
                - name: container-1
                  image: nginx:latest
                  volumeMounts:
-                 - name: pvc-disk    # Volume name, which must be the same as the volume name in the volumes field.
+                 - name: pvc-disk    # Volume name, which must be the same as the volume name in the volumes field
                    mountPath: /data  # Location where the storage volume is mounted
                imagePullSecrets:
                  - name: default-secret

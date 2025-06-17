@@ -22,8 +22,8 @@ Synchronizing a Single Node
 
 #. Log in to the CCE console.
 #. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. In the right pane, click the **Nodes** tab.
-#. Find **upgrade** in the **Node Pool** column of the existing nodes in the node pool.
-#. Click **update**. In the dialog box that is displayed, confirm whether to reset the node immediately.
+#. Find **Node pool updated** in the **Node Name** column of the existing nodes in the node pool.
+#. Move the cursor to **Node pool updated**. The **Reset** button is displayed. You can then determine whether to reset the node immediately.
 
 Batch Synchronization
 ---------------------

@@ -13,7 +13,7 @@ Scenario
 Prerequisites
 -------------
 
--  The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be 1.2.8 or later.
+-  The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be 2.1.46 or later.
 -  The cluster version must be 1.15.11 or later.
 
 Notes and Constraints
@@ -27,20 +27,16 @@ Disabling Auto Key Mounting
 
 On the earlier version's console, you need to upload the AK/SK, which is then used by default for mounting an OBS volume. As a result, all IAM users within your account will use the same key to mount OBS buckets, and they will have identical permissions on the buckets. However, this setting does not allow you to set different permissions for individual IAM users.
 
-If you have uploaded the AK/SK, disable the automatic mounting of access keys by enabling the **disable_auto_mount_secret** parameter in the Everest add-on to prevent IAM users from performing unauthorized operations. In this way, the access keys uploaded on the console will not be used when creating OBS volumes.
+If you have uploaded the AK/SK, disable the automatic mounting of access keys by enabling the **DISABLE_AUTO_MOUNT_SECRET** parameter in the Everest add-on to prevent IAM users from performing unauthorized operations. In this way, the access keys uploaded on the console will not be used when you use OBS volumes.
 
 .. note::
 
-   -  When enabling **disable-auto-mount-secret**, ensure that no OBS volume exists in the cluster. A workload mounted with an OBS volume, when scaled or restarted, will fail to remount the OBS volume because it needs to specify the access key but is prohibited by **disable-auto-mount-secret**.
-   -  If **disable-auto-mount-secret** is set to **true**, an access key must be specified when a PV or PVC is created. Otherwise, the OBS volume fails to be mounted.
+   -  Before enabling **DISABLE_AUTO_MOUNT_SECRET**, ensure that there are no OBS volumes in the cluster. Workloads using OBS volumes may fail to remount after scaling or restart due to missing access keys, which are blocked by **DISABLE_AUTO_MOUNT_SECRET**.
+   -  If **DISABLE_AUTO_MOUNT_SECRET** is set to **true**, an access key must be specified when a PV or PVC is created. Otherwise, mounting the OBS volume will fail.
 
-**kubectl edit ds everest-csi-driver -nkube-system**
-
-Search for **disable-auto-mount-secret** and set it to **true**.
-
-|image1|
-
-Run **:wq** to save the settings and exit. Wait until the pod is restarted.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate **CCE Container Storage (Everest)** on the right, and click **Edit**.
+#. Configure the add-on parameters. Set **Prohibit Global Secret from Mounting Object Storage (disable_auto_mount_secret)** to **Yes**.
+#. Click **OK**.
 
 .. _cce_10_0336__section4633162355911:
 
@@ -272,7 +268,7 @@ You can use a secret of an IAM user to mount an OBS volume. Assume that a worklo
 
 #. Set the read/write permissions for the IAM user who mounted the OBS volume by referring to the bucket policy configuration.
 
-   |image2|
+   |image1|
 
 #. Write data into the mount path again. In this example, the write operation succeeded.
 
@@ -288,5 +284,4 @@ You can use a secret of an IAM user to mount an OBS volume. Assume that a worklo
 
       -rwxrwxrwx 1 root root 0 Jun  7 01:52 test
 
-.. |image1| image:: /_static/images/en-us_image_0000002065639022.png
-.. |image2| image:: /_static/images/en-us_image_0000002065480682.png
+.. |image1| image:: /_static/images/en-us_image_0000002253780093.png

@@ -36,7 +36,7 @@ Migrating Nodes from a Custom Node Pool to the Default Node Pool
 
    .. note::
 
-      -  The migration does not affect custom resource tags, Kubernetes labels, and taints of the node.
+      -  The migration does not affect custom resource tags, and Kubernetes labels and taints of the node.
       -  After the migration, system labels **cce.cloud.com** and **cce-nodepool** on the node will be deleted. If an existing workload uses these labels for affinity or anti-affinity scheduling, the existing pods on the node will be stopped and rescheduled when kubelet is restarted.
 
 .. _cce_10_0656__section7117453155012:
@@ -50,7 +50,6 @@ Migrating Nodes from the Default Node Pool to a Custom Node Pool
 #. In the **Accept Node** dialog box, select the nodes that meet the following conditions:
 
    -  The nodes and the current node pool are deployed in the same VPC and subnet.
-   -  The nodes and the current node pool belong to the same enterprise project.
    -  The nodes and the current node pool are in the same cloud server group.
    -  The billing mode of the nodes is supported by the current node pool.
    -  The nodes are running and they are from the default node pool.

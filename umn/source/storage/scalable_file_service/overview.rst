@@ -18,6 +18,22 @@ Expandable to petabytes, SFS provides fully hosted shared file storage, highly a
 -  **Capacity and performance**: The capacity of a single file system is high (PB level) and the performance is excellent (ms-level I/O latency).
 -  **Use cases**: Deployments/StatefulSets in the ReadWriteMany mode and jobs created for high-performance computing (HPC), media processing, content management, web services, big data analysis, and workload process analysis
 
+Performance
+-----------
+
+CCE supports SFS Capacity-Oriented. For more details, see `File System Types <https://docs.otc.t-systems.com/en-us/usermanual/sfs/sfs_01_0005.html>`__.
+
+.. table:: **Table 1** Performance
+
+   ================= =====================
+   Parameter         SFS Capacity-Oriented
+   ================= =====================
+   Maximum bandwidth 2 GB/s
+   Maximum IOPS      2000
+   Latency           3-20 ms
+   Maximum capacity  4 PB
+   ================= =====================
+
 Application Scenarios
 ---------------------
 

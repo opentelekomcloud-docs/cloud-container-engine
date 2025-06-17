@@ -19,7 +19,7 @@ Notes and Constraints
 -  It is recommended that other resources not use the load balancer automatically created by an ingress. Otherwise, the load balancer will be occupied when the ingress is deleted, resulting in residual resources.
 -  After an ingress is created, upgrade and maintain the configuration of the selected load balancers on the CCE console. Do not modify the configuration on the ELB console. Otherwise, the ingress service may be abnormal.
 -  The URL registered in an ingress forwarding policy must be the same as the URL used to access the backend Service. Otherwise, a 404 error will be returned.
--  In a cluster using the IPVS proxy mode, if the ingress and Service use the same ELB load balancer, the ingress cannot be accessed from the nodes and containers in the cluster because kube-proxy mounts the LoadBalancer Service address to the ipvs-0 bridge. This bridge intercepts the traffic of the load balancer connected to the ingress. Use different load balancers for the ingress and Service.
+-  If you have an IPVS-backed cluster and use the same ELB load balancer for both the ingress and Service in the same cluster or for the Service ports in different clusters, you will not be able to access the ingress from the nodes or containers in the cluster, or the Service ports in other clusters. This is because kube-proxy mounts the LoadBalancer Service address to the ipvs-0 bridge, which intercepts the load balancer traffic. Use separate load balancers for these ingresses and Services.
 -  A dedicated load balancer must be of the application type (HTTP/HTTPS) and support private networks (with a private IP address).
 -  If multiple ingresses access the same ELB port in a cluster, the listener configuration items (such as the certificate associated with the listener and the HTTP/2 attribute of the listener) are subject to the configuration of the first ingress.
 
@@ -38,6 +38,8 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
    -  **Interconnect with Nginx**: This option is displayed only after the :ref:`NGINX Ingress Controller <cce_10_0034>` add-on is installed. If this option is available, the NGINX Ingress Controller add-on has been installed. Enabling this option will create an Nginx ingress. Disable it if you want to create a LoadBalancer ingress. For details, see :ref:`Creating an Nginx Ingress on the Console <cce_10_0390>`.
 
+   -  **Protocol Version**: Select a protocol version of the LoadBalancer ingress. This parameter is only available for IPv4/IPv6 dual-stack clusters.
+
    -  **Load Balancer**: Select a load balancer type and creation mode.
 
       A load balancer can be dedicated or shared. A dedicated load balancer must be of the application type (HTTP/HTTPS) and support private networks.
@@ -48,27 +50,27 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
       .. table:: **Table 1** Load balancer configurations
 
-         +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | How to Create                     | Configuration                                                                                                                                                                                                                                                                            |
-         +===================================+==========================================================================================================================================================================================================================================================================================+
-         | Use existing                      | Only the load balancers in the same VPC as the cluster can be selected. If no load balancer is available, click **Create Load Balancer** to create one on the ELB console.                                                                                                               |
-         +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | Auto create                       | -  **Instance Name**: Enter a load balancer name.                                                                                                                                                                                                                                        |
-         |                                   | -  **AZ**: available only to dedicated load balancers. You can create load balancers in multiple AZs to improve service availability. You can deploy a load balancer in multiple AZs for high availability.                                                                              |
-         |                                   | -  **Frontend Subnet**: available only to dedicated load balancers. It is used to allocate IP addresses for load balancers to provide services externally.                                                                                                                               |
-         |                                   | -  **Backend Subnet**: available only to dedicated load balancers. It is used to allocate IP addresses for load balancers to access the backend service.                                                                                                                                 |
-         |                                   | -  **Network Specifications**, **Application-oriented Specifications**, or **Specifications** (available only to dedicated load balancers)                                                                                                                                               |
-         |                                   |                                                                                                                                                                                                                                                                                          |
-         |                                   |    -  **Elastic**: applies to fluctuating traffic, billed based on total traffic. Clusters of v1.21.10-r10, v1.23.8-r10, v1.25.3-r10, and later versions support elastic specifications.                                                                                                 |
-         |                                   |    -  **Fixed**: applies to stable traffic, billed based on specifications.                                                                                                                                                                                                              |
-         |                                   |                                                                                                                                                                                                                                                                                          |
-         |                                   | -  **EIP**: If you select **Auto create**, you can configure the size of the public network bandwidth.                                                                                                                                                                                   |
-         |                                   | -  **Resource Tag**: You can add resource tags to classify resources. You can create **predefined tags** on the TMS console. The predefined tags are available to all resources that support tags. You can use these tags to improve the tag creation and resource migration efficiency. |
-         +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | How to Create                     | Configuration                                                                                                                                                                                                                                                                   |
+         +===================================+=================================================================================================================================================================================================================================================================================+
+         | Use existing                      | Only the load balancers in the same VPC as the cluster can be selected. If no load balancer is available, click **Create Load Balancer** to create one on the ELB console.                                                                                                      |
+         +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Auto create                       | -  **Instance Name**: Enter a load balancer name.                                                                                                                                                                                                                               |
+         |                                   | -  **AZ**: available only to dedicated load balancers. You can create load balancers in multiple AZs to improve service availability. You can deploy a load balancer in multiple AZs for high availability.                                                                     |
+         |                                   | -  **Frontend Subnet**: available only to dedicated load balancers. It is used to allocate IP addresses for load balancers to provide services externally.                                                                                                                      |
+         |                                   | -  **Backend Subnet**: available only to dedicated load balancers. It is used to allocate IP addresses for load balancers to access the backend service.                                                                                                                        |
+         |                                   | -  **Network Specifications**, **Application-oriented Specifications**, or **Specifications** (available only to dedicated load balancers)                                                                                                                                      |
+         |                                   |                                                                                                                                                                                                                                                                                 |
+         |                                   |    -  **Elastic**: applies to fluctuating traffic, billed based on total traffic. Clusters of v1.21.10-r10, v1.23.8-r10, v1.25.3-r10, and later versions support elastic specifications.                                                                                        |
+         |                                   |    -  **Fixed**: applies to stable traffic, billed based on specifications.                                                                                                                                                                                                     |
+         |                                   |                                                                                                                                                                                                                                                                                 |
+         |                                   | -  **EIP**: If you select **Auto create**, you can configure the size of the public network bandwidth.                                                                                                                                                                          |
+         |                                   | -  **Resource Tag**: You can add resource tags to classify resources. You can create **predefined tags** on the TMS console. These tags are available to all resources that support tags. You can use these tags to improve the tag creation and resource migration efficiency. |
+         +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    -  .. _cce_10_0251__li6851318392:
 
-      **Listener**: An ingress configures a listener for the load balancer, which listens to requests from the load balancer and distributes traffic. After the configuration is complete, a listener is created on the load balancer. The default listener name is *k8s__<Protocol type>_<Port number>*, for example, *k8s_HTTP_80*.
+      **Listener**: An ingress configures a listener for the load balancer, which listens to requests from the load balancer and distributes traffic. After the configuration is complete, a listener is created on the load balancer. The default listener name is *k8s_<Protocol type>_<Port number>*, for example, *k8s_HTTP_80*.
 
       -  **External Protocol**: **HTTP** and **HTTPS** are available.
 
@@ -81,10 +83,14 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
          -  **Trustlist**: Only the selected IP address group can access the load balancer.
          -  **Blocklist**: The selected IP address group cannot access the load balancer.
 
+         .. note::
+
+            For clusters of v1.25.16-r10, v1.27.16-r10, v1.28.15-r0, v1.29.10-r0, v1.30.6-r0, v1.31.1-r0, or later, when using a dedicated load balancer, you can select a maximum of five IP address groups at a time for access control.
+
       -  **Certificate Source**: TLS secret and ELB server certificates are supported.
 
          -  **TLS secret**: For details about how to create a secret certificate, see :ref:`Creating a Secret <cce_10_0153>`.
-         -  **ELB server certificate**: Use a certificate created in the ELB service.
+         -  **ELB server certificate**: Use a certificate created on ELB.
 
       -  **Server Certificate**: When an HTTPS listener is created for a load balancer, bind a certificate to the load balancer to support encrypted authentication for HTTPS data transmission.
 
@@ -104,7 +110,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
       -  **Security Policy**: combinations of different TLS versions and supported cipher suites available to HTTPS listeners.
 
-         For details about security policies, see ELB User Guide.
+         For details about security policies, see *Elastic Load Balance User Guide*.
 
          .. note::
 
@@ -124,17 +130,17 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
          +=======================+===================================================================================================================================================================================================================================================================================+==========================================================================================================+
          | Idle Timeout          | Timeout for an idle client connection. If there are no requests reaching the load balancer during the timeout duration, the load balancer will disconnect the connection from the client and establish a new connection when there is a new request.                              | None                                                                                                     |
          +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
-         | Request Timeout       | Timeout for waiting for a request from a client. There are two cases:                                                                                                                                                                                                             | None                                                                                                     |
+         | Request Timeout       | Timeout for waiting for a request from a client. There are two cases:                                                                                                                                                                                                             | This function is available only for HTTP and HTTPS listeners.                                            |
          |                       |                                                                                                                                                                                                                                                                                   |                                                                                                          |
          |                       | -  If the client fails to send a request header to the load balancer during the timeout duration, the request will be interrupted.                                                                                                                                                |                                                                                                          |
          |                       | -  If the interval between two consecutive request bodies reaching the load balancer is greater than the timeout duration, the connection will be disconnected.                                                                                                                   |                                                                                                          |
          +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
-         | Response Timeout      | Timeout for waiting for a response from a backend server. After a request is forwarded to the backend server, if the backend server does not respond during the timeout duration, the load balancer will stop waiting and return HTTP 504 Gateway Timeout.                        | None                                                                                                     |
+         | Response Timeout      | Timeout for waiting for a response from a backend server. After a request is forwarded to the backend server, if the backend server does not respond during the timeout duration, the load balancer will stop waiting and return HTTP 504 Gateway Timeout.                        | This function is available only for HTTP and HTTPS listeners.                                            |
          +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
          | HTTP2                 | Whether to use HTTP/2 for a client to communicate with a load balancer. Request forwarding using HTTP/2 improves the access performance between your application and the load balancer. However, the load balancer still uses HTTP/1.x to forward requests to the backend server. | This function is available only when the :ref:`listener <cce_10_0251__li6851318392>` is HTTPS-compliant. |
          +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
 
-   -  **Forwarding Policy**: When the access address of a request matches the forwarding policy (a forwarding policy consists of a domain name and URL, for example, 10.117.117.117:80/helloworld), the request is forwarded to the corresponding target Service for processing. You can click |image1| to add multiple forwarding policies.
+   -  **Forwarding Policy**: When a request's access address matches the forwarding policy (which consists of a domain name, port, and URL, for example, 10.117.117.117:80/helloworld), the request is forwarded to the target Service for processing. You can click |image1| to add multiple forwarding policies.
 
       -  **Domain Name**: Enter an actual domain name to be accessed. If it is left blank, the ingress can be accessed through the IP address. Ensure that the domain name has been registered and licensed. Once a forwarding policy is configured with a domain name specified, you must use the domain name for access.
       -  **Path Matching Rule**:
@@ -151,7 +157,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
             For example, the default access URL of the Nginx application is **/usr/share/nginx/html**. When adding **/test** to the ingress forwarding policy, ensure the access URL of your Nginx application contains **/usr/share/nginx/html/test**. Otherwise, error 404 will be returned.
 
-      -  **Destination Service**: Select an existing Service or create a Service. Any Services that do not match the search criteria will be filtered out automatically.
+      -  **Destination Service**: Select an existing Service. Only Services that meet the requirements are automatically displayed in the Service list.
       -  **Destination Service Port**: Select the access port of the destination Service.
       -  **Set ELB**:
 
@@ -167,7 +173,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
          -  **Sticky Session**: This function is disabled by default. Options are as follows:
 
-            -  **Load balancer cookie**: Enter the **Stickiness Duration** , which ranges from 1 to 1440 minutes.
+            -  **Load balancer cookie**: Enter the **Stickiness Duration**, which ranges from 1 to 1440 minutes.
 
             .. note::
 
@@ -179,7 +185,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
             +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
             | Parameter                         | Description                                                                                                                                                                                                                                             |
             +===================================+=========================================================================================================================================================================================================================================================+
-            | Protocol                          | When the protocol of the target Service port is TCP, more protocols including HTTP are supported.                                                                                                                                                       |
+            | Protocol                          | TCP and HTTP are supported.                                                                                                                                                                                                                             |
             |                                   |                                                                                                                                                                                                                                                         |
             |                                   | -  **Check Path** (supported only by HTTP for health check): specifies the health check URL. The check path must start with a slash (/) and contain 1 to 80 characters.                                                                                 |
             +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -190,7 +196,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
             +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
             | Check Period (s)                  | Specifies the maximum interval between health checks. The value ranges from 1 to 50.                                                                                                                                                                    |
             +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-            | Timeout (s)                       | Specifies the maximum timeout duration for each health check. The value ranges from 1 to 50.                                                                                                                                                            |
+            | Timeout (s)                       | Specifies the maximum timeout for each health check. The value ranges from 1 to 50.                                                                                                                                                                     |
             +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
             | Max. Retries                      | Specifies the maximum number of health check retries. The value ranges from 1 to 10.                                                                                                                                                                    |
             +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -215,9 +221,9 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
       .. _cce_10_0251__fig17115192714367:
 
-      .. figure:: /_static/images/en-us_image_0000002101679001.png
+      .. figure:: /_static/images/en-us_image_0000002253780085.png
          :alt: **Figure 1** Accessing the /healthz interface of defaultbackend
 
          **Figure 1** Accessing the /healthz interface of defaultbackend
 
-.. |image1| image:: /_static/images/en-us_image_0000002065638946.png
+.. |image1| image:: /_static/images/en-us_image_0000002218660438.png

@@ -48,11 +48,16 @@ The data of **default-secret** is updated periodically, and the current data wil
 
 .. code-block::
 
-   $ kubectl describe secret default-secret
+   kubectl describe secret default-secret
+
+Command output:
+
+.. code-block::
+
    Name:         default-secret
    Namespace:    default
    Labels:       secret-generated-by=cce
-   Annotations:  temporary-ak-sk-expires-at: 2021-11-26 20:55:31.380909 +0000 UTC
+   Annotations:  swr-auth-may-expires-at: 2021-11-26 20:55:31.380909 +0000 UTC
 
    Type:  kubernetes.io/dockerconfigjson
 
@@ -65,24 +70,45 @@ paas.elb
 
 The **paas.elb** data stores a temporary AK/SK that is used when a node is created or a load balancer is automatically created. The **paas.elb** data is updated periodically and has a specific time limit before it expires.
 
-In practice, you will not directly use **paas.elb**. Do not delete it, as doing so will result in the failure of creating a node or load balancer. will fail.
+In practice, you will not directly use **paas.elb**. Do not delete it, as doing so will result in the failure of creating a node or load balancer.
 
 default-token-xxxxx
 -------------------
 
 By default, Kubernetes creates a service account named **default** for each namespace. **default-token-xxxxx** is the key of the service account, and **xxxxx** is a random number.
 
-.. code-block::
+.. note::
 
-   $ kubectl get sa
-   NAME     SECRETS   AGE
-   default  1         30d
-   $ kubectl describe sa default
-   Name:                default
-   Namespace:           default
-   Labels:              <none>
-   Annotations:         <none>
-   Image pull secrets:  <none>
-   Mountable secrets:   default-token-xxxxx
-   Tokens:              default-token-xxxxx
-   Events:              <none>
+   In clusters v1.25 or later, a secret is not created automatically for each ServiceAccount. For details, see :ref:`Service Account Token Security Improvement <cce_10_0477>`.
+
+#. Check the service account in the cluster.
+
+   .. code-block::
+
+      kubectl get sa
+
+   Command output:
+
+   .. code-block::
+
+      NAME     SECRETS   AGE
+      default  1         30d
+
+#. Run the following command to view the secret:
+
+   .. code-block::
+
+      kubectl describe sa default
+
+   Command output:
+
+   .. code-block::
+
+      Name:                default
+      Namespace:           default
+      Labels:              <none>
+      Annotations:         <none>
+      Image pull secrets:  <none>
+      Mountable secrets:   default-token-xxxxx
+      Tokens:              default-token-xxxxx
+      Events:              <none>

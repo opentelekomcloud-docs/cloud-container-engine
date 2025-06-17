@@ -72,7 +72,7 @@ Recommended configurations:
 
 -  To preferentially balance the CPU load of each node, increase the CPU weight of the policy to **5** and retain the memory weight to **1**.
 -  To preferentially balance the memory load of each node, increase the memory weight of the policy to **5** and retain the CPU weight to **1**.
--  To use bot the CPU and memory usage and the CPU and memory thresholds, do as follows:
+-  To use both the CPU and memory usage and the CPU and memory thresholds, do as follows:
 
    -  Hard constraints:
 

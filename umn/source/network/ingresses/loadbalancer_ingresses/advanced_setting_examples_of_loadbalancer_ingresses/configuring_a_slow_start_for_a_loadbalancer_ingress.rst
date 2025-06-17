@@ -32,7 +32,7 @@ Notes and Constraints
 Procedure
 ---------
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a YAML file named **ingress-test.yaml**. The file name can be customized.
 

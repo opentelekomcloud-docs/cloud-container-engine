@@ -191,9 +191,9 @@ Procedure
 
    |image6|
 
-.. |image1| image:: /_static/images/en-us_image_0000002065637238.png
-.. |image2| image:: /_static/images/en-us_image_0000002101595793.png
-.. |image3| image:: /_static/images/en-us_image_0000002065637250.png
-.. |image4| image:: /_static/images/en-us_image_0000002101595809.png
-.. |image5| image:: /_static/images/en-us_image_0000002101677301.png
-.. |image6| image:: /_static/images/en-us_image_0000002065637258.png
+.. |image1| image:: /_static/images/en-us_image_0000002253618121.png
+.. |image2| image:: /_static/images/en-us_image_0000002218658406.png
+.. |image3| image:: /_static/images/en-us_image_0000002253618133.png
+.. |image4| image:: /_static/images/en-us_image_0000002218658418.png
+.. |image5| image:: /_static/images/en-us_image_0000002218818234.png
+.. |image6| image:: /_static/images/en-us_image_0000002218818246.png

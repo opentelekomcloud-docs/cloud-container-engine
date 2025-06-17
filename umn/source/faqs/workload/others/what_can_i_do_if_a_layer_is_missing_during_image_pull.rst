@@ -12,8 +12,8 @@ When containerd is used as the container engine, there is a possibility that the
 
 |image1|
 
-Possible Causes
----------------
+Possible Cause
+--------------
 
 Docker earlier than v1.10 supports the layer whose **mediaType** is **application/octet-stream**. However, containerd does not support **application/octet-stream**. As a result, the image is not pulled.
 
@@ -33,4 +33,4 @@ You can use either of the following methods to solve this problem:
 
    #. Use the newly pulled image to create a workload.
 
-.. |image1| image:: /_static/images/en-us_image_0000002065637606.png
+.. |image1| image:: /_static/images/en-us_image_0000002253778797.png

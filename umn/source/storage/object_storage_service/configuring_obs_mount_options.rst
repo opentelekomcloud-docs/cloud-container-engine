@@ -28,52 +28,70 @@ When mounting an OBS volume, the Everest add-on presets the options described in
 
 .. table:: **Table 1** Mandatory mount options configured by default
 
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | Parameter             | Value                 | Description                                                                                                                              |
-   +=======================+=======================+==========================================================================================================================================+
-   | use_ino               | Blank                 | If enabled, obsfs allocates the **inode** number. Enabled by default in read/write mode.                                                 |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | big_writes            | Blank                 | If configured, the maximum size of the cache can be modified.                                                                            |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | nonempty              | Blank                 | Allows non-empty mount paths.                                                                                                            |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | allow_other           | Blank                 | Allows other users to access the parallel file system.                                                                                   |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | no_check_certificate  | Blank                 | Disables server certificate verification.                                                                                                |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | enable_noobj_cache    | Blank                 | Enables cache entries for objects that do not exist, which can improve performance. Enabled by default in object bucket read/write mode. |
-   |                       |                       |                                                                                                                                          |
-   |                       |                       | **This option is no longer configured by default since Everest 1.2.40.**                                                                 |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | sigv2                 | Blank                 | Specifies the signature version. Used by default in object buckets.                                                                      |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | public_bucket         | 1                     | If this parameter is set to **1**, public buckets are mounted anonymously. Enabled by default in object bucket read-only mode.           |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   +----------------------+-------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter            | Supported Object Storage Type | Value           | Description                                                                                                                              |
+   +======================+===============================+=================+==========================================================================================================================================+
+   | use_ino              | Parallel file system          | Blank           | If enabled, obsfs allocates the **inode** number. Enabled by default in read/write mode.                                                 |
+   +----------------------+-------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | big_writes           | Parallel file system          | Blank           | If enabled, the maximum size of the write cache can be changed.                                                                          |
+   |                      |                               |                 |                                                                                                                                          |
+   |                      | Object bucket                 |                 |                                                                                                                                          |
+   +----------------------+-------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | nonempty             | Parallel file system          | Blank           | Allows non-empty mount paths.                                                                                                            |
+   |                      |                               |                 |                                                                                                                                          |
+   |                      | Object bucket                 |                 |                                                                                                                                          |
+   +----------------------+-------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | allow_other          | Parallel file system          | Blank           | Allows other users to access the mount directory.                                                                                        |
+   |                      |                               |                 |                                                                                                                                          |
+   |                      | Object bucket                 |                 |                                                                                                                                          |
+   +----------------------+-------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | no_check_certificate | Parallel file system          | Blank           | Disables server certificate verification.                                                                                                |
+   |                      |                               |                 |                                                                                                                                          |
+   |                      | Object bucket                 |                 |                                                                                                                                          |
+   +----------------------+-------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | enable_noobj_cache   | Object bucket                 | Blank           | Enables cache entries for objects that do not exist, which can improve performance. Enabled by default in object bucket read/write mode. |
+   |                      |                               |                 |                                                                                                                                          |
+   |                      |                               |                 | **This option is no longer configured by default since Everest 1.2.40.**                                                                 |
+   +----------------------+-------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | sigv2                | Object bucket                 | Blank           | Specifies the signature version. Used by default in object buckets.                                                                      |
+   +----------------------+-------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | public_bucket        | Object bucket                 | 1               | If this parameter is set to **1**, public buckets are mounted anonymously. Enabled by default in object bucket read-only mode.           |
+   +----------------------+-------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | compat_dir           | Object bucket                 | Blank           | This parameter is automatically added when s3fs v1.92 is used. Multi-level directory objects in a bucket can be displayed.               |
+   +----------------------+-------------------------------+-----------------+------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. _cce_10_0631__table9886123010217:
 
 .. table:: **Table 2** Optional mount options configured by default
 
-   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Parameter             | Value                 | Description                                                                                                                                       |
-   +=======================+=======================+===================================================================================================================================================+
-   | max_write             | 131072                | This parameter is valid only when **big_writes** is configured. The recommended value is **128 KB**.                                              |
-   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-   | ssl_verify_hostname   | 0                     | Disables SSL certificate verification based on the host name.                                                                                     |
-   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-   | max_background        | 100                   | Allows setting the maximum number of waiting requests in the background. Used by default in parallel file systems.                                |
-   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-   | umask                 | 0                     | Mask of the configuration file permission.                                                                                                        |
-   |                       |                       |                                                                                                                                                   |
-   |                       |                       | For example, if the umask value is **022**, the directory permission (the maximum permission is **777**) is **755** (777 - 022 = 755, rwxr-xr-x). |
-   +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+   +---------------------+-------------------------------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter           | Supported Object Storage Type | Value           | Description                                                                                                                                       |
+   +=====================+===============================+=================+===================================================================================================================================================+
+   | max_write           | Parallel file system          | 131072          | This parameter is valid only when **big_writes** is configured. The recommended value is **128 KB**.                                              |
+   |                     |                               |                 |                                                                                                                                                   |
+   |                     | Object bucket                 |                 |                                                                                                                                                   |
+   +---------------------+-------------------------------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+   | multipart_size      | Object bucket                 | 20              | If a file is uploaded in multiple parts, the size of each part, measured in MB, will affect the size of the file that can be uploaded.            |
+   +---------------------+-------------------------------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+   | ssl_verify_hostname | Parallel file system          | 0               | Disables SSL certificate verification based on the host name.                                                                                     |
+   |                     |                               |                 |                                                                                                                                                   |
+   |                     | Object bucket                 |                 |                                                                                                                                                   |
+   +---------------------+-------------------------------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+   | max_background      | Parallel file system          | 100             | Allows setting the maximum number of waiting requests in the background. Used by default in parallel file systems.                                |
+   |                     |                               |                 |                                                                                                                                                   |
+   |                     | Object bucket                 |                 |                                                                                                                                                   |
+   +---------------------+-------------------------------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+   | umask               | Parallel file system          | 0               | Mask of the configuration file permission.                                                                                                        |
+   |                     |                               |                 |                                                                                                                                                   |
+   |                     | Object bucket                 |                 | For example, if the umask value is **022**, the directory permission (the maximum permission is **777**) is **755** (777 - 022 = 755, rwxr-xr-x). |
+   +---------------------+-------------------------------+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Configuring Mount Options in a PV
 ---------------------------------
 
 You can use the **mountOptions** field to configure mount options in a PV. The options you can configure in **mountOptions** are listed in :ref:`OBS Mount Options <cce_10_0631__section1254912109811>`.
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Configure mount options in a PV. Example:
 
@@ -99,7 +117,6 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
             storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
             everest.io/obs-volume-type: STANDARD
             everest.io/region: <your_region>                        # Region where the OBS volume is
-
           nodePublishSecretRef:            # Custom secret of the OBS volume
             name: <your_secret_name>       # Custom secret name
             namespace: <your_namespace>    # Namespace of the custom secret
@@ -133,7 +150,7 @@ Configuring Mount Options in a StorageClass
 
 You can use the **mountOptions** field to configure mount options in a StorageClass. The options you can configure in **mountOptions** are listed in :ref:`OBS Mount Options <cce_10_0631__section1254912109811>`.
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a custom StorageClass. Example:
 

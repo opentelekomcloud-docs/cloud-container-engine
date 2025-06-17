@@ -1,6 +1,6 @@
-:original_name: cce_bestpractice_10020_0.html
+:original_name: cce_bestpractice_10020.html
 
-.. _cce_bestpractice_10020_0:
+.. _cce_bestpractice_10020:
 
 Executing the Pre- or Post-installation Commands During Node Creation
 =====================================================================
@@ -51,4 +51,4 @@ Procedure
 
 #. Click **Submit**.
 
-.. |image1| image:: /_static/images/en-us_image_0000002065479598.png
+.. |image1| image:: /_static/images/en-us_image_0000002253618845.png

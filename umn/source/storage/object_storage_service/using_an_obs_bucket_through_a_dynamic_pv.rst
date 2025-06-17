@@ -12,7 +12,7 @@ Notes and Constraints
 
 -  If OBS volumes are used, the owner group and permission of the mount point cannot be modified.
 -  Every time an OBS volume is mounted to a workload through a PVC, a resident process is created in the backend. When a workload uses too many OBS volumes or reads and writes a large number of object storage files, resident processes will consume a significant amount of memory. To ensure stable running of the workload, make sure that the number of OBS volumes used does not exceed the requested memory. For example, if the workload requests for 4 GiB of memory, the number of OBS volumes should be **no more than** 4.
--  Kata containers do not support OBS volumes.
+-  Secure containers do not support OBS volumes.
 -  Hard links are not supported when common buckets are mounted.
 
 -  OBS allows a single user to create a maximum of 100 buckets. If a large number of dynamic PVCs are created, the number of buckets may exceed the upper limit, and no more OBS buckets can be created. In this case, use OBS by calling its API or SDK and do not mount OBS buckets to workloads.
@@ -37,7 +37,7 @@ Automatically Creating an OBS Volume on the Console
       |                                       |                                                                                                                                                                                                                                                                     |
       |                                       | In this example, select **Dynamically provision**.                                                                                                                                                                                                                  |
       +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Storage Classes                       | The default StorageClass for OBS volumes is **csi-obs**.                                                                                                                                                                                                            |
+      | Storage Classes                       | The default StorageClass of OBS volumes is **csi-obs**.                                                                                                                                                                                                             |
       |                                       |                                                                                                                                                                                                                                                                     |
       |                                       | You can customize a StorageClass and configure its reclaim policy and binding mode. For details, see :ref:`Creating a StorageClass Using the CCE Console <cce_10_0380__section11263115719212>`.                                                                     |
       +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -74,7 +74,7 @@ Automatically Creating an OBS Volume on the Console
 
    a. Choose **Workloads** in the navigation pane. In the right pane, click the **Deployments** tab.
 
-   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Settings** area and click **Add Volume** to select **PVC**.
+   b. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Information** area under **Container Settings** and choose **Add Volume** > **PVC**.
 
       Mount and use storage volumes, as shown in :ref:`Table 1 <cce_10_0630__cce_10_0379_table2529244345>`. For details about other parameters, see :ref:`Workloads <cce_10_0046>`.
 
@@ -128,7 +128,6 @@ Automatically Creating an OBS Volume Through kubectl
              csi.storage.k8s.io/fstype: obsfs        # Instance type
              csi.storage.k8s.io/node-publish-secret-name: <your_secret_name>       # Custom secret name
              csi.storage.k8s.io/node-publish-secret-namespace: <your_namespace>    # Namespace of the custom secret
-
              everest.io/csi.volume-name-prefix: test  # (Optional) Storage volume name prefix of the automatically created underlying storage
          spec:
            accessModes:
@@ -136,7 +135,7 @@ Automatically Creating an OBS Volume Through kubectl
            resources:
              requests:
                storage: 1Gi               # OBS volume capacity
-           storageClassName: csi-obs    # StorageClass is OBS.
+           storageClassName: csi-obs    # The StorageClass is OBS.
 
       .. table:: **Table 2** Key parameters
 
@@ -145,7 +144,7 @@ Automatically Creating an OBS Volume Through kubectl
          +==================================================+=======================+=====================================================================================================================================================================================================================================================================+
          | everest.io/obs-volume-type                       | Yes                   | OBS StorageClass.                                                                                                                                                                                                                                                   |
          |                                                  |                       |                                                                                                                                                                                                                                                                     |
-         |                                                  |                       | -  If **fsType** is set to **s3fs**, **STANDARD** (standard bucket) and **WARM** (infrequent access bucket) are supported.                                                                                                                                          |
+         |                                                  |                       | -  If **fsType** is set to **s3fs**, standard buckets (**STANDARD**) and infrequent access buckets (**WARM**) are supported.                                                                                                                                        |
          |                                                  |                       | -  This parameter is invalid when **fsType** is set to **obsfs**.                                                                                                                                                                                                   |
          +--------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | csi.storage.k8s.io/fstype                        | Yes                   | Instance type. The value can be **obsfs** or **s3fs**.                                                                                                                                                                                                              |

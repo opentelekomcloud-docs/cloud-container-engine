@@ -5,7 +5,7 @@
 CCE Advanced HPA
 ================
 
-CCE Advanced HPA (cce-hpa-controller) is a CCE-developed add-on, which can be used to flexibly scale in or out Deployments based on metrics such as CPU usage and memory usage.
+The CCE Advanced HPA add-on (formerly cce-hpa-controller) is developed by CCE. It can be used to flexibly scale in or out Deployments based on metrics such as CPU usage and memory usage.
 
 Main Functions
 --------------
@@ -22,7 +22,7 @@ Notes and Constraints
    -  :ref:`Kubernetes Metrics Server <cce_10_0205>`: provides basic resource usage metrics, such as container CPU and memory usage. It is supported by all cluster versions.
    -  :ref:`Cloud Native Cluster Monitoring <cce_10_0406>`: available only in clusters of v1.17 or later.
 
-      -  Auto scaling based on basic resource metrics: Prometheus needs to be registered as a metrics API. For details, see :ref:`Providing Resource Metrics Through the Metrics API <cce_10_0406__section17830202915211>`.
+      -  Auto scaling based on basic resource metrics: Prometheus needs to be registered as a metrics API. For details, see :ref:`Providing Basic Resource Metrics Through the Metrics API <cce_10_0406__section17830202915211>`.
       -  Auto scaling based on custom metrics: Custom metrics need to be aggregated to the Kubernetes API server. For details, see :ref:`Creating an HPA Policy Using Custom Metrics <cce_10_0406__section11927514174016>`.
 
 Installing the Add-on
@@ -50,7 +50,7 @@ Installing the Add-on
 
    .. note::
 
-      -  Scheduling policies do not take effect on add-on instances of the DaemonSet type.
+      -  Scheduling policies do not take effect on add-on pods of the DaemonSet type.
       -  When configuring multi-AZ deployment or node affinity, ensure that there are nodes meeting the scheduling policy and that resources are sufficient in the cluster. Otherwise, the add-on cannot run.
 
    .. table:: **Table 1** Configurations for add-on scheduling
@@ -66,7 +66,7 @@ Installing the Add-on
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
       |                                   | -  **Specify node**: Specify the nodes where the add-on is deployed. If you do not specify the nodes, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                                                                                    |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-      |                                   | -  **Specify node pool**: Specify the node pool where the add-on is deployed. If you do not specify the node pool, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                                                                       |
+      |                                   | -  **Specify node pool**: Specify the node pool where the add-on is deployed. If you do not specify the node pools, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                                                                      |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
       |                                   | -  **Customize affinity**: Enter the labels of the nodes where the add-on is to be deployed for more flexible scheduling policies. If you do not specify node labels, the add-on will be randomly scheduled based on the default cluster scheduling policy.                                                                                                                                                                                    |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -97,62 +97,74 @@ Change History
 
 .. table:: **Table 3** Release history
 
-   +-----------------------+---------------------------+----------------------------------+
-   | Add-on Version        | Supported Cluster Version | New Feature                      |
-   +=======================+===========================+==================================+
-   | 1.5.3                 | v1.21                     | AHPA is available.               |
-   |                       |                           |                                  |
-   |                       | v1.23                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.25                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.27                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.28                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.29                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.30                     |                                  |
-   +-----------------------+---------------------------+----------------------------------+
-   | 1.4.3                 | v1.21                     | Fixed some issues.               |
-   |                       |                           |                                  |
-   |                       | v1.23                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.25                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.27                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.28                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.29                     |                                  |
-   +-----------------------+---------------------------+----------------------------------+
-   | 1.3.43                | v1.21                     | Fixed some issues.               |
-   |                       |                           |                                  |
-   |                       | v1.23                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.25                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.27                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.28                     |                                  |
-   +-----------------------+---------------------------+----------------------------------+
-   | 1.3.42                | v1.21                     | CCE clusters 1.28 are supported. |
-   |                       |                           |                                  |
-   |                       | v1.23                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.25                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.27                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.28                     |                                  |
-   +-----------------------+---------------------------+----------------------------------+
-   | 1.3.14                | v1.19                     | CCE clusters 1.27 are supported. |
-   |                       |                           |                                  |
-   |                       | v1.21                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.23                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.25                     |                                  |
-   |                       |                           |                                  |
-   |                       | v1.27                     |                                  |
-   +-----------------------+---------------------------+----------------------------------+
+   +-----------------------+---------------------------+-----------------------------------+
+   | Add-on Version        | Supported Cluster Version | New Feature                       |
+   +=======================+===========================+===================================+
+   | 1.5.24                | v1.25                     | Fixed some issues.                |
+   |                       |                           |                                   |
+   |                       | v1.27                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.28                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.29                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.30                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.31                     |                                   |
+   +-----------------------+---------------------------+-----------------------------------+
+   | 1.5.3                 | v1.21                     | AHPA is available.                |
+   |                       |                           |                                   |
+   |                       | v1.23                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.25                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.27                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.28                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.29                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.30                     |                                   |
+   +-----------------------+---------------------------+-----------------------------------+
+   | 1.4.3                 | v1.21                     | Fixed some issues.                |
+   |                       |                           |                                   |
+   |                       | v1.23                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.25                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.27                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.28                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.29                     |                                   |
+   +-----------------------+---------------------------+-----------------------------------+
+   | 1.3.43                | v1.21                     | Fixed some issues.                |
+   |                       |                           |                                   |
+   |                       | v1.23                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.25                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.27                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.28                     |                                   |
+   +-----------------------+---------------------------+-----------------------------------+
+   | 1.3.42                | v1.21                     | CCE clusters v1.28 are supported. |
+   |                       |                           |                                   |
+   |                       | v1.23                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.25                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.27                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.28                     |                                   |
+   +-----------------------+---------------------------+-----------------------------------+
+   | 1.3.14                | v1.19                     | CCE clusters v1.27 are supported. |
+   |                       |                           |                                   |
+   |                       | v1.21                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.23                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.25                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.27                     |                                   |
+   +-----------------------+---------------------------+-----------------------------------+

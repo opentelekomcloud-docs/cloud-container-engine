@@ -160,7 +160,7 @@ As the storage infrastructures of clusters may be different, storage volumes can
       -  SFS Turbo file systems cannot be directly created using StorageClass. Go to the SFS Turbo console to create SFS Turbo file systems that belong to the same VPC subnet and have inbound ports (111, 445, 2049, 2051, 2052, and 20048) enabled in the security group.
       -  CCE does not support EVS disks of the ReadWriteMany type. If resources of this type exist in the source cluster, change the storage type to **ReadWriteOnce**.
 
-#. Restore the cluster application by referring to :ref:`Restoring Applications in the Target Cluster <cce_bestpractice_0024__section482103142819>` and check whether the PVC is successfully created.
+#. Restore the cluster application by referring to :ref:`Restoring the Application in the Target Cluster <cce_bestpractice_0024__section482103142819>` and check whether the PVC is successfully created.
 
    .. code-block::
 

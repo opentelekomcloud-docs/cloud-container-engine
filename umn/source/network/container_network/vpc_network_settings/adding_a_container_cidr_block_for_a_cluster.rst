@@ -29,4 +29,4 @@ Adding a Container CIDR Block for a CCE Standard Cluster
 
 #. Click **OK**.
 
-.. |image1| image:: /_static/images/en-us_image_0000002065480670.png
+.. |image1| image:: /_static/images/en-us_image_0000002253620433.png

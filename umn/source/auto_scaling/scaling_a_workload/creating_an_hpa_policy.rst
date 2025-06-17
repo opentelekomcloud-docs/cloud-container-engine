@@ -15,7 +15,7 @@ To use HPA, install an add-on that provides metrics APIs. Select one of the foll
 -  :ref:`Kubernetes Metrics Server <cce_10_0205>`: provides basic resource usage metrics, such as container CPU and memory usage. It is supported by all cluster versions.
 -  :ref:`Cloud Native Cluster Monitoring <cce_10_0406>`: available only in clusters of v1.17 or later.
 
-   -  Auto scaling based on basic resource metrics: Prometheus needs to be registered as a metrics API. For details, see :ref:`Providing Resource Metrics Through the Metrics API <cce_10_0406__section17830202915211>`.
+   -  Auto scaling based on basic resource metrics: Prometheus needs to be registered as a metrics API. For details, see :ref:`Providing Basic Resource Metrics Through the Metrics API <cce_10_0406__section17830202915211>`.
    -  Auto scaling based on custom metrics: Custom metrics need to be aggregated to the Kubernetes API server. For details, see :ref:`Creating an HPA Policy Using Custom Metrics <cce_10_0406__section11927514174016>`.
 
 Notes and Constraints

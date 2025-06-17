@@ -5,12 +5,12 @@
 How Do I Locate a Workload Networking Fault?
 ============================================
 
-Troubleshooting Process
------------------------
+Troubleshooting
+---------------
 
 The issues here are described in order of how likely they are to occur.
 
-Check these causes one by one until you find the cause of the fault.
+If the fault persists after you have ruled out one cause, move on to the next one.
 
 -  :ref:`Check Item 1: Container and Container Port <cce_faq_00202__section11960929145416>`
 -  :ref:`Check Item 2: Node IP Address and Node Port <cce_faq_00202__section138152218598>`
@@ -23,9 +23,9 @@ Check these causes one by one until you find the cause of the fault.
 Check Item 1: Container and Container Port
 ------------------------------------------
 
-Log in to the CCE console or use kubectl to query the IP address of the pod. Then, log in to the node or container in the cluster and run the **curl** command to manually call the API. Check whether the expected result is returned.
+Log in to the CCE console or use kubectl to obtain the pod IP address. Then, log in to the node or the pod and run **curl** to manually call the API and check whether the expected result is returned.
 
-If <container IP address>:<port> cannot be accessed, you are advised to log in to the application container and access <127.0.0.1>:<port> to locate the fault.
+If *{Container IP address}*\ **:**\ *{Port number}* is not accessible, log in to the service container, and attempt to access **127.0.0.1**:*{Port number}*.
 
 **Common issues:**
 
@@ -112,6 +112,6 @@ Log in to the management console and choose **Service List** > **Networking** > 
 -  IP address, port, and protocol of an external request to access the workloads in the cluster. They must be allowed in the inbound rule of the cluster security group.
 -  IP address, port, and protocol of a request sent by a workload to visit external applications outside the cluster. They must be allowed in the outbound rule of the cluster security group.
 
-For details about security group configuration, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`
+For details about security group configuration, see :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
 
-.. |image1| image:: /_static/images/en-us_image_0000002065637318.png
+.. |image1| image:: /_static/images/en-us_image_0000002253778449.png

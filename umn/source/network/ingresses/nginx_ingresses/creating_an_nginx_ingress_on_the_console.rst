@@ -65,11 +65,11 @@ This section uses an Nginx workload as an example to describe how to create an N
 
                For example, the default access URL of the Nginx application is **/usr/share/nginx/html**. When adding **/test** to the ingress forwarding policy, ensure the access URL of your Nginx application contains **/usr/share/nginx/html/test**. Otherwise, error 404 will be returned.
 
-      -  **Destination Service**: Select an existing Service or create a Service. Any Services that do not match the search criteria will be filtered out automatically.
+      -  **Destination Service**: Select an existing Service. Only Services that meet the requirements are automatically displayed in the Service list.
       -  **Destination Service Port**: Select the access port of the destination Service.
       -  **Operation**: Click **Delete** to delete the configuration.
 
-   -  **Annotation**: The value is in the format of key:value. You can use `annotations <https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/>`__ to query the configurations supported by nginx-ingress.
+   -  **Annotation**: The value is in the format of key-value pairs. You can use `annotations <https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/>`__ to obtain the configurations supported by Nginx ingresses.
 
 #. Click **OK**.
 

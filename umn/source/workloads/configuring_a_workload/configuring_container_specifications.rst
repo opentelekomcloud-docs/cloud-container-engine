@@ -20,7 +20,7 @@ For **CPU** and **Memory**, the meanings of **Request** and **Limit** are as fol
 
 If a node has sufficient resources, the pod on this node can use more resources than requested, but no more than limited.
 
-For example, if you set the memory request of a container to 1 GiB and the limit value to 2 GiB, a pod is scheduled to a node with 8 GiB CPUs with no other pod running. In this case, the pod can use more than 1 GiB memory when the load is heavy, but the memory usage cannot exceed 2 GiB. If a process in a container attempts to use more than 2 GiB resources, the system kernel attempts to terminate the process. As a result, an out of memory (OOM) error occurs.
+For example, if you set a pod's memory request to 1 GiB and its limit to 2 GiB, and the pod is scheduled on a node with 8 GiB of memory (with no other pods running), the pod can use more than 1 GiB of memory under heavy load, but its memory usage will be capped at 2 GiB. If a process in a container attempts to use more than 2 GiB resources, the system kernel attempts to terminate the process. As a result, an out of memory (OOM) error occurs.
 
 .. note::
 

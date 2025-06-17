@@ -72,11 +72,13 @@ Configuring Environment Variables of a Workload
 
 **Using kubectl**
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a file named **nginx-secret.yaml** and edit it.
 
-   **vi nginx-secret.yaml**
+   .. code-block::
+
+      vi nginx-secret.yaml
 
    Content of the YAML file:
 
@@ -144,7 +146,9 @@ Configuring Environment Variables of a Workload
 
 #. Create a workload.
 
-   **kubectl apply -f nginx-secret.yaml**
+   .. code-block::
+
+      kubectl apply -f nginx-secret.yaml
 
 #. View the environment variables in the pod.
 
@@ -208,8 +212,8 @@ You can mount a secret as a volume to the specified container path. Contents in 
       | Subpath                           | Enter a subpath of the mount path.                                                                                                                                                                                                                                                                                                                                                                                                                 |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
       |                                   | -  A subpath is used to mount a local volume so that the same data volume is used in a single pod. If this parameter is left blank, the root path will be used by default.                                                                                                                                                                                                                                                                         |
-      |                                   | -  The subpath can be the key and value of a ConfigMap or secret. If the subpath is a key-value pair that does not exist, the data import does not take effect.                                                                                                                                                                                                                                                                                    |
-      |                                   | -  The data imported by specifying a subpath will not be updated along with the ConfigMap/secret updates.                                                                                                                                                                                                                                                                                                                                          |
+      |                                   | -  The subpath can be the key and value of a secret. If the subpath is a key-value pair that does not exist, the data import does not take effect.                                                                                                                                                                                                                                                                                                 |
+      |                                   | -  The data imported by specifying a subpath will not be updated along with the secret updates.                                                                                                                                                                                                                                                                                                                                                    |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Permission                        | Read-only, indicating that data volume in the path is read-only.                                                                                                                                                                                                                                                                                                                                                                                   |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -228,11 +232,13 @@ You can mount a secret as a volume to the specified container path. Contents in 
 
 **Using kubectl**
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a file named **nginx-secret.yaml** and edit it.
 
-   **vi nginx-secret.yaml**
+   .. code-block::
+
+      vi nginx-secret.yaml
 
    In the following example, the username and password in the **mysecret** secret are saved in the **/etc/foo** directory as files.
 
@@ -256,9 +262,9 @@ You can mount a secret as a volume to the specified container path. Contents in 
             - name: container-1
               image: nginx:latest
               volumeMounts:
-             - name: foo
+              - name: foo
                mountPath: /etc/foo          # Mount to the /etc/foo directory.
-               readOnly: true
+                readOnly: true
           volumes:
           - name: foo
             secret:
@@ -270,7 +276,7 @@ You can mount a secret as a volume to the specified container path. Contents in 
 
       -  If you use the **items** field to specify the mapping path of the secret keys, the keys that are not specified will not be created as files. For example, if the **password** key in the following example is not specified, the file will not be created.
       -  If you want to use all keys in a secret, you must list all keys in the **items** field.
-      -  All keys listed in the **items** field must exist in the corresponding secret. Otherwise, the volume is not created.
+      -  All keys listed in **items** must exist in target secrets. Otherwise, the volume is not created.
 
    .. code-block::
 
@@ -292,9 +298,9 @@ You can mount a secret as a volume to the specified container path. Contents in 
             - name: container-1
               image: nginx:latest
               volumeMounts:
-             - name: foo
+              - name: foo
                mountPath: /etc/foo          # Mount to the /etc/foo directory.
-               readOnly: true
+                readOnly: true
           volumes:
           - name: foo
             secret:
@@ -305,9 +311,11 @@ You can mount a secret as a volume to the specified container path. Contents in 
 
 #. Create a workload.
 
-   **kubectl apply -f nginx-secret.yaml**
+   .. code-block::
 
-#. After the workload runs properly, the **username** and **password** files are generated in the **/etc/foo** directory.
+      kubectl apply -f nginx-secret.yaml
+
+#. After the workload runs properly, the **username** and **password** files will be generated in the **/etc/foo** directory.
 
    a. Run the following command to view the created pod:
 

@@ -20,7 +20,7 @@ Prerequisites
    -  v1.30: v1.30.1-r0 or later
    -  Other clusters of later versions
 
--  The cluster can be accessed using kubectl. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  The cluster can be accessed using kubectl. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 Notes and Constraints
 ---------------------
@@ -32,7 +32,7 @@ Notes and Constraints
 Using kubectl
 -------------
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Automatically create a load balancer with an EIP bound when creating an ingress. For details, see :ref:`Automatically Creating a Load Balancer While Creating an Ingress <cce_10_0252__section3675115714214>`.
 

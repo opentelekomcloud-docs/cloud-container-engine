@@ -19,7 +19,7 @@ The umask value is used to set the default permission for a newly created file o
 
 You can add the following content to the startup script to set the permission on the created directory to **700**:
 
-#. 1. Add **umask 0077** to the **/etc/bashrc** file and all files in **/etc/profile.d/**.
+#. Add **umask 0077** to the **/etc/bashrc** file and all files in **/etc/profile.d/**.
 
 #. Run the following command:
 

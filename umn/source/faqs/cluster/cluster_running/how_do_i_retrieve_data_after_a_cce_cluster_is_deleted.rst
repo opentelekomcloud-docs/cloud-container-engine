@@ -9,6 +9,6 @@ How Do I Retrieve Data After a CCE Cluster Is Deleted?
 
 How do I retrieve data after a CCE cluster is deleted?
 
-**Answer**:
+**Answer**
 
 After a cluster is deleted, the workload on the cluster will also be deleted and cannot be restored. Therefore, exercise caution when deleting a cluster.

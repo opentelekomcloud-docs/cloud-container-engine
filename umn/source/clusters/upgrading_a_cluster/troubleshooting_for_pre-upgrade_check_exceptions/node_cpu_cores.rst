@@ -8,11 +8,11 @@ Node CPU Cores
 Check Items
 -----------
 
-Check and make sure that the master nodes in your cluster have more than 2 CPU cores.
+Verify that the master nodes in your cluster have more than 2 CPU cores.
 
 Solution
 --------
 
-The number of CPU cores on the master nodes is 2, which may lead to a cluster upgrade failure.
+The master nodes have only 2 CPU cores, which may lead to a cluster upgrade failure.
 
 Contact technical support to expand the number of CPU cores to four or more.

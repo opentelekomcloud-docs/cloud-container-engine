@@ -29,7 +29,7 @@ Isolating Namespaces
       The following figure shows namespaces created for the development, joint debugging, and testing environments, respectively.
 
 
-      .. figure:: /_static/images/en-us_image_0000002065638502.png
+      .. figure:: /_static/images/en-us_image_0000002253779469.png
          :alt: **Figure 1** One namespace for one environment
 
          **Figure 1** One namespace for one environment
@@ -39,7 +39,7 @@ Isolating Namespaces
    You are advised to use this method if a large number of workloads are deployed in the same environment. For example, in the following figure, different namespaces (APP1 and APP2) are created to logically manage workloads as different groups. Workloads in the same namespace access each other using the Service name, and workloads in different namespaces access each other using the Service name or namespace name.
 
 
-   .. figure:: /_static/images/en-us_image_0000002065480162.png
+   .. figure:: /_static/images/en-us_image_0000002253779473.png
       :alt: **Figure 2** Grouping workloads into different namespaces
 
       **Figure 2** Grouping workloads into different namespaces
@@ -85,4 +85,4 @@ If a namespace is deleted, all resources (such as workloads, jobs, and ConfigMap
 
    Follow the prompts to delete the namespace. The default namespaces cannot be deleted.
 
-.. |image1| image:: /_static/images/en-us_image_0000002101597069.png
+.. |image1| image:: /_static/images/en-us_image_0000002253619569.png

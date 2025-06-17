@@ -56,7 +56,7 @@ Interconnecting with HTTPS Backend Services
    | nginx.ingress.kubernetes.io/backend-protocol | String | If this parameter is set to **HTTPS**, HTTPS is used to forward requests to the backend service container. |
    +----------------------------------------------+--------+------------------------------------------------------------------------------------------------------------+
 
-For details, see :ref:`Configuring HTTPS Backend Services for an Nginx Ingress <cce_10_0697>`.
+For details about application scenarios and use cases, see :ref:`Configuring HTTPS Backend Services for an Nginx Ingress <cce_10_0697>`.
 
 .. _cce_10_0699__section03391948464:
 
@@ -75,7 +75,7 @@ Creating a Consistent Hashing Rule for Load Balancing
    |                                              |                       | -  **nginx.ingress.kubernetes.io/upstream-hash-by: "${request_uri}-text-value"** indicates that requests are hashed based on the request URI and text value.    |
    +----------------------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-For details, see :ref:`Configuring Consistent Hashing for Load Balancing of an Nginx Ingress <cce_10_0698>`.
+For details about application scenarios and use cases, see :ref:`Configuring Consistent Hashing for Load Balancing of an Nginx Ingress <cce_10_0698>`.
 
 .. _cce_10_0699__section461255141314:
 
@@ -124,7 +124,7 @@ Two-Way HTTPS Authentication
 
 Nginx Ingress supports two-way HTTPS authentication between the server and client to ensure secure connections.
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Run the following command to create a self-signed CA certificate:
 
@@ -148,7 +148,7 @@ Nginx Ingress supports two-way HTTPS authentication between the server and clien
 
       .. code-block::
 
-         openssl req -new -newkey rsa:4096 -keyout server.key -out server.csr -nodes -subj '/CN=foo.bar.com'
+         openssl req -new -newkey rsa:4096 -keyout server.key -out server.csr -nodes -subj '/CN=example.com'
 
       Expected output:
 
@@ -171,7 +171,7 @@ Nginx Ingress supports two-way HTTPS authentication between the server and clien
       .. code-block::
 
          Signature ok
-         subject=CN = foo.bar.com
+         subject=CN = example.com
          Getting CA Private Key
 
 #. Create a client certificate.
@@ -260,7 +260,7 @@ Nginx Ingress supports two-way HTTPS authentication between the server and clien
            namespace: default
          spec:
            rules:
-           - host: foo.bar.com
+           - host: example.com
              http:
                paths:
                - backend:
@@ -272,7 +272,7 @@ Nginx Ingress supports two-way HTTPS authentication between the server and clien
                  pathType: ImplementationSpecific
            tls:
            - hosts:
-             - foo.bar.com
+             - example.com
              secretName: tls-secret   # Replace it with your TLS certificate secret.
            ingressClassName: nginx
 
@@ -293,7 +293,7 @@ Nginx Ingress supports two-way HTTPS authentication between the server and clien
            namespace: default
          spec:
            rules:
-           - host: foo.bar.com
+           - host: example.com
              http:
                paths:
                - path: '/'
@@ -302,8 +302,8 @@ Nginx Ingress supports two-way HTTPS authentication between the server and clien
                    servicePort: 80  # Replace it with the port of your target Service.
            tls:
            - hosts:
-             - foo.bar.com
-             secretName: tls-secret   # Replace it with your TLS key certificate.
+             - example.com
+             secretName: tls-secret   # Replace it with your TLS certificate secret.
 
 #. Run the following command to create an ingress:
 
@@ -328,19 +328,19 @@ Nginx Ingress supports two-way HTTPS authentication between the server and clien
    .. code-block::
 
       NAME         CLASS   HOSTS         ADDRESS      PORTS     AGE
-      nginx-test   nginx   foo.bar.com   10.3.xx.xx   80, 443   27m
+      nginx-test   nginx   example.com   10.3.xx.xx   80, 443   27m
 
 #. Run the following command to update the IP address of the ingress into the **hosts** file and replace the following IP address with the actual IP address of the ingress:
 
    .. code-block::
 
-      echo "10.3.xx.xx  foo.bar.com" | sudo tee -a /etc/hosts
+      echo "10.3.xx.xx  example.com" | sudo tee -a /etc/hosts
 
    Expected output:
 
    .. code-block::
 
-      10.3.xx.xx  foo.bar.com
+      10.3.xx.xx  example.com
 
 #. Verify the configuration.
 
@@ -348,7 +348,7 @@ Nginx Ingress supports two-way HTTPS authentication between the server and clien
 
       .. code-block::
 
-         curl --cacert ./ca.crt  https://foo.bar.com
+         curl --cacert ./ca.crt  https://example.com -k
 
       Expected output:
 
@@ -367,7 +367,7 @@ Nginx Ingress supports two-way HTTPS authentication between the server and clien
 
       .. code-block::
 
-         curl --cacert ./ca.crt --cert ./client.crt --key ./client.key https://foo.bar.com
+         curl --cacert ./ca.crt --cert ./client.crt --key ./client.key https://example.com
 
       Expected output:
 
@@ -406,7 +406,7 @@ Domain Name Regularization
 
 Nginx Ingress allows you to configure the **nginx.ingress.kubernetes.io/server-alias** annotation to configure regular expressions for domain names.
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a YAML file named **ingress-test.yaml**. The file name can be customized.
 
@@ -429,7 +429,7 @@ Nginx Ingress allows you to configure the **nginx.ingress.kubernetes.io/server-a
            namespace: default
          spec:
            rules:
-           - host: foo.bar.com
+           - host: example.com
              http:
                paths:
                - backend:
@@ -450,12 +450,12 @@ Nginx Ingress allows you to configure the **nginx.ingress.kubernetes.io/server-a
          metadata:
            annotations:
              kubernetes.io/ingress.class: nginx
-             nginx.ingress.kubernetes.io/ server-alias: '~^www\.\d+\.example\.com$,abc.example.com'
+             nginx.ingress.kubernetes.io/server-alias: '~^www\.\d+\.example\.com$,abc.example.com'
            name: ingress-test
            namespace: default
          spec:
            rules:
-           - host: foo.bar.com
+           - host: example.com
              http:
                paths:
                - path: '/'
@@ -494,15 +494,15 @@ Nginx Ingress allows you to configure the **nginx.ingress.kubernetes.io/server-a
 
       .. code-block::
 
-         kubectl exec -n kube-system cceaddon-nginx-ingress-controller-68d7bcc67-dxxxx cat /etc/nginx/nginx.conf | grep -C3 "foo.bar.com"
+         kubectl exec -n kube-system cceaddon-nginx-ingress-controller-68d7bcc67-dxxxx -- bash -c 'cat /etc/nginx/nginx.conf | grep -C3 "example.com"'
 
       Expected output:
 
       .. code-block::
 
-                  ## start server foo.bar.com
+                  ## start server example.com
                   server {
-                           server_name foo.bar.com abc.example.com ~^www\.\d+\.example\.com$ ;
+                           server_name example.com abc.example.com ~^www\.\d+\.example\.com$ ;
 
                            listen 80  ;
                            listen [::]:80  ;
@@ -510,7 +510,7 @@ Nginx Ingress allows you to configure the **nginx.ingress.kubernetes.io/server-a
                            }
 
                   }
-                  ## end server foo.bar.com
+                  ## end server example.com
 
 #. Run the following command to obtain the IP address of the ingress:
 
@@ -523,15 +523,15 @@ Nginx Ingress allows you to configure the **nginx.ingress.kubernetes.io/server-a
    .. code-block::
 
       NAME         CLASS   HOSTS         ADDRESS      PORTS   AGE
-      nginx-test   nginx   foo.bar.com   10.3.xx.xx   80      14m
+      nginx-test   nginx   example.com   10.3.xx.xx   80      14m
 
 #. Use different rules to test service access.
 
-   -  Run the following command to access the service through **Host: foo.bar.com**:
+   -  Run the following command to access the service through **Host: example.com**:
 
       .. code-block::
 
-         curl -H "Host: foo.bar.com" 10.3.xx.xx/
+         curl -H "Host: example.com" 10.3.xx.xx/
 
       It is expected that the web page can be accessed properly.
 

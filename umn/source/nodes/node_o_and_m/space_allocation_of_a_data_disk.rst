@@ -12,8 +12,8 @@ Allocating Default Data Disk Space
 
 .. note::
 
-   -  In clusters of a version earlier than v1.23.18-r0, v1.25.13-r0, v1.27.10-r0, v1.28.8-r0, or v1.29.4-r0, a default data disk will be added to the node its container runtime and kubelet components. You can customize the space allocation of the default data disk.
-   -  In clusters of v1.23.18-r0, v1.25.13-r0, v1.27.10-r0, v1.28.8-r0, v1.29.4-r0, or later, a default data disk will be added to the node for its container runtime and kubelet components only if **System Component Storage** is set to **Data Disk**. You can customize the space allocation of the default data disk.
+   -  In clusters of a version earlier than v1.23.18-r0, v1.25.13-r0, v1.27.10-r0, v1.29.4-r0, or v1.28.8-r0, a default data disk will be added to the node for the container runtime and kubelet components. You can customize the space allocation of the default data disk.
+   -  In clusters of v1.23.18-r0, v1.25.13-r0, v1.27.10-r0, v1.28.8-r0, v1.29.4-r0, or later, a default data disk will be added to the node for the container runtime and kubelet components only if **System Component Storage** is set to **Data Disk**. You can customize the space allocation of the default data disk.
 
 When creating a node, you can customize Data Disk Space Allocation in the expanded area of **Data Disk**.
 
@@ -28,7 +28,7 @@ When creating a node, you can customize Data Disk Space Allocation in the expand
 
          If the sum of the container engine and container image space and the kubelet and emptyDir space is less than 100%, the remaining space will be allocated for user data. You can mount the storage volume to a service path. Do not leave the path empty or set it to a key OS path such as the root directory.
 
--  :ref:`Space Allocation for Pods <cce_10_0341__section12119191161518>`: indicates the basesize of a pod. You can set an upper limit for the disk space occupied by each workload pod (including the space occupied by container images). This setting prevents the pods from taking all the disk space available, which may cause service exceptions. It is recommended that the value is less than or equal to 80% of the container engine space. This parameter is related to the node OS and container storage rootfs and is not supported in some scenarios. For details, see :ref:`Mapping Between OS and Container Storage Rootfs <cce_10_0341__section1473612279214>`.
+-  :ref:`Space Allocation for Pods <cce_10_0341__section12119191161518>`: indicates the basesize of a pod. You can set an upper limit for the disk space occupied by each workload pod (including the space occupied by container images). This setting prevents the pods from taking all the disk space available, which may cause service exceptions. It is recommended that the value is less than or equal to 80% of the container engine space. This parameter is related to the node OS and container storage Rootfs and is not supported in some scenarios. For details, see :ref:`Mapping Between OS and Container Storage Rootfs <cce_10_0341__section1473612279214>`.
 -  Write Mode
 
    -  **Linear**: A linear logical volume integrates one or more physical volumes. Data is written to the next physical volume when the previous one is used up.
@@ -52,7 +52,7 @@ For a node using a non-shared data disk (100 GiB for example), the division of t
       The thin pool is dynamically mounted. You can view it by running the **lsblk** command on a node, but not the **df -h** command.
 
 
-   .. figure:: /_static/images/en-us_image_0000002101678517.png
+   .. figure:: /_static/images/en-us_image_0000002218819650.png
       :alt: **Figure 1** Space allocation for container engines of Device Mapper
 
       **Figure 1** Space allocation for container engines of Device Mapper
@@ -62,7 +62,7 @@ For a node using a non-shared data disk (100 GiB for example), the division of t
    No separate thin pool. The entire container engine and container image space (90% of the data disk by default) are in the **/var/lib/docker** directory.
 
 
-   .. figure:: /_static/images/en-us_image_0000002101678525.png
+   .. figure:: /_static/images/en-us_image_0000002218659822.png
       :alt: **Figure 2** Space allocation for container engines of OverlayFS
 
       **Figure 2** Space allocation for container engines of OverlayFS

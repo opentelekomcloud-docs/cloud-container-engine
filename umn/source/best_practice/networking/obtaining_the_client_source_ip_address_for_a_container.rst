@@ -5,7 +5,7 @@
 Obtaining the Client Source IP Address for a Container
 ======================================================
 
-When using containers, clients may communicate with them through multiple proxy servers. However, this can cause issues with transferring the clients' source IP addresses to the containers' services. This section describes how to effectively obtain the source IP address of a client in a container based on different network solutions provided by CCE clusters.
+When using containers, clients may communicate with them through multiple proxy servers. However, this can cause issues with transferring the clients' source IP addresses to the containers' services. This section describes how to effectively obtain the client source IP address from a container based on different network solutions provided by CCE clusters.
 
 Description
 -----------
@@ -25,8 +25,8 @@ The method for obtaining source client IP addresses may vary with the network se
       -  In a cluster-level service affinity for a NodePort Service, traffic is forwarded within the cluster, which means the backend containers of the Service cannot access the client's source IP address.
       -  In a node-level service affinity for a NodePort Service, the traffic can directly reach the container without any forwarding. This allows the backend containers of the Service to obtain the source IP address of the client.
 
-ELB Ingress
------------
+LoadBalancer Ingress
+--------------------
 
 For the ELB Ingresses (using HTTP- or HTTPS-compliant), the function of obtaining the source IP addresses of the client is enabled by default. No other operation is required.
 
@@ -41,8 +41,8 @@ The first IP address obtained from the **X-Forwarded-For** field is the client s
 Nginx Ingress
 -------------
 
--  For an Nginx Ingress that uses a dedicated load balancer, transparent transmission of source IP addresses is enabled by default. This means that you can easily obtain the source IP address of the client without any additional configurations.
--  For an Nginx Ingress that uses a shared load balancer, perform the following steps to obtain the source IP address of the client:
+-  For an Nginx ingress that uses a dedicated load balancer, transparent transmission of source IP addresses is enabled by default. This means that you can easily obtain the source IP address of the client without any additional configurations.
+-  For an Nginx ingress that uses a shared load balancer, perform the following steps to obtain the source IP address of the client:
 
 #. Take the Nginx workload as an example. Before configuring the source IP address, obtain the access logs. **nginx-c99fd67bb-ghv4q** indicates the pod name.
 
@@ -135,5 +135,5 @@ Set the service affinity of a NodePort Service to **Node-level** instead of **Cl
 
    In clusters using Cloud Native 2.0 networks, if NodePort Services are used, only workloads with hostNetwork enabled support node-level service affinity. Therefore, only such workloads can obtain source IP addresses.
 
-.. |image1| image:: /_static/images/en-us_image_0000002065637006.png
-.. |image2| image:: /_static/images/en-us_image_0000002101595573.png
+.. |image1| image:: /_static/images/en-us_image_0000002218658206.png
+.. |image2| image:: /_static/images/en-us_image_0000002253617941.png

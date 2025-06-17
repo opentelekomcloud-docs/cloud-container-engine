@@ -10,7 +10,7 @@ Application Scenarios
 
 -  Multi-cloud deployment and disaster recovery
 
-   Running apps in containers on different clouds can ensure high availability. When a cloud is down, other clouds respond and serve.
+   To ensure high service availability, services need to be deployed on container services of multiple clouds. When a cloud is faulty, the unified traffic distribution mechanism automatically switches service traffic to other clouds.
 
 -  Traffic distribution and auto scaling
 
@@ -54,7 +54,7 @@ Related Services
 Elastic Cloud Server (ECS), Virtual Private Network (VPN), SoftWare Repository for Container (SWR)
 
 
-.. figure:: /_static/images/en-us_image_0000002065636318.png
+.. figure:: /_static/images/en-us_image_0000002218817314.png
    :alt: **Figure 1** How hybrid cloud works
 
    **Figure 1** How hybrid cloud works

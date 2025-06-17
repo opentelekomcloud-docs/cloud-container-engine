@@ -39,7 +39,7 @@ Check Item 4: Whether UnknownHostException Occurs
 
 When service requests in the cluster are sent to an external DNS server, a domain name resolution error occurs due to occasional UnknownHostException. UnknownHostException is a common exception. When this exception occurs, check whether there is any domain name-related error or whether you have entered a correct domain name.
 
-To locate the fault, perform the following steps:
+To locate the fault, perform the following operations:
 
 #. Check the host name carefully (spelling and extra spaces).
 
@@ -65,13 +65,13 @@ To locate the fault, perform the following steps:
 
    -  *<coredns container ID>* must be a complete container ID, which can be obtained by running the following command:
 
-      Docker nodes:
+      Nodes that use Docker:
 
       .. code-block::
 
          docker ps --no-trunc | grep k8s_coredns | awk '{print $1}'
 
-      containerd nodes:
+      Nodes that use containerd:
 
       .. code-block::
 

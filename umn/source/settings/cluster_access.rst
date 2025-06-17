@@ -8,7 +8,7 @@ Cluster Access
 Access Mode
 -----------
 
--  **kubectl**: You need to download and configure the kubectl and kubeconfig configuration files first, and then use kubectl to access a Kubernetes cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+-  **kubectl**: You need to download and configure the kubectl and kubeconfig configuration files first, and then use kubectl to access a Kubernetes cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 -  **EIP**: You can bind an EIP to the cluster API server. Then, the cluster API server can access the public network.
 
    .. note::
@@ -25,7 +25,7 @@ Access Mode
 Authentication
 --------------
 
-CCE allows you to download the X509 certificate, which contains the **client.key**, **client.crt**, and **ca.crt** files. Keep your certificate secure.
+CCE allows you to download the X.509 certificate, which contains the **client.key**, **client.crt**, and **ca.crt** files. Keep your certificate secure.
 
 For details about how to use a certificate to access clusters, see :ref:`Accessing a Cluster Using an X.509 Certificate <cce_10_0175>`.
 

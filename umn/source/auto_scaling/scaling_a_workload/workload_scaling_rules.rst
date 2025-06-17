@@ -40,7 +40,7 @@ HPA can work with Metrics Server for auto scaling based on the CPU and memory us
 
 .. _cce_10_0290__fig4979183710538:
 
-.. figure:: /_static/images/en-us_image_0000002101597649.png
+.. figure:: /_static/images/en-us_image_0000002253780209.png
    :alt: **Figure 1** HPA working process
 
    **Figure 1** HPA working process

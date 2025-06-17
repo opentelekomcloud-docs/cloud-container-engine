@@ -72,7 +72,7 @@ This section describes measures and suggestions you can take to prevent clusters
 Upgrading the Cluster Version
 -----------------------------
 
-As the CCE cluster version evolves, new overload protection features and optimizations are regularly introduced. It is recommended that you promptly upgrade your clusters to the latest version. For details, see :ref:`Upgrading a Cluster <cce_10_0197>`.
+As the CCE cluster version evolves, new overload protection features and optimizations are regularly introduced. It is recommended that you promptly upgrade your clusters to the latest version. For details, see :ref:`Process and Method of Upgrading a Cluster <cce_10_0197>`.
 
 .. _cce_bestpractice_10024__section1962889101:
 

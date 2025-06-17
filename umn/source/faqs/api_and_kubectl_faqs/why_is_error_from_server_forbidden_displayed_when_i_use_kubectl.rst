@@ -20,13 +20,13 @@ This user has no permissions to operate Kubernetes resources.
 Solution
 --------
 
-Assign permissions to the user.
+To grant the Kubernetes permissions to the user, perform the following operations:
 
 #. Log in to the CCE console. In the navigation pane, choose **Permissions**.
 
 #. Select a cluster for which you want to add permissions from the drop-down list on the right.
 
-#. Click **Add Permissions** in the upper right corner.
+#. Click **Add Permission** in the upper right corner.
 
 #. Confirm the cluster name and select the namespace to assign permissions for. For example, select **All namespaces**, the target user or user group, and select the permissions.
 

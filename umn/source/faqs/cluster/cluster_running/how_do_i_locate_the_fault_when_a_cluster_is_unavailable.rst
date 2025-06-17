@@ -5,17 +5,17 @@
 How Do I Locate the Fault When a Cluster Is Unavailable?
 ========================================================
 
-If a cluster is unavailable, perform the following operations to locate the fault.
+This section provides you with some operations to locate the fault when a cluster becomes unavailable.
 
-Troubleshooting Process
------------------------
+Troubleshooting
+---------------
 
 The issues here are described in order of how likely they are to occur.
 
 Check these causes one by one until you find the cause of the fault.
 
 -  :ref:`Check Item 1: Whether the Security Group Is Modified <cce_faq_00039__section48059154014>`
--  :ref:`Check Item 2: Whether There Are Residual Listeners and Backend Server Groups on the Load Balancer <cce_faq_00039__section1821659134014>`
+-  :ref:`Check Item 2: Whether the Cluster Is Overloaded <cce_faq_00039__section1821659134014>`
 
 If the fault persists, contact the customer service to help you locate the fault.
 
@@ -24,36 +24,29 @@ If the fault persists, contact the customer service to help you locate the fault
 Check Item 1: Whether the Security Group Is Modified
 ----------------------------------------------------
 
-#. Log in to the management console and choose **Service List** > **Networking** > **Virtual Private Cloud**. In the navigation pane, choose **Access Control** > **Security Groups** to find the security group of the master node in the cluster.
+#. Log in to the management console and choose **Service List** > **Networking** > **Virtual Private Cloud**. In the navigation pane, choose **Access Control** > **Security Groups** and find the security group of the master node in the cluster.
 
    The name of this security group is in the format of *Cluster name*-cce-**control**\ ``-``\ *ID*.
 
 #. Click the security group. On the details page displayed, ensure that the security group rules of the master node are correct.
 
-   For details, see :ref:`How Can I Configure a Security Group Rule in a Cluster? <cce_faq_00265>`
+   For details, see :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
 
 .. _cce_faq_00039__section1821659134014:
 
-Check Item 2: Whether There Are Residual Listeners and Backend Server Groups on the Load Balancer
--------------------------------------------------------------------------------------------------
+Check Item 2: Whether the Cluster Is Overloaded
+-----------------------------------------------
 
-**Reproducing the Problem**
+**Symptom**
 
-A cluster exception occurs when a LoadBalancer Service is being created or deleted. After the fault is rectified, the Service is deleted successfully, but there are residual listeners and backend server groups.
+The resource usage on the master nodes in the cluster reaches 100%.
 
-#. Pre-create a CCE cluster. In the cluster, use the official Nginx image to create a workload, preset a load balancer, a Service, and an ingress.
-#. Ensure that the cluster is running properly and the Nginx workload is stable.
-#. Create and delete 10 LoadBalancer Services every 20 seconds.
-#. Verify that an injection exception occurs in the cluster. For example, the etcd is unavailable or the cluster is hibernated.
+**Possible cause**
 
-**Possible Causes**
-
-There are residual listeners and backend server groups on the load balancer.
+When a cluster has a large number of resources created simultaneously, it causes an overload on the API server. This, in turn, overloads the master nodes and leads to OOM issues.
 
 **Solution**
 
-Manually clear residual listeners and backend server groups.
+Increase the cluster management scale. A larger cluster management scale means higher capacity and improved performance of the master nodes. For details, see :ref:`Changing Cluster Scale <cce_10_0403>`.
 
-#. Log in to the management console and choose **Networking** > **Elastic Load Balance** from the service list.
-#. In the load balancer list, click the name of the target load balancer to go to the details page. On the **Listeners** tab, locate the target listener and delete it.
-#. On the **Backend Server Groups** page, locate the target backend server group and delete it.
+If a cluster is overloaded, you can submit a service ticket for technical support.

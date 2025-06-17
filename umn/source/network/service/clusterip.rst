@@ -16,7 +16,7 @@ The cluster-internal domain name format is *<Service name>*.\ *<Namespace of the
 
 .. _cce_10_0011__fig192245420557:
 
-.. figure:: /_static/images/en-us_image_0000002101679261.png
+.. figure:: /_static/images/en-us_image_0000002253620361.png
    :alt: **Figure 1** Intra-cluster access (ClusterIP)
 
    **Figure 1** Intra-cluster access (ClusterIP)
@@ -46,13 +46,15 @@ Setting the Access Type Using kubectl
 
 You can configure Service access using kubectl. This section uses an Nginx workload as an example to describe how to implement intra-cluster access using kubectl.
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
-#. Create and edit the **nginx-deployment.yaml** and **nginx-clusterip-svc.yaml** files.
+#. Create and edit the **nginx-deployment.yaml** file to configure the sample workload. For details, see :ref:`Creating a Deployment <cce_10_0047>`. **nginx-deployment.yaml** is an example file name. You can rename it as needed.
 
-   The file names are user-defined. **nginx-deployment.yaml** and **nginx-clusterip-svc.yaml** are merely example file names.
+   .. code-block::
 
-   **vi nginx-deployment.yaml**
+      vi nginx-deployment.yaml
+
+   File content:
 
    .. code-block::
 
@@ -76,7 +78,13 @@ You can configure Service access using kubectl. This section uses an Nginx workl
             imagePullSecrets:
             - name: default-secret
 
-   **vi nginx-clusterip-svc.yaml**
+#. Create and edit the **nginx-clusterip-svc.yaml** file to configure Service parameters. **nginx-clusterip-svc.yaml** is an example file name. You can rename it as needed.
+
+   .. code-block::
+
+      vi nginx-clusterip-svc.yaml
+
+   File content:
 
    .. code-block::
 
@@ -89,7 +97,7 @@ You can configure Service access using kubectl. This section uses an Nginx workl
       spec:
         ports:
         - name: service0
-          port: 8080                # Port for accessing a Service.
+          port: 8080                # Port for accessing a Service
           protocol: TCP             # Protocol used for accessing a Service. The value can be TCP or UDP.
           targetPort: 80            # Port used by a Service to access the target container. This port is closely related to the applications running in a container. In this example, the Nginx image uses port 80 by default.
         selector:                   # Label selector. A Service selects a pod based on the label and forwards the requests for accessing the Service to the pod. In this example, select the pod with the app:nginx label.
@@ -98,17 +106,23 @@ You can configure Service access using kubectl. This section uses an Nginx workl
 
 #. Create a workload.
 
-   **kubectl create -f nginx-deployment.yaml**
+   .. code-block::
 
-   If information similar to the following is displayed, the workload has been created.
+      kubectl create -f nginx-deployment.yaml
+
+   If information similar to the following is displayed, the workload has been created:
 
    .. code-block::
 
-      deployment "nginx" created
+      deployment/nginx created
 
-   **kubectl get po**
+   Check the created workload.
 
-   If information similar to the following is displayed, the workload is running.
+   .. code-block::
+
+      kubectl get pod
+
+   If information similar to the following is displayed, the workload is running:
 
    .. code-block::
 
@@ -117,15 +131,21 @@ You can configure Service access using kubectl. This section uses an Nginx workl
 
 #. Create a Service.
 
-   **kubectl create -f nginx-clusterip-svc.yaml**
+   .. code-block::
+
+      kubectl create -f nginx-clusterip-svc.yaml
 
    If information similar to the following is displayed, the Service is being created:
 
    .. code-block::
 
-      service "nginx-clusterip" created
+      service/nginx-clusterip created
 
-   **kubectl get svc**
+   Check the created Service.
+
+   .. code-block::
+
+      kubectl get svc
 
    If information similar to the following is displayed, the Service has been created, and a cluster-internal IP address has been assigned to the Service.
 
@@ -136,53 +156,58 @@ You can configure Service access using kubectl. This section uses an Nginx workl
       kubernetes        ClusterIP   10.247.0.1     <none>        443/TCP    4d6h
       nginx-clusterip   ClusterIP   10.247.74.52   <none>        8080/TCP   14m
 
-#. Access the Service.
+#. Access the Service from a container or node in the cluster.
 
-   A Service can be accessed from containers or nodes in a cluster.
+   a. Create a pod and access its container.
 
-   Create a pod, access the pod, and run the **curl** command to access *IP address:Port* or the domain name of the Service, as shown in the following figure.
+      .. code-block::
 
-   The domain name suffix can be omitted. In the same namespace, you can directly use **nginx-clusterip:8080** for access. In other namespaces, you can use **nginx-clusterip.default:8080** for access.
+         kubectl run -i --tty --image nginx:alpine test --rm /bin/sh
 
-   .. code-block::
+   b. Run the **curl** command to access the Service.
 
-      # kubectl run -i --tty --image nginx:alpine test --rm /bin/sh
-      If you do not see a command prompt, try pressing Enter.
-      / # curl 10.247.74.52:8080
-      <!DOCTYPE html>
-      <html>
-      <head>
-      <title>Welcome to nginx!</title>
-      <style>
-          body {
-              width: 35em;
-              margin: 0 auto;
-              font-family: Tahoma, Verdana, Arial, sans-serif;
-          }
-      </style>
-      </head>
-      <body>
-      <h1>Welcome to nginx!</h1>
-      <p>If you see this page, the nginx web server is successfully installed and
-      working. Further configuration is required.</p>
+      -  Access through *IP:Port*:
 
-      <p>For online documentation and support please refer to
-      <a href="http://nginx.org/">nginx.org</a>.<br/>
-      Commercial support is available at
-      <a href="http://nginx.com/">nginx.com</a>.</p>
+         .. code-block::
 
-      <p><em>Thank you for using nginx.</em></p>
-      </body>
-      </html>
-      / # curl nginx-clusterip.default.svc.cluster.local:8080
-      ...
-      <h1>Welcome to nginx!</h1>
-      ...
-      / # curl nginx-clusterip.default:8080
-      ...
-      <h1>Welcome to nginx!</h1>
-      ...
-      / # curl nginx-clusterip:8080
-      ...
-      <h1>Welcome to nginx!</h1>
-      ...
+            curl 10.247.74.52:8080
+
+      -  Access through *Domain-name:Port*:
+
+         .. code-block::
+
+            curl nginx-clusterip.default.svc.cluster.local:8080
+
+         *nginx-clusterip* is the Service name, *default* is the namespace where the Service is located, and *svc.cluster.local* is the DNS domain for the ClusterIP Service.
+
+         You can simplify the domain name based on your requirements. For example, if the Service and the accessing pod are in the same namespace, you can use **nginx-clusterip:8080** to access it. If they are in different namespaces, you can use **nginx-clusterip.default:8080** to access it.
+
+      If the access is successful, the following information will be displayed:
+
+      .. code-block::
+
+         <!DOCTYPE html>
+         <html>
+         <head>
+         <title>Welcome to nginx!</title>
+         <style>
+             body {
+                 width: 35em;
+                 margin: 0 auto;
+                 font-family: Tahoma, Verdana, Arial, sans-serif;
+             }
+         </style>
+         </head>
+         <body>
+         <h1>Welcome to nginx!</h1>
+         <p>If you see this page, the nginx web server is successfully installed and
+         working. Further configuration is required.</p>
+
+         <p>For online documentation and support please refer to
+         <a href="http://nginx.org/">nginx.org</a>.<br/>
+         Commercial support is available at
+         <a href="http://nginx.com/">nginx.com</a>.</p>
+
+         <p><em>Thank you for using nginx.</em></p>
+         </body>
+         </html>

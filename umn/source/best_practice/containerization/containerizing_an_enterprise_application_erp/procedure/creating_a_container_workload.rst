@@ -137,4 +137,4 @@ In the preceding configuration, the NodePort mode is selected to access the work
 
 You can obtain the access mode from the **Access Mode** tab on the workload details page.
 
-.. |image1| image:: /_static/images/en-us_image_0000002065478942.png
+.. |image1| image:: /_static/images/en-us_image_0000002253618137.png

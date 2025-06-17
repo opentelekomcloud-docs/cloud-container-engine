@@ -8,21 +8,37 @@ What Should I Do If Container Startup Fails?
 Fault Locating
 --------------
 
-On the details page of a workload, if an event is displayed indicating that the container fails to be started, perform the following steps to locate the fault:
+On the details page of a workload, if an event is displayed indicating that the container fails to be started, perform the following operations to locate the fault:
 
 #. Log in to the node where the abnormal workload is located.
 
 #. Check the ID of the container where the workload pod exits abnormally.
 
+   If the node is a Docker node, run the following command:
+
    .. code-block::
 
       docker ps -a | grep $podName
 
+   If the node is a containerd node, run the following command:
+
+   .. code-block::
+
+      crictl ps -a | grep $podName
+
 #. View the logs of the corresponding container.
+
+   If the node is a Docker node, run the following command:
 
    .. code-block::
 
       docker logs $containerID
+
+   If the node is a containerd node, run the following command:
+
+   .. code-block::
+
+      crictl logs $containerID
 
    Rectify the fault of the workload based on logs.
 
@@ -34,8 +50,8 @@ On the details page of a workload, if an event is displayed indicating that the 
 
    Check whether the system OOM is triggered based on the logs.
 
-Troubleshooting Process
------------------------
+Troubleshooting
+---------------
 
 Determine the cause based on the event information, as listed in :ref:`Table 1 <cce_faq_00018__table230510269532>`.
 
@@ -56,7 +72,7 @@ Determine the cause based on the event information, as listed in :ref:`Table 1 <
    |                                                                                                                                                                                                                                                     |                                                                                                                                          |
    | The log contains **exit(137)**.                                                                                                                                                                                                                     | :ref:`Check Item 2: Whether Health Check Fails to Be Performed (Exit Code: 137) <cce_faq_00018__section1766510426482>`                   |
    +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-   | Event information:                                                                                                                                                                                                                                  | The disk space is insufficient. Clear the disk space.                                                                                    |
+   | Event:                                                                                                                                                                                                                                              | The disk space is insufficient. Clear the disk space.                                                                                    |
    |                                                                                                                                                                                                                                                     |                                                                                                                                          |
    | Thin Pool has 15991 free data blocks which are less than minimum required 16383 free data blocks. Create more free space in thin pool or use dm.min_free_space option to change behavior                                                            | :ref:`Check Item 3: Whether the Container Disk Space Is Insufficient <cce_faq_00018__section169421237111219>`                            |
    +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
@@ -82,7 +98,7 @@ In addition to the preceding possible causes, there are some other possible caus
 -  Use the correct image when you create a workload on an Arm node.
 
 
-.. figure:: /_static/images/en-us_image_0000002101595997.png
+.. figure:: /_static/images/en-us_image_0000002253618837.png
    :alt: **Figure 1** Troubleshooting process of the container restart failure
 
    **Figure 1** Troubleshooting process of the container restart failure
@@ -96,9 +112,17 @@ Check Item 1: Whether There Are Processes that Keep Running in the Container (Ex
 
 #. View the container status.
 
+   If the node is a Docker node, run the following command:
+
    .. code-block::
 
       docker ps -a | grep $podName
+
+   If the node is a containerd node, run the following command:
+
+   .. code-block::
+
+      crictl ps -a | grep $podName
 
    Example:
 
@@ -146,11 +170,11 @@ Perform the following operations to clear unused images:
 
          crictl images -v
 
-   #. Delete the images that are not required by image ID.
+   #. Delete the unnecessary images by image ID.
 
       .. code-block::
 
-         crictl rmi Image ID
+         crictl rmi {Image ID}
 
 -  Nodes that use Docker
 
@@ -160,35 +184,35 @@ Perform the following operations to clear unused images:
 
          docker images
 
-   #. Delete the images that are not required by image ID.
+   #. Delete the unnecessary images by image ID.
 
       .. code-block::
 
-         docker rmi Image ID
+         docker rmi {}Image ID}
 
 .. note::
 
-   Do not delete system images such as the cce-pause image. Otherwise, pods may fail to be created.
+   Do not delete system images such as the **cce-pause** image. Otherwise, the pod creation may fail.
 
 **Solution 2: Expanding the disk capacity**
 
-To expand a disk capacity, perform the following steps:
+To expand a disk capacity, perform the following operations:
 
 #. Expand the capacity of a data disk on the EVS console.
 
-   Only the storage capacity of the EVS disk is expanded. You also need to perform the following steps to expand the capacity of the logical volume and file system.
+   Only the storage capacity of EVS disks can be expanded. You need to perform the following operations to expand the capacity of logical volumes and file systems.
 
-#. Log in to the CCE console and click the cluster. In the navigation pane, choose **Nodes**. Click **More** > **Sync Server Data** in the row containing the target node.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab, locate the row containing the target node, and choose **More** > **Sync Server Data** in the **Operation** column.
 
 #. Log in to the target node.
 
-#. Run the **lsblk** command to check the block device information of the node.
+#. Run **lsblk** to view the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 
    Overlayfs: No independent thin pool is allocated. Image data is stored in **dockersys**.
 
-   a. Check the disk and partition sizes of the device.
+   a. Check the disk and partition space of the device.
 
       .. code-block::
 
@@ -196,7 +220,7 @@ To expand a disk capacity, perform the following steps:
          NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
          sda                   8:0    0   50G  0 disk
          └─sda1                8:1    0   50G  0 part /
-         sdb                   8:16   0  150G  0 disk      # The data disk has been expanded to 150 GiB, but 50 GiB space is not allocated.
+         sdb                   8:16   0  150G  0 disk      # The data disk has been expanded to 150 GiB, but 50 GiB space is free.
          ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/containerd
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
@@ -244,7 +268,7 @@ To expand a disk capacity, perform the following steps:
             old_desc_blocks = 12, new_desc_blocks = 18
             The filesystem on /dev/vgpaas/dockersys is now 36700160 blocks long.
 
-   c. Check whether the capacity is expanded.
+   c. Check whether the capacity has been expanded.
 
       .. code-block::
 
@@ -256,9 +280,9 @@ To expand a disk capacity, perform the following steps:
          ├─vgpaas-dockersys  253:0    0   140G  0 lvm  /var/lib/containerd
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
-   Devicemapper: A thin pool is allocated to store image data.
+   Device Mapper: A thin pool is allocated to store image data.
 
-   a. Check the disk and partition sizes of the device.
+   a. Check the disk and partition space of the device.
 
       .. code-block::
 
@@ -269,7 +293,7 @@ To expand a disk capacity, perform the following steps:
          vdb                                   8:16   0  200G  0 disk
          ├─vgpaas-dockersys                  253:0    0   18G  0 lvm  /var/lib/docker
          ├─vgpaas-thinpool_tmeta             253:1    0    3G  0 lvm
-         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Space used by thinpool
+         │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm                   # Space used by thin pool
          │   ...
          ├─vgpaas-thinpool_tdata             253:2    0   67G  0 lvm
          │ └─vgpaas-thinpool                 253:3    0   67G  0 lvm
@@ -278,9 +302,9 @@ To expand a disk capacity, perform the following steps:
 
    b. Expand the disk capacity.
 
-      Option 1: Add the new disk capacity to the thin pool disk.
+      Option 1: Add the new disk capacity to the thin pool.
 
-      #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where thinpool is located.
+      #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where thin pool is located.
 
          .. code-block::
 
@@ -308,7 +332,7 @@ To expand a disk capacity, perform the following steps:
 
       #. Do not need to adjust the size of the file system, because the thin pool is not mounted to any devices.
 
-      #. Check whether the capacity is expanded. Run the **lsblk** command to check the disk and partition sizes of the device. If the new disk capacity has been added to the thin pool, the capacity is expanded.
+      #. Run the **lsblk** command to check the disk and partition space of the device and check whether the capacity has been expanded. If the new disk capacity was added to the thin pool, the capacity has been expanded.
 
          .. code-block::
 
@@ -368,7 +392,7 @@ To expand a disk capacity, perform the following steps:
             old_desc_blocks = 3, new_desc_blocks = 15
             The filesystem on /dev/vgpaas/dockersys is now 30932992 blocks long.
 
-      #. Check whether the capacity is expanded. Run the **lsblk** command to check the disk and partition sizes of the device. If the new disk capacity has been added to the dockersys, the capacity is expanded.
+      #. Run the **lsblk** command to check the disk and partition space of the device and check whether the capacity has been expanded. If the new disk capacity was added to the dockersys, the capacity has been expanded.
 
          .. code-block::
 
@@ -417,16 +441,36 @@ Check Item 6: Whether the Container Ports in the Same Pod Conflict with Each Oth
 
 #. Check the ID of the container where the workload pod exits abnormally.
 
-   **docker ps -a \| grep** *$podName*
+   If the node is a Docker node, run the following command:
+
+   .. code-block::
+
+      docker ps -a | grep $podName
+
+   If the node is a containerd node, run the following command:
+
+   .. code-block::
+
+      crictl ps -a | grep $podName
 
 #. View the logs of the corresponding container.
 
-   **docker logs** *$containerID*
+   If the node is a Docker node, run the following command:
+
+   .. code-block::
+
+      docker logs $containerID
+
+   If the node is a containerd node, run the following command:
+
+   .. code-block::
+
+      crictl logs $containerID
 
    Rectify the fault of the workload based on logs. As shown in the following figure, container ports in the same pod conflict. As a result, the container fails to be started.
 
 
-   .. figure:: /_static/images/en-us_image_0000002065479090.png
+   .. figure:: /_static/images/en-us_image_0000002253778737.png
       :alt: **Figure 2** Container restart failure due to a container port conflict
 
       **Figure 2** Container restart failure due to a container port conflict
@@ -448,7 +492,7 @@ Information similar to the following is displayed in the event:
 
 The root cause is that a secret is mounted to the workload, but the value of the secret is not encrypted using Base64.
 
-**Solution**:
+**Solution**
 
 Create a secret on the console. The value of the secret is automatically encrypted using Base64.
 
@@ -482,20 +526,36 @@ Check whether the workload startup command is correctly executed or whether the 
 
 #. Check the ID of the container where the workload pod exits abnormally.
 
+   If the node is a Docker node, run the following command:
+
    .. code-block::
 
       docker ps -a | grep $podName
 
+   If the node is a containerd node, run the following command:
+
+   .. code-block::
+
+      crictl ps -a | grep $podName
+
 #. View the logs of the corresponding container.
+
+   If the node is a Docker node, run the following command:
 
    .. code-block::
 
       docker logs $containerID
 
+   If the node is a containerd node, run the following command:
+
+   .. code-block::
+
+      crictl logs $containerID
+
    Note: In the preceding command, *containerID* indicates the ID of the container that has exited.
 
 
-   .. figure:: /_static/images/en-us_image_0000002101677485.png
+   .. figure:: /_static/images/en-us_image_0000002218659098.png
       :alt: **Figure 3** Incorrect startup command of the container
 
       **Figure 3** Incorrect startup command of the container
@@ -506,7 +566,7 @@ Check whether the workload startup command is correctly executed or whether the 
 
 Create a new workload and configure a correct startup command.
 
-.. |image1| image:: /_static/images/en-us_image_0000002065637450.png
-.. |image2| image:: /_static/images/en-us_image_0000002101677513.png
-.. |image3| image:: /_static/images/en-us_image_0000002101595969.png
-.. |image4| image:: /_static/images/en-us_image_0000002101677497.png
+.. |image1| image:: /_static/images/en-us_image_0000002218818946.png
+.. |image2| image:: /_static/images/en-us_image_0000002253618841.png
+.. |image3| image:: /_static/images/en-us_image_0000002253618817.png
+.. |image4| image:: /_static/images/en-us_image_0000002218818934.png

@@ -41,7 +41,7 @@ Configuring Soft Affinity Scheduling for Volcano Node Pools
    b. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. In the right pane, click the **Node Pools** tab.
    c. Click **Update** of the target node pool. On the page that is displayed, configure labels in the **Kubernetes Label** area.
 
-#. On the **Scheduling** tab page, select **Volcano scheduler**, find the expert mode, and click **Try Now**.
+#. In the navigation pane, choose **Settings** and click the **Scheduling** tab. Select **Volcano scheduler**, find the expert mode, and click **Try Now**.
 
 #. Configure Volcano scheduler parameters. The following shows a configuration example in JSON format:
 
@@ -94,7 +94,7 @@ Configuring Soft Affinity Scheduling for Volcano Node Pools
                               // Configure the affinity scheduling weight and labels of the node pool.
                               "arguments": {
                                   "nodepoolaffinity.weight": 10000,
-                                  "nodepoolaffinity.label": "nodepool1=nodepool1"
+                                  "nodepoolaffinity.label": "nodepool=nodepool1"
                               }
                           }
                       ]

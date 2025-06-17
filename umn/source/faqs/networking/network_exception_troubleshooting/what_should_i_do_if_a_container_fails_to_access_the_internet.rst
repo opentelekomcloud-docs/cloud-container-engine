@@ -14,13 +14,7 @@ Check Item 1: Whether the Node Can Access the Internet
 
 #. Check whether an EIP has been bound to the ECS (node) or whether the ECS has a NAT gateway configured.
 
-   The following figure shows that an EIP has been bound. If no EIP is displayed, bind an EIP to the ECS.
-
-
-   .. figure:: /_static/images/en-us_image_0000002065637498.png
-      :alt: **Figure 1** Node with an EIP bound
-
-      **Figure 1** Node with an EIP bound
+   If no EIP is displayed, bind an EIP to the ECS.
 
 Check Item 2: Whether a Network ACL Has Been Configured for the Node
 --------------------------------------------------------------------

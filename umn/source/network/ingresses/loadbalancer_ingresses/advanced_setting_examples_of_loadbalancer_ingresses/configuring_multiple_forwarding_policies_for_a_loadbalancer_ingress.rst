@@ -45,7 +45,7 @@ Using the CCE Console
       | Forwarding Policy     | -  **Domain Name**: Enter an actual domain name to be accessed. If it is left blank, the ingress can be accessed through the IP address. Ensure that the domain name has been registered and licensed. Once a forwarding policy is configured with a domain name specified, you must use the domain name for access. | Forwarding rule 1:                  |
       |                       | -  **Path Matching Rule**: Select **Prefix match**, **Exact match**, or **RegEx match**.                                                                                                                                                                                                                             |                                     |
       |                       | -  **Path**: Enter the path provided by a backend application for external access. The path added must be valid in the backend application, or the forwarding cannot take effect.                                                                                                                                    | -  Domain Name: www.example.com     |
-      |                       | -  **Destination Service**: Select an existing Service or create a Service. Any Services that do not match the search criteria will be filtered out automatically.                                                                                                                                                   | -  Path Matching Rule: Prefix match |
+      |                       | -  **Destination Service**: Select an existing Service. Only Services that meet the requirements are automatically displayed in the Service list.                                                                                                                                                                    | -  Path Matching Rule: Prefix match |
       |                       | -  **Destination Service Port**: Select the access port of the destination Service.                                                                                                                                                                                                                                  | -  Path: /foo                       |
       |                       |                                                                                                                                                                                                                                                                                                                      | -  Destination Service: nginx       |
       |                       |                                                                                                                                                                                                                                                                                                                      | -  Destination Service Port: 80     |
@@ -72,7 +72,7 @@ Using the CCE Console
 Using kubectl
 -------------
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a YAML file named **ingress-test.yaml**. The file name can be customized.
 

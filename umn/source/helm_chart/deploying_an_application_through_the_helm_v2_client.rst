@@ -8,7 +8,7 @@ Deploying an Application Through the Helm v2 Client
 Prerequisites
 -------------
 
-The Kubernetes cluster created on CCE has been connected to kubectl. For details, see :ref:`Using kubectl <cce_10_0107__section37321625113110>`.
+The Kubernetes cluster created on CCE has been connected to kubectl. For details, see :ref:`Procedure <cce_10_0107__section37321625113110>`.
 
 Installing Helm v2
 ------------------
@@ -37,7 +37,11 @@ For other versions, visit https://github.com/helm/helm/releases.
 
 #. RBAC is enabled on the Kubernetes API server. Create the service account name **tiller** for the tiller and assign cluster-admin, a system ClusterRole, to the tiller. Create a tiller resource account as follows:
 
-   **vim tiller-rbac.yaml**
+   .. code-block::
+
+      vim tiller-rbac.yaml
+
+   File content:
 
    .. code-block::
 
@@ -89,7 +93,12 @@ For other versions, visit https://github.com/helm/helm/releases.
 
    .. code-block::
 
-      # helm version
+      helm version
+
+   Command output:
+
+   .. code-block::
+
       Client: &version.Version{SemVer:"v2.17.0", GitCommit:"a690bad98af45b015bd3da1a41f6218b1a451dbe", GitTreeState:"clean"}
       Server: &version.Version{SemVer:"v2.17.0", GitCommit:"a690bad98af45b015bd3da1a41f6218b1a451dbe", GitTreeState:"clean"}
 
@@ -98,7 +107,7 @@ Installing the Helm Chart
 
 If the charts provided by CCE do not meet requirements, download a chart and install it.
 
-You can obtain the required chart in the **stable** directory on this `website <https://github.com/helm/charts>`__, download the chart, and upload it to the node.
+You can obtain the required chart in the **stable** directory at **https://github.com/helm/charts**, download the chart, and upload it to the node.
 
 #. Download and decompress the obtained chart. Generally, the chart is in ZIP format.
 
@@ -117,7 +126,7 @@ You can obtain the required chart in the **stable** directory on this `website <
 Common Issues
 -------------
 
--  The following error message is displayed after the **Helm version** command is run:
+-  The following error message is displayed after the **Helm version** command is executed:
 
    .. code-block::
 
@@ -148,26 +157,38 @@ Common Issues
 
       rpm -i socat-1.7.3.2-8.oe1.x86_64.rpm
 
--  When the socat has been installed and the following error message is displayed after the **helm version** command is run:
+-  **Socat has been installed. When you check the Helm version, the error message "Error: cannot connect to Tiller" is displayed.**
 
    .. code-block::
 
-      test@local:~/k8s/helm/test$ helm version
+      helm version
+
+   Error information:
+
+   .. code-block::
+
       Client: &version.Version{SemVer:"v3.3.0", GitCommit:"021cb0ac1a1b2f888144ef5a67b8dab6c2d45be6", GitTreeState:"clean"}
       Error: cannot connect to Tiller
 
-   The Helm chart reads the configuration certificate from the **.Kube/config** file to communicate with Kubernetes. The preceding error indicates that the kubectl configuration is incorrect. In this case, reconnect the cluster to kubectl. For details, see :ref:`Using kubectl <cce_10_0107__section37321625113110>`.
+   The Helm chart reads the configuration certificate in **.Kube/config** and communicates with Kubernetes. The preceding error indicates that the kubectl configuration is incorrect. In this case, reconnect the cluster to kubectl. For details, see :ref:`Procedure <cce_10_0107__section37321625113110>`.
 
 -  Storage fails to be created after you have connected to cloud storage services.
 
    This issue may be caused by the **annotation** field in the created PVC. Change the chart name and install the chart again.
 
--  If kubectl is not properly configured, the following error message is displayed after the **helm install** command is run:
+-  **If kubectl is not properly configured, the error message "Error: Kubernetes cluster unreachable..." will be displayed when you install Helm.**
 
-   .. code-block:: console
+   Example:
 
-      [root@prometheus-57046 ~]# helm install prometheus/ --generate-name
+   .. code-block::
+
+      helm install prometheus/ --generate-name
+
+   Error information:
+
+   .. code-block::
+
       WARNING: This chart is deprecated
       Error: Kubernetes cluster unreachable: Get "http://localhost:8080/version?timeout=32s": dial tcp [::1]:8080: connect: connection refused
 
-   **Solution**: Configure kubeconfig for the node. For details, see :ref:`Using kubectl <cce_10_0107__section37321625113110>`.
+   **Solution**: Configure kubeconfig for the node. For details, see :ref:`Procedure <cce_10_0107__section37321625113110>`.

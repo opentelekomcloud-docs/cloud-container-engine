@@ -92,7 +92,7 @@ You can also add other labels to the pod for affinity and anti-affinity scheduli
 -  APP 3: [release:alpha;env:production;role:backend]
 
 
-.. figure:: /_static/images/en-us_image_0000002065480618.png
+.. figure:: /_static/images/en-us_image_0000002218660418.png
    :alt: **Figure 1** Label example
 
    **Figure 1** Label example

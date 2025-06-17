@@ -8,7 +8,7 @@ Deploying an Application Through the Helm v3 Client
 Prerequisites
 -------------
 
--  The Kubernetes cluster created on CCE has been connected to kubectl. For details, see :ref:`Using kubectl <cce_10_0107__section37321625113110>`.
+-  The Kubernetes cluster created on CCE has been connected to kubectl. For details, see :ref:`Procedure <cce_10_0107__section37321625113110>`.
 -  To pull a public image when deploying Helm, ensure an EIP has been bound to the node.
 
 .. _cce_10_0144__en-us_topic_0226102212_en-us_topic_0179003017_section3719193213815:
@@ -43,6 +43,11 @@ For other versions, visit https://github.com/helm/helm/releases.
    .. code-block::
 
       helm version
+
+   Command output:
+
+   .. code-block::
+
       version.BuildInfo{Version:"v3.3.0", GitCommit:"e29ce2a54e96cd02ccfce88bee4f58bb6e2a28b6", GitTreeState:"clean", GoVersion:"go1.13.4"}
 
 Installing the Helm Chart
@@ -101,7 +106,7 @@ For more details, see `Using Helm <https://helm.sh/docs/intro/using_helm/>`__.
 Common Issues
 -------------
 
--  The following error message is displayed after the **helm version** command is run:
+-  The following error message is displayed after the **Helm version** command is executed:
 
    .. code-block::
 
@@ -133,26 +138,38 @@ Common Issues
 
       rpm -i socat-1.7.3.2-8.oe1.x86_64.rpm
 
--  When the socat has been installed and the following error message is displayed after the **helm version** command is run:
+-  **Socat has been installed. When you check the Helm version, the error message "Error: cannot connect to Tiller" is displayed.**
 
    .. code-block::
 
-      $ helm version
+      helm version
+
+   Error information:
+
+   .. code-block::
+
       Client: &version.Version{SemVer:"v3.3.0", GitCommit:"021cb0ac1a1b2f888144ef5a67b8dab6c2d45be6", GitTreeState:"clean"}
       Error: cannot connect to Tiller
 
-   The Helm chart reads the configuration certificate in **.Kube/config** to communicate with Kubernetes. The preceding error indicates that the kubectl configuration is incorrect. In this case, reconnect the cluster to kubectl. For details, see :ref:`Using kubectl <cce_10_0107__section37321625113110>`.
+   The Helm chart reads the configuration certificate in **.Kube/config** and communicates with Kubernetes. The preceding error indicates that the kubectl configuration is incorrect. In this case, reconnect the cluster to kubectl. For details, see :ref:`Procedure <cce_10_0107__section37321625113110>`.
 
 -  Storage fails to be created after you have connected to cloud storage services.
 
    This issue may be caused by the **annotation** field in the created PVC. Change the chart name and install the chart again.
 
--  If kubectl is not properly configured, the following error message is displayed after the **helm install** command is run:
+-  **If kubectl is not properly configured, the error message "Error: Kubernetes cluster unreachable..." will be displayed when you install Helm.**
+
+   Example:
 
    .. code-block::
 
-      # helm install prometheus/ --generate-name
+      helm install prometheus/ --generate-name
+
+   Error information:
+
+   .. code-block::
+
       WARNING: This chart is deprecated
       Error: Kubernetes cluster unreachable: Get "http://localhost:8080/version?timeout=32s": dial tcp [::1]:8080: connect: connection refused
 
-   **Solution**: Configure kubeconfig for the node. For details, see :ref:`Using kubectl <cce_10_0107__section37321625113110>`.
+   **Solution**: Configure kubeconfig for the node. For details, see :ref:`Procedure <cce_10_0107__section37321625113110>`.

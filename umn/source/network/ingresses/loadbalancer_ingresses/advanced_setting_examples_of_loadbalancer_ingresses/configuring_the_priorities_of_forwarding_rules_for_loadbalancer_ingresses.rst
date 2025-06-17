@@ -18,7 +18,7 @@ Prerequisites
 -  A CCE standard or Turbo cluster is available, and the cluster version meets the following requirements:
 
    -  v1.23: v1.23.15-r0 or later
-   -  v1.25: v1.25.10-r0-r0 or later
+   -  v1.25: v1.25.10-r0 or later
    -  v1.27: v1.27.7-r0 or later
    -  v1.28: v1.28.5-r0 or later
    -  v1.29: v1.29.1-r10 or later
@@ -30,12 +30,12 @@ Prerequisites
 Notes and Constraints
 ---------------------
 
-Ingresses support prioritizing forwarding rules only when dedicated load balancers are used.
+-  This feature is only available when dedicated load balancers are used.
 
 Using kubectl
 -------------
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a YAML file named **ingress-test.yaml**. The file name can be customized.
 

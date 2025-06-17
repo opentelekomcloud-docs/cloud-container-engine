@@ -15,7 +15,7 @@ A custom label has been added to the target node so that workload pods can be sc
 Creating a Workload Scheduled to a Specified Node
 -------------------------------------------------
 
-#. Use kubectl to access the cluster. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Create a YAML file named **nginx.yaml**. The file name can be customized.
 

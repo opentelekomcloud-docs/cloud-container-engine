@@ -17,18 +17,15 @@ Solution 1 (preferred): Reset the node. For details, see :ref:`Resetting a Node 
 
 Solution 2: Fix the certificate rotation issue on the node.
 
-#. Go to the **/opt/cloud/cce/kubernetes/kubelet/pki/** directory on the node.
-
-#. Back up certificate files **kubelet-server-current.pem** and **kubelet-client-current.pem** on the node.
-
-#. Delete the residual **kubelet-server-\*** certificate files from the node.
+#. Log in to the node and go to the node certificate directory.
 
    .. code-block::
 
-      link_target="$(basename $(readlink kubelet-server-current.pem))" && find -maxdepth 1 -type f -name 'kubelet-server-*.pem' ! -name "$link_target" -delete
+      cd /opt/cloud/cce/kubernetes/kubelet/pki/
 
-#. Delete soft links for the certificates.
+#. Delete the residual **kubelet-server-\*** certificate file and certificate soft link file from the node.
 
    .. code-block::
 
-      find -maxdepth 1 -type f -name 'kubelet-server-current.pem'  -delete
+      find -maxdepth 1 -type f -name 'kubelet-server-*.pem' -delete
+      rm -f ./kubelet-server-current.pem

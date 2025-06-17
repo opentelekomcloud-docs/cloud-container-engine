@@ -56,14 +56,14 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Private IPv4 Addresses of Load Balancers <cce_10_0500>`
 -  :ref:`Historical Upgrade Records <cce_10_0501>`
 -  :ref:`CIDR Block of the Cluster Management Plane <cce_10_0502>`
--  :ref:`GPU Add-on <cce_10_0503>`
+-  :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0503>`
 -  :ref:`Nodes' System Parameters <cce_10_0504>`
 -  :ref:`Residual Package Version Data <cce_10_0505>`
 -  :ref:`Node Commands <cce_10_0506>`
 -  :ref:`Node Swap <cce_10_0507>`
--  :ref:`nginx-ingress Upgrade <cce_10_0508>`
+-  :ref:`NGINX Ingress Controller <cce_10_0508>`
 -  :ref:`containerd Pod Restart Risks <cce_10_0510>`
--  :ref:`Key GPU Add-on Parameters <cce_10_0511>`
+-  :ref:`Key CCE AI Suite (NVIDIA GPU) Parameters <cce_10_0511>`
 -  :ref:`GPU Pod Rebuild Risks <cce_10_0512>`
 -  :ref:`ELB Listener Access Control <cce_10_0513>`
 -  :ref:`Master Node Flavor <cce_10_0514>`
@@ -78,6 +78,11 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Cluster Rolling Upgrade <cce_10_0524>`
 -  :ref:`Rotation Certificates <cce_10_0525>`
 -  :ref:`Ingress and ELB Configuration Consistency <cce_10_0526>`
+-  :ref:`Network Policies of Cluster Network Components <cce_10_0527>`
+-  :ref:`Cluster and Node Pool Configurations <cce_10_0528>`
+-  :ref:`Time Zone of Master Nodes <cce_10_0529>`
+-  :ref:`SNATIPRanges <cce_10_0530>`
+-  :ref:`Add-on Configuration Consistency <cce_10_0531>`
 
 .. toctree::
    :maxdepth: 1
@@ -134,14 +139,14 @@ Troubleshooting for Pre-upgrade Check Exceptions
    private_ipv4_addresses_of_load_balancers
    historical_upgrade_records
    cidr_block_of_the_cluster_management_plane
-   gpu_add-on
+   cce_ai_suite_nvidia_gpu
    nodes_system_parameters
    residual_package_version_data
    node_commands
    node_swap
-   nginx-ingress_upgrade
+   nginx_ingress_controller
    containerd_pod_restart_risks
-   key_gpu_add-on_parameters
+   key_cce_ai_suite_nvidia_gpu_parameters
    gpu_pod_rebuild_risks
    elb_listener_access_control
    master_node_flavor
@@ -156,3 +161,8 @@ Troubleshooting for Pre-upgrade Check Exceptions
    cluster_rolling_upgrade
    rotation_certificates
    ingress_and_elb_configuration_consistency
+   network_policies_of_cluster_network_components
+   cluster_and_node_pool_configurations
+   time_zone_of_master_nodes
+   snatipranges
+   add-on_configuration_consistency

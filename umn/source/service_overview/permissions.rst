@@ -28,13 +28,13 @@ CCE permissions are described as follows:
 Cluster-level Permissions (Assigned by Using IAM System Policies)
 -----------------------------------------------------------------
 
-New IAM users do not have any permissions assigned by default. You need to first add them to one or more groups and then attach policies or roles to these groups. The IAM users then inherit permissions from the groups and can perform specified operations on cloud services based on the permissions they have been assigned.
+New IAM users do not have any permissions assigned by default. You need to first add them to one or more groups and then attach policies or roles to these groups. They inherit permissions from the groups and can perform specified operations on cloud services based on the permissions they have been assigned.
 
-CCE is a project-level service deployed for specific regions. To assign CCE permissions to a user group, specify the scope as region-specific projects and select projects for the permissions to take effect. If **All projects** is selected, the permissions will take effect for the user group in all region-specific projects. When accessing CCE, the users need to switch to the authorized region.
+CCE is a project-level service deployed for specific regions. When you set **Scope** to **Region-specific projects** and select the specified projects in the specified regions, the users only have permissions for CCE in the selected projects. If you select **All projects**, the users have permissions for CCE in all region-specific projects. When accessing CCE, the users need to switch to the authorized region.
 
 You can grant users permissions by using roles and policies.
 
--  Roles: A type of coarse-grained authorization mechanism that defines permissions related to user responsibilities. This mechanism provides only a limited number of service-level roles for authorization. When using roles to assign permissions, assign other roles on which the permissions depend to take effect. However, roles are not an ideal choice for fine-grained authorization and secure access control.
+-  Roles: A type of coarse-grained authorization mechanism that defines permissions related to user responsibilities. This mechanism provides only a limited number of service-level roles for authorization. Cloud services often depend on each other. When you grant permissions using roles, you also need to attach any existing role dependencies. However, roles are not an ideal choice for fine-grained authorization and secure access control.
 -  Policies: A type of fine-grained authorization mechanism that defines permissions required to perform operations on specific cloud resources under certain conditions. This mechanism allows for more flexible policy-based authorization, meeting requirements for secure access control. For example, you can assign users only the permissions for managing a certain type of clusters and nodes.
 
 :ref:`Table 1 <cce_productdesc_0002__table9857780>` lists all the system-defined permissions for CCE.
@@ -172,8 +172,8 @@ Role and ClusterRole specify actions that can be performed on specific resources
 
 On the CCE console, you can assign permissions to a user or user group to access resources in one or multiple namespaces. By default, the CCE console provides the following ClusterRoles:
 
--  view (read-only): read-only permission on most resources in all or selected namespaces.
--  edit (development): read and write permissions on most resources in all or selected namespaces. If this ClusterRole is configured for all namespaces, its capability is the same as the O&M permission.
+-  view (read-only): read-only permissions on most resources in all or selected namespaces.
+-  edit (development): read-write permissions on most resources in all or selected namespaces. If this ClusterRole is configured for all namespaces, its capability is the same as the O&M permission.
 -  admin (O&M): read and write permissions on most resources in all namespaces, and read-only permission on nodes, storage volumes, namespaces, and quota management.
 -  cluster-admin (administrator): read and write permissions on all resources in all namespaces.
 -  drainage-editor: drain a node.

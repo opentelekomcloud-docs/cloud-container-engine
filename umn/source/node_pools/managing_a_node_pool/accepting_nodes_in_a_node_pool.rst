@@ -23,7 +23,6 @@ Procedure
 #. Select one or more nodes that meet the requirements.
 
    -  The nodes and the current node pool are deployed in the same VPC and subnet.
-   -  The nodes and the current node pool belong to the same enterprise project.
    -  The billing mode of the nodes must be the same as that of the current node pool. For example, a pay-per-use node pool can accept only pay-per-use nodes.
    -  The cloud server group of the nodes must be the same as that of the current node pool.
    -  The nodes must be running and cannot be labeled with **CCE-Dynamic-Provisioning-Node**.
