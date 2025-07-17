@@ -15,6 +15,7 @@ Add-on Instance Parameters
 -  :ref:`CCE AI Suite (NVIDIA GPU) <cce_02_0415>`
 -  :ref:`Volcano Scheduler <cce_02_0417>`
 -  :ref:`Cloud Native Cluster Monitoring <cce_02_0421>`
+-  :ref:`Cloud Native Log Collection <cce_02_0422>`
 
 .. toctree::
    :maxdepth: 1
@@ -30,3 +31,4 @@ Add-on Instance Parameters
    cce_ai_suite_nvidia_gpu
    volcano_scheduler
    cloud_native_cluster_monitoring
+   cloud_native_log_collection
