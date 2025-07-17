@@ -14,6 +14,7 @@ Cluster Management
 -  :ref:`Waking Up a Cluster <cce_02_0375>`
 -  :ref:`Obtaining Cluster Certificates <cce_02_0248>`
 -  :ref:`Obtaining Cluster Certificates (Deprecated) <cce_02_0359>`
+-  :ref:`Modifying Cluster Specifications <resizecluster>`
 -  :ref:`Creating a Node <cce_02_0242>`
 -  :ref:`Reading a Specified Node <cce_02_0243>`
 -  :ref:`Listing All Nodes in a Cluster <cce_02_0244>`
@@ -45,6 +46,7 @@ Cluster Management
    waking_up_a_cluster
    obtaining_cluster_certificates
    obtaining_cluster_certificates_deprecated
+   modifying_cluster_specifications
    creating_a_node
    reading_a_specified_node
    listing_all_nodes_in_a_cluster
