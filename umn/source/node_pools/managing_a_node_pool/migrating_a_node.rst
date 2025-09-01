@@ -46,8 +46,8 @@ Migrating Nodes from the Default Node Pool to a Custom Node Pool
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Nodes** and click the **Node Pools** tab.
-#. Locate the target node pool and choose **More** > **Accept Node**.
-#. In the **Accept Node** dialog box, select the nodes that meet the following conditions:
+#. Locate the target node pool and choose **More** > **Migrate Node**.
+#. In the **Migrate Node** dialog box, select the nodes that meet the following conditions:
 
    -  The nodes and the current node pool are deployed in the same VPC and subnet.
    -  The nodes and the current node pool are in the same cloud server group.

@@ -148,7 +148,7 @@ Using the CCE Console
 
       For some distributed systems, the StatefulSet sequence is unnecessary and/or should not occur. These systems require only uniqueness and identifiers.
 
-      -  **OrderedReady**: The StatefulSet will deploy, delete, or scale pods in order and one by one. (The StatefulSet continues only after the previous pod is ready or deleted.) This is the default policy.
+      -  **OrderedReady**: This is the default policy. The StatefulSet will deploy, delete, or scale pods in order and one by one. It continues only after the previous pod is ready or deleted.
       -  **Parallel**: The StatefulSet will create pods in parallel to match the desired scale without waiting, and will delete all pods at once.
 
    -  **Scheduling**: Configure affinity and anti-affinity policies for flexible workload scheduling. Load affinity and node affinity are provided.

@@ -9,30 +9,30 @@ A workload is an application running on Kubernetes. No matter how many component
 
 CCE provides Kubernetes-native container deployment and management and supports lifecycle management of container workloads, including creation, configuration, monitoring, auto scaling, upgrade, uninstall, service discovery, and load balancing.
 
-Overview of Pod
----------------
+Overview of Pods
+----------------
 
-A pod is the smallest, simplest unit in the Kubernetes object model that you create or deploy. A pod is a group of one or more containers, with shared storage and network resources, and a specification for how to run the containers. Each pod has a separate IP address.
+Pods are the smallest unit that you can create or deploy in Kubernetes. Each pod comprises one or more containers, shared storage (volumes), a unique IP address, and container runtime policies.
 
 Pods can be used in either of the following ways:
 
--  A pod runs only one container. This is the most common usage of pods in Kubernetes. You can consider a pod as a container, but Kubernetes directly manages pods instead of containers.
+-  A pod runs a single container. This is the most common scenario in Kubernetes. In this case, a pod can be thought of as a container, although Kubernetes manages the pod rather than the container itself.
 
--  A pod runs multiple containers that need to be tightly coupled. In this scenario, a pod contains a main container and several sidecar containers, as shown in :ref:`Figure 1 <cce_10_0006__en-us_topic_0254767870_fig347141918551>`. For example, the main container is a web server that provides file services from a fixed directory, and sidecar containers periodically download files to this fixed directory.
+-  A pod runs multiple tightly coupled containers that need to share resources. In this case, the pod includes a main container and several sidecar containers, as shown in :ref:`Figure 1 <cce_10_0006__en-us_topic_0254767870_fig347141918551>`. For example, the main container might be a web server providing file services from a fixed directory, while sidecar containers periodically download files to that directory.
 
    .. _cce_10_0006__en-us_topic_0254767870_fig347141918551:
 
    .. figure:: /_static/images/en-us_image_0258392378.png
-      :alt: **Figure 1** Pod running multiple containers
+      :alt: **Figure 1** A pod running multiple containers
 
-      **Figure 1** Pod running multiple containers
+      **Figure 1** A pod running multiple containers
 
-In Kubernetes, pods are rarely created directly. Instead, Kubernetes controller manages pods through pod instances such as Deployments and jobs. A controller typically uses a pod template to create pods. The controller can also manage multiple pods and provide functions such as replica management, rolling upgrade, and self-healing.
+In Kubernetes, you rarely create pods directly. Instead, controllers like Deployments and jobs create and manage them. These controllers typically use pod templates to create and manage pods, providing features like replica management, rolling upgrades, and self-healing.
 
-Overview of Deployment
-----------------------
+Overview of Deployments
+-----------------------
 
-A pod is the smallest and simplest unit that you create or deploy in Kubernetes. It is designed to be an ephemeral, one-off entity. A pod can be evicted when node resources are insufficient and disappears along with a cluster node failure. Kubernetes provides controllers to manage pods. Controllers can create and manage pods, and provide replica management, rolling upgrade, and self-healing capabilities. The most commonly used controller is Deployment.
+A pod is the smallest unit that you create or deploy in Kubernetes. It is evicted when resources are tight and gone if its node fails. Kubernetes provides controllers to manage pods. These controllers create and manage pods, providing features like replica management, rolling upgrades, and self-healing. The most common controller is Deployment.
 
 
 .. figure:: /_static/images/en-us_image_0258095884.png
@@ -40,29 +40,29 @@ A pod is the smallest and simplest unit that you create or deploy in Kubernetes.
 
    **Figure 2** Relationship between a Deployment and pods
 
-A Deployment can contain one or more pods. These pods have the same role. Therefore, the system automatically distributes requests to multiple pods of a Deployment.
+A Deployment runs one or more identical pods. Kubernetes load-balances traffic across them.
 
-A Deployment integrates a lot of functions, including online deployment, rolling upgrade, replica creation, and restoration of online jobs. To some extent, Deployments can be used to realize unattended rollout, which greatly reduces difficulties and operation risks in the rollout process.
+A Deployment handles rollout, rolling upgrades, scaling, and automatic replacement of failed pods. This enables zero-touch releases with minimal risk.
 
-Overview of StatefulSet
------------------------
+Overview of StatefulSets
+------------------------
 
-All pods under a Deployment have the same characteristics except for the name and IP address. If required, a Deployment can use a pod template to create new pods. If not required, the Deployment can delete any one of the pods.
+All pods under a Deployment are identical except for their names and IP addresses. Deployments can create new pods using a pod template and delete any pod when not needed.
 
-However, Deployments cannot meet the requirements in some distributed scenarios when each pod requires its own status or in a distributed database where each pod requires independent storage.
+However, Deployments are not suitable for distributed scenarios where each pod requires its own status or independent storage, such as in distributed databases.
 
-Distributed stateful applications involve different roles for different responsibilities. For example, databases work in active/standby mode, and pods depend on each other. To deploy stateful applications in Kubernetes, ensure pods meet the following requirements:
+Distributed stateful applications often involve different roles and responsibilities. For example, databases may operate in active/standby mode, and pods may depend on each other. To deploy stateful applications in Kubernetes, pods must meet the following requirements:
 
--  Each pod must have a fixed identifier so that it can be recognized by other pods.
--  Separate storage resources must be configured for each pod. In this way, the original data can be retrieved after a pod is deleted and restored. Otherwise, the pod status will be changed after the pod is rebuilt.
+-  Each pod must have a unique, fixed identifier to be recognized by other pods.
+-  Each pod should be configured with separate storage resources to ensure data persistence. This allows the original data to be retained and retrieved even after a pod is deleted and recreated. Without dedicated storage, the pod's data will be lost upon deletion, and the new pod will initialize with a different state.
 
-To address the preceding requirements, Kubernetes provides StatefulSets.
+To address these requirements, Kubernetes provides StatefulSets:
 
-#. StatefulSets provide a fixed name for each pod following a fixed number ranging from 0 to N. After a pod is rescheduled, the pod name and the hostname remain unchanged.
+#. StatefulSets provide a fixed name for each pod, followed by a sequential numeric suffix (for example, pod-0, pod-1, ..., pod-N). After a pod is rescheduled, its name and hostname remain unchanged.
 
 #. StatefulSets use a headless Service to allocate a fixed domain name for each pod.
 
-#. StatefulSets create PVCs with fixed identifiers to ensure that pods can access the same persistent data after being rescheduled.
+#. StatefulSets create PVCs with fixed identifiers. This ensures that pods can access the original persistent data after being rescheduled.
 
 
    .. figure:: /_static/images/en-us_image_0258203193.png
@@ -73,7 +73,7 @@ To address the preceding requirements, Kubernetes provides StatefulSets.
 Overview of DaemonSet
 ---------------------
 
-A DaemonSet runs a pod on each node in a cluster and ensures that there is only one pod. This works well for certain system-level applications such as log collection and resource monitoring since they must run on each node and need only a few pods. A good example is kube-proxy.
+A DaemonSet runs a pod on each node in a cluster and ensures that there is only one pod. This works well for certain system-level applications such as log collection and resource monitoring since they must run on each node. A good example is kube-proxy.
 
 DaemonSets are closely related to nodes. If a node becomes faulty, the DaemonSet will not create the same pods on other nodes.
 
@@ -83,15 +83,15 @@ DaemonSets are closely related to nodes. If a node becomes faulty, the DaemonSet
 
    **Figure 4** DaemonSet
 
-Overview of Job and CronJob
----------------------------
+Overview of Jobs and CronJobs
+-----------------------------
 
-Jobs and CronJobs allow you to run short lived, one-off tasks in batch. They ensure the task pods run to completion.
+Jobs and CronJobs are Kubernetes resources designed to manage short-lived, one-off tasks that run to completion.
 
--  A job is a resource object used by Kubernetes to control batch tasks. Jobs are different from long-term servo tasks (such as Deployments and StatefulSets). The former is started and terminated at specific times, while the latter runs unceasingly unless being terminated. The pods managed by a job will be automatically removed after successfully completing tasks based on user configurations.
--  A CronJob runs a job periodically on a specified schedule. A CronJob object is similar to a line of a crontab file in Linux.
+-  A job is a resource object used to control batch tasks. Jobs start and terminate at specific times, unlike long-running services such as Deployments and StatefulSets, which run continuously unless terminated. Pods managed by a job are automatically removed after successfully completing their tasks, based on the specified settings.
+-  A CronJob runs a job periodically on a specified schedule. A CronJob object is similar to a line in a crontab file in Linux.
 
-This run-to-completion feature of jobs is especially suitable for one-off tasks, such as continuous integration (CI).
+The run-to-completion feature of workloads makes them particularly suitable for one-off tasks, such as continuous integration (CI) pipelines.
 
 Workload Lifecycle
 ------------------

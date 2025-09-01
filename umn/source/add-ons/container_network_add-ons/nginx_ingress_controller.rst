@@ -69,7 +69,7 @@ Installing the Add-on
 
    -  .. _cce_10_0034__li0953175016455:
 
-      **Ingress Class**: Enter a controller name. The name of each controller in the same cluster must be unique and cannot be set to **cce** (which is the unique identifier of the ELB ingress controller.) When creating an ingress, you can specify the controller name to declare which controller should manage this ingress.
+      **Ingress Class**: Enter a controller name. The name of each controller in the same cluster must be unique and cannot be set to **cce** (which is the unique identifier of the LoadBalancer ingress controller.) When creating an ingress, you can specify the controller name to declare which controller should manage this ingress.
 
    -  **Add-on Namespace**: Select a namespace for the ingress controller.
 

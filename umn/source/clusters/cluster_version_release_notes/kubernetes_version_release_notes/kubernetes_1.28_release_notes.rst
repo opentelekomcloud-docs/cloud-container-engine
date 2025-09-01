@@ -5,7 +5,7 @@
 Kubernetes 1.28 Release Notes
 =============================
 
-CCE allows you to create Kubernetes clusters 1.28. This section describes the changes made in Kubernetes 1.28.
+CCE allows you to create Kubernetes 1.28 clusters. This section describes the changes made in Kubernetes 1.28.
 
 Indexes
 -------

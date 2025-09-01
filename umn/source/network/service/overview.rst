@@ -8,13 +8,13 @@ Overview
 Direct Access to a Pod
 ----------------------
 
-After a pod is created, the following problems may occur if you directly access the pod:
+After a pod is created, accessing it directly can result in certain problems:
 
--  The pod can be deleted and recreated at any time by a controller such as a Deployment, and the result of accessing the pod becomes unpredictable.
--  The IP address of the pod is allocated only after the pod is started. Before the pod is started, the IP address of the pod is unknown.
--  An application is usually composed of multiple pods that run the same image. Accessing pods one by one is not efficient.
+-  The pod can be deleted and recreated at any time by a controller such as a Deployment. If the pod is recreated, access to it may fail.
+-  An IP address cannot be assigned to a pod until the pod is started. Before the pod is started, its IP address is unknown.
+-  Applications usually run on multiple pods that use the same image. Accessing pods one by one is not efficient.
 
-For example, an application uses Deployments to create the frontend and backend. The frontend calls the backend for computing, as shown in :ref:`Figure 1 <cce_10_0249__en-us_topic_0249851121_fig2173165051811>`. Three pods are running in the backend, which are independent and replaceable. When a backend pod is re-created, the new pod is assigned with a new IP address, of which the frontend pod is unaware.
+For example, Deployments are used to deploy the frontend and backend of an application. The frontend calls the backend for computing, as shown in :ref:`Figure 1 <cce_10_0249__en-us_topic_0249851121_fig2173165051811>`. Three pods are running in the backend, and they are independent and replaceable. When a backend pod is recreated, the new pod is assigned a new IP address, but the frontend pod is unaware of this change.
 
 .. _cce_10_0249__en-us_topic_0249851121_fig2173165051811:
 
@@ -26,9 +26,9 @@ For example, an application uses Deployments to create the frontend and backend.
 Using Services for Pod Access
 -----------------------------
 
-Kubernetes Services are used to solve the preceding pod access problems. A Service has a fixed IP address. (When a CCE cluster is created, a Service CIDR block is set, which is used to allocate IP addresses to Services.) A Service forwards requests accessing the Service to pods based on labels, and at the same time, perform load balancing for these pods.
+Kubernetes Services are used to solve the preceding pod access problems. A Service has a fixed IP address. (When you create a CCE cluster, you need to specify a Service CIDR block, which is used to allocate IP addresses to Services.) A Service distributes requests across pods based on labels and balances the loads for these pods.
 
-In the preceding example, a Service is added for the frontend pod to access the backend pods. In this way, the frontend pod does not need to be aware of the changes on backend pods, as shown in :ref:`Figure 2 <cce_10_0249__en-us_topic_0249851121_fig163156154816>`.
+In the preceding example, a Service is created for the frontend pod to access the backend pods. In this way, the frontend pod does not need to be aware of the changes on backend pods, as shown in :ref:`Figure 2 <cce_10_0249__en-us_topic_0249851121_fig163156154816>`.
 
 .. _cce_10_0249__en-us_topic_0249851121_fig163156154816:
 

@@ -5,7 +5,7 @@
 Kubernetes 1.27 Release Notes
 =============================
 
-CCE allows you to create Kubernetes clusters 1.27. This section describes the changes made in Kubernetes 1.27 compared with Kubernetes 1.25.
+CCE allows you to create Kubernetes 1.27 clusters. This section describes the changes made in Kubernetes 1.27 compared with Kubernetes 1.25.
 
 Indexes
 -------

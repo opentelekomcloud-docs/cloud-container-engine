@@ -17,12 +17,12 @@ Solution
 
 Kubernetes RBAC enables you to easily control permissions on namespace resources.
 
--  Role: defines a set of rules for accessing Kubernetes resources in a namespace.
--  RoleBinding: defines the relationship between users and roles.
--  ClusterRole: defines a set of rules for accessing Kubernetes resources in a cluster (including all namespaces).
--  ClusterRoleBinding: defines the relationship between users and cluster roles.
+-  Roles: define a set of rules for accessing Kubernetes resources in a namespace.
+-  RoleBindings: define the relationship between users and roles.
+-  ClusterRoles: define a set of rules for accessing Kubernetes resources in a cluster (including all namespaces).
+-  ClusterRoleBindings: define the relationship between users and cluster roles.
 
-Role and ClusterRole specify actions that can be performed on specific resources. RoleBinding and ClusterRoleBinding bind roles to specific users, user groups, or ServiceAccounts. See the following figure.
+Roles and ClusterRoles specify actions that can be performed on specific resources. RoleBindings and ClusterRoleBindings bind Roles to specific users, user groups, or service accounts.
 
 
 .. figure:: /_static/images/en-us_image_0261301557.png
@@ -75,7 +75,7 @@ Log in to the CCE console, :ref:`download the kubectl configuration file in the 
 
    Log in as the account used to create the cluster because CCE automatically assigns the cluster-admin permissions to the account, which means that the account has the permissions to create Roles and RoleBindings. Alternatively, you can use IAM users who have the permissions to create Roles and RoleBindings.
 
-The procedure for creating a Role is very simple. To be specific, specify a namespace and then define rules. The rules in the following example are to allow GET and LIST operations on pods in the default namespace.
+The definition of a Role is simple. You just specify a namespace and some rules. For example, the following rules allow you to perform GET and LIST operations on pods in the **default** namespace.
 
 .. code-block::
 
@@ -119,9 +119,9 @@ The **subjects** section binds a Role with an IAM user so that the IAM user can 
 
 
 .. figure:: /_static/images/en-us_image_0262051194.png
-   :alt: **Figure 2** Binding a role to a user
+   :alt: **Figure 2** Binding a Role to a user
 
-   **Figure 2** Binding a role to a user
+   **Figure 2** Binding a Role to a user
 
 You can also specify a user group in the **subjects** section. In this case, all users in the user group obtain the permissions defined in the Role.
 

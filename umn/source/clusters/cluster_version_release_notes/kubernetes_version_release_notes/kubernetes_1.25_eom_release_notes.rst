@@ -2,8 +2,8 @@
 
 .. _cce_bulletin_0058:
 
-Kubernetes 1.25 Release Notes
-=============================
+Kubernetes 1.25 (EOM) Release Notes
+===================================
 
 This section describes the changes made in Kubernetes 1.25 compared with Kubernetes 1.23.
 

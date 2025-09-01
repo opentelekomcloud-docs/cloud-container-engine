@@ -31,7 +31,7 @@ The following table lists the bandwidth limitation specifications of pods.
 +-------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------+-------------------------------------------------------------------+-------------------------------------------------------------------+
 
 -  CCE DataPlane V2 is released with restrictions. To use this feature, submit a service ticket to CCE.
--  After DataPlane V2 network acceleration is enabled, pods on HCE OS 2.0 use Earliest Departure Time (EDT) to limit the egress bandwidth. The ingress bandwidth limitation is not supported. In other network modes, a Token Bucket Filter (TBF) qdisc is used to limit the bandwidth.
+-  After DataPlane V2 network acceleration is enabled, pods on the nodes running HCE OS 2.0 use EDT to limit the egress bandwidth. The ingress bandwidth limitation is not supported. In other network modes, a Token Bucket Filter (TBF) qdisc is used to limit the bandwidth.
 -  Pod bandwidth limitation applies to regular containers (runC as the container runtime), not secure containers (Kata Containers as the container runtime).
 -  Pod bandwidth limitation does not apply to hostNetwork pods.
 

@@ -13,11 +13,13 @@ To access a Kubernetes cluster from a client, you can use the Kubernetes command
 Procedure
 ---------
 
-#. Create a DaemonSet in the background, select the Nginx image, enable the Privileged Container, configure the lifecycle, and add the **hostNetwork** field (value: **true**).
+#. Create a DaemonSet on the backend, select the Nginx image, enable the privileged container, configure the lifecycle, and specify **hostNetwork: true**.
 
-   a. Create a **daemonSet** file.
+   a. Create a DaemonSet file.
 
-      **vi daemonSet.yaml**
+      .. code-block::
+
+         vi daemonset.yaml
 
       An example YAML file is provided as follows:
 
@@ -64,17 +66,23 @@ Procedure
                imagePullSecrets:
                - name: default-secret
 
-   b. Create a DaemonSet.
+   b. Create the DaemonSet.
 
-      **kubectl create -f daemonSet.yaml**
+      .. code-block::
 
-#. Check whether the DaemonSet is successfully created.
+         kubectl create -f daemonSet.yaml
 
-   **kubectl get daemonset** *DaemonSet name*
+#. Check whether the DaemonSet has been created.
+
+   .. code-block::
+
+      kubectl get daemonset {daemonset_name}
 
    In this example, run the following command:
 
-   **kubectl get daemonset** **daemonset-test**
+   .. code-block::
+
+      kubectl get daemonset daemonset-test
 
    Information similar to the following is displayed:
 
@@ -83,31 +91,42 @@ Procedure
       NAME               DESIRED    CURRENT   READY    UP-T0-DATE    AVAILABLE     NODE SELECTOR   AGE
       daemonset-test     2          2         2        2             2             <node>          2h
 
-#. Query the container ID of DaemonSet on the node.
+#. Obtain the IDs of the DaemonSet pods on the nodes.
 
-   **docker ps -a|grep** *DaemonSet name*
+   .. code-block::
+
+      kubectl get pod | grep {daemonset_name}
 
    In this example, run the following command:
 
-   **docker ps -a|grep** **daemonset-test**
+   .. code-block::
+
+      kubectl get pod | grep daemonset-test
 
    Information similar to the following is displayed:
 
    .. code-block::
 
-      897b99faa9ce        3e094d5696c1                           "/bin/sh  -c while..."     31 minutes ago     Up  30 minutes  ault_fa7cc313-4ac1-11e9-a716-fa163e0aalba_0
+      daemonset-test-mqdpv               1/1     Running             0          2h
+      daemonset-test-n56vm               1/1     Running             0          2h
 
 #. Access the container.
 
-   **docker exec -it** *containerid* **/bin/sh**
+   .. code-block::
+
+      kubectl exec -it {pod_name} -- /bin/sh
 
    In this example, run the following command:
 
-   **docker exec -it** *897b99faa9ce* **/bin/sh**
+   .. code-block::
+
+      kubectl exec -it daemonset-test-mqdpv -- /bin/sh
 
 #. Check whether the configured command is executed after the container is started.
 
-   **sysctl -a \|grep net.ipv4.tcp_tw_reuse**
+   .. code-block::
+
+      sysctl -a |grep net.ipv4.tcp_tw_reuse
 
    If the following information is displayed, the system parameters are modified successfully:
 

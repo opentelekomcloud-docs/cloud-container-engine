@@ -60,7 +60,7 @@ Using the CCE Console
       -  **CA Certificate**: If **SSL Authentication** is set to **Mutual authentication**, add a CA certificate to authenticate the client. A CA certificate is issued by a certificate authority (CA) and used to verify the certificate issuer. If HTTPS mutual authentication is required, HTTPS connections can be established only when the client provides a certificate issued by a specific CA.
       -  **Server Certificate**: Select a server certificate when HTTPS is used.
       -  **SNI**: Add an SNI certificate containing a domain name.
-      -  **Advanced Options**: Click **Add custom container network settings** and enable HTTP/2.
+      -  **Advanced Options**: Click **Add advanced options** and enable HTTP/2.
 
 #. Click **OK**.
 

@@ -86,4 +86,26 @@ For details about how to restore the metadata, see the "Notes" section in `Obtai
 
    -  CCE Turbo cluster
 
-      No additional configuration is required.
+      No additional configuration is required for a cluster of a version earlier than v1.23.13-r0, v1.25.8-r0, v1.27.5-r0, or v1.28.3-r0.
+
+      For a cluster of v1.23.13-r0, v1.25.8-r0, v1.27.5-r0, v1.28.3-r0, and later version, log in to the CCE console, click the cluster name to access the cluster console. In the navigation pane, choose **Settings**, click the **Network** tab, and view the value of **Pod Access to Metadata**.
+
+      -  If **Pod Access to Metadata** is not enabled, no additional configuration is required. The container has been disabled from obtaining the node metadata.
+      -  If **Pod Access to Metadata** is enabled, take the following steps to disable the container from obtaining the node metadata:
+
+         a. Log in to each node in the cluster as user **root** and run the following command:
+
+            .. code-block::
+
+               iptables -I FORWARD -s {container_cidr} -d 169.254.169.254 -j REJECT
+
+            *{container_cidr}* indicates the container CIDR block of the cluster, for example, **10.0.0.0/16**.
+
+            To ensure configuration persistence, write the command to the **/etc/rc.local** script.
+
+         b. Run the following commands in the container to access the **userdata** and **metadata** interfaces of OpenStack and check whether the request is intercepted:
+
+            .. code-block::
+
+               curl 169.254.169.254/openstack/latest/meta_data.json
+               curl 169.254.169.254/openstack/latest/user_data

@@ -10,13 +10,6 @@ Scenario
 
 If you encounter unexpected problems when using a container, you can log in to the container to debug it.
 
-Notes and Constraints
----------------------
-
--  When kubectl is used in CloudShell, permissions are determined by the logged-in user.
--  When using CloudShell to access a CCE cluster or container, you can open up to 15 instances concurrently.
--  The kubectl certificate in CloudShell is valid for one day. You can reset its validity period by accessing CloudShell through the CCE console.
-
 Using kubectl
 -------------
 

@@ -66,7 +66,7 @@ Using the Console
 
    -  **Selector**: Add a label and click **Confirm**. The Service will use this label to select pods. You can also click **Reference Workload Label** to use the label of an existing workload. In the dialog box that is displayed, select a workload and click **OK**.
 
-   -  **Protocol Version**: This function is disabled by default. After this function is enabled, the cluster IP address of the Service can be set to an IPv6 address. **This parameter is available only in clusters of v1.15 or later with IPv6 enabled (set during cluster creation).**
+   -  **Protocol Version**: This function is disabled by default. After this function is enabled, the cluster IP address of the Service can be set to an IPv6 address. **This function is available only in clusters of v1.15 or later with IPv6 enabled (set during cluster creation).**
 
    -  **Load Balancer**: Select a load balancer type and creation mode.
 

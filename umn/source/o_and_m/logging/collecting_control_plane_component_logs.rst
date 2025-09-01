@@ -7,8 +7,8 @@ Collecting Control Plane Component Logs
 
 CCE allows you to collect the logs of master nodes. On the **Logging** page, you can select one or more control plane components (kube-controller-manager, kube-apiserver, and kube-scheduler) whose logs need to be reported.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  The cluster version must be v1.21.7-r0 or later, v1.23.5-r0 or later, or 1.25.
 -  There is required LTS resource quota.
@@ -38,7 +38,7 @@ Enabling Control Plane Logging
 **Enabling control plane logging during cluster creation**
 
 #. Log in to the CCE console.
-#. In the upper right corner, click **Create Cluster**. Then, configure the parameters and click **Next: Select Add-on**.
+#. Click **Create Cluster**. Then, configure the parameters and click **Next: Select Add-on**.
 #. On the displayed page, select **Cloud Native Log Collection** and click **Next: Add-on Configuration**.
 #. On the displayed page, select **Control Plane Logs** for **Cloud Native Log Collection**.
 #. Click **Next: Confirm configuration**.

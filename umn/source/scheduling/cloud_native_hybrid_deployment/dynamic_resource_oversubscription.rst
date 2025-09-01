@@ -97,7 +97,6 @@ Compatible kubelet Oversubscription
    -  To disable oversubscription, perform the following operations:
 
       -  Remove the **volcano.sh/oversubscription** label from the oversubscribed node.
-      -  Set **over-subscription-resource** to **false**.
       -  Modify the configmap of Volcano Scheduler named **volcano-scheduler-configmap** and remove the oversubscription add-on.
 
    -  If you have set **cpu-manager-policy** to statically bind CPU cores on a node, do not assign the QoS class of Guaranteed to offline pods. This is because offline pods may occupy the CPUs of online pods, leading to an online pod startup failure and offline pods failing to start even though they have been successfully scheduled. To prevent this, switch the pods to online pods if CPU core binding is required.
@@ -157,14 +156,6 @@ Ensure that you have correctly configure labels because the scheduler does not c
             - name: cce-gpu-topology-priority
             - name: cce-gpu
       ...
-
-#. Enable node oversubscription.
-
-   A label can be configured to use oversubscribed resources only after the oversubscription feature is enabled for a node. Related nodes can be created only in a node pool. To enable the oversubscription feature, perform the following steps:
-
-   a. Create a node pool.
-   b. Choose **Manage** in the **Operation** column of the created node pool.
-   c. On the **Manage Components** page, enable **Node oversubscription feature (over-subscription-resource)** and click **OK**.
 
 #. Set the node oversubscription label.
 

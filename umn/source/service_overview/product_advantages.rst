@@ -12,7 +12,7 @@ CCE is a container service developed on Docker and Kubernetes. It offers a wide 
 
 **Easy to Use**
 
--  Creating CCE clusters (CCE standard, CCE Turbo, and CCE Autopilot) is a breeze with just a few clicks on the web page. You can deploy VMs in a cluster.
+-  Creating CCE clusters (including CCE standard and Turbo clusters) is a breeze with just a few clicks on the web page. You can deploy VMs in a cluster.
 -  CCE automates deployment and O&M of containerized applications throughout their lifecycle.
 -  You can resize clusters and workloads by setting auto scaling policies. In-the-moment load spikes are no longer headaches.
 -  The console walks you through the steps to upgrade Kubernetes clusters.

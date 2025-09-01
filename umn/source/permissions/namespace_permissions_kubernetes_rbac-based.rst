@@ -99,7 +99,7 @@ Using kubectl to Configure Namespace Permissions
 
 In addition to cluster-admin, admin, edit, and view, you can define Roles and RoleBindings to configure the permissions to add, delete, modify, and obtain resources, such as pods, Deployments, and Services, in the namespace.
 
-The procedure for creating a Role is very simple. To be specific, specify a namespace and then define rules. The rules in the following example are to allow GET and LIST operations on pods in the default namespace.
+The definition of a Role is simple. You just specify a namespace and some rules. For example, the following rules allow you to perform GET and LIST operations on pods in the **default** namespace.
 
 .. code-block::
 
@@ -143,9 +143,9 @@ The **subjects** section binds a Role with an IAM user so that the IAM user can 
 
 
 .. figure:: /_static/images/en-us_image_0262051194.png
-   :alt: **Figure 2** Binding a role to a user
+   :alt: **Figure 2** Binding a Role to a user
 
-   **Figure 2** Binding a role to a user
+   **Figure 2** Binding a Role to a user
 
 You can also specify a user group in the **subjects** section. In this case, all users in the user group obtain the permissions defined in the Role.
 

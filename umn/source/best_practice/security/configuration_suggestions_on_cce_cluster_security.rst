@@ -171,3 +171,12 @@ Uninstalling web-terminal After Use
 -----------------------------------
 
 The web-terminal add-on can be used to manage CCE clusters. Keep the login password secure and uninstall the add-on when it is no longer needed.
+
+Using Physical Multi-Tenancy
+----------------------------
+
+To ensure that resources of different tenants are isolated and to reduce the attack surface, a separate CCE cluster can be created for each tenant. However, this solution comes with some drawbacks.
+
+-  High costs: It may increase the costs as more hardware or VM resources need to be purchased, and more manpower and time need to be spent on managing and maintaining these clusters.
+-  Low resource utilization: Each tenant requires separate hardware or VM resources to run their clusters, which may result in low resource utilization and wastage.
+-  Increased management complexity: Managing and maintaining separate clusters for each tenant increases management complexity and may require more manpower and time.
