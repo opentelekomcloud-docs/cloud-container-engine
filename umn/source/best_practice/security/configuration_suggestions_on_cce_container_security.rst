@@ -160,3 +160,41 @@ To restrict the service containers on a node from accessing the management plane
    .. code-block::
 
       curl -k https://{Private API server IP}:5443
+
+Properly Setting Volume Propagation
+-----------------------------------
+
+When mounting a host path, set the propagation mode to **None**. Exercise caution when using the **Bidirectional** mode.
+
+The **mountPropagation** field in **Container.volumeMounts** controls the mount propagation feature of a volume. Value options are as follows:
+
+-  **None**: the default value, equal to the **private** mount propagation option described in `Linux kernel documentation <https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt>`__. This volume mount will not receive any subsequent mounts that are mounted to this volume or any of its subdirectories by the host. In similar fashion, no mounts created by the container will be visible on the host.
+
+-  **HostToContainer**: equal to the **rslave** mount propagation option described in `Linux kernel documentation <https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt>`__. This volume mount will receive all subsequent mounts that are mounted to this volume or any of its subdirectories. In other words, if the host mounts anything inside the volume mount, the container will see it mounted there. If a Bidirectional pod mounts anything to the same volume, this change is visible to all HostToContainer pods.
+
+-  **Bidirectional**: equal to the **rshared** mount propagation option described in `Linux kernel documentation <https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt>`__. All volume mounts created by the container will be propagated back to the host and to all containers of all pods that use the same volume.
+
+   Bidirectional mount propagation can be dangerous. It can damage the host operating system and therefore it is allowed only in privileged containers. An example is as follows:
+
+   .. code-block::
+
+      apiVersion: v1
+      kind: Pod
+      metadata:
+          name: security-mount
+          label:
+            app: security-mount
+      spec:
+          containers:
+          - name: security-mount
+            image: ...
+            volumeMounts:
+            - name: mount-none
+              mountPath: /opt
+              mountPropagation: None
+          volumes:
+          - name: mount-none
+            hostPath:
+              path: /opt/
+
+For details, see the `community documentation <https://kubernetes.io/docs/concepts/storage/volumes/>`__.

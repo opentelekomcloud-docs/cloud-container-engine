@@ -99,7 +99,7 @@ kube-proxy is a key component of a Kubernetes cluster. It is responsible for loa
 CCE supports the iptables and IPVS forwarding modes.
 
 -  IPVS allows higher throughput and faster forwarding. It applies to scenarios where the cluster scale is large or the number of Services is large.
--  iptables is the traditional kube-proxy mode. This mode applies to the scenario where the number of Services is small or there are a large number of short concurrent connections on the client.
+-  Iptables: the traditional kube-proxy mode. This mode applies to the scenario where the number of Services is small or there are a large number of short concurrent connections on the client.
 
 If high stability is required and the number of Services is less than 2000, the iptables forwarding mode is recommended. In other scenarios, the IPVS forwarding mode is recommended.
 

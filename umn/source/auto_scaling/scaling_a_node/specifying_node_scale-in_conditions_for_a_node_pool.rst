@@ -61,8 +61,8 @@ Step 3: Verify that the Custom Scale-in Conditions Take Effect
 
 In this example, the custom scale-in threshold is set to 30% for the node pool, while the default scale-in threshold is 50%. If the node CPU and memory in the node pool remains between 30% and 50% and scale-in is not triggered, the node pool preferentially follows the custom scale-in conditions instead of the default scale-in conditions.
 
-Related Operations
-------------------
+Helpful Links
+-------------
 
 -  For details about the CCE Cluster Autoscaler add-on, see :ref:`CCE Cluster Autoscaler <cce_10_0193>`.
 -  For details about the steps of how to create an auto scaling policy and the parameters, see :ref:`Creating a Node Scaling Policy <cce_10_0209>`.

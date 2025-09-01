@@ -2,8 +2,8 @@
 
 .. _cce_bulletin_0027:
 
-Kubernetes 1.23 Release Notes
-=============================
+Kubernetes 1.23 (EOM) Release Notes
+===================================
 
 This section describes the updates in CCE Kubernetes 1.23.
 

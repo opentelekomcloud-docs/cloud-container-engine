@@ -23,9 +23,9 @@ Before upgrading the NGINX Ingress Controller, pay attention to the following co
 Native Nginx Validity Check Disabled by Default
 -----------------------------------------------
 
-**Affected versions: earlier than 3.0.33**
+**Affected versions: earlier than 3.0.34**
 
-The NGINX Ingress Controller v3.0.33 corresponds to community version `v1.11.5 <https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.11.5>`__. In this community version, the security vulnerability **CVE-2025-1974** has been fixed, and *nginx -t* (syntax check) has been removed from webhooks. In the community version `v1.11.5 <https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.11.5>`__, the format of ingress resources is still verified using admission webhooks. However, if you enable snippet annotations and the configuration contains syntax errors, invalid configurations may be directly injected into the **nginx.conf** file. Since there is no pre-check to validate the injected configuration, such errors may cause the Nginx configuration reload to fail. Therefore, if you enable snippet annotations, check NGINX Ingress Controller's pod logs for errors each time you modify the ingress rules. To do so, run the following command:
+The NGINX Ingress Controller v3.0.34 corresponds to community version `v1.11.5 <https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.11.5>`__. In this community version, the security vulnerability **CVE-2025-1974** has been fixed, and *nginx -t* (syntax check) has been removed from webhooks. In the community version `v1.11.5 <https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.11.5>`__, the format of ingress resources is still verified using admission webhooks. However, if you enable snippet annotations and the configuration contains syntax errors, invalid configurations may be directly injected into the **nginx.conf** file. Since there is no pre-check to validate the injected configuration, such errors may cause the Nginx configuration reload to fail. Therefore, if you enable snippet annotations, check NGINX Ingress Controller's pod logs for errors each time you modify the ingress rules. To do so, run the following command:
 
 .. code-block::
 

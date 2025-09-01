@@ -157,12 +157,12 @@ Namespace-level Permissions (Assigned by Using Kubernetes RBAC)
 
 You can regulate users' or user groups' access to Kubernetes resources in a single namespace based on their Kubernetes RBAC roles. The RBAC API declares four kinds of Kubernetes objects: Role, ClusterRole, RoleBinding, and ClusterRoleBinding, which are described as follows:
 
--  Role: defines a set of rules for accessing Kubernetes resources in a namespace.
--  RoleBinding: defines the relationship between users and roles.
--  ClusterRole: defines a set of rules for accessing Kubernetes resources in a cluster (including all namespaces).
--  ClusterRoleBinding: defines the relationship between users and cluster roles.
+-  Roles: define a set of rules for accessing Kubernetes resources in a namespace.
+-  RoleBindings: define the relationship between users and roles.
+-  ClusterRoles: define a set of rules for accessing Kubernetes resources in a cluster (including all namespaces).
+-  ClusterRoleBindings: define the relationship between users and cluster roles.
 
-Role and ClusterRole specify actions that can be performed on specific resources. RoleBinding and ClusterRoleBinding bind roles to specific users, user groups, or ServiceAccounts. See the following figure.
+Roles and ClusterRoles specify actions that can be performed on specific resources. RoleBindings and ClusterRoleBindings bind Roles to specific users, user groups, or service accounts.
 
 
 .. figure:: /_static/images/en-us_image_0261301557.png

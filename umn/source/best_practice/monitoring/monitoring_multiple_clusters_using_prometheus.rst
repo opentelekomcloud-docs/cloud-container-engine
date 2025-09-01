@@ -100,11 +100,11 @@ Procedure
 
       .. note::
 
-         -  In clusters earlier than v1.21, a token is obtained by mounting the secret of the service account to a pod. Tokens obtained this way are permanent. This approach is no longer recommended starting from version 1.21. Service accounts will stop auto creating secrets in clusters from version 1.25.
+         -  In clusters earlier than v1.21, tokens are obtained by mounting the secret of a service account to a pod. Such tokens are permanent. However, this approach is not recommended in clusters of v1.21 or later. Starting from v1.25, Kubernetes no longer automatically creates secrets for service accounts as part of its community iteration policy.
 
-            In clusters of version 1.21 or later, you can use the `TokenRequest <https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/>`__ API to `obtain the token <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume>`__ and use the projected volume to mount the token to the pod. Such tokens are valid for a fixed period. When the mounting pod is deleted, the token automatically becomes invalid.
+            Instead, in clusters of v1.21 and later, the recommended approach is to use the `TokenRequest <https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/>`__ API to `obtain tokens <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume>`__ and mount them via a projected volume to pods. These tokens remain valid only for a fixed period and become invalid once the pods are deleted.
 
-         -  If you need a token that never expires, you can also `manually manage secrets for service accounts <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#manual-secret-management-for-serviceaccounts>`__. Although a permanent service account token can be manually created, you are advised to use a short-lived token by calling the `TokenRequest <https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/>`__ API for higher security.
+         -  If you need a token that never expires, you can `manually manage secrets for service accounts <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#manual-secret-management-for-serviceaccounts>`__. Although a permanent service account token can be created manually, you are advised to use a short-lived token by calling the `TokenRequest <https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/>`__ API for better security.
 
       Obtain the **serviceaccount** information.
 

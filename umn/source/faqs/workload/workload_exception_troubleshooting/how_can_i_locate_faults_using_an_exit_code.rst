@@ -47,11 +47,11 @@ The exit code ranges from 0 to 255.
 
 -  Generally, if the abnormal exit is caused by the program, the exit code ranges from 1 to 128. In special scenarios, the exit code ranges from 129 to 255.
 
--  When a program exits due to external interrupts, the exit code ranges from 129 to 255. When the operating system sends :ref:`an interrupt signal <cce_faq_00404__section8671210185117>` to the program, the exist code is the interrupt signal value plus 128. For example, if the interrupt signal value of **SIGKILL** is 9, the exit status code is 137 (9 + 128).
+-  When a program exits due to external interrupts, the exit code ranges from 129 to 255. When the operating system sends :ref:`an interrupt signal <cce_faq_00404__section8671210185117>` to the program, the exit code is the interrupt signal value plus 128. For example, if the interrupt signal value of **SIGKILL** is 9, the exit status code is 137 (9 + 128).
 
--  If the exist code is not in the range of 0 to 255, for example, exit(-1), the exit code is automatically converted to a value that is within this range.
+-  If the exit code is not in the range of 0 to 255, for example, exit(-1), the exit code is automatically converted to a value that is within this range.
 
-   If the exist code is a positive number, the conversion formula is as follows:
+   If the exit code is a positive number, the conversion formula is as follows:
 
    .. code-block::
 

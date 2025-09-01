@@ -28,7 +28,9 @@ Procedure
 
 #. Edit the YAML file of the init container workload.
 
-   **vi deployment.yaml**
+   .. code-block::
+
+      vi deployment.yaml
 
    An example YAML file is provided as follows:
 
@@ -71,7 +73,9 @@ Procedure
 
 #. Create an init container workload.
 
-   **kubectl create -f deployment.yaml**
+   .. code-block::
+
+      kubectl create -f deployment.yaml
 
    Information similar to the following is displayed:
 
@@ -81,7 +85,9 @@ Procedure
 
 #. Query the created Docker container on the node where the workload is running.
 
-   **docker ps -a|grep mysql**
+   .. code-block::
+
+      docker ps -a|grep mysql
 
    The init container will exit after it runs to completion. The query result **Exited (0)** shows the exit status of the init container.
 

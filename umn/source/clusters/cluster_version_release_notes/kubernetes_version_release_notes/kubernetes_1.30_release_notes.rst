@@ -5,7 +5,7 @@
 Kubernetes 1.30 Release Notes
 =============================
 
-CCE allows you to create Kubernetes clusters 1.30. This section describes the changes made in Kubernetes 1.30.
+CCE allows you to create Kubernetes 1.30 clusters. This section describes the changes made in Kubernetes 1.30.
 
 Indexes
 -------

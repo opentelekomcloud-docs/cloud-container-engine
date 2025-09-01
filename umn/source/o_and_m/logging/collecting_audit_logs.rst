@@ -30,7 +30,7 @@ Enabling Kubernetes Audit Logging
 **Enabling audit logging during cluster creation**
 
 #. Log in to the CCE console.
-#. In the upper right corner, click **Create Cluster**. Then, configure the parameters and click **Next: Select Add-on**.
+#. Click **Create Cluster**. Then, configure the parameters and click **Next: Select Add-on**.
 #. On the displayed page, select **Cloud Native Log Collection** and click **Next: Add-on Configuration**.
 #. On the displayed page, select **Kubernetes Audit Logs** for **Cloud Native Log Collection**.
 #. Click **Next: Confirm configuration**.
@@ -57,7 +57,7 @@ Viewing Kubernetes Audit Logs
 #. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Logging**.
 #. Click the **Kubernetes Audit Logs** tab to view audit logs in the cluster. For details about related operations, see `Log Tank Service User Guide <https://docs.otc.t-systems.com/en-us/usermanual/lts/lts_04_1053.html>`__.
 
-**Viewing Kubernetes audit logs on the TLS console**
+**Viewing Kubernetes audit logs on the LTS console**
 
 #. Log in to the LTS console and choose **Log Management**.
 #. Search for the log group by cluster ID and click the log group name to view the log streams. For details, see `Log Tank Service User Guide <https://docs.otc.t-systems.com/en-us/usermanual/lts/lts_04_1053.html>`__.

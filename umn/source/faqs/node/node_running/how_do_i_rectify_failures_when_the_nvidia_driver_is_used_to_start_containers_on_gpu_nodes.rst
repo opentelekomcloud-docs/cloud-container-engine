@@ -12,7 +12,7 @@ Did a Resource Scheduling Failure Event Occur on a Cluster Node?
 
 A node is running properly and has GPU resources. However, the following error information is displayed:
 
-0/9 nodes are available: 9 insufficient nvidia.com/gpu
+0/9 nodes are available: 9 insufficient nvida.com/gpu
 
 **Analysis**
 

@@ -5,13 +5,14 @@
 Kubernetes 1.29 Release Notes
 =============================
 
-CCE allows you to create Kubernetes clusters 1.29. This section describes the changes made in Kubernetes 1.29.
+CCE allows you to create Kubernetes 1.29 clusters. This section describes the changes made in Kubernetes 1.29.
 
 Indexes
 -------
 
 -  :ref:`New and Enhanced Features <cce_bulletin_0089__en-us_topic_0000001802449514_section14972102702312>`
 -  :ref:`API Changes and Removals <cce_bulletin_0089__en-us_topic_0000001802449514_section1898982110241>`
+-  :ref:`Incompatible Changes <cce_bulletin_0089__en-us_topic_0000001802449514_section1280721172519>`
 -  :ref:`Enhanced Kubernetes 1.29 on CCE <cce_bulletin_0089__en-us_topic_0000001802449514_section115291322132513>`
 -  :ref:`References <cce_bulletin_0089__en-us_topic_0000001802449514_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583>`
 
@@ -138,6 +139,15 @@ API Changes and Removals
 -  The **fileSystem** field of container is added to the response body of CRI. It specifies the file system usage of a container. Originally, the **fileSystem** field contains only the file system of the container images.
 -  All built-in cloud providers are disabled by default. If you still need to use them, you can configure the **DisableCloudProviders** and **DisableKubeletCloudCredentialProvider** feature gates to disable or enable cloud providers.
 -  **--node-ips** can be used in kubelet to configure IPv4/IPv6 dual-stack. If **--cloud-provider** is set to **external**, you are allowed to use **--node-ips** to configure IPv4/IPv6 dual-stack for node IP addresses. To use **--node-ips**, you need to enable the **CloudDualStackNodeIPs** feature gate.
+
+.. _cce_bulletin_0089__en-us_topic_0000001802449514_section1280721172519:
+
+Incompatible Changes
+--------------------
+
+In Kubernetes 1.29, the startup behavior of kube-proxy has been modified. This update allows kube-proxy to use a value smaller than the node **sysctl** setting. For example, if the kernel value of **nf_conntrack_max** on a node is set to **1000000**, but kube-proxy calculates a value of **131072**, the value **131072** calculated by kube-proxy will be used.
+
+Community PR: https://github.com/kubernetes/kubernetes/pull/120448
 
 .. _cce_bulletin_0089__en-us_topic_0000001802449514_section115291322132513:
 

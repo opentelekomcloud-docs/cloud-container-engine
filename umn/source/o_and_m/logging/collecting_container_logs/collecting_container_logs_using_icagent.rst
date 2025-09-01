@@ -5,7 +5,7 @@
 Collecting Container Logs Using ICAgent
 =======================================
 
-CCE works with AOM to collect workload logs. When a node is created, ICAgent (a DaemonSet named **icagent** in the **kube-system** namespace of a cluster) of AOM is installed by default. ICAgent collects workload logs and reports them to AOM. You can view workload logs on the CCE or AOM console.
+CCE can collect workload logs and report them to AOM 1.0. When a node is created, ICAgent (a DaemonSet named **icagent** in the **kube-system** namespace of a cluster) is installed by default. ICAgent collects workload logs and reports them to AOM 1.0. You can view workload logs on the CCE or AOM 1.0 console.
 
 Constraints
 -----------
@@ -45,7 +45,7 @@ Using ICAgent to Collect Logs
       |                                   |    -  AOM only collects **.log**, **.trace**, and **.out** text logs in mounting paths.                                                                                                                                                                                                                                                                                                                                   |
       |                                   |    -  For details about how to set permissions for mount points in a container, see `Configure a Security Context for a Pod or Container <https://kubernetes.io/docs/tasks/configure-pod-container/security-context/>`__.                                                                                                                                                                                                 |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Extended Host Path                | This parameter is mandatory only if **Volume Type** is set to **HostPath**.                                                                                                                                                                                                                                                                                                                                               |
+      | Extended Host Path                | This parameter is mandatory only if **Volume Type** is set to **hostPath**.                                                                                                                                                                                                                                                                                                                                               |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                           |
       |                                   | Extended host paths contain pod IDs or container names to distinguish different containers into which the host path is mounted.                                                                                                                                                                                                                                                                                           |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                           |
@@ -246,16 +246,28 @@ You can also view logs on the AOM console.
 
 You can also run the **kubectl logs** command to view the container stdout.
 
-.. code-block::
+-  View the logs of a specified pod.
 
-   # View logs of a specified pod.
-   kubectl logs <pod_name>
-   kubectl logs -f <pod_name> # Similar to tail -f
+   .. code-block::
 
-   # View logs of a specified container in a specified pod.
-   kubectl logs <pod_name> -c <container_name>
+      kubectl logs <pod_name> -n <namespace>
 
-   kubectl logs pod_name -c container_name -n namespace (one-off query)
-   kubectl logs -f <pod_name> -n namespace (real-time query in tail -f mode)
+-  View the logs of a specified pod in real time.
+
+   .. code-block::
+
+      kubectl logs -f <pod_name> -n <namespace>
+
+-  View logs of a specified container in a specified pod.
+
+   .. code-block::
+
+      kubectl logs <pod_name> -c <container_name> -n <namespace>
+
+-  View the logs of a specified container in a specified pod in real time.
+
+   .. code-block::
+
+      kubectl logs -f <pod_name> -c <container_name> -n <namespace>
 
 .. |image1| image:: /_static/images/en-us_image_0000002218820458.png

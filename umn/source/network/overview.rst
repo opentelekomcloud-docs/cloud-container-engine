@@ -65,13 +65,13 @@ For details about the Service, see :ref:`Overview <cce_10_0249>`.
 Ingress
 -------
 
-Services forward requests using layer-4 TCP and UDP protocols. Ingresses forward requests using layer-7 HTTP and HTTPS protocols. Domain names and paths can be used to achieve finer granularities.
+Services forward requests using TCP and UDP at Layer 4. Ingresses forward requests using HTTP and HTTPS at Layer 7. Domain names and paths can be used for access of finer granularities.
 
 
 .. figure:: /_static/images/en-us_image_0258961458.png
-   :alt: **Figure 2** Ingress and Service
+   :alt: **Figure 2** An ingress and associated Services
 
-   **Figure 2** Ingress and Service
+   **Figure 2** An ingress and associated Services
 
 For details about the ingress, see :ref:`Overview <cce_10_0094>`.
 
