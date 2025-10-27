@@ -28,5 +28,5 @@ Solution
 
    .. code-block::
 
-      echo "Node ID" > /var/lib/cloud/data/instance-id
-      echo "Node ID" > /var/paas/conf/server.conf
+      echo Node ID > /var/lib/cloud/data/instance-id
+      echo Node ID > /var/paas/conf/server.conf

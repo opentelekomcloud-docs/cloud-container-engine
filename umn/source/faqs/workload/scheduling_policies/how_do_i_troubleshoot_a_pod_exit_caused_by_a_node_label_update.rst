@@ -63,6 +63,6 @@ Solution
 
       You can also modify the affinity policy of a workload to schedule it to other nodes and change the node label after the workload pod runs properly.
 
-.. |image1| image:: /_static/images/en-us_image_0000002253779013.png
-.. |image2| image:: /_static/images/en-us_image_0000002218819222.png
-.. |image3| image:: /_static/images/en-us_image_0000002253779017.png
+.. |image1| image:: /_static/images/en-us_image_0000002467677433.png
+.. |image2| image:: /_static/images/en-us_image_0000002434238916.png
+.. |image3| image:: /_static/images/en-us_image_0000002434079080.png

@@ -8,7 +8,7 @@ Residual Package Version Data
 Check Items
 -----------
 
-Check whether there are residual package version data in the current cluster.
+Check whether there is residual package version data in the current cluster.
 
 Solution
 --------

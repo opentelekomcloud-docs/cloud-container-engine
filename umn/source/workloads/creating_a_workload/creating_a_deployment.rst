@@ -5,51 +5,53 @@
 Creating a Deployment
 =====================
 
-Scenario
---------
-
-Deployments are workloads (for example, Nginx) that do not store any data or status. You can create Deployments on the CCE console or by running kubectl commands.
+A `Deployment <https://kubernetes.io/docs/concepts/workloads/controllers/deployment/>`__ is a Kubernetes application that does not retain data or state while running. Each pod of the same Deployment is identical, allowing for seamless creation, deletion, and replacement without impacting the application functionality. Deployments are ideal for stateless applications, such as web front-end servers and microservices, which do not require data storage. They enable easy lifecycle management of applications, including updates, rollbacks, and scaling.
 
 Prerequisites
 -------------
 
--  Before creating a workload, you must have an available cluster. For details about how to create a cluster, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
--  To enable public access to a workload, ensure that an EIP or load balancer has been bound to at least one node in the cluster.
-
-   .. note::
-
-      If a pod has multiple containers, ensure that the ports used by the containers do not conflict with each other. Otherwise, creating the Deployment will fail.
+-  A cluster is available. For details about how to create a cluster, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
+-  There are some available nodes in the cluster. If no node is available, create one by referring to :ref:`Creating a Node <cce_10_0363>`.
 
 Using the CCE Console
 ---------------------
 
 #. Log in to the CCE console.
 
-#. Click the cluster name to go to the cluster console, choose **Workloads** in the navigation pane, and click the **Create Workload** in the upper right corner.
+#. Click the cluster name to go to the cluster console, choose **Workloads** in the navigation pane, and click **Create Workload** in the upper right corner.
 
-#. Configure the workload.
+#. Configure **basic information** about the workload.
 
-   **Basic Info**
+   +---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter                 | Description                                                                                                                                                                                                                                                                                                                                    |
+   +===========================+================================================================================================================================================================================================================================================================================================================================================+
+   | Workload Type             | Select **Deployment**. For details about different workload types, see :ref:`Workload Overview <cce_10_0006>`.                                                                                                                                                                                                                                 |
+   +---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Workload Name             | Enter a name for the workload. Enter 1 to 63 characters starting with a lowercase letter and ending with a lowercase letter or digit. Only lowercase letters, digits, and hyphens (-) are allowed.                                                                                                                                             |
+   +---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Namespace                 | Select a namespace for the workload. The default value is **default**. You can also click **Create Namespace** to create one. For details, see :ref:`Creating a Namespace <cce_10_0278>`.                                                                                                                                                      |
+   +---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Pods                      | Enter the number of workload pods.                                                                                                                                                                                                                                                                                                             |
+   +---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Container Runtime         | A CCE standard cluster uses a common runtime by default, whereas a CCE Turbo cluster supports both common and secure runtimes. For details about their differences, see :ref:`Secure Runtime and Common Runtime <cce_10_0463>`.                                                                                                                |
+   +---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Time Zone Synchronization | Configure whether to enable time zone synchronization. After this function is enabled, the container and node will share the same time zone. Time zone synchronization relies on the local disk mounted to the container. Do not modify or delete the local disk. For details, see :ref:`Configuring Time Zone Synchronization <cce_10_0354>`. |
+   +---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-   -  **Workload Type**: Select **Deployment**. For details about workload types, see :ref:`Overview <cce_10_0006>`.
-   -  **Workload Name**: Enter the name of the workload. Enter 1 to 63 characters starting with a lowercase letter and ending with a lowercase letter or digit. Only lowercase letters, digits, and hyphens (-) are allowed.
-   -  **Namespace**: Select the namespace of the workload. The default value is **default**. You can also click **Create Namespace** to create one. For details, see :ref:`Creating a Namespace <cce_10_0278>`.
-   -  **Pods**: Enter the number of pods of the workload.
-   -  **Container Runtime**: A CCE standard cluster uses a common runtime by default, whereas a CCE Turbo cluster supports both common and secure runtimes. For details about the differences, see :ref:`Secure Runtime and Common Runtime <cce_10_0463>`.
-   -  **Time Zone Synchronization**: Specify whether to enable time zone synchronization. After time zone synchronization is enabled, the container and node use the same time zone. The time zone synchronization function depends on the local disk mounted to the container. Do not modify or delete the time zone. For details, see :ref:`Configuring Time Zone Synchronization <cce_10_0354>`.
+#. Configure **container settings** for the workload.
 
-   **Container Settings**
+   -  **Container Information**: Click **Add Container** on the right to configure multiple containers for the pod.
 
-   -  Container Information
+      .. caution::
 
-      Multiple containers can be configured in a pod. You can click **Add Container** on the right to configure multiple containers for the pod.
+         If you configured multiple containers for a pod, ensure that the ports used by each container do not conflict with each other, or the workload cannot be deployed.
 
       -  **Basic Info**: Configure basic information about the container.
 
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                         |
          +===================================+=====================================================================================================================================================================================================================================================================================================================================================================================================================================+
-         | Container Name                    | Name the container.                                                                                                                                                                                                                                                                                                                                                                                                                 |
+         | Container Name                    | Enter a name for the container.                                                                                                                                                                                                                                                                                                                                                                                                     |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | Pull Policy                       | Image update or pull policy. If you select **Always**, the image is pulled from the image repository each time. If you do not select **Always**, the existing image of the node is preferentially used. If the image does not exist, the image is pulled from the image repository.                                                                                                                                                 |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -75,11 +77,11 @@ Using the CCE Console
          |                                   | -  **GPU card**: The GPU is dedicated for the container.                                                                                                                                                                                                                                                                                                                                                                            |
          |                                   | -  **GPU Virtualization**: percentage of GPU resources used by the container. For example, if this parameter is set to **10%**, the container will use 10% of GPU resources.                                                                                                                                                                                                                                                        |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-         |                                   | For details about how to use GPUs in the cluster, see :ref:`Default GPU Scheduling in Kubernetes <cce_10_0345>`.                                                                                                                                                                                                                                                                                                                    |
+         |                                   | For details about how to use GPUs in a cluster, see :ref:`Default GPU Scheduling in Kubernetes <cce_10_0345>`.                                                                                                                                                                                                                                                                                                                      |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | (Optional) Privileged Container   | Programs in a privileged container have certain privileges.                                                                                                                                                                                                                                                                                                                                                                         |
+         | (Optional) Privileged Container   | Programs in a privileged container have certain privileges. If this option is enabled, the container will be assigned privileges. For example, privileged containers can manipulate network devices on the host machine, modify kernel parameters, access all devices on the node.                                                                                                                                                  |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-         |                                   | If **Privileged Container** is enabled, the container is assigned privileges. For example, privileged containers can manipulate network devices on the host machine and modify kernel parameters.                                                                                                                                                                                                                                   |
+         |                                   | For more information, see `Pod Security Standards <https://kubernetes.io/docs/concepts/security/pod-security-standards/>`__.                                                                                                                                                                                                                                                                                                        |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | (Optional) Init Container         | Whether to use the container as an init container. An init container does not support health check.                                                                                                                                                                                                                                                                                                                                 |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                     |
@@ -94,13 +96,13 @@ Using the CCE Console
          |                                   |    In most cases, tty is enabled along with stdin, indicating that the terminal (tty) is associated with the standard input (stdin) of the container. This allows for interactive operations, similar to the **kubectl exec -i -t** command. The difference is that this parameter has been configured when the pod is launched.                                                                                                    |
          +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-      -  (Optional) **Lifecycle**: Configure operations to be performed in a specific phase of the container lifecycle, such as Startup Command, Post-Start, and Pre-Stop. For details, see :ref:`Configuring Container Lifecycle Parameters <cce_10_0105>`.
+      -  (Optional) **Lifecycle**: Configure operations to be performed in a specific phase of the container lifecycle, such as Startup Command, Post-Start, and Pre-Stop. For details, see :ref:`Configuring the Container Lifecycle <cce_10_0105>`.
 
       -  (Optional) **Health Check**: Set the liveness probe, ready probe, and startup probe as required. For details, see :ref:`Configuring Container Health Check <cce_10_0112>`.
 
       -  (Optional) **Environment Variables**: Configure variables for the container running environment using key-value pairs. These variables transfer external information to containers running in pods and can be flexibly modified after application deployment. For details, see :ref:`Configuring Environment Variables <cce_10_0113>`.
 
-      -  (Optional) **Data Storage**: Mount local storage or cloud storage to the container. The application scenarios and mounting modes vary with the storage type. For details, see :ref:`Storage <cce_10_0374>`.
+      -  (Optional) **Data Storage**: Mount local storage or cloud storage to the container. The application scenarios and mounting modes vary with the StorageClass. For details, see :ref:`Storage <cce_10_0374>`.
 
          .. note::
 
@@ -110,7 +112,7 @@ Using the CCE Console
 
       -  (Optional) **Logging**: Report standard container output logs to AOM by default, without requiring manual settings. You can manually configure the log collection path. For details, see :ref:`Collecting Container Logs Using ICAgent <cce_10_0018>`.
 
-         To disable the standard output of the current workload, add the annotation **kubernetes.AOM.log.stdout: []** in :ref:`Labels and Annotations <cce_10_0047__li179714209414>`. For details about how to use this annotation, see :ref:`Table 1 <cce_10_0386__table194691458405>`.
+         To disable the collection of the standard output logs of the current workload, add the annotation **kubernetes.AOM.log.stdout: []** in :ref:`Labels and Annotations <cce_10_0047__li499691020198>` in the **Advanced Settings** area. For details about how to use this annotation, see :ref:`Table 1 <cce_10_0386__table19757101213714>`.
 
    -  .. _cce_10_0047__li1487514116369:
 
@@ -118,46 +120,48 @@ Using the CCE Console
 
    -  (Optional) **GPU**: **All** is selected by default. The workload instance will be scheduled to the node of the specified GPU type.
 
-   **(Optional) Service Settings**
+#. (Optional) Configure **the settings of the Service** associated with the workload.
 
    A Service provides external access for pods. With a static IP address, a Service forwards access traffic to pods and automatically balances load for these pods.
 
-   You can also create a Service after creating a workload. For details about Services of different types, see :ref:`Overview <cce_10_0249>`.
+   You can also create a Service after creating a workload. For details about Services of different types, see :ref:`Service Overview <cce_10_0249>`.
 
-   **(Optional) Advanced Settings**
+#. .. _cce_10_0047__li499691020198:
 
-   -  **Upgrade**: Specify the upgrade mode and parameters of the workload. **Rolling upgrade** and **Replace upgrade** are available. For details, see :ref:`Configuring Workload Upgrade Policies <cce_10_0397>`.
+   (Optional) Configure **advanced settings** for the workload.
 
-   -  **Scheduling**: Configure affinity and anti-affinity policies for flexible workload scheduling. Load affinity and node affinity are provided.
-
-      -  **Load Affinity**: Common load affinity policies are offered for quick load affinity deployment.
-
-         -  **Not configured**: No load affinity policy is configured.
-         -  **Multi-AZ deployment preferred**: Workload pods are **preferentially** scheduled to nodes in different AZs through pod anti-affinity.
-         -  **Forcible multi-AZ deployment**: Workload pods are forcibly scheduled to nodes in different AZs through pod anti-affinity (**podAntiAffinity**). If there are fewer AZs than pods, the extra pods will fail to run.
-         -  **Customize affinity**: Affinity and anti-affinity policies can be customized. For details, see :ref:`Configuring Workload Affinity or Anti-affinity Scheduling (podAffinity or podAntiAffinity) <cce_10_0893>`.
-
-      -  **Node Affinity**: Common node affinity policies are offered for quick load affinity deployment.
-
-         -  **Not configured**: No node affinity policy is configured.
-         -  **Specify node**: Workload pods can be deployed on specified nodes through node affinity (**nodeAffinity**). If no node is specified, the pods will be randomly scheduled based on the default scheduling policy of the cluster.
-         -  **Specify node pool**: Workload pods can be deployed in a specified node pool through node affinity (**nodeAffinity**). If no node pool is specified, the pods will be randomly scheduled based on the default scheduling policy of the cluster.
-         -  **Customize affinity**: Affinity and anti-affinity policies can be customized. For details, see :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`.
-
-   -  **Toleration**: Using both taints and tolerations allows (not forcibly) the pod to be scheduled to a node with the matching taints, and controls the pod eviction policies after the node where the pod is located is tainted. For details, see :ref:`Configuring Tolerance Policies <cce_10_0728>`.
-
-   -  .. _cce_10_0047__li179714209414:
-
-      **Labels and Annotations**: Add labels or annotations for pods using key-value pairs. After entering the key and value, click **Confirm**. For details about how to use and configure labels and annotations, see :ref:`Configuring Labels and Annotations <cce_10_0386>`.
-
-   -  **DNS**: Configure a separate DNS policy for the workload. For details, see :ref:`DNS Configuration <cce_10_0365>`.
-
-   -  **Network Configuration**
-
-      -  Pod ingress/egress bandwidth limitation: You can set ingress/egress bandwidth limitation for pods. For details, see :ref:`Configuring QoS for a Pod <cce_10_0382>`.
-      -  Whether to enable a specified container network configuration: available only for clusters that support this function. After you enable a specified container network configuration, the workload will be created using the container subnet and security group in the configuration. For details, see :ref:`Binding a Subnet and Security Group to a Namespace or Workload Using a Container Network Configuration <cce_10_0196>`.
-      -  Specify the container network configuration name: Only the custom container network configuration whose associated resource type is workload can be selected.
-      -  IPv6 shared bandwidth: available only for clusters that support this function. After this function is enabled, you can configure a shared bandwidth for a pod with IPv6 dual-stack ENIs. For details, see :ref:`Configuring Shared Bandwidth for a Pod with IPv6 Dual-Stack ENIs <cce_10_0604>`.
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                            |
+   +===================================+========================================================================================================================================================================================================================================================================================================================================================================================================================================+
+   | Upgrade                           | Specify the upgrade mode and parameters of the workload. **Rolling upgrade** and **Replace upgrade** are available. For details, see :ref:`Upgrading and Rolling Back a Workload <cce_10_0397>`.                                                                                                                                                                                                                                       |
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Scheduling                        | Configure affinity and anti-affinity policies for flexible workload scheduling. Load affinity and node affinity are provided.                                                                                                                                                                                                                                                                                                          |
+   |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+   |                                   | -  **Load Affinity**: Common load affinity policies are offered for quick load affinity deployment.                                                                                                                                                                                                                                                                                                                                    |
+   |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+   |                                   |    -  **Not configured**: No load affinity policy is configured.                                                                                                                                                                                                                                                                                                                                                                       |
+   |                                   |    -  **Multi-AZ deployment preferred**: Workload pods are **preferentially** scheduled to nodes in different AZs through pod anti-affinity.                                                                                                                                                                                                                                                                                           |
+   |                                   |    -  **Forcible multi-AZ deployment**: Workload pods are forcibly scheduled to nodes in different AZs through pod anti-affinity (**podAntiAffinity**). If there are fewer AZs than pods, the extra pods will fail to run.                                                                                                                                                                                                             |
+   |                                   |    -  **Customize affinity**: Affinity and anti-affinity policies can be customized. For details, see :ref:`Configuring Workload Affinity or Anti-affinity Scheduling (podAffinity or podAntiAffinity) <cce_10_0893>`.                                                                                                                                                                                                                 |
+   |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+   |                                   | -  **Node Affinity**: Common node affinity policies are offered for quick load affinity deployment.                                                                                                                                                                                                                                                                                                                                    |
+   |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+   |                                   |    -  **Not configured**: No node affinity policy is configured.                                                                                                                                                                                                                                                                                                                                                                       |
+   |                                   |    -  **Specify node**: Workload pods can be deployed on specified nodes through node affinity (**nodeAffinity**). If no node is specified, the pods will be randomly scheduled based on the default scheduling policy of the cluster.                                                                                                                                                                                                 |
+   |                                   |    -  **Specify node pool**: Workload pods can be deployed in a specified node pool through node affinity (**nodeAffinity**). If no node pool is specified, the pods will be randomly scheduled based on the default scheduling policy of the cluster.                                                                                                                                                                                 |
+   |                                   |    -  **Customize affinity**: Affinity and anti-affinity policies can be customized. For details, see :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`.                                                                                                                                                                                                                                                        |
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Toleration                        | Using both taints and tolerations allows (not forcibly) the pod to be scheduled to a node with the matching taints, and controls the pod eviction policies after the node where the pod is located is tainted. For details, see :ref:`Configuring Tolerance Policies <cce_10_0728>`.                                                                                                                                                   |
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Labels and Annotations            | Add labels or annotations for pods using key-value pairs. After the setting, click **Confirm**. For details about labels and annotations, see :ref:`Configuring Labels and Annotations <cce_10_0386>`.                                                                                                                                                                                                                                 |
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | DNS                               | Configure a separate DNS policy for the workload. For details, see :ref:`DNS Configuration <cce_10_0365>`.                                                                                                                                                                                                                                                                                                                             |
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Network Configuration             | -  Pod ingress/egress bandwidth limit: You can set ingress and egress bandwidth limits for pods. For details, see :ref:`Configuring QoS for a Pod <cce_10_0382>`.                                                                                                                                                                                                                                                                      |
+   |                                   | -  Whether to enable a specified container network configuration: available only for clusters that support this function. After you enable a specified container network configuration, the workload will be created using the container subnet and security group in the configuration. For details, see :ref:`Binding a Subnet and Security Group to a Namespace or Workload Using a Container Network Configuration <cce_10_0196>`. |
+   |                                   | -  Specify the container network configuration name: Only the custom container network configuration whose associated resource type is workload can be selected.                                                                                                                                                                                                                                                                       |
+   |                                   | -  IPv6 shared bandwidth: available only for clusters that support this function. After this function is enabled, you can configure a shared bandwidth for a pod with IPv6 dual-stack network interfaces. For details, see :ref:`Configuring Shared Bandwidth for a Pod with IPv6 Dual-Stack Network Interfaces <cce_10_0604>`.                                                                                                        |
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Click **Create Workload** in the lower right corner. After a period of time, the workload enters the **Running** state.
 
@@ -166,115 +170,68 @@ Using the CCE Console
 Using kubectl
 -------------
 
-The following procedure uses Nginx as an example to describe how to create a workload using kubectl.
+Nginx is used as an example to describe how to create a workload using kubectl.
 
 #. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
-#. Create and edit the **nginx-deployment.yaml** file. **nginx-deployment.yaml** is an example file name, and you can rename it as required.
+#. Create a file named **nginx-deployment.yaml**. **nginx-deployment.yaml** is an example file name, and you can rename it as needed.
 
    .. code-block::
 
       vi nginx-deployment.yaml
 
-   The following is an example YAML file. For more information about Deployments, see `Kubernetes documentation <https://kubernetes.io/docs/concepts/workloads/controllers/deployment/>`__.
+   Below is example of the file. For details about the Deployment configuration, see the `Kubernetes official documentation <https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/>`__.
 
    .. code-block::
 
       apiVersion: apps/v1
-      kind: Deployment
+      kind: Deployment  # Workload type
       metadata:
-        name: nginx
+        name: nginx  # Workload name
+        namespace: default  # Namespace where the workload is located
       spec:
-        replicas: 1
+        replicas: 1   # Number of pods in the specified workload
         selector:
-          matchLabels:
+          matchLabels:   # The workload manages pods based on the pod labels in the label selector.
             app: nginx
-        strategy:
-          type: RollingUpdate
-        template:
+        template:  # Pod configuration
           metadata:
-            labels:
+            labels:  # Pod labels
               app: nginx
           spec:
             containers:
-            - image: nginx    # If you use an image in My Images, obtain the image path from SWR.
-              imagePullPolicy: Always
-              name: nginx
-            imagePullSecrets:
+            - image: nginx:latest    # Specify a container image. If you use an image in My Images, obtain the image path from SWR.
+              imagePullPolicy: Always  # Image pull policy
+              name: nginx  # Container name
+              resources:  # Node resources allocated to the container
+                requests:  # Requested resources
+                  cpu: 250m
+                  memory: 512Mi
+                limits:  # Resource limit
+                  cpu: 250m
+                  memory: 512Mi
+            imagePullSecrets:  # Secret for image pull
             - name: default-secret
 
-   For details about the parameters, see :ref:`Table 1 <cce_10_0047__table132326831016>`.
-
-   .. _cce_10_0047__table132326831016:
-
-   .. table:: **Table 1** Deployment YAML parameters
-
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Parameter             | Description                                                                                                                                                                                                                                                                                                                            | Mandatory/Optional    |
-      +=======================+========================================================================================================================================================================================================================================================================================================================================+=======================+
-      | apiVersion            | API version.                                                                                                                                                                                                                                                                                                                           | Mandatory             |
-      |                       |                                                                                                                                                                                                                                                                                                                                        |                       |
-      |                       | .. note::                                                                                                                                                                                                                                                                                                                              |                       |
-      |                       |                                                                                                                                                                                                                                                                                                                                        |                       |
-      |                       |    Set this parameter based on the cluster version.                                                                                                                                                                                                                                                                                    |                       |
-      |                       |                                                                                                                                                                                                                                                                                                                                        |                       |
-      |                       |    -  For clusters of v1.17 or later, the apiVersion format of Deployments is **apps/v1**.                                                                                                                                                                                                                                             |                       |
-      |                       |    -  For clusters of v1.15 or earlier, the apiVersion format of Deployments is **extensions/v1beta1**.                                                                                                                                                                                                                                |                       |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | kind                  | Type of a created object.                                                                                                                                                                                                                                                                                                              | Mandatory             |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | metadata              | Metadata of a resource object.                                                                                                                                                                                                                                                                                                         | Mandatory             |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | name                  | Name of the Deployment.                                                                                                                                                                                                                                                                                                                | Mandatory             |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | spec                  | Detailed description of the Deployment.                                                                                                                                                                                                                                                                                                | Mandatory             |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | replicas              | Number of pods.                                                                                                                                                                                                                                                                                                                        | Mandatory             |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | selector              | Determines container pods that can be managed by the Deployment.                                                                                                                                                                                                                                                                       | Mandatory             |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | strategy              | Upgrade mode. Possible values:                                                                                                                                                                                                                                                                                                         | Optional              |
-      |                       |                                                                                                                                                                                                                                                                                                                                        |                       |
-      |                       | -  RollingUpdate                                                                                                                                                                                                                                                                                                                       |                       |
-      |                       | -  ReplaceUpdate                                                                                                                                                                                                                                                                                                                       |                       |
-      |                       |                                                                                                                                                                                                                                                                                                                                        |                       |
-      |                       | By default, rolling update is used.                                                                                                                                                                                                                                                                                                    |                       |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | template              | Detailed description of a created container pod.                                                                                                                                                                                                                                                                                       | Mandatory             |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | metadata              | Metadata.                                                                                                                                                                                                                                                                                                                              | Mandatory             |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | labels                | **metadata.labels**: Container labels.                                                                                                                                                                                                                                                                                                 | Optional              |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | spec:                 | -  **image** (mandatory): Name of a container image.                                                                                                                                                                                                                                                                                   | Mandatory             |
-      |                       | -  **imagePullPolicy** (optional): Policy for obtaining an image. The options include **Always** (attempting to download images each time), **Never** (only using local images), and **IfNotPresent** (using local images if they are available; downloading images if local images are unavailable). The default value is **Always**. |                       |
-      | containers            | -  **name** (mandatory): Container name.                                                                                                                                                                                                                                                                                               |                       |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | imagePullSecrets      | Name of the secret used during image pulling. If a private image is used, this parameter is mandatory.                                                                                                                                                                                                                                 | Optional              |
-      |                       |                                                                                                                                                                                                                                                                                                                                        |                       |
-      |                       | -  To pull an image from the Software Repository for Container (SWR), set this parameter to **default-secret**.                                                                                                                                                                                                                        |                       |
-      |                       | -  To pull an image from a third-party image repository, set this parameter to the name of the created secret.                                                                                                                                                                                                                         |                       |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-
-#. Create a Deployment.
+#. Create the Deployment.
 
    .. code-block::
 
       kubectl create -f nginx-deployment.yaml
 
-   If the following information is displayed, the Deployment is being created.
+   If information similar to the following is displayed, the Deployment is being created:
 
    .. code-block::
 
       deployment.apps/nginx created
 
-#. Obtain the Deployment status.
+#. Check the Deployment status.
 
    .. code-block::
 
       kubectl get deployment
 
-   If the following information is displayed, the Deployment is running.
+   If the Deployment is in the **Running**, it means that the Deployment has been created.
 
    .. code-block::
 
@@ -289,4 +246,4 @@ The following procedure uses Nginx as an example to describe how to create a wor
    -  **AVAILABLE**: indicates the number of available pods.
    -  **AGE**: period the Deployment keeps running
 
-#. If the Deployment will be accessed through a ClusterIP or NodePort Service, configure the access mode. For details, see :ref:`Network <cce_10_0020>`.
+#. If the Deployment will be accessed through a ClusterIP or NodePort Service, create such a Service. For details, see :ref:`Networking <cce_10_0020>`.

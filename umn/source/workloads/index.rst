@@ -5,7 +5,7 @@
 Workloads
 =========
 
--  :ref:`Overview <cce_10_0006>`
+-  :ref:`Workload Overview <cce_10_0006>`
 -  :ref:`Creating a Workload <cce_10_0673>`
 -  :ref:`Configuring a Workload <cce_10_0130>`
 -  :ref:`Scheduling a Workload <cce_10_0889>`
@@ -18,7 +18,7 @@ Workloads
    :maxdepth: 1
    :hidden: 
 
-   overview
+   workload_overview
    creating_a_workload/index
    configuring_a_workload/index
    scheduling_a_workload/index

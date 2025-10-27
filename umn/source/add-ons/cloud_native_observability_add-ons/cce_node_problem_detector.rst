@@ -32,7 +32,9 @@ In addition, CCE mitigates risks according to the least privilege principle. Onl
 Installing the Add-on
 ---------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate **CCE Node Problem Detector** on the right, and click **Install**.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+
+#. In the navigation pane, choose **Add-ons**. In the right pane, find the CCE Node Problem Detector add-on and click **Install**.
 
 #. On the **Install Add-on** page, configure the specifications as needed.
 
@@ -110,7 +112,7 @@ Check items cover events and statuses.
       +=======================+==============================================================================================================================================================================================================================================================+=======================================================================================================+
       | OOMKilling            | Listen to the kernel logs and check whether OOM events occur and are reported.                                                                                                                                                                               | Warning event                                                                                         |
       |                       |                                                                                                                                                                                                                                                              |                                                                                                       |
-      |                       | Typical scenario: When the memory usage of a process in a container exceeds the limit, OOM is triggered and the process is terminated.                                                                                                                       | Listening object: **/dev/kmsg**                                                                       |
+      |                       | Typical scenario: The memory used by the process in the container exceeds the limit, triggering OOM and terminating the process.                                                                                                                             | Listening object: **/dev/kmsg**                                                                       |
       |                       |                                                                                                                                                                                                                                                              |                                                                                                       |
       |                       |                                                                                                                                                                                                                                                              | Matching rule: "Killed process \\\\d+ (.+) total-vm:\\\\d+kB, anon-rss:\\\\d+kB, file-rss:\\\\d+kB.*" |
       +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
@@ -388,9 +390,8 @@ Viewing NPD Events
 
 Events reported by the NPD add-on can be queried on the **Nodes** page.
 
-#. Log in to the CCE console.
-#. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane.
-#. Locate the row that contains the target node, and click **View Events**.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab, locate the row containing the target node, and click **View Events** in the **Operation** column.
 
 Collecting Prometheus Metrics
 -----------------------------
@@ -401,7 +402,7 @@ The NPD daemon pod exposes Prometheus metric data on port 19901. By default, the
 
    If the NPD add-on version is earlier than 1.16.5, the exposed port of Prometheus metrics is **20257**.
 
-Currently, the metric data includes **problem_counter** and **problem_gauge**, as shown below.
+The metric data includes **problem_counter** and **problem_gauge**, as shown below.
 
 .. code-block::
 
@@ -419,14 +420,28 @@ Currently, the metric data includes **problem_counter** and **problem_gauge**, a
    problem_gauge{reason="CRIIsUp",type="CRIProblem"} 0
    ..
 
-Change History
---------------
+Release History
+---------------
 
-.. table:: **Table 10** Release history
+.. table:: **Table 10** CCE Node Problem Detector add-on
 
    +-----------------+---------------------------+-----------------------------------+---------------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                       | Community Version                                                                     |
    +=================+===========================+===================================+=======================================================================================+
+   | 1.19.25         | v1.25                     | CCE clusters v1.32 are supported. | `0.8.10 <https://github.com/kubernetes/node-problem-detector/releases/tag/v0.8.10>`__ |
+   |                 |                           |                                   |                                                                                       |
+   |                 | v1.27                     |                                   |                                                                                       |
+   |                 |                           |                                   |                                                                                       |
+   |                 | v1.28                     |                                   |                                                                                       |
+   |                 |                           |                                   |                                                                                       |
+   |                 | v1.29                     |                                   |                                                                                       |
+   |                 |                           |                                   |                                                                                       |
+   |                 | v1.30                     |                                   |                                                                                       |
+   |                 |                           |                                   |                                                                                       |
+   |                 | v1.31                     |                                   |                                                                                       |
+   |                 |                           |                                   |                                                                                       |
+   |                 | v1.32                     |                                   |                                                                                       |
+   +-----------------+---------------------------+-----------------------------------+---------------------------------------------------------------------------------------+
    | 1.19.20         | v1.25                     | Fixed some issues.                | `0.8.10 <https://github.com/kubernetes/node-problem-detector/releases/tag/v0.8.10>`__ |
    |                 |                           |                                   |                                                                                       |
    |                 | v1.27                     |                                   |                                                                                       |

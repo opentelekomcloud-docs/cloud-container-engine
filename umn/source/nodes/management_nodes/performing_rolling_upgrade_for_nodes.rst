@@ -12,7 +12,7 @@ In a rolling upgrade, a new node is created, existing workloads are migrated to 
 
 .. _cce_10_0276__fig1689610598118:
 
-.. figure:: /_static/images/en-us_image_0000002253619725.png
+.. figure:: /_static/images/en-us_image_0000002467719133.png
    :alt: **Figure 1** Workload migration
 
    **Figure 1** Workload migration

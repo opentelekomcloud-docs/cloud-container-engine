@@ -12,12 +12,12 @@ hostPath is used for mounting the file directory of the host where the container
    -  Avoid using hostPath volumes as much as possible, as they are prone to security risks. If hostPath volumes must be used, they can only be applied to files or directories and mounted in read-only mode.
    -  After the pod to which a hostPath volume is mounted is deleted, the data in the hostPath volume is retained.
 
-Mounting a hostPath Volume on the Console
------------------------------------------
+Using a hostPath Through the Console
+------------------------------------
 
 You can mount a path on the host to a specified container path. A hostPath volume is usually used to **store workload logs permanently** or used by workloads that need to **access internal data structure of the Docker engine on the host**.
 
-#. Log in to the CCE console.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
 #. When creating a workload, click **Data Storage** in the **Container Information** area under **Container Settings** and choose **Add Volume** > **hostPath**.
 
@@ -63,8 +63,8 @@ You can mount a path on the host to a specified container path. A hostPath volum
 
 #. After the configuration, click **Create Workload**.
 
-Mounting a hostPath Volume Through kubectl
-------------------------------------------
+Using a hostPath Through kubectl
+--------------------------------
 
 #. Use kubectl to access the cluster.
 

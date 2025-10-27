@@ -37,11 +37,11 @@ Configuring Soft Affinity Scheduling for Volcano Node Pools
 
 #. Configure labels for affinity scheduling in the node pool.
 
-   a. Log in to the CCE console.
-   b. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. In the right pane, click the **Node Pools** tab.
+   a. Log in to the CCE console and click the cluster name to access the cluster console.
+   b. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right.
    c. Click **Update** of the target node pool. On the page that is displayed, configure labels in the **Kubernetes Label** area.
 
-#. In the navigation pane, choose **Settings** and click the **Scheduling** tab. Select **Volcano scheduler**, find the expert mode, and click **Try Now**.
+#. In the navigation pane, choose **Settings** and click the **Scheduling** tab. Find the expert mode and click **Try Now**.
 
 #. Configure Volcano scheduler parameters. The following shows a configuration example in JSON format:
 

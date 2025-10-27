@@ -15,7 +15,7 @@ IPv6 addresses are used to deal with the problem of IPv4 address exhaustion. If 
 Application Scenarios
 ---------------------
 
--  If your application needs to provide Services for users who use IPv6 clients, you can use IPv6 EIPs or the IPv4 and IPv6 dual-stack function.
+-  If your application needs to provide services for users who use IPv6 clients, you can use IPv6 EIPs or IPv4/IPv6 dual-stack.
 -  If your application needs to both provide Services for users who use IPv6 clients and analyze the access request data, you can use only the IPv4 and IPv6 dual-stack function.
 -  If internal communication is required between your application systems or between your application system and another system (such as the database system), you can use only the IPv4 and IPv6 dual-stack function.
 
@@ -37,7 +37,7 @@ Notes and Constraints
    +----------------------+--------------------------+---------------------+----------------------------------------------------------------------------------------------------------------------+
 
 -  Worker nodes and master nodes in Kubernetes clusters use IPv4 addresses to communicate with each other.
--  Only one IPv6 address can be bound to each NIC.
+-  Only one IPv6 address can be bound to each network interface.
 -  When IPv4/IPv6 dual-stack is enabled for the cluster, DHCP unlimited lease cannot be enabled for the selected node subnet.
 -  If a dual-stack cluster is used, do not change the load balancer protocol version on the ELB console.
 -  ELB dual-stack can be used in only CCE Turbo clusters with the following restrictions.
@@ -45,7 +45,7 @@ Notes and Constraints
    +-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+
    | Application Scenario  | Dedicated Load Balancer                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Shared Load Balancer    |
    +=======================+================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+=========================+
-   | ELB ingress           | Dual stack is supported.                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Only IPv4 is supported. |
+   | LoadBalancer ingress  | Dual stack is supported.                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Only IPv4 is supported. |
    |                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                         |
    |                       | Layer-7 dedicated load balancers can only communicate with their backend servers using IPv4. If an ingress uses IPv6/IPv4 dual-stack, related alarms will be generated. (Backends with IPv6 addresses cannot be added to the associated load balancer.) You can view related alarms by referring to the events of the corresponding ingress.                                                                                                                                                   |                         |
    +-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+
@@ -61,8 +61,8 @@ Notes and Constraints
    |                       | -  Layer 4 (TCP/UDP): Dual-stack is supported.                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                         |
    +-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+
 
-Step 1: Create a VPC
---------------------
+Step 1: Create a VPC and Subnet
+-------------------------------
 
 Before creating your VPCs, determine how many VPCs, the number of subnets, and what IP address ranges you will need.
 
@@ -91,7 +91,7 @@ Perform the following operations to create a VPC named **vpc-ipv6** and its defa
       +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
       | Parameter             | Description                                                                                                                                                                                                                                                                                                                           | Example Value         |
       +=======================+=======================================================================================================================================================================================================================================================================================================================================+=======================+
-      | Region                | Specifies the desired region. Regions are geographic areas that are physically isolated from each other. The networks inside different regions are not connected to each other, so resources cannot be shared across different regions. For lower network latency and faster access to your resources, select the region nearest you. | ``-``                 |
+      | Region                | Specifies the desired region. Regions are geographic areas that are physically isolated from each other. The networks inside different regions are not connected to each other, so resources cannot be shared across different regions. For lower network latency and faster access to your resources, select the region nearest you. | N/A                   |
       +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
       | Name                  | VPC name.                                                                                                                                                                                                                                                                                                                             | vpc-ipv6              |
       +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
@@ -135,7 +135,7 @@ Perform the following operations to create a VPC named **vpc-ipv6** and its defa
 Step 2: Create a CCE Cluster
 ----------------------------
 
-**Creating a CCE cluster**
+**Creating a CCE standard cluster**
 
 #. Log in to the CCE console and create a cluster.
 
@@ -145,7 +145,7 @@ Step 2: Create a CCE Cluster
    -  **Default Node Subnet**: Select a subnet with IPv6 enabled.
    -  **IPv6**: Enable this function. After this function is enabled, cluster resources, including nodes and workloads, can be accessed through IPv6 CIDR blocks.
    -  **Network Model**: Select **Tunnel network**.
-   -  **Network Policies**: This function is enabled by default. It restricts the objects that can be accessed by pods.
+   -  Network Policies: This function is enabled by default to restrict the objects that can be accessed by pods.
    -  **Container CIDR Block**: A proper mask must be set for the container CIDR block. The mask determines the number of available nodes in the cluster. If the mask of the container CIDR block in the cluster is set improperly, there will be only a small number of available nodes in the cluster.
 
 #. Create a node.
@@ -166,7 +166,7 @@ Step 2: Create a CCE Cluster
    -  **Default Node Subnet**: Only subnets with IPv6 enabled can be selected.
    -  **Pod Subnet**: Only subnets with IPv6 enabled can be selected.
    -  **Service CIDR Block**: A proper mask must be set for the container CIDR block. The mask determines the number of available nodes in the cluster. If the mask of the container CIDR block in the cluster is set improperly, there will be only a small number of available nodes in the cluster.
-   -  **IPv6 Service CIDR Block**: determines the maximum number of Services that can be created. The value cannot be changed after being specified. The default value is **fc00::/112**. To customize the CIDR block, ensure that the CIDR block meets the following requirements:
+   -  **IPv6 Service CIDR Block**: determines the maximum number of Services that can be created. The value cannot be changed after being specified. The default value is **fc00::/112**. To customize the CIDR block, ensure that the CIDR block meets the requirements below.
 
       -  The IPv6 Service CIDR block must belong to the **fc00::/8** CIDR block.
       -  The prefix length of an IPv6 address ranges from 112 to 120. You can adjust the number of IPv6 addresses by adjusting the prefix value. A maximum of 65536 IPv6 addresses are allowed.
@@ -197,7 +197,7 @@ If you already have a shared bandwidth, you can add the IPv6 address to the shar
       +-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
       | Parameter | Description                                                                                                                                                                                                                                                                                                                           | Example Value |
       +===========+=======================================================================================================================================================================================================================================================================================================================================+===============+
-      | Region    | Specifies the desired region. Regions are geographic areas that are physically isolated from each other. The networks inside different regions are not connected to each other, so resources cannot be shared across different regions. For lower network latency and faster access to your resources, select the region nearest you. | ``-``         |
+      | Region    | Specifies the desired region. Regions are geographic areas that are physically isolated from each other. The networks inside different regions are not connected to each other, so resources cannot be shared across different regions. For lower network latency and faster access to your resources, select the region nearest you. | N/A           |
       +-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
       | Bandwidth | Specifies the shared bandwidth size in Mbit/s. The minimum bandwidth that can be purchased is 5 Mbit/s.                                                                                                                                                                                                                               | 10            |
       +-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
@@ -218,10 +218,10 @@ Log in to an ECS and ping an IPv6 address on the Internet to verify the connecti
 
 .. _cce_bestpractice_00222__en-us_topic_0226102195_en-us_topic_0213478735_en-us_topic_0118066459_fig12339172511196:
 
-.. figure:: /_static/images/en-us_image_0000002218818546.png
+.. figure:: /_static/images/en-us_image_0000002467676785.png
    :alt: **Figure 1** Result verification
 
    **Figure 1** Result verification
 
-.. |image1| image:: /_static/images/en-us_image_0000002253778377.png
-.. |image2| image:: /_static/images/en-us_image_0000002218818590.png
+.. |image1| image:: /_static/images/en-us_image_0000002467716933.png
+.. |image2| image:: /_static/images/en-us_image_0000002467676837.png

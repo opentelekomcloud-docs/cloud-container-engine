@@ -8,14 +8,14 @@ Managing Workloads
 Scenario
 --------
 
-After a workload is created, you can upgrade, log, monitor, roll back, or delete the workload, as well as edit its YAML file.
+After a workload is created, you can upgrade it, edit its YAML file, view logs and monitoring data, roll it back, and delete it.
 
 .. table:: **Table 1** Workload/Job management
 
    +------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Operation                                                                                      | Description                                                                                                                                                                            |
    +================================================================================================+========================================================================================================================================================================================+
-   | :ref:`Monitor <cce_10_0007__section7200124254011>`                                             | You can view the CPU and memory usage of workloads and pods on the CCE console.                                                                                                        |
+   | :ref:`Monitor <cce_10_0007__section7200124254011>`                                             | You can view the CPU and memory usage of workloads and pods on the CCE console to determine the resource specifications you may need.                                                  |
    +------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`View Log <cce_10_0007__en-us_topic_0107283638_section51511928173817>`                    | You can view the logs of workloads.                                                                                                                                                    |
    +------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -49,7 +49,7 @@ Monitoring a Workload
 
 You can view the CPU and memory usage of Deployments and pods on the CCE console to determine the resource specifications you may need. This section uses a Deployment as an example to describe how to monitor a workload.
 
-#. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
+#. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and click **Monitor** of the target workload. On the page that is displayed, you can view CPU usage and memory usage of the workload.
 #. Click the workload name. On the **Pods** tab page, click the **Monitor** of the target pod to view its CPU and memory usage.
 
@@ -64,7 +64,7 @@ You can view logs of Deployments, StatefulSets, DaemonSets, and jobs. This secti
 
    Before viewing logs, ensure that the time of the browser is the same as that on the backend server.
 
-#. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
+#. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 
 #. Click the **Deployments** tab and click **View Log** of the target workload.
 
@@ -83,9 +83,9 @@ You quickly upgrade Deployments, StatefulSets, and DaemonSets on the CCE console
 
 This section uses a Deployment as an example to describe how to upgrade a workload.
 
-Before replacing an image or image version, upload the new image to the SWR service.
+Before replacing an image or image tag, upload the new image to the SWR service.
 
-#. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
+#. Log in to the CCE console,go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and click **Upgrade** of the target workload.
 
    .. note::
@@ -103,7 +103,7 @@ Editing a YAML file
 
 You can modify and download YAML files of Deployments, StatefulSets, DaemonSets, CronJobs, and pods on the CCE console. YAML files of jobs can only be viewed, copied, and downloaded. This section uses a Deployment as an example to describe how to edit the YAML file.
 
-#. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
+#. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and choose **More** > **Edit YAML** in the **Operation** column of the target workload. In the dialog box that is displayed, modify the YAML file.
 #. Click **OK**.
 #. (Optional) In the **Edit YAML** window, click **Download** to download the YAML file.
@@ -115,7 +115,7 @@ Rolling Back a Workload (Available Only for Deployments)
 
 CCE records the release history of all Deployments. You can roll back a Deployment to a specified version.
 
-#. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
+#. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and choose **More > Roll Back** in the **Operation** column of the target workload.
 #. Switch to the **Change History** tab page, click **Roll Back to This Version** of the target version, manually confirm the YAML file, and click **OK**.
 
@@ -126,7 +126,7 @@ Redeploying a Workload
 
 After you redeploy a workload, all pods in the workload will be restarted. This section uses Deployments as an example to illustrate how to redeploy a workload.
 
-#. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
+#. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and choose **More** > **Redeploy** in the **Operation** column of the target workload.
 #. In the dialog box that is displayed, click **Yes** to redeploy the workload.
 
@@ -147,7 +147,7 @@ Only Deployments support this operation.
 
    Deployments in the disable upgrade state cannot be rolled back.
 
-#. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
+#. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and choose **More** > **Disable/Enable Upgrade** in the **Operation** column of the workload.
 #. In the dialog box that is displayed, click **Yes**.
 
@@ -158,7 +158,7 @@ Managing Labels
 
 Labels are key-value pairs and can be attached to workloads. You can manage and select workloads by labels. You can add labels to multiple workloads or a specified workload.
 
-#. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
+#. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and choose **More** > **Manage Label** in the **Operation** column of the target workload.
 #. Click |image1|, enter a key and a value, and click **OK**.
 
@@ -173,7 +173,7 @@ Deleting a Workload/Job
 
 You can delete a workload or job that is no longer needed. Deleted workloads or jobs cannot be recovered. This section uses a Deployment as an example to describe how to delete a workload.
 
-#. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
+#. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 
 #. In the same row as the workload you will delete, choose **Operation** > **More** > **Delete**.
 
@@ -193,11 +193,11 @@ Events
 
 This section uses a Deployment as an example to describe how to view events of a workload. To view the event of a job or CronJob, click **View Event** in the **Operation** column of the target workload.
 
-#. Log in to the CCE console, go to an existing cluster, and choose **Workloads** in the navigation pane.
+#. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 #. On the **Deployments** tab page, click the target workload. In the **Pods** tab page, click the **View Events** to view the event name, event type, number of occurrences, Kubernetes event, first occurrence time, and last occurrence time.
 
    .. note::
 
       Event data will be retained for one hour and then automatically deleted.
 
-.. |image1| image:: /_static/images/en-us_image_0000002253620001.png
+.. |image1| image:: /_static/images/en-us_image_0000002434239840.png

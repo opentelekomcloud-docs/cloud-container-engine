@@ -8,7 +8,7 @@ Common FAQ
 Cluster Management
 ------------------
 
--  :ref:`Why Cannot I Create a CCE Cluster? <cce_faq_00111>`
+-  :ref:`Why Can't I Create a CCE Cluster? <cce_faq_00111>`
 -  :ref:`Is Management Scale of a Cluster Related to the Number of Master Nodes? <cce_faq_00090>`
 -  :ref:`How Do I Locate the Fault When a Cluster Is Unavailable? <cce_faq_00039>`
 
@@ -26,7 +26,7 @@ Workload Management
 -  :ref:`How Can I Locate the Root Cause If a Workload Is Abnormal? <cce_faq_00134>`
 -  :ref:`What Should I Do If the Scheduling of a Pod Fails? <cce_faq_00098>`
 -  :ref:`What Should I Do If a Pod Fails to Pull the Image? <cce_faq_00015>`
--  :ref:`What Should I Do If Container Startup Fails? <cce_faq_00018>`
+-  :ref:`What Should I Do If a Pod Startup Fails? <cce_faq_00018>`
 -  :ref:`What Should I Do If a Pod Remains in the Terminating State? <cce_faq_00210>`
 -  :ref:`What Should I Do If a Pod Fails to Be Evicted? <cce_faq_00209>`
 -  :ref:`How Can I Locate Faults Using an Exit Code? <cce_faq_00404>`
@@ -39,7 +39,7 @@ Network Management
 -  :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
 -  :ref:`How Do I Locate a Workload Networking Fault? <cce_faq_00202>`
 -  :ref:`Why Does the Browser Return Error Code 404 When I Access a Deployed Application? <cce_faq_00203>`
--  :ref:`What Should I Do If a Node Fails to Connect to the Internet (Public Network)? <cce_faq_00022>`
+-  :ref:`What Should I Do If a Node Fails to Access the Internet? <cce_faq_00022>`
 -  :ref:`How Do I Optimize the Configuration If the External Domain Name Resolution Is Slow or Times Out? <cce_faq_00195>`
 
 Storage Management

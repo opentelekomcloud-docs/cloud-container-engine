@@ -61,7 +61,7 @@ Creating a pod:
 
 .. code-block::
 
-   kubectl create -f https://k8s.io/docs/tasks/configure-pod-container/memory-request-limit-2.yaml --namespace=mem-example
+   kubectl create -f memory-request-limit-2.yaml --namespace=mem-example
 
 Viewing the details about the pod:
 
@@ -94,7 +94,7 @@ This output indicates that the container is killed because the memory limit is e
         reason: OOMKilled
         startedAt: null
 
-In this example, the container can be automatically restarted. Therefore, kubelet will start it again. You can run the following command several times to see how the container is killed and started:
+In this example, the container supports automatic restart, so kubelet will restart it upon termination. You can run the following command multiple times to see how the container is stopped and restarted:
 
 .. code-block::
 

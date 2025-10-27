@@ -30,6 +30,6 @@ Solution
 #. Check whether the load balancer has a private IPv4 address.
 #. Bind a private IP address to the load balancer without a private IPv4 address.
 
-   a. Log in to the CCE console and click the name of the target load balancer.
+   a. Log in to the ELB console and click the name of the target load balancer.
    b. On the **Summary** tab, click **Bind** next to **Private IPv4 address**.
    c. Configure the subnet and IPv4 address, and click **OK**.

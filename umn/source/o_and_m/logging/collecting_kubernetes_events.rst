@@ -5,7 +5,7 @@
 Collecting Kubernetes Events
 ============================
 
-The Cloud Native Log Collection add-on works with LTS to collect and store Kubernetes events and works with AOM to generate alarms.
+The Cloud Native Log Collection add-on of CCE works with LTS to collect and store Kubernetes events and works with AOM to generate alarms.
 
 Reporting Kubernetes Events to LTS
 ----------------------------------
@@ -17,7 +17,9 @@ Logging Has Been Enabled for a Cluster
 
 If logging has been enabled for a cluster but Kubernetes event collection has not been enabled, or the corresponding log collection policy has been deleted, you can manually create a log collection policy by taking the following steps:
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Logging**.
+#. Log in to the CCE console.
+
+#. Click the cluster name to access the cluster console. In the navigation pane, choose **Logging**.
 
 #. In the upper right corner, click **View Log Collection Policies**.
 

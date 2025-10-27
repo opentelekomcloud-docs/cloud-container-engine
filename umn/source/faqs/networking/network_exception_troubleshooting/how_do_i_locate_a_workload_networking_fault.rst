@@ -27,7 +27,7 @@ Log in to the CCE console or use kubectl to obtain the pod IP address. Then, log
 
 If *{Container IP address}*\ **:**\ *{Port number}* is not accessible, log in to the service container, and attempt to access **127.0.0.1**:*{Port number}*.
 
-**Common issues:**
+**Common Issues**
 
 #. The container port is incorrectly configured (the container does not listen to the access port).
 #. The URL does not exist (no related path exists in the container).
@@ -57,7 +57,7 @@ Example:
 
 After finding the node port (nodePort), access <IP address>:<port> of the node where the container is located and check whether the expected result is returned.
 
-**Common issues:**
+**Common Issues**
 
 #. The service port is not allowed in the inbound rules of the node.
 #. A custom route is incorrectly configured for the node.
@@ -74,12 +74,12 @@ There are several possible causes if <IP address>:<port> of the ELB cannot be ac
 
 -  The backend server group of the port or URL does not meet the expectation.
 -  The security group on the node has not exposed the related protocol or port to the ELB.
--  The health check of the layer-4 load balancing is not enabled.
+-  The health check of the Layer 4 load balancing is not enabled.
 -  The certificate used for Services of layer-7 load balancing has expired.
 
-**Common issues:**
+**Common Issues**
 
-#. When exposing a layer-4 ELB load balancer, if you have not enabled health check on the console, the load balancer may route requests to abnormal nodes.
+#. When exposing a Layer 4 ELB load balancer, if you have not enabled health check on the console, the load balancer may route requests to abnormal nodes.
 #. For UDP access, the ICMP port of the node has not been allowed in the inbound rules.
 #. The label of the pod does not match that of the Service (created using kubectl or API).
 
@@ -114,4 +114,4 @@ Log in to the management console and choose **Service List** > **Networking** > 
 
 For details about security group configuration, see :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
 
-.. |image1| image:: /_static/images/en-us_image_0000002253778449.png
+.. |image1| image:: /_static/images/en-us_image_0000002434238492.png

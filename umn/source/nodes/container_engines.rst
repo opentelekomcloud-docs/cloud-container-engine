@@ -103,7 +103,7 @@ containerd does not support Docker APIs and Docker CLI, but you can run crictl c
    +-----------------------+----------------+--------------------+----------------------+
    | Delete a local image. | docker rmi     | crictl rmi         | ctr -n k8s.io i rm   |
    +-----------------------+----------------+--------------------+----------------------+
-   | Check images.         | docker inspect | crictl inspecti    | None                 |
+   | Check images.         | docker inspect | crictl inspect     | None                 |
    +-----------------------+----------------+--------------------+----------------------+
 
 .. table:: **Table 5** Container-related commands

@@ -2,7 +2,7 @@
 
 .. _cce_faq_00402:
 
-What Do I Do If a Cluster Add-On Fails to be Upgraded During the CCE Cluster Upgrade?
+What Do I Do If a Cluster Add-on Fails to be Upgraded During the CCE Cluster Upgrade?
 =====================================================================================
 
 Overview

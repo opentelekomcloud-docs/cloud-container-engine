@@ -5,7 +5,7 @@
 Scheduling
 ==========
 
--  :ref:`Overview <cce_10_0702>`
+-  :ref:`Scheduling Overview <cce_10_0702>`
 -  :ref:`CPU Scheduling <cce_10_0551>`
 -  :ref:`GPU Scheduling <cce_10_0720>`
 -  :ref:`Volcano Scheduling <cce_10_0423>`
@@ -15,7 +15,7 @@ Scheduling
    :maxdepth: 1
    :hidden: 
 
-   overview
+   scheduling_overview
    cpu_scheduling/index
    gpu_scheduling/index
    volcano_scheduling/index

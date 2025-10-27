@@ -8,7 +8,7 @@ Example: Designing and Configuring Permissions for Users in a Department
 Overview
 --------
 
-The conventional distributed task scheduling mode is being replaced by Kubernetes. CCE allows you to easily deploy, manage, and scale containerized applications in the cloud by providing support for you to use Kubernetes.
+The conventional distributed task scheduling mode is being replaced by Kubernetes. CCE is a highly scalable, high-performance, enterprise-class Kubernetes service that provides full compatibility with native Kubernetes applications and tools. It enables you to efficiently deploy, manage, and scale containerized workloads on the cloud and facilitates rapid, reliable deployment of microservices.
 
 To help enterprise administrators manage resource permissions in clusters, CCE provides multi-dimensional, fine-grained permission policies and management measures. CCE permissions are described as follows:
 
@@ -60,7 +60,7 @@ Assign the read-only permission on clusters to the user group **read_only**.
 
 Return to the CCE console, and add the read-only permission on namespaces to the user group **read_only** to which the five users belong. Choose **Permissions** on the CCE console, and assign the read-only policy to the user group **read_only** for each cluster.
 
-After the setting is complete, James has the cluster management permissions for all projects and the read-only permissions on all namespaces, and the Robert, William, Linda, and Peter have the read-only permission on all clusters and namespaces.
+After the setting is complete, James has the cluster management permissions for all projects and the read-only permissions on all namespaces, and Robert, William, Linda, and Peter have the read-only permissions on all clusters and namespaces.
 
 Development Team Leader: Robert
 -------------------------------
@@ -83,4 +83,4 @@ In the previous steps, Linda and Peter have been assigned the read-only permissi
 
 By now, all the required permissions are assigned to the department members.
 
-.. |image1| image:: /_static/images/en-us_image_0000002253779773.jpg
+.. |image1| image:: /_static/images/en-us_image_0000002467718465.jpg

@@ -5,7 +5,7 @@
 Volcano Scheduling
 ==================
 
--  :ref:`Overview <cce_10_0721>`
+-  :ref:`Volcano Scheduling Overview <cce_10_0721>`
 -  :ref:`Scheduling Workloads <cce_10_0722>`
 -  :ref:`Resource Usage-based Scheduling <cce_10_0768>`
 -  :ref:`Priority-based Scheduling <cce_10_0774>`
@@ -16,7 +16,7 @@ Volcano Scheduling
    :maxdepth: 1
    :hidden: 
 
-   overview
+   volcano_scheduling_overview
    scheduling_workloads
    resource_usage-based_scheduling/index
    priority-based_scheduling/index

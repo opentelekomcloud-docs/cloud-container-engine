@@ -10,8 +10,8 @@ Symptom
 
 The error message "Error from server (ServiceUnavailable): the server is currently unable to handle the request (get nodes.metrics.k8s.io)" is displayed after the **kubectl top node** command is executed.
 
-Possible Causes
----------------
+Possible Cause
+--------------
 
 "Error from server (ServiceUnavailable)" indicates that the cluster is not connected. In this case, you need to check whether the network between kubectl and the master node in the cluster is normal.
 

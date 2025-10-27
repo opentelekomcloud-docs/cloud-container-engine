@@ -11,6 +11,7 @@ Node Running
 -  :ref:`What Should I Do If I/O Suspension Occasionally Occurs When SCSI EVS Disks Are Used? <cce_faq_00296>`
 -  :ref:`How Do I Fix an Abnormal Container or Node Due to No Thin Pool Disk Space? <cce_faq_00307>`
 -  :ref:`How Do I Rectify Failures When the NVIDIA Driver Is Used to Start Containers on GPU Nodes? <cce_faq_00020>`
+-  :ref:`What Can I Do If a GPU Card Is Unavailable on a GPU Node? <cce_faq_00501>`
 
 .. toctree::
    :maxdepth: 1
@@ -22,3 +23,4 @@ Node Running
    what_should_i_do_if_i_o_suspension_occasionally_occurs_when_scsi_evs_disks_are_used
    how_do_i_fix_an_abnormal_container_or_node_due_to_no_thin_pool_disk_space
    how_do_i_rectify_failures_when_the_nvidia_driver_is_used_to_start_containers_on_gpu_nodes
+   what_can_i_do_if_a_gpu_card_is_unavailable_on_a_gpu_node

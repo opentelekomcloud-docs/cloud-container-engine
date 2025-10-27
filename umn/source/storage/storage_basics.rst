@@ -55,7 +55,7 @@ Kubernetes provides PersistentVolumes (PVs) and PersistentVolumeClaims (PVCs) to
 You can bind PVCs to PVs in a pod so that the pod can use storage resources. The following figure shows the relationship between PVs and PVCs.
 
 
-.. figure:: /_static/images/en-us_image_0000002218820410.png
+.. figure:: /_static/images/en-us_image_0000002467678561.png
    :alt: **Figure 1** PVC-to-PV binding
 
    **Figure 1** PVC-to-PV binding
@@ -94,19 +94,25 @@ Mounting a Storage Volume
 
 You can mount volumes in the following ways:
 
-Use PVs to describe existing storage resources, and then create PVCs to use the storage resources in pods. You can also use the dynamic creation mode. That is, specify the :ref:`StorageClass <cce_10_0380>` when creating a PVC and use the provisioner in the StorageClass to automatically create a PV and bind the PV to the PVC.
+Use PVs to describe existing storage resources, and then create PVCs to use the storage resources in pods. You can also use the dynamic creation mode. That is, specify the :ref:`StorageClasses <cce_10_0378__section1652044721416>` when creating a PVC and use the provisioner in the StorageClass to automatically create a PV and bind the PV to the PVC.
 
 .. table:: **Table 2** Modes of mounting volumes
 
-   +-----------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+--------------------------------+
-   | Mount Mode                                                            | Description                                                                                                                                                                                                                                                                                                                                                                            | Supported Volume Type       | Other Constraints              |
-   +=======================================================================+========================================================================================================================================================================================================================================================================================================================================================================================+=============================+================================+
-   | Statically creating storage volume (using existing storage)           | Use existing storage (such as EVS disks and SFS file systems) to create PVs and mount the PVs to the workload through PVCs. Kubernetes binds PVCs to the matching PVs so that workloads can access storage services.                                                                                                                                                                   | All volumes                 | None                           |
-   +-----------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+--------------------------------+
-   | Dynamically creating storage volumes (automatically creating storage) | Specify a :ref:`StorageClass <cce_10_0380>` for a PVC. The storage provisioner creates underlying storage media as required to automatically create PVs and directly bind the PV to the PVC.                                                                                                                                                                                           | EVS, OBS, SFS, and local PV | None                           |
-   +-----------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+--------------------------------+
-   | Dynamic mounting (VolumeClaimTemplate)                                | Achieved by using the `volumeClaimTemplates <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#volume-claim-templates>`__ field and depends on the dynamic PV creation capability of StorageClass. In this mode, each pod is associated with a unique PVC and PV. After a pod is rescheduled, the original data can still be mounted to it based on the PVC name. | EVS and local PV            | Supported only by StatefulSets |
-   +-----------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+--------------------------------+
+   +------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+--------------------------------+
+   | Mount Mode                                                             | Description                                                                                                                                                                                                                                                                                                                                                                                       | Supported Volume Type       | Other Constraints              |
+   +========================================================================+===================================================================================================================================================================================================================================================================================================================================================================================================+=============================+================================+
+   | Statically creating a storage volume (using existing storage)          | You can manually create PVs and PVCs using existing storage resources, such as EVS disks or SFS file systems. Kubernetes automatically matches and binds the PVC to a suitable PV based on the resource requirements specified in the PVC. Once bound, the PVC can be mounted to a workload, enabling the workload to access the storage resources for persistent data storage.                   | All volumes                 | None                           |
+   |                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                   |                             |                                |
+   |                                                                        | If the PV's access mode is **ReadWriteOnce**, the workload can **only run on a single pod**.                                                                                                                                                                                                                                                                                                      |                             |                                |
+   +------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+--------------------------------+
+   | Dynamically creating a storage volume (automatically creating storage) | You can specify a :ref:`StorageClass <cce_10_0378__section1652044721416>` in a PVC. The storage provisioner will then dynamically create the underlying storage resources and a PV based on the resource requirements declared in the PVC. The PV is automatically bound to the PVC, enabling automatic provisioning of storage resources.                                                        | EVS, OBS, SFS, and local PV | None                           |
+   |                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                   |                             |                                |
+   |                                                                        | If the PV's access mode is **ReadWriteOnce**, the workload can **only run on a single pod**.                                                                                                                                                                                                                                                                                                      |                             |                                |
+   +------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+--------------------------------+
+   | Dynamic mounting (VolumeClaimTemplate)                                 | Dynamic mounting is achieved using `volumeClaimTemplates <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#volume-claim-templates>`__ and relies on the dynamic PV creation capability of the specified StorageClass. In this mode, each pod is associated with a unique PVC and PV. When a pod is rescheduled, it can still mount the original data based on the PVC name. | EVS and local PV            | Supported only by StatefulSets |
+   |                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                   |                             |                                |
+   |                                                                        | Even if the PV's access mode is **ReadWriteOnce**, the workload can still run on multiple pods.                                                                                                                                                                                                                                                                                                   |                             |                                |
+   +------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+--------------------------------+
 
 .. _cce_10_0378__section19999142414413:
 
@@ -125,7 +131,7 @@ A PV reclaim policy is used to delete or reclaim underlying volumes when a PVC i
    #. Clear data on the associated underlying storage resources as required.
    #. Delete the associated underlying storage resources.
 
-   To reuse the underlying storage resources, create a PV.
+   If you want to continue using the underlying storage resources, delete the existing PV first. Then, create a new PV and PVC and associate them with the underlying storage resources.
 
 CCE also allows you to delete a PVC without deleting underlying storage resources. This function can be achieved only by using a YAML file: Set the PV reclaim policy to **Delete** and add **everest.io/reclaim-policy: retain-volume-only** to **annotations**. In this way, when the PVC is deleted, the PV is deleted, but the underlying storage resources are retained.
 
@@ -180,10 +186,51 @@ The following YAML file takes EVS as an example:
      persistentVolumeReclaimPolicy: Delete
      storageClassName: csi-disk
 
-Documentation
+.. _cce_10_0378__section1652044721416:
+
+StorageClasses
+--------------
+
+StorageClasses are resource objects that define storage types in Kubernetes. They enable dynamic provisioning of storage volumes. Once you modify the parameter settings of a StorageClass, it can automatically provision and adjust storage resources based on service requirements. When you specify a StorageClass name (**StorageClassName**) in a PVC, Kubernetes will automatically provision a PV and the underlying storage resources based on the requirements declared in the PVC. If no matching PV is found in the cluster, Kubernetes will call the target provisioner specified in the StorageClass to create a new PV and storage resources. This simplifies the process of manually creating and maintaining PVs. The StorageClass defines default parameters for storage provisioning. **If there are conflicts between the StorageClass settings and the PVC settings, the PVC settings will take precedence.**
+
+The following table lists default StorageClasses offered by CCE. These default StorageClasses cannot be modified. If the default StorageClasses cannot meet your service requirements, you can create a new StorageClass and set parameters such as the reclaim policy and binding mode. For details, see :ref:`Customizing a StorageClass <cce_10_0380>`.
+
+.. _cce_10_0378__table6727186529:
+
+.. table:: **Table 3** Default StorageClasses
+
+   +-------------------+-------------------------------+-------------------------+----------------+----------------------+--------------------+
+   | StorageClass Name | Storage Type                  | Provisioner             | Reclaim Policy | Binding              | Capacity Expansion |
+   +===================+===============================+=========================+================+======================+====================+
+   | csi-disk          | EVS                           | everest-csi-provisioner | Delete         | Immediate            | Supported          |
+   +-------------------+-------------------------------+-------------------------+----------------+----------------------+--------------------+
+   | csi-disk-topology | EVS disk created with a delay | everest-csi-provisioner | Delete         | WaitForFirstConsumer | Supported          |
+   +-------------------+-------------------------------+-------------------------+----------------+----------------------+--------------------+
+   | csi-nas           | SFS Capacity-Oriented         | everest-csi-provisioner | Delete         | Immediate            | Supported          |
+   +-------------------+-------------------------------+-------------------------+----------------+----------------------+--------------------+
+   | csi-sfsturbo      | SFS Turbo                     | everest-csi-provisioner | Delete         | Immediate            | Supported          |
+   +-------------------+-------------------------------+-------------------------+----------------+----------------------+--------------------+
+   | csi-obs           | OBS                           | everest-csi-provisioner | Delete         | Immediate            | Not supported      |
+   +-------------------+-------------------------------+-------------------------+----------------+----------------------+--------------------+
+
+The parameters in :ref:`Table 3 <cce_10_0378__table6727186529>` are as follows:
+
+-  **Storage Type**: The underlying storage type created by the StorageClass.
+-  **Provisioner**: The storage resource provisioner.
+-  **Reclaim Policy**: The policy for reclaiming the underlying storage when the PVC is deleted. For details, see :ref:`PV Reclaim Policy <cce_10_0378__section19999142414413>`.
+-  **Binding Mode**: How a volume is bound when a PV is dynamically created. The value can be **Immediate** or **WaitForFirstConsumer**.
+
+   -  **Immediate**: When a PVC is created, the storage resources and PV are created and bound to the PVC immediately, without delay.
+   -  **WaitForFirstConsumer**: When a PVC is created, it is not immediately bound to a PV. Instead, the storage resources and PV are created and bound to the PVC only after the pod that requires the PVC is scheduled.
+
+-  **Capacity Expansion**: Whether the PV created using the StorageClass supports dynamic capacity expansion.
+
+For more information about the default StorageClasses, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`. Run **kubectl describe sc <storageclass-name>** for detailed information.
+
+Helpful Links
 -------------
 
 -  For more information about Kubernetes storage, see `Storage <https://kubernetes.io/docs/concepts/storage/>`__.
--  For more information about CCE container storage, see :ref:`Overview <cce_10_0307>`.
+-  For more information about CCE container storage, see :ref:`Storage Overview <cce_10_0307>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000002218660566.png
+.. |image1| image:: /_static/images/en-us_image_0000002467718709.png

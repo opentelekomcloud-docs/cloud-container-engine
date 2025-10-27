@@ -26,65 +26,65 @@ Networks
 --------
 
 -  By default, a NodePort Service is accessed within a VPC. To access a NodePort Service through the Internet, bind an EIP to the node in the cluster beforehand.
--  LoadBalancer Services allow workloads to be accessed from public networks through ELB. This access mode has the following restrictions:
+-  Constraints on load balancers associated with Services:
 
-   -  Automatically created load balancers should not be used by other resources. Otherwise, these load balancers cannot be completely deleted.
-   -  Do not change the listener name for the load balancer in clusters of v1.15 and earlier. Otherwise, the load balancer cannot be accessed.
+   -  The load balancer automatically created based on the Service configuration cannot be associated with other resources. If you associate the load balancer with other resources, the load balancer cannot be automatically deleted when the Service is deleted, resulting in residual resources.
+   -  The names of load balancer listeners for clusters of v1.15 or earlier cannot be changed. If you change the names, access to the load balancer may be abnormal.
 
 -  The table below shows the relationships between network policies and cluster types.
 
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | Cluster Type                                                 | CCE Standard Cluster  | CCE Turbo Cluster                                                                           |
-   +==============================================================+=======================+=============================================================================================+
-   | Network Model                                                | Tunnel                | Cloud Native Network 2.0                                                                    |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | NetworkPolicy                                                | Enabled by default    | Disabled by default (To use network policies, enable DataPlane V2 when creating a cluster.) |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | Data plane implementation                                    | OpenvSwitch           | eBPF                                                                                        |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | Cluster version for inbound rules                            | All versions          | v1.27.16-r10, v1.28.15-r0, v1.29.10-r0, v1.30.6-r0, or later                                |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | Cluster version for outbound rules                           | v1.23 and later       |                                                                                             |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | Selector for inbound rules                                   | namespaceSelector     | namespaceSelector                                                                           |
-   |                                                              |                       |                                                                                             |
-   |                                                              | podSelector           | podSelector                                                                                 |
-   |                                                              |                       |                                                                                             |
-   |                                                              |                       | IPBlock                                                                                     |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | Selector for outbound rules                                  | namespaceSelector     |                                                                                             |
-   |                                                              |                       |                                                                                             |
-   |                                                              | podSelector           |                                                                                             |
-   |                                                              |                       |                                                                                             |
-   |                                                              | IPBlock               |                                                                                             |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | Supported OS                                                 | EulerOS               | HCE OS 2.0                                                                                  |
-   |                                                              |                       |                                                                                             |
-   |                                                              | HCE OS 2.0            |                                                                                             |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | IPv6 network policies                                        | Not supported         | Supported                                                                                   |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | Secure containers                                            | Not supported         | Not supported                                                                               |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | IPBlock scope                                                | Not limited           | The CIDR blocks and node IP addresses in the container CIDR block cannot be configured.     |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | Limit ClusterIP access through workload labels               | Not supported         | Supported                                                                                   |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | Limit the internal cloud server CIDR block of 100.125.0.0/16 | Supported             | Not supported                                                                               |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | SCTP                                                         | Not supported         | Not supported                                                                               |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | Always allow access to pods on a node from other nodes       | Supported             | Supported                                                                                   |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
-   | Configure EndPort in network policies                        | Not supported         | Not supported                                                                               |
-   +--------------------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------+
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | Cluster Type                                                 | CCE Standard Cluster | CCE Standard Cluster                                                                        | CCE Turbo Cluster                                                                           |
+   +==============================================================+======================+=============================================================================================+=============================================================================================+
+   | Network Model                                                | Tunnel               | VPC                                                                                         | Cloud Native Network 2.0                                                                    |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | NetworkPolicy                                                | Enabled by default   | Disabled by default (To use network policies, enable DataPlane V2 when creating a cluster.) | Disabled by default (To use network policies, enable DataPlane V2 when creating a cluster.) |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | Data plane implementation                                    | OpenvSwitch          | eBPF                                                                                        | eBPF                                                                                        |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | Cluster version for ingress rules                            | All versions         | Cluster version: v1.27.16-r30, v1.28.15-r20, v1.29.13-r0, v1.30.10-r0, v1.31.6-r0, or later | Cluster version: v1.27.16-r10, v1.28.15-r0, v1.29.10-r0, v1.30.6-r0, or later               |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | Cluster version for egress rules                             | v1.23 and later      |                                                                                             |                                                                                             |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | Selector for ingress rules                                   | namespaceSelector    | namespaceSelector                                                                           | namespaceSelector                                                                           |
+   |                                                              |                      |                                                                                             |                                                                                             |
+   |                                                              | podSelector          | podSelector                                                                                 | podSelector                                                                                 |
+   |                                                              |                      |                                                                                             |                                                                                             |
+   |                                                              |                      | IPBlock                                                                                     | IPBlock                                                                                     |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | Selector for egress rules                                    | namespaceSelector    |                                                                                             |                                                                                             |
+   |                                                              |                      |                                                                                             |                                                                                             |
+   |                                                              | podSelector          |                                                                                             |                                                                                             |
+   |                                                              |                      |                                                                                             |                                                                                             |
+   |                                                              | IPBlock              |                                                                                             |                                                                                             |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | Supported OS                                                 | EulerOS              | HCE OS 2.0                                                                                  | HCE OS 2.0                                                                                  |
+   |                                                              |                      |                                                                                             |                                                                                             |
+   |                                                              | HCE OS 2.0           |                                                                                             |                                                                                             |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | IPv6 network policies                                        | Not supported        | Not supported                                                                               | Supported                                                                                   |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | Secure containers                                            | Not supported        | Not supported                                                                               | Not supported                                                                               |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | IPBlock scope                                                | Not limited          | Subnets within the pod CIDR block, Service CIDR block, and node IP addresses                | Subnets within the pod CIDR block, Service CIDR block, and node IP addresses                |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | Limit ClusterIP access through workload labels               | Not supported        | Supported                                                                                   | Supported                                                                                   |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | Limit the internal cloud server CIDR block of 100.125.0.0/16 | Supported            | Supported                                                                                   | Not supported                                                                               |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | SCTP                                                         | Not supported        | Supported                                                                                   | Not supported                                                                               |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | Always allow access to pods on a node from other nodes       | Supported            | Supported                                                                                   | Supported                                                                                   |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
+   | Configure EndPort in network policies                        | Not supported        | Supported                                                                                   | Not supported                                                                               |
+   +--------------------------------------------------------------+----------------------+---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------+
 
    .. note::
 
       -  CCE DataPlane V2 is released with restrictions. To use this feature, submit a service ticket to CCE.
       -  Secure containers (such as Kata as the container runtime) are not supported by network policies.
       -  If you upgrade a CCE standard cluster with a tunnel network to a version that supports egress rules in in-place mode, the rules will not work because the node OS is not upgraded. In this case, reset the node.
-      -  When a network policy is enabled for a cluster that uses a tunnel network, the source IP address of a pod accessing the CIDR block of a Service will be recorded in the optional field of the reported IP address data. This enables the configuration of network policy rules on the destination pod, taking into account the source IP address of the pod.
+      -  When a network policy is enabled for a cluster with a tunnel network, a pod's source IP address is embedded in the optional field of packets it sends to any Service CIDR block. This enables the configuration of network policy rules on the destination pod, taking into account the source IP address of the pod.
 
 Storage Volumes
 ---------------
@@ -101,7 +101,7 @@ Storage Volumes
 
    -  Multiple PVs can use the same SFS or SFS Turbo file system with the following restrictions:
 
-      -  Do not mount multiple PVCs or PVs that use the same underlying SFS or SFS Turbo volume to a single pod. Doing so will cause pod startup failures, as not all PVCs can be mounted due to identical **volumeHandle** value.
+      -  If a pod mounts an SFS or SFS Turbo volume used by multiple PVCs/PVs, and the PVs have identical **volumeHandle** values, the pod may fail to start. To avoid this issue, do not mount the same SFS or SFS Turbo file system to the same pod.
       -  The **persistentVolumeReclaimPolicy** parameter in the PVs must be set to **Retain**. Otherwise, when a PV is deleted, the associated underlying volume may be deleted. In this case, other PVs associated with the underlying volume malfunction.
       -  When the underlying volume is repeatedly used, enable isolation and protection for ReadWriteMany at the application layer to prevent data overwriting and loss.
 
@@ -113,6 +113,7 @@ Storage Volumes
    -  Every time an OBS volume is mounted to a workload through a PVC, a resident process is created in the backend. When a workload uses too many OBS volumes or reads and writes a large number of object storage files, resident processes will consume a significant amount of memory. To ensure stable running of the workload, make sure that the number of OBS volumes used does not exceed the requested memory. For example, if the workload requests for 4 GiB of memory, the number of OBS volumes should be **no more than** 4.
    -  Secure containers do not support OBS volumes.
    -  Hard links are not supported when common buckets are mounted.
+   -  Read-only is not supported when an OBS PVC is mounted to a workload.
 
 -  Constraints on local PVs:
 
@@ -143,7 +144,7 @@ Storage Volumes
 Add-ons
 -------
 
-CCE uses Helm charts to deploy add-ons. To modify or upgrade an add-on, perform operations on the **Add-ons** page or use open add-on management APIs. Do not directly modify add-on resources on the backend. Otherwise, add-on exceptions or other unexpected problems may occur.
+CCE uses Helm charts to deploy add-ons. To modify or upgrade an add-on, perform operations on the **Add-ons** page or use open add-on management APIs. Avoid making changes to add-on resources in the backend, as this may lead to abnormal add-on behavior or unexpected issues. For example, parameter settings could be overwritten after an upgrade.
 
 CCE Cluster Resources
 ---------------------

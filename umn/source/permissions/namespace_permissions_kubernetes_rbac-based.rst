@@ -19,7 +19,7 @@ You can regulate users' or user groups' access to Kubernetes resources in a sing
 Role and ClusterRole specify actions that can be performed on specific resources. RoleBinding and ClusterRoleBinding bind roles to specific users, user groups, or ServiceAccounts. Illustration:
 
 
-.. figure:: /_static/images/en-us_image_0000002218660654.png
+.. figure:: /_static/images/en-us_image_0000002467679385.png
    :alt: **Figure 1** Role binding
 
    **Figure 1** Role binding
@@ -34,6 +34,10 @@ On the CCE console, you can assign permissions to a user or user group to access
 -  drainage-viewer: view the nodal drainage status but cannot drain a node.
 
 In addition to the preceding typical ClusterRoles, you can define Role and RoleBinding to grant the permissions to add, delete, modify, and obtain global resources (such as nodes, PVs, and CustomResourceDefinitions) and different resources (such as pods, Deployments, and Services) in namespaces for refined permission control.
+
+.. caution::
+
+   Kubernetes RBAC controls access to cluster API resources. It cannot control access to underlying resources of cluster nodes and is not suitable for strict resource isolation between multiple tenants.
 
 Cluster Permissions (IAM-based) and Namespace Permissions (Kubernetes RBAC-based)
 ---------------------------------------------------------------------------------
@@ -67,9 +71,9 @@ Configuring Namespace Permissions (on the Console)
 
 You can regulate users' or user groups' access to Kubernetes resources in a single namespace based on their Kubernetes RBAC roles.
 
-#. Log in to the CCE console. In the navigation pane, choose **Permissions**.
+#. Log in to the CCE console.
 
-#. Select a cluster for which you want to add permissions from the drop-down list on the right.
+#. In the navigation pane, choose **Permissions**. Select the cluster for which you want to add permissions from the drop-down list on the right.
 
 #. Click **Add Permission** in the upper right corner.
 
@@ -189,7 +193,6 @@ To verify namespace permissions, perform the following operations:
 
    .. code-block::
 
-      # kubectl get deploy
       Error from server (Forbidden): deployments.apps is forbidden: User "0c97ac3cb280f4d91fa7c0096739e1f8" cannot list resource "deployments" in API group "apps" in the namespace "default"
 
 #. Check the pod information in the **kube-system** namespace.

@@ -16,7 +16,8 @@ The official community project and documentation are available at https://github
 Installing the Add-on
 ---------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate **Kubernetes Metrics Server** on the right, and click **Install**.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Add-ons**. Locate **Kubernetes Metrics Server** on the right and click **Install**.
 #. On the **Install Add-on** page, configure the specifications as needed.
 
    -  If you selected **Preset**, you can choose between **Small** or **Large** as needed. The system will automatically set the number of add-on pods and resource quotas according to the preset specifications. You can see the configurations on the console.
@@ -71,14 +72,28 @@ Components
    | metrics-server | Aggregator for the monitored data of cluster core resources, which is used to collect and aggregate resource usage metrics obtained through the Metrics API in the cluster | Deployment    |
    +----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
 
-Change History
---------------
+Release History
+---------------
 
-.. table:: **Table 3** Release history
+.. table:: **Table 3** Kubernetes Metrics Server add-on
 
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                     | Community Version                                                                 |
    +=================+===========================+=================================================================================+===================================================================================+
+   | 1.3.102         | v1.25                     | CCE clusters v1.32 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.27                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.28                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.29                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.30                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.31                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.32                     |                                                                                 |                                                                                   |
+   +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
    | 1.3.90          | v1.25                     | CCE clusters v1.31 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.27                     |                                                                                 |                                                                                   |

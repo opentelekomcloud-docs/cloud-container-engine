@@ -42,7 +42,7 @@ Nginx Ingress
 -------------
 
 -  For an Nginx ingress that uses a dedicated load balancer, transparent transmission of source IP addresses is enabled by default. This means that you can easily obtain the source IP address of the client without any additional configurations.
--  For an Nginx ingress that uses a shared load balancer, perform the following steps to obtain the source IP address of the client:
+-  For an Nginx ingress that uses a shared load balancer, take the following steps to obtain the source IP address of the client:
 
 #. Take the Nginx workload as an example. Before configuring the source IP address, obtain the access logs. **nginx-c99fd67bb-ghv4q** indicates the pod name.
 
@@ -106,7 +106,7 @@ For a LoadBalancer Service, different types of clusters obtain source IP address
 
 **VPC and Container Tunnel Network Models**
 
-To enable the function of obtaining the source IP address on the console, perform the following steps:
+To enable the function of obtaining the source IP address on the console, take the following steps:
 
 #. When creating a LoadBalancer Service on the CCE console, set **Service Affinity** to **Node-level** instead of **Cluster-level**.
 #. Go to the ELB console and enable the function of obtaining the client IP address of the listener corresponding to the load balancer. **Transparent transmission of source IP addresses is enabled for dedicated load balancers by default. You do not need to manually enable this function.**
@@ -135,5 +135,5 @@ Set the service affinity of a NodePort Service to **Node-level** instead of **Cl
 
    In clusters using Cloud Native 2.0 networks, if NodePort Services are used, only workloads with hostNetwork enabled support node-level service affinity. Therefore, only such workloads can obtain source IP addresses.
 
-.. |image1| image:: /_static/images/en-us_image_0000002218658206.png
-.. |image2| image:: /_static/images/en-us_image_0000002253617941.png
+.. |image1| image:: /_static/images/en-us_image_0000002434077688.png
+.. |image2| image:: /_static/images/en-us_image_0000002434237560.png

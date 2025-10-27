@@ -23,6 +23,12 @@ Based on the check result, it is detected that your cluster calls a deprecated A
 
 **Case Study**
 
+Case 1:
+
 Ingresses of the extensions/v1beta1 and networking.k8s.io/v1beta1 APIs are deprecated in Kubernetes v1.22. If you upgrade a cluster from v1.19 or v1.21 to v1.23, existing resources are not affected, but the v1beta1 API may be intercepted in the creation and editing scenarios.
 
 For details about the YAML configuration structure changes, see :ref:`Using kubectl to Create a LoadBalancer Ingress <cce_10_0252>`.
+
+Case 2:
+
+The scanning result indicates that the user agent's **coredns** client is accessing the deprecated or to-be-deprecated discovery.k8s.io/v1beta1 Kubernetes API (specifically the **/apis/discovery.k8s.io/v1beta1/endpointslices** path). To prevent domain name resolution issues during the cluster upgrade, you must **manually restart the CoreDNS pod** before proceeding.

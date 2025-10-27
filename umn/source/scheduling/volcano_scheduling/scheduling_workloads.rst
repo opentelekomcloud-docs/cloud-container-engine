@@ -129,4 +129,4 @@ You can obtain pod details to check whether the pod is scheduled by Volcano to t
         ----    ------     ----             ----     -------
         Normal  Scheduled  0s (x3 over 2s)  volcano  pod group is ready
 
-.. |image1| image:: /_static/images/en-us_image_0000002218819982.png
+.. |image1| image:: /_static/images/en-us_image_0000002434240500.png

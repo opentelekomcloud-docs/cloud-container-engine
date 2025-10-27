@@ -31,19 +31,31 @@ After you install gpu-beta (gpu-device-plugin) on a node, nvidia-smi will be aut
 
 -  GPU node:
 
-   .. code-block::
+   -  If the add-on version is earlier than 2.0.0, run the following command:
 
-      # If the add-on version is earlier than 2.0.0, run the following command:
-      cd /opt/cloud/cce/nvidia/bin && ./nvidia-smi
+      .. code-block::
 
-      # If the add-on version is 2.0.0 or later and the driver installation path is changed, run the following command:
-      cd /usr/local/nvidia/bin && ./nvidia-smi
+         cd /opt/cloud/cce/nvidia/bin && ./nvidia-smi
+
+   -  If the add-on version is 2.0.0 or later, run the following command:
+
+      .. code-block::
+
+         cd /usr/local/nvidia/bin && ./nvidia-smi
 
 -  Container:
 
-   .. code-block::
+   -  If the cluster version is v1.27 or earlier, run the following command:
 
-      cd /usr/local/nvidia/bin && ./nvidia-smi
+      .. code-block::
+
+         cd /usr/local/nvidia/bin && ./nvidia-smi
+
+   -  If the cluster version is v1.28 or later, run the following command:
+
+      .. code-block::
+
+         cd /usr/bin && ./nvidia-smi
 
 If GPU information is returned, the device is available and the add-on has been installed.
 

@@ -6,7 +6,7 @@ Service Overview
 ================
 
 -  :ref:`What Is CCE? <cce_productdesc_0001>`
--  :ref:`Product Advantages <cce_productdesc_0003>`
+-  :ref:`CCE Advantages <cce_productdesc_0003>`
 -  :ref:`Application Scenarios <cce_productdesc_0004>`
 -  :ref:`Permissions <cce_productdesc_0002>`
 -  :ref:`Notes and Constraints <cce_productdesc_0005>`
@@ -18,7 +18,7 @@ Service Overview
    :hidden: 
 
    what_is_cce
-   product_advantages
+   cce_advantages
    application_scenarios/index
    permissions
    notes_and_constraints

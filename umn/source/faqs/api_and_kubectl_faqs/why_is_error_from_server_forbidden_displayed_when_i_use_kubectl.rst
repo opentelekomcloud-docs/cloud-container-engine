@@ -22,9 +22,9 @@ Solution
 
 To grant the Kubernetes permissions to the user, perform the following operations:
 
-#. Log in to the CCE console. In the navigation pane, choose **Permissions**.
+#. Log in to the CCE console.
 
-#. Select a cluster for which you want to add permissions from the drop-down list on the right.
+#. In the navigation pane, choose **Permissions**. Select the cluster for which you want to add permissions from the drop-down list on the right.
 
 #. Click **Add Permission** in the upper right corner.
 

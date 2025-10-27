@@ -47,14 +47,14 @@ This document describes the principles and practices of grayscale release and bl
 
    |image11|
 
-.. |image1| image:: /_static/images/en-us_image_0000002254978558.png
-.. |image2| image:: /_static/images/en-us_image_0000002289476265.png
-.. |image3| image:: /_static/images/en-us_image_0000002289589649.png
-.. |image4| image:: /_static/images/en-us_image_0000002254895070.png
-.. |image5| image:: /_static/images/en-us_image_0000002254877052.png
-.. |image6| image:: /_static/images/en-us_image_0000002254877428.png
-.. |image7| image:: /_static/images/en-us_image_0000002254895574.png
-.. |image8| image:: /_static/images/en-us_image_0000002254895914.png
-.. |image9| image:: /_static/images/en-us_image_0000002289592109.png
-.. |image10| image:: /_static/images/en-us_image_0000002254879860.png
-.. |image11| image:: /_static/images/en-us_image_0000002255002834.png
+.. |image1| image:: /_static/images/en-us_image_0000002434237712.png
+.. |image2| image:: /_static/images/en-us_image_0000002467676153.png
+.. |image3| image:: /_static/images/en-us_image_0000002434237644.png
+.. |image4| image:: /_static/images/en-us_image_0000002434237668.png
+.. |image5| image:: /_static/images/en-us_image_0000002434077820.png
+.. |image6| image:: /_static/images/en-us_image_0000002434237664.png
+.. |image7| image:: /_static/images/en-us_image_0000002467676197.png
+.. |image8| image:: /_static/images/en-us_image_0000002467716313.png
+.. |image9| image:: /_static/images/en-us_image_0000002434237648.png
+.. |image10| image:: /_static/images/en-us_image_0000002467676157.png
+.. |image11| image:: /_static/images/en-us_image_0000002467716341.png

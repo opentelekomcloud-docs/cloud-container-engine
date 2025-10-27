@@ -13,7 +13,7 @@ An unfinished drainage task is detected in the cluster, which may resume after t
 Solution
 --------
 
-#. Configure the **kubectl** command. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Configure the **kubectl** command. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Check if there are any drainage tasks in progress.
 
@@ -22,7 +22,7 @@ Solution
       kubectl get drainage
 
 
-   .. figure:: /_static/images/en-us_image_0000002253620029.png
+   .. figure:: /_static/images/en-us_image_0000002467678321.png
       :alt: **Figure 1** An in-progress drainage task
 
       **Figure 1** An in-progress drainage task

@@ -11,7 +11,7 @@ Check Items
 Check the following items:
 
 -  Check whether the key data disks on the node meet the upgrade requirements.
--  Check whether the **/tmp** directory has 500 MB available space.
+-  Check whether the **/tmp** directory has 500 MB of available space.
 
 Solution
 --------

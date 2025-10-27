@@ -12,7 +12,7 @@ Prerequisites
 
 -  A cluster of v1.21 or later is available. For details, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
 -  The Volcano add-on of v1.11.14 or later has been installed. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
--  The Cloud Native Cluster Monitoring add-on (kube-prometheus-stack) has been installed and it runs in local data storage mode. For details, see :ref:`Cloud Native Cluster Monitoring <cce_10_0406>`. If you use an on-premises Prometheus monitoring system, Prometheus 2.35.0 or later is recommended. For details, see :ref:`Using Self-Built Prometheus to Configure Load-aware Scheduling <cce_10_0789__section423012214818>`.
+-  The Cloud Native Cluster Monitoring add-on (kube-prometheus-stack) has been installed and it runs in local data storage mode. For details, see :ref:`Cloud Native Cluster Monitoring <cce_10_0406>`. If you use an on-premises Prometheus monitoring system, Prometheus 2.35.0 or later is recommended. For details, see :ref:`Using On-premises Prometheus <cce_10_0789__section423012214818>`.
 -  Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 Features
@@ -48,7 +48,7 @@ Using Cloud Native Cluster Monitoring
 
       Resource metrics can be provided by Metrics API only when local data storage is enabled for the Cloud Native Cluster Monitoring add-on.
 
-   Check whether Metrics API has been enabled for the cluster. If it is enabled, you can skip this step.
+   Check whether the Metrics API has been enabled for the cluster. If so, skip this step.
 
    .. code-block::
 
@@ -58,7 +58,7 @@ Using Cloud Native Cluster Monitoring
 
    If no Metrics API is found, you can manually create an APIService object to enable it.
 
-   a. Create a file named **metrics-apiservice.yaml**. Example file content:
+   a. Create a file named **metrics-apiservice.yaml**. The file content is as follows:
 
       .. code-block::
 
@@ -86,7 +86,7 @@ Using Cloud Native Cluster Monitoring
 
          kubectl create -f metrics-apiservice.yaml
 
-   c. Check whether Metrics API is enabled for the cluster.
+   c. Check whether the Metrics API has been enabled for the cluster.
 
       .. code-block::
 
@@ -110,59 +110,117 @@ Using Cloud Native Cluster Monitoring
 
    b. Add collection rules to the **rules** field.
 
-      In the following example rules, the rules in red are new ones and those in black are existing ones:
+      In the example rules below, the rules in **config.yaml** are new ones and others are existing ones. Custom metric collection rules are related to the Cloud Native Cluster Monitoring add-on version. Select the rules based on the add-on version.
 
-      .. code-block::
+      -  For Cloud Native Cluster Monitoring of v3.12.0 or earlier versions:
 
-         ...
-         data:
-           config.yaml: >
-             rules:
-             - seriesQuery: '{__name__=~"node_cpu_seconds_total"}'
-               resources:
-                 overrides:
-                   instance:
-                     resource: node
-               name:
-                 matches: node_cpu_seconds_total
-                 as: node_cpu_usage_avg
-               metricsQuery: avg_over_time((1 - avg (irate(<<.Series>>{mode="idle"}[5m])) by (instance))[10m:30s])
-             - seriesQuery: '{__name__=~"node_memory_MemTotal_bytes"}'
-               resources:
-                 overrides:
-                   instance:
-                     resource: node
-               name:
-                 matches: node_memory_MemTotal_bytes
-                 as: node_memory_usage_avg
-               metricsQuery: avg_over_time(((1-node_memory_MemAvailable_bytes/<<.Series>>))[10m:30s])
-             resourceRules:
-               cpu:
-                 containerQuery: sum(rate(container_cpu_usage_seconds_total{<<.LabelMatchers>>,container!="",pod!=""}[1m])) by (<<.GroupBy>>)
-                 nodeQuery: sum(rate(container_cpu_usage_seconds_total{<<.LabelMatchers>>, id='/'}[1m])) by (<<.GroupBy>>)
-                 resources:
-                   overrides:
-                     instance:
-                       resource: node
-                     namespace:
-                       resource: namespace
-                     pod:
-                       resource: pod
-                 containerLabel: container
-               memory:
-                 containerQuery: sum(container_memory_working_set_bytes{<<.LabelMatchers>>,container!="",pod!=""}) by (<<.GroupBy>>)
-                 nodeQuery: sum(container_memory_working_set_bytes{<<.LabelMatchers>>,id='/'}) by (<<.GroupBy>>)
-                 resources:
-                   overrides:
-                     instance:
-                       resource: node
-                     namespace:
-                       resource: namespace
-                     pod:
-                       resource: pod
-                 containerLabel: container
-               window: 1m
-         ...
+         .. code-block::
+
+            ...
+            data:
+              config.yaml: |
+                rules:
+                - seriesQuery: '{__name__=~"node_cpu_seconds_total"}'
+                  resources:
+                    overrides:
+                      instance:
+                        resource: node
+                  name:
+                    matches: node_cpu_seconds_total
+                    as: node_cpu_usage_avg
+                  metricsQuery: avg_over_time((1 - avg (irate(<<.Series>>{mode="idle"}[5m])) by (instance))[10m:30s])
+                - seriesQuery: '{__name__=~"node_memory_MemTotal_bytes"}'
+                  resources:
+                    overrides:
+                      instance:
+                        resource: node
+                  name:
+                    matches: node_memory_MemTotal_bytes
+                    as: node_memory_usage_avg
+                  metricsQuery: avg_over_time(((1-node_memory_MemAvailable_bytes/<<.Series>>))[10m:30s])
+                resourceRules:
+                  cpu:
+                    containerQuery: sum(rate(container_cpu_usage_seconds_total{<<.LabelMatchers>>,container!="",pod!=""}[1m])) by (<<.GroupBy>>)
+                    nodeQuery: sum(rate(container_cpu_usage_seconds_total{<<.LabelMatchers>>, id='/'}[1m])) by (<<.GroupBy>>)
+                    resources:
+                      overrides:
+                        instance:
+                          resource: node
+                        namespace:
+                          resource: namespace
+                        pod:
+                          resource: pod
+                    containerLabel: container
+                  memory:
+                    containerQuery: sum(container_memory_working_set_bytes{<<.LabelMatchers>>,container!="",pod!=""}) by (<<.GroupBy>>)
+                    nodeQuery: sum(container_memory_working_set_bytes{<<.LabelMatchers>>,id='/'}) by (<<.GroupBy>>)
+                    resources:
+                      overrides:
+                        instance:
+                          resource: node
+                        namespace:
+                          resource: namespace
+                        pod:
+                          resource: pod
+                    containerLabel: container
+                  window: 1m
+            ...
+
+      -  For Cloud Native Cluster Monitoring of v3.12.1 or later versions:
+
+         .. code-block::
+
+            ...
+            data:
+              config.yaml: |
+                rules:
+                - seriesQuery: '{__name__=~"node_cpu_seconds_total"}'
+                  resources:
+                    overrides:
+                      node:
+                        resource: node
+                  name:
+                    matches: node_cpu_seconds_total
+                    as: node_cpu_usage_avg
+                  metricsQuery: avg_over_time((1 - avg (irate(<<.Series>>{mode="idle"}[5m])) by (node))[10m:30s])
+                - seriesQuery: '{__name__=~"node_memory_MemTotal_bytes"}'
+                  resources:
+                    overrides:
+                      node:
+                        resource: node
+                  name:
+                    matches: node_memory_MemTotal_bytes
+                    as: node_memory_usage_avg
+                  metricsQuery: avg_over_time(((1-node_memory_MemAvailable_bytes/<<.Series>>))[10m:30s])
+                resourceRules:
+                  cpu:
+                    containerQuery: sum(rate(container_cpu_usage_seconds_total{<<.LabelMatchers>>,container!="",pod!=""}[1m])) by (<<.GroupBy>>)
+                    nodeQuery: sum(rate(container_cpu_usage_seconds_total{<<.LabelMatchers>>, id='/'}[1m])) by (<<.GroupBy>>)
+                    resources:
+                      overrides:
+                        node:
+                          resource: node
+                        namespace:
+                          resource: namespace
+                        pod:
+                          resource: pod
+                    containerLabel: container
+                  memory:
+                    containerQuery: sum(container_memory_working_set_bytes{<<.LabelMatchers>>,container!="",pod!=""}) by (<<.GroupBy>>)
+                    nodeQuery: sum(container_memory_working_set_bytes{<<.LabelMatchers>>,id='/'}) by (<<.GroupBy>>)
+                    resources:
+                      overrides:
+                        node:
+                          resource: node
+                        namespace:
+                          resource: namespace
+                        pod:
+                          resource: pod
+                    containerLabel: container
+                  window: 1m
+            ...
+
+      The relevant parameters are as follows:
 
       -  **Rules for collecting the average CPU usage**
 
@@ -188,7 +246,7 @@ Using Cloud Native Cluster Monitoring
 
    d. Verify that the custom rules are configured successfully.
 
-      #. Run the following command. If the custom metric information is returned, the metric collection configuration on Prometheus is successful.
+      #. Run the following command. If the custom metric information is returned, the Prometheus metric collection is configured correctly.
 
          .. code-block::
 
@@ -196,7 +254,7 @@ Using Cloud Native Cluster Monitoring
 
          |image1|
 
-      #. Query information about nodes in the cluster.
+      #. Obtain nodes in the cluster.
 
          .. code-block::
 
@@ -216,9 +274,9 @@ Using Cloud Native Cluster Monitoring
 
    After Volcano is installed, you can enable or disable load-aware scheduling on the **Scheduling** page by choose **Settings** in the navigation pane. This function is disabled by default.
 
-   a. Log in to the CCE console.
-   b. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane. In the right pane, click the **Scheduling** tab.
-   c. In the **Resource utilization optimization scheduling** area, modify the load-aware scheduling settings.
+   a. Log in to the CCE console and click the cluster name to access the cluster console.
+   b. Choose **Settings** in the navigation pane and click the **Scheduling** tab.
+   c. In the **Resource Utilization-optimized Scheduling** area, modify the load-aware scheduling settings.
 
       .. note::
 
@@ -243,10 +301,10 @@ Using Cloud Native Cluster Monitoring
 
 .. _cce_10_0789__section423012214818:
 
-Using Self-Built Prometheus to Configure Load-aware Scheduling
---------------------------------------------------------------
+Using On-premises Prometheus
+----------------------------
 
-#. Install prometheus-adapter in the cluster.
+#. Install `prometheus-adapter <https://github.com/kubernetes-sigs/prometheus-adapter.git>`__ in the cluster.
 
    a. Run the following commands to install prometheus-adapter:
 
@@ -264,7 +322,11 @@ Using Self-Built Prometheus to Configure Load-aware Scheduling
 
       Change the value of **prometheus-url** as follows:
 
-      -  Change HTTPS to HTTP.
+      -  prometheus-adapter supports HTTPS and HTTP. You can configure the protocol based on your custom-built Prometheus setup.
+
+         -  If TLS or HTTPS has been enabled for Prometheus, use HTTPS.
+         -  If TLS or HTTPS is not enabled for Prometheus and data is exposed only within the cluster via Services, use HTTP.
+
       -  Change the default domain name to the IP address and port of Prometheus Service. You can run the **kubectl get service -n monitoring** command to query the IP address and port.
 
       .. code-block::
@@ -287,7 +349,7 @@ Using Self-Built Prometheus to Configure Load-aware Scheduling
 
 #. Enable Custom Metrics API to provide container resource metrics.
 
-   Check whether Custom Metrics API has been enabled for the cluster. If it is enabled, you can skip this step.
+   Check whether the custom Metrics API has been enabled for the cluster. If so, skip this step.
 
    .. code-block::
 
@@ -295,7 +357,7 @@ Using Self-Built Prometheus to Configure Load-aware Scheduling
 
    If any command output is displayed, Custom Metrics API has been enabled. If no command output is displayed, perform the following operations to register the APIService object. (Note that the Service name and namespace must be consistent with those in the actual installation environment.) The following uses the default values of kube-prometheus.
 
-   a. Create a file named **custom-metrics-apiservice.yaml**. Example file content:
+   a. Create a file named **custom-metrics-apiservice.yaml**. The file content is as follows:
 
       .. code-block::
 
@@ -324,7 +386,7 @@ Using Self-Built Prometheus to Configure Load-aware Scheduling
 
          kubectl create -f custom-metrics-apiservice.yaml
 
-   c. Check whether Custom Metrics API is enabled for the cluster.
+   c. Check whether the custom Metrics API has been enabled for the cluster.
 
       .. code-block::
 
@@ -376,7 +438,7 @@ Using Self-Built Prometheus to Configure Load-aware Scheduling
 
    d. Verify that the custom rules are configured successfully.
 
-      #. Run the following command. If the custom metric information is returned, the metric collection configuration on Prometheus is successful.
+      #. Run the following command. If the custom metric information is returned, the Prometheus metric collection is configured correctly.
 
          .. code-block::
 
@@ -384,7 +446,7 @@ Using Self-Built Prometheus to Configure Load-aware Scheduling
 
          |image4|
 
-      #. Query information about nodes in the cluster.
+      #. Obtain nodes in the cluster.
 
          .. code-block::
 
@@ -400,37 +462,86 @@ Using Self-Built Prometheus to Configure Load-aware Scheduling
 
          |image5|
 
-#. Enable load-aware scheduling.
+#. After installing Volcano, enable load-aware scheduling on the **Settings** > **Scheduling** page.
 
-   After Volcano is installed, you can enable or disable load-aware scheduling on the **Scheduling** page by choose **Settings** in the navigation pane. This function is disabled by default.
+   a. Log in to the CCE console and click the cluster name to access the cluster console.
 
-   a. Log in to the CCE console.
-   b. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane. In the right pane, click the **Scheduling** tab.
-   c. In the **Resource utilization optimization scheduling** area, modify the load-aware scheduling settings.
+   b. In the navigation pane, choose **Settings**. Then, click the **Scheduling** tab.
+
+   c. In the expert mode, click **Try Now**.
+
+   d. In the Volcano Scheduler settings, load-aware scheduling is disabled by default. You need to add the parameters in expert mode to enable this function.
 
       .. note::
 
          For optimal load-aware scheduling, disable bin packing because this policy preferentially schedules pods to the node with the maximal resources allocated based on pods' requested resources. This affects load-aware scheduling to some extent. For details about the combination of multiple policies, see :ref:`Configuration Cases for Resource Usage-based Scheduling <cce_10_0813>`.
 
-      +--------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Parameter                            | Description                                                                                                                                                                                                                                                   | Default Value         |
-      +======================================+===============================================================================================================================================================================================================================================================+=======================+
-      | Load-Aware Scheduling Policy Weight  | A larger value indicates a higher weight of the load-aware policy in overall scheduling.                                                                                                                                                                      | 5                     |
-      +--------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | CPU Weight                           | A larger value indicates CPU resources will be preferentially balanced.                                                                                                                                                                                       | 1                     |
-      +--------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Memory Weight                        | A larger value indicates memory resources will be preferentially balanced.                                                                                                                                                                                    | 1                     |
-      +--------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Actual load threshold effective mode | -  Soft constraint: When the actual CPU or memory load of a node reaches the threshold, new tasks will be preferentially allocated to underutilized nodes, but this node can still be scheduled.                                                              | Hard constraint       |
-      |                                      | -  Hard constraint: When the actual CPU or memory load of a node reaches the threshold, no new tasks can be scheduled to this node.                                                                                                                           |                       |
-      +--------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Actual CPU Load Threshold            | When a node's CPU usage goes beyond this threshold, workloads will be scheduled based on how the load threshold takes effect. New workloads will be preferentially or forcibly scheduled to other nodes. Existing workloads on the nodes are not affected.    | 80                    |
-      +--------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Actual Memory Load Threshold         | When a node's memory usage goes beyond this threshold, workloads will be scheduled based on how the load threshold takes effect. New workloads will be preferentially or forcibly scheduled to other nodes. Existing workloads on the nodes are not affected. | 80                    |
-      +--------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      .. code-block::
 
-.. |image1| image:: /_static/images/en-us_image_0000002218660474.png
-.. |image2| image:: /_static/images/en-us_image_0000002253620209.png
-.. |image3| image:: /_static/images/en-us_image_0000002218660478.png
-.. |image4| image:: /_static/images/en-us_image_0000002218660466.png
-.. |image5| image:: /_static/images/en-us_image_0000002253620213.png
+         ...
+         default_scheduler_conf:
+           actions: allocate, backfill, preempt
+           metrics:
+             interval: 30s
+             type: prometheus_adaptor
+           tiers:
+             - plugins:
+                 - name: priority
+                 - enableJobStarving: false
+                   enablePreemptable: false
+                   name: gang
+                 - name: conformance
+                 - name: oversubscription
+             - plugins:
+                 - enablePreemptable: false
+                   name: drf
+                 - name: predicates
+                 - name: nodeorder
+                 - arguments:
+                     cpu.weight: 1
+                     memory.weight: 1
+                     thresholds:
+                        cpu: 80
+                        mem: 80
+                     usage.weight: 5
+                   enablePredicate: true
+                   name: usage
+             - plugins:
+                 - name: cce-gpu-topology-predicate
+                 - name: cce-gpu-topology-priority
+                 - name: xgpu
+             - plugins:
+                 - name: nodelocalvolume
+                 - name: nodeemptydirvolume
+                 - name: nodeCSIscheduling
+                 - name: networkresource
+         ...
+
+      .. table:: **Table 1** Parameters for load-aware scheduling
+
+         +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Parameter             | Example Value         | Description                                                                                                                                                                                                                                                                                                |
+         +=======================+=======================+============================================================================================================================================================================================================================================================================================================+
+         | cpu.weight            | 1                     | The CPU weight. The value ranges from 0 to 200. A larger value indicates CPU resources will be preferentially balanced.                                                                                                                                                                                    |
+         +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | memory.weight         | 1                     | The memory weight. The value ranges from 0 to 200. A larger value indicates memory resources will be preferentially balanced.                                                                                                                                                                              |
+         +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | thresholds.cpu        | 80                    | The actual CPU load threshold. The value ranges from 1 to 100. If a node's actual CPU usage exceeds the threshold, new workloads will be preferentially or forcibly scheduled to other nodes based on the constraints defined in enablePredicate. Existing workloads on this node remain unaffected.       |
+         +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | thresholds.mem        | 80                    | The actual memory load threshold. The value ranges from 1 to 100. If a node's actual memory usage exceeds the threshold, new workloads will be preferentially or forcibly scheduled to other nodes based on the constraints defined in enablePredicate. Existing workloads on this node remain unaffected. |
+         +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | usage.weight          | 5                     | The weight for a load-aware scheduling policy. The value ranges from 0 to 200. A larger value indicates a higher weight of the load-aware policy in overall scheduling.                                                                                                                                    |
+         +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | enablePredicate       | true                  | How a load threshold takes effect. The value can be **true** or **false**.                                                                                                                                                                                                                                 |
+         |                       |                       |                                                                                                                                                                                                                                                                                                            |
+         |                       |                       | -  **true**: Hard constraints are enabled. If a node's actual CPU or memory load reaches the threshold, no new workloads will be scheduled to this node.                                                                                                                                                   |
+         |                       |                       | -  **false**: Soft constraints are enabled. If a node's actual CPU or memory load reaches the threshold, CCE will preferentially schedule new workloads to nodes whose CPU or memory load has not reached the threshold. However, workloads may still be scheduled to the node.                            |
+         +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | name                  | usage                 | The name of the enabled add-on. The value is fixed as **usage**.                                                                                                                                                                                                                                           |
+         +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. |image1| image:: /_static/images/en-us_image_0000002434240760.png
+.. |image2| image:: /_static/images/en-us_image_0000002434080944.png
+.. |image3| image:: /_static/images/en-us_image_0000002434080952.png
+.. |image4| image:: /_static/images/en-us_image_0000002434240756.png
+.. |image5| image:: /_static/images/en-us_image_0000002467679261.png

@@ -10,6 +10,7 @@ Check Items
 
 -  Check item 1: Check whether there is an Nginx Ingress route whose ingress type is not specified (**kubernetes.io/ingress.class: nginx** is not added to **annotations**) in the cluster.
 -  Check item 2: Check whether the DefaultBackend Service specified by the NGINX Ingress Controller backend is available.
+-  Check item 3: Check whether the key length of the default server certificate specified by the NGINX Ingress Controller meets the security requirements. (Message: ee key too small)
 
 .. _cce_10_0508__section18775201773016:
 
@@ -62,7 +63,7 @@ For Nginx Ingress, check the YAML. If the ingress type is not specified in the Y
 
       kubectl get pod cceaddon-nginx-ingress-<controller-name>-controller-*** -n <namespace> -oyaml | grep 'default-backend'
 
-   In the preceding command, ``cceaddon-nginx-ingress--controller-***`` is the controller pod name, *<controller-name>* is the controller name specified during add-on installation, and *<namespace>* is the namespace where the controller is deployed.
+   ``cceaddon-nginx-ingress--controller-***`` is the controller pod name, *<controller-name>* is the controller name specified during add-on installation, and *<namespace>* is the namespace where the controller is deployed.
 
    Command output:
 
@@ -79,6 +80,42 @@ For Nginx Ingress, check the YAML. If the ingress type is not specified in the Y
       kubectl get svc <backend-svc-name> -n <namespace>
 
    If the Service is unavailable, this check item failed.
+
+**For Check Item 3**
+
+#. .. _cce_10_0508__li7636134164413:
+
+   Check whether there is a default server certificate in the namespace where the NGINX Ingress Controller is deployed.
+
+   .. code-block::
+
+      kubectl get pod cceaddon-nginx-ingress-<controller-name>-controller-*** -n <namespace> -oyaml | grep 'default-ssl-certificate'
+
+   ``cceaddon-nginx-ingress--controller-***`` is the controller pod name, *<controller-name>* is the controller name specified during add-on installation, and *<namespace>* is the namespace where the controller is deployed.
+
+   Command output:
+
+   .. code-block::
+
+      - '--default-ssl-certificate=<namespace>/<secret-name>'
+
+   *<secret-name>* indicates the secret name for the default server certificate specified by the NGINX Ingress Controller.
+
+#. Check whether the default certificate used by the NGINX Ingress Controller has a security risk due to insufficient encryption length.
+
+   .. code-block::
+
+      kubectl get secret <secret-name> -n <namespace> -o=custom-columns=:'data.tls\.key' | base64 -d | openssl <encryption-algorithm> -noout -text
+
+   *<encryption-algorithm>* is the encryption algorithm used by the certificate. Common encryption algorithms include RSA and DSA.
+
+   Method of obtaining an RSA key length
+
+   |image4|
+
+   Method of obtaining a DSA key length
+
+   |image5|
 
 Solution
 --------
@@ -137,6 +174,13 @@ Create the DefaultBackend Service again.
         ipFamilyPolicy: SingleStack
         internalTrafficPolicy: Cluster
 
-.. |image1| image:: /_static/images/en-us_image_0000002218659254.png
-.. |image2| image:: /_static/images/en-us_image_0000002218819094.png
-.. |image3| image:: /_static/images/en-us_image_0000002253778885.png
+**For Check Item 3**
+
+-  Change the secret of the certificate described in :ref:`1 <cce_10_0508__li7636134164413>` and configure a certificate that meets the key length specified by OpenSSL SECLEVEL. For details about the relationship between the security levels and key lengths, see `official OpenSSL documents <https://docs.openssl.org/3.3/man3/SSL_CTX_set_security_level/#default-callback-behaviour>`__.
+-  Add the **@SECLEVEL** field to the **ssl-ciphers** parameter to support certificates with lower security levels.
+
+.. |image1| image:: /_static/images/en-us_image_0000002434078988.png
+.. |image2| image:: /_static/images/en-us_image_0000002434079000.png
+.. |image3| image:: /_static/images/en-us_image_0000002434238836.png
+.. |image4| image:: /_static/images/en-us_image_0000002434080164.png
+.. |image5| image:: /_static/images/en-us_image_0000002467678485.png

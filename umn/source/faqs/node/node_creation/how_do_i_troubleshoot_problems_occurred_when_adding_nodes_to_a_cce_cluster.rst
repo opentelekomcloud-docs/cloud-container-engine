@@ -73,7 +73,7 @@ Two methods are available to solve the problem.
    #. Log in to the management console.
    #. Choose **Service List** > **Compute** > **Elastic Cloud Server**.
    #. In the ECS list, locate the target ECS and click its name.
-   #. On the page displayed, click the **EIPs** tab. In the EIP list, locate the row containing the target EIP, click **Unbind**, and click **Yes**.
+   #. On the page displayed, click the **EIPs** tab. In the EIP list, locate the row containing the target EIP, click **Unbind**, and then click **Yes**.
    #. Return to the page for adding a node on the CCE console, select **Use existing** for **EIP**, and add the node again.
 
 -  **Method 2:** Increase the EIP quota.
@@ -87,9 +87,9 @@ A node cannot be added to a CCE cluster.
 
 **Solution**
 
-You can click the cluster name to view the cluster details. In the **Networking Configuration** area, click the icon next to the value of **Default Node Security Group** to check whether the default security group is deleted and whether the security group rules comply with :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
+Click the cluster name to access the **Overview** page. In the **Networking Configuration** area, click the icon next to the value of **Default Node Security Group** to check whether the default security group is deleted and whether the security group rules comply with :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
 
-If your account has multiple clusters and you need to manage network security policies of nodes in a unified manner, you can specify custom security groups.
+If your account has multiple clusters and you need to manage network security policies of nodes centrally, you can specify custom security groups.
 
 Check Item 4: Resource Quota
 ----------------------------
@@ -101,3 +101,29 @@ When a node is added to a CCE cluster, a message is displayed, indicating that t
 **Solution**
 
 You can click **Increase Quota** to go to the corresponding page and increase the quota.
+
+Check Item 5: Private DNS Resolution
+------------------------------------
+
+During node creation, software packages are downloaded from OBS via the domain name. A private DNS server must be used to resolve the OBS domain name. Therefore, the DNS server address of the subnet where the node resides must be set to a private DNS server address so that the node can access the private DNS server. By default, the private DNS server is used when you create a subnet. However, if you have modified the subnet DNS, verify that **the DNS server in use can resolve the OBS domain name**. If it cannot, you will need to use the private DNS server.
+
+To confirm and modify the DNS of the subnet where the node resides, take the following steps:
+
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. View the node subnet.
+
+   -  For the default node pool: In the navigation pane, choose **Overview**. In the **Networking Configuration** area, view the subnet name.
+
+      |image1|
+
+   -  For a custom node pool: In the navigation pane, choose **Nodes**. On the **Node Pools** tab, click the node pool name to view the name of the subnet associated with the node pool. A node pool can be associated with multiple subnets.
+
+#. Confirm and modify the DNS of the node subnet. If there are multiple node subnets, confirm and modify them one by one.
+
+   a. Log in to the VPC console and choose **Subnets** from the navigation pane.
+
+   b. Search for the name of the subnet where the node is located in the search box and click the subnet name.
+
+   c. Confirm and modify the DNS server address. You are advised to add the default private DNS.
+
+.. |image1| image:: /_static/images/en-us_image_0000002467677085.png

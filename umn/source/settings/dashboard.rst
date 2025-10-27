@@ -38,15 +38,15 @@ After a cluster is created, you can modify the following items for it:
 
 -  **Cluster Version \| Patch Version**: specifies the Kubernetes version and CCE patch version of a cluster.
 
--  **Network Model**: specifies the network model of a cluster, which cannot be changed. For details about network models, see :ref:`Container Network <cce_10_0280>`.
+-  **Network Model**: specifies the network model of a cluster, which cannot be changed. For details about network models, see :ref:`Container Networks <cce_10_0280>`.
 
 -  **Resource Tag**: You can add resource tags to classify resources.
 
 -  **Cluster Description**: specifies the description that you entered for a cluster. A maximum of 200 characters are allowed.
 
--  **Global OBS Access Secret (paas.longaksk)**: If you have created a global access key while using OBS volumes in a cluster, the system will create a secret called **paas.longaksk** in the **kube-system** namespace of the cluster. This secret is used to store the global AK and SK.
+-  **Global OBS Access Secret (paas.longaksk)**: If you have created a global access secret while using OBS volumes in a cluster, the system will create a secret called **paas.longaksk** in the **kube-system** namespace of the cluster. This secret is used to store the global AK and SK.
 
-   The global access key (**paas.longaksk**) is used by project. Once a global access key is used, it is automatically created for each cluster within the same project. However, this can lead to security and management complexities. Therefore, it is not recommended that you use global access secrets. To disable global access keys, check whether the cluster uses global access keys. For details, see :ref:`What Is an OBS Global Access Key and How Do I Check Whether a Global Access Key Is Used in a Cluster? <cce_faq_00484>`
+   The global access secret (**paas.longaksk**) is used by project. Once a global access secret is used, it is automatically created for each cluster within the same project. However, this can lead to security and management complexities. Therefore, it is not recommended that you use global access secrets. To disable global access keys, check whether the cluster uses global access keys. For details, see :ref:`What Is an OBS Global Access Key and How Do I Check Whether a Global Access Key Is Used in a Cluster? <cce_faq_00484>`
 
 -  **Cluster Deletion Protection**: A measure taken to prevent accidental deletion of clusters through the console or APIs. After this function is enabled, you will not be able to delete or unsubscribe from clusters.
 
@@ -64,4 +64,4 @@ Installed Add-ons
 
 You can check the installed add-ons in a cluster. If there is an add-on to be upgraded in the cluster, click **Go to Upgrade** to go to the **Add-ons** page and see more details.
 
-.. |image1| image:: /_static/images/en-us_image_0000002253779681.png
+.. |image1| image:: /_static/images/en-us_image_0000002467719409.png

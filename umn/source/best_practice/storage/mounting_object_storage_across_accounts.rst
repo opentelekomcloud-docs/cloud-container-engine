@@ -21,7 +21,7 @@ Assume that account B needs to access and use an OBS bucket of account A. For de
 
 .. _cce_bestpractice_00199__fig7817125304714:
 
-.. figure:: /_static/images/en-us_image_0000002218818310.png
+.. figure:: /_static/images/en-us_image_0000002467676597.png
    :alt: **Figure 1** Mounting an OBS bucket across accounts
 
    **Figure 1** Mounting an OBS bucket across accounts
@@ -47,7 +47,7 @@ Prerequisites
 
 -  The involved accounts are in the same region.
 -  You have created a cluster where the CCE Container Storage (Everest) add-on is installed. The add version must be 1.1.11 or later, and the cluster version must be 1.15 or later.
--  An ECS with an EIP bound has been created in the same VPC as the cluster, and the ECS has been connected to the cluster through kubectl.
+-  An ECS with an EIP bound has been created in the same VPC as the cluster, and the ECS can access the cluster using kubectl.
 
 .. _cce_bestpractice_00199__section1171195014615:
 
@@ -61,7 +61,7 @@ Configure an OBS bucket policy and ACL using account A and grant account B requi
    .. table:: **Table 2** Bucket policy parameters
 
       +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------+
-      | Parameter             | Description                                                                                                                                                                                                        | Example                                     |
+      | Parameter             | Description                                                                                                                                                                                                        | Example Value                               |
       +=======================+====================================================================================================================================================================================================================+=============================================+
       | Policy Name           | Enter a name.                                                                                                                                                                                                      | example01                                   |
       +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------+
@@ -188,7 +188,7 @@ Create a PV and a PVC based on the OBS bucket of account A using account B and m
       .. table:: **Table 4** Secret parameters
 
          +-----------------------+------------------------------------------------------------------------------------+-----------------------+
-         | Parameter             | Description                                                                        | Example               |
+         | Parameter             | Description                                                                        | Example Value         |
          +=======================+====================================================================================+=======================+
          | access.key            | A Base64-encoded AK                                                                | QUxPQUlJU*****\*      |
          +-----------------------+------------------------------------------------------------------------------------+-----------------------+
@@ -249,9 +249,9 @@ Create a PV and a PVC based on the OBS bucket of account A using account B and m
    .. table:: **Table 5** PV parameters
 
       +-------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                     | Description                                                                                                                                                                                                                                                                                                                | Example                                                                                                                                                                                           |
+      | Parameter                     | Description                                                                                                                                                                                                                                                                                                                | Example Value                                                                                                                                                                                     |
       +===============================+============================================================================================================================================================================================================================================================================================================================+===================================================================================================================================================================================================+
-      | mountOptions.default_acl      | Specify access control policies for a bucket and objects in the bucket. In this example, account A owns the bucket, and both account A and account B can upload data.                                                                                                                                                      | bucket-owner-full-control                                                                                                                                                                         |
+      | mountOptions.default_acl      | Specify access control policies for a bucket and objects in the bucket. In this example, account A owns the bucket, and both account A and account B have the ability to upload data.                                                                                                                                      | bucket-owner-full-control                                                                                                                                                                         |
       |                               |                                                                                                                                                                                                                                                                                                                            |                                                                                                                                                                                                   |
       |                               | -  **private**: The bucket or objects can only be fully accessed by the owner of the bucket.                                                                                                                                                                                                                               | .. note::                                                                                                                                                                                         |
       |                               | -  **public-read**: The owner of the bucket has complete control over both the bucket and its objects. While other users can read data from the bucket, they are unable to modify, delete, or upload any data within it.                                                                                                   |                                                                                                                                                                                                   |

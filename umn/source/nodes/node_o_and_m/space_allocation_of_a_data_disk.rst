@@ -52,7 +52,7 @@ For a node using a non-shared data disk (100 GiB for example), the division of t
       The thin pool is dynamically mounted. You can view it by running the **lsblk** command on a node, but not the **df -h** command.
 
 
-   .. figure:: /_static/images/en-us_image_0000002218819650.png
+   .. figure:: /_static/images/en-us_image_0000002434080444.png
       :alt: **Figure 1** Space allocation for container engines of Device Mapper
 
       **Figure 1** Space allocation for container engines of Device Mapper
@@ -62,7 +62,7 @@ For a node using a non-shared data disk (100 GiB for example), the division of t
    No separate thin pool. The entire container engine and container image space (90% of the data disk by default) are in the **/var/lib/docker** directory.
 
 
-   .. figure:: /_static/images/en-us_image_0000002218659822.png
+   .. figure:: /_static/images/en-us_image_0000002467718921.png
       :alt: **Figure 2** Space allocation for container engines of OverlayFS
 
       **Figure 2** Space allocation for container engines of OverlayFS

@@ -14,8 +14,8 @@ Removing a node will not delete the server corresponding to the node. You are ad
 
 After a node is removed from the cluster, the node is still running.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  If the OS fails to be re-installed after the node is removed, manually re-install the OS. After the re-installation, log in to the node and run the clearance script to clear CCE components. For details, see :ref:`Handling Failed OS Reinstallation <cce_10_0338__section149069481111>`.
 -  Removing a node will cause PVC/PV data loss for the :ref:`local PV <cce_10_0391>` associated with the node. These PVCs and PVs cannot be restored or used again. In this scenario, the pod that uses the local PV is evicted from the node. A new pod is created and stays in the pending state. This is because the PVC used by the pod has a node label, due to which the pod cannot be scheduled.
@@ -23,7 +23,7 @@ Notes and Constraints
 Precautions
 -----------
 
--  When you remove a node, the pods running on it will need to migrate to another node, which could potentially impact your services. To avoid any disruptions, drain the node so that pods can be gracefully evicted to other available nodes. Additionally, perform this task during off-peak hours.
+-  Removing a node will migrate the pods running on it to other nodes, which could potentially affect your services. To avoid any disruptions, :ref:`drain <cce_10_0605>` the node so that pods can be gracefully evicted to other available nodes. Perform this task during off-peak hours. If pods remain when the node is removed, CCE will evict them. If a `Pod Disruption Budget <https://kubernetes.io/docs/tasks/run-application/configure-pdb/>`__ (PDB) policy is configured for your pods, they may fail to be evicted. In this case, the node will be forcibly removed after a period of time.
 -  Unexpected risks may occur during the operation. Back up data beforehand.
 -  When a node is removed, the backend will make it unschedulable.
 -  After you remove the node and re-install the OS, the original LVM partitions will be cleared and the data managed by LVM will be cleared. Therefore, back up data in advance.

@@ -12,7 +12,7 @@ This involves analyzing the application, setting up the runtime environment for 
 For details about each step of the containerization, see :ref:`Containerization Process <cce_bestpractice_0004>`.
 
 
-.. figure:: /_static/images/en-us_image_0000002253619117.png
+.. figure:: /_static/images/en-us_image_0000002434079036.png
    :alt: **Figure 1** Process of containerizing an application
 
    **Figure 1** Process of containerizing an application

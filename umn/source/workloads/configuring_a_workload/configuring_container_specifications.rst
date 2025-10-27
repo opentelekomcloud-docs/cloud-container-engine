@@ -75,7 +75,7 @@ In real-world scenarios, the recommended ratio of **Request** to **Limit** is ab
 Example of CPU and Memory Quota Usage
 -------------------------------------
 
-Assume that a cluster contains a node with 4 CPU cores and 8 GiB memory. Two pods (pod 1 and pod 2) have been deployed on the cluster. Pod 1 oversubscribes resources (that is **Limit** > **Request**). The specifications of the two pods are as follows.
+Assume that a cluster contains a node with 4 CPU cores and 8 GiB of memory. Two pods (pod 1 and pod 2) have been deployed on the cluster. Pod 1 oversubscribes resources (that is **Limit** > **Request**). The specifications of the two pods are as follows.
 
 ===== =========== ========= ============== ============
 Pod   CPU Request CPU Limit Memory Request Memory Limit
@@ -89,9 +89,9 @@ The CPU and memory usage of the node is as follows:
 -  Allocatable CPUs = 4 cores - (1 core requested by pod 1 + 2 cores requested by pod 2) = 1 core
 -  Allocatable memory = 8 GiB - (1 GiB requested by pod 1 + 2 GiB requested by pod 2) = 5 GiB
 
-In this case, the remaining 1 core 5 GiB can be used by the next new pod.
+In this case, the remaining 1 core and 5 GiB can be used by the next new pod.
 
-If pod 1 is under heavy load during peak hours, it will use more CPUs and memory within the limit. Therefore, the actual allocatable resources are fewer than 1 core 5 GiB.
+If pod 1 is under heavy load during peak hours, it will use more CPUs and memory within the limit. Therefore, the actual allocatable resources are fewer than 1 core and 5 GiB.
 
 Quotas of Other Resources
 -------------------------

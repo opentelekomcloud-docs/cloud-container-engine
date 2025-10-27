@@ -33,4 +33,4 @@ You can use either of the following methods to solve this problem:
 
    #. Use the newly pulled image to create a workload.
 
-.. |image1| image:: /_static/images/en-us_image_0000002253778797.png
+.. |image1| image:: /_static/images/en-us_image_0000002434078552.png

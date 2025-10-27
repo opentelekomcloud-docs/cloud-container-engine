@@ -28,7 +28,7 @@ When performing O&M on Kubernetes clusters, it is often necessary to switch betw
    Compared with solution 1, this solution requires manual configuration of the kubeconfig file, which is relatively complex.
 
 
-.. figure:: /_static/images/en-us_image_0000002218818222.png
+.. figure:: /_static/images/en-us_image_0000002434237864.png
    :alt: **Figure 1** Using kubectl to connect to multiple clusters
 
    **Figure 1** Using kubectl to connect to multiple clusters
@@ -391,4 +391,4 @@ This example configures only the public network access to the clusters. If you w
 
       To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
-.. |image1| image:: /_static/images/en-us_image_0000002253618117.png
+.. |image1| image:: /_static/images/en-us_image_0000002467716489.png

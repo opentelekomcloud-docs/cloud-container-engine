@@ -27,7 +27,7 @@ CCE permissions are described as follows:
 In general, you configure CCE permissions in two scenarios. The first is creating and managing clusters and related resources, such as nodes. The second is creating and using Kubernetes resources in the cluster, such as workloads and Services.
 
 
-.. figure:: /_static/images/en-us_image_0000002253779993.png
+.. figure:: /_static/images/en-us_image_0000002467679137.png
    :alt: **Figure 1** Illustration on CCE permissions
 
    **Figure 1** Illustration on CCE permissions
@@ -62,4 +62,4 @@ kubectl Permissions
 
 You can use :ref:`kubectl <cce_10_0107>` to access Kubernetes resources in a cluster.
 
-When you access a cluster using kubectl, CCE uses the kubeconfig.json file generated on the cluster for authentication. This file contains user information, based on which CCE determines which Kubernetes resources can be accessed by kubectl. The permissions recorded in a kubeconfig.json file vary from user to user. The permissions that a user has are listed in :ref:`Table 1 <cce_10_0187__table886210176509>`.
+When you access a cluster using kubectl, CCE uses the kubeconfig.json file generated on the cluster for authentication. This file contains user information, based on which CCE determines which Kubernetes resources can be accessed via kubectl. The permissions recorded in a kubeconfig.json file vary from user to user. The permissions that a user has are listed in :ref:`Table 1 <cce_10_0187__table886210176509>`.

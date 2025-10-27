@@ -8,7 +8,7 @@ How Can I Delete a Security Group Rule Associated with a Deleted Subnet?
 Scenarios
 ---------
 
-Pod subnets can be deleted from CCE Turbo clusters of v1.23.17-r0, v1.25.12-r0, v1.28.7-r0, or later versions.
+Pod subnets can be deleted from CCE Turbo clusters of v1.23.17-r0, v1.25.12-r0, v1.27.9-r0, v1.28.7-r0, v1.29.3-r0, or later versions.
 
 When you delete a subnet, CCE does not automatically remove the security group rules associated with the subnet in the default node security group created by CCE. You must manually delete these rules.
 

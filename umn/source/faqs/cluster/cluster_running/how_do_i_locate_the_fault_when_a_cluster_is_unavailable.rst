@@ -7,12 +7,12 @@ How Do I Locate the Fault When a Cluster Is Unavailable?
 
 This section provides you with some operations to locate the fault when a cluster becomes unavailable.
 
-Troubleshooting
----------------
+Fault Locating
+--------------
 
-The issues here are described in order of how likely they are to occur.
+Possible causes are described here in order of how likely they are to occur.
 
-Check these causes one by one until you find the cause of the fault.
+If the fault persists after you have ruled out a cause, check other causes.
 
 -  :ref:`Check Item 1: Whether the Security Group Is Modified <cce_faq_00039__section48059154014>`
 -  :ref:`Check Item 2: Whether the Cluster Is Overloaded <cce_faq_00039__section1821659134014>`
@@ -41,7 +41,7 @@ Check Item 2: Whether the Cluster Is Overloaded
 
 The resource usage on the master nodes in the cluster reaches 100%.
 
-**Possible cause**
+**Possible Cause**
 
 When a cluster has a large number of resources created simultaneously, it causes an overload on the API server. This, in turn, overloads the master nodes and leads to OOM issues.
 

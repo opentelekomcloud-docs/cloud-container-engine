@@ -147,4 +147,4 @@ Listener settings only apply to the first ingress configuration (excluding SNI c
                secretName: default-ns-secret-2
          ...
 
-.. |image1| image:: /_static/images/en-us_image_0000002218659046.png
+.. |image1| image:: /_static/images/en-us_image_0000002467676981.png

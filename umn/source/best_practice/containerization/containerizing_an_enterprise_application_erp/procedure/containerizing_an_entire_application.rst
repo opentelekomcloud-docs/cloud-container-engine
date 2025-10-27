@@ -18,12 +18,12 @@ When a third-party enterprise needs to use this application, a suit of **Tomcat 
 
 .. _cce_bestpractice_0003__fig78809934014:
 
-.. figure:: /_static/images/en-us_image_0000002218819242.png
+.. figure:: /_static/images/en-us_image_0000002467717529.png
    :alt: **Figure 1** Application architecture
 
    **Figure 1** Application architecture
 
-As shown in :ref:`Figure 1 <cce_bestpractice_0003__fig78809934014>`, the application is a standard Tomcat application, and its backend interconnects with MongoDB and MySQL databases. For this type of applications, there is no need to split the architecture. The entire application is built as an image, and the MongoDB database is deployed in the same image as the Tomcat application. In this way, the application can be deployed or upgraded through the image.
+As shown in :ref:`Figure 1 <cce_bestpractice_0003__fig78809934014>`, the application is a standard Tomcat application that connects to both MongoDB and MySQL databases. There is no need to separate the architecture for this type of application. The entire application, including the Tomcat application and MongoDB database, is packaged as an image. In this way, the application can be deployed or upgraded through the image.
 
 -  Interconnecting with the MongoDB database for storing user files.
 -  Interconnecting with the MySQL database for storing third-party enterprise data. The MySQL database is an external cloud database.

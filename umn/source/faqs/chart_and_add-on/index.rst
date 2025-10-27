@@ -5,14 +5,18 @@
 Chart and Add-on
 ================
 
+-  :ref:`What Should I Do If Residual Process Resources Exist Due to an Earlier CCE Node Problem Detector Add-on Version? <cce_faq_00130>`
 -  :ref:`What Should I Do If Installation of an Add-on Fails and "The release name is already exist" Is Displayed? <cce_faq_00322>`
 -  :ref:`How Do I Configure the Add-on Resource Quotas Based on Cluster Scale? <cce_faq_00429>`
 -  :ref:`How Can I Clean Up Residual Resources After the NGINX Ingress Controller Add-on in the Unknown State Is Deleted? <cce_faq_00438>`
+-  :ref:`How Can I Drain a GPU Node After Upgrading or Rolling Back the CCE AI Suite (NVIDIA GPU) Add-on? <cce_faq_00488>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
+   what_should_i_do_if_residual_process_resources_exist_due_to_an_earlier_cce_node_problem_detector_add-on_version
    what_should_i_do_if_installation_of_an_add-on_fails_and_the_release_name_is_already_exist_is_displayed
    how_do_i_configure_the_add-on_resource_quotas_based_on_cluster_scale
    how_can_i_clean_up_residual_resources_after_the_nginx_ingress_controller_add-on_in_the_unknown_state_is_deleted
+   how_can_i_drain_a_gpu_node_after_upgrading_or_rolling_back_the_cce_ai_suite_nvidia_gpu_add-on

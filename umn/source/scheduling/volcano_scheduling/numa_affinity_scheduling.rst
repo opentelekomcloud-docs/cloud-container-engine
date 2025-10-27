@@ -34,7 +34,7 @@ After a topology policy is configured for pods, Volcano predicts the nodes that 
 +-----------------------+------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | none                  | Nodes with the following topology policies will not be filtered during scheduling: | None                                                                                                                                                                                                                                                    |
 |                       |                                                                                    |                                                                                                                                                                                                                                                         |
-|                       | -  **none**: unschedulable                                                         |                                                                                                                                                                                                                                                         |
+|                       | -  **none**: schedulable                                                           |                                                                                                                                                                                                                                                         |
 |                       | -  **best-effort**: schedulable                                                    |                                                                                                                                                                                                                                                         |
 |                       | -  **restricted**: schedulable                                                     |                                                                                                                                                                                                                                                         |
 |                       | -  **single-numa-node**: schedulable                                               |                                                                                                                                                                                                                                                         |
@@ -86,7 +86,7 @@ For example, two NUMA nodes provide resources, each with a total of 32 CPU cores
 
 .. _cce_10_0425__fig1216082014438:
 
-.. figure:: /_static/images/en-us_image_0000002253619765.png
+.. figure:: /_static/images/en-us_image_0000002434080664.png
    :alt: **Figure 1** Comparison of NUMA scheduling policies
 
    **Figure 1** Comparison of NUMA scheduling policies
@@ -125,18 +125,25 @@ Therefore, the optimal node is Node A.
 Enabling NUMA Affinity Scheduling for Volcano
 ---------------------------------------------
 
-#. Enable static CPU management in the node pool. For details, see :ref:`Enabling CPU Management for a Custom Node Pool <cce_10_0351__section1460719557453>`.
+#. Enable CPU management in the node pool. For details, see :ref:`Enabling CPU Management for a Custom Node Pool <cce_10_0351__section1460719557453>`.
 
    a. Log in to the CCE console and click the cluster name to access the cluster console.
    b. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right. Locate the target node pool and choose **More** > **Manage**.
-   c. On the **Manage Configurations** page, change the **cpu-manager-policy** value to **static** in the **kubelet** area.
+   c. On the **Manage Configurations** page, adjust the **CPU Management Policy (cpu-manager-policy)** in the **kubelet** area based on the QoS class of the service pods.
+
+      -  If the QoS class is **Guaranteed** (where resource requests equal limits), set the policy to **static**.
+      -  If the QoS class is **Burstable** (where resource requests and limits are different), set the policy to **enhanced-static**.
+      -  If the node pool contains pods with both **Guaranteed** and **Burstable** QoS classes, set the policy to **enhanced-static**.
+
    d. Click **OK**.
 
 #. Configure a CPU topology policy in the node pool.
 
-   a. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Nodes**. On the right of the page, click the **Node Pools** tab and choose **More** > **Manage** in the **Operation** column of the target node pool.
+   a. Log in to the CCE console and click the cluster name to access the cluster console.
 
-   b. Change the kubelet **Topology Management Policy (topology-manager-policy)** value to the required CPU topology policy.
+   b. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right. Locate the target node pool and choose **More** > **Manage**.
+
+   c. Change the kubelet **Topology Management Policy (topology-manager-policy)** value to the required CPU topology policy.
 
       Valid topology policies include **none**, **best-effort**, **restricted**, and **single-numa-node**. For details, see :ref:`Pod Scheduling Process <cce_10_0425__section2430103110429>`.
 
@@ -144,14 +151,17 @@ Enabling NUMA Affinity Scheduling for Volcano
 
    **Volcano 1.7.1 or later**
 
-   a. Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane, locate **Volcano Scheduler** on the right, and click **Edit**.
-   b. In the **Extended Functions** area, enable **NUMA Topology Scheduling** and click **OK**.
+   a. Log in to the CCE console and click the cluster name to access the cluster console.
+   b. In the navigation pane, choose **Add-ons**. Locate **Volcano Scheduler** on the right and click **Edit**.
+   c. In the **Extended Functions** area, enable **NUMA Topology Scheduling** and click **OK**.
 
    **Volcano earlier than 1.7.1**
 
-   a. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Settings** and click the **Scheduling** tab. Select **Volcano scheduler**, find the expert mode, and click **Try Now**.
+   a. Log in to the CCE console and click the cluster name to access the cluster console.
 
-   b. Enable **resource_exporter_enable** to collect node NUMA information. The following is an example in JSON format:
+   b. In the navigation pane, choose **Settings** and click the **Scheduling** tab. Find the expert mode and click **Try Now**.
+
+   c. Enable **resource_exporter_enable** to collect node NUMA information. The following is an example in JSON format:
 
       .. code-block::
 
@@ -173,19 +183,28 @@ Enabling NUMA Affinity Scheduling for Volcano
             "resource_exporter_enable": "true"
          }
 
-      After this function is enabled, you can view the NUMA topology information of the current node.
+      After enabling this function, run the following command to view the NUMA topology information of the current node:
 
       .. code-block::
 
          kubectl get numatopo
+
+      Information similar to the following is displayed:
+
+      .. code-block::
+
          NAME              AGE
          node-1            4h8m
          node-2            4h8m
          node-3            4h8m
 
-   c. Enable the Volcano numa-aware algorithm add-on.
+   d. Enable the Volcano numa-aware algorithm add-on.
 
-      **kubectl edit cm -n kube-system volcano-scheduler-configmap**
+      .. code-block::
+
+         kubectl edit cm -n kube-system volcano-scheduler-configmap
+
+      Add the highlighted content to the YAML file to enable Volcano NUMA-aware scheduling:
 
       .. code-block::
 
@@ -196,7 +215,7 @@ Enabling NUMA Affinity Scheduling for Volcano
            namespace: kube-system
          data:
            default-scheduler.conf: |-
-             actions: "allocate, backfill, preempt"
+             actions: "allocate, backfill"
              tiers:
              - plugins:
                - name: priority
@@ -217,10 +236,10 @@ Enabling NUMA Affinity Scheduling for Volcano
                - name: nodeCSIscheduling
                - name: networkresource
                  arguments:
-                   NetworkType: vpc-router
-               - name: numa-aware # add it to enable numa-aware plugin
+                   NetworkType: vpc-router    # The parameter value depends on the cluster type.
+               - name: numa-aware # Enable NUMA Aware.
                  arguments:
-                   weight: 10 # the weight of the NUMA Aware Plugin
+                   weight: 10 # Weight of NUMA Aware
 
 .. _cce_10_0425__section20735201818553:
 
@@ -242,28 +261,29 @@ The following describes how to choose NUMA nodes for scheduling pods according t
          kind: Deployment
          apiVersion: apps/v1
          metadata:
-           name: numa-tset
+           name: numa-test
          spec:
            replicas: 1
            selector:
              matchLabels:
-               app: numa-tset
+               app: numa-test
            template:
              metadata:
                labels:
-                 app: numa-tset
+                 app: numa-test
                annotations:
                  volcano.sh/numa-topology-policy: single-numa-node    # Configure the topology policy.
              spec:
+               schedulerName: volcano
                containers:
                  - name: container-1
                    image: nginx:alpine
                    resources:
                      requests:
-                       cpu: 2           # The value must be an integer and must be the same as that in limits.
+                       cpu: 2           # The value must be an integer.
                        memory: 2048Mi
                      limits:
-                       cpu: 2           # The value must be an integer and must be the same as that in requests.
+                       cpu: 2           # The value must be an integer.
                        memory: 2048Mi
                imagePullSecrets:
                - name: default-secret
@@ -318,27 +338,35 @@ The following describes how to choose NUMA nodes for scheduling pods according t
 Checking NUMA Node Usage
 ------------------------
 
-Run the **lscpu** command to check the CPU usage of the current node.
+#. Run the following command to check the CPU usage of the current node:
 
-.. code-block::
+   .. code-block::
 
-   # Check the CPU usage of the current node.
-   lscpu
-   ...
-   CPU(s):              32
-   NUMA node(s):        2
-   NUMA node0 CPU(s):   0-15
-   NUMA node1 CPU(s):   16-31
+      lscpu
 
-Then, check the NUMA node usage.
+   Information similar to the following is displayed:
 
-.. code-block::
+   .. code-block::
 
-   # Check the CPU allocation of the current node.
-   cat /var/lib/kubelet/cpu_manager_state
-   {"policyName":"static","defaultCpuSet":"0,10-15,25-31","entries":{"777870b5-c64f-42f5-9296-688b9dc212ba":{"container-1":"16-24"},"fb15e10a-b6a5-4aaa-8fcd-76c1aa64e6fd":{"container-1":"1-9"}},"checksum":318470969}
+      ...
+      CPU(s):              32
+      NUMA node(s):        2
+      NUMA node0 CPU(s):   0-15
+      NUMA node1 CPU(s):   16-31
 
-The preceding example shows that two containers are running on the node. One container uses CPU cores 1 to 9 of NUMA node 0, and the other container uses CPU cores 16 to 24 of NUMA node 1.
+#. Run the following command to check NUMA node usage:
+
+   .. code-block::
+
+      cat /var/lib/kubelet/cpu_manager_state
+
+   Information similar to the following is displayed:
+
+   .. code-block::
+
+      {"policyName":"static","defaultCpuSet":"0,10-15,25-31","entries":{"777870b5-c64f-42f5-9296-688b9dc212ba":{"container-1":"16-24"},"fb15e10a-b6a5-4aaa-8fcd-76c1aa64e6fd":{"container-1":"1-9"}},"checksum":318470969}
+
+   The preceding example shows that two containers are running on the node. One container uses CPU cores 1 to 9 of NUMA node 0, and the other container uses CPU cores 16 to 24 of NUMA node 1.
 
 Common Issues
 -------------
@@ -350,7 +378,12 @@ If Volcano is set as the scheduler and only NUMA is enabled without configuring 
 -  Before using NUMA affinity scheduling, make sure that Volcano has been deployed and is running properly.
 -  When using NUMA affinity scheduling:
 
-   #. Set the CPU management policy (**cpu-manager-policy**) of the node pool to **static**.
+   #. Correctly configure the CPU management policy **(cpu-manager-policy)** of the node pool.
+
+      -  If the QoS class is **Guaranteed** (where resource requests equal limits), set the policy to **static**.
+      -  If the QoS class is **Burstable** (where resource requests and limits are different), set the policy to **enhanced-static**.
+      -  If the node pool contains pods with both **Guaranteed** and **Burstable** QoS classes, set the policy to **enhanced-static**.
+
    #. Correctly configure the topology management policy (**topology-manager-policy**) in the node pool.
    #. Configure a correct topology policy for pods to filter nodes with the same topology policy in the node pool. For details, see :ref:`Example of NUMA Affinity Scheduling <cce_10_0425__section20735201818553>`.
-   #. Configure the Volcano scheduler to schedule application pods. For details, see :ref:`Scheduling Workloads <cce_10_0722>`. Make sure that the CPU requests for all containers within the pods are integers (measured in cores) and that the requests and limits are identical.
+   #. Configure the Volcano scheduler to schedule application pods. For details, see :ref:`Scheduling Workloads <cce_10_0722>`. Make sure that the CPU requests for all containers within the pods are integers (measured in cores).

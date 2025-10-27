@@ -13,26 +13,49 @@ Check whether there are discarded resources in the clusters.
 Solution
 --------
 
--  **Scenario 1: The Service in the clusters of v1.25 or later has discarded annotation tolerate-unready-endpoints.**
+-  **Scenario 1: The Service in the clusters of v1.25 or later has deprecated annotation tolerate-unready-endpoints.**
 
    Error log:
 
    .. code-block::
 
-      some check failed in cluster upgrade: this cluster has deprecated service list: map[***] with deprecated annotation list [tolerate-unready-endpoints]
+      some check failed in cluster upgrade: this cluster has deprecated service list: map[test-svc] with deprecated annotation list [tolerate-unready-endpoints]
 
-   Check whether the Service provided in the log information contains the annotation **tolerate-unready-endpoint**. If so, replace the annotation with the following fields in Service **spec**:
+   In this example, check the log to see if the Service (**test-svc**) has the **tolerate-unready-endpoints** annotation. This annotation indicates whether the endpoint controller should continue creating endpoints for unready pods. If the deprecated annotation exists, delete it and add the following field to the Service's **spec** as a replacement. For details, see `ServiceSpec <https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/#ServiceSpec>`__.
 
-   .. code-block::
+   #. Run the kubectl command to modify the YAML file of the Service.
 
-      publishNotReadyAddresses: true
+      .. code-block::
 
--  **Scenario 2: The Service in the clusters of v1.27 or later has discarded annotation service.kubernetes.io/topology-aware-hints.**
+         kubectl edit service test-svc
+
+   #. Delete the **"tolerate-unready-endpoints"** annotation and add the following field to **spec** to replace the annotation:
+
+      .. code-block::
+
+         publishNotReadyAddresses: true
+
+      |image1|
+
+-  **Scenario 2: The Service in the clusters of v1.27 or later has deprecated annotation service.kubernetes.io/topology-aware-hints.**
 
    Error log:
 
    .. code-block::
 
-      some check failed in cluster upgrade: this cluster has deprecated service list: map[***] with deprecated annotation list [service.kubernetes.io/topology-aware-hints]
+      some check failed in cluster upgrade: this cluster has deprecated service list: map[test-svc] with deprecated annotation list [service.kubernetes.io/topology-aware-hints]
 
-   Check whether the Service provided in the log information contains the annotation **service.kubernetes.io/topology-aware-hints**. If so, replace it with the annotation **service.kubernetes.io/topology-mode** in the affected Service.
+   In this example, check the log to see if the Service (**test-svc**) contains the **service.kubernetes.io/topology-aware-hints** annotation. This annotation was used to enable topology aware hints in Services. However, this function have been renamed. If the deprecated annotation exists, delete it and use **service.kubernetes.io/topology-mode** as a replacement (For details, see `Topology Aware Routing <https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/>`__):
+
+   #. Run the kubectl command to modify the YAML file of the Service.
+
+      .. code-block::
+
+         kubectl edit service test-svc
+
+   #. Delete the **"service.kubernetes.io/topology-aware-hints"** annotation and add the **"service.kubernetes.io/topology-mode"** annotation to **spec**.
+
+      |image2|
+
+.. |image1| image:: /_static/images/en-us_image_0000002434080064.png
+.. |image2| image:: /_static/images/en-us_image_0000002467718549.png

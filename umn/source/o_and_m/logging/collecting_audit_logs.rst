@@ -31,9 +31,9 @@ Enabling Kubernetes Audit Logging
 
 #. Log in to the CCE console.
 #. Click **Create Cluster**. Then, configure the parameters and click **Next: Select Add-on**.
-#. On the displayed page, select **Cloud Native Log Collection** and click **Next: Add-on Configuration**.
+#. On the displayed page, select **Cloud Native Log Collection** and click **Next: Configure Add-on**.
 #. On the displayed page, select **Kubernetes Audit Logs** for **Cloud Native Log Collection**.
-#. Click **Next: Confirm configuration**.
+#. Click **Next: Confirm Settings**.
 
 **Enabling audit logging for an existing cluster**
 
@@ -42,7 +42,7 @@ Enabling Kubernetes Audit Logging
 #. Click the **Kubernetes Audit Logs** tab and modify the settings in **Logging Settings**.
 
 
-   .. figure:: /_static/images/en-us_image_0000002218820214.png
+   .. figure:: /_static/images/en-us_image_0000002467679431.png
       :alt: **Figure 1** Enabling audit logging for an existing cluster
 
       **Figure 1** Enabling audit logging for an existing cluster
@@ -54,7 +54,8 @@ Viewing Kubernetes Audit Logs
 
 **Viewing Kubernetes audit logs on the CCE console**
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Logging**.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Logging**.
 #. Click the **Kubernetes Audit Logs** tab to view audit logs in the cluster. For details about related operations, see `Log Tank Service User Guide <https://docs.otc.t-systems.com/en-us/usermanual/lts/lts_04_1053.html>`__.
 
 **Viewing Kubernetes audit logs on the LTS console**
@@ -65,7 +66,8 @@ Viewing Kubernetes Audit Logs
 Disabling Kubernetes Audit Logging
 ----------------------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Logging**.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Logging**.
 #. Click the **Kubernetes Audit Logs** tab.
 #. Disable the audit component and click |image2|.
 
@@ -73,5 +75,5 @@ Disabling Kubernetes Audit Logging
 
       After you disable audit logging, logs are no longer written to the original log stream, but the existing logs will not be deleted and expenditures may be incurred for this.
 
-.. |image1| image:: /_static/images/en-us_image_0000002218820226.png
-.. |image2| image:: /_static/images/en-us_image_0000002218660366.png
+.. |image1| image:: /_static/images/en-us_image_0000002467719573.png
+.. |image2| image:: /_static/images/en-us_image_0000002467679437.png

@@ -41,4 +41,4 @@ Procedure
 
 #. Upload the image to SWR. For details, see `Uploading an Image Through the Client <https://docs.otc.t-systems.com/usermanual/swr/swr_01_0011.html>`__.
 
-.. |image1| image:: /_static/images/en-us_image_0000002218818034.png
+.. |image1| image:: /_static/images/en-us_image_0000002467716173.png

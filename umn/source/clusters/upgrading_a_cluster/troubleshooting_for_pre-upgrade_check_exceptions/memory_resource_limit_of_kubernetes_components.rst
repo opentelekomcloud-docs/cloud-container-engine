@@ -14,4 +14,4 @@ Solution
 --------
 
 -  Solution 1: Reduce Kubernetes resources that are needed.
--  Solution 2: Modify cluster specifications. For details, see :ref:`Changing Cluster Scale <cce_10_0403>`.
+-  Solution 2: Modify cluster specifications. For details, see :ref:`Changing a Cluster Scale <cce_10_0403>`.

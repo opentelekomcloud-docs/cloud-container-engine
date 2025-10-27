@@ -270,7 +270,7 @@ To enable cookie-based sticky session on an ingress, ensure the following condit
         type: NodePort
         externalTrafficPolicy: Local   # Node level Service affinity
 
-#. Create an ingress and associate it with the Service. The following uses an existing load balancer as an example. For details about how to automatically create a load balancer, see `Using kubectl to Create a LoadBalancer Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
+#. Create an ingress and associate it with the Service. The following uses an existing load balancer as an example. For details about how to automatically create a load balancer, see `Creating a LoadBalancer Ingress Using kubectl <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
 
    .. code-block::
 
@@ -342,7 +342,7 @@ Enable cookie-based sticky session on the ingress.
                nodePort: 0
            type: ClusterIP
 
-   #. Create an ingress and associate it with the Service. The following uses an existing load balancer as an example. For details about how to automatically create a load balancer, see `Using kubectl to Create a LoadBalancer Ingress <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
+   #. Create an ingress and associate it with the Service. The following uses an existing load balancer as an example. For details about how to automatically create a load balancer, see `Creating a LoadBalancer Ingress Using kubectl <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
 
       .. code-block::
 

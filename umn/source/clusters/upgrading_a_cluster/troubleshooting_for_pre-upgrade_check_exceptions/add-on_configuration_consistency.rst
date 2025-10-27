@@ -8,7 +8,7 @@ Add-on Configuration Consistency
 Check Items
 -----------
 
-Manual modifications to add-on configuration parameters (typically ConfigMaps), instead of modifications through the CCE console or APIs, may be overwritten after an upgrade, potentially affecting service operation.
+Manual modifications to add-on configuration parameters (typically ConfigMaps), instead of modifications through the CCE console or add-on API updates, may be overwritten after an upgrade, potentially affecting service operation.
 
 Solution
 --------
@@ -22,3 +22,5 @@ Solution
 
    -  If the add-on version is **no longer compatible** with the upgraded cluster version, you must upgrade the add-on version.
    -  If the add-on configurations are inconsistent and a forced upgrade is required, you cannot skip this check item. In this case, reconfigure the add-on parameters through the **CCE console or APIs** to ensure configuration consistency before proceeding with the upgrade.
+
+   If the CoreDNS add-on configurations are inconsistent, see :ref:`CoreDNS Configuration Consistency <cce_10_0493>`.

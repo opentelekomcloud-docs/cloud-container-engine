@@ -13,7 +13,7 @@ CCE permissions are described as follows:
 
    Cluster-level permissions involve non-Kubernetes native APIs and support fine-grained IAM policies.
 
--  :ref:`Namespace-level permissions <cce_productdesc_0002__section54736241399>`: You can regulate users' or user groups' access to **Kubernetes resources**, such as workloads, jobs, and Services, in a single namespace based on their Kubernetes RBAC roles. CCE has also been enhanced based on open-source capabilities. It supports RBAC authorization based on IAM user or user group, and RBAC authentication on access to APIs using IAM tokens.
+-  :ref:`Namespace-level permissions <cce_productdesc_0002__section54736241399>`: You can regulate users' or user groups' access to **Kubernetes resources**, such as workloads, jobs, and Services, in a single namespace based on their Kubernetes RBAC roles. CCE has also been enhanced based on open-source capabilities. It supports RBAC authorization based on IAM user or user group and RBAC authentication on access to APIs using IAM tokens.
 
    Namespace-level permissions involve CCE Kubernetes APIs and are enhanced based on the Kubernetes RBAC capabilities. Namespace-level permissions can be granted to IAM users or user groups for authentication and authorization, but are independent of fine-grained IAM policies. For details, see `Using RBAC Authorization <https://kubernetes.io/docs/reference/access-authn-authz/rbac/>`__.
 

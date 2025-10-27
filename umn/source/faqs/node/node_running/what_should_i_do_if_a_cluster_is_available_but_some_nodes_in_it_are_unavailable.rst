@@ -15,13 +15,13 @@ Kubernetes provides heartbeats to help you detect whether a node is available. F
 Fault Locating
 --------------
 
-The issues here are described in order of how likely they are to occur.
+Possible causes are described here in order of how likely they are to occur.
 
-Check these causes one by one until you find the cause of the fault.
+If the fault persists after you have ruled out a cause, check other causes.
 
 -  :ref:`Check Item 1: Whether the Node Is Overloaded <cce_faq_00120__section745921416917>`
 -  :ref:`Check Item 2: Whether the ECS Is Deleted or Faulty <cce_faq_00120__section19793128323>`
--  :ref:`Check Item 3: Whether the ECS Can Be Logged In To <cce_faq_00120__section13620173173419>`
+-  :ref:`Check Item 3: Whether You Can Log In to the ECS <cce_faq_00120__section13620173173419>`
 -  :ref:`Check Item 4: Whether the Security Group Has Been Changed <cce_faq_00120__section39419166416>`
 -  :ref:`Check Item 5: Whether the Security Group Rules Contain the One That Allows the Communication Between the Master Nodes and the Worker Nodes <cce_faq_00120__section64919515161>`
 -  :ref:`Check Item 6: Whether the Disk Is Abnormal <cce_faq_00120__section165209286116>`
@@ -75,15 +75,15 @@ Check Item 2: Whether the ECS Is Deleted or Faulty
 
    Log in to the ECS console and view the ECS status.
 
-   -  If the ECS status is **Deleted**, go back to the CCE console, delete the corresponding node from the node list, and create another one.
-   -  If the ECS status is **Stopped** or **Frozen**, restore the ECS first. It takes about 3 minutes to restore the ECS.
-   -  If the ECS is **Faulty**, restart the ECS to rectify the fault.
+   -  If the ECS status is **Deleted**, go back to the CCE console, delete the corresponding node from the node list of the cluster, and then create another one.
+   -  If the ECS status is **Stopped** or **Frozen**, restore the ECS first. It takes about 3 minutes to restore the node.
+   -  If the ECS is faulty, restart it to rectify the fault.
    -  If the ECS status is **Running**, log in to the ECS and locate the fault by referring to :ref:`Check Item 7: Whether Internal Components Are Normal <cce_faq_00120__section89551837167>`.
 
 .. _cce_faq_00120__section13620173173419:
 
-Check Item 3: Whether the ECS Can Be Logged In To
--------------------------------------------------
+Check Item 3: Whether You Can Log In to the ECS
+-----------------------------------------------
 
 #. Log in to the ECS console.
 
@@ -96,7 +96,7 @@ Check Item 3: Whether the ECS Can Be Logged In To
 Check Item 4: Whether the Security Group Has Been Changed
 ---------------------------------------------------------
 
-Log in to the VPC console. In the navigation pane, choose **Access Control** > **Security Groups** and locate the security group of the cluster master node.
+Log in to the VPC console. In the navigation pane, choose **Access Control** > **Security Groups** and find the master node security group of the cluster.
 
 The name of this security group is in the format of *{Cluster name}*-cce-**control**\ ``-``\ *{ID}*. You can search for the security group by cluster name and then **-cce-control-**.
 
@@ -109,7 +109,7 @@ Check Item 5: Whether the Security Group Rules Contain the One That Allows the C
 
 Check whether such a security group rule exists.
 
-When a node is added to an existing cluster, if an extended CIDR block is added to the subnet's VPC and the subnet is an extended CIDR block, you need to add the security group rules shown in the below figure to the master node security group, with the name following the format of *Cluster name*\ **-cce-control-**\ *Random number*. These rules ensure that the nodes added to the cluster are available. (This step is not required if an extended CIDR block has been added to the VPC during cluster creation.)
+When adding a node to the cluster, add the security group rules in the figure below to the *cluster-name*\ **-cce-control-**\ *random-ID* security group to ensure the availability of the added node. This is necessary if a secondary CIDR block is added to the VPC of the node subnet and the subnet is in the secondary CIDR block. However, if a secondary CIDR block has already been added to the VPC during cluster creation, this step is not required.
 
 For details about security groups, see :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
 
@@ -127,29 +127,43 @@ Click the node name and check whether the data disk attached to the node has bee
 Check Item 7: Whether Internal Components Are Normal
 ----------------------------------------------------
 
-#. Log in to the ECS of the unavailable node.
+#. Log in to the node and check whether the following key components are running properly:
 
-#. Run the following command to check whether the PaaS components are normal:
+   -  kubelet
+   -  kube-proxy
+   -  Network components
 
-   **systemctl status kubelet**
+      -  yangtse: used by clusters that use the VPC or Cloud Native 2.0 networks
+      -  canal: used by clusters that use the container tunnel networks
 
-   If the command is successfully executed, the status of each component is displayed as **active**.
+   -  Runtime: Docker or containerd
+   -  chronyd
+
+   Check the status of a component. For example, to check the status of kubelet, run the following command:
+
+   .. code-block::
+
+      systemctl status kubelet
+
+   kubelet is a component name. You can replace it as required.
+
+   The expected output is shown in the figure below.
 
    |image1|
 
-   If the component status is not **active**, do as follows: (The faulty component **canal** is taken as an example):
+#. If the component is not in the **Active** state, restart it. Specify the restart command based on the faulty component. If yangtse is faulty, run the following command:
 
-   Run **systemctl restart canal** to restart the component.
+   .. code-block::
 
-   After restarting the component, run **systemctl status canal** to check the status.
+      systemctl restart yangtse
 
-#. If the restart command fails to be run, run the following command to check the running status of the monitrc process:
+   Check the component status again.
 
-   **ps -ef \| grep monitrc**
+   .. code-block::
 
-   If the monitrc process exists, run the following command to kill this process. The monitrc process will be automatically restarted after it is killed.
+      systemctl status yangtse
 
-   **kill -s 9 \`ps -ef \| grep monitrc \| grep -v grep \| awk '{print $2}'\`**
+#. If the node status is still not restored after the component restart, submit a service ticket and contact customer service.
 
 .. _cce_faq_00120__section512785418403:
 
@@ -166,7 +180,7 @@ Check Item 8: Whether the DNS Address Is Properly Configured
 
 #. On the node, ping the domain name that cannot be resolved in the previous step to check whether the domain name can be resolved.
 
-   -  If not, the DNS cannot resolve the IP address. Check whether the DNS address in the **/etc/resolv.conf** file is the same as that configured on the VPC subnet. In most cases, the DNS address in the file is configured incorrectly, leading to the inability to resolve the domain name. To fix this issue, adjust the DNS configuration of the VPC subnet and reset the node.
+   -  If the domain name cannot be pinged, the DNS cannot resolve the IP address. Check whether the DNS address in the **/etc/resolv.conf** file is the same as that configured on the VPC subnet. In most cases, the DNS address in the file is configured incorrectly, leading to the inability to resolve the domain name. To fix this issue, adjust the DNS configuration of the VPC subnet and reset the node.
    -  If yes, the DNS address configuration is correct. Check whether there are other faults.
 
 .. _cce_faq_00120__section1903800103:
@@ -201,5 +215,5 @@ Check Item 10: Whether the Docker Service Is Normal
 
    In this case, stop repeated creation and deletion of workloads or use more nodes to share the load. Typically, the node will be restored after a period of time. If necessary, run the **docker rm** *{container_id}* command to manually clear the abnormal containers.
 
-.. |image1| image:: /_static/images/en-us_image_0000002218659242.png
-.. |image2| image:: /_static/images/en-us_image_0000002253778853.png
+.. |image1| image:: /_static/images/en-us_image_0000002434078944.png
+.. |image2| image:: /_static/images/en-us_image_0000002467677277.png

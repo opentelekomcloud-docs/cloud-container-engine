@@ -7,12 +7,12 @@ Dynamic Resource Oversubscription
 
 Many services see surges in traffic. To ensure performance and stability, resources are often requested at the maximum needed. However, the surges may ebb very shortly and resources, if not released, are wasted in non-peak hours. Especially for online jobs that request a large quantity of resources to ensure SLA, resource utilization can be as low as it gets.
 
-Resource oversubscription is the process of making use of idle requested resources. Oversubscribed resources are suitable for deploying offline jobs, which focus on throughput but have low SLA requirements and can tolerate certain failures.
+Resource oversubscription is the process of using idle requested resources. Oversubscribed resources are suitable for deploying offline jobs, which focus on throughput but have low SLA requirements and can tolerate certain failures.
 
 Hybrid deployment of online and offline jobs in a cluster can better utilize cluster resources.
 
 
-.. figure:: /_static/images/en-us_image_0000002218820034.png
+.. figure:: /_static/images/en-us_image_0000002467679025.png
    :alt: **Figure 1** Resource oversubscription
 
    **Figure 1** Resource oversubscription
@@ -46,10 +46,10 @@ Hybrid deployment is supported, and CPU and memory resources can be oversubscrib
 
 -  kubelet offline jobs obey the following admission rules:
 
-   After the pod is scheduled to a node, kubelet starts the pod only when the node resources can meet the pod request (predicateAdmitHandler.Admit). kubelet starts the pod when both of the following conditions are met:
+   After a pod is scheduled to a node, kubelet starts the pod only when the node resources can meet the pod request (predicateAdmitHandler.Admit). kubelet starts the pod when both of the following conditions are met:
 
-   -  The total request of pods to be started and online running jobs < allocatable nodes
-   -  The total request of pods to be started and online/offline running job < allocatable nodes+oversubscribed nodes
+   -  The sum of resources requested by the pod to be started and by online running jobs is less than the node's allocatable resources.
+   -  The sum of resources requested by the pod to be started and by online/offline running jobs is less than the sum of the node's allocatable resources and oversubscribed resources.
 
 -  Resource oversubscription and hybrid deployment can be configured separately.
 
@@ -68,6 +68,8 @@ Hybrid deployment is supported, and CPU and memory resources can be oversubscrib
    +-------------------+------------------+---------------------------+-----------------------------------------------------------------------------------------------------------+
    | Yes               | Yes              | Yes                       | The actual resource usage of a node exceeds the upper limit.                                              |
    +-------------------+------------------+---------------------------+-----------------------------------------------------------------------------------------------------------+
+
+**Scenario constraints**: Hybrid task deployment and resource oversubscription enable clusters to use compute resources more efficiently and balance resource allocation during peak and off-peak hours. This improves overall resource utilization and reduces O&M costs. With intelligent resource scheduling, CCE can handle burst resource surges, such as online service surges. For example, with a CPU QoS policy, CCE prioritizes compute resources for online tasks to ensure the stable running of key services. When memory usage temporarily increases, the underlying OS automatically reclaims memory, prioritizing the memory used by inactive data such as page cache of offline services. This may cause slight node performance fluctuations. CCE dynamically adjusts task running statuses based on resource pressure, quickly restoring overall services to a stable state. This achieves a balance between service continuity and resource efficiency.
 
 Compatible kubelet Oversubscription
 -----------------------------------
@@ -93,18 +95,18 @@ Compatible kubelet Oversubscription
    -  Before enabling oversubscription, ensure that the overcommit add-on is not enabled on Volcano.
    -  Modifying the label of an oversubscribed node does not affect the running pods.
    -  Running pods cannot be converted between online and offline services. To convert services, rebuild pods.
-   -  If the label **volcano.sh/oversubscription=true** is configured for a node in the cluster, the **oversubscription** configuration must be added to the Volcano add-on. Otherwise, the scheduling of oversold nodes will be abnormal. Ensure that you have correctly configure labels because the scheduler does not check the add-on and node configurations. For details, see :ref:`Table 1 <cce_10_0384__table152481219311>`.
+   -  If the label **volcano.sh/oversubscription=true** is configured for a node in the cluster, the **oversubscription** configuration must be added to the Volcano add-on. Otherwise, the scheduling of oversold nodes will be abnormal. Ensure that you have correctly configured labels, as the scheduler does not check the add-on and node configurations. For details, see :ref:`Table 1 <cce_10_0384__table152481219311>`.
    -  To disable oversubscription, perform the following operations:
 
       -  Remove the **volcano.sh/oversubscription** label from the oversubscribed node.
       -  Modify the configmap of Volcano Scheduler named **volcano-scheduler-configmap** and remove the oversubscription add-on.
 
-   -  If you have set **cpu-manager-policy** to statically bind CPU cores on a node, do not assign the QoS class of Guaranteed to offline pods. This is because offline pods may occupy the CPUs of online pods, leading to an online pod startup failure and offline pods failing to start even though they have been successfully scheduled. To prevent this, switch the pods to online pods if CPU core binding is required.
-   -  If **cpu-manager-policy** is set to static CPU core binding on a node, do not bind CPU cores to all online pods. This is because doing so can cause online pods to occupy all available CPU or memory resources, leaving only a small number of oversubscribed resources.
+   -  If you have configured the **cpu-manager-policy** to statically pin CPU cores on a node, do not assign the QoS class **Guaranteed** to offline pods. This is because offline pods may occupy CPU cores intended for online pods, potentially causing online pod startup failures and preventing offline pods from starting even after successful scheduling. To prevent this, switch the offline pods to online pods if CPU pinning is required.
+   -  If **cpu-manager-policy** is set to static CPU pinning on a node, do not pin CPU cores to all online pods. This is because doing so can cause online pods to occupy all available CPU or memory resources, leaving only a small number of oversubscribed resources.
 
 If the label **volcano.sh/oversubscription=true** is configured for a node in the cluster, the **oversubscription** configuration must be added to the Volcano add-on. Otherwise, the scheduling of oversold nodes will be abnormal. For details about the related configuration, see :ref:`Table 1 <cce_10_0384__table152481219311>`.
 
-Ensure that you have correctly configure labels because the scheduler does not check the add-on and node configurations.
+Ensure that you have correctly configured labels, as the scheduler does not check the add-on and node configurations.
 
 .. _cce_10_0384__table152481219311:
 
@@ -306,7 +308,7 @@ Ensure that you have correctly configure labels because the scheduler does not c
         cpu                 4950m (126%)  4950m (126%)
         memory             1712Mi (27%)  1712Mi (27%)
 
-   In the preceding command, CPU and memory are in the unit of m CPU cores and MiB, respectively.
+   In the preceding command, CPU and memory are in the unit of m CPU cores and bytes, respectively.
 
 Deployment Example
 ------------------
@@ -485,7 +487,7 @@ The following uses an example to describe how to deploy online and offline jobs 
       online-6f44bb68bd-b8z9p  1/1     Running     0     3m4s   192.168.10.18   192.168.0.173
       online-6f44bb68bd-g6xk8  1/1     Running     0     3m12s   192.168.10.69   192.168.0.173
 
-   Check the oversubscribed node with IP address 192.168.0.173. It is found that resources are oversubscribed, where there are 2343m CPU cores and 3073653200 MiB of memory. Additionally, the CPU allocation rate exceeded 100%.
+   Check the oversubscribed node with IP address 192.168.0.173. It is found that resources are oversubscribed, where there are 2343m CPU cores and 3073653200 bytes of memory. Additionally, the CPU allocation rate exceeded 100%.
 
    .. code-block::
 

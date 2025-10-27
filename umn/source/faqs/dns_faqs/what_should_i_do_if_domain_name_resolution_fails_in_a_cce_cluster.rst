@@ -17,7 +17,7 @@ Check Item 1: Whether the coredns Add-on Has Been Installed
 Check Item 2: Whether the coredns Instance Reaches the Performance Limit
 ------------------------------------------------------------------------
 
-CoreDNS QPS is positively correlated with the CPU usage. If the QPS is high, adjust the coredns instance specifications based on the QPS.
+CoreDNS QPS is positively correlated with the CPU usage. If the QPS is high, adjust the CoreDNS instance specifications based on the QPS.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
@@ -69,13 +69,13 @@ To locate the fault, perform the following operations:
 
       .. code-block::
 
-         docker ps --no-trunc | grep k8s_coredns | awk '{print $1}'
+         docker ps --no-trunc | grep coredns | awk '{print $1}'
 
       Nodes that use containerd:
 
       .. code-block::
 
-         crictl ps --no-trunc | grep k8s_coredns | awk '{print $1}'
+         crictl ps --no-trunc | grep coredns | awk '{print $1}'
 
    Example:
 

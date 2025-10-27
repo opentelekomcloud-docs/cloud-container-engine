@@ -6,9 +6,11 @@ Namespace
 =========
 
 -  :ref:`What Should I Do If a Namespace Fails to Be Deleted Due to an APIService Object Access Failure? <cce_faq_00325>`
+-  :ref:`How Do I Delete a Namespace in the Terminating State? <cce_faq_00277>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
    what_should_i_do_if_a_namespace_fails_to_be_deleted_due_to_an_apiservice_object_access_failure
+   how_do_i_delete_a_namespace_in_the_terminating_state

@@ -10,7 +10,7 @@ Scenario
 
 Each node in a cluster is a cloud server or physical machine. After a cluster node is created, you can change the cloud server name or specifications as required. Modifying node specifications will affect services. Perform the operation on nodes one by one.
 
-Some information of CCE nodes is maintained independently from the ECS console. After you change the name, EIP, or specifications of an ECS on the ECS console, synchronize the ECS with the target node on the CCE console. After the synchronization, information on both consoles is consistent.
+Some CCE node information is maintained independently of the ECS console. After changing an ECS's name, EIP, or specifications on the ECS console, synchronize it with the target node on the CCE console to ensure consistency.
 
 Notes and Constraints
 ---------------------

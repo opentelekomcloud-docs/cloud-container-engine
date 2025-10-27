@@ -101,7 +101,7 @@ Locating a Node Fault by Performing a Self-Check
 ------------------------------------------------
 
 
-.. figure:: /_static/images/en-us_image_0000002253778301.png
+.. figure:: /_static/images/en-us_image_0000002467716657.png
    :alt: **Figure 1** Performing a self-check
 
    **Figure 1** Performing a self-check
@@ -251,7 +251,7 @@ Checking the Node Security Group
 Checking the Disks Attached to the Node
 ---------------------------------------
 
--  By default, a 100-GiB data disk is attached to a node for runtime purposes. You have the option to attach additional data disks to the node if needed. If the data disk is detached or damaged, the runtime becomes abnormal and the node becomes unavailable.
+-  By default, a 100-GiB data disk is attached to a node for runtime purposes. You have the option to attach additional data disks to the node if needed. If the data disk is removed or damaged, the runtime will be disrupted and the node will become unavailable.
 
 -  You need to check whether the data disks of the node are detached from it. If they are, you are advised to create a node and delete the unavailable node. (To minimize risks, you are not advised to perform operations on the CCE nodes through the ECS console.)
 
@@ -270,7 +270,7 @@ Checking Key Components of the Node
 
       systemctl status kubelet
 
-   The following shows an example of the expected output.
+   The expected output is shown in the figure below.
 
    |image1|
 
@@ -294,7 +294,7 @@ Checking Key Components of the Node
 
          systemctl status docker
 
-      The following shows an example of the expected output.
+      The expected output is shown in the figure below.
 
       |image2|
 
@@ -316,7 +316,7 @@ Checking Key Components of the Node
 
          systemctl status containerd
 
-      The following shows an example of the expected output.
+      The expected output is shown in the figure below.
 
       |image3|
 
@@ -338,7 +338,7 @@ Checking Key Components of the Node
 
          systemctl status chronyd
 
-      The following shows an example of the expected output.
+      The expected output is shown in the figure below.
 
       |image4|
 
@@ -355,7 +355,7 @@ Checking Key Components of the Node
 Verifying Whether the Node DNS Address Is Properly Configured
 -------------------------------------------------------------
 
--  Log in to the target node and check whether any domain name resolution failure is recorded in **/var/log/cloud-init-output.log**:
+-  Log in to the node and check whether any domain name resolution failure is recorded in **/var/log/cloud-init-output.log**:
 
    .. code-block::
 
@@ -396,7 +396,7 @@ Common Issues and Solutions
 PID Pressure
 ------------
 
-**Possible cause**
+**Possible Cause**
 
 The pods on the node are using up a large number of PIDs, causing a shortage of available PIDs on the node. By default, CCE reserves 10% of the available PIDs for pods.
 
@@ -440,7 +440,7 @@ If the number of available PIDs on a node is lower than the specified value of *
 Memory Pressure
 ---------------
 
-**Possible cause**
+**Possible Cause**
 
 The pods on the node are using up a large amount of memory, causing a shortage of available memory on the node. By default, the available memory of a CCE node is 100 MiB.
 
@@ -468,7 +468,7 @@ The pods on the node are using up a large amount of memory, causing a shortage o
 Disk Pressure
 -------------
 
-**Possible cause**
+**Possible Cause**
 
 The root file system, image file system, or container file system on the node is consuming excessive disk space and inodes, surpassing the eviction threshold. This leads to the **nodefs.available**, **nodefs.inodesFree**, **imagefs.available**, or **imagefs.inodesFree** metric met the eviction threshold, causing disk pressure. The table below shows the default values for these parameters.
 
@@ -511,7 +511,7 @@ The root file system, image file system, or container file system on the node is
 Abnormal kubelet
 ----------------
 
-**Possible cause**
+**Possible Cause**
 
 The kubelet process is not functioning properly or the kubelet configuration is improper. Typically, CCE has set up health checks for kubelet as a default configuration. There is a greater chance of startup failure if the configuration is incorrect.
 
@@ -547,7 +547,7 @@ kubelet is inactive.
 Abnormal Runtime
 ----------------
 
-**Possible cause**
+**Possible Cause**
 
 The Docker or containerd configuration or process is not functioning properly.
 
@@ -574,7 +574,7 @@ The Docker or containerd configuration or process is not functioning properly.
 
       # Docker
       systemctl restart docker
-      # Containerd
+      # containerd
       systemctl restart containerd
 
 #. After the command is executed, check whether the running status is normal.
@@ -583,7 +583,7 @@ The Docker or containerd configuration or process is not functioning properly.
 
       # Docker
       systemctl status docker
-      # Containerd
+      # containerd
       systemctl status containerd
 
 #. If the component status is still abnormal after the restart, check the component logs:
@@ -600,7 +600,7 @@ The Docker or containerd configuration or process is not functioning properly.
 Abnormal NTP
 ------------
 
-**Possible cause**
+**Possible Cause**
 
 The NTP process is abnormal.
 
@@ -634,7 +634,7 @@ The NTP process is abnormal.
 Abnormal Node Restart
 ---------------------
 
-**Possible cause**
+**Possible Cause**
 
 The node is experiencing abnormal load.
 
@@ -650,7 +650,7 @@ During the restart, the node is in the **NotReady** state.
 
       last reboot
 
-   The following shows an example of the expected output.
+   The expected output is shown in the figure below.
 
    |image5|
 
@@ -663,7 +663,7 @@ During the restart, the node is in the **NotReady** state.
 Abnormal Node Network
 ---------------------
 
-**Possible cause**
+**Possible Cause**
 
 The node is experiencing abnormal running status, incorrect security group configuration, or excessive network load.
 
@@ -690,7 +690,7 @@ The node is experiencing abnormal running status, incorrect security group confi
 Abnormal PLEG
 -------------
 
-**Possible cause**
+**Possible Cause**
 
 The pod lifecycle event generator (PLEG) records different events in the lifecycle of a pod, such as the pod startup and termination. The error "PLEG is not healthy" is usually due to abnormal runtime processes on the node or issues with the systemd version on the node.
 
@@ -714,7 +714,7 @@ The pod lifecycle event generator (PLEG) records different events in the lifecyc
 Node Overloaded
 ---------------
 
-**Possible cause**
+**Possible Cause**
 
 The node resources are not enough for pod scheduling.
 
@@ -783,7 +783,7 @@ If the resources on a node are not enough for pod scheduling, reduce the node lo
 Restricted Node Scheduling with the node.kubernetes.io/route-unreachable Taint
 ------------------------------------------------------------------------------
 
-**Possible cause**
+**Possible Cause**
 
 The network infrastructure's route tables allow the container networks in a cluster that uses the VPC network model to be accessible. A newly created CCE node has network isolation support. If the node network is not functioning properly, the system will automatically add the **node.kubernetes.io/route-unreachable** taint to the node and remove it once the network is ready. If the **node.kubernetes.io/route-unreachable** taint remains for an extended period, it indicates abnormal network connectivity for the node.
 
@@ -822,7 +822,7 @@ A newly created node is **restricted for scheduling** for a long time.
                         - {node_ip}
         schedulerName: default-scheduler
         tolerations:
-          - key: node.kubernetes.io/route-unreachabe
+          - key: node.kubernetes.io/route-unreachable
             operator: Exists
             effect: NoSchedule
 
@@ -837,7 +837,7 @@ A newly created node is **restricted for scheduling** for a long time.
 Node Unavailable Due to OOM
 ---------------------------
 
-**Possible cause**
+**Possible Cause**
 
 Many containers are scheduled onto a node, using up all its resources and causing an OOM issue. This issue is primarily seen on nodes running the Docker container engine.
 
@@ -866,10 +866,10 @@ If the resources on a node are not enough for pod scheduling, reduce the node lo
 -  Restrict the resource configurations of pods based on service requirements.
 -  Add more nodes to the cluster.
 
-.. |image1| image:: /_static/images/en-us_image_0000002218658526.png
-.. |image2| image:: /_static/images/en-us_image_0000002253778245.png
-.. |image3| image:: /_static/images/en-us_image_0000002218818366.png
-.. |image4| image:: /_static/images/en-us_image_0000002218658654.png
-.. |image5| image:: /_static/images/en-us_image_0000002218818398.png
-.. |image6| image:: /_static/images/en-us_image_0000002253778265.png
-.. |image7| image:: /_static/images/en-us_image_0000002218818382.png
+.. |image1| image:: /_static/images/en-us_image_0000002434078164.png
+.. |image2| image:: /_static/images/en-us_image_0000002434078100.png
+.. |image3| image:: /_static/images/en-us_image_0000002467676473.png
+.. |image4| image:: /_static/images/en-us_image_0000002467716601.png
+.. |image5| image:: /_static/images/en-us_image_0000002434237980.png
+.. |image6| image:: /_static/images/en-us_image_0000002434238020.png
+.. |image7| image:: /_static/images/en-us_image_0000002434238008.png

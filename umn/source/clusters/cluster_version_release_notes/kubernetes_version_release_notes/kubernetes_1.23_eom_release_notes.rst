@@ -26,6 +26,13 @@ Resource Changes and Deprecations
 -  During scale-in, pods are randomly selected and deleted based on the pod UID by default (LogarithmicScaleDown). This feature enhances the randomness of the pods to be deleted and alleviates the problems caused by pod topology spread constraints. For more information, see `KEP-2185 <https://github.com/kubernetes/enhancements/tree/master/keps/sig-apps/2185-random-pod-select-on-replicaset-downscale>`__ and `issue 96748 <https://github.com/kubernetes/kubernetes/issues/96748>`__.
 -  The `BoundServiceAccountTokenVolume <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume>`__ feature is stable, which has changed the method of mounting tokens into pods for enhanced token security of the service account. This feature is enabled by default in Kubernetes clusters of v1.21 and later versions.
 
+Incompatible Changes
+--------------------
+
+In Kubernetes 1.23, kube-proxy's startup behavior has changed. If a node's kernel parameter value exceeds the default value calculated by kube-proxy, kube-proxy will not override it. For example, if a node's **nf_conntrack_max** is set to **1000000** and kube-proxy calculates **131072**, the kernel value **1000000** will be used.
+
+Community PR: https://github.com/kubernetes/kubernetes/pull/103174
+
 References
 ----------
 

@@ -21,8 +21,8 @@ Prerequisites
 -  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 -  You have imported a data disk of a node to the local PV storage pool. For details, see :ref:`Importing a PV to a Storage Pool <cce_10_0642>`.
 
-Dynamically Mounting a Local PV on the Console
-----------------------------------------------
+Dynamically Mounting a Local PV Using the Console
+-------------------------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
@@ -45,7 +45,7 @@ Dynamically Mounting a Local PV on the Console
    +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Storage Classes                       | The default StorageClass of local PVs is **csi-local-topology**.                                                                                                                                                                                                    |
    |                                       |                                                                                                                                                                                                                                                                     |
-   |                                       | You can customize a StorageClass and configure its reclaim policy and binding mode. For details, see :ref:`Creating a StorageClass Using the CCE Console <cce_10_0380__section11263115719212>`.                                                                     |
+   |                                       | You can customize a StorageClass and configure its reclaim policy and binding mode. For details, see :ref:`Creating a StorageClass Through the Console <cce_10_0380__section1074117311660>`.                                                                        |
    +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | (Optional) Storage Volume Name Prefix | Available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest of v2.4.15 or later is installed in the cluster.                                                                                                  |
    |                                       |                                                                                                                                                                                                                                                                     |
@@ -95,8 +95,8 @@ Dynamically Mounting a Local PV on the Console
 
    After the workload is created, the data in the container mount directory will be persistently stored. Verify the storage by referring to :ref:`Verifying Data Persistence <cce_10_0635__section11593165910013>`.
 
-Dynamically Mounting a Local PV Through kubectl
------------------------------------------------
+Dynamically Mounting a Local PV Using kubectl
+---------------------------------------------
 
 #. Use kubectl to access the cluster.
 
@@ -304,5 +304,5 @@ You can also perform the operations listed in :ref:`Table 3 <cce_10_0635__cce_10
    |                       |                                                                                                                                            | #. Click **View Events** in the **Operation** column of the target PVC or PV to view events generated within one hour (events are retained for one hour). |
    +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Viewing a YAML file   | View, copy, or download the YAML file of a PVC or PV.                                                                                      | #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** or **PVs** tab.                                                       |
-   |                       |                                                                                                                                            | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view or download the YAML.                                                  |
+   |                       |                                                                                                                                            | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view, copy, or download the YAML.                                           |
    +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+

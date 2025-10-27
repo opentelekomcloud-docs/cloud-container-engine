@@ -16,12 +16,12 @@ By default, kubelet uses `CFS quotas <https://www.kernel.org/doc/html/next/sched
 -  Cross-socket memory access
 -  Hyperthreads that are expected to run on the same physical CPU card
 
-If your workloads are sensitive to any of these items, you can use Kubernetes `CPU management policies <https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/>`__ to allocate dedicated CPU cores (through CPU core binding) to these workloads. This will shorten scheduling latency and improve application performance. The CPU manager preferentially allocates resources on a socket and full physical cores to avoid interference.
+If your workloads are sensitive to any of these items, you can use Kubernetes `CPU management policies <https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/>`__ to allocate dedicated CPU cores (through CPU pinning) to these workloads. This will shorten scheduling latency and improve application performance. The CPU manager preferentially allocates resources on a socket and full physical cores to avoid interference.
 
 A CPU management policy is specified by using kubelet *--cpu-manager-policy*. By default, Kubernetes supports the following policies:
 
 -  **none**: the default policy. The **none** policy explicitly enables the existing default CPU affinity scheme, providing no affinity beyond what the OS scheduler does automatically.
--  **static**: The **static** policy allows containers in `guaranteed pods <https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/>`__ with integer CPU requests to be use dedicated CPU resources on nodes through CPU core binding.
+-  **static**: The **static** policy allows containers in `guaranteed pods <https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/>`__ with integer CPU requests to be use dedicated CPU resources on nodes through CPU pinning.
 
 Notes and Constraints
 ---------------------
@@ -35,8 +35,8 @@ Enabling CPU Management for the Default Node Pool
 
 When creating a cluster, you can enable CPU management in **Advanced Settings**.
 
--  If this function is enabled, the **static** Kubernetes policy is used, where CPU core binding is used.
--  If this function is disabled, the **none** Kubernetes policy is used, where CPU core binding is not used.
+-  If this function is enabled, the **static** Kubernetes policy is used, where CPU pinning is used.
+-  If this function is disabled, the **none** Kubernetes policy is used, where CPU pinning is not used.
 
 .. _cce_10_0351__section1460719557453:
 

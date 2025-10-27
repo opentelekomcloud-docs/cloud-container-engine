@@ -19,8 +19,8 @@ Notes and Constraints
 
 -  If the add-on version is 1.2.11 or later, the add-ons that can provide metrics API must be installed.
 
-   -  :ref:`Kubernetes Metrics Server <cce_10_0205>`: provides basic resource usage metrics, such as container CPU and memory usage. It is supported by all cluster versions.
-   -  :ref:`Cloud Native Cluster Monitoring <cce_10_0406>`: available only in clusters of v1.17 or later.
+   -  Kubernetes Metrics Server (:ref:`Kubernetes Metrics Server <cce_10_0205>`): provides basic resource usage metrics, such as container CPU and memory usages. The default collection period is 60s. It is supported by all cluster versions.
+   -  Cloud Native Cluster Monitoring (:ref:`Cloud Native Cluster Monitoring <cce_10_0406>`): available in clusters of v1.17 or later. The default collection period is 15s.
 
       -  Auto scaling based on basic resource metrics: Prometheus needs to be registered as a metrics API. For details, see :ref:`Providing Basic Resource Metrics Through the Metrics API <cce_10_0406__section17830202915211>`.
       -  Auto scaling based on custom metrics: Custom metrics need to be aggregated to the Kubernetes API server. For details, see :ref:`Creating an HPA Policy Using Custom Metrics <cce_10_0406__section11927514174016>`.
@@ -28,11 +28,12 @@ Notes and Constraints
 Installing the Add-on
 ---------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate **CCE Advanced HPA** on the right, and click **Install**.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Add-ons**. Locate **CCE Advanced HPA** on the right and click **Install**.
 #. On the **Install Add-on** page, configure the specifications as needed.
 
    -  If you selected **Preset**, the add-on specifications will be automatically configured based on the recommended values by CCE. These values are suitable for most scenarios and can be viewed on the console.
-   -  If you selected **Custom**, you can modify the number of replicas, CPUs, and memory of each add-on component as required.
+   -  If you selected **Custom**, you can modify the number of replicas, vCPUs, and memory of each add-on component as required.
 
       .. note::
 
@@ -92,14 +93,28 @@ Components
    | customedhpa-controller | CCE auto scaling component, which scales in or out Deployments based on metrics such as CPU usage and memory usage | Deployment    |
    +------------------------+--------------------------------------------------------------------------------------------------------------------+---------------+
 
-Change History
---------------
+Release History
+---------------
 
-.. table:: **Table 3** Release history
+.. table:: **Table 3** CCE Advanced HPA add-on
 
    +-----------------------+---------------------------+-----------------------------------+
    | Add-on Version        | Supported Cluster Version | New Feature                       |
    +=======================+===========================+===================================+
+   | 1.5.32                | v1.25                     | CCE clusters v1.32 are supported. |
+   |                       |                           |                                   |
+   |                       | v1.27                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.28                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.29                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.30                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.31                     |                                   |
+   |                       |                           |                                   |
+   |                       | v1.32                     |                                   |
+   +-----------------------+---------------------------+-----------------------------------+
    | 1.5.24                | v1.25                     | Fixed some issues.                |
    |                       |                           |                                   |
    |                       | v1.27                     |                                   |

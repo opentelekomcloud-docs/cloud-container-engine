@@ -7,7 +7,7 @@ Best Practice
 
 -  :ref:`Checklist for Deploying Containerized Applications in the Cloud <cce_bestpractice_00006>`
 -  :ref:`Containerization <cce_bestpractice_0321>`
--  :ref:`Migration <cce_bestpractice_00237>`
+-  :ref:`Backup and Migration <cce_bestpractice_00237>`
 -  :ref:`DevOps <cce_bestpractice_0322>`
 -  :ref:`Disaster Recovery <cce_bestpractice_0323>`
 -  :ref:`Security <cce_bestpractice_0315>`
@@ -26,7 +26,7 @@ Best Practice
 
    checklist_for_deploying_containerized_applications_in_the_cloud
    containerization/index
-   migration/index
+   backup_and_migration/index
    devops/index
    disaster_recovery/index
    security/index

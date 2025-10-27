@@ -26,7 +26,7 @@ Step 2: Obtain the Authentication Mode
 --------------------------------------
 
 -  For the third-party Prometheus instance, go to the vendor's console to view the token or account password used for authorized access.
--  For the on-premises Prometheus instance, perform the following steps to obtain a token:
+-  For the on-premises Prometheus instance, perform the following operations to obtain a token:
 
    #. If this Prometheus instance is deployed in a Kubernetes cluster, view the token in the corresponding container. If this Prometheus instance is deployed on a VM, skip this step.
 
@@ -79,6 +79,6 @@ After the preceding configuration is complete, log in to the Prometheus console 
 
 |image3|
 
-.. |image1| image:: /_static/images/en-us_image_0000002253778205.png
-.. |image2| image:: /_static/images/en-us_image_0000002218818386.png
-.. |image3| image:: /_static/images/en-us_image_0000002253618289.png
+.. |image1| image:: /_static/images/en-us_image_0000002434078352.png
+.. |image2| image:: /_static/images/en-us_image_0000002434078340.png
+.. |image3| image:: /_static/images/en-us_image_0000002467716841.png

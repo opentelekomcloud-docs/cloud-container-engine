@@ -8,10 +8,10 @@ Implementing High Availability for Applications in CCE
 Basic Principles
 ----------------
 
-To achieve high availability for your CCE containers, you can do as follows:
+To achieve high availability for your CCE containers, you can:
 
 #. Deploy three master nodes for the cluster.
-#. Create nodes in different AZs. When nodes are deployed across AZs, you can customize scheduling policies based on your requirements to maximize resource utilization.
+#. Create nodes in different AZs and customize scheduling policies based on your requirements to maximize resource utilization.
 #. Create multiple node pools in different AZs and use them for node scaling.
 #. Set the number of pods to be greater than 2 when creating a workload.
 #. Set pod affinity rules to distribute pods to different AZs and nodes.

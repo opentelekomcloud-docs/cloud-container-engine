@@ -93,4 +93,4 @@ Procedure
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0261818867.png
+.. |image1| image:: /_static/images/en-us_image_0000002467717633.png

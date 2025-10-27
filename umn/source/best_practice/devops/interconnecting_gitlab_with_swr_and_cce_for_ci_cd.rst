@@ -8,12 +8,12 @@ Interconnecting GitLab with SWR and CCE for CI/CD
 Background
 ----------
 
-GitLab is an open source version management system developed with Ruby on Rails for Git project repository management. It supports web-based access to public and private projects. Similar to GitHub, GitLab allows you to browse source code, manage bugs and comments, and control team member access to repositories. You will find it very easy to view committed versions and file history database. Team members can communicate with each other using the built-in chat program (Wall).
+GitLab is an open-source version management system developed with Ruby on Rails for Git project repository management. It supports web-based access to public and private projects. Similar to GitHub, GitLab allows you to browse source code, manage bugs and comments, and control team member access to repositories. You will find it very easy to view committed versions and file history database. Team members can communicate with each other using the built-in chat program (Wall).
 
 GitLab provides powerful CI/CD functions and is widely used in software development.
 
 
-.. figure:: /_static/images/en-us_image_0000002218658614.png
+.. figure:: /_static/images/en-us_image_0000002434078272.png
    :alt: **Figure 1** GitLab CI/CD process
 
    **Figure 1** GitLab CI/CD process
@@ -218,11 +218,11 @@ Common Issues
 
    The **privileged: true** parameter fails to be transferred during GitLab Runner installation. As a result, you do not have the permissions to run the Docker command. To resolve this issue, find GitLab Runner in the workload list on the CCE console, add the environment variable **KUBERNETES_PRIVILEGED**, and set its value to **true**.
 
-.. |image1| image:: /_static/images/en-us_image_0000002253778225.png
-.. |image2| image:: /_static/images/en-us_image_0000002218818446.png
-.. |image3| image:: /_static/images/en-us_image_0000002218658606.png
-.. |image4| image:: /_static/images/en-us_image_0000002253778269.png
-.. |image5| image:: /_static/images/en-us_image_0000002253618345.png
-.. |image6| image:: /_static/images/en-us_image_0000002253618329.png
-.. |image7| image:: /_static/images/en-us_image_0000002218818458.png
-.. |image8| image:: /_static/images/en-us_image_0000002253778253.png
+.. |image1| image:: /_static/images/en-us_image_0000002434238092.png
+.. |image2| image:: /_static/images/en-us_image_0000002434238140.png
+.. |image3| image:: /_static/images/en-us_image_0000002467676609.png
+.. |image4| image:: /_static/images/en-us_image_0000002434238156.png
+.. |image5| image:: /_static/images/en-us_image_0000002434078288.png
+.. |image6| image:: /_static/images/en-us_image_0000002467716749.png
+.. |image7| image:: /_static/images/en-us_image_0000002467716805.png
+.. |image8| image:: /_static/images/en-us_image_0000002467716761.png
