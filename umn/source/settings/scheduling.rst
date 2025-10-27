@@ -47,7 +47,7 @@ Priority-based Scheduling
 
 **Scheduling based on priority**
 
-This is a basic scheduling capability and cannot be disabled. The scheduler preferentially guarantees the running of high-priority pods, and will not evict low-priority pods that are running. For details, see :ref:`Priority-based Scheduling <cce_10_0775>`.
+This is a basic scheduling capability and cannot be disabled. The scheduler preferentially guarantees the running of high-priority pods, and will not evict low-priority pods that are running.
 
 .. _cce_10_0785__section15912157011:
 

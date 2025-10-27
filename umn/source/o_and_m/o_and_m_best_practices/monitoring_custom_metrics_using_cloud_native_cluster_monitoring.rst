@@ -97,7 +97,7 @@ Installing and Accessing Cloud Native Cluster Monitoring
              prometheus: server
            type: LoadBalancer
 
-   c. After the Service is created, enter *Public IP address of the load balancer*\ **:**\ *Service port* in the address box of the browser to access Prometheus.
+   c. After the Service is created, enter *{public IP address of the load balancer}*\ **:**\ *{Service port}* in the address box of the browser to access Prometheus.
 
 .. _cce_10_0373__section2212930134620:
 
@@ -186,13 +186,13 @@ This section uses Nginx as an example to describe how to collect monitoring data
 
    a. Use **nginx:exporter** to create a workload.
 
-   b. :ref:`Log in to the container <cce_10_00356>` and obtain the Nginx monitoring data through **http://**\ *<ip_address>*:**8080/stub_status**. *<ip_address>* indicates the IP address of the container.
+   b. :ref:`Log in to the container <cce_10_00356>` and use http://*<ip_address>*:8080/stub_status to obtain nginx monitoring data. *<ip_address>* indicates the IP address of the container.
 
       .. code-block::
 
          curl http://127.0.0.1:8080/stub_status
 
-      The command output is as follows:
+      Information similar to the following is displayed:
 
       .. code-block::
 
@@ -534,4 +534,4 @@ After the application is successfully deployed, :ref:`access Prometheus <cce_10_
 
    nginx_connections_accepted{cluster="2048c170-8359-11ee-9527-0255ac1000cf", cluster_category="CCE", cluster_name="cce-test", endpoint="servicemonitor-ports", instance="10.0.0.47:9113", job="nginx-test3", namespace="default", pod="nginx-test3-6f8bccd9-f27hv", prometheus="monitoring/server", service="nginx-test3"}
 
-.. |image1| image:: /_static/images/en-us_image_0000002253779505.png
+.. |image1| image:: /_static/images/en-us_image_0000002467719245.png

@@ -15,7 +15,7 @@ Solution
 
 The certificate referenced by an HTTPS ingress created on CCE is modified on the ELB console. This leads to inconsistent certificate content in the CCE cluster and that required by the load balancer. After the CCE cluster is upgraded, the load balancer's certificate is overwritten.
 
-#. Log in to the ELB console, choose **Elastic Load Balance** > **Certificates**, locate the certificate, and find the **secret_id** in the certificate description.
+#. Log in to the ELB console, choose **Elastic Load Balance** > **Certificates**, locate the certificate, and find **secret_id** in the certificate description.
 
    The **secret_id** is the **metadata.uid** of the secret in the cluster. Use this UID to obtain the secret name in the cluster.
 
@@ -47,4 +47,4 @@ The certificate referenced by an HTTPS ingress created on CCE is modified on the
 
       Solution 2: Overwrite the certificate used by an ingress with the corresponding secret resource of the cluster to prevent the certificate being updated on the ELB console during the cluster upgrade.
 
-      Log in to the CCE console and click the cluster name to access the cluster console. Choose **ConfigMaps and Secrets** from the navigation pane, click the **Secrets** tab, locate the row containing the target secret, click **Update** in the **Operation** column, and enter the certificate you are using.
+      Log in to the CCE console and click the cluster name to access the cluster console. Choose **ConfigMaps and Secrets** in the navigation pane, click the **Secrets** tab, locate the row containing the target secret, click **Update** in the **Operation** column, and enter the certificate you are using.

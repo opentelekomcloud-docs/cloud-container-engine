@@ -5,16 +5,16 @@
 Auto Scaling
 ============
 
--  :ref:`Overview <cce_10_0279>`
--  :ref:`Scaling a Workload <cce_10_0293>`
--  :ref:`Scaling a Node <cce_10_0291>`
+-  :ref:`Auto Scaling Overview <cce_10_0279>`
+-  :ref:`Workload Scaling <cce_10_0293>`
+-  :ref:`Node Scaling <cce_10_0291>`
 -  :ref:`Using HPA and CA for Auto Scaling of Workloads and Nodes <cce_10_0300>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
-   overview
-   scaling_a_workload/index
-   scaling_a_node/index
+   auto_scaling_overview
+   workload_scaling/index
+   node_scaling/index
    using_hpa_and_ca_for_auto_scaling_of_workloads_and_nodes

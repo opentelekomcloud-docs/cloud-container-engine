@@ -17,11 +17,13 @@ Check whether the **Protocol & Port** of the worker node security groups is set 
 Solution
 --------
 
-Log in to the VPC console, choose **Access Control** > **Security Groups**, and enter the target cluster name in the search box. Two security groups are expected to display:
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Overview**. In the **Networking Configuration** area, view the default node security group.
+#. Click the name of the default node security group to go to the details pagee. Ensure that the **inbound rules** contain the rule in the figure below. This rule allows the master node to access worker nodes using the **ICMP** protocol.
+#. If the rule does not exist, click **Add Rule** to add the inbound rule to the node security group.
 
--  The security group name is **cluster name-node-xxx**. This security group is associated with the worker nodes.
--  The security group name is **cluster name-control-xxx**. This security group is associated with the master nodes.
-
-Click the node security group and ensure that the following rules are configured to allow the master node to access the node using **ICMP**.
-
-If the preceding security group rule is unavailable, add the rule with the following configurations to the node security group: Set **Protocol & Port** to **ICMP: All**, and **Source** to **Security group** and then the master node's security group.
+   -  **Priority**: Set it to **1**.
+   -  **Action**: Select **Allow**.
+   -  **Type**: Select **IPv4**.
+   -  **Protocol & Port**: Select **Protocols/ICMP** and select **All** for **Port**.
+   -  **Source**: Select **Security Group** and set it to the master node security group. The master node security group is in the format of *cluster-name*\ **-control-**\ *xxx*. You can search for the security group by cluster name.

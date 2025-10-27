@@ -23,7 +23,7 @@ As shown in :ref:`Figure 1 <cce_bestpractice_00282__fig6540132372015>`, HPA perf
 
 .. _cce_bestpractice_00282__fig6540132372015:
 
-.. figure:: /_static/images/en-us_image_0000002253778437.png
+.. figure:: /_static/images/en-us_image_0000002467676509.png
    :alt: **Figure 1** HPA and CA working flows
 
    **Figure 1** HPA and CA working flows
@@ -35,7 +35,7 @@ This section uses an example to describe the auto scaling process using HPA and 
 Preparations
 ------------
 
-#. Create a cluster with one node. The node should have 2 cores of vCPUs and 4 GiB of memory, or a higher specification, as well as an EIP to allow external access. If no EIP is bound to the node during node creation, you can manually bind one on the ECS console after creating the node.
+#. Create a cluster with one node. The node should have 2 vCPUs and 4 GiB of memory, or a higher flavor, as well as an EIP to allow external access. If no EIP is bound to the node during node creation, you can manually bind one on the ECS console after creating the node.
 #. Install add-ons for the cluster.
 
    -  autoscaler: node scaling add-on
@@ -128,7 +128,7 @@ Preparations
 Creating a Node Pool and a Node Scaling Policy
 ----------------------------------------------
 
-#. Log in to the CCE console, access the created cluster, click **Nodes** on the left, click the **Node Pools** tab, and click **Create Node Pool** in the upper right corner.
+#. Log in to the CCE console and click the cluster name to access the cluster. In the navigation pane, choose **Nodes**. In the right pane, click the **Node Pools** tab and click **Create Node Pool** in the upper right corner.
 
 #. Configure the node pool.
 
@@ -139,7 +139,7 @@ Creating a Node Pool and a Node Scaling Policy
 
 #. Locate the row containing the newly created node pool and click **Auto Scaling** in the upper right corner. For details, see `Creating a Node Scaling Policy <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0209.html>`__.
 
-   If the CCE Cluster Autoscaler add-on is not installed in the cluster, install it first. For details, see `autoscaler <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0154.html>`__.
+   If the CCE Cluster Autoscaler add-on is not installed in the cluster, install it first. For details, see `CCE Cluster Autoscaler <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0154.html>`__.
 
    -  **Customize scale-out rules.**: Click **Add Rule**. In the dialog box displayed, configure parameters. If the CPU allocation rate is greater than 70%, a node is added to each associated node pool. A node scaling policy needs to be associated with a node pool. Multiple node pools can be associated. When you need to scale nodes, node with proper specifications will be added or reduced from the node pool based on the minimum waste principle.
    -  **Nodes**: Modify the node quantity range. The number of nodes in a node pool will always be within the range during auto scaling.
@@ -171,7 +171,7 @@ Use the hpa-example image to create a Deployment with one replica. The image pat
        spec:
          containers:
          - name: container-1
-           image: 'hpa-example:latest' # Replace it with the address of the image you uploaded to SWR.
+           image: ''hpa-example:latest'' # Replace it with the address of the image you uploaded to SWR.
            resources:
              limits:                  # The value of limits must be the same as that of requests to prevent flapping during scaling.
                cpu: 500m
@@ -378,5 +378,5 @@ Summary
 
 By using HPA and CA, auto scaling can be effortlessly implemented in various scenarios. Additionally, the scaling process of nodes and pods can be conveniently tracked.
 
-.. |image1| image:: /_static/images/en-us_image_0000002218658786.png
-.. |image2| image:: /_static/images/en-us_image_0000002253618517.png
+.. |image1| image:: /_static/images/en-us_image_0000002434237960.png
+.. |image2| image:: /_static/images/en-us_image_0000002467716629.png

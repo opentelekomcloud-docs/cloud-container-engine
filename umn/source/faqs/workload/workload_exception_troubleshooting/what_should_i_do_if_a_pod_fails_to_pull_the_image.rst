@@ -8,7 +8,7 @@ What Should I Do If a Pod Fails to Pull the Image?
 Fault Locating
 --------------
 
-When a workload's status shows "Pod not ready: Back-off pulling image "*xxxxx*", a Kubernetes event of **PodsFailed to pull image** or **Failed to re-pull image** will be reported. For details about how to view Kubernetes events, see :ref:`Viewing Pod Events <cce_faq_00134__section13566155892120>`.
+When a workload's status shows "Pod not ready: Back-off pulling image "*xxxxx*", a Kubernetes event of **Failed to pull image** or **Failed to re-pull image** will be reported. For details about how to view Kubernetes events, see :ref:`Viewing Pod Events <cce_faq_00134__section13566155892120>`.
 
 Troubleshooting
 ---------------
@@ -100,10 +100,10 @@ Check Item 2: Whether the Image Address Is Correct When a Third-Party Image Is U
 
 CCE allows you to create workloads using images pulled from third-party image repositories.
 
-You need to enter the third-party image addresses based on specific requirements. The image addresses must be in the format of *ip:port/path/name:version* or *name:version*. If no version is specified, **latest** is used by default.
+You need to enter the third-party image addresses based on specific requirements. The image address must be in the format of *domainname/organization/imagename:tag*. If no version is specified, **latest** is used by default.
 
--  For a private repository, enter an image address in the format of *ip:port/path/name:version*.
--  For an open source Docker repository, enter an image address in the format of *name:version*, for example, **nginx:latest**.
+-  For a private repository, enter the image address in the format of *domainname/organization/imagename:tag*.
+-  For an open-source Docker repository, enter the image address in the format of *name:version*, for example, **nginx:latest**.
 
 When you fail to pull an image due to incorrect image address provided, information similar to the following information is displayed in the Kubernetes events:
 
@@ -453,7 +453,7 @@ The pod events contain "Failed to pull image". This may be caused by a large ima
 
 However, the image can be manually pulled by running the **docker pull** command on the node.
 
-**Possible cause**
+**Possible Cause**
 
 In Kubernetes clusters, there is a default timeout period for pulling images. If the image pulling progress is not updated within a certain period of time, the pulling will be canceled. If the node performance is poor or the image size is too large, the image may fail to be pulled and the workload may fail to be started.
 
@@ -498,7 +498,7 @@ An error message similar to the following is displayed during workload creation:
 
    Failed to pull image "docker.io/bitnami/nginx:1.22.0-debian-11-r3": rpc error: code = Unknown desc = Error response from daemon: Get https://registry-1.docker.io/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
 
-**Possible cause**
+**Possible Cause**
 
 The image repository cannot be accessed due to the network problems. SWR allows you to pull images only from the official Docker repository. To pull images from other repositories, you need to access the Internet.
 
@@ -526,7 +526,7 @@ Or
 
    you have reached your pull rate limit, you may increase the limit by authenticating an upgrading: https://www.docker.com/increase-rate-limits.
 
-**Possible cause**
+**Possible Cause**
 
 Docker Hub sets limits for the maximum number of container image pull requests. For details, see `Docker Hub pull usage and limits <https://docs.docker.com/docker-hub/usage/pulls/>`__.
 
@@ -534,4 +534,4 @@ Docker Hub sets limits for the maximum number of container image pull requests. 
 
 Push the frequently used images to SWR and then pull them from SWR to your nodes.
 
-.. |image1| image:: /_static/images/en-us_image_0000002218659182.jpg
+.. |image1| image:: /_static/images/en-us_image_0000002467717097.jpg

@@ -15,8 +15,8 @@ Notes and Constraints
 
 Secrets cannot be used in `static pods <https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/>`__.
 
-Procedure
----------
+Creating a Key Pair using the Console
+-------------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
@@ -37,7 +37,7 @@ Procedure
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Description                       | Description of a secret.                                                                                                                                                                                                                                                                                         |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Type                              | Type of the secret you create.                                                                                                                                                                                                                                                                                   |
+      | Secret Type                       | Type of the secret you create.                                                                                                                                                                                                                                                                                   |
       |                                   |                                                                                                                                                                                                                                                                                                                  |
       |                                   | -  Opaque: common secret.                                                                                                                                                                                                                                                                                        |
       |                                   | -  kubernetes.io/dockerconfigjson: a secret that stores the authentication information required for pulling images from a private repository.                                                                                                                                                                    |
@@ -45,10 +45,14 @@ Procedure
       |                                   | -  **IngressTLS**: TLS secret provided by CCE to store the certificate required by layer-7 load balancing Services.                                                                                                                                                                                              |
       |                                   | -  Other: another type of secret, which is specified manually.                                                                                                                                                                                                                                                   |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Secret Data                       | Workload secret data can be used in containers.                                                                                                                                                                                                                                                                  |
+      | Data                              | Workload secret data can be used in containers.                                                                                                                                                                                                                                                                  |
       |                                   |                                                                                                                                                                                                                                                                                                                  |
-      |                                   | -  If **Secret Type** is **Opaque**, click |image1|. In the dialog box displayed, enter a key-value pair and select **Auto Base64 Encoding**.                                                                                                                                                                    |
-      |                                   | -  If **Secret Type** is **kubernetes.io/dockerconfigjson**, enter the account and password for logging in to the private image repository.                                                                                                                                                                      |
+      |                                   | -  If **Secret Type** is set to **Opaque**, click **Add**. In the window that slides out from the right, enter a key-value pair and select **Auto Base64 Encoding**.                                                                                                                                             |
+      |                                   |                                                                                                                                                                                                                                                                                                                  |
+      |                                   |    **Key**: Enter 1 to 63 characters. Only digits, letters, periods (.), hyphens (-), and underscores (_) are allowed. The key cannot start with two periods (..).                                                                                                                                               |
+      |                                   |                                                                                                                                                                                                                                                                                                                  |
+      |                                   | -  If **Secret Type** is set to **kubernetes.io/dockerconfigjson**, click **Add** and enter the account and password for logging in to the private image repository.                                                                                                                                             |
+      |                                   |                                                                                                                                                                                                                                                                                                                  |
       |                                   | -  If **Secret Type** is **kubernetes.io/tls** or **IngressTLS**, upload the certificate file and private key file.                                                                                                                                                                                              |
       |                                   |                                                                                                                                                                                                                                                                                                                  |
       |                                   |    .. note::                                                                                                                                                                                                                                                                                                     |
@@ -56,12 +60,54 @@ Procedure
       |                                   |       -  A certificate is a self-signed or CA-signed credential used for identity authentication.                                                                                                                                                                                                                |
       |                                   |       -  A certificate request is a request for a signature with a private key.                                                                                                                                                                                                                                  |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Secret Label                      | Label of the secret. Enter a key-value pair and click **Confirm**.                                                                                                                                                                                                                                               |
+      | Secret Label                      | Label of the secret. Click **Add Label** and enter key-value pairs. The key and value must contain 1 to 63 characters that start and end with a letter or digit. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed.                                                                |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Click **OK**.
 
    The new secret is displayed in the key list.
+
+Creating a Secret Using kubectl
+-------------------------------
+
+#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
+
+#. Encode the secret value using Base64.
+
+   .. code-block::
+
+      # echo -n "content-to-be-encoded" | base64
+      ******
+
+#. Create a file named **cce-secret.yaml** and edit it.
+
+   .. code-block::
+
+      vi cce-secret.yaml
+
+   The following YAML file uses the Opaque type as an example. For details about other types, see :ref:`Secret Resource File Configuration Example <cce_10_0153__section187197531454>`.
+
+   .. code-block::
+
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: mysecret
+      type: Opaque
+      data:
+        <your_key>: <your_value>  # Enter a key-value pair. The value must be encoded using Base64.
+
+#. Create a secret.
+
+   .. code-block::
+
+      kubectl create -f cce-secret.yaml
+
+   You can query the secret after creation.
+
+   .. code-block::
+
+      kubectl get secret -n default
 
 .. _cce_10_0153__section187197531454:
 
@@ -72,7 +118,7 @@ This section describes configuration examples of secret resource description fil
 
 -  Opaque type
 
-   The **secret.yaml** file is defined as shown below. The **data** field is filled in as a key-value pair, and the **value** field must be encoded using Base64. For details about the Base64 encoding method, see :ref:`Base64 Encoding <cce_10_0153__section175000605919>`.
+   The **secret.yaml** file is defined as shown below. The **data** field is filled in as a key-value pair, and the **value** field must be encoded using Base64. For details, see :ref:`Base64 Encoding <cce_10_0153__section95945576477>`.
 
    .. code-block::
 
@@ -87,7 +133,7 @@ This section describes configuration examples of secret resource description fil
 
 -  kubernetes.io/dockerconfigjson type
 
-   The **secret.yaml** file is defined as shown below. The value of **.dockerconfigjson** must be encoded using Base64. For details, see :ref:`Base64 Encoding <cce_10_0153__section175000605919>`.
+   The **secret.yaml** file is defined as shown below. The value of **.dockerconfigjson** must be encoded using Base64. For details, see :ref:`Base64 Encoding <cce_10_0153__section95945576477>`.
 
    .. code-block::
 
@@ -138,7 +184,7 @@ This section describes configuration examples of secret resource description fil
 
 -  kubernetes.io/tls type
 
-   The value of **tls.crt** and **tls.key** must be encoded using Base64. For details, see :ref:`Base64 Encoding <cce_10_0153__section175000605919>`.
+   The value of **tls.crt** and **tls.key** must be encoded using Base64. For details, see :ref:`Base64 Encoding <cce_10_0153__section95945576477>`.
 
    .. code-block::
 
@@ -154,7 +200,7 @@ This section describes configuration examples of secret resource description fil
 
 -  IngressTLS type
 
-   The value of **tls.crt** and **tls.key** must be encoded using Base64. For details, see :ref:`Base64 Encoding <cce_10_0153__section175000605919>`.
+   The value of **tls.crt** and **tls.key** must be encoded using Base64. For details, see :ref:`Base64 Encoding <cce_10_0153__section95945576477>`.
 
    .. code-block::
 
@@ -168,47 +214,16 @@ This section describes configuration examples of secret resource description fil
         tls.key: LS0tLS1CRU*****VZLS0tLS0=  # Private key content, which must be encoded using Base64.
       type: IngressTLS
 
-Creating a Secret Using kubectl
--------------------------------
+.. _cce_10_0153__section95945576477:
 
-#. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
+Base64 Encoding
+---------------
 
-#. Encode the secret value using Base64.
+To perform Base64 encoding on a string, run the following command:
 
-   .. code-block::
+.. code-block::
 
-      # echo -n "content-to-be-encoded" | base64
-      ******
-
-#. Create a file named **cce-secret.yaml** and edit it.
-
-   .. code-block::
-
-      vi cce-secret.yaml
-
-   The following YAML file uses the Opaque type as an example. For details about other types, see :ref:`Secret Resource File Configuration Example <cce_10_0153__section187197531454>`.
-
-   .. code-block::
-
-      apiVersion: v1
-      kind: Secret
-      metadata:
-        name: mysecret
-      type: Opaque
-      data:
-        <your_key>: <your_value>  # Enter a key-value pair. The value must be encoded using Base64.
-
-#. Create a secret.
-
-   .. code-block::
-
-      kubectl create -f cce-secret.yaml
-
-   You can query the secret after creation.
-
-   .. code-block::
-
-      kubectl get secret -n default
+   echo -n "Content to be encoded" | base64
 
 Related Operations
 ------------------
@@ -240,17 +255,3 @@ After creating a secret, you can update or delete it as described in :ref:`Table
    |                                   | #. Click **Delete** above the secret list.                                                           |
    |                                   | #. Follow the prompts to delete the secrets.                                                         |
    +-----------------------------------+------------------------------------------------------------------------------------------------------+
-
-.. _cce_10_0153__section175000605919:
-
-Base64 Encoding
----------------
-
-To Base64-encode a string, run the **echo -n content to be encoded \| base64** command. The following is an example:
-
-.. code-block::
-
-   root@ubuntu:~# echo -n "content to be encoded" | base64
-   ******
-
-.. |image1| image:: /_static/images/en-us_image_0000002253620365.png

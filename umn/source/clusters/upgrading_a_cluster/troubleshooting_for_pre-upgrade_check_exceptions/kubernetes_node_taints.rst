@@ -23,12 +23,12 @@ Solution
 
 Scenario 1: The node is skipped during the cluster upgrade.
 
-#. Configure the **kubectl** command. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Configure the **kubectl** command. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. Check the kubelet version of the corresponding node. The following information is expected:
 
 
-   .. figure:: /_static/images/en-us_image_0000002253620349.png
+   .. figure:: /_static/images/en-us_image_0000002467719473.png
       :alt: **Figure 1** kubelet version
 
       **Figure 1** kubelet version

@@ -31,11 +31,17 @@ Solution
 
    Solution
 
-   #. Log in to the affected node and run the following command to obtain a valid OBS address:
+   #. Log in to a properly running node and run the following command to obtain the path to the cce-agent configuration file:
 
       .. code-block::
 
-         cat /home/paas/upgrade/agentConfig | python -m json.tool
+         find / -name "agentConfig"
+
+   #. Check the cce-agent configuration file and obtain the valid OBS address. **addr** in the following figure is the correct OBS address.
+
+      .. code-block::
+
+         cat /opt/cloud/cce/kubernetes/cce-agent/agentConfig | python -m json.tool
 
       |image1|
 
@@ -47,13 +53,13 @@ Solution
 
          .. code-block::
 
-            curl -k "https://{OBS address you have obtained}/cluster-versions/base/cce-agent" > /tmp/cce-agent
+            curl -k "https://{OBS-address-obtained}/cluster-versions/base/cce-agent" > /tmp/cce-agent
 
       -  Arm
 
          .. code-block::
 
-            curl -k "https://{OBS address you have obtained}/cluster-versions/base/cce-agent-arm" > /tmp/cce-agent-arm
+            curl -k "https://{OBS-address-obtained}/cluster-versions/base/cce-agent-arm" > /tmp/cce-agent-arm
 
    #. Replace the original cce-agent binary file.
 
@@ -81,4 +87,4 @@ Solution
 
       If you have any questions about the preceding operations, contact technical support.
 
-.. |image1| image:: /_static/images/en-us_image_0000002218660226.png
+.. |image1| image:: /_static/images/en-us_image_0000002434081060.png

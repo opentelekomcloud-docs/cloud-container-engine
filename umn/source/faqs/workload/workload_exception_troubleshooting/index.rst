@@ -8,7 +8,7 @@ Workload Exception Troubleshooting
 -  :ref:`How Can I Locate the Root Cause If a Workload Is Abnormal? <cce_faq_00134>`
 -  :ref:`What Should I Do If the Scheduling of a Pod Fails? <cce_faq_00098>`
 -  :ref:`What Should I Do If a Pod Fails to Pull the Image? <cce_faq_00015>`
--  :ref:`What Should I Do If Container Startup Fails? <cce_faq_00018>`
+-  :ref:`What Should I Do If a Pod Startup Fails? <cce_faq_00018>`
 -  :ref:`What Should I Do If a Pod Fails to Be Evicted? <cce_faq_00209>`
 -  :ref:`What Should I Do If a Storage Volume Cannot Be Mounted or the Mounting Times Out? <cce_faq_00200>`
 -  :ref:`What Should I Do If a Workload Remains in the Creating State? <cce_faq_00140>`
@@ -24,7 +24,7 @@ Workload Exception Troubleshooting
    how_can_i_locate_the_root_cause_if_a_workload_is_abnormal
    what_should_i_do_if_the_scheduling_of_a_pod_fails
    what_should_i_do_if_a_pod_fails_to_pull_the_image
-   what_should_i_do_if_container_startup_fails
+   what_should_i_do_if_a_pod_startup_fails
    what_should_i_do_if_a_pod_fails_to_be_evicted
    what_should_i_do_if_a_storage_volume_cannot_be_mounted_or_the_mounting_times_out
    what_should_i_do_if_a_workload_remains_in_the_creating_state

@@ -15,7 +15,7 @@ Solution
 
 You can upgrade CoreDNS separately after confirming the configuration differences.
 
-#. Configure the **kubectl** command. For details, see :ref:`Connecting to a Cluster Using kubectl <cce_10_0107>`.
+#. Configure the **kubectl** command. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
 #. .. _cce_10_0493__li1178291934910:
 
@@ -55,7 +55,7 @@ You can upgrade CoreDNS separately after confirming the configuration difference
       diff corefile_now.txt corefile_record.txt -y;
 
 
-   .. figure:: /_static/images/en-us_image_0000002253780361.png
+   .. figure:: /_static/images/en-us_image_0000002434081032.png
       :alt: **Figure 1** Viewing output differences
 
       **Figure 1** Viewing output differences
@@ -65,6 +65,11 @@ You can upgrade CoreDNS separately after confirming the configuration difference
    To retain custom configurations, use either of the following methods:
 
    -  (Recommended) Set **parameterSyncStrategy** to **inherit**. In this case, custom settings are automatically inherited. The system automatically parses, identifies, and inherits custom parameters.
+
+      .. caution::
+
+         After the automatic inheritance of parameter settings (**parameterSyncStrategy=inherit**) is enabled, stub domain settings will be cleared and merged into the extended parameter settings. The original stub domain settings remain unchanged and can still be viewed under **Extended Parameter Settings**.
+
    -  Set **parameterSyncStrategy** to **force**. Manually enter the differential configuration. For details, see :ref:`CoreDNS <cce_10_0129>`.
 
 #. Click **OK**. After the add-on upgrade is complete, check whether all CoreDNS instances are available and whether Corefile meets the expectation.

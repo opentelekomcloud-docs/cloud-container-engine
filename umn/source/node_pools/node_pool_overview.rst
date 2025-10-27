@@ -43,8 +43,8 @@ Description of DefaultPool
 
 DefaultPool is not a real node pool. It only **classifies** nodes that are not in the custom node pools. These nodes are directly created on the console or by calling APIs. DefaultPool does not support any user-created node pool functions, including scaling and parameter configuration. DefaultPool cannot be edited, deleted, expanded, or auto scaled, and nodes in it cannot be migrated.
 
-Applicable Scenarios
---------------------
+Application Scenarios
+---------------------
 
 When a large-scale cluster is required, you are advised to use node pools to manage nodes.
 
@@ -97,12 +97,12 @@ For example, you can use container's resource request as a nodeSelector so that 
 
 If the workload definition file defines a container that requires four CPUs, the scheduler will not choose the nodes with two CPUs to run workloads.
 
-Related Operations
-------------------
+Helpful Links
+-------------
 
 You can log in to the CCE console and refer to the following sections to perform operations on node pools:
 
 -  :ref:`Creating a Node Pool <cce_10_0012>`
--  :ref:`Managing a Node Pool <cce_10_0222>`
+-  :ref:`Managing Node Pools <cce_10_0222>`
 -  :ref:`Creating a Deployment <cce_10_0047>`
 -  :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`

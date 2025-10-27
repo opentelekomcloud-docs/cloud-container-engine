@@ -7,6 +7,7 @@ Container Network Add-ons
 
 -  :ref:`CoreDNS <cce_10_0129>`
 -  :ref:`NGINX Ingress Controller <cce_10_0034>`
+-  :ref:`NodeLocal DNSCache <cce_10_0404>`
 
 .. toctree::
    :maxdepth: 1
@@ -14,3 +15,4 @@ Container Network Add-ons
 
    coredns
    nginx_ingress_controller
+   nodelocal_dnscache

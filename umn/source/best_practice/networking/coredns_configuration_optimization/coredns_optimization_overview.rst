@@ -20,6 +20,7 @@ On the client, you can optimize domain name resolution requests to reduce resolu
 -  :ref:`Optimizing Domain Name Resolution Requests <cce_bestpractice_0348>`
 -  :ref:`Selecting a Proper Image <cce_bestpractice_0349>`
 -  :ref:`Avoiding Occasional DNS Resolution Timeout Caused by IPVS Defects <cce_bestpractice_0350>`
+-  :ref:`Using NodeLocal DNSCache <cce_bestpractice_0351>`
 -  :ref:`Upgrading the CoreDNS in the Cluster Timely <cce_bestpractice_0352>`
 -  :ref:`Adjusting the DNS Configuration of the VPC and VM <cce_bestpractice_0353>`
 
@@ -32,7 +33,7 @@ On the server, you can adjust the CoreDNS deployment status or CoreDNS configura
 
 For more information about CoreDNS configurations, see https://coredns.io/.
 
-CoreDNS open source community: https://github.com/coredns/coredns
+CoreDNS open-source community: https://github.com/coredns/coredns
 
 Prerequisites
 -------------

@@ -15,4 +15,4 @@ This problem is caused by a Linux kernel defect. For details, see https://github
 Solution
 --------
 
-You can use NodeLocal DNSCache to minimize the impact of IPVS defects.
+You can use NodeLocal DNSCache to minimize the impact of IPVS defects. For details, see :ref:`Using NodeLocal DNSCache to Improve DNS Performance <cce_10_0362>`.

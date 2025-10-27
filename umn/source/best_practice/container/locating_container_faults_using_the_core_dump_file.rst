@@ -28,8 +28,8 @@ Log in to the node, run the following command to enable core dump, and set the p
 
 -  **%h**: hostname (or pod name). You are advised to configure this parameter.
 -  **%e**: program file name. You are advised to configure this parameter.
--  **%p**: (optional) process ID.
--  **%t**: (optional) time of the core dump.
+-  **%p**: (Optional) process ID
+-  **%t**: (Optional) time of the core dump
 
 After the core dump function is enabled by running the preceding command, the generated core file is named in the format of **core.{Host name}.{Program file name}.{Process ID}.{Time}**.
 
@@ -59,11 +59,11 @@ A core file can be stored in your host (using a hostPath volume) or cloud storag
        - mountPath: /tmp/cores
          name: coredump-path
 
-Create the pod:
+Create a pod:
 
 .. code-block::
 
-   kubectl create -f  pod.yaml
+   kubectl create -f pod.yaml
 
 Verification
 ------------

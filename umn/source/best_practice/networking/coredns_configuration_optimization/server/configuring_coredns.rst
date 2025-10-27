@@ -115,6 +115,58 @@ To specify hosts for a specific domain name, you can use the hosts add-on. An ex
 
 #. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.
 
+Configuring the Default Protocol Between the forward Plug-in and the Upstream DNS Service
+-----------------------------------------------------------------------------------------
+
+#. The NodeLocal DNSCache uses TCP to communicate with the CoreDNS. The CoreDNS communicates with the upstream DNS server based on the protocol used by the request source. By default, external domain name resolution requests from service containers pass through NodeLocal DNSCache and CoreDNS in sequence, and finally request the DNS server in the VPC using TCP.
+
+#. However, the cloud server does not support TCP. To use NodeLocal DNSCache, modify the CoreDNS configuration so that UDP is preferentially used to communicate with the upstream DNS server, preventing resolution exceptions. You are advised to use the following method to modify the CoreDNS configuration file:
+
+   The forward plug-in is used to set the upstream Nameservers DNS server. The following parameters are included:
+
+   **prefer_udp**: Even if a request is received through TCP, UDP must be used first.
+
+   If you want CoreDNS to preferentially use UDP to communicate with upstream systems, set the protocol in the forward plug-in to **prefer_udp**. For details about the forward plug-in, see https://coredns.io/plugins/forward/.
+
+   a. Log in to the CCE console and click the cluster name to access the cluster console.
+
+   b. In the navigation pane, choose **Add-ons**. Then, click **Edit** under **CoreDNS**.
+
+   c. Edit the advanced configuration under **Parameters** and modify the following content in the **plugins** field:
+
+      .. code-block::
+
+         {
+             "configBlock": "prefer_udp",
+             "name": "forward",
+             "parameters": ". /etc/resolv.conf"
+         }
+
+      Corefile:
+
+      .. code-block::
+
+         Corefile: |-
+           .:5353 {
+               bind {$POD_IP}
+               cache 30 {
+                   servfail 5s
+               }
+               errors
+               health {$POD_IP}:8080
+               kubernetes cluster.local in-addr.arpa ip6.arpa {
+                   pods insecure
+                   fallthrough in-addr.arpa ip6.arpa
+               }
+               loadbalance round_robin
+               prometheus {$POD_IP}:9153
+               forward . /etc/resolv.conf {
+                   prefer_udp
+               }
+               reload
+               ready {$POD_IP}:8081
+           }
+
 Configuring IPv6 Resolution Properly
 ------------------------------------
 
@@ -219,4 +271,4 @@ If you configure CoreDNS with an upstream DNS server, you can implement a cache 
           ready {$POD_IP}:8081
       }
 
-.. |image1| image:: /_static/images/en-us_image_0000002253618549.png
+.. |image1| image:: /_static/images/en-us_image_0000002434238964.png

@@ -15,7 +15,7 @@ Solution
 
 -  **Scenario 1: The nodes are in the unavailable status.**
 
-   Log in to the CCE console and click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane and filter out unavailable nodes, rectify the faulty nodes by referring to the suggestions provided by the console, and check again.
+   Log in to the CCE console and click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane and filter out unavailable nodes, rectify the faults by referring to the suggestions provided by the console, and check again.
 
 -  **Scenario 2: The displayed node status is inconsistent with the actual status.**
 

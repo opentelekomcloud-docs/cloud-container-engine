@@ -39,7 +39,7 @@ After a node is created, some fixed labels exist and cannot be deleted. For deta
    |                                                     |                                                             |
    | Old: failure-domain.beta.kubernetes.io/zone         |                                                             |
    +-----------------------------------------------------+-------------------------------------------------------------+
-   | New: node.kubernetes.io/baremetal                   | Whether the node is a bare metal node                       |
+   | New: node.kubernetes.io/baremetal                   | Whether it is a bare metal node                             |
    |                                                     |                                                             |
    | Old: failure-domain.beta.kubernetes.io/is-baremetal | **false** indicates that the node is not a bare metal node. |
    +-----------------------------------------------------+-------------------------------------------------------------+

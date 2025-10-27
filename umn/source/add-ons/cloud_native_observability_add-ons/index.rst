@@ -9,6 +9,7 @@ Cloud Native Observability Add-ons
 -  :ref:`Cloud Native Log Collection <cce_10_0416>`
 -  :ref:`CCE Node Problem Detector <cce_10_0132>`
 -  :ref:`Kubernetes Metrics Server <cce_10_0205>`
+-  :ref:`Grafana <cce_10_0828>`
 
 .. toctree::
    :maxdepth: 1
@@ -18,3 +19,4 @@ Cloud Native Observability Add-ons
    cloud_native_log_collection
    cce_node_problem_detector
    kubernetes_metrics_server
+   grafana

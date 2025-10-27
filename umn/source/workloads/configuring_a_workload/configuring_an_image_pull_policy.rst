@@ -34,6 +34,6 @@ The image pull policy can also be set to **Always**, indicating that the image i
 
 An image pull policy can also be configured on the CCE console. When creating a workload, configure **Pull Policy**. If **Always** is selected, images are always pulled. If **Always** is not selected, images are pulled as needed.
 
-.. important::
+.. note::
 
-   Use a new tag each time you create an image. If you do not update the tag but only update the image, when **Pull Policy** is set to **IfNotPresent**, CCE considers that an image with the tag already exists on the current node and will not pull the image again.
+   If you do not update the tag when creating an image, CCE considers that the image with that tag already exists on the node. Consequently, if the pull policy is set to **IfNotPresent**, CCE will not pull the image again. You are advised to use a new tag for each image creation.

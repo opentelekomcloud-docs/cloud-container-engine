@@ -33,11 +33,11 @@ The services running in a cluster are diversified, including core services, non-
 Configuring Priority-based Scheduling Policies
 ----------------------------------------------
 
-#. Log in to the CCE console.
-#. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane. In the right pane, click the **Scheduling** tab.
-#. In the **Business priority scheduling** area, configure priority-based scheduling.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. Choose **Settings** in the navigation pane and click the **Scheduling** tab.
+#. In the **Service Priority-based Scheduling** area, configure priority-based scheduling.
 
-   -  **Scheduling based on priority**: The scheduler preferentially guarantees the running of high-priority pods, but will not evict low-priority pods that are running. Priority-based scheduling is enabled by default and cannot be disabled.
+   -  **Priority-based Scheduling**: The scheduler preferentially guarantees the running of high-priority pods, but will not evict low-priority pods that are running. Priority-based scheduling is enabled by default and cannot be disabled.
 
 #. After the configuration, you can use `PriorityClasses <https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass>`__ to schedule the pods of workloads or Volcano jobs based priorities.
 

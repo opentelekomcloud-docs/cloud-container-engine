@@ -13,9 +13,9 @@ The workload remains in the creating state.
 Troubleshooting
 ---------------
 
-The issues here are described in order of how likely they are to occur.
+Possible causes are described here in order of how likely they are to occur.
 
-Check these causes one by one until you find the cause of the fault.
+If the fault persists after you have ruled out a cause, check other causes.
 
 -  :ref:`Check Item 1: Whether the cce-pause Image Is Deleted by Mistake <cce_faq_00140__section141501505112>`
 -  :ref:`Check Item 2: Modifying Node Specifications After the CPU Management Policy Is Enabled in the Cluster <cce_faq_00140__section109321639135910>`
@@ -33,7 +33,7 @@ When creating a workload, an error message indicating that the sandbox cannot be
 
    Failed to create pod sandbox: rpc error: code = Unknown desc = failed to get sandbox image "cce-pause:3.1": failed to pull image "cce-pause:3.1": failed to pull and unpack image "docker.io/library/cce-pause:3.1": failed to resolve reference "docker.io/library/cce-pause:3.1": pulling from host **** failed with status code [manifests 3.1]: 400 Bad Request
 
-**Possible cause**
+**Possible Cause**
 
 The image is a system image added during node creation. If the image is deleted by mistake, the workload cannot be created.
 

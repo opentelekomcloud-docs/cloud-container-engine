@@ -18,7 +18,7 @@ Solution
 
 -  **Scenario 1: The add-on malfunctions.**
 
-   Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane and obtain add-ons. Then, handle malfunctional add-ons.
+   Log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane and obtain the malfunctional add-on. Then, rectify the fault.
 
 -  **Scenario 2: The target version of the cluster upgrade does not support the add-on.**
 

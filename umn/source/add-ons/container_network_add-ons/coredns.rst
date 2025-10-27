@@ -34,7 +34,9 @@ Installing the Add-on
 
 This add-on has been installed by default. If it is uninstalled due to some reasons, you can reinstall it by performing the following steps:
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate **CoreDNS** on the right, and click **Install**.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+
+#. In the navigation pane, choose **Add-ons**. Locate **CoreDNS** on the right and click **Install**.
 
 #. On the **Install Add-on** page, configure the specifications as needed.
 
@@ -57,7 +59,7 @@ This add-on has been installed by default. If it is uninstalled due to some reas
          +-------+-----------------+------+-----------------+------------+------------------+--------------+
          | 1000  | 10000           | 2    | 2000m           | 2000m      | 2048 MiB         | 2048 MiB     |
          +-------+-----------------+------+-----------------+------------+------------------+--------------+
-         | 2000  | 20000           | 4    | 2000m           | 2000m      | 2048 MiB         | 2048Mi       |
+         | 2000  | 20000           | 4    | 2000m           | 2000m      | 2048 MiB         | 2048 MiB     |
          +-------+-----------------+------+-----------------+------------+------------------+--------------+
 
 #. Configure the add-on parameters.
@@ -81,6 +83,11 @@ This add-on has been installed by default. If it is uninstalled due to some reas
       |                                   |    -  **ensureConsistent**: indicates that the configuration consistency check is enabled. If the delivered configuration differs from the current effective configuration, the current effective configuration will be replaced. However, if the delivered configuration is the same as the current effective configuration, the current effective configuration will be preserved. The **ensureConsistent** parameter ensures the configuration consistency. If a ConfigMap is modified manually, the add-on cannot be upgraded. In such cases, you will need to use the **force** or **inherit** policy to upgrade the add-on. |
       |                                   |    -  **force**: indicates that the configuration consistency check is ignored during an upgrade. The configuration provided during the add-on upgrade will be used, so it is important to make sure that it matches the current effective configuration. After the add-on is upgraded, you need to restore the value of **parameterSyncStrategy** to **ensureConsistent** to enable the configuration consistency check again.                                                                                                                                                                                                   |
       |                                   |    -  **inherit**: If the configuration provided during the add-on upgrade differs from the current effective configuration, the current effective configuration will be used instead. After the add-on is upgraded, you need to restore the value of **parameterSyncStrategy** to **ensureConsistent** to enable the configuration consistency check again.                                                                                                                                                                                                                                                                      |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+      |                                   |       .. caution::                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+      |                                   |          CAUTION:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+      |                                   |          After the automatic inheritance of parameter settings (**parameterSyncStrategy=inherit**) is enabled, stub domain settings will be cleared and merged into the extended parameter settings. The original stub domain settings remain unchanged and can still be viewed under **Extended Parameter Settings**.                                                                                                                                                                                                                                                                                                            |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
       |                                   | -  **servers**: nameservers, which are available in CoreDNS v1.23.1 and later versions. You can customize nameservers. For details, see `dns-custom-nameservers <https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers>`__.                                                                                                                                                                                                                                                                                                                                                                                  |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
@@ -246,6 +253,17 @@ This add-on has been installed by default. If it is uninstalled due to some reas
 
 #. Click **Install**.
 
+Components
+----------
+
+.. table:: **Table 5** Add-on components
+
+   ========= ======================= =============
+   Component Description             Resource Type
+   ========= ======================= =============
+   CoreDNS   DNS server for clusters Deployment
+   ========= ======================= =============
+
 Configure CoreDNS Using Corefile
 --------------------------------
 
@@ -253,7 +271,9 @@ Configure CoreDNS Using Corefile
 
    If you install the CoreDNS add-on, the Corefile view configuration is not available. This configuration is supported only when you are editing or upgrading the add-on.
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate **CoreDNS** on the right, and click **Edit**.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+
+#. In the navigation pane, choose **Add-ons**. Locate **CoreDNS** on the right and click **Edit**.
 
 #. In the **Parameters** area, select whether to switch to the **Corefile View** (supported by add-on 1.30.3 and later versions).
 
@@ -269,17 +289,6 @@ Configure CoreDNS Using Corefile
 
 #. After editing the Corefile, click **OK**.
 
-Components
-----------
-
-.. table:: **Table 5** Add-on components
-
-   ========= ======================= =============
-   Component Description             Resource Type
-   ========= ======================= =============
-   CoreDNS   DNS server for clusters Deployment
-   ========= ======================= =============
-
 How Does Domain Name Resolution Work in Kubernetes?
 ---------------------------------------------------
 
@@ -288,7 +297,7 @@ DNS policies can be configured for each pod. Kubernetes supports DNS policies **
 -  **Default**: Pods inherit the name resolution configuration from the node that the pods run on. The custom upstream DNS server and the stub domain cannot be used together with this policy.
 -  **ClusterFirst**: Any DNS query that does not match the configured cluster domain suffix, such as **www.kubernetes.io**, is forwarded to the upstream name server inherited from the node. Cluster administrators may have extra stub domains and upstream DNS servers configured.
 -  **ClusterFirstWithHostNet**: For pods running with hostNetwork, set its DNS policy **ClusterFirstWithHostNet**.
--  **None**: It allows a pod to ignore DNS settings from the Kubernetes environment. All DNS settings are supposed to be provided using the **dnsPolicy** field in the pod-specific.
+-  **None**: It allows a pod to ignore DNS settings from the Kubernetes environment. All DNS settings should be provided using the **dnsPolicy** field in **dnsConfigPod**.
 
 .. note::
 
@@ -310,19 +319,33 @@ DNS policies can be configured for each pod. Kubernetes supports DNS policies **
    -  Names that do not match the suffix (for example, **widget.com**): The request is forwarded to the upstream DNS.
 
 
-.. figure:: /_static/images/en-us_image_0000002218660430.png
+.. figure:: /_static/images/en-us_image_0000002434080192.png
    :alt: **Figure 1** Routing
 
    **Figure 1** Routing
 
-Change History
---------------
+Release History
+---------------
 
-.. table:: **Table 6** Release history
+.. table:: **Table 6** CoreDNS add-on
 
    +-----------------+---------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                     | Community Version                                                    |
    +=================+===========================+=================================================================================+======================================================================+
+   | 1.30.33         | v1.25                     | CCE clusters v1.32 are supported.                                               | `1.11.4 <https://github.com/coredns/coredns/releases/tag/v1.11.4>`__ |
+   |                 |                           |                                                                                 |                                                                      |
+   |                 | v1.27                     |                                                                                 |                                                                      |
+   |                 |                           |                                                                                 |                                                                      |
+   |                 | v1.28                     |                                                                                 |                                                                      |
+   |                 |                           |                                                                                 |                                                                      |
+   |                 | v1.29                     |                                                                                 |                                                                      |
+   |                 |                           |                                                                                 |                                                                      |
+   |                 | v1.30                     |                                                                                 |                                                                      |
+   |                 |                           |                                                                                 |                                                                      |
+   |                 | v1.31                     |                                                                                 |                                                                      |
+   |                 |                           |                                                                                 |                                                                      |
+   |                 | v1.32                     |                                                                                 |                                                                      |
+   +-----------------+---------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------+
    | 1.30.30         | v1.25                     | Fixed some issues.                                                              | `1.11.4 <https://github.com/coredns/coredns/releases/tag/v1.11.4>`__ |
    |                 |                           |                                                                                 |                                                                      |
    |                 | v1.27                     |                                                                                 |                                                                      |

@@ -22,6 +22,12 @@ In clusters of v1.21 or later, the default resource quotas will be created when 
    2000 nodes    5000 2000       2000   2000      2000
    ============= ==== ========== ====== ========= =======
 
+.. note::
+
+   If a namespace contains multiple ResourceQuota objects, for example, some created via the kubectl command, the lowest value among the configured quotas will be enforced as the actual resource limit.
+
+   This can lead to inconsistent resource configurations, which may impact resource scheduling stability. You are advised to delete unnecessary ResourceQuota objects and configure resource quotas using the console.
+
 Procedure
 ---------
 
@@ -37,6 +43,6 @@ Procedure
 
    .. important::
 
-      -  After configuring CPU and memory quotas for a namespace, you must specify the request and limit values of CPU and memory resources when creating a workload. Otherwise, the workload cannot be created. If the quota of a resource is set to **0**, the resource usage is not limited.
+      -  After configuring CPU and memory quotas for a namespace, you must specify the request and limit values of CPU and memory resources when creating a workload. Otherwise, the workload cannot be created.
       -  Accumulated quota usage includes the resources used by CCE to create default components, such as the Kubernetes Services (which can be viewed using kubectl) created under the **default** namespace. Therefore, you are advised to set a resource quota greater than expected to reserve resource for creating default components.
       -  Kubernetes provides optimistic concurrency control (OCC), also known as optimistic locking, for frequent data updates. You can use optimistic locking by defining the **resourceVersion** field. This field is in the object metadata. This field identifies the internal version number of the object. When the object is modified, this field is modified accordingly. You can use kube-apiserver to check whether an object has been modified. When the API server receives an update request containing the **resourceVersion** field, the server compares the requested data with the resource version number of the server. If they are different, the object on the server has been modified when the update is submitted. In this case, the API server returns a conflict error (409). Obtain the server data, modify the data, and submit the data to the server again. Resource quotas limit the total resource usage of each namespace and maintain a record of resource information in the cluster. Enabling resource quotas may result in more resource creation conflicts in high-concurrency scenarios, which can affect the performance of batch resource creation.

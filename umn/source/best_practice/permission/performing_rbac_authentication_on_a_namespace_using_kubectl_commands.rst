@@ -147,7 +147,7 @@ Use IAM user **user-example** to connect to the cluster and view the pods. The p
    NAME                     READY   STATUS    RESTARTS   AGE
    nginx-658dff48ff-7rkph   1/1     Running   0          4d9h
 
-Try querying Deployments and Services in the namespace. The output shows **user-example** does not have the corresponding permissions. Try querying the pods in namespace kube-system. The output shows **user-example** does not have the corresponding permission, either. This indicates that the IAM user **user-example** has only the GET and LIST Pod permissions in the default namespace, which is the same as expected.
+Try querying Deployments and Services in the namespace. The output shows **user-example** does not have the corresponding permissions. Try querying the pods in namespace kube-system. The output shows **user-example** does not have the corresponding permission, either. This indicates that the IAM user **user-example** has only the GET and LIST Pod permissions in the **default** namespace, which is the same as expected.
 
 .. code-block::
 

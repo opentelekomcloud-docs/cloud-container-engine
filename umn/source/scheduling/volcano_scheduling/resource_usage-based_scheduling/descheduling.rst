@@ -17,7 +17,7 @@ Features
 During Kubernetes cluster management, over-utilized nodes are due to high CPU or memory usage, which affects the stable running of pods on these nodes and increases the probability of node faults. To dynamically balance the resource usage between nodes in a cluster, a cluster resource view is required based on node monitoring metrics. During cluster management, real-time monitoring can be used to detect issues such as high resource usage on a node, node faults, and excessive number of pods on a node so that the system can take measures promptly, for example, by migrating some pods from an over-utilized node to under-utilized nodes.
 
 
-.. figure:: /_static/images/en-us_image_0000002253780381.png
+.. figure:: /_static/images/en-us_image_0000002434240340.png
    :alt: **Figure 1** Load-aware descheduling
 
    **Figure 1** Load-aware descheduling
@@ -30,7 +30,7 @@ When using this add-on, ensure the **highThresholds** value is greater than the 
 
 **HighNodeUtilization**
 
-This policy finds nodes that are under-utilized and evicts pods from the nodes in the hope that these pods will be scheduled compactly into fewer nodes. This policy must be used with the bin packing policy of Volcano Scheduler or the MostAllocated policy of the kube-scheduler scheduler. Thresholds can be configured for CPU and memory.
+This policy finds nodes that are under-utilized and evicts pods from the nodes in the hope that these pods will be scheduled compactly into fewer nodes. This policy must be used with the bin packing policy of Volcano or the MostAllocated policy of the kube-scheduler. Thresholds can be configured for CPU and memory.
 
 Prerequisites
 -------------
@@ -50,11 +50,13 @@ Configuring a Load-aware Descheduling Policy
 
 When configuring a load-aware descheduling policy, do as follows to enable load-aware scheduling on Volcano Scheduler:
 
-#. Log in to the CCE console and click the cluster name to access the cluster details page. Choose **Add-ons** in the navigation pane, locate **Volcano Scheduler** on the right, and click **Edit**. In the **Extended Functions** area, enable descheduling and click **OK** to update the add-on configuration.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+
+#. Choose **Add-ons** in the navigation pane, locate **Volcano Scheduler** on the right, and click **Edit**. In the **Extended Functions** area, enable descheduling and click **OK** to update the add-on configuration.
 
 #. In the navigation pane, choose **Settings**. On the **Scheduling** tab page, enable load-aware scheduling. For details, see :ref:`Load-aware Scheduling <cce_10_0789>`.
 
-#. On the **Scheduling** tab page, select **Volcano scheduler**, find the expert mode, and click **Try Now**.
+#. On the **Scheduling** tab, find the expert mode and click **Try Now**.
 
 #. Configure a load-aware descheduling policy. If you are using Volcano v1.11.21 or later, refer to the example JSON parameter settings below. For more parameters, see the JSON example in **Getting Started** on the console.
 
@@ -207,11 +209,13 @@ Configuring a HighNodeUtilization Policy
 
 When configuring a HighNodeUtilization policy, do as follows to enable the bin packing policy on Volcano Scheduler:
 
-#. Log in to the CCE console and click the cluster name to access the cluster details page. Choose **Add-ons** in the navigation pane, locate **Volcano Scheduler** on the right, and click **Edit**. In the **Extended Functions** area, enable descheduling and click **OK** to update the add-on configuration.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+
+#. Choose **Add-ons** in the navigation pane, locate **Volcano Scheduler** on the right, and click **Edit**. In the **Extended Functions** area, enable descheduling and click **OK** to update the add-on configuration.
 
 #. In the navigation pane, choose **Settings**. On the **Scheduling** tab page, enable bin packing. For details, see :ref:`Bin Packing <cce_10_0773>`.
 
-#. On the **Scheduling** tab page, select **Volcano scheduler**, find the expert mode, and click **Try Now**.
+#. On the **Scheduling** tab, find the expert mode and click **Try Now**.
 
 #. If you are using a resource defragmentation policy, refer to the example JSON parameter settings below. For more parameters, see the JSON example in **Getting Started** on the console.
 
@@ -331,7 +335,7 @@ Use Cases
 
 #. In the navigation pane of the cluster console, choose **Nodes**. Check the node list for nodes with minimal resource allocation.
 
-#. In the navigation pane, choose **Settings** and click the **Scheduling** tab. Select **Volcano scheduler**, find the expert mode, and click **Try Now**.
+#. In the navigation pane, choose **Settings** and click the **Scheduling** tab. Find the expert mode and click **Try Now**.
 
 #. Edit Volcano parameters and set both the CPU and memory thresholds to 25. When the CPU and memory usage of a node is less than 25%, pods on the node will be evicted.
 
@@ -346,5 +350,5 @@ If an input parameter is incorrect, for example, the entered value is beyond the
 
 |image2|
 
-.. |image1| image:: /_static/images/en-us_image_0000002218820586.png
-.. |image2| image:: /_static/images/en-us_image_0000002253620477.png
+.. |image1| image:: /_static/images/en-us_image_0000002467678845.png
+.. |image2| image:: /_static/images/en-us_image_0000002467678853.png

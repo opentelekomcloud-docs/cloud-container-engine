@@ -35,7 +35,7 @@ An Nginx ingress consists of the ingress object, ingress controller, and Nginx. 
 
 .. _cce_10_0034__fig204075132570:
 
-.. figure:: /_static/images/en-us_image_0000002218660514.png
+.. figure:: /_static/images/en-us_image_0000002467718661.png
    :alt: **Figure 1** Working principles of NGINX Ingress Controller
 
    **Figure 1** Working principles of NGINX Ingress Controller
@@ -59,7 +59,9 @@ Before installing this add-on, you have one available cluster and there is a nod
 Installing the Add-on
 ---------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate **NGINX Ingress Controller** on the right, and click **Install**.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+
+#. In the navigation pane, choose **Add-ons**. Locate **NGINX Ingress Controller** on the right and click **Install**.
 
 #. On the **Install Add-on** page, configure the specifications as needed.
 
@@ -150,7 +152,7 @@ Installing the Add-on
          -  If the cluster version is v1.19.16-r5, v1.21.8-r0, v1.23.6-r0, or later, the TCP/UDP hybrid protocols can be configured.
          -  If the cluster version is v1.19.16-r5, v1.21.8-r0, v1.23.6-r0, v1.25.2-r0, or later, you can configure the TCP/UDP hybrid protocols to use the same external port.
 
-   -  **(Optional) Extended Parameter Settings**: additional extended parameters of the add-on If the extended parameter settings conflict with the default settings, the extended parameter settings will be prioritized.
+   -  **(Optional) Extended Parameter Settings**: additional extended parameters of the add-on. If the extended parameter settings conflict with the default settings, the extended parameter settings will be prioritized.
 
       -  **extraArgs**: additional configurable startup parameters of the nginx-ingress-controller component. For details about the startup parameters supported by the community, see the `documentation <https://kubernetes.github.io/ingress-nginx/user-guide/cli-arguments/>`__.
       -  **extraInitContainers**: initial container configuration of nginx-ingress-controller. This parameter is supported by add-on 2.2.82, 2.6.32, 3.0.8 and later, with optimized kernel settings by default.
@@ -205,7 +207,8 @@ Installing the Add-on
 Installing Multiple NGINX Ingress Controllers
 ---------------------------------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate the installed NGINX Ingress Controller, and click **New**.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Add-ons**. Locate **NGINX Ingress Controller** on the right and click **New**.
 #. On the page displayed, reconfigure the add-on parameters. For details, see :ref:`Installing the Add-on <cce_10_0034__section1152424015224>`.
 #. Click **Install**.
 #. Wait until the installation instruction is delivered. Go back to Add-ons, click **Manage**, and view the installed add-on instance on the add-on details page.
@@ -275,14 +278,42 @@ To avoid a situation where the node running NGINX Ingress Controller and its con
                    - kube-system
                  topologyKey: kubernetes.io/hostname
 
-Change History
---------------
+Release History
+---------------
 
-.. table:: **Table 3** Release history for NGINX Ingress Controller 3.0.x
+.. table:: **Table 3** NGINX Ingress Controller add-on 4.0.x
+
+   +-----------------+---------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
+   | Add-on Version  | Supported Cluster Version | New Feature                                             | Community Version                                                                        |
+   +=================+===========================+=========================================================+==========================================================================================+
+   | 4.0.4           | v1.28                     | -  CCE clusters v1.32 are supported.                    | `1.12.1 <https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.12.1>`__ |
+   |                 |                           | -  Updated the add-on to its community version v1.12.1. |                                                                                          |
+   |                 | v1.29                     |                                                         |                                                                                          |
+   |                 |                           |                                                         |                                                                                          |
+   |                 | v1.30                     |                                                         |                                                                                          |
+   |                 |                           |                                                         |                                                                                          |
+   |                 | v1.31                     |                                                         |                                                                                          |
+   |                 |                           |                                                         |                                                                                          |
+   |                 | v1.32                     |                                                         |                                                                                          |
+   +-----------------+---------------------------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
+
+.. table:: **Table 4** NGINX Ingress Controller add-on 3.0.x
 
    +-----------------+---------------------------+---------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                                                   | Community Version                                                                        |
    +=================+===========================+===============================================================================================================+==========================================================================================+
+   | 3.0.45          | v1.25                     | Fixed some issues.                                                                                            | `1.11.5 <https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.11.5>`__ |
+   |                 |                           |                                                                                                               |                                                                                          |
+   |                 | v1.27                     |                                                                                                               |                                                                                          |
+   |                 |                           |                                                                                                               |                                                                                          |
+   |                 | v1.28                     |                                                                                                               |                                                                                          |
+   |                 |                           |                                                                                                               |                                                                                          |
+   |                 | v1.29                     |                                                                                                               |                                                                                          |
+   |                 |                           |                                                                                                               |                                                                                          |
+   |                 | v1.30                     |                                                                                                               |                                                                                          |
+   |                 |                           |                                                                                                               |                                                                                          |
+   |                 | v1.31                     |                                                                                                               |                                                                                          |
+   +-----------------+---------------------------+---------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------+
    | 3.0.34          | v1.25                     | -  Updated the add-on to its community version v1.11.5.                                                       | `1.11.5 <https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.11.5>`__ |
    |                 |                           | -  Fixed the CVE-2025-1974, CVE-2025-1097, CVE-2025-1098, CVE-2025-24513, and CVE-2025-24514 vulnerabilities. |                                                                                          |
    |                 | v1.27                     |                                                                                                               |                                                                                          |
@@ -304,7 +335,7 @@ Change History
    |                 | v1.30                     |                                                                                                               |                                                                                          |
    +-----------------+---------------------------+---------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------+
 
-.. table:: **Table 4** Release history for NGINX Ingress Controller 2.6.x
+.. table:: **Table 5** NGINX Ingress Controller add-on 2.6.x
 
    +-----------------+---------------------------+-----------------------------------------------------------+----------------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                               | Community Version                                                                      |

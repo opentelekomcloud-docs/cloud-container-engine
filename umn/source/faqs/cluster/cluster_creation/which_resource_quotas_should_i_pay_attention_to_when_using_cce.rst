@@ -10,6 +10,6 @@ CCE restricts **only the number of clusters**. However, when using CCE, you may 
 What Is Quota?
 --------------
 
-Quotas can limit the number or amount of resources available to users, such as the maximum number of ECS or EVS disks that can be created.
+Quotas are enforced for service resources on the platform to prevent unforeseen spikes in resource usage. Quotas can limit the quantity and capacity of resources available to users, such as the maximum number of ECSs or EVS disks that can be created.
 
-If the existing resource quota cannot meet your service requirements, you can apply for a higher quota.
+If a quota cannot meet your needs, apply for a higher quota.

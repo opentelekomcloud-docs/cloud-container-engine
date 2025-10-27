@@ -185,7 +185,7 @@ You can mount a secret as a volume to the specified container path. Contents in 
 
 #. Choose **Workloads** in the navigation pane. In the right pane, click the **Deployments** tab. Click **Create Workload** in the upper right corner.
 
-   When creating a workload, click **Data Storage** in the **Container Settings** area. Click **Add Volume** and select **Secret** from the drop-down list.
+   When creating a workload, click **Data Storage** in the **Container Settings** area. Click **Add Volume** and choose **Secret** from the drop-down list.
 
 #. Select parameters for mounting a secret volume, as shown in :ref:`Table 1 <cce_10_0016__table861818920109>`.
 

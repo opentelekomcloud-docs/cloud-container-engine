@@ -22,6 +22,11 @@ Optimizing the Domain Name Configuration
 
 When a container needs to access a domain name, configure the domain name based on the following rules to improve the domain name resolution efficiency.
 
-#. When a pod accesses a Service in the same namespace, use **<service-name>**, which indicates the Service name.
-#. When a pod accesses a Service across namespaces, use **<service-name>.<namespace-name>**. **namespace-name** indicates the namespace where the Service is located.
-#. When a pod accesses an external domain name of a cluster, it uses the FQDN domain name. This type of domain name is specified by adding a period (.) at the end of a common domain name to avoid multiple invalid search attempts caused by search domain combination.
+#. When a pod accesses a Service in the same namespace, use *<service-name>*, which indicates the Service name.
+#. When a pod accesses a Service across namespaces, use *<service-name>.<namespace-name>*. *<namespace-name>* indicates the namespace where the Service is located.
+#. When a pod accesses a domain name outside the cluster, it uses the FQDN domain name. This type of domain name is specified by adding a period (.) at the end of a typical domain name to avoid multiple invalid search attempts caused by search domain combination.
+
+Using Local Cache
+-----------------
+
+If the cluster specifications are large and the number of DNS resolution requests is large, you can cache the DNS resolution result on the node. You are advised to use NodeLocal DNSCache. For details, see :ref:`Using NodeLocal DNSCache to Improve DNS Performance <cce_10_0362>`.

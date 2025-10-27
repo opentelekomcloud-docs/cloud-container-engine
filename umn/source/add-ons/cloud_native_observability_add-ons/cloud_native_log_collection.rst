@@ -69,10 +69,15 @@ The following permissions are required for running the fluent-bit component:
 -  DAC_READ_SEARCH: ignores the DAC restrictions on file reading and catalog research.
 -  SYS_PTRACE: allows all processes to be traced.
 
+.. caution::
+
+   The Cloud Native Log Collection add-on enhances the log reading capability based on these permissions. However, if log files are stored in an external file system (such as SFS), these permissions may not take effect. To ensure that logs can be collected properly, ensure that the paas user (UID 10000) has the read and execute permissions on the directory where the logs are stored and the read permissions on the files in the directory.
+
 Installing the Add-on
 ---------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate **Cloud Native Log Collection** on the right, and click **Install**.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Add-ons**. Locate **Cloud Native Log Collection** and click **Install**.
 #. On the **Install Add-on** page, configure the specifications as needed.
 
    -  If you selected **Preset**, you can choose between **Small** or **Large** depending on the number of logs on nodes. The system will automatically set the number of add-on pods and resource quotas according to the preset specifications. You can see the configurations on the console.
@@ -138,9 +143,7 @@ Components
 Add-on Usage
 ------------
 
-This add-on can collect container standard output logs, container file logs, node logs, and Kubernetes events. You can use LTS or AOM to store the collected logs. These services support different types of logs. For details, see :ref:`Table 3 <cce_10_0416__table11999681615>`.
-
-.. _cce_10_0416__table11999681615:
+This add-on can collect container standard output logs, container file logs, node logs, and Kubernetes events. You can use LTS or AOM to store the collected logs. These services support different types of logs.
 
 .. table:: **Table 3** Log storage description
 
@@ -150,19 +153,42 @@ This add-on can collect container standard output logs, container file logs, nod
    | LTS                   | -  Container standard output logs | Go to **Logging** to create a policy. For details, see :ref:`Collecting Container Logs Using the Cloud Native Log Collection Add-on <cce_10_0555>`.                                                                                           |
    |                       | -  Container file logs            |                                                                                                                                                                                                                                               |
    |                       | -  Node logs                      |                                                                                                                                                                                                                                               |
-   |                       | -  Kubernetes events              |                                                                                                                                                                                                                                               |
+   +-----------------------+-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | LTS                   | Kubernetes events                 | :ref:`Collecting Kubernetes Events <cce_10_0793>`                                                                                                                                                                                             |
+   +-----------------------+-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | LTS                   | Control plane component logs      | :ref:`Collecting Control Plane Component Logs <cce_10_0554>`                                                                                                                                                                                  |
+   +-----------------------+-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | LTS                   | Kubernetes audit logs             | :ref:`Collecting Audit Logs <cce_10_0792>`                                                                                                                                                                                                    |
    +-----------------------+-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | AOM                   | Kubernetes events                 | If the cluster version is 1.19.16, 1.21.11, 1.23.9, 1.25.4, or later, all abnormal events and some normal events will be reported by default. For details, see :ref:`Reporting Kubernetes Events to AOM <cce_10_0793__section1626024011253>`. |
    +-----------------------+-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-Change History
---------------
+Release History
+---------------
 
-.. table:: **Table 4** Release history
+.. table:: **Table 4** Cloud Native Log Collection add-on
 
    +-----------------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------+
    | Add-on Version        | Supported Cluster Version | New Feature                                                                                                             |
    +=======================+===========================+=========================================================================================================================+
+   | 1.7.3                 | v1.21                     | CCE clusters v1.32 are supported.                                                                                       |
+   |                       |                           |                                                                                                                         |
+   |                       | v1.23                     |                                                                                                                         |
+   |                       |                           |                                                                                                                         |
+   |                       | v1.25                     |                                                                                                                         |
+   |                       |                           |                                                                                                                         |
+   |                       | v1.27                     |                                                                                                                         |
+   |                       |                           |                                                                                                                         |
+   |                       | v1.28                     |                                                                                                                         |
+   |                       |                           |                                                                                                                         |
+   |                       | v1.29                     |                                                                                                                         |
+   |                       |                           |                                                                                                                         |
+   |                       | v1.30                     |                                                                                                                         |
+   |                       |                           |                                                                                                                         |
+   |                       | v1.31                     |                                                                                                                         |
+   |                       |                           |                                                                                                                         |
+   |                       | v1.32                     |                                                                                                                         |
+   +-----------------------+---------------------------+-------------------------------------------------------------------------------------------------------------------------+
    | 1.7.2                 | v1.21                     | Logs can be compressed in gzip format and sent to LTS.                                                                  |
    |                       |                           |                                                                                                                         |
    |                       | v1.23                     |                                                                                                                         |

@@ -28,7 +28,7 @@ This error information indicates that there are two abnormal **nic-max-above-war
 
 To fix this issue, perform the following operations:
 
-#. Log in to the CCE console. In the navigation pane, choose **Nodes**.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Nodes**.
 #. Locate the affected node pool and choose **More** > **Manage**.
 #. In **Networking Components**, set the **nic-max-above-warm-target** value to a maximum of 256.
 #. Click **OK**.
@@ -37,6 +37,6 @@ To fix this issue, perform the following operations:
 
 To fix this issue, perform the following operations:
 
-#. Log in to the CCE console. In the navigation pane, choose **Settings**.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Settings**.
 #. Click the **Network** tab and set the **Threshold for Unbinding Pre-bound Container ENIs** value to a maximum of 256.
 #. Click **Confirm Configuration**.

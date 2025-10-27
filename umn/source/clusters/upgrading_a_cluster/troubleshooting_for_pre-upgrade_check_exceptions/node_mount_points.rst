@@ -55,6 +55,6 @@ If NFS (such as obsfs or SFS) is used by the node and the node is disconnected f
 
    After the execution, perform the check again on the pre-upgrade check page.
 
-.. |image1| image:: /_static/images/en-us_image_0000002253619909.png
-.. |image2| image:: /_static/images/en-us_image_0000002253779825.png
-.. |image3| image:: /_static/images/en-us_image_0000002218820018.png
+.. |image1| image:: /_static/images/en-us_image_0000002434080104.png
+.. |image2| image:: /_static/images/en-us_image_0000002434080108.png
+.. |image3| image:: /_static/images/en-us_image_0000002434239928.png

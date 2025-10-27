@@ -5,7 +5,7 @@
 Bin Packing
 ===========
 
-Bin packing is an optimization algorithm that aims to properly allocate resources to each job and get the jobs done using the minimum amount of resources. After bin packing is enabled for cluster workloads, the scheduler preferentially schedules pods to nodes with high resource allocation. This reduces resource fragments on each node and improves cluster resource utilization.
+Bin packing is an optimization algorithm that aims to properly allocate resources to each job and get the jobs done using the minimum number of resources. After bin packing is enabled for cluster workloads, the scheduler preferentially schedules pods to nodes with high resource allocation. This reduces resource fragments on each node and improves cluster resource utilization.
 
 Prerequisites
 -------------
@@ -16,14 +16,16 @@ Prerequisites
 Features
 --------
 
-Bin packing aims to fill as many existing nodes as possible (try not to allocate blank nodes). In the concrete implementation, the bin packing algorithm scores the nodes that can be delivered, and a higher score indicates a higher resource utilization rate of nodes. Bin packing intends to centrally schedule application workloads onto some nodes in a cluster, which facilitates auto scaling of cluster nodes.
+The bin packing algorithm maximizes resource utilization per node and minimizes idle nodes. It scores nodes based on resource usage. Higher usage results in higher scores and priority. This centralizes application workloads on selected cluster nodes, aiding in auto-scaling.
 
-The bin packing add-on works with other scheduling add-ons of the scheduler to score nodes. You can customize the overall weight of the add-on and the weight of each resource to modify the influence in the node score. When using bin packing to calculate node scores, the scheduler considers extended resources such as CPUs, memory, and GPUs requested by pods, and calculates the scores based on the weights configured for each resource.
+As a Volcano scheduler add-on, bin packing collaborates with other add-ons to set node scores. You can customize its global weight and configure weights for resources like CPU, memory, and GPU to influence scheduling. The scheduler calculates bin packing scores by considering all pod-requested resources, performing a weighted average based on each resource's weight to finalize the node score.
 
 How It Works
 ------------
 
-A node is scored based on the overall weight of the bin packing add-on and the weight of each resource. Each type of resource requested by the to-be-scheduled pods is scored. Take CPUs as an example, the CPU score is calculated using the following formula:
+When scoring nodes, the scheduler calculates bin packing scores by considering the global weight of the add-on and the weight of each resource type such as CPU, memory, and GPU. The scoring process is as follows:
+
+Each type of resource requested by the to-be-scheduled pods is scored. Take CPUs as an example, the CPU score is calculated using the following formula:
 
 **CPU.weight x (Requested + Used)/Allocatable**
 
@@ -45,13 +47,14 @@ A larger bin packing weight leads to a higher score. A larger resource weight le
 -  **Memory.score**: calculated memory score; **Memory.weight**: customized memory weight
 -  **GPU.score**: calculated GPU score; **GPU.weight**: customized GPU weight
 
+.. _cce_10_0773__fig565130165812:
 
-.. figure:: /_static/images/en-us_image_0000002253780457.png
+.. figure:: /_static/images/en-us_image_0000002434240896.png
    :alt: **Figure 1** Bin packing example
 
    **Figure 1** Bin packing example
 
-In this figure, there are two nodes in the cluster. When pods need to be scheduled, the bin packing policy scores the two nodes separately.
+In :ref:`Figure 1 <cce_10_0773__fig565130165812>`, there are two nodes in the cluster, node 1 and node 2. A pod requests CPU, memory, and GPU resources. Before scheduling the pod, CCE uses the bin packing policy to score the two nodes.
 
 For example, **CPU.weight** is set to **1**, **Memory.weight** is set to **1**, **GPU.weight** is set to **2**, and **binpack.weight** is set to **5** in a cluster.
 
@@ -82,8 +85,8 @@ Configuring Bin Packing
 
 After Volcano is installed, bin packing takes effect by default. If the default configuration cannot meet your requirements, you can customize the weight of bin packing and the weight of each resource on the **Scheduling** page. To do so, perform the following operations:
 
-#. Log in to the CCE console.
-#. Click the cluster name to access the cluster console. Choose **Settings** in the navigation pane. In the right pane, click the **Scheduling** tab.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. Choose **Settings** in the navigation pane and click the **Scheduling** tab.
 #. In the **Resource utilization optimization scheduling** configuration, enable bin packing.
 
    .. table:: **Table 1** Bin packing weights

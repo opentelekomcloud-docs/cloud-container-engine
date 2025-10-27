@@ -5,7 +5,7 @@
 Configuring Specified Node Scheduling (nodeSelector)
 ====================================================
 
-To select a node for scheduling in Kubernetes, simply configure the **nodeSelector** field in the workload. This field allows you to configure the label of the desired node to be scheduled. Kubernetes schedules pods only to nodes with specified labels.
+In Kubernetes, to schedule a workload to a specified node, simply configure the **nodeSelector** field in the workload. By setting the target node label in this field, Kubernetes will schedule the workload only to the node with the matching label.
 
 Prerequisites
 -------------

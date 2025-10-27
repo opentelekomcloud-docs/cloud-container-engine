@@ -15,7 +15,7 @@ Indexes
 -  :ref:`What Can I Do If Container File Logs Cannot Be Collected Due to the Wildcard in the Collection Directory? <cce_10_0809__section011012583364>`
 -  :ref:`What Can I Do If fluent-bit Pod Keeps Restarting? <cce_10_0809__section1880322183714>`
 -  :ref:`What Can I Do If Job Logs Cannot Be Collected? <cce_10_0809__section97887823715>`
--  :ref:`What Can I Do If the Cloud Native Log Collection Add-on is Running Normally but Some Log Collection Policies Do Not Take Effect? <cce_10_0809__section1571017353814>`
+-  :ref:`What Can I Do If the Cloud Native Log Collection Add-on Is Running Normally but Some Log Collection Policies Do Not Take Effect? <cce_10_0809__section1571017353814>`
 -  :ref:`What Can I Do If Some Pod Information Is Missing During Log Collection Due to Excessive Node Load? <cce_10_0809__section1990316243587>`
 -  :ref:`How Do I Change the Log Storage Period on Logging? <cce_10_0809__section1053145216227>`
 -  :ref:`What Can I Do If the Log Group or Stream Specified in the Log Collection Policy Does Not Exist? <cce_10_0809__section494412903313>`
@@ -65,7 +65,7 @@ How Do I Handle the Error in Stdout Logs of log-operator?
 
    2023/05/05 12:17:20.799 [E] call 3 times failed, reason: create group failed, projectID: xxx, groupName: k8s-log-xxx, err: create groups status code: 400, response: {"error_code":"LTS.0104","error_msg":"Failed to create log group, the number of log groups exceeds the quota"}, url: https://lts.***.com/v2/xxx/groups, process will retry after 45s
 
-**Solution**: On the LTS console, delete unnecessary log groups.
+**Solution**: There is a log group quota on the LTS console. If this error occurs, go to the LTS console and delete some unnecessary log groups.
 
 .. _cce_10_0809__section15385204383613:
 
@@ -113,7 +113,7 @@ What Can I Do If Job Logs Cannot Be Collected?
 
 .. _cce_10_0809__section1571017353814:
 
-What Can I Do If the Cloud Native Log Collection Add-on is Running Normally but Some Log Collection Policies Do Not Take Effect?
+What Can I Do If the Cloud Native Log Collection Add-on Is Running Normally but Some Log Collection Policies Do Not Take Effect?
 --------------------------------------------------------------------------------------------------------------------------------
 
 **Solution**:
@@ -153,7 +153,7 @@ Run the **kubectl edit deploy -n monitoring log-agent-log-operator** command on 
    If the Cloud Native Log Collection add-on is upgraded, you need to reconfigure **kubernetes-buffer-size**.
 
 
-.. figure:: /_static/images/en-us_image_0000002253619901.png
+.. figure:: /_static/images/en-us_image_0000002467678261.png
    :alt: **Figure 1** Modifying the command line parameter of the log-operator container
 
    **Figure 1** Modifying the command line parameter of the log-operator container
@@ -163,7 +163,7 @@ Run the **kubectl edit deploy -n monitoring log-agent-log-operator** command on 
 How Do I Change the Log Storage Period on Logging?
 --------------------------------------------------
 
-#. On the **Clusters** page, hover the cursor over the cluster name to view the current cluster ID.
+#. Log in to the CCE console and choose **Clusters**. On the displayed page, hover the cursor over the cluster name to view the current cluster ID.
 #. Log in to the LTS console. In the navigation pane, choose **Log Management**. In **Log Groups**, select a search criterion. Then, query the log group and log stream by cluster ID.
 #. Locate the log group and click **Modify** to configure the log storage period.
 
@@ -176,7 +176,7 @@ What Can I Do If the Log Group or Stream Specified in the Log Collection Policy 
 
    Take Kubernetes events as an example. If the default log group or stream does not exist, a message will be displayed on the Kubernetes events page of the console. You can click **Create Log Collection Policy** to create a log group or stream.
 
-   After the log group or stream is created, the ID of the default log group or stream changes, and the existing log collection policy of the default log group or stream does not take effect. In this case, you can rectify the fault by referring to :ref:`Scenario 2 <cce_10_0809__li146683521096>`.
+   After the log group or steam is created, the ID of the default log group or stream changes, and the existing log collection policy of the default log group or stream does not take effect. In this case, you can rectify the fault by referring to :ref:`Scenario 2 <cce_10_0809__li146683521096>`.
 
 -  .. _cce_10_0809__li146683521096:
 

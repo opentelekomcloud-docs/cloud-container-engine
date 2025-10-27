@@ -29,7 +29,7 @@ Isolating Namespaces
       The following figure shows namespaces created for the development, joint debugging, and testing environments, respectively.
 
 
-      .. figure:: /_static/images/en-us_image_0000002253779469.png
+      .. figure:: /_static/images/en-us_image_0000002434240556.png
          :alt: **Figure 1** One namespace for one environment
 
          **Figure 1** One namespace for one environment
@@ -39,21 +39,23 @@ Isolating Namespaces
    You are advised to use this method if a large number of workloads are deployed in the same environment. For example, in the following figure, different namespaces (APP1 and APP2) are created to logically manage workloads as different groups. Workloads in the same namespace access each other using the Service name, and workloads in different namespaces access each other using the Service name or namespace name.
 
 
-   .. figure:: /_static/images/en-us_image_0000002253779473.png
+   .. figure:: /_static/images/en-us_image_0000002467679065.png
       :alt: **Figure 2** Grouping workloads into different namespaces
 
       **Figure 2** Grouping workloads into different namespaces
 
+.. _cce_10_0285__section124953014352:
+
 Managing Namespace Labels
 -------------------------
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Namespaces**.
-#. Locate the row containing the target namespace and choose **More** > **Manage Label** in the **Operation** column.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Namespaces**. Locate the row containing the target namespace and choose **More** > **Manage Labels** in the **Operation** column.
 #. In the dialog box that is displayed, the existing labels of the namespace are displayed. Modify the labels as needed.
 
    -  Adding a label: Click the add icon, enter the key and value of the label to be added, and click **OK**.
 
-      For example, the key is **project** and the value is **cicd**, indicating that the namespace is used to deploy CICD.
+      For example, the key is **project** and the value is **cicd**, indicating that the namespace is used to deploy CI/CD.
 
    -  Deleting a label: Click **Delete** next the label to be deleted and then **OK**.
 
@@ -64,9 +66,9 @@ Enabling Node Affinity in a Namespace
 
 After node affinity is enabled in a namespace, the workloads newly created in the namespace can be scheduled only to nodes with specific labels. For details, see `PodNodeSelector <https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#podnodeselector>`__.
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Namespaces**.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. Locate the target namespace and click |image1| in the **Node Affinity** column.
+#. In the navigation pane, choose **Namespace**. Locate the row containing the target namespace and click |image1| in the **Node Affinity** column.
 
 #. In the displayed dialog box, select **Enable** and click **OK**.
 
@@ -85,4 +87,4 @@ If a namespace is deleted, all resources (such as workloads, jobs, and ConfigMap
 
    Follow the prompts to delete the namespace. The default namespaces cannot be deleted.
 
-.. |image1| image:: /_static/images/en-us_image_0000002253619569.png
+.. |image1| image:: /_static/images/en-us_image_0000002467679061.png

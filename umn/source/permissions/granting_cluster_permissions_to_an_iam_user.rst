@@ -26,7 +26,7 @@ Process Flow
 ------------
 
 
-.. figure:: /_static/images/en-us_image_0000002274473989.png
+.. figure:: /_static/images/en-us_image_0000002467719689.png
    :alt: **Figure 1** Process of granting CCE permissions
 
    **Figure 1** Process of granting CCE permissions
@@ -85,7 +85,7 @@ You can create custom policies in either of the following ways:
 -  Visual editor: Select cloud services, actions, resources, and request conditions. This does not require knowledge of policy syntax.
 -  JSON: Create a JSON policy or edit an existing one.
 
-The following lists examples of common CCE custom policies.
+This section provides examples of common custom FunctionGraph policies.
 
 **Examples**
 
@@ -174,4 +174,4 @@ When RBAC and IAM policies co-exist, the backend authentication logic for open A
 
 |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000002253780145.png
+.. |image1| image:: /_static/images/en-us_image_0000002434241048.png

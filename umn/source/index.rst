@@ -14,14 +14,14 @@ Cloud Container Engine - User Guide
    node_pools/index
    workloads/index
    scheduling/index
-   network/index
+   networking/index
    storage/index
    auto_scaling/index
    o_and_m/index
    namespaces/index
    configmaps_and_secrets/index
    add-ons/index
-   helm_chart/index
+   helm_charts/index
    permissions/index
    settings/index
    best_practice/index

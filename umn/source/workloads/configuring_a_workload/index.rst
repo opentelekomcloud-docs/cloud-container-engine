@@ -10,10 +10,10 @@ Configuring a Workload
 -  :ref:`Configuring an Image Pull Policy <cce_10_0353>`
 -  :ref:`Using Third-Party Images <cce_10_0009>`
 -  :ref:`Configuring Container Specifications <cce_10_0163>`
--  :ref:`Configuring Container Lifecycle Parameters <cce_10_0105>`
+-  :ref:`Configuring the Container Lifecycle <cce_10_0105>`
 -  :ref:`Configuring Container Health Check <cce_10_0112>`
 -  :ref:`Configuring Environment Variables <cce_10_0113>`
--  :ref:`Configuring Workload Upgrade Policies <cce_10_0397>`
+-  :ref:`Upgrading and Rolling Back a Workload <cce_10_0397>`
 -  :ref:`Configuring Tolerance Policies <cce_10_0728>`
 -  :ref:`Configuring Labels and Annotations <cce_10_0386>`
 
@@ -26,9 +26,9 @@ Configuring a Workload
    configuring_an_image_pull_policy
    using_third-party_images
    configuring_container_specifications
-   configuring_container_lifecycle_parameters
+   configuring_the_container_lifecycle
    configuring_container_health_check
    configuring_environment_variables
-   configuring_workload_upgrade_policies
+   upgrading_and_rolling_back_a_workload
    configuring_tolerance_policies
    configuring_labels_and_annotations

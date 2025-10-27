@@ -195,7 +195,7 @@ You can use a ConfigMap as an environment variable to set commands or parameter 
 
    -  **Added from ConfigMap**: Select a ConfigMap to import all of its keys as environment variables.
 
-#. Click **Lifecycle** in the **Container Settings** area, click the **Post-Start** tab on the right, and set the following parameters:
+#. Click **Lifecycle** in the **Container Settings** area, click the **Post-Start** tab on the right, and configure parameters.
 
    -  **Processing Method**: **CLI**
 
@@ -307,7 +307,7 @@ The data stored in a ConfigMap can be referenced in a volume of type ConfigMap. 
 
 #. In the navigation pane, choose **Workloads**. In the dialog box displayed, click **Create Workload** in the upper right corner.
 
-   When creating a workload, click **Data Storage** in the **Container Settings** area. Click **Add Volume** and select **ConfigMap** from the drop-down list.
+   When creating a workload, click **Data Storage** in the **Container Settings** area. Click **Add Volume** and choose **ConfigMap** from the drop-down list.
 
 #. Select parameters for mounting a ConfigMap volume, as shown in :ref:`Table 1 <cce_10_0015__table1776324831114>`.
 

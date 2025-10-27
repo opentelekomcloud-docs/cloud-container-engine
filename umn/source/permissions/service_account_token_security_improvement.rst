@@ -30,7 +30,7 @@ For details, visit https://github.com/kubernetes/enhancements/tree/master/keps/s
 Diagnosis
 ---------
 
-Perform the following steps to check your CCE clusters of v1.21 or later:
+Perform the following operations to check your CCE clusters of v1.21 or later:
 
 #. Use kubectl to access the cluster and run the **kubectl get --raw "/metrics" \| grep stale** command to obtain the metrics. Check the metric named **serviceaccount_stale_tokens_total**.
 
@@ -38,4 +38,4 @@ Perform the following steps to check your CCE clusters of v1.21 or later:
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000002218660734.png
+.. |image1| image:: /_static/images/en-us_image_0000002467678877.png

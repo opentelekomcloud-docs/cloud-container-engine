@@ -14,4 +14,4 @@ Solution
 --------
 
 -  **Upgrade the cluster during off-peak hours.**
--  Check whether too many pods are deployed on the node. If yes, reschedule pods to other idle nodes.
+-  Log in to the node, run the **top** command to obtain the memory usage of the process, and adjust the services running on the node as needed.

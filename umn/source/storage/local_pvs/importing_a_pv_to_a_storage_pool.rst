@@ -12,7 +12,7 @@ Notes and Constraints
 
 -  Local PVs are supported only when the cluster version is v1.21.2-r0 or later and the Everest add-on version is 2.1.23 or later. Version 2.1.23 or later is recommended.
 
--  The first data disk (used by container runtime and the kubelet component) on a node cannot be imported as a storage pool.
+-  Data disks used by the container runtime and Kubernetes components cannot be imported into a storage pool.
 -  Storage pools in striped mode do not support scale-out. After scale-out, fragmented space may be generated and the storage pool cannot be used.
 -  Storage pools cannot be scaled in or deleted.
 -  If disks in a storage pool on a node are deleted, the storage pool will malfunction.

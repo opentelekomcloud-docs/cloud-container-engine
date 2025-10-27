@@ -5,21 +5,21 @@
 Configuring Node Fault Detection Policies
 =========================================
 
-The node fault detection function depends on the :ref:`NPD <cce_10_0132>` add-on. The add-on instances run on nodes and monitor nodes. This section describes how to enable node fault detection.
+Node fault detection depends on the CCE Node Problem Detector add-on (:ref:`CCE Node Problem Detector <cce_10_0132>`). The add-on instance runs on each node to monitor node faults. This section describes how to enable node fault detection.
 
 Prerequisites
 -------------
 
-The :ref:`CCE Node Problem Detector <cce_10_0132>` add-on has been installed in the cluster.
+The CCE Node Problem Detector add-on (:ref:`CCE Node Problem Detector <cce_10_0132>`) add-on has been installed in the cluster.
 
 Enabling Node Fault Detection
 -----------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Nodes** and then click the **Nodes** tab. Check whether the NPD add-on has been installed in the cluster or whether the add-on has been upgraded to the latest version. After the NPD add-on has been installed, you can use the fault detection function.
-#. If the NPD add-on is running properly, click **Node Fault Detection Policy** to view the current fault detection items. For details about the NPD check item list, see :ref:`NPD Check Items <cce_10_0659__section321984418184>`.
-#. If the check result of the current node is abnormal, a message is displayed in the node list, indicating that the metric is abnormal.
-#. You can click **Abnormal metrics** and rectify the fault as prompted.
+#. In the navigation pane, choose **Nodes**. Then click the **Nodes** tab. Verify that the CCE Node Problem Detector add-on is installed in the cluster and updated to the latest version. Fault detection will then be available.
+#. When this add-on is running normally, click **Node Fault Detection Policy** to check the current fault detection items. For more details, see :ref:`NPD Check Items <cce_10_0659__section321984418184>`.
+#. Check the node list for any abnormal metrics.
+#. Click **Abnormal metrics** and rectify the fault as prompted.
 
 Customized Check Items
 ----------------------
@@ -33,10 +33,10 @@ Customized Check Items
    Currently, the following configurations are supported:
 
    -  **Enable/Disable**: Enable or disable a check item.
-   -  **Target Node**: By default, check items run on all nodes. You can change the fault threshold based on special scenarios. For example, the spot price ECS interruption reclamation check runs only on the spot price ECS node.
-   -  **Trigger Threshold**: The default thresholds match common fault scenarios. You can customize and modify the fault thresholds as required. For example, change the threshold for triggering connection tracking table exhaustion from 90% to 80%.
-   -  **Check Period**: The default check period is 30 seconds. You can modify this parameter as required.
-   -  **Troubleshooting Strategy**: After a fault occurs, you can select the strategies listed in the following table.
+   -  **Target Node**: By default, check items are executed on all nodes. You can add the node label to filter the node that meets all conditions.
+   -  **Check Period**: The default check period is 30 seconds. You can change the value as required.
+   -  **Trigger**: The CCE Node Problem Detector add-on provides the default threshold to match common fault scenarios. You can change the threshold as required. The threshold varies depending on check items, such as the number of failures and resource usage percentage. You can adjust the threshold as required. For example, you can change the threshold of resource usage percentage from 90% to 80%.
+   -  **Troubleshooting Strategy**: After a fault occurs, you can select the strategies listed in the following table as needed.
 
       .. table:: **Table 1** Troubleshooting strategies
 
@@ -72,7 +72,7 @@ Check items cover events and statuses.
       +=======================+==============================================================================================================================================================================================================================================================+=======================================================================================================+
       | OOMKilling            | Listen to the kernel logs and check whether OOM events occur and are reported.                                                                                                                                                                               | Warning event                                                                                         |
       |                       |                                                                                                                                                                                                                                                              |                                                                                                       |
-      |                       | Typical scenario: When the memory usage of a process in a container exceeds the limit, OOM is triggered and the process is terminated.                                                                                                                       | Listening object: **/dev/kmsg**                                                                       |
+      |                       | Typical scenario: The memory used by the process in the container exceeds the limit, triggering OOM and terminating the process.                                                                                                                             | Listening object: **/dev/kmsg**                                                                       |
       |                       |                                                                                                                                                                                                                                                              |                                                                                                       |
       |                       |                                                                                                                                                                                                                                                              | Matching rule: "Killed process \\\\d+ (.+) total-vm:\\\\d+kB, anon-rss:\\\\d+kB, file-rss:\\\\d+kB.*" |
       +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+

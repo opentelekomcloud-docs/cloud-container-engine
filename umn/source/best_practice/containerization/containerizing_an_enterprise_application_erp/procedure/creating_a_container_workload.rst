@@ -18,7 +18,7 @@ Required Cloud Services
 -----------------------
 
 -  Cloud Container Engine (CCE): a highly reliable and high-performance service that allows enterprises to manage containerized applications. With support for Kubernetes-native applications and tools, CCE makes it simple to set up an environment for running containers in the cloud.
--  Elastic Cloud Server (ECS): a scalable and on-demand cloud server. It helps you to efficiently set up reliable, secure, and flexible application environments, ensuring stable service running and improving O&M efficiency.
+-  Elastic Cloud Server (ECS): a scalable and on-demand cloud server. It helps you to efficiently set up reliable, secure, flexible application environments, ensuring stable service running and improving O&M efficiency.
 -  Virtual Private Cloud (VPC): an isolated and private virtual network environment that users apply for in the cloud. You can configure the IP address ranges, subnets, and security groups, as well as assign elastic IP addresses and allocate bandwidth in a VPC.
 
 Basic Concepts
@@ -54,9 +54,9 @@ Procedure
       | 2                     | Creating a key pair   | Create a key pair before you create a containerized application. Key pairs are used for identity authentication during remote login to a node. If you have a key pair already, skip this task. |
       |                       |                       |                                                                                                                                                                                                |
       |                       |                       | a. Log in to the management console.                                                                                                                                                           |
-      |                       |                       | b. In the service list, choose **Data Encryption Workshop** under **Security & Compliance**.                                                                                                   |
-      |                       |                       | c. In the navigation pane, choose **Key Pair Service**. On the **Private Key Pairs** tab, click **Create Key Pair**.                                                                           |
-      |                       |                       | d. Enter a key pair name, select **I agree to host the private key of the key pair.** and **I have read and agree to the Key Pair Service Disclaimer**, and click **OK**.                      |
+      |                       |                       | b. In the service list, choose **Data Encryption Workshop**.                                                                                                                                   |
+      |                       |                       | c. In the navigation pane, choose **Key Pair Service**. Go to the **Private Key Pairs** tab. Then, click **Create Key Pair**.                                                                  |
+      |                       |                       | d. Enter a key pair name, select **I agree to host the private key of the key pair.** and **I have read and agree to the Key Pair Service Disclaimer.**, and click **OK**.                     |
       |                       |                       | e. View and save the private key. For security purposes, a key pair can be downloaded only once. Keep it secure to ensure successful login.                                                    |
       +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
@@ -108,7 +108,7 @@ Procedure
 
       .. note::
 
-         In this example, the application will be accessible from public networks by using an elastic IP address.
+         In this example, the application can be accessed from the Internet through an EIP.
 
       -  **Service Name**: name of the application that can be accessed externally. In this example, this parameter is set to **apptest**.
       -  **Service Type**: Select **NodePort**.
@@ -137,4 +137,4 @@ In the preceding configuration, the NodePort mode is selected to access the work
 
 You can obtain the access mode from the **Access Mode** tab on the workload details page.
 
-.. |image1| image:: /_static/images/en-us_image_0000002253618137.png
+.. |image1| image:: /_static/images/en-us_image_0000002434078060.png

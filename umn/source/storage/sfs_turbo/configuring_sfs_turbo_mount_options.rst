@@ -15,7 +15,7 @@ The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be **1.2.8
 Notes and Constraints
 ---------------------
 
--  Mount options cannot be configured for Kata containers.
+-  Mount options cannot be configured for secure containers.
 -  Due to the restrictions of the NFS protocol, if an SFS volume is mounted to a node for multiple times, link-related mounting parameters (such as **timeo**) take effect only when the SFS volume is mounted for the first time by default. For example, if the same SFS file system is mounted to multiple pods running on a node, the mounting parameter set later does not overwrite the existing parameter value. If you want to configure different mounting parameters in the preceding scenario, additionally configure the **nosharecache** parameter.
 
 .. _cce_10_0626__section14888047833:
@@ -75,7 +75,7 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
         accessModes:
         - ReadWriteMany      # Access mode. The value must be ReadWriteMany for SFS Turbo.
         capacity:
-          storage: 500Gi       # SFS Turbo volume capacity
+          storage: 500Gi       # Storage capacity. This parameter is only for verification. It must not be empty or 0, but the specified size will not take effect.
         csi:
           driver: sfsturbo.csi.everest.io    # Dependent storage driver for the mounting
           fsType: nfs
@@ -92,13 +92,13 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
         - timeo=600
         - hard
 
-#. After a PV is created, you can create a PVC and bind it to the PV, and then mount the PV to the container in the workload. For details, see :ref:`Using an Existing SFS Turbo File System Through a Static PV <cce_10_0625>`.
+#. After creating a PV, you can create a PVC, bind it to the PV, and mount the PV to the container in the workload. For details, see :ref:`Using an Existing SFS Turbo File System Through a Static PV <cce_10_0625>`.
 
-#. Check whether the mount options take effect.
+#. Check whether the mount options are effective.
 
    In this example, the PVC is mounted to the workload that uses the **nginx:latest** image. You can run the **mount -l** command to check whether the mount options take effect.
 
-   a. View the pod to which the SFS Turbo volume has been mounted. In this example, the workload name is **web-sfsturbo**.
+   a. View the pod to which the SFS Turbo volume has been mounted. In this example, the workload name is **web-sfsturbo**. Replace it with the actual workload name.
 
       .. code-block::
 

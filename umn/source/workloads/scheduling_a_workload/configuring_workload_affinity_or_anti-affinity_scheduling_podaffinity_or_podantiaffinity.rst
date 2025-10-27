@@ -22,7 +22,7 @@ For example, frontend workload pods and backend workload pods that frequently co
    In this example, the workload labeled with **app=backend** is assigned to topology key 1. Therefore, workloads that have an affinity with the **app=backend** workload can be scheduled to topology key 1. Conversely, workloads that have an anti-affinity with the **app=backend** workload can only be scheduled to topology key 2 or 3.
 
 
-.. figure:: /_static/images/en-us_image_0000002218659930.png
+.. figure:: /_static/images/en-us_image_0000002434240692.png
    :alt: **Figure 1** Workload affinity or anti-affinity scheduling
 
    **Figure 1** Workload affinity or anti-affinity scheduling
@@ -252,7 +252,7 @@ Using YAML
                 preferredDuringSchedulingIgnoredDuringExecution:    # Scheduling policy that is met as much as possible
                 - weight: 100  # Priority that can be configured when the best-effort policy is used. The value ranges from 1 to 100. A larger value indicates a higher priority.
                   podAffinityTerm:  # Affinity configuration when the best-effort policy is used
-                    topologyKey: topology.kubernetes.io/zone   # Topology keys are divided based on node labels.
+                    topologyKey: topology.kubernetes.io/zone   # Topology keys are divided based on node labels by node AZ.
                     labelSelector:
                       matchExpressions:
                       - key: app
@@ -266,4 +266,4 @@ Using YAML
 
       For workload anti-affinity, when **requiredDuringSchedulingIgnoredDuringExecution** is used, the default access controller **LimitPodHardAntiAffinityTopology** of Kubernetes requires that **topologyKey** can only be **kubernetes.io/hostname**. To use other custom topology logic, modify or disable the access controller.
 
-.. |image1| image:: /_static/images/en-us_image_0000002218819774.png
+.. |image1| image:: /_static/images/en-us_image_0000002467679205.png

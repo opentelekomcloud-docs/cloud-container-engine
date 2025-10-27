@@ -7,8 +7,8 @@ Collecting Container Logs Using the Cloud Native Log Collection Add-on
 
 The Cloud Native Log Collection add-on (:ref:`Cloud Native Log Collection <cce_10_0416>`) is developed based on Fluent Bit and OpenTelemetry for collecting logs and Kubernetes events. This add-on supports CRD-based log collection policies. It collects and forwards stdout logs, container file logs, node logs, and Kubernetes events in a cluster based on configured policies.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  Up to 100 log rules can be created for each cluster.
 -  The Cloud Native Log Collection add-on cannot collect .gz, .tar, and .zip logs and cannot access symbolic links of logs.
@@ -16,6 +16,7 @@ Constraints
 -  If the container runtime is containerd, each stdout log cannot be in multiple lines. (This does not apply to the Cloud Native Log Collection add-on of version 1.3.0 or later.)
 -  If a volume is mounted to the directory of a service container, this add-on cannot collect data from the parent directory. In this case, you need to configure a complete data directory.
 -  If the lifetime of a container is less than 1 minute, logs cannot be collected in a timely manner. As a result, logs may be lost.
+-  When you create a log stream using a collection policy, ensure that the log stream name is unique because LTS does not allow log streams with the same name (both before and after renaming), even in different log groups.
 
 Enabling Logging on the Console
 -------------------------------
@@ -25,19 +26,19 @@ Enabling Logging on the Console
    **Enabling logging during cluster creation**
 
    a. Log in to the CCE console.
-   b. Click **Create** **Cluster** from the top menu.
+   b. Click **Create Cluster**.
    c. Configure the parameters by referring to :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`. Then, click **Next: Select Add-on** in the lower right corner.
    d. On the **Select Add-on** page, select **Cloud Native Log Collection**.
-   e. Click **Next: Add-on Configuration** in the lower right corner and select the required logs.
+   e. Click **Next: Configure Add-on** in the lower right corner and select the required logs.
 
       -  Container logs: A log collection policy named **default-stdout** will be created, and stdout logs in all namespaces will be reported to LTS.
       -  Kubernetes events: A log collection policy named **default-event** will be created, and Kubernetes events in all namespaces will be reported to LTS.
 
-   f. Click **Next: Confirm configuration** in the lower right corner. On the displayed page, click **Submit**.
+   f. Click **Next: Confirm Settings** in the lower right corner. On the displayed page, click **Submit**.
 
 #. View and configure log collection policies.
 
-   a. On the CCE console, click the cluster name to access the cluster console. In the navigation pane, choose **Logging**.
+   a. In the navigation pane, choose **Logging**.
 
    b. Click **View Log Collection Policies** in the upper right corner.
 
@@ -47,7 +48,7 @@ Enabling Logging on the Console
 
       .. note::
 
-         -  To avoid log disorder, you are advised to select different log streams for reporting logs in the log collection policies of various log types.
+         -  To keep the logs organized, you are advised to select different log streams for different types of logs when configuring the log collection policies.
 
          -  .. _cce_10_0555__li87655474588:
 
@@ -107,6 +108,5 @@ Enabling Logging on the Console
 
 #. View the logs.
 
-   a. On the CCE console, click the cluster name to access the cluster console. In the navigation pane, choose **Logging**.
+   a. In the navigation pane, choose **Logging**.
    b. View different types of logs:
-   c. Click **View Log Collection Policies** in the upper right corner. Locate the log collection policy and click **View Log** to go to the log list.

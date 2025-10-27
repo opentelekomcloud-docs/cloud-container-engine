@@ -8,9 +8,9 @@ Enhanced CPU Policy
 Kubernetes provides two `CPU policies <https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/>`__: none and static.
 
 -  **none**: The CPU policy is disabled by default, indicating the existing scheduling behavior.
--  **static**: The static CPU core binding policy is enabled. This policy allows pods with certain resource characteristics to be granted enhanced CPU affinity and exclusivity on the node.
+-  **static**: The static CPU pinning policy is enabled. This policy allows pods with certain resource characteristics to be granted enhanced CPU affinity and exclusivity on the node.
 
-Based on the Kubernetes static core binding policy, the enhanced CPU policy (enhanced-static) supports burstable pods (whose CPU requests and limits must be positive integers) and allows them to preferentially use certain CPUs to ensure application stability. Example:
+The enhanced-static CPU policy extends Kubernetes static CPU pinning to support burstable pods, which must have integer CPU requests and limits. It enables these pods to preferentially use specific CPUs, ensuring application stability. Example:
 
 .. code-block::
 
@@ -27,7 +27,7 @@ Based on the Kubernetes static core binding policy, the enhanced CPU policy (enh
            memory: "200Mi"
            cpu: "1"
 
-This feature is built on the optimized CPU scheduling in the HCE OS 2.0 kernel. When the CPU usage preferentially used by a container exceeds 85%, the container is automatically allocated to other CPUs with low usage to ensure the response capability of applications.
+This feature is based on optimized CPU scheduling in the HCE OS 2.0 kernel. When the CPU usage preferentially used by a container exceeds 85%, the container is automatically allocated to other CPUs with low usage to ensure the response capability of applications.
 
 |image1|
 
@@ -42,15 +42,15 @@ Notes and Constraints
 To use this feature, the following conditions must be met:
 
 -  The cluster version must be v1.23 or later.
--  The node OS is HCE OS 2.0.
+-  The node OS must be HCE OS 2.0.
 -  The CPU management policy does not apply to ECS (PM) nodes in CCE Turbo clusters.
 
 Procedure
 ---------
 
-#. Log in to the CCE console.
-#. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. In the right pane, click the **Node Pools** tab.
-#. Select a node pool whose OS is HCE OS 2.0 and choose **Manage** in the **Operation** column.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right.
+#. Select a node pool whose OS is HCE OS 2.0 and click **Manage** in the **Operation** column.
 #. On the **Manage Configurations** page, change the **cpu-manager-policy** value to **enhanced-static** in the **kubelet** area.
 #. Click **OK**.
 
@@ -117,4 +117,4 @@ Take a node with 8 vCPUs and 32 GiB of memory as an example. Deploy a workload w
 
       1
 
-.. |image1| image:: /_static/images/en-us_image_0000002253779501.png
+.. |image1| image:: /_static/images/en-us_image_0000002467718269.png

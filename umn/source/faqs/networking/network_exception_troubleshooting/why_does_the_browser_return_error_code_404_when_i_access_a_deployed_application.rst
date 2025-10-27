@@ -12,7 +12,7 @@ CCE does not return any error code when you fail to access your applications usi
 If the error code shown in the following figure is returned, it indicates that the ELB cannot find the corresponding forwarding policy. Check the forwarding policies.
 
 
-.. figure:: /_static/images/en-us_image_0000002218659110.png
+.. figure:: /_static/images/en-us_image_0000002467676789.png
    :alt: **Figure 1** 404:ALB
 
    **Figure 1** 404:ALB
@@ -20,7 +20,7 @@ If the error code shown in the following figure is returned, it indicates that t
 If the error code shown in the following figure is returned, it indicates that errors occur on Nginx (your services). In this case, check your services.
 
 
-.. figure:: /_static/images/en-us_image_0000002218659118.png
+.. figure:: /_static/images/en-us_image_0000002467716909.png
    :alt: **Figure 2** 404:nginx/1.**.\*
 
    **Figure 2** 404:nginx/1.**.\*

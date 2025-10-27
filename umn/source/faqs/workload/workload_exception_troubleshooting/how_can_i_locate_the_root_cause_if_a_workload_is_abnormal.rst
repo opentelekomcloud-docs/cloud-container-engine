@@ -50,7 +50,7 @@ Common Pod Issues
 |                       |                                                                     |                                                                                                          |
 | ImagePullBackOff      | The image failed to be pulled again.                                |                                                                                                          |
 +-----------------------+---------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
-| CreateContainerError  | The container startup failed.                                       | :ref:`What Should I Do If Container Startup Fails? <cce_faq_00018>`                                      |
+| CreateContainerError  | The container startup failed.                                       | :ref:`What Should I Do If a Pod Startup Fails? <cce_faq_00018>`                                          |
 |                       |                                                                     |                                                                                                          |
 | CrashLoopBackOff      | The container failed to restart.                                    |                                                                                                          |
 +-----------------------+---------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
@@ -91,4 +91,4 @@ Information similar to the following is displayed:
      Warning  FailedScheduling  49s   default-scheduler  0/2 nodes are available: 2 Insufficient cpu.
      Warning  FailedScheduling  49s   default-scheduler  0/2 nodes are available: 2 Insufficient cpu.
 
-.. |image1| image:: /_static/images/en-us_image_0000002218659302.png
+.. |image1| image:: /_static/images/en-us_image_0000002467717261.png

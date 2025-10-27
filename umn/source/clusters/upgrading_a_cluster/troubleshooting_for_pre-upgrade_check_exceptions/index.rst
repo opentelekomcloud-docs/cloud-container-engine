@@ -56,7 +56,7 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Private IPv4 Addresses of Load Balancers <cce_10_0500>`
 -  :ref:`Historical Upgrade Records <cce_10_0501>`
 -  :ref:`CIDR Block of the Cluster Management Plane <cce_10_0502>`
--  :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0503>`
+-  :ref:`CCE AI Suite (NVIDIA GPU) Exceptions <cce_10_0503>`
 -  :ref:`Nodes' System Parameters <cce_10_0504>`
 -  :ref:`Residual Package Version Data <cce_10_0505>`
 -  :ref:`Node Commands <cce_10_0506>`
@@ -71,7 +71,7 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Node Runtime <cce_10_0516>`
 -  :ref:`Node Pool Runtime <cce_10_0517>`
 -  :ref:`Number of Node Images <cce_10_0518>`
--  :ref:`Compatibility Check of Secret Encryption <cce_10_0520>`
+-  :ref:`Compatibility Check of At-Rest Encryption for Secrets <cce_10_0520>`
 -  :ref:`Compatibility Between the Ubuntu Kernel and GPU Driver <cce_10_0521>`
 -  :ref:`Drainage Tasks <cce_10_0522>`
 -  :ref:`Image Layers on a Node <cce_10_0523>`
@@ -139,7 +139,7 @@ Troubleshooting for Pre-upgrade Check Exceptions
    private_ipv4_addresses_of_load_balancers
    historical_upgrade_records
    cidr_block_of_the_cluster_management_plane
-   cce_ai_suite_nvidia_gpu
+   cce_ai_suite_nvidia_gpu_exceptions
    nodes_system_parameters
    residual_package_version_data
    node_commands
@@ -154,7 +154,7 @@ Troubleshooting for Pre-upgrade Check Exceptions
    node_runtime
    node_pool_runtime
    number_of_node_images
-   compatibility_check_of_secret_encryption
+   compatibility_check_of_at-rest_encryption_for_secrets
    compatibility_between_the_ubuntu_kernel_and_gpu_driver
    drainage_tasks
    image_layers_on_a_node

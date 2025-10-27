@@ -252,4 +252,4 @@ Create and delete files in service containers in the local storage (such as empt
 
 If the OS uses OverlayFS, services can be deployed on such nodes to prevent the problem that the disk space occupied by files created or deleted in the container is not released immediately.
 
-.. |image1| image:: /_static/images/en-us_image_0000002218818954.png
+.. |image1| image:: /_static/images/en-us_image_0000002434078744.png

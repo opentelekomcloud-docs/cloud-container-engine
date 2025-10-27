@@ -5,7 +5,7 @@
 Using Services to Implement Simple Grayscale Release and Blue-Green Deployment
 ==============================================================================
 
-To implement grayscale release for a CCE cluster, deploy other open source tools, such as Nginx Ingress, to the cluster or deploy services to a service mesh. These solutions are difficult to implement. If your grayscale release requirements are simple and you do not want to introduce too many plug-ins or complex configurations, you can refer to this section to implement simple grayscale release and blue-green deployment based on native Kubernetes features.
+To implement grayscale release for a CCE cluster, deploy other open-source tools, such as Nginx Ingress, to the cluster or deploy services to a service mesh. These solutions are difficult to implement. If your grayscale release requirements are simple and you do not want to introduce too many plug-ins or complex configurations, you can refer to this section to implement simple grayscale release and blue-green deployment based on native Kubernetes features.
 
 Principles
 ----------
@@ -259,6 +259,6 @@ Step 3: Implement Blue-Green Deployment
       Nginx-v2
       Nginx-v2
 
-.. |image1| image:: /_static/images/en-us_image_0000002218818630.png
-.. |image2| image:: /_static/images/en-us_image_0000002253778453.png
-.. |image3| image:: /_static/images/en-us_image_0000002253618529.png
+.. |image1| image:: /_static/images/en-us_image_0000002434238296.png
+.. |image2| image:: /_static/images/en-us_image_0000002434078452.png
+.. |image3| image:: /_static/images/en-us_image_0000002467676797.png

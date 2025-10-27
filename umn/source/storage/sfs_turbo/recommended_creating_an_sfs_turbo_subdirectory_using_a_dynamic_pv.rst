@@ -5,7 +5,7 @@
 (Recommended) Creating an SFS Turbo Subdirectory Using a Dynamic PV
 ===================================================================
 
-When an SFS Turbo volume is mounted to a workload container, the root directory is mounted to the container by default. However, the minimum capacity of an SFS Turbo volume is 500 GiB, which exceeds the capacity required by most workloads, leading to a waste of storage resources. CCE enables efficient utilization of storage capacity by creating SFS Turbo subdirectories dynamically when you create a PVC. If your Everest version is 2.4.73 or later, you can configure the capacities of these subdirectories. This allows multiple workloads to share the SFS Turbo file system.
+When an SFS Turbo volume is mounted to a workload container, the root directory is mounted to the container by default. However, the minimum capacity of an SFS Turbo volume is 500 GiB, which exceeds the capacity required by most workloads, leading to a waste of storage resources. CCE enables efficient utilization of storage capacity by creating SFS Turbo subdirectories dynamically when you create a PVC. If your Everest version is 2.4.73, you can configure the capacities of these subdirectories. This allows multiple workloads to share the SFS Turbo file system.
 
 Prerequisites
 -------------
@@ -21,8 +21,8 @@ Notes and Restrictions on Subdirectory Quotas
 -  Once a subdirectory quota is configured, it cannot be canceled.
 -  The number of files or subdirectories in a file system is determined by the quota capacity (in KB) divided by 16. The upper limit is set at 1 billion and cannot be changed by users.
 
-Dynamically Creating an SFS Turbo Subdirectory on the Console
--------------------------------------------------------------
+Dynamically Creating an SFS Turbo Subdirectory Using the Console
+----------------------------------------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
@@ -37,7 +37,7 @@ Dynamically Creating an SFS Turbo Subdirectory on the Console
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Creation Method                   | Select **New subdirectory**.                                                                                                                                                                                              |
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Storage Classes                   | Choose **csi-sfsturbo**. You can customize a StorageClass and configure its reclaim policy and binding mode. For details, see :ref:`Creating a StorageClass Using the CCE Console <cce_10_0380__section11263115719212>`.  |
+   | Storage Classes                   | Choose **csi-sfsturbo**. You can customize a StorageClass and configure its reclaim policy and binding mode. For details, see :ref:`Creating a StorageClass Through the Console <cce_10_0380__section1074117311660>`.     |
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Access Mode                       | SFS Turbo volumes support only **ReadWriteMany**, indicating that a storage volume can be mounted to multiple nodes in read/write mode. For details, see :ref:`Volume Access Modes <cce_10_0378__section43881411172418>`. |
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -47,12 +47,12 @@ Dynamically Creating an SFS Turbo Subdirectory on the Console
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Subdirectory Reclaim Policy       | Determine whether to retain subdirectories when a PVC is deleted.                                                                                                                                                         |
    |                                   |                                                                                                                                                                                                                           |
-   |                                   | -  **Retain**: If a PVC is deleted, the PV will be deleted, but **the subdirectories associated with the PV will be retained**.                                                                                           |
-   |                                   | -  **Delete**: After a PVC is deleted, **the PV and its associated subdirectories will also be deleted**.                                                                                                                 |
+   |                                   | -  **Retain**: When a PVC is deleted, the PV is deleted, but **its associated subdirectories are retained**.                                                                                                              |
+   |                                   | -  **Delete**: When a PVC is deleted, **the PV and its associated subdirectories are also deleted**.                                                                                                                      |
    |                                   |                                                                                                                                                                                                                           |
    |                                   |    .. note::                                                                                                                                                                                                              |
    |                                   |                                                                                                                                                                                                                           |
-   |                                   |       When a subdirectory is deleted, only the absolute path of the subdirectory configured in the PVC will be deleted. The upper-layer directory will not be deleted.                                                    |
+   |                                   |       When a subdirectory is deleted, only the absolute path of the subdirectory specified in the PVC is deleted. The parent directory is retained.                                                                       |
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Subdirectory Capacity             | -  **Not limited**: The subdirectory capacity is not limited.                                                                                                                                                             |
    |                                   | -  **Limited**: The subdirectory capacity is limited.                                                                                                                                                                     |
@@ -82,15 +82,15 @@ Dynamically Creating an SFS Turbo Subdirectory Using kubectl
           everest.io/volume-as: absolute-path                # An SFS Turbo subdirectory is used.
           everest.io/sfsturbo-share-id: <sfsturbo_id>        # SFS Turbo ID
           everest.io/path: /a                                # Subdirectory that is automatically created, which must be an absolute path
-          everest.io/reclaim-policy: retain-volume-only      # When a PVC is deleted, the PV will be deleted, but the subdirectories associated with the PV will be retained.
-          everest.io/csi.enable-sfsturbo-dir-quota: "true"   # Status of quota limit
+          everest.io/reclaim-policy: retain-volume-only      # When a PVC is deleted, the PV is deleted, but its associated subdirectories are retained.
+          everest.io/csi.enable-sfsturbo-dir-quota: "true"   # The status of quota limit
       spec:
         accessModes:
           - ReadWriteMany      # ReadWriteMany must be selected for SFS Turbo.
         resources:
           requests:
 
-            storage: 10Gi      # For SFS Turbo subdirectory PVCs, this configuration specifies the capacity of a subdirectory when quota limit is enabled. In other scenarios, it is meaningless and only used for verification (the value cannot be empty or 0).
+            storage: 10Gi      # For SFS Turbo subdirectory PVCs, this configuration specifies the capacity of a subdirectory when quota limit is enabled. In other scenarios, it is only used for verification and must not be empty or 0.
         storageClassName: csi-sfsturbo     # StorageClass name of the SFS Turbo file system
 
    .. table:: **Table 1** Key parameters
@@ -108,12 +108,12 @@ Dynamically Creating an SFS Turbo Subdirectory Using kubectl
       +------------------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | everest.io/reclaim-policy                | Yes                   | Whether to retain subdirectories when deleting a PVC. This parameter must be used with :ref:`PV Reclaim Policy <cce_10_0378__section19999142414413>`. This parameter is available only when the PV reclaim policy is **Delete**. Options:                       |
       |                                          |                       |                                                                                                                                                                                                                                                                 |
-      |                                          |                       | -  **retain-volume-only**: If a PVC is deleted, the PV will be deleted, but **the subdirectories associated with the PV will be retained**.                                                                                                                     |
-      |                                          |                       | -  **delete**: After a PVC is deleted, **the PV and its associated subdirectories will also be deleted**.                                                                                                                                                       |
+      |                                          |                       | -  **retain-volume-only**: When a PVC is deleted, the PV is deleted, but **its associated subdirectories are retained**.                                                                                                                                        |
+      |                                          |                       | -  **delete**: When a PVC is deleted, **the PV and its associated subdirectories are also deleted**.                                                                                                                                                            |
       |                                          |                       |                                                                                                                                                                                                                                                                 |
       |                                          |                       |    .. note::                                                                                                                                                                                                                                                    |
       |                                          |                       |                                                                                                                                                                                                                                                                 |
-      |                                          |                       |       When a subdirectory is deleted, only the absolute path of the subdirectory configured in the PVC will be deleted. The upper-layer directory will not be deleted.                                                                                          |
+      |                                          |                       |       When a subdirectory is deleted, only the absolute path of the subdirectory specified in the PVC is deleted. The parent directory is retained.                                                                                                             |
       +------------------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | everest.io/csi.enable-sfsturbo-dir-quota | No                    | Whether to enable quota limit for a subdirectory. If the value is set to **true**, the limit is enabled. If the value is empty or set to any other value, the limit is disabled.                                                                                |
       +------------------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

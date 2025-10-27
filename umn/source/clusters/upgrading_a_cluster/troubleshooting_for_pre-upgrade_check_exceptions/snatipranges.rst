@@ -32,4 +32,4 @@ When you update SNATIPRanges in a region's backbone configuration, the change ta
 
 CCE automatically checks if the SNATIPRanges configuration has been updated before a cluster upgrade. You can manually skip this check item and restart the pod after the upgrade to update its route table.
 
-.. |image1| image:: /_static/images/en-us_image_0000002218820242.png
+.. |image1| image:: /_static/images/en-us_image_0000002467678445.png

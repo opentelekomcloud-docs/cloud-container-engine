@@ -28,8 +28,8 @@ Procedure
 
 #. Click the security group to view its details, and click the **Associated Instances** tab.
 
-   Obtain other resources associated with the security group, such as ENIs, sub-ENIs, and servers. You can delete the residual resources. The sub-ENIs will be automatically deleted.
+   Obtain other resources associated with the security group, such as elastic network interfaces, supplementary network interfaces, and servers. You can delete the residual resources. The supplementary network interfaces will be automatically deleted.
 
-#. For a residual ENI, go to the **Network Interfaces** page and delete the ENI obtained in the previous step.
+#. For a residual elastic network interface, go to the **Network Interfaces** page and delete the elastic network interface obtained in the previous step.
 
 #. Go to the **Security Groups** page to confirm that the security group is not associated with any instance. Then, go to the CCE console to delete the cluster.

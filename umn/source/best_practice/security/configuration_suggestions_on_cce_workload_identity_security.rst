@@ -17,17 +17,13 @@ The cluster version must be v1.19.16 or later.
 Procedure
 ---------
 
-#. Obtain the public key of the cluster service account token from CCE. For details, see :ref:`Step 1: Obtain the Public Key for Signature of the CCE Cluster <cce_bestpractice_0333__en-us_topic_0000001280331044_section5937204594820>`.
+#. Obtain the signature public key of the cluster service account token from CCE. For details, see :ref:`Step 1: Obtain the Signature Public Key of the CCE Cluster <cce_bestpractice_0333__en-us_topic_0000001280331044_section5937204594820>`.
 
 #. Create an identity provider on IAM. For details, see :ref:`Step 2: Configure an Identity Provider <cce_bestpractice_0333__en-us_topic_0000001280331044_section18167152865013>`.
 
 #. Obtain an IAM token from the workload and simulate an IAM user to access a cloud service. For details, see :ref:`Step 3: Use a Workload Identity <cce_bestpractice_0333__en-us_topic_0000001280331044_section38531454152611>`.
 
-   The procedure is as follows:
-
-   a. Deploy the application pod and obtain the OpenID Connect ID token file by mounting the identity provider.
-   b. Use the mounted OpenID Connect ID token file in programs in the pod to access IAM and obtain a temporary IAM token.
-   c. Access the cloud service using the IAM token in programs in the pod.
+   The figure below shows the workflow.
 
 
    .. figure:: /_static/images/en-us_image_0000002101396665.png
@@ -37,8 +33,8 @@ Procedure
 
 .. _cce_bestpractice_0333__en-us_topic_0000001280331044_section5937204594820:
 
-Step 1: Obtain the Public Key for Signature of the CCE Cluster
---------------------------------------------------------------
+Step 1: Obtain the Signature Public Key of the CCE Cluster
+----------------------------------------------------------
 
 #. Use kubectl to access the target cluster.
 
@@ -75,13 +71,13 @@ Step 2: Configure an Identity Provider
 
          A client ID cannot contain only digits. If the client ID consists only of digits, enclose it in double quotation marks ("") when editing the YAML file for the workload. For example, if the client ID is **123456789**, it should be entered as **"123456789"** in the YAML file.
 
-   -  **Signing Key**: Enter the JWKS of the CCE cluster obtained in :ref:`Step 1: Obtain the Public Key for Signature of the CCE Cluster <cce_bestpractice_0333__en-us_topic_0000001280331044_section5937204594820>`.
+   -  **Signing Key**: Enter the JWKS of the CCE cluster obtained in :ref:`Step 1: Obtain the Signature Public Key of the CCE Cluster <cce_bestpractice_0333__en-us_topic_0000001280331044_section5937204594820>`.
 
    **Identity Conversion Rules**
 
-   An identity conversion rule maps the ServiceAccount of a workload to an IAM user.
+   An identity conversion rule maps the service account of a workload to an IAM user.
 
-   For example, create a ServiceAccount named **oidc-token** in namespace **default** of the cluster and map it to user group **demo**. If you use the identity provider ID to access cloud services, you have the permissions of the **demo** user group. The attribute must be **sub**. The value is in the format of **system:serviceaccount:Namespace:ServiceAccountName**.
+   For example, create a service account named **oidc-token** in namespace **default** of the cluster and map it to user group **demo**. If you use the identity provider ID to access cloud services, you have the permissions of the **demo** user group. The attribute must be **sub**. The value is in the format of **system:serviceaccount:Namespace:ServiceAccountName**.
 
    Rules are in the JSON format as follows:
 
@@ -119,7 +115,7 @@ Step 2: Configure an Identity Provider
 Step 3: Use a Workload Identity
 -------------------------------
 
-#. Create a ServiceAccount, whose name must be the value of **ServiceAccountName** set in :ref:`Step 2: Configure an Identity Provider <cce_bestpractice_0333__en-us_topic_0000001280331044_section18167152865013>`.
+#. Create a service account, whose name must be the value of **ServiceAccountName** set in :ref:`Step 2: Configure an Identity Provider <cce_bestpractice_0333__en-us_topic_0000001280331044_section18167152865013>`.
 
    .. code-block::
 
@@ -128,7 +124,7 @@ Step 3: Use a Workload Identity
       metadata:
         name: oidc-token
 
-#. Mount the identity provider to the workload and obtain the OpenID Connect ID token file.
+#. Mount the identity provider to the workload and obtain the OIDC token file.
 
    An example is as follows:
 
@@ -158,7 +154,7 @@ Step 3: Use a Workload Identity
                 name: oidc-token
             imagePullSecrets:
             - name: default-secret
-            serviceAccountName: oidc-token      # Name of the created ServiceAccount
+            serviceAccountName: oidc-token      # Name of the created service account
             volumes:
             - name: oidc-token
               projected:
@@ -175,7 +171,7 @@ Step 3: Use a Workload Identity
 
       If the service account token is used for more than 24 hours or 80% of its expiry period, kubelet will automatically rotate the service account token.
 
-#. Use the OpenID Connect ID token to call the API for `Obtaining a Token with an OpenID Connect ID Token <https://docs.otc.t-systems.com/en-us/api/iam/iam_13_0605.html>`__. The **X-Subject-Token** field in the response header is the IAM token. Then, you can use this token to access cloud services.
+#. Use the OIDC token to call the API for `Obtaining a Token with an OpenID Connect ID Token <https://docs.otc.t-systems.com/en-us/api/iam/iam_13_0605.html>`__. The **X-Subject-Token** field in the response header is the IAM token. Then, you can use this token to access cloud services.
 
    The following shows an example:
 

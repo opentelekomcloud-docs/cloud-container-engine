@@ -1,6 +1,6 @@
-:original_name: cce_bestpractice_00253_0.html
+:original_name: cce_bestpractice_00253.html
 
-.. _cce_bestpractice_00253_0:
+.. _cce_bestpractice_00253:
 
 Dynamically Creating an SFS Turbo Subdirectory Using StorageClass
 =================================================================
@@ -8,20 +8,20 @@ Dynamically Creating an SFS Turbo Subdirectory Using StorageClass
 Background
 ----------
 
-The minimum capacity of an SFS Turbo file system is 500 GiB. By default, the root directory of an SFS Turbo file system is mounted to a container which, in most case, does not require such a large capacity.
+The minimum capacity of an SFS Turbo file system is 1000 GiB. By default, the root directory of an SFS Turbo file system is mounted to a container which, in most case, does not require such a large capacity.
 
-The everest add-on allows you to dynamically create subdirectories in an SFS Turbo file system and mount these subdirectories to containers. In this way, an SFS Turbo file system can be shared by multiple containers to increase storage efficiency.
+The Everest add-on allows you to dynamically create subdirectories in an SFS Turbo file system and mount these subdirectories to containers. In this way, an SFS Turbo file system can be shared by multiple containers to increase storage efficiency.
 
 Notes and Constraints
 ---------------------
 
 -  Only clusters of v1.15 or later are supported.
 
--  The cluster must use the everest add-on of version 1.1.13 or later.
+-  The cluster must use the Everest add-on of version 1.1.13 or later.
 
 -  Kata containers are not supported.
 
--  When the everest add-on earlier than 1.2.69 or 2.1.11 is used, a maximum of 10 PVCs can be created concurrently at a time by using the subdirectory function. everest of 1.2.69 or later or of 2.1.11 or later is recommended.
+-  When the Everest add-on earlier than 1.2.69 or 2.1.11 is used, a maximum of 10 PVCs can be created concurrently at a time by using the subdirectory function. everest of 1.2.69 or later or of 2.1.11 or later is recommended.
 
 -  A subPath volume is a subdirectory of an SFS Turbo file system. Increasing the capacity of a PVC of this type only changes the resource range specified by the PVC, but does not change the total capacity of the SFS Turbo file system. If the SFS Turbo file system's total resource capacity is not enough, the available capacity of the subPath volume will be restricted. To fix this, you must increase the resource capacity of the SFS Turbo file system on the SFS Turbo console.
 
@@ -63,11 +63,11 @@ Creating an SFS Turbo Volume of the subPath Type
    In this example:
 
    -  **name**: indicates the name of the StorageClass.
-   -  **mountOptions**: indicates the mount options. This field is optional.
+   -  **mountOptions**: (Optional) indicates the mount options.
 
-      -  In versions later than everest 1.1.13 and earlier than everest 1.2.8, only the **nolock** parameter can be configured. By default, the **nolock** parameter is used for the mount operation and does not need to be configured. If **nolock** is set to **false**, the **lock** field is used.
+      -  In versions later than Everest 1.1.13 and earlier than Everest 1.2.8, only the **nolock** parameter can be configured. By default, the **nolock** parameter is used for the mount operation and does not need to be configured. If **nolock** is set to **false**, the **lock** field is used.
 
-      -  Starting from everest 1.2.8, more mount options are supported. For details, see `Configuring SFS Volume Mount Options <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0337.html>`__. **Do not set nolock to true. Otherwise, the mount operation will fail.**
+      -  Starting from Everest 1.2.8, more mount options are supported. For details, see `Configuring SFS Volume Mount Options <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0337.html>`__. **Do not set nolock to true. Otherwise, the mount operation will fail.**
 
          .. code-block::
 

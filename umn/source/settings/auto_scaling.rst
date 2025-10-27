@@ -16,7 +16,14 @@ CCE Cluster Autoscaler comprehensively checks the resource statuses of an entire
 
    Such auto scaling works with an HPA policy. For details, see :ref:`Using HPA and CA for Auto Scaling of Workloads and Nodes <cce_10_0300>`.
 
--  User-defined policy switch: specifies whether to automatically scale out a node pool based on the :ref:`node scaling policies <cce_10_0209>`. This function is enabled by default.
+-  Custom node auto scaling policy: specifies whether to automatically scale out a node pool based on the :ref:`node scaling policies <cce_10_0209>`. This function is enabled by default.
+
+.. note::
+
+   When both **auto scale-out on a workload scheduling failure** and :ref:`metric-based node scaling policies <cce_10_0209>` are enabled and their conditions are met, CCE prioritizes the former.
+
+   -  If the scale-out succeeds, CCE skips the metric-based policy and waits for the next cycle.
+   -  If the scale-out fails, CCE executes the metric-based policy.
 
 **Upper limit of resources to be expanded**
 
@@ -30,14 +37,14 @@ CCE Cluster Autoscaler comprehensively checks the resource statuses of an entire
 
 **Scale-out Priority**
 
-You can drag and drop node pools in the list to adjust their scale-out priorities.
+You can adjust the scale-out priority by dragging the node pool list.
 
-Auto Scale-In Configuration
+Auto Scale-in Configuration
 ---------------------------
 
 CCE Cluster Autoscaler comprehensively checks the resource statuses of an entire cluster. Once it confirms that workload pods can be scheduled and run properly, it automatically obtains nodes for scale-in.
 
-**Node Scale-In Conditions**
+**Node Scale-in Conditions**
 
 Nodes in a cluster comply with the default scale-in conditions by default. If scale-in conditions are customized for a node pool, the nodes in the node pool comply with the customized scale-in conditions.
 
@@ -54,7 +61,7 @@ Nodes in a cluster comply with the default scale-in conditions by default. If sc
    +---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | (Optional) Custom Scale-In Conditions | You can configure scale-in conditions for each node pool. If the CPU and memory allocation rates of nodes in a node pool are lower than a certain percentage (50% by default) for a period of time (10 minutes by default), the node pool will be scaled in.                                                                                                                                                                                                                                                                                                                                                                                                    |
    |                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-   |                                       | Custom scale-in conditions are supported when the CCE Cluster Autoscaler add-on version is 1.25.181, 1.27.152, 1.28.120, 1.29.81, 1.30.48, 1.31.10, or later. If auto scaling is not enabled for all specifications in a node pool, custom scale-in conditions configured for the node pool do not take effect. For details about how to enable auto scaling for a node pool, see :ref:`Configuring Node Pool Scaling Policies <cce_10_0209__section4444195220142>`.                                                                                                                                                                                            |
+   |                                       | Custom scale-in conditions are supported when the CCE Cluster Autoscaler add-on version is 1.25.181, 1.27.152, 1.28.120, 1.29.81, 1.30.48, 1.31.10, or later. If the auto scaling function is not enabled for all specifications in a node pool, custom scale-in conditions configured for the node pool do not take effect. For details about how to enable the auto scaling function for a node pool, see :ref:`Configuring a Node Pool Auto Scaling Policy <cce_10_0209__section4444195220142>`.                                                                                                                                                             |
    +---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Scale-in Exception Scenarios          | When a node meets the following exception scenarios, CCE will not scale in the node even if the node resources or status meets scale-in conditions:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
    |                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |

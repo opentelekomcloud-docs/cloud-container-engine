@@ -9,23 +9,23 @@ Tolerations allow the scheduler to schedule pods to nodes with target taints. To
 
 The following table shows how taint policies and tolerations affect pod running.
 
-+-----------------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Taint Policy          | No Taint Toleration Configured                                          | Taint Toleration Configured                                                                                                                                                          |
-+=======================+=========================================================================+======================================================================================================================================================================================+
-| NoExecute             | -  Pods running on the node will be evicted immediately.                | -  If the tolerance time window **tolerationSeconds** is not specified, pods can always run on this node.                                                                            |
-|                       | -  Inactive pods will not scheduled to the node.                        | -  If the tolerance time window **tolerationSeconds** is specified, pods still run on the node with taints within the time window. After the time expires, the pods will be evicted. |
-+-----------------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| PreferNoSchedule      | -  Pods running on the node will not be evicted.                        | Pods can always run on this node.                                                                                                                                                    |
-|                       | -  Inactive pods will not scheduled to the node **to the best extend**. |                                                                                                                                                                                      |
-+-----------------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| NoSchedule            | -  Pods running on the node will not be evicted.                        | Pods can always run on this node.                                                                                                                                                    |
-|                       | -  Inactive pods will not scheduled to the node.                        |                                                                                                                                                                                      |
-+-----------------------+-------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-----------------------+----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Taint Policy          | No Taint Toleration Configured                                             | Taint Toleration Configured                                                                                                                                                          |
++=======================+============================================================================+======================================================================================================================================================================================+
+| NoExecute             | -  Pods running on the node will be evicted immediately.                   | -  If the tolerance time window **tolerationSeconds** is not specified, pods can always run on this node.                                                                            |
+|                       | -  Inactive pods will not be scheduled to the node.                        | -  If the tolerance time window **tolerationSeconds** is specified, pods still run on the node with taints within the time window. After the time expires, the pods will be evicted. |
++-----------------------+----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| PreferNoSchedule      | -  Pods running on the node will not be evicted.                           | Pods can always run on this node.                                                                                                                                                    |
+|                       | -  Inactive pods will not be scheduled to the node **to the best extend**. |                                                                                                                                                                                      |
++-----------------------+----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| NoSchedule            | -  Pods running on the node will not be evicted.                           | Pods can always run on this node.                                                                                                                                                    |
+|                       | -  Inactive pods will not be scheduled to the node.                        |                                                                                                                                                                                      |
++-----------------------+----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Configuring Tolerance Policies on the Console
 ---------------------------------------------
 
-#. Log in to the CCE console.
+#. Log in to the CCE console and click the cluster name to access the cluster console.
 #. When creating a workload, click **Toleration** in the **Advanced Settings** area.
 #. Add a taint tolerance policy.
 
