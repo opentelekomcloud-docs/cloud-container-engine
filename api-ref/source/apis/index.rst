@@ -11,6 +11,7 @@ APIs
 -  :ref:`Quota Management <quota_lifecycle_management>`
 -  :ref:`Chart Management <chart_lifecycle_management>`
 -  :ref:`Configuration Management <configuration_lifecycle_management>`
+-  :ref:`Tag Management <tags_lifecycle_management>`
 -  :ref:`Add-on Instance Parameters <cce_02_0366>`
 
 .. toctree::
@@ -23,4 +24,5 @@ APIs
    quota_management/index
    chart_management/index
    configuration_management/index
+   tag_management/index
    add-on_instance_parameters/index
