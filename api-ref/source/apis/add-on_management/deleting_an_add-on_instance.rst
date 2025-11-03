@@ -17,7 +17,7 @@ This API is used to delete an add-on instance.
 URI
 ---
 
-DELETE /api/v3/addons/{id}?cluster_id={cluster_id}
+DELETE /api/v3/addons/{id}
 
 :ref:`Table 1 <cce_02_0324__table493910491373>` describes the parameters of this API.
 
