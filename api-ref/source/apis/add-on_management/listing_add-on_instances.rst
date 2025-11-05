@@ -17,7 +17,7 @@ This API is used to list all add-on instances in the cluster.
 URI
 ---
 
-GET /api/v3/addons?cluster_id={cluster_id}
+GET /api/v3/addons
 
 :ref:`Table 1 <cce_02_0326__table489613501374>` describes the parameters of this API.
 
