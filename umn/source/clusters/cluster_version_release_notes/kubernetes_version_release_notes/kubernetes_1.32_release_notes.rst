@@ -5,7 +5,7 @@
 Kubernetes 1.32 Release Notes
 =============================
 
-CCE allows you to create Kubernetes 1.32 clusters. This section describes the changes made in Kubernetes 1.32.
+CCE now supports Kubernetes 1.32 cluster features. This section describes the changes made in Kubernetes 1.32.
 
 Indexes
 -------
@@ -30,11 +30,11 @@ New and Enhanced Features
 
 -  StatefulSetAutoDeletePVC (GA)
 
-   StatefulSetAutoDeletePVC moved to GA. This feature allows you to set the PVC retention policy when a StatefulSet is deleted or scaled in, and allows PVCs to be deleted at the same time when a StatefulSet is deleted or scaled in. For details, see `PersistentVolumeClaim Retention <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#persistentvolumeclaim-retention>`__.
+   StatefulSetAutoDeletePVC moved to GA. This feature allows you to set the PVC retention policy when a StatefulSet is deleted or scaled in, and allows PVCs to be deleted at the same time when a StatefulSet is deleted or scaled in. For details, see `PersistentVolumeClaim retention <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#persistentvolumeclaim-retention>`__.
 
 -  CronJobsScheduledAnnotation (GA)
 
-   CronJobsScheduledAnnotation moved to GA. This feature writes the scheduling time of a cron job to the **batch.kubernetes.io/cronjob-scheduled-timestamp** annotation of a job.
+   CronJobsScheduledAnnotation moved to GA. This feature writes the scheduling time of a CronJob to the **batch.kubernetes.io/cronjob-scheduled-timestamp** annotation of a job.
 
 -  PodIndexLabel (GA)
 

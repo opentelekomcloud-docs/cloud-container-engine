@@ -5,7 +5,7 @@
 Kubernetes 1.31 Release Notes
 =============================
 
-CCE allows you to create Kubernetes 1.31 clusters. This section describes the changes made in Kubernetes 1.31.
+CCE now supports Kubernetes 1.31 cluster features. This section describes the changes made in Kubernetes 1.31.
 
 Indexes
 -------
@@ -34,7 +34,7 @@ New and Enhanced Features
 
 -  Pod disruption conditions are in the GA state.
 
-   Pod disruption conditions are advanced to GA. The new **DisruptionTarget** condition indicates the reasons for pod failures, such as being preempted by a higher priority pod, cleared due to node deletion, or terminated by kubelet. When a pod is created using a job or cron job, you can use these pod disruption conditions as part of your job's `pod failure policy <https://kubernetes.io/docs/concepts/workloads/controllers/job/#pod-failure-policy>`__ to define the action when a pod is abnormal. For details, see `Pod disruption conditions <https://kubernetes.io/docs/concepts/workloads/pods/disruptions/#pod-disruption-conditions>`__.
+   Pod disruption conditions are advanced to GA. The new **DisruptionTarget** condition indicates the reasons for pod failures, such as being preempted by a higher priority pod, cleared due to node deletion, or terminated by kubelet. When a pod is created using a job or CronJob, you can use these pod disruption conditions as part of your job's `pod failure policy <https://kubernetes.io/docs/concepts/workloads/controllers/job/#pod-failure-policy>`__ to define the action when a pod is abnormal. For details, see `Pod disruption conditions <https://kubernetes.io/docs/concepts/workloads/pods/disruptions/#pod-disruption-conditions>`__.
 
 -  Selectable fields for custom resources are in the beta state.
 

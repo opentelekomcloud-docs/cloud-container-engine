@@ -5,7 +5,7 @@
 Kubernetes 1.29 Release Notes
 =============================
 
-CCE allows you to create Kubernetes 1.29 clusters. This section describes the changes made in Kubernetes 1.29.
+CCE now supports Kubernetes 1.29 cluster features. This section describes the changes in Kubernetes 1.29.
 
 Indexes
 -------
@@ -116,7 +116,7 @@ New and Enhanced Features
 API Changes and Removals
 ------------------------
 
--  The time zone of a newly created cron job cannot be configured using **TZ** or **CRON_TZ** in **.spec.schedule**. Use **.spec.timeZone** instead. Cron jobs that have been created are not affected by this change.
+-  The time zone of a newly created CronJob cannot be configured using **TZ** or **CRON_TZ** in **.spec.schedule**. Use **.spec.timeZone** instead. Cron jobs that have been created are not affected by this change.
 -  The alpha API **ClusterCIDR** is removed.
 -  The startup parameter **--authentication-config** is added to kube-apiserver to specify the address of the **AuthenticationConfiguration** file. This startup parameter is mutually exclusive with the **--oidc-\*** startup parameter.
 -  The API version **kubescheduler.config.k8s.io/v1beta3** of **KubeSchedulerConfiguration** is removed. Migrate **kube-scheduler** configuration files to **kubescheduler.config.k8s.io/v1**.

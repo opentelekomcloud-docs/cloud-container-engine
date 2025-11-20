@@ -2,10 +2,10 @@
 
 .. _cce_bestpractice_0333:
 
-Configuration Suggestions on CCE Workload Identity Security
-===========================================================
+Using OIDC to Authenticate Workloads in a CCE Cluster
+=====================================================
 
-A workload identity enables workloads within a cluster to act as IAM users, granting them access to cloud services without the need for an IAM account's AK/SK. This helps minimize security risks.
+Workload identities enable workloads within a cluster to act as IAM users, granting them access to cloud services without the need for an IAM account's AK/SK. This helps minimize security risks.
 
 This section describes how to use workload identities in CCE.
 
@@ -64,7 +64,10 @@ Step 2: Configure an Identity Provider
 
    **Configuration Information**
 
-   -  **Identity Provider URL**: Enter **https://kubernetes.default.svc.cluster.local**.
+   -  **Identity Provider URL**: The default identity provider of the cluster is **https://kubernetes.default.svc.cluster.local**.
+
+      If **OIDC Provider** is enabled in **Overview** > **Connection Information** of the cluster, you can obtain the identity provider URL in **Service Account Issuer (service-account-issuer)** in **Settings** > **Kubernetes** of the cluster.
+
    -  **Client ID**: Enter a client ID, which will be used when you create a container.
 
       .. caution::
@@ -184,7 +187,7 @@ Step 3: Use a Workload Identity
 
    Specifically:
 
-   -  **{{iam endpoint}}** indicates the endpoint of IAM. For details, see `Regions and Endpoints <https://docs.otc.t-systems.com/regions-and-endpoints/index.html>`__.
+   -  *{{iam endpoint}}* indicates the endpoint of IAM. For details, see `Regions and Endpoints <https://docs.otc.t-systems.com/regions-and-endpoints/index.html>`__.
 
    -  **workload_identity** is the identity provider name, which is the same as that configured in :ref:`Step 2: Configure an Identity Provider <cce_bestpractice_0333__en-us_topic_0000001280331044_section18167152865013>`.
 
