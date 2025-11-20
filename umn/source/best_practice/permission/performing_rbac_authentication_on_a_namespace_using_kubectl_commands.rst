@@ -95,7 +95,7 @@ The definition of a Role is simple. You just specify a namespace and some rules.
 
 For details, see `Using RBAC Authorization <https://kubernetes.io/docs/reference/access-authn-authz/rbac/>`__.
 
-After creating a Role, you can bind the Role to a specific user, which is called RoleBinding. The following shows an example:
+After creating a Role, you can bind the Role to a specific user. This is called RoleBinding. The following shows an example:
 
 .. code-block::
 

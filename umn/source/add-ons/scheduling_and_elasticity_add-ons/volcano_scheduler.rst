@@ -489,7 +489,7 @@ Modifying the volcano-scheduler Configurations Using the Console
 
 volcano-scheduler is the component responsible for pod scheduling. It consists of a series of actions and plugins. Actions should be executed in every step. Plugins provide the action algorithm details in different scenarios. volcano-scheduler is highly scalable. You can specify and implement actions and plugins based on your requirements.
 
-After the add-on is installed, you can choose **Settings** in the navigation pane, switch to the **Scheduling** tab, and configure the basic scheduling capabilities. You can also use the expert mode of the Volcano scheduler to customize advanced scheduling policies based on service scenarios.
+After the add-on is installed, you can choose **Settings** in the navigation pane, switch to the **Scheduling** tab, and configure the basic scheduling capabilities. You can also use the expert mode to customize advanced scheduling policies based on service scenarios.
 
 This section describes how to configure volcano-scheduler.
 

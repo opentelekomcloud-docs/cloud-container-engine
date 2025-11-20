@@ -154,7 +154,7 @@ If an add-on upgrade fails or any other exceptions occur, you have the option to
    If you have modified the add-on startup parameters, check and delete the custom parameters before the rollback. If you do not perform these operations, the rollback may fail because the target version does not support these parameters.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Add-ons**. In the right pane, find the CCE AI Suite (NVIDIA GPU) add-on and choose **More** > **Roll Back**.
+#. In the navigation pane, choose **Add-ons**. In the right pane, find the CCE AI Suite (NVIDIA GPU) add-on and click **Roll Back**.
 #. In the **Roll Back Add-on** dialog box displayed, check that the target version is correct and click **Yes**. If the add-on status transitions from **Rolling back** to **Running**, the rollback is successful.
 
 Upgrading a GPU Driver
