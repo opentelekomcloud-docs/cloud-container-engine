@@ -17,6 +17,7 @@ Appendix
 -  :ref:`Creating a Key Pair <cce_02_0101>`
 -  :ref:`Node Flavor Description <cce_02_0368>`
 -  :ref:`Attaching Disks to a Node <node_storage_example>`
+-  :ref:`Space Allocation of a Data Disk <cce_10_0341>`
 
 .. toctree::
    :maxdepth: 1
@@ -34,3 +35,4 @@ Appendix
    creating_a_key_pair
    node_flavor_description
    attaching_disks_to_a_node
+   space_allocation_of_a_data_disk
