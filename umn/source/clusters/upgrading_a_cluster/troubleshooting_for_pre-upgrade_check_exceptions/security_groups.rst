@@ -19,7 +19,7 @@ Solution
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Overview**. In the **Networking Configuration** area, view the default node security group.
-#. Click the name of the default node security group to go to the details pagee. Ensure that the **inbound rules** contain the rule in the figure below. This rule allows the master node to access worker nodes using the **ICMP** protocol.
+#. Click the name of the default node security group to go to the details page. Ensure that the **inbound rules** contain the rule in the figure below. This rule allows the master node to access worker nodes using the **ICMP** protocol.
 #. If the rule does not exist, click **Add Rule** to add the inbound rule to the node security group.
 
    -  **Priority**: Set it to **1**.

@@ -10,6 +10,7 @@ Node O&M
 -  :ref:`Maximum Number of Pods That Can Be Created on a Node <cce_10_0348>`
 -  :ref:`Differences in kubelet and Runtime Component Configurations Between CCE and the Native Community <cce_10_0883>`
 -  :ref:`Migrating Nodes from Docker to containerd <cce_10_0601>`
+-  :ref:`Optimizing Node System Parameters <cce_10_0408>`
 -  :ref:`Configuring Node Fault Detection Policies <cce_10_0659>`
 -  :ref:`Executing the Pre- or Post-installation Commands During Node Creation <cce_bestpractice_10020_0>`
 
@@ -22,5 +23,6 @@ Node O&M
    maximum_number_of_pods_that_can_be_created_on_a_node
    differences_in_kubelet_and_runtime_component_configurations_between_cce_and_the_native_community
    migrating_nodes_from_docker_to_containerd
+   optimizing_node_system_parameters/index
    configuring_node_fault_detection_policies
    executing_the_pre-_or_post-installation_commands_during_node_creation

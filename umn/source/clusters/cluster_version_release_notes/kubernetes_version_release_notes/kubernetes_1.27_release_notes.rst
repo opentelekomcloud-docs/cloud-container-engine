@@ -5,7 +5,7 @@
 Kubernetes 1.27 Release Notes
 =============================
 
-CCE allows you to create Kubernetes 1.27 clusters. This section describes the changes made in Kubernetes 1.27 compared with Kubernetes 1.25.
+CCE now supports Kubernetes 1.27 cluster features. This section describes the changes made in Kubernetes 1.27 compared with Kubernetes 1.25.
 
 Indexes
 -------
@@ -76,7 +76,7 @@ New Features
 
 -  Volume group snapshots are introduced.
 
-   Volume group snapshots are introduced as an alpha feature in Kubernetes 1.27. This feature allows users to create snapshots for multiple volumes to ensure data consistency when a fault occurs. It uses a label selector to group multiple PVCs for snapshot. This feature only supports CSI volume drivers. For details, see `Kubernetes 1.27: Introducing an API for Volume Group Snapshots <https://kubernetes.io/blog/2023/05/08/kubernetes-1-27-volume-group-snapshot-alpha/>`__.
+   Volume group snapshots are introduced as an alpha feature in Kubernetes 1.27. This feature allows users to create snapshots for multiple volumes to ensure data consistency when a fault occurs. It uses a label selector to group multiple PVCs for snapshots. This feature only supports CSI volume drivers. For details, see `Kubernetes 1.27: Introducing an API for Volume Group Snapshots <https://kubernetes.io/blog/2023/05/08/kubernetes-1-27-volume-group-snapshot-alpha/>`__.
 
 -  **kubectl apply** pruning is more secure and efficient.
 

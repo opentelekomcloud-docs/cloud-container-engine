@@ -5,7 +5,7 @@
 Kubernetes 1.28 Release Notes
 =============================
 
-CCE allows you to create Kubernetes 1.28 clusters. This section describes the changes made in Kubernetes 1.28.
+CCE now supports Kubernetes 1.28 cluster features. This section describes the changes made in Kubernetes 1.28.
 
 Indexes
 -------
@@ -43,11 +43,11 @@ Features in alpha stage are disabled by default, those in beta stage are enabled
 
    The PV controller has been modified to automatically assign a default StorageClass to any unbound PVC with **storageClassName** not configured. Additionally, the PVC admission validation mechanism within the API server has been adjusted to allow changing values from an unset state to an actual StorageClass name. For details, see `Retroactive default StorageClass assignment <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#retroactive-default-storageclass-assignment>`__.
 
--  Native sidecar containers are introduced.
+-  Native sidecar containers move to alpha.
 
    The native sidecar containers are available in alpha. Kubernetes 1.28 adds **restartPolicy** to Init containers. This field is available when the SidecarContainers feature gate is enabled. However, there are still some problems to be solved in the native sidecar containers. Therefore, the Kubernetes community recommends only using this feature gate in `short lived testing clusters <https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/#feature-stages>`__ at the alpha phase. For details, see `Introducing native sidecar containers <https://kubernetes.io/blog/2023/08/25/native-sidecar-containers/>`__.
 
--  Mixed version proxy is introduced.
+-  Mixed version proxy moves to alpha.
 
    A new mechanism (mixed version proxy) is released to improve cluster upgrade. It is an alpha feature in Kubernetes 1.28. When a cluster undergoes an upgrade, API servers of different versions in the cluster can serve different sets (groups, versions, or resources) of built-in resources. A resource request made in this scenario may be served by any of the available API servers, potentially resulting in the request ending up at an API server that may not be aware of the requested resource. As a result, the request fails. This feature can solve this problem. (Note that CCE provides hitless upgrade. Therefore, this feature is not used in CCE clusters.) For details, see `A New (alpha) Mechanism For Safer Cluster Upgrades <https://kubernetes.io/blog/2023/08/28/kubernetes-1-28-feature-mixed-version-proxy-alpha/>`__.
 
@@ -100,7 +100,7 @@ Features in alpha stage are disabled by default, those in beta stage are enabled
    -  In Kubernetes 1.28, kubelet can configure the drop-in directory (alpha). This feature allows you to add support for the **--config-dir** flag to kubelet so that you can specify an insert directory that overwrites the kubelet configuration in **/etc/kubernetes/kubelet.conf**.
    -  ExpandedDNSConfig moves to GA and is enabled by default. With this feature enabled, DNS configurations can be expanded.
    -  The alpha feature CRDValidationRatcheting is added. This feature allows CRs with failing validations to pass if a Patch or Update request does not alter any of the invalid fields.
-   -  **--concurrent-cron-job-syncs** is added to kube-controller-manager to configure the number of workers for the cron job controller.
+   -  **--concurrent-cron-job-syncs** is added to kube-controller-manager to configure the number of workers for the CronJob controller.
 
 .. _cce_bulletin_0068__en-us_topic_0000001692158708_section1898982110241:
 

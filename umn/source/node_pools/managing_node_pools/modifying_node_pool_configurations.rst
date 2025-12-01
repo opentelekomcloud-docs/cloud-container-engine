@@ -5,7 +5,7 @@
 Modifying Node Pool Configurations
 ==================================
 
-If the default node configurations of in cluster do not meet service requirements, you can customize parameters for core components, such as kubelet, kube-proxy, and the container engine, within the node pool. Fine-tuning these parameters allows for in-depth configuration, ensuring efficient resource utilization while meeting workload demands.
+If the default node configurations in a cluster do not meet service requirements, you can fine-tune parameters for core components, such as kubelet, kube-proxy, and the container engine, within the node pool. Fine-tuning these parameters allows for in-depth configuration, ensuring efficient resource utilization while meeting workload demands.
 
 The following parameters can be configured for a node pool:
 
@@ -28,7 +28,7 @@ Using the Console
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Nodes** and click the **Node Pools** tab.
 #. Locate the row containing the target node pool and choose **More** > **Manage**.
-#. In the **Manage Component** window, modify the node pool parameter values based on service requirements. For details about the parameters, see :ref:`Cluster Configuration Parameters <cce_10_0213__section126051117129>`.
+#. In the sliding window, modify the node pool parameter values based on service requirements. For details about the parameters, see :ref:`Cluster Configuration Parameters <cce_10_0213__section126051117129>`.
 
 Using an API
 ------------
@@ -37,15 +37,13 @@ You can modify the CCE cluster parameter settings using an API.
 
 **PUT /api/v3/projects/{project_id}/clusters/{cluster_id}/nodepools/{nodepool_id}/configuration**
 
-+-------------+-----------------------------------------------------------------------+
-| Parameter   | Description                                                           |
-+=============+=======================================================================+
-| project_id  | Project ID. For details about how to obtain the project ID, see .     |
-+-------------+-----------------------------------------------------------------------+
-| cluster_id  | Cluster ID. For details about how to obtain the cluster ID, see .     |
-+-------------+-----------------------------------------------------------------------+
-| nodepool_id | Node pool ID. For details about how to obtain the node pool ID, see . |
-+-------------+-----------------------------------------------------------------------+
+=========== =============
+Parameter   Description
+=========== =============
+project_id  Project ID.
+cluster_id  Cluster ID.
+nodepool_id Node pool ID.
+=========== =============
 
 The request body is as follows:
 
