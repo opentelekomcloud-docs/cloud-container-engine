@@ -24,9 +24,9 @@ Node Flavor Description
          ====================== ======================================
          Node Type              Flavor
          ====================== ======================================
-         General computing-plus c4, c3, c7n, x1e
+         General computing-plus c4, c3, c7n, x1e, c9
          General-purpose        s3, s2, s7n, x1
-         Memory-optimized       m4, m3, m7n
+         Memory-optimized       m4, m3, m7n, m9
          Disk-intensive         d2
          GPU-accelerated        pi2, p3, p2v, p2s, g6, g7, p5s, pi5e
          ====================== ======================================
@@ -37,12 +37,12 @@ Node Flavor Description
 
       .. table:: **Table 2** x86 nodes
 
-         ====================== ==============
+         ====================== ====================
          Node Type              Flavor
-         ====================== ==============
-         General computing-plus c3n, c7n, c4ne
+         ====================== ====================
+         General computing-plus c3n, c7n, c4ne, c9
          General computing      s7n
-         Memory-optimized       m7n, m3n
+         Memory-optimized       m7n, m3n, m9
          GPU-accelerated        g7, pi5e
          Container-plus         m3n
-         ====================== ==============
+         ====================== ====================
