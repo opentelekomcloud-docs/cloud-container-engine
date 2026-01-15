@@ -7,6 +7,20 @@ Collecting Kubernetes Events
 
 The Cloud Native Log Collection add-on of CCE works with LTS to collect and store Kubernetes events and works with AOM to generate alarms.
 
+Constraints
+-----------
+
+During Kubernetes event collection, the events generated in the following scenarios will not be collected:
+
+-  Before otel-collector-event is started
+-  During the active/standby otel-collector-event switchover
+-  During configuration changes, for example, the following changes:
+
+   -  An event collection policy is created or deleted.
+   -  The blacklist and whitelist of Kubernetes events reported to AOM is modified.
+
+-  During otel-collector-event listening interruption. You need to restart the interrupted listening.
+
 Reporting Kubernetes Events to LTS
 ----------------------------------
 

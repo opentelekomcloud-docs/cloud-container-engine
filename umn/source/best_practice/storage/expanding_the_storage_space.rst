@@ -301,7 +301,7 @@ The available container engine space affects image pulls and container startup a
             Size of logical volume vgpaas/thinpool changed from <67.00 GiB (23039 extents) to <167.00 GiB (48639 extents).
             Logical volume vgpaas/thinpool successfully resized.
 
-      #. Do not need to adjust the size of the file system, because the thin pool is not mounted to any devices.
+      #. Do not need to adjust the size of the file system because the thin pool is not mounted to any devices.
 
       #. Run the **lsblk** command to check the disk and partition space of the device and check whether the capacity has been expanded. If the new disk capacity was added to the thin pool, the capacity has been expanded.
 

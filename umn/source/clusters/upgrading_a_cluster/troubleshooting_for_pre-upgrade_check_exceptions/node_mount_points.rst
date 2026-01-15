@@ -10,12 +10,12 @@ Check Items
 
 Check whether there are inaccessible mount points on the node.
 
-Solution
---------
+Solutions
+---------
 
 **Scenario: There are inaccessible mount points on the node.**
 
-If NFS (such as obsfs or SFS) is used by the node and the node is disconnected from the NFS server, the mount point would be inaccessible and all processes that access this mount point are in D state.
+If NFS (such as obsfs or SFS) is used by the node and the node is disconnected from the NFS server, the mount points would be inaccessible and all processes that access this mount point are in D state.
 
 #. Log in to the node.
 
@@ -55,6 +55,6 @@ If NFS (such as obsfs or SFS) is used by the node and the node is disconnected f
 
    After the execution, perform the check again on the pre-upgrade check page.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434080104.png
-.. |image2| image:: /_static/images/en-us_image_0000002434080108.png
-.. |image3| image:: /_static/images/en-us_image_0000002434239928.png
+.. |image1| image:: /_static/images/en-us_image_0000002516199071.png
+.. |image2| image:: /_static/images/en-us_image_0000002516199073.png
+.. |image3| image:: /_static/images/en-us_image_0000002484119096.png

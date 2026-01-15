@@ -24,7 +24,7 @@ Procedure
 
 #. Configure auto scaling policies.
 
-   **Auto Scaling Configuration**
+   **AS Configuration**
 
    -  Custom rules: Click **Add Rule**. In the dialog box displayed, configure parameters. You can add multiple node scaling policies, a maximum of one CPU usage-based rule, and a maximum of one memory usage-based rule. The total number of rules cannot exceed 10.
 
@@ -49,7 +49,7 @@ Procedure
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
          |                                   |       -  If rules based on the **CPU allocation rate** and **memory allocation rate** are configured, the policy detection period varies with the processing logic of each loop of the CCE Cluster Autoscaler add-on. A scale-out is triggered once the conditions are met, but it is constrained by other factors such as the cooldown period and node pool status.                                                                                                                                                                  |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-         |                                   |       -  If the number of nodes reaches the upper limit of the cluster scale, :ref:`the upper limit of the nodes supported in a node pool <cce_10_0727__cce_10_0209_li44889425212>`, or :ref:`the upper limit of the nodes of a specific flavor <cce_10_0727__cce_10_0209_li12949152113481>`, a metric-based scale-out will not be triggered.                                                                                                                                                                                         |
+         |                                   |       -  If the number of nodes reaches the cluster scale upper limit, the maximum :ref:`node quantity range <cce_10_0727__cce_10_0209_li44889425212>` of the node pool, or the maximum :ref:`node quantity range <cce_10_0727__cce_10_0209_li12949152113481>` defined by the specification, metric-based scale-out will not be triggered.                                                                                                                                                                                            |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
          |                                   |       -  If the number of nodes, the number of vCPUs, or the amount of memory reaches :ref:`the upper limit for a node scale-out <cce_10_0209__li6346102510134>`, a metric-based scale-out will not be triggered.                                                                                                                                                                                                                                                                                                                     |
          |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -67,7 +67,9 @@ Procedure
 
    -  .. _cce_10_0727__cce_10_0209_li44889425212:
 
-      **Nodes**: The number of nodes in a node pool will always be within the range during auto scaling.
+      **Nodes**: The number of nodes in a node pool will always be within the specified node range during auto scaling, but this setting does not apply to manual scaling.
+
+      For example, if the number of nodes in a node pool has reached the maximum, auto scaling cannot be triggered, but manual scaling is still allowed.
 
    -  **Cooldown Period**: a period during which the nodes added to the current node pool cannot be scaled in.
 

@@ -8,7 +8,7 @@ Using Init Containers to Initialize an Application
 Concepts
 --------
 
-An init container is a type of container that starts and exits before the application containers start. If there are multiple init containers, they will be started in the defined sequence. The data generated in the init containers can be used by the application containers because storage volumes in a pod are shared.
+An init container is a type of container that starts and exits before the main containers start. If there are multiple init containers, they will be started in the defined sequence. The data generated in the init containers can be used by the main containers because storage volumes in a pod are shared.
 
 Init containers can be used in multiple Kubernetes resources, such as Deployments, DaemonSets, and jobs. They perform initialization before application containers are started.
 
@@ -93,4 +93,4 @@ Procedure
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000002467717633.png
+.. |image1| image:: /_static/images/en-us_image_0000002484118404.png

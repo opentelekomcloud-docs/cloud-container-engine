@@ -10,12 +10,12 @@ Check Items
 
 Check whether the configuration of CCE AI Suite (NVIDIA GPU) in a cluster has been intrusively modified. If so, upgrading the cluster may fail.
 
-Solution
---------
+Solutions
+---------
 
 #. Use kubectl to access the cluster.
 
-#. Run the following command to obtain the add-on instance details:
+#. Run the following command to obtain the add-on pod details:
 
    .. code-block::
 

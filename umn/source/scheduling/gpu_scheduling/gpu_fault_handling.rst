@@ -10,7 +10,7 @@ In a Kubernetes environment, managing GPU resources is complex, and diagnosing a
 Prerequisites
 -------------
 
--  The cluster version must be v1.27 or later.
+-  A cluster of v1.27 or later is available.
 -  :ref:`Cloud Native Log Collection <cce_10_0416>` has been installed in the cluster so that GPU events can be synchronously reported to AOM.
 
 CCE AI Suite (NVIDIA GPU) Exception Event Reporting and Isolation

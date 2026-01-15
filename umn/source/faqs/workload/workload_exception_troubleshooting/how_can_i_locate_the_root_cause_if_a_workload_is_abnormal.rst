@@ -91,4 +91,4 @@ Information similar to the following is displayed:
      Warning  FailedScheduling  49s   default-scheduler  0/2 nodes are available: 2 Insufficient cpu.
      Warning  FailedScheduling  49s   default-scheduler  0/2 nodes are available: 2 Insufficient cpu.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467717261.png
+.. |image1| image:: /_static/images/en-us_image_0000002516078081.png

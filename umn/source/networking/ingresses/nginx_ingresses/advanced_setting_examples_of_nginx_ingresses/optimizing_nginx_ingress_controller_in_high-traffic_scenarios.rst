@@ -49,7 +49,7 @@ Modifying the NGINX Ingress Controller Configuration
 
 You can perform the following operations when installing or editing NGINX Ingress Controller:
 
--  Change the resource limit of the **nginx-ingress-controller** container. If an application processes HTTP requests with an RPS of 300,000, you can configure the CPU and memory limits, as well as the requested CPU and memory, to 16 CPU cores and 20 GiB of memory.
+-  Change the resource limit of the **nginx-ingress-controller** container. If an application processes HTTP requests with an RPS of 300,000, you can configure the CPU and memory limits, as well as the requested CPU cores and memory, to 16 CPU cores and 20 GiB of memory.
 -  Set the number of pods to be greater than or equal to 2.
 
 -  Disable the metric collection of the add-on.

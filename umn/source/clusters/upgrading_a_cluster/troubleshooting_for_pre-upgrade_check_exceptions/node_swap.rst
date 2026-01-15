@@ -10,8 +10,8 @@ Check Items
 
 Check whether swap has been enabled on CCE nodes.
 
-Solution
---------
+Solutions
+---------
 
 By default, swap is disabled on CCE nodes. Check the necessity of enabling swap manually and determine the impact of disabling this function.
 

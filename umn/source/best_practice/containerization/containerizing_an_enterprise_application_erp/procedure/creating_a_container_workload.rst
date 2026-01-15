@@ -48,7 +48,7 @@ Procedure
       |                       |                       |                                                                                                                                                                                                |
       |                       |                       | a. Log in to the management console.                                                                                                                                                           |
       |                       |                       | b. In the service list, choose **Networking** > **Virtual Private Cloud**.                                                                                                                     |
-      |                       |                       | c. On the **Dashboard** page, click **Create VPC**.                                                                                                                                            |
+      |                       |                       | c. On the **Overview** page, click **Create VPC**.                                                                                                                                             |
       |                       |                       | d. Follow the instructions to create a VPC. Retain default settings for parameters unless otherwise specified.                                                                                 |
       +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | 2                     | Creating a key pair   | Create a key pair before you create a containerized application. Key pairs are used for identity authentication during remote login to a node. If you have a key pair already, skip this task. |
@@ -56,7 +56,7 @@ Procedure
       |                       |                       | a. Log in to the management console.                                                                                                                                                           |
       |                       |                       | b. In the service list, choose **Data Encryption Workshop**.                                                                                                                                   |
       |                       |                       | c. In the navigation pane, choose **Key Pair Service**. Go to the **Private Key Pairs** tab. Then, click **Create Key Pair**.                                                                  |
-      |                       |                       | d. Enter a key pair name, select **I agree to host the private key of the key pair.** and **I have read and agree to the Key Pair Service Disclaimer.**, and click **OK**.                     |
+      |                       |                       | d. Enter a key pair name, select **I agree to host the private key of the key pair** and **I have read and agree to the Key Pair Service Disclaimer**, and click **OK**.                       |
       |                       |                       | e. View and save the private key. For security purposes, a key pair can be downloaded only once. Keep it secure to ensure successful login.                                                    |
       +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
@@ -122,7 +122,7 @@ Procedure
          -  **Protocol**: Set it to **TCP**.
          -  **Service Port**: port for accessing the Service.
          -  **Container Port**: port that the application will listen on the container. In this example, this parameter is set to **8080**.
-         -  **Node Port**: Set it to **Auto**. The system automatically opens a real port on all nodes in the current cluster and then maps the port number to the container port.
+         -  **Node Port**: Set it to **Auto**. The system automatically opens a real port on all nodes in the current cluster and then maps the port number to the service port.
 
    g. Click **Create Workload**.
 
@@ -137,4 +137,4 @@ In the preceding configuration, the NodePort mode is selected to access the work
 
 You can obtain the access mode from the **Access Mode** tab on the workload details page.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434078060.png
+.. |image1| image:: /_static/images/en-us_image_0000002516198019.png

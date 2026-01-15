@@ -88,7 +88,7 @@ Procedure
 
    .. code-block::
 
-      NAME               DESIRED    CURRENT   READY    UP-T0-DATE    AVAILABLE     NODE SELECTOR   AGE
+      NAME               DESIRED    CURRENT   READY    UP-TO-DATE    AVAILABLE     NODE SELECTOR   AGE
       daemonset-test     2          2         2        2             2             <node>          2h
 
 #. Obtain the IDs of the DaemonSet pods on the nodes.

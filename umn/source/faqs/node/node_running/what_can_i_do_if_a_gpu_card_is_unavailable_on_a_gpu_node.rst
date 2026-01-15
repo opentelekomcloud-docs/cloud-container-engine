@@ -22,7 +22,7 @@ Check whether the driver is faulty. Then, check the **device-plugin** component 
 Handling a Driver Fault
 -----------------------
 
-#. **Check the nvidia-driver-installer pod status**.
+#. **Check the status of the nvidia-driver-installer pod**.
 
    Log in to the CCE console and click the cluster name to access the cluster **Overview** page. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab. Locate the row containing the target node, choose **More** > **Pods** in the **Operation** column, and check whether the **nvidia-driver-installer** pod runs on the node. If the **nvidia-driver-installer** pod is present and is:
 
@@ -125,5 +125,5 @@ Run the following command to **check the device-plugin status**:
       I0527 11:29:11.524882 3336959 nvidia_gpu.go:262] "gpu driver wasn't ready. will re-check in %s" 5s="(MISSING)"
       ...
 
-.. |image1| image:: /_static/images/en-us_image_0000002434238992.png
-.. |image2| image:: /_static/images/en-us_image_0000002467717625.png
+.. |image1| image:: /_static/images/en-us_image_0000002484118014.png
+.. |image2| image:: /_static/images/en-us_image_0000002516077983.png

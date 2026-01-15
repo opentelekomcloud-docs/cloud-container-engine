@@ -26,7 +26,7 @@ The following table lists the files to be checked.
 | /etc/default/docker                                   | Docker configuration file                  | Not checked when containerd or the Centos-Group machine is used. |
 +-------------------------------------------------------+--------------------------------------------+------------------------------------------------------------------+
 
-Solution
---------
+Solutions
+---------
 
-Reset the node. For details, see :ref:`Resetting a Node <cce_10_0003>`. Alternatively, contact technical support to restore the file and then perform the upgrade.
+Reset the node. For details, see :ref:`Resetting a Node <cce_10_0003>`. Alternatively, contact technical support to restore the files and then perform the upgrade.

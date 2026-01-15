@@ -31,5 +31,5 @@ NodeLocal DNSCache defaults to using port 8080 on the host node, but this can ca
 
 #. Click **OK**.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467719381.png
-.. |image2| image:: /_static/images/en-us_image_0000002467719393.png
+.. |image1| image:: /_static/images/en-us_image_0000002516079513.png
+.. |image2| image:: /_static/images/en-us_image_0000002483959570.png

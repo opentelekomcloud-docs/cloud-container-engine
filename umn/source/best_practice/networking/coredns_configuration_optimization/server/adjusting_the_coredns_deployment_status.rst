@@ -19,7 +19,7 @@ Properly Changing the Number of CoreDNS Replicas
 
 You are advised to set the number of CoreDNS replicas to at least 2 in any case and keep the number of replicas within a proper range to support the resolution of the entire cluster. The default number of pods for installing the add-on in a CCE cluster is **2**.
 
--  Modifying the number of CoreDNS replicas, CPUs, and memory size will change CoreDNS' parsing capability. Therefore, evaluate the impact before the operation.
+-  The specifications of resources used by CoreDNS are related to the resolution capability. Modifying the number of CoreDNS pods, CPUs, and memory size will change CoreDNS' resolution capability. Therefore, evaluate the impact before the operation.
 -  By default, podAntiAffinity (pod anti-affinity) is configured for the add-on. If a node already has a CoreDNS pod, no new pod can be added. That is, only one CoreDNS pod can run on a node. If there are more configured CoreDNS replicas than cluster nodes, the excess pods cannot be scheduled. Therefore, keep the number of replicas less than or equal to the number of nodes.
 
 .. _cce_bestpractice_0356__section145912122442:

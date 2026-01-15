@@ -9,7 +9,7 @@ CCE permissions management allows you to assign permissions to IAM users and use
 
 CCE permissions are described as follows:
 
--  :ref:`Cluster-level permissions <cce_productdesc_0002__section14734188>`: Cluster-level permissions management evolves out of the system policy authorization feature of IAM. IAM users in the same user group have the same permissions. A user group is simply a group of users. By granting cluster permissions to specific user groups, you can enable those users to perform various operations on clusters, including creating or deleting clusters, nodes, node pools, charts, and add-ons. In the meantime, you can restrict other user groups to only view clusters.
+-  :ref:`Cluster-level permissions <cce_productdesc_0002__section14734188>`: Cluster-level permissions management evolves out of the system policy authorization feature of IAM. IAM users in the same user group have the same permissions. A user group is simply a group of users. By granting cluster-level permissions to specific user groups, you can enable users in these user groups to perform various operations on clusters, including creating or deleting clusters, nodes, node pools, charts, and add-ons. You can also restrict other user groups to only view clusters.
 
    Cluster-level permissions involve non-Kubernetes native APIs and support fine-grained IAM policies.
 

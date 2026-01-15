@@ -77,18 +77,18 @@ Using Ingress Rules Through YAML
 -  **Scenario 1: Controlled by a preset network policy, a pod can only be accessed by pods with specific labels.**
 
 
-   .. figure:: /_static/images/en-us_image_0000002434080052.png
+   .. figure:: /_static/images/en-us_image_0000002516079129.png
       :alt: **Figure 1** podSelector
 
       **Figure 1** podSelector
 
    The pod labeled with **role=db** only permits access to its port 6379 from pods labeled with **role=frontend**. To achieve this, take the following steps:
 
-   #. Create the **access-demo1.yaml** file.
+   #. Create the **access-ingress1.yaml** file.
 
       .. code-block::
 
-         vim access-demo1.yaml
+         vim access-ingress1.yaml
 
       File content:
 
@@ -97,7 +97,7 @@ Using Ingress Rules Through YAML
          apiVersion: networking.k8s.io/v1
          kind: NetworkPolicy
          metadata:
-           name: access-demo1
+           name: access-ingress1
            namespace: default
          spec:
            podSelector:                  # The rule takes effect for pods with the role=db label.
@@ -112,33 +112,33 @@ Using Ingress Rules Through YAML
              - protocol: TCP
                port: 6379
 
-   #. Run the following command to create the network policy defined in the **access-demo1.yaml** file:
+   #. Run the following command to create the network policy defined in the **access-ingress1.yaml** file:
 
       .. code-block::
 
-         kubectl apply -f access-demo1.yaml
+         kubectl apply -f access-ingress1.yaml
 
       Expected output:
 
       .. code-block::
 
-         networkpolicy.networking.k8s.io/access-demo1 created
+         networkpolicy.networking.k8s.io/access-ingress1 created
 
--  **Scenario 2: Controlled by a preset network policy, a pod can only be accessed by pods in a specific namespace.**
+-  **Scenario 2: Configure a network policy to allow only pods in a specific namespace to access the target pod.**
 
 
-   .. figure:: /_static/images/en-us_image_0000002434080024.png
+   .. figure:: /_static/images/en-us_image_0000002516079115.png
       :alt: **Figure 2** namespaceSelector
 
       **Figure 2** namespaceSelector
 
    The pod labeled with **role=db** only permits access to its port 6379 from pods in the namespace labeled with **project=myproject**. To achieve this, take the following steps:
 
-   #. Create the **access-demo2.yaml** file.
+   #. Create the **access-ingress2.yaml** file.
 
       .. code-block::
 
-         vim access-demo2.yaml
+         vim access-ingress2.yaml
 
       File content:
 
@@ -147,7 +147,7 @@ Using Ingress Rules Through YAML
          apiVersion: networking.k8s.io/v1
          kind: NetworkPolicy
          metadata:
-           name: access-demo2
+           name: access-ingress2
          spec:
            podSelector:                  # The rule takes effect for pods with the role=db label.
              matchLabels:
@@ -161,42 +161,33 @@ Using Ingress Rules Through YAML
              - protocol: TCP
                port: 6379
 
-   #. Run the following command to create the network policy defined in the **access-demo2.yaml** file:
+   #. Run the following command to create the network policy defined in the **access-ingress2.yaml** file:
 
       .. code-block::
 
-         kubectl apply -f access-demo2.yaml
+         kubectl apply -f access-ingress2.yaml
 
       Expected output:
 
       .. code-block::
 
-         networkpolicy.networking.k8s.io/access-demo2 created
+         networkpolicy.networking.k8s.io/access-ingress2 created
 
-Using Egress Rules Through YAML
--------------------------------
-
-.. note::
-
-   The clusters of v1.23 or later using a tunnel network support egress rules. Only nodes running EulerOS 2.9 or HCE OS 2.0 are supported.
-
-   Egress rules are only available for CCE Turbo clusters or other CCE clusters using a VPC network. The cluster version must be v1.27.16-r10, v1.28.15-r0, v1.29.10-r0, v1.30.6-r0 or later, and DataPlane V2 must be enabled. Additionally, nodes in these clusters must run HCE OS 2.0.
-
--  **Scenario 1: Controlled by a preset network policy, pods can only access specific addresses.**
+-  **Scenario 3: Configure a network policy to allow only pods with specific labels in a specific namespace to access the target pod.**
 
 
-   .. figure:: /_static/images/en-us_image_0000002434080032.png
-      :alt: **Figure 3** IPBlock
+   .. figure:: /_static/images/en-us_image_0000002516199123.png
+      :alt: **Figure 3** Using both podSelector and namespaceSelector
 
-      **Figure 3** IPBlock
+      **Figure 3** Using both podSelector and namespaceSelector
 
-   The pods labeled **role=db** only allow access to 172.16.0.0/16, excluding 172.16.0.40/32. To achieve this, take the following steps:
+   The pod labeled with **role=db** only allows access to its port 6379 from pods with label **role=frontend** in the namespace labeled with **project=myproject**. To achieve this, take the following steps:
 
-   #. Create the **access-demo3.yaml** file.
+   #. Create the **access-ingress3.yaml** file.
 
       .. code-block::
 
-         vim access-demo3.yaml
+         vim access-ingress3.yaml
 
       File content:
 
@@ -205,7 +196,68 @@ Using Egress Rules Through YAML
          apiVersion: networking.k8s.io/v1
          kind: NetworkPolicy
          metadata:
-           name: access-demo3
+           name: access-ingress3
+         spec:
+           podSelector:                  # The rule applies only to pods labeled with role=db.
+             matchLabels:
+               role: db
+           ingress:                      # This is an ingress rule.
+           - from:
+             - namespaceSelector:        # Only allow the access of the pods in the namespace labeled with project=myproject.
+                 matchLabels:
+                   project: myproject
+               podSelector:              # Allow access only from pods labeled with role=frontend.
+                 matchLabels:
+                   role: frontend
+             ports:                      # Only TCP can be used to access port 6379.
+             - protocol: TCP
+               port: 6379
+
+   #. Run the following command to create the network policy defined in the **access-ingress3.yaml** file:
+
+      .. code-block::
+
+         kubectl apply -f access-ingress3.yaml
+
+      Expected output:
+
+      .. code-block::
+
+         networkpolicy.networking.k8s.io/access-ingress3 created
+
+Using Egress Rules Through YAML
+-------------------------------
+
+.. note::
+
+   Clusters of v1.23 or later that use a tunnel network support egress rules. The node OS can only be EulerOS 2.9 or HCE OS 2.0.
+
+   Egress rules are only available in CCE Turbo clusters or other CCE clusters using VPC networks. The cluster version must be v1.27.16-r10, v1.28.15-r0, v1.29.10-r0, v1.30.6-r0, or later, and DataPlane V2 must be enabled. Additionally, nodes in these clusters must run HCE OS 2.0.
+
+-  **Scenario 1: Controlled by a preset network policy, pods can only access specific addresses.**
+
+
+   .. figure:: /_static/images/en-us_image_0000002484119148.png
+      :alt: **Figure 4** IPBlock
+
+      **Figure 4** IPBlock
+
+   The pods labeled **role=db** only allow access to 172.16.0.0/16, excluding 172.16.0.40/32. To achieve this, take the following steps:
+
+   #. Create the **access-egress1.yaml** file.
+
+      .. code-block::
+
+         vim access-egress1.yaml
+
+      File content:
+
+      .. code-block::
+
+         apiVersion: networking.k8s.io/v1
+         kind: NetworkPolicy
+         metadata:
+           name: access-egress1
            namespace: default
          spec:
            policyTypes:                  # This policy type must be specified for egress rules.
@@ -220,33 +272,33 @@ Using Egress Rules Through YAML
                  except:
                  - 172.16.0.40/32        # Blocks access to this CIDR block. This CIDR block is in the allowed CIDR block.
 
-   #. Run the following command to create the network policy defined in the **access-demo3.yaml** file:
+   #. Run the following command to create the network policy defined in the **access-egress1.yaml** file:
 
       .. code-block::
 
-         kubectl apply -f access-demo3.yaml
+         kubectl apply -f access-egress1.yaml
 
       Expected output:
 
       .. code-block::
 
-         networkpolicy.networking.k8s.io/access-demo3 created
+         networkpolicy.networking.k8s.io/access-egress1 created
 
 -  **Scenario 2: Controlled by a preset network policy, a pod can only be accessed by pods with specific labels, while this pod itself can only access specific pods.**
 
 
-   .. figure:: /_static/images/en-us_image_0000002467678365.png
-      :alt: **Figure 4** Using both ingress and egress
+   .. figure:: /_static/images/en-us_image_0000002516079117.png
+      :alt: **Figure 5** Using both ingress and egress
 
-      **Figure 4** Using both ingress and egress
+      **Figure 5** Using both ingress and egress
 
    The pod labeled with **role=db** only permits access to its port 6379 from pods labeled with **role=frontend**, and this pod can only access the pods labeled with **role=web**. You can use the same rule to configure both ingress and egress in a network policy. To achieve this, take the following steps:
 
-   #. Create the **access-demo4.yaml** file.
+   #. Create the **access-egress2.yaml** file.
 
       .. code-block::
 
-         vim access-demo4.yaml
+         vim access-egress2.yaml
 
       File content:
 
@@ -255,7 +307,7 @@ Using Egress Rules Through YAML
          apiVersion: networking.k8s.io/v1
          kind: NetworkPolicy
          metadata:
-           name: access-demo4
+           name: access-egress2
            namespace: default
          spec:
            policyTypes:
@@ -278,17 +330,17 @@ Using Egress Rules Through YAML
                  matchLabels:
                    role: web
 
-   #. Run the following command to create the network policy defined the **access-demo4.yaml** file:
+   #. Run the following command to create the network policy defined the **access-egress2.yaml** file:
 
       .. code-block::
 
-         kubectl apply -f access-demo4.yaml
+         kubectl apply -f access-egress2.yaml
 
       Expected output:
 
       .. code-block::
 
-         networkpolicy.networking.k8s.io/access-demo4 created
+         networkpolicy.networking.k8s.io/access-egress2 created
 
 Creating a Network Policy on the Console
 ----------------------------------------
@@ -346,7 +398,7 @@ Creating a Network Policy on the Console
 
 #. Click **OK**.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434080044.png
-.. |image2| image:: /_static/images/en-us_image_0000002467678353.png
-.. |image3| image:: /_static/images/en-us_image_0000002434239864.png
-.. |image4| image:: /_static/images/en-us_image_0000002434239860.png
+.. |image1| image:: /_static/images/en-us_image_0000002516199127.png
+.. |image2| image:: /_static/images/en-us_image_0000002483959172.png
+.. |image3| image:: /_static/images/en-us_image_0000002516199125.png
+.. |image4| image:: /_static/images/en-us_image_0000002483959180.png

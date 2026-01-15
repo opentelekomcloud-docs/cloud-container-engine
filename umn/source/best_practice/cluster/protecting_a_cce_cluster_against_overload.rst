@@ -17,7 +17,7 @@ Cluster overload affects stability and service continuity within a Kubernetes en
 -  **Lots of data queries (such as multiple LIST requests or a single request retrieving large amounts of data)**: If a client obtains pod data using field selectors, but kube-apiserver cache does not contain the requested information, the client must fetch the full pod data from etcd, since etcd cannot get data by field. Once retrieved, kube-apiserver deserializes the pod data into structured objects in memory, traverses each pod to match the requested fields, and returns the obtained serialized results. When many concurrent queries occur, resource utilization of each component increases sharply, leading to issues such as etcd latency spikes, OOM errors in kube-apiserver, and control loop imbalances. Consequently, the entire cluster becomes overloaded.
 
 
-   .. figure:: /_static/images/en-us_image_0000002467716521.png
+   .. figure:: /_static/images/en-us_image_0000002483957974.png
       :alt: **Figure 1** Example of a large amount of data obtained from a client
 
       **Figure 1** Example of a large amount of data obtained from a client
@@ -35,7 +35,7 @@ CCE Overload Control
 --------------------
 
 -  **Overload control**: CCE clusters have supported overload control since v1.23, which reduces the number of LIST requests outside the system when the control plane experiences high resource usage pressure. To use this function, enable overload control for your clusters. For details, see :ref:`Enabling Overload Control for a Cluster <cce_10_0602>`.
--  **Optimized processes on LIST requests**: Starting from CCE clusters of v1.23.8-r0 and v1.25.3-r0, processes on LIST requests have been optimized. Even if a client does not specify the **resourceVersion** parameter, kube-apiserver responds to requests based on its cache to avoid additional etcd queries and ensure that the response data is up to date. Additionally, namespace indexes are now added to the kube-apiserver cache. This allows clients to request specified resources in a namespace without needing to fetch full data for that namespace. This effectively reduces the response delay and control plane memory overhead.
+-  **Optimized processes on LIST requests**: Starting from CCE clusters v1.23.8-r0 and v1.25.3-r0, processes on LIST requests have been optimized. Even if a client does not specify the **resourceVersion** parameter, kube-apiserver responds to requests based on its cache to avoid additional etcd queries and ensure that the response data is up to date. Additionally, namespace indexes are now added to the kube-apiserver cache. This allows clients to request specified resources in a namespace without needing to fetch full data for that namespace. This effectively reduces the response delay and control plane memory overhead.
 -  **Refined traffic limit policy on the server**: The API Priority and Fairness (APF) feature is used to implement fine-grained control on concurrent requests. For details, see `API Priority and Fairness <https://kubernetes.io/docs/concepts/cluster-administration/flow-control/>`__.
 
 Configuration Suggestions
@@ -43,25 +43,31 @@ Configuration Suggestions
 
 When running services in Kubernetes clusters, the cluster performance and availability are influenced by various factors, including the cluster scale, number and volume of resources, and resource access. CCE has optimized cluster performance and availability based on cloud native practices and has developed suggestions to protect against cluster overload. You can use these suggestions to ensure that your services run stably and reliably over the long term.
 
-+-------------+---------------------------------------------------------------------------------------------+
-| Category    | Reference                                                                                   |
-+=============+=============================================================================================+
-| Cluster     | :ref:`Keeping the Cluster Version Up to Date <cce_bestpractice_10024__section88153516598>`  |
-+-------------+---------------------------------------------------------------------------------------------+
-|             | :ref:`Enabling Overload Control <cce_bestpractice_10024__section1962889101>`                |
-+-------------+---------------------------------------------------------------------------------------------+
-|             | :ref:`Changing the Cluster Scale <cce_bestpractice_10024__section1218480352>`               |
-+-------------+---------------------------------------------------------------------------------------------+
-|             | :ref:`Controlling Data Volume of Resources <cce_bestpractice_10024__section19545122113564>` |
-+-------------+---------------------------------------------------------------------------------------------+
-|             | :ref:`Using Multiple Clusters <cce_bestpractice_10024__section96501146193515>`              |
-+-------------+---------------------------------------------------------------------------------------------+
-| O&M         | :ref:`Enabling Observability <cce_bestpractice_10024__section128547158020>`                 |
-+-------------+---------------------------------------------------------------------------------------------+
-|             | :ref:`Clearing Unused Resources <cce_bestpractice_10024__section16249619707>`               |
-+-------------+---------------------------------------------------------------------------------------------+
-| Application | :ref:`Optimizing the Client Access Mode <cce_bestpractice_10024__section203538231209>`      |
-+-------------+---------------------------------------------------------------------------------------------+
++-------------+---------------------------------------------------------------------------------------------------------------------+
+| Category    | Reference                                                                                                           |
++=============+=====================================================================================================================+
+| Cluster     | :ref:`Keeping the Cluster Version Up to Date <cce_bestpractice_10024__section88153516598>`                          |
++-------------+---------------------------------------------------------------------------------------------------------------------+
+|             | :ref:`Enabling Overload Control <cce_bestpractice_10024__section1962889101>`                                        |
++-------------+---------------------------------------------------------------------------------------------------------------------+
+|             | :ref:`Changing the Cluster Scale <cce_bestpractice_10024__section1218480352>`                                       |
++-------------+---------------------------------------------------------------------------------------------------------------------+
+|             | :ref:`Controlling Data Volume of Resources <cce_bestpractice_10024__section19545122113564>`                         |
++-------------+---------------------------------------------------------------------------------------------------------------------+
+|             | :ref:`Controlling the Frequency of Updating Resource Objects <cce_bestpractice_10024__section103561533131911>`      |
++-------------+---------------------------------------------------------------------------------------------------------------------+
+|             | :ref:`Using Multiple Clusters <cce_bestpractice_10024__section96501146193515>`                                      |
++-------------+---------------------------------------------------------------------------------------------------------------------+
+| O&M         | :ref:`Enabling Observability <cce_bestpractice_10024__section128547158020>`                                         |
++-------------+---------------------------------------------------------------------------------------------------------------------+
+|             | :ref:`Clearing Unused Resources <cce_bestpractice_10024__section16249619707>`                                       |
++-------------+---------------------------------------------------------------------------------------------------------------------+
+| Application | :ref:`Optimizing the Client Access Mode <cce_bestpractice_10024__section203538231209>`                              |
++-------------+---------------------------------------------------------------------------------------------------------------------+
+|             | :ref:`Using ConsistentListFromCache <cce_bestpractice_10024__section179381365144>`                                  |
++-------------+---------------------------------------------------------------------------------------------------------------------+
+|             | :ref:`Strictly Controlling the Frequency and Scope of List Requests <cce_bestpractice_10024__section1947713407177>` |
++-------------+---------------------------------------------------------------------------------------------------------------------+
 
 .. _cce_bestpractice_10024__section88153516598:
 
@@ -96,7 +102,11 @@ If the resource usage on the master nodes in a cluster remains high for a long t
 Controlling Data Volume of Resources
 ------------------------------------
 
-When the resource data volume in a cluster is too large, it can negatively impact etcd performance, including data read and write latency. Additionally, if the data volume of a single type of resource is too large, the control plane consumes a significant number of resources when a client requests all the resources. To avoid these issues, it is recommended that you keep both the etcd data volume and the data volume of a single type of resources under control.
+The stability and performance of Kubernetes clusters heavily rely on the management capabilities of control plane components, particularly kube-apiserver and etcd, for resource objects such as pods and Deployments. The total data volume of these resource objects and the size of individual objects impact the scalability and reliability of the clusters.
+
+If the total amount of data stored in etcd becomes too large, it can lead to issues like increased system resource usage and performance bottlenecks, including delays in data read and write operations and leader election processes. Additionally, if the data volume for each resource type is excessively large, accessing all these resources can consume a great number of system resources. In severe cases, this can prevent the kube-apiserver from initialization.
+
+To ensure optimal performance, stability, and availability in large clusters, it is advised to manage and control both the total data volume in etcd and the data volume of individual resource types. The guidelines for this are outlined in the table below.
 
 .. table:: **Table 1** Recommended maximum etcd data volume for different cluster scales
 
@@ -107,6 +117,40 @@ When the resource data volume in a cluster is too large, it can negatively impac
    +------------------------------------------------+----------+-----------+------------+------------+
    | etcd data volume of a single type of resources | 50 MiB   | 100 MiB   | 400 MiB    | 800 MiB    |
    +------------------------------------------------+----------+-----------+------------+------------+
+
+.. note::
+
+   When the etcd database storage space is full, etcd generates a "No Space" alarm. In response, CCE triggers memory defragmentation to release fragmented storage space and restore the cluster operation. If an error occurs during the defragmentation, a "Defrag" failure event is generated in the Kubernetes cluster.
+
+The size of a single resource object (such as a large ConfigMap, secret, or CRD) also has a significant impact on cluster performance.
+
+-  etcd storage limit: By default, etcd limits the size of a single key-value pair to 1.5 MiB. While the size of most Kubernetes objects is way below this threshold, embedding large files (such as certificates, configuration files, and scripts) directly into ConfigMaps or secrets can cause the size of a single object to approach or exceed this limit. This can increase I/O pressure and network transmission overhead for etcd.
+-  Increased API request latency: Large objects require more CPUs and bandwidth for serialization, deserialization, network transmission, and memory copying. Consequently, the latency for the kube-apiserver to process a single request can increase greatly.
+-  Informer cache bloat: When informers are used, large objects are fully cached in the client's memory. If there are many large objects, the memory usage of the client (such as operators or custom controllers) can become excessive, potentially leading to out-of-memory errors or client crashes.
+-  gRPC transmission restrictions and cluster startup risks: During initialization or large-scale List operations, kube-apiserver retrieves data from etcd in paginated mode. etcd has a default limit on the size of its gRPC messages (2 GiB in history): If the total data volume of a single type of resource objects (such as all pods) exceeds the gRPC limit, kube-apiserver may fail to start properly. This can result in an abnormal cluster that cannot be automatically restored. To avoid this issue, kube-apiserver sets the maximum number of objects that can be obtained on each page to 10,000. This ensures that the average object size of a single type of resource does not exceed the gRPC limit divided by 10,000.
+
+   -  For clusters of earlier versions (for example, earlier than v1.25.16-r10): The gRPC message size limit is 2 GiB. So, the average object size should not exceed 200 KB.
+   -  For clusters of later versions (v1.25.16-r10, v1.27.16-r10, v1.28.15-r0, v1.29.10-r0, v1.30.6-r0, v1.31.1-r0, and later): The hard-coded memory limit of the dependent gRPC-Go library is 4 GiB, allowing the average object size to be up to 400 KB.
+
+You can run the command below to export a kind of Kubernetes object as a JSON file and determine the object size based on the file size:
+
+.. code-block::
+
+   kubectl get <resource> <resource-name> -n <namespace> -o json --show-managed-fields > resource.json
+   ls -l resource.json
+
+.. _cce_bestpractice_10024__section103561533131911:
+
+Controlling the Frequency of Updating Resource Objects
+------------------------------------------------------
+
+In a Kubernetes cluster, the control plane typically experiences low load during stable operation and can efficiently handle routine tasks. However, during large-scale change operations, such as frequent resource creation and deletion, and rapid node scaling, the control plane load increases sharply. This surge in load can lead to cluster response delays, timeouts, or even temporary unavailability. These operations often involve a high volume of API requests, status synchronization, and resource scheduling, significantly increasing the resource consumption of components like the API server, etcd, and controller manager.
+
+In a Kubernetes cluster, the control plane typically handles stable load with manageable pressure. For example, running 10,000 pods stably in a cluster with 2,000 nodes results in controllable control plane load. However, if 10,000 jobs are created within one minute in a cluster with 50 nodes, a request peak will occur, leading to increased API server latency or even service interruptions.
+
+Test data supports this observation. When 800 Deployments (each containing nine pods) are created in batches in a v1.32 cluster and the QPS reaches 110, the memory usage of kube-apiserver increases by approximately 20 GiB in a short period. Even when the QPS is reduced to 50, the memory usage still increases by 12 GiB.
+
+Therefore, when performing large-scale resource changes, it is essential to control the change rate based on the current load, resource usage, and historical performance metrics of the cluster. It is advised to use progressive operations and real-time monitoring to ensure the stability of the control plane and prevent performance fluctuations. Additionally, leveraging cloud native observability capabilities, such as using Prometheus to monitor the component metrics of the master nodes, can help maintain cluster health. For details, see :ref:`Enabling Observability <cce_bestpractice_10024__section128547158020>`.
 
 .. _cce_bestpractice_10024__section96501146193515:
 
@@ -150,7 +194,7 @@ To prevent a large number of pending pods from consuming extra resources on the 
    |                                           |                                                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                          |
    |                                           | .. note::                                                                                                                                                                                                                                                                                                                                            |                                                                                                                                                                                                                                                          |
    |                                           |                                                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                          |
-   |                                           |    Kubernetes provides the `EndpointSlices <https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/>`__ feature to efficiently update endpoints. This feature is enabled by default in clusters of v1.19 and later versions, and enters the stable state in clusters of v1.21.                                                      |                                                                                                                                                                                                                                                          |
+   |                                           |    Kubernetes provides the `EndpointSlices <https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/>`__ feature to efficiently update endpoints. This feature is enabled by default in clusters v1.19 and later versions, and enters the stable state in clusters v1.21.                                                            |                                                                                                                                                                                                                                                          |
    +-------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Total number of endpoints of all Services | If a Service has an excessive number of endpoints, the API server will have to handle a larger amount of data, potentially leading to a high workload on the API server and a decline in network performance.                                                                                                                                        | It is recommended that the total number of endpoints associated with all Services be less than or equal to 64,000.                                                                                                                                       |
    +-------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -166,7 +210,7 @@ Optimizing the Client Access Mode
 
    If a LIST query must be used, you can:
 
-   -  Obtain needed data from the kube-apiserver cache first and avoid making additional queries on etcd data. For clusters earlier than v1.23.8-r0 or v1.25.3-r0, you can set **resourceVersion** to **0**. In clusters of v1.23.8-r0, v1.25.3-r0, and later versions, CCE has improved data retrieval and ensured that the cached data is up to date. By default, you can access the required data from the cache.
+   -  Obtain needed data from the kube-apiserver cache first and avoid making additional queries on etcd data. For clusters earlier than v1.23.8-r0 or v1.25.3-r0, you can set **resourceVersion** to **0**. In clusters v1.23.8-r0, v1.25.3-r0, and later versions, CCE has improved data retrieval and ensured that the cached data is up to date. By default, you can access the required data from the cache.
 
    -  Accurately define the query scope to avoid retrieving irrelevant data and using unnecessary resources. For example:
 
@@ -178,3 +222,20 @@ Optimizing the Client Access Mode
          kubectl get pods -n <your-namespace>
 
 -  Use the more efficient Protobuf format instead of the JSON format. By default, Kubernetes returns objects serialized to JSON with content type **application/json**. This is the default serialization format for the API. However, clients may request the more efficient Protobuf representation of these objects for better performance. For details, see `Alternate representations of resources <https://kubernetes.io/docs/reference/using-api/api-concepts/#alternate-representations-of-resources>`__.
+
+.. _cce_bestpractice_10024__section179381365144:
+
+Using ConsistentListFromCache
+-----------------------------
+
+For Kubernetes clusters with a version later than v1.31, it is advised to enable ConsistentListFromCache. For details, see `Kubernetes v1.31: Accelerating Cluster Performance with Consistent Reads from Cache <https://kubernetes.io/blog/2024/08/15/consistent-read-from-cache-beta/>`__. After this feature is enabled, kube-apiserver preferentially attempts to read data from its internal cache when processing List requests, rather than always querying the etcd backend. This significantly reduces the network interaction and serialization and deserialization overhead between kube-apiserver and etcd, thereby improving the response speed of List requests and reducing the pressure on the backend storage.
+
+.. _cce_bestpractice_10024__section1947713407177:
+
+Strictly Controlling the Frequency and Scope of List Requests
+-------------------------------------------------------------
+
+To effectively reduce the impact of List requests on the Kubernetes control plane and ensure cluster stability and high performance, it is advised to follow these policies:
+
+-  QPS reduction: Avoid calling the List API cyclically or frequently in service logic. Reconstruct all unnecessary List operations to use the informer-based event-driven mode.
+-  Pagination: For List requests that will return a large number of objects, use the **limit** and **continue** parameters to perform pagination. This prevents a single request from consuming too much memory.

@@ -19,7 +19,7 @@ Notes and Constraints
 
 -  If the add-on version is 1.2.11 or later, the add-ons that can provide metrics API must be installed.
 
-   -  Kubernetes Metrics Server (:ref:`Kubernetes Metrics Server <cce_10_0205>`): provides basic resource usage metrics, such as container CPU and memory usages. The default collection period is 60s. It is supported by all cluster versions.
+   -  Kubernetes Metrics Server (:ref:`Kubernetes Metrics Server <cce_10_0205>`): provides basic resource usage metrics, such as container CPU and memory usage. The default collection period is 60s. It is supported by all cluster versions.
    -  Cloud Native Cluster Monitoring (:ref:`Cloud Native Cluster Monitoring <cce_10_0406>`): available in clusters of v1.17 or later. The default collection period is 15s.
 
       -  Auto scaling based on basic resource metrics: Prometheus needs to be registered as a metrics API. For details, see :ref:`Providing Basic Resource Metrics Through the Metrics API <cce_10_0406__section17830202915211>`.

@@ -55,7 +55,7 @@ Kubernetes provides PersistentVolumes (PVs) and PersistentVolumeClaims (PVCs) to
 You can bind PVCs to PVs in a pod so that the pod can use storage resources. The following figure shows the relationship between PVs and PVCs.
 
 
-.. figure:: /_static/images/en-us_image_0000002467678561.png
+.. figure:: /_static/images/en-us_image_0000002516079251.png
    :alt: **Figure 1** PVC-to-PV binding
 
    **Figure 1** PVC-to-PV binding
@@ -82,11 +82,11 @@ Storage volumes can be mounted to the host system only in the mode supported by 
    =========== ============= =============
    Volume Type ReadWriteOnce ReadWriteMany
    =========== ============= =============
-   EVS         Y             x
-   SFS         x             Y
-   OBS         x             Y
-   SFS Turbo   x             Y
-   Local PV    Y             x
+   EVS         Yes           No
+   SFS         No            Yes
+   OBS         No            Yes
+   SFS Turbo   No            Yes
+   Local PV    Yes           No
    =========== ============= =============
 
 Mounting a Storage Volume
@@ -131,7 +131,7 @@ A PV reclaim policy is used to delete or reclaim underlying volumes when a PVC i
    #. Clear data on the associated underlying storage resources as required.
    #. Delete the associated underlying storage resources.
 
-   If you want to continue using the underlying storage resources, delete the existing PV first. Then, create a new PV and PVC and associate them with the underlying storage resources.
+   If you want to continue using the underlying storage resources, delete the PV first. Then, create a new PV and PVC and associate them with the underlying storage resources.
 
 CCE also allows you to delete a PVC without deleting underlying storage resources. This function can be achieved only by using a YAML file: Set the PV reclaim policy to **Delete** and add **everest.io/reclaim-policy: retain-volume-only** to **annotations**. In this way, when the PVC is deleted, the PV is deleted, but the underlying storage resources are retained.
 
@@ -233,4 +233,4 @@ Helpful Links
 -  For more information about Kubernetes storage, see `Storage <https://kubernetes.io/docs/concepts/storage/>`__.
 -  For more information about CCE container storage, see :ref:`Storage Overview <cce_10_0307>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467718709.png
+.. |image1| image:: /_static/images/en-us_image_0000002516199251.png

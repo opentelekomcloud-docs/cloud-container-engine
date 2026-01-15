@@ -35,7 +35,7 @@ Deploying the Master Nodes in Different AZs
 
 Multiple regions are provided for you to deploy your services, and there are different availability zones (AZs) in each region. An AZ is a collection of one or more physical data centers with independent cooling, fire extinguishing, moisture-proof, and electricity facilities in each AZ. AZs within a region are connected using high-speed optical fibers. This allows you to build cross-AZ HA systems.
 
-When creating a cluster, enable the HA mode of the cluster and configure the distribution mode of the master nodes. The master nodes are randomly deployed in different AZs. This ensures a higher disaster recovery (DR) capability of the cluster.
+When creating a cluster, enable the HA mode of the cluster and configure the distribution mode of the master nodes. The master nodes are deployed in different AZs as randomly as possible. This ensures a higher disaster recovery (DR) capability of the cluster.
 
 You can also customize the distribution mode. The following two modes are supported:
 

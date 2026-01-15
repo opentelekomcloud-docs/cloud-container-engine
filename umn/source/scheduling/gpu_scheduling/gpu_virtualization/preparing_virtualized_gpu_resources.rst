@@ -21,7 +21,7 @@ Prerequisites
 +-----------------------------------+-------------------------------------------------------------------+
 | GPU type                          | Tesla T4 and Tesla V100                                           |
 +-----------------------------------+-------------------------------------------------------------------+
-| Driver version                    | 535.216.03, 535.54.03, 510.47.03, and 470.57.02                   |
+| Driver version                    | 570.86.15, 535.216.03, 535.54.03, 510.47.03, and 470.57.02        |
 +-----------------------------------+-------------------------------------------------------------------+
 | CUDA version                      | CUDA 12.2.0 to 12.8.0                                             |
 +-----------------------------------+-------------------------------------------------------------------+
@@ -64,4 +64,4 @@ Step 2: Create a GPU Node
 
 Create nodes that support GPU virtualization in the cluster to use the GPU virtualization function. For details, see :ref:`Creating a Node <cce_10_0363>` or :ref:`Creating a Node Pool <cce_10_0012>`. If there are GPU nodes in your cluster that meet the :ref:`prerequisites <cce_10_0645__section14347758125812>` requirements, skip this step.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467678505.png
+.. |image1| image:: /_static/images/en-us_image_0000002483959290.png

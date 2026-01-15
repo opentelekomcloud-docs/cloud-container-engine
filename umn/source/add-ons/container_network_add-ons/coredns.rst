@@ -8,9 +8,9 @@ CoreDNS
 Introduction
 ------------
 
-CoreDNS is a DNS server that provides domain name resolution for Kubernetes clusters through a chain add-on.
+CoreDNS is a DNS server that provides domain name resolution for Kubernetes clusters through chained plugins.
 
-CoreDNS is an open-source software and has been a part of CNCF. It provides a means for cloud services to discover each other in cloud native deployments. Each of the plugins chained by CoreDNS provides a particular DNS function. You can integrate CoreDNS with only the plugins you need to make it fast, efficient, and flexible. When used in a Kubernetes cluster, CoreDNS can automatically discover services in the cluster and provide domain name resolution for these services. By working with DNS server, CoreDNS can resolve external domain names for workloads in a cluster.
+CoreDNS is an open-source software and has been a part of CNCF. It provides a means for cloud services to discover each other in cloud native deployments. Each of the plugins chained by CoreDNS provides a particular DNS function. You can integrate CoreDNS with only the plugins you need to make it fast, efficient, and flexible. When used in a Kubernetes cluster, CoreDNS can automatically discover services in the cluster and provide domain name resolution for these services. By working with DNS servers, CoreDNS can resolve external domain names for workloads in a cluster.
 
 **This add-on is installed by default during cluster creation.**
 
@@ -319,7 +319,7 @@ DNS policies can be configured for each pod. Kubernetes supports DNS policies **
    -  Names that do not match the suffix (for example, **widget.com**): The request is forwarded to the upstream DNS.
 
 
-.. figure:: /_static/images/en-us_image_0000002434080192.png
+.. figure:: /_static/images/en-us_image_0000002484119088.png
    :alt: **Figure 1** Routing
 
    **Figure 1** Routing

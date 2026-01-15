@@ -146,7 +146,7 @@ This section describes configuration examples of secret resource description fil
         .dockerconfigjson: eyJh*****    # Content encoded using Base64.
       type: kubernetes.io/dockerconfigjson
 
-   To obtain the **.dockerconfigjson** content, perform the following steps:
+   To obtain the **.dockerconfigjson** content, take the following steps:
 
    #. Obtain the following login information of the image repository.
 
@@ -238,20 +238,20 @@ After creating a secret, you can update or delete it as described in :ref:`Table
 
 .. table:: **Table 2** Related operations
 
-   +-----------------------------------+------------------------------------------------------------------------------------------------------+
-   | Operation                         | Description                                                                                          |
-   +===================================+======================================================================================================+
-   | Editing a YAML file               | Click **Edit YAML** in the row where the target secret resides to edit its YAML file.                |
-   +-----------------------------------+------------------------------------------------------------------------------------------------------+
-   | Updating a secret                 | #. Select the name of the secret to be updated and click **Update**.                                 |
-   |                                   | #. Modify the secret data. For more information, see :ref:`Table 1 <cce_10_0153__table16321825732>`. |
-   |                                   | #. Click **OK**.                                                                                     |
-   +-----------------------------------+------------------------------------------------------------------------------------------------------+
-   | Deleting a secret                 | Select the secret you want to delete and click **Delete**.                                           |
-   |                                   |                                                                                                      |
-   |                                   | Follow the prompts to delete the secret.                                                             |
-   +-----------------------------------+------------------------------------------------------------------------------------------------------+
-   | Deleting secrets in batches       | #. Select the secrets to be deleted.                                                                 |
-   |                                   | #. Click **Delete** above the secret list.                                                           |
-   |                                   | #. Follow the prompts to delete the secrets.                                                         |
-   +-----------------------------------+------------------------------------------------------------------------------------------------------+
+   +-----------------------------------+-------------------------------------------------------------------------------------------+
+   | Operation                         | Description                                                                               |
+   +===================================+===========================================================================================+
+   | Editing a YAML file               | Click **Edit YAML** in the row where the target secret resides to edit its YAML file.     |
+   +-----------------------------------+-------------------------------------------------------------------------------------------+
+   | Updating a secret                 | #. Select the name of the secret to be updated and click **Update**.                      |
+   |                                   | #. Modify the information by referring to :ref:`Table 1 <cce_10_0153__table16321825732>`. |
+   |                                   | #. Click **OK**.                                                                          |
+   +-----------------------------------+-------------------------------------------------------------------------------------------+
+   | Deleting a secret                 | Select the secret you want to delete and click **Delete**.                                |
+   |                                   |                                                                                           |
+   |                                   | Follow the prompts to delete the secret.                                                  |
+   +-----------------------------------+-------------------------------------------------------------------------------------------+
+   | Deleting secrets in batches       | #. Select the secrets to be deleted.                                                      |
+   |                                   | #. Click **Delete** above the secret list.                                                |
+   |                                   | #. Follow the prompts to delete the secrets.                                              |
+   +-----------------------------------+-------------------------------------------------------------------------------------------+

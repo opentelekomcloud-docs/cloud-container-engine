@@ -10,8 +10,8 @@ Check Items
 
 Check whether the current HelmRelease record contains discarded Kubernetes APIs that are not supported by the target cluster version. If yes, the Helm chart may be unavailable after the upgrade.
 
-Solution
---------
+Solutions
+---------
 
 Convert the discarded Kubernetes APIs to APIs that are compatible with both the source and target versions.
 

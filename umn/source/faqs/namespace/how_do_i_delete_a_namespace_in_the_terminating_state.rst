@@ -11,22 +11,36 @@ However, in some cases, even if no resource is running in the namespace, the nam
 
 To solve this problem, perform the following operations:
 
+#. Check the namespace status. The **rdbms** namespace is used as an example. Replace it as needed.
+
+   .. code-block::
+
+      kubectl  get ns  | grep rdbms
+
+   Information similar to the following is displayed:
+
+   .. code-block::
+
+      rdbms   Terminating   6d21h
+
 #. View the namespace details.
 
    .. code-block::
 
-      $ kubectl  get ns  | grep rdb
-      rdbms                  Terminating   6d21h
+      kubectl get ns rdbms -o yaml
 
-      $ kubectl  get ns rdbms -o yaml
+   Information similar to the following is displayed:
+
+   .. code-block::
+
       apiVersion: v1
       kind: Namespace
       metadata:
         annotations:
           kubectl.kubernetes.io/last-applied-configuration: |
             {"apiVersion":"v1","kind":"Namespace","metadata":{"annotations":{},"name":"rdbms"}}
-        creationTimestamp: "2020-05-07T15:19:43Z"
-        deletionTimestamp: "2020-05-07T15:33:23Z"
+        creationTimestamp: "2025-09-11T15:19:43Z"
+        deletionTimestamp: "2025-10-11T15:33:23Z"
         name: rdbms
         resourceVersion: "84553454"
         selfLink: /api/v1/namespaces/rdbms
@@ -36,23 +50,37 @@ To solve this problem, perform the following operations:
         - kubernetes
       status:
         phase: Terminating
+        conditions:
+        - lastTransitionTime: "2025-10-11T06:08:27Z"
+          message: 'Discovery failed for some groups, 1 failing: unable to retrieve the
+            complete list of server APIs: metrics.k8s.io/v1beta1: stale GroupVersion discovery:
+            metrics.k8s.io/v1beta1'
+          reason: DiscoveryFailed
+          status: "True"
+          type: NamespaceDeletionDiscoveryFailure
+      ...
 
-#. View resources in the namespace.
+   -  If **status** contains the error message "DiscoveryFailed", the namespace deletion is blocked when kube-apiserver accesses the APIService resource object of the metrics.k8s.io/v1beta1 API. For details about the solution, see :ref:`What Should I Do If a Namespace Fails to Be Deleted Due to an APIService Object Access Failure? <cce_faq_00325>`
+   -  If no error message "DiscoveryFailed" is displayed in **status**, go to the next step.
+
+#. View resources that can be isolated using namespaces in the cluster.
 
    .. code-block::
 
-      # View resources that can be isolated using namespaces in the cluster.
-      $ kubectl api-resources -o name --verbs=list --namespaced | xargs -n 1 kubectl get --show-kind --ignore-not-found -n rdbms
+      kubectl api-resources -o name --verbs=list --namespaced | xargs -n 1 kubectl get --show-kind --ignore-not-found -n rdbms
 
    The command output shows that no resource is occupied in the **rdbms** namespace.
 
 #. Delete the namespace.
 
-   Directly delete the **rdbms** namespace.
+   .. code-block::
+
+      kubectl  delete ns rdbms
+
+   The information below is displayed if you delete the **rdbms** namespace directly:
 
    .. code-block::
 
-      $ kubectl  delete ns rdbms
       Error from server (Conflict): Operation cannot be fulfilled on namespaces "rdbms": The system is ensuring all content is removed from this namespace.  Upon completion, this namespace will automatically be purged by the system.
 
    The deletion fails and a message is displayed, indicating that the system will automatically delete the namespace after confirming that no resource is running in it.
@@ -61,7 +89,12 @@ To solve this problem, perform the following operations:
 
    .. code-block::
 
-      $ kubectl  delete ns rdbms --force --grace-period=0
+      kubectl  delete ns rdbms --force --grace-period=0
+
+   Information similar to the following is displayed:
+
+   .. code-block::
+
       warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
       Error from server (Conflict): Operation cannot be fulfilled on namespaces "rdbms": The system is ensuring all content is removed from this namespace.  Upon completion, this namespace will automatically be purged by the system.
 
@@ -73,13 +106,12 @@ To solve this problem, perform the following operations:
 
    .. code-block::
 
-      $ kubectl  get ns rdbms  -o json > rdbms.json
+      kubectl  get ns rdbms  -o json > rdbms.json
 
    Check the JSON configuration defined by the namespace, edit the JSON file, and delete the **spec** part.
 
    .. code-block::
 
-      $ cat rdbms.json
       {
           "apiVersion": "v1",
           "kind": "Namespace",
@@ -108,7 +140,7 @@ To solve this problem, perform the following operations:
 
    .. code-block::
 
-      $ curl --cacert /root/ca.crt --cert /root/client.crt --key /root/client.key -k -H "Content-Type:application/json" -X PUT --data-binary @rdbms.json https://x.x.x.x:5443/api/v1/namespaces/rdbms/finalize
+      curl --cacert /root/ca.crt --cert /root/client.crt --key /root/client.key -k -H "Content-Type:application/json" -X PUT --data-binary @rdbms.json https://x.x.x.x:5443/api/v1/namespaces/rdbms/finalize
       {
         "kind": "Namespace",
         "apiVersion": "v1",
@@ -145,4 +177,4 @@ To solve this problem, perform the following operations:
 
    .. code-block::
 
-      $ kubectl  get ns  | grep rdb
+      kubectl  get ns  | grep rdb

@@ -12,7 +12,7 @@ Check the number of image layers on your node. If there are more than 5000 layer
 
 If Nginx is used in your cluster, data forwarding may be slow.
 
-Solution
---------
+Solutions
+---------
 
 Log in to the node and manually delete unnecessary images.

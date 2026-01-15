@@ -10,8 +10,8 @@ Check Items
 
 Check whether the **nic-max-above-warm-target** value configured for the network component of the current cluster exceeds the maximum value allowed.
 
-Solution
---------
+Solutions
+---------
 
 Determine the scope of impact based on the error information. For example:
 

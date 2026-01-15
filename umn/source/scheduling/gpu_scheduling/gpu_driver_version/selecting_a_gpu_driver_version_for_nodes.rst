@@ -23,7 +23,7 @@ When using container applications, a node will have a GPU driver installed, and 
 You can run the **nvidia-smi** command to obtain the driver installed on the node and determine the mapping between the NVIDIA driver and CUDA Toolkit version. In the figure below, the driver version is 470.141.03, and the latest supported CUDA Toolkit version is 11.4.
 
 
-.. figure:: /_static/images/en-us_image_0000002467719741.png
+.. figure:: /_static/images/en-us_image_0000002484119734.png
    :alt: **Figure 1** Mapping between the NVIDIA driver and CUDA Toolkit version
 
    **Figure 1** Mapping between the NVIDIA driver and CUDA Toolkit version

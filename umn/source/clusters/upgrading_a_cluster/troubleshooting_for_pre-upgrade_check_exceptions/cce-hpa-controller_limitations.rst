@@ -10,8 +10,8 @@ Check Items
 
 Check whether there are compatibility limitations between the current and target cce-controller-hpa add-on versions.
 
-Solution
---------
+Solutions
+---------
 
 There are compatibility limitations between the current and target versions of the cce-controller-hpa add-on. To address this, install an add-on that provides metrics APIs, like metrics-server, in the cluster.
 

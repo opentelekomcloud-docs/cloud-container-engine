@@ -47,4 +47,4 @@ Optimization Solution
 #. Generally, the timeout of a Service must be greater than the value of **timeout** multiplied by **attempts**.
 #. If it takes more than 2s to resolve the domain name, you can set **timeout** to a larger value.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467716953.png
+.. |image1| image:: /_static/images/en-us_image_0000002516077813.png

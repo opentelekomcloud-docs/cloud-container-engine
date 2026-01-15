@@ -25,8 +25,8 @@ Prerequisites
 
 -  The CCE Container Storage (Everest) add-on v2.4.150 or later has been installed in the cluster.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  If the add-on version is between 2.4.150 (inclusive) and 2.4.165 (exclusive), automatic access key updating applies only to parallel file systems. Starting from version 2.4.165 and onward, both parallel file systems and OBS buckets are supported.
 -  Automatic access key updating applies only to workloads created after CCE Container Storage (Everest) is updated to a specific version (2.4.150 or later for parallel file systems, and 2.4.165 or later for OBS buckets). To enable existing workloads to support this function, manually rebuild these workloads after CCE Container Storage (Everest) is upgraded.
@@ -139,4 +139,4 @@ Common Events
 
    If this alarm persists, rebuild the pod and then check whether the fault is rectified.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434079924.png
+.. |image1| image:: /_static/images/en-us_image_0000002516198957.png

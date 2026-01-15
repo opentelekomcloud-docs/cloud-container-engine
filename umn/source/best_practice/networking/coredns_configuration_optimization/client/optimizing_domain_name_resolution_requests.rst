@@ -15,7 +15,7 @@ When a containerized application needs to frequently request another service, yo
 Optimizing the resolve.conf File in the Container
 -------------------------------------------------
 
-The **ndots** and **search** parameters in the **resolve.conf** file determine the domain name resolution efficiency. For details about the two parameters, see :ref:`DNS Configuration <cce_10_0365>`.
+The settings of **ndots** and **search** in **resolve.conf** determine the domain name resolution efficiency. For details about the two parameters, see :ref:`DNS Configuration <cce_10_0365>`.
 
 Optimizing the Domain Name Configuration
 ----------------------------------------

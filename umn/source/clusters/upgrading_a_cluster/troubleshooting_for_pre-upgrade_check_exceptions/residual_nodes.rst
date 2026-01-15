@@ -10,8 +10,8 @@ Check Items
 
 Check whether nodes need to be migrated.
 
-Solution
---------
+Solutions
+---------
 
 This issue is caused by either an error in the node's package pull component or the absence of key system components on the node, which could be due to an upgrade from an earlier version.
 

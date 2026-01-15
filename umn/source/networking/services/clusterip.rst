@@ -13,7 +13,7 @@ If pods need to communicate with each other within a cluster, you can create a C
 
 .. _cce_10_0011__fig192245420557:
 
-.. figure:: /_static/images/en-us_image_0000002434081104.png
+.. figure:: /_static/images/en-us_image_0000002516079663.png
    :alt: **Figure 1** Intra-cluster access (ClusterIP)
 
    **Figure 1** Intra-cluster access (ClusterIP)

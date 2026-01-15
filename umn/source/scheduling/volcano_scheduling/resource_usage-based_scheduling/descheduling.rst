@@ -17,7 +17,7 @@ Features
 During Kubernetes cluster management, over-utilized nodes are due to high CPU or memory usage, which affects the stable running of pods on these nodes and increases the probability of node faults. To dynamically balance the resource usage between nodes in a cluster, a cluster resource view is required based on node monitoring metrics. During cluster management, real-time monitoring can be used to detect issues such as high resource usage on a node, node faults, and excessive number of pods on a node so that the system can take measures promptly, for example, by migrating some pods from an over-utilized node to under-utilized nodes.
 
 
-.. figure:: /_static/images/en-us_image_0000002434240340.png
+.. figure:: /_static/images/en-us_image_0000002516079249.png
    :alt: **Figure 1** Load-aware descheduling
 
    **Figure 1** Load-aware descheduling
@@ -54,7 +54,7 @@ When configuring a load-aware descheduling policy, do as follows to enable load-
 
 #. Choose **Add-ons** in the navigation pane, locate **Volcano Scheduler** on the right, and click **Edit**. In the **Extended Functions** area, enable descheduling and click **OK** to update the add-on configuration.
 
-#. In the navigation pane, choose **Settings**. On the **Scheduling** tab page, enable load-aware scheduling. For details, see :ref:`Load-aware Scheduling <cce_10_0789>`.
+#. In the navigation pane, choose **Settings**. On the **Scheduling** tab, enable load-aware scheduling. For details, see :ref:`Load-aware Scheduling <cce_10_0789>`.
 
 #. On the **Scheduling** tab, find the expert mode and click **Try Now**.
 
@@ -213,7 +213,7 @@ When configuring a HighNodeUtilization policy, do as follows to enable the bin p
 
 #. Choose **Add-ons** in the navigation pane, locate **Volcano Scheduler** on the right, and click **Edit**. In the **Extended Functions** area, enable descheduling and click **OK** to update the add-on configuration.
 
-#. In the navigation pane, choose **Settings**. On the **Scheduling** tab page, enable bin packing. For details, see :ref:`Bin Packing <cce_10_0773>`.
+#. In the navigation pane, choose **Settings**. On the **Scheduling** tab, enable bin packing. For details, see :ref:`Bin Packing <cce_10_0773>`.
 
 #. On the **Scheduling** tab, find the expert mode and click **Try Now**.
 
@@ -350,5 +350,5 @@ If an input parameter is incorrect, for example, the entered value is beyond the
 
 |image2|
 
-.. |image1| image:: /_static/images/en-us_image_0000002467678845.png
-.. |image2| image:: /_static/images/en-us_image_0000002467678853.png
+.. |image1| image:: /_static/images/en-us_image_0000002484119280.png
+.. |image2| image:: /_static/images/en-us_image_0000002483959314.png

@@ -120,16 +120,23 @@ After creating a ConfigMap, you can update or delete it as described in :ref:`Ta
 
 .. table:: **Table 3** Related operations
 
-   +-----------------------------------+------------------------------------------------------------------------------------------------------+
-   | Operation                         | Description                                                                                          |
-   +===================================+======================================================================================================+
-   | Editing a YAML file               | Click **Edit YAML** in the row where the target ConfigMap resides to edit its YAML file.             |
-   +-----------------------------------+------------------------------------------------------------------------------------------------------+
-   | Updating a ConfigMap              | #. Select the name of the ConfigMap to be updated and click **Update**.                              |
-   |                                   | #. Modify the secret data. For more information, see :ref:`Table 1 <cce_10_0152__table16321825732>`. |
-   |                                   | #. Click **OK**.                                                                                     |
-   +-----------------------------------+------------------------------------------------------------------------------------------------------+
-   | Deleting a ConfigMap              | Select the configuration you want to delete and click **Delete**.                                    |
-   |                                   |                                                                                                      |
-   |                                   | Follow the prompts to delete the ConfigMap.                                                          |
-   +-----------------------------------+------------------------------------------------------------------------------------------------------+
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Operation                         | Description                                                                                                                                                                                                    |
+   +===================================+================================================================================================================================================================================================================+
+   | Editing a YAML file               | Click **Edit YAML** in the row where the target ConfigMap resides to edit its YAML file.                                                                                                                       |
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Updating a ConfigMap              | #. Select the name of the ConfigMap to be updated and click **Update**.                                                                                                                                        |
+   |                                   | #. Modify the secret data. For more information, see :ref:`Table 1 <cce_10_0152__table16321825732>`.                                                                                                           |
+   |                                   |                                                                                                                                                                                                                |
+   |                                   |    .. note::                                                                                                                                                                                                   |
+   |                                   |                                                                                                                                                                                                                |
+   |                                   |       If you enable **Version Management** during the ConfigMap update, CCE automatically generates a historical version for the ConfigMap before modification for data management and rollback.               |
+   |                                   |                                                                                                                                                                                                                |
+   |                                   | #. Click **OK**.                                                                                                                                                                                               |
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Deleting a ConfigMap              | Select the target ConfigMap and choose **More** > **Delete**.                                                                                                                                                  |
+   |                                   |                                                                                                                                                                                                                |
+   |                                   | Delete the ConfigMap as instructed.                                                                                                                                                                            |
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Rolling back a ConfigMap          | Select the target ConfigMap and choose **More** > **Rollback** to roll back it to the specified historical version as instructed. This function is available only when the ConfigMap has a historical version. |
+   +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

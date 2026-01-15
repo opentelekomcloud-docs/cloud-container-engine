@@ -45,7 +45,7 @@ After the cluster is migrated, the Service of the source cluster may fail to tak
 
       kubectl edit svc wordpress
 
-   To update load balancer resources, connect to ELB again. Add the annotations by following the procedure described in `Creating a LoadBalancer Service <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0681.html>`__.
+   To update load balancer resources, connect to ELB again. Add the annotations by following the procedure in `Creating a LoadBalancer Service <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0681.html>`__.
 
    .. code-block::
 

@@ -9,7 +9,7 @@ Cloud Trace Service (CTS) records operations on cloud service resources, allowin
 
 .. note::
 
-   To collect the query events (Get and List) listed in the table below, enable read-only event reporting of CCE in CTS. Because query operations occur far more frequently than addition, deletion, or modification operations, enabling this function may generate a large volume of events. Assess the potential impact before enabling it.
+   To collect the query events (Get and List) listed in the table below, enable read-only event reporting of CCE in CTS. Because query operations occur far more frequently than addition, deletion, or modification operations, enabling this function may generate a large number of events. Assess the potential impacts before enabling it.
 
 .. table:: **Table 1** CCE operations supported by CTS
 

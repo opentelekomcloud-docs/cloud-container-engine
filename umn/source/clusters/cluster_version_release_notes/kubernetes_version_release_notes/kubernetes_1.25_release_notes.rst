@@ -5,7 +5,7 @@
 Kubernetes 1.25 Release Notes
 =============================
 
-This section describes the changes made in Kubernetes 1.25 compared with Kubernetes 1.23.
+This section describes the changes made in Kubernetes 1.25 compared to Kubernetes 1.23.
 
 Indexes
 -------
@@ -32,7 +32,7 @@ New Features
 
 -  Support for cgroups v2 enters the stable phase.
 
-   Kubernetes supports cgroups v2. cgroups v2 provides some improvements over cgroup v1. For details, see `About cgroup v2 <https://kubernetes.io/docs/concepts/architecture/cgroups/>`__.
+   Kubernetes supports cgroups v2, which provides some improvements over cgroup v1. For details, see `About cgroup v2 <https://kubernetes.io/docs/concepts/architecture/cgroups/>`__.
 
 -  SeccompDefault moves to beta.
 
@@ -40,7 +40,7 @@ New Features
 
    .. note::
 
-      After this feature is enabled, the system calls required by the application may be restricted by the runtime. Ensure that the debugging is performed in the test environment, so that application is not affected.
+      After this feature is enabled, certain system calls required by the application may be restricted by the runtime. So, enable the feature only in a testing environment first to verify that the application functions properly and is not affected.
 
 -  The EndPort in the network policy moves to stable.
 
@@ -103,7 +103,7 @@ New Features
 
 -  IP address conflict is prevented.
 
-   In Kubernetes 1.24, `an IP address pool is soft reserved for the static IP addresses of Services <https://kubernetes.io/docs/concepts/services-networking/service/#service-ip-static-sub-range>`__. After you manually enable this function, Service IP addresses will be automatically from the IP address pool to minimize IP address conflict.
+   In Kubernetes 1.24, `an IP address pool is soft reserved for the static IP addresses of Services <https://kubernetes.io/docs/concepts/services-networking/service/#service-ip-static-sub-range>`__. After you manually enable this function, Service IP addresses will be automatically assigned from the IP address pool to minimize IP address conflict.
 
 -  Clusters are compiled based on Go 1.18.
 
@@ -159,7 +159,7 @@ For details about cluster version updates, see :ref:`Release Notes for CCE Clust
 References
 ----------
 
-For more details about the performance comparison and function evolution between Kubernetes 1.25 and other versions, see the following documents:
+For more details about the performance comparison and functional evolution between Kubernetes 1.25 and other versions, see the following documents:
 
 -  `Kubernetes v1.25 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.25.md>`__
 -  `Kubernetes v1.24 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.24.md>`__

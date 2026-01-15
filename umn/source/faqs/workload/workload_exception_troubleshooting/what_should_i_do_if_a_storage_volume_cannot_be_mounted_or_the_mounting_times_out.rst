@@ -86,4 +86,4 @@ If the volume to be mounted stores too much data and involves permission-related
 
 Determine whether to modify the settings based on your service requirements.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434078492.png
+.. |image1| image:: /_static/images/en-us_image_0000002516197809.png

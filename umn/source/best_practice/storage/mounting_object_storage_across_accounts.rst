@@ -21,7 +21,7 @@ Assume that account B needs to access and use an OBS bucket of account A. For de
 
 .. _cce_bestpractice_00199__fig7817125304714:
 
-.. figure:: /_static/images/en-us_image_0000002467676597.png
+.. figure:: /_static/images/en-us_image_0000002483958134.png
    :alt: **Figure 1** Mounting an OBS bucket across accounts
 
    **Figure 1** Mounting an OBS bucket across accounts
@@ -39,7 +39,7 @@ Assume that account B needs to access and use an OBS bucket of account A. For de
    +------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Step 3: Check the Pod Actions on the OBS Bucket <cce_bestpractice_00199__section14892114864113>`     | Check whether the pod created by account B has the required permissions based on the bucket policy.                                  |
    +------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Step 4: Clear Resources <cce_bestpractice_00199__section2860455112310>`                              | Once you have studied this example, delete any associated resources to prevent incurring settlement fees.                            |
+   | :ref:`Step 4: Clear Resources <cce_bestpractice_00199__section2860455112310>`                              | After you finish working through the example, delete any associated resources so you do not get billed.                              |
    +------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
 
 Prerequisites
@@ -431,7 +431,7 @@ Check whether the pod created by account B has the required permissions based on
 Step 4: Clear Resources
 -----------------------
 
-Once you have studied this example, delete any associated resources to prevent incurring settlement fees. If you plan to learn other examples, wait until they are finished before doing any clean-up.
+After you finish working through the example, delete any associated resources so you do not get billed. If you plan to learn other examples, wait until they are finished before doing any clean-up.
 
 #. Run the following command to delete the workload:
 

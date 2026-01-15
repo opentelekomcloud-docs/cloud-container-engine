@@ -8,9 +8,9 @@ Container Engines
 Introduction to Container Engines
 ---------------------------------
 
-Container engines, one of the most important components of Kubernetes, manage the lifecycle of images and containers. The kubelet interacts with a container runtime through the Container Runtime Interface (CRI).
+A container engine, one of the most important components of Kubernetes, manages the lifecycle of images and containers. The kubelet interacts with a container runtime through the Container Runtime Interface (CRI).
 
-CCE supports containerd and Docker. **containerd is recommended for its shorter traces, fewer components, higher stability, and less consumption of node resources**.
+CCE supports containerd and Docker. containerd is recommended for its shorter traces, fewer components, higher stability, and less consumption of node resources.
 
 .. table:: **Table 1** Comparison between container engines
 
@@ -29,7 +29,7 @@ CCE supports containerd and Docker. **containerd is recommended for its shorter 
    +----------------------------+-------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | Kubernetes CRI             | Native support                                                    | Support through dockershim or cri-dockerd                                                        |
    +----------------------------+-------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
-   | Pod delayed startup        | Minor                                                             | High                                                                                             |
+   | Delayed pod startup        | Minor                                                             | High                                                                                             |
    +----------------------------+-------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
    | kubelet CPU/memory usage   | Minor                                                             | High                                                                                             |
    +----------------------------+-------------------------------------------------------------------+--------------------------------------------------------------------------------------------------+
@@ -43,27 +43,27 @@ Mapping Between Node OSs and Container Engines
 
 .. note::
 
-   VPC network clusters of v1.23 or later versions support containerd. Tunnel network clusters of v1.23.2-r0 or later versions support containerd.
+   VPC network clusters v1.23 or later versions support containerd. Tunnel network clusters v1.23.2-r0 or later versions support containerd.
 
 .. table:: **Table 2** Node OSs and container engines in CCE clusters
 
-   +--------------+----------------+-------------------------------------------------+--------------------------+-------------------+
-   | OS           | Kernel Version | Container Engine                                | Container Storage Rootfs | Container Runtime |
-   +==============+================+=================================================+==========================+===================+
-   | EulerOS 2.5  | 3.x            | Docker                                          | Device Mapper            | runC              |
-   +--------------+----------------+-------------------------------------------------+--------------------------+-------------------+
-   | EulerOS 2.9  | 4.x            | Docker                                          | OverlayFS                | runC              |
-   |              |                |                                                 |                          |                   |
-   |              |                | Clusters of v1.23 and later support containerd. |                          |                   |
-   +--------------+----------------+-------------------------------------------------+--------------------------+-------------------+
-   | Ubuntu 22.04 | 5.x            | Docker                                          | OverlayFS                | runC              |
-   |              |                |                                                 |                          |                   |
-   |              |                | Clusters of v1.23 and later support containerd. |                          |                   |
-   +--------------+----------------+-------------------------------------------------+--------------------------+-------------------+
-   | HCE OS 2.0   | 5.x            | Docker                                          | OverlayFS                | runC              |
-   |              |                |                                                 |                          |                   |
-   |              |                | containerd                                      |                          |                   |
-   +--------------+----------------+-------------------------------------------------+--------------------------+-------------------+
+   +--------------+----------------+----------------------------------------------+--------------------------+-------------------+
+   | OS           | Kernel Version | Container Engine                             | Container Storage Rootfs | Container Runtime |
+   +==============+================+==============================================+==========================+===================+
+   | EulerOS 2.5  | 3.x            | Docker                                       | Device Mapper            | runC              |
+   +--------------+----------------+----------------------------------------------+--------------------------+-------------------+
+   | EulerOS 2.9  | 4.x            | Docker                                       | OverlayFS                | runC              |
+   |              |                |                                              |                          |                   |
+   |              |                | Clusters v1.23 and later support containerd. |                          |                   |
+   +--------------+----------------+----------------------------------------------+--------------------------+-------------------+
+   | Ubuntu 22.04 | 5.x            | Docker                                       | OverlayFS                | runC              |
+   |              |                |                                              |                          |                   |
+   |              |                | Clusters v1.23 and later support containerd. |                          |                   |
+   +--------------+----------------+----------------------------------------------+--------------------------+-------------------+
+   | HCE OS 2.0   | 5.x            | Docker                                       | OverlayFS                | runC              |
+   |              |                |                                              |                          |                   |
+   |              |                | containerd                                   |                          |                   |
+   +--------------+----------------+----------------------------------------------+--------------------------+-------------------+
 
 .. table:: **Table 3** Node OSs and container engines in CCE Turbo clusters
 
@@ -90,21 +90,21 @@ containerd does not support Docker APIs and Docker CLI, but you can run crictl c
 
 .. table:: **Table 4** Image-related commands
 
-   +-----------------------+----------------+--------------------+----------------------+
-   | Operation             | Docker Command | containerd Command |                      |
-   +=======================+================+====================+======================+
-   |                       | docker         | crictl             | ctr                  |
-   +-----------------------+----------------+--------------------+----------------------+
-   | List local images.    | docker images  | crictl images      | ctr -n k8s.io i ls   |
-   +-----------------------+----------------+--------------------+----------------------+
-   | Pull images.          | docker pull    | crictl pull        | ctr -n k8s.io i pull |
-   +-----------------------+----------------+--------------------+----------------------+
-   | Push images.          | docker push    | None               | ctr -n k8s.io i push |
-   +-----------------------+----------------+--------------------+----------------------+
-   | Delete a local image. | docker rmi     | crictl rmi         | ctr -n k8s.io i rm   |
-   +-----------------------+----------------+--------------------+----------------------+
-   | Check images.         | docker inspect | crictl inspect     | None                 |
-   +-----------------------+----------------+--------------------+----------------------+
+   +----------------------+----------------+--------------------+----------------------+
+   | Operation            | Docker Command | containerd Command |                      |
+   +======================+================+====================+======================+
+   |                      | docker         | crictl             | ctr                  |
+   +----------------------+----------------+--------------------+----------------------+
+   | List local images.   | docker images  | crictl images      | ctr -n k8s.io i ls   |
+   +----------------------+----------------+--------------------+----------------------+
+   | Pull images.         | docker pull    | crictl pull        | ctr -n k8s.io i pull |
+   +----------------------+----------------+--------------------+----------------------+
+   | Push images.         | docker push    | None               | ctr -n k8s.io i push |
+   +----------------------+----------------+--------------------+----------------------+
+   | Delete local images. | docker rmi     | crictl rmi         | ctr -n k8s.io i rm   |
+   +----------------------+----------------+--------------------+----------------------+
+   | Check images.        | docker inspect | crictl inspect     | None                 |
+   +----------------------+----------------+--------------------+----------------------+
 
 .. table:: **Table 5** Container-related commands
 
@@ -138,17 +138,17 @@ containerd does not support Docker APIs and Docker CLI, but you can run crictl c
 
 .. table:: **Table 6** Pod-related commands
 
-   ================= ============== ================== ====
-   Operation         Docker Command containerd Command
-   ================= ============== ================== ====
-   \                 docker         crictl             ctr
-   List pods.        None           crictl pods        None
-   View pod details. None           crictl inspectp    None
-   Start a pod.      None           crictl start       None
-   Run a pod.        None           crictl runp        None
-   Stop a pod.       None           crictl stopp       None
-   Delete a pod.     None           crictl rmp         None
-   ================= ============== ================== ====
+   ================== ============== ================== ====
+   Operation          Docker Command containerd Command
+   ================== ============== ================== ====
+   \                  docker         crictl             ctr
+   List pods.         None           crictl pods        None
+   Query pod details. None           crictl inspectp    None
+   Start a pod.       None           crictl start       None
+   Run a pod.         None           crictl runp        None
+   Stop a pod.        None           crictl stopp       None
+   Delete a pod.      None           crictl rmp         None
+   ================== ============== ================== ====
 
 .. note::
 
