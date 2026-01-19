@@ -13,7 +13,7 @@ GitLab is an open-source version management system developed with Ruby on Rails 
 GitLab provides powerful CI/CD functions and is widely used in software development.
 
 
-.. figure:: /_static/images/en-us_image_0000002434078272.png
+.. figure:: /_static/images/en-us_image_0000002483958154.png
    :alt: **Figure 1** GitLab CI/CD process
 
    **Figure 1** GitLab CI/CD process
@@ -218,11 +218,11 @@ Common Issues
 
    The **privileged: true** parameter fails to be transferred during GitLab Runner installation. As a result, you do not have the permissions to run the Docker command. To resolve this issue, find GitLab Runner in the workload list on the CCE console, add the environment variable **KUBERNETES_PRIVILEGED**, and set its value to **true**.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434238092.png
-.. |image2| image:: /_static/images/en-us_image_0000002434238140.png
-.. |image3| image:: /_static/images/en-us_image_0000002467676609.png
-.. |image4| image:: /_static/images/en-us_image_0000002434238156.png
-.. |image5| image:: /_static/images/en-us_image_0000002434078288.png
-.. |image6| image:: /_static/images/en-us_image_0000002467716749.png
-.. |image7| image:: /_static/images/en-us_image_0000002467716805.png
-.. |image8| image:: /_static/images/en-us_image_0000002467716761.png
+.. |image1| image:: /_static/images/en-us_image_0000002516198079.png
+.. |image2| image:: /_static/images/en-us_image_0000002516198063.png
+.. |image3| image:: /_static/images/en-us_image_0000002484118104.png
+.. |image4| image:: /_static/images/en-us_image_0000002516078095.png
+.. |image5| image:: /_static/images/en-us_image_0000002516198087.png
+.. |image6| image:: /_static/images/en-us_image_0000002516198071.png
+.. |image7| image:: /_static/images/en-us_image_0000002483958152.png
+.. |image8| image:: /_static/images/en-us_image_0000002516078085.png

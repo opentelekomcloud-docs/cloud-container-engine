@@ -15,7 +15,7 @@ After a cluster is hibernated, resources such as workloads cannot be created or 
 Precautions
 -----------
 
--  During cluster wakeup, the master node may fail to start due to insufficient resources. This leads to a cluster wakeup failure. In this case, wait for a while and try again.
+-  During cluster wakeup, the master nodes may fail to start due to insufficient resources. This leads to a cluster wakeup failure. In this case, wait for a while and try again.
 -  After a cluster is woken up, it takes 3 to 5 minutes to initialize data. Deliver services after the cluster runs properly.
 
 Hibernating a Cluster
@@ -32,4 +32,4 @@ You can wake up a hibernated cluster as needed.
 
 #. Log in to the CCE console. In the navigation pane, choose **Clusters**.
 #. Click **Wake Up** in the row of the target cluster.
-#. When the cluster status changes from **Waking up** to **Running**, the cluster is woken up. It takes about 3 to 5 minutes to wake up the cluster.
+#. Check whether the cluster is woken up. When the cluster status changes from **Waking up** to **Running**, the cluster is woken up. It takes about 3 to 5 minutes to wake up the cluster.

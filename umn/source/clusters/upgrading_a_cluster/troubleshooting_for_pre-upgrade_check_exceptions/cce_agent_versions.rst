@@ -10,8 +10,8 @@ Check Items
 
 Check whether cce-agent on the current node is of the latest version.
 
-Solution
---------
+Solutions
+---------
 
 -  **Scenario 1: The error message "you cce-agent no update, please restart it" is displayed.**
 
@@ -29,9 +29,9 @@ Solution
 
    This issue occurs if cce-agent is not of the latest version and the automatic update failed. This issue is typically caused by an invalid OBS path or the component version is outdated.
 
-   Solution
+   **Solution**
 
-   #. Log in to a properly running node and run the following command to obtain the path to the cce-agent configuration file:
+   #. Log in to a node that is running normally and run the following command to obtain the path to the cce-agent configuration file:
 
       .. code-block::
 
@@ -45,7 +45,7 @@ Solution
 
       |image1|
 
-   #. Log in to a where the check failed, obtain the OBS address again by referring to the previous step, and check whether the OBS addresses are the same. If they are different, change the OBS address of the abnormal node to the correct address.
+   #. Log in to an **affected node** where the check failed, obtain the OBS address again by referring to the previous step, and check whether the OBS addresses are the same. If they are different, change the OBS address of the abnormal node to the correct address.
 
    #. Run the following commands to download the latest binary file:
 
@@ -87,4 +87,4 @@ Solution
 
       If you have any questions about the preceding operations, contact technical support.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434081060.png
+.. |image1| image:: /_static/images/en-us_image_0000002516079383.png

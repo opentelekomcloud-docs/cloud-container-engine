@@ -226,4 +226,4 @@ Using AHPA
 
       kubectl delete ahpacheckpoint hamster-ahpa
 
-.. |image1| image:: /_static/images/en-us_image_0000002434239756.png
+.. |image1| image:: /_static/images/en-us_image_0000002516079031.png

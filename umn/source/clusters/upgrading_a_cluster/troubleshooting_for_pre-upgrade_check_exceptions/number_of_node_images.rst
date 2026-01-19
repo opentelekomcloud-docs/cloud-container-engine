@@ -10,28 +10,28 @@ Check Items
 
 Check the number of images on your node. If there are more than 1000 images, it takes a long time for Docker to start, affecting the standard Docker output and functions such as Nginx.
 
-Solution
---------
+Solutions
+---------
 
 -  If there are too many images on a node, you can delete unnecessary images from the node.
 
-   You can run the command below to delete an image with the **<none>** tag. Such images are typically left from builds or updates.
+   Delete dangling (**<none>**) images. Such images are typically left from builds or updates.
 
-   -  For nodes that use Docker
+   -  For Docker nodes
 
       .. code-block::
 
          docker image prune
 
-   -  For nodes that use containerd
+   -  For containerd nodes
 
-      #. View all images with the **none** tags.
+      #. Check all dangling images.
 
          .. code-block::
 
             crictl images | grep "<none>"
 
-      #. Delete all images with the **none** tags in batches. Use **awk** to extract the image IDs and pipe them to **xargs** for deletion.
+      #. Delete all dangling images in batches. Use **awk** to extract the image IDs and pipe them to **xargs** for deletion.
 
          .. code-block::
 

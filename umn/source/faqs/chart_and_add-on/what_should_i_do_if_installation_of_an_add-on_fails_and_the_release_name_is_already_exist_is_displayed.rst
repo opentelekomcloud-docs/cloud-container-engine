@@ -62,7 +62,7 @@ Use kubectl to connect to the cluster and manually clear the Secret and ConfigMa
 
       During the initial installation of the add-on, it is possible to encounter abnormal behavior caused by residual resources from a previous add-on release. This is a normal occurrence. In such cases, you can resolve the issue by uninstalling the add-on from the console. This will ensure that any remaining resources are cleared, allowing for a proper installation of the add-on again.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434078836.png
-.. |image2| image:: /_static/images/en-us_image_0000002467677189.png
-.. |image3| image:: /_static/images/en-us_image_0000002467677169.png
-.. |image4| image:: /_static/images/en-us_image_0000002467717329.png
+.. |image1| image:: /_static/images/en-us_image_0000002516078105.png
+.. |image2| image:: /_static/images/en-us_image_0000002483958168.png
+.. |image3| image:: /_static/images/en-us_image_0000002483958162.png
+.. |image4| image:: /_static/images/en-us_image_0000002516078111.png

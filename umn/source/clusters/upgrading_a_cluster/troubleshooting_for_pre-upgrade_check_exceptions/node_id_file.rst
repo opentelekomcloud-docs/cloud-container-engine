@@ -10,14 +10,14 @@ Check Items
 
 Check the ID file format.
 
-Solution
---------
+Solutions
+---------
 
 #. On the **Nodes** page of the CCE console, click the name of the abnormal node to go to the ECS page.
 
 #. Copy the node ID and save it to the local host.
 
-#. Log in to the abnormal node and back up files.
+#. Log in to the abnormal node and back up the file.
 
    .. code-block::
 

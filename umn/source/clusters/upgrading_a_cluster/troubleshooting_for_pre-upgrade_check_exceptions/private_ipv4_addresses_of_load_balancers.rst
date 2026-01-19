@@ -10,8 +10,8 @@ Check Items
 
 Check whether the load balancer associated with a Service is allocated with a private IPv4 address.
 
-Solution
---------
+Solutions
+---------
 
 **Solution 1**: Delete the Service that is associated with a load balancer without a private IPv4 address.
 
@@ -19,7 +19,7 @@ Solution
 
 #. Obtain the load balancer associated with the target Service.
 
-   -  Method 1: Obtain the load balancer ID based on the pre-upgrade check log. Go to the ELB console and filter load balancers by load balancer ID.
+   -  Method 1: Obtain the load balancer ID based on the pre-upgrade check log. Go to the ELB console and filter the load balancer by load balancer ID.
 
       .. code-block::
 

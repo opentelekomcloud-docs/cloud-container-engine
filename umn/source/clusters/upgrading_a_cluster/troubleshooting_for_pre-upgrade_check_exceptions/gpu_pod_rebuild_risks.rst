@@ -10,8 +10,8 @@ Check Items
 
 Check whether GPU service pods are rebuilt in a cluster when kubelet is restarted during the upgrade of the cluster.
 
-Solution
---------
+Solutions
+---------
 
 Upgrade the cluster when the impact on services is controllable (for example, during off-peak hours) to minimize the impact.
 

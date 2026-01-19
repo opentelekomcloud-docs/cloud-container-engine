@@ -11,8 +11,8 @@ Check Items
 -  Check the node pool status.
 -  Check whether the node pool OS or container runtime is supported after the upgrade.
 
-Solution
---------
+Solutions
+---------
 
 -  **Scenario: The node pool malfunctions.**
 

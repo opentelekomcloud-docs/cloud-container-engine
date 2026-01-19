@@ -10,8 +10,8 @@ Check Items
 
 Check whether the certificate used by an HTTPS load balancer has been modified on ELB.
 
-Solution
---------
+Solutions
+---------
 
 The certificate referenced by an HTTPS ingress created on CCE is modified on the ELB console. This leads to inconsistent certificate content in the CCE cluster and that required by the load balancer. After the CCE cluster is upgraded, the load balancer's certificate is overwritten.
 

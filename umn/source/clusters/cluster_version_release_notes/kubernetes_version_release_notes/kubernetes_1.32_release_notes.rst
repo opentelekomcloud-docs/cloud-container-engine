@@ -42,7 +42,7 @@ New and Enhanced Features
 
 -  CustomResourceFieldSelectors (GA)
 
-   CustomResourceFieldSelectors moved to GA. This feature allows you to specify the **selectableFields** field of a CustomResourceDefinition to define which other fields in a custom resource may be used in field selectors. Field selectors can then be used to get only resources by filtering List, Watch, and DeleteCollection requests. For details, see `Selectable fields for custom resources <https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#crd-selectable-fields>`__.
+   CustomResourceFieldSelectors moved to GA. This feature allows you to specify the **selectableFields** field of a CustomResourceDefinition to define which other fields in a custom resource can be used in field selectors. Field selectors can then be used to get only resources by filtering List, Watch, and DeleteCollection requests. For details, see `Selectable fields for custom resources <https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#crd-selectable-fields>`__.
 
 -  JobManagedBy (Beta)
 
@@ -78,4 +78,4 @@ For details about cluster version updates, see :ref:`Patch Versions <cce_10_0405
 References
 ----------
 
-For more details about the performance comparison and function evolution between Kubernetes 1.32 and other versions, see `Kubernetes v1.32 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.32.md>`__.
+For more details about the performance comparison and functional evolution between Kubernetes 1.32 and other versions, see `Kubernetes v1.32 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.32.md>`__.

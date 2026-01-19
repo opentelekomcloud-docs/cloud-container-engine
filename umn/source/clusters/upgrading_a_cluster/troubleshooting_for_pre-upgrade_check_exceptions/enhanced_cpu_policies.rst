@@ -10,8 +10,8 @@ Check Items
 
 Check whether the current cluster version and the target version support enhanced CPU policy.
 
-Solution
---------
+Solutions
+---------
 
 **Scenario**: Only the current cluster version supports the enhanced CPU policy function. The target version does not support the enhanced CPU policy function.
 

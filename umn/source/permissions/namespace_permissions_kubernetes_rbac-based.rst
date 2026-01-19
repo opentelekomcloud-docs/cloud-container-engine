@@ -19,7 +19,7 @@ You can regulate users' or user groups' access to Kubernetes resources in a sing
 Role and ClusterRole specify actions that can be performed on specific resources. RoleBinding and ClusterRoleBinding bind roles to specific users, user groups, or ServiceAccounts. Illustration:
 
 
-.. figure:: /_static/images/en-us_image_0000002467679385.png
+.. figure:: /_static/images/en-us_image_0000002483959650.png
    :alt: **Figure 1** Role binding
 
    **Figure 1** Role binding

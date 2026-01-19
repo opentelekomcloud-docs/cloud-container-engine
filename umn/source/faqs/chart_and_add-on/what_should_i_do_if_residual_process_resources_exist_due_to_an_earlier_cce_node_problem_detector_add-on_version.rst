@@ -30,4 +30,4 @@ Upgrade the CCE Node Problem Detector add-on to the latest version.
 
 #. In the window that slides out from the right, configure the parameters and click **OK**.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467676697.png
+.. |image1| image:: /_static/images/en-us_image_0000002516197799.png

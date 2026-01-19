@@ -76,4 +76,4 @@ Solution
 
    After the creation is complete, reset the node.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467717557.png
+.. |image1| image:: /_static/images/en-us_image_0000002516197923.png

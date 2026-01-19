@@ -12,7 +12,7 @@ Node O&M
 -  :ref:`Migrating Nodes from Docker to containerd <cce_10_0601>`
 -  :ref:`Optimizing Node System Parameters <cce_10_0408>`
 -  :ref:`Configuring Node Fault Detection Policies <cce_10_0659>`
--  :ref:`Executing the Pre- or Post-installation Commands During Node Creation <cce_bestpractice_10020_0>`
+-  :ref:`Executing the Pre- or Post-installation Commands During Node Creation <cce_bestpractice_10020>`
 
 .. toctree::
    :maxdepth: 1

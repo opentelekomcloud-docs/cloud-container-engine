@@ -10,7 +10,7 @@ Background
 
 CCE permissions are classified into cluster permissions and namespace permissions. Namespace permissions are based on Kubernetes RBAC and can be used to grant permissions on resources in clusters and namespaces.
 
-Currently, the CCE console provides four types of namespace-level ClusterRole permissions by default: cluster-admin, admin, edit, and view. However, these permissions apply to resources in the namespace regardless of resource types (pods, Deployments, and Services).
+The CCE console provides four default ClusterRole roles: cluster-admin, admin, edit, and view. These roles apply uniformly to all resources within a namespace. However, they do not allow granular permission configuration (create, delete, modify, and get) for specific resource types, such as pods, Deployments, or Services, within that namespace.
 
 Solution
 --------

@@ -15,8 +15,8 @@ Kubernetes cluster users typically use sock files in the following scenarios:
 #. Monitoring applications deployed as DaemonSets use a sock file to access Docker or containerd to obtain pod statuses on a node.
 #. Compilation platform applications use a sock file to access Docker or containerd to obtain containers for compiling programs.
 
-Solution
---------
+Solutions
+---------
 
 -  Scenario 1: This issue occurred on an application, and operations need to be taken to resolve this issue.
 

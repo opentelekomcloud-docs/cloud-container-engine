@@ -146,6 +146,6 @@ HTTPS certificates can be configured for ingresses to provide security services.
       NAME          CLASS   HOSTS         ADDRESS    PORTS   AGE
       ingress-test  nginx   example.com              80,443  10s
 
-#. Enter **https://example.com** in the address bar of the browser to access the workload (for example, :ref:`Nginx workload <cce_10_0047__section155246177178>`).
+#. Enter **https://example.com** in the address box of the browser to access the workload (for example, :ref:`Nginx workload <cce_10_0047__section155246177178>`).
 
    Replace **example.com** with your domain name.

@@ -51,6 +51,11 @@ Procedure
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right.
 #. Select a node pool whose OS is HCE OS 2.0 and click **Manage** in the **Operation** column.
+
+   .. note::
+
+      The default node pool (**DefaultPool**) does not support this configuration.
+
 #. On the **Manage Configurations** page, change the **cpu-manager-policy** value to **enhanced-static** in the **kubelet** area.
 #. Click **OK**.
 
@@ -117,4 +122,4 @@ Take a node with 8 vCPUs and 32 GiB of memory as an example. Deploy a workload w
 
       1
 
-.. |image1| image:: /_static/images/en-us_image_0000002467718269.png
+.. |image1| image:: /_static/images/en-us_image_0000002516198949.png

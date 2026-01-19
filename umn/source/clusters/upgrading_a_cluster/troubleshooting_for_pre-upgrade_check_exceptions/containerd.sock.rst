@@ -8,12 +8,12 @@ containerd.sock
 Check Items
 -----------
 
-Check whether the **containerd.sock** file is on the node. This file affects the startup of container runtime in the Euler OS.
+Check whether the **containerd.sock** file is on the node. This file affects the startup of container runtime in EulerOS.
 
-Solution
---------
+Solutions
+---------
 
-**Scenario: The Docker used by the node is the customized Euler-docker.**
+**Scenario: The Docker used by the node is tailored for EulerOS.**
 
 #. Log in to the node.
 #. Run the **rpm -qa \| grep docker \| grep euleros** command. If the command output is not empty, the Docker used on the node is Euler-docker.

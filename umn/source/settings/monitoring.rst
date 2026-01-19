@@ -7,9 +7,9 @@ Monitoring
 
 CCE monitors applications and resources and collects metrics and events to analyze application health status. You can choose **Settings** from the navigation pane, click the **Monitoring** tab, and change monitoring parameters on the console.
 
-Log Configuration
------------------
+Log Settings
+------------
 
-**Collection configuration**
+**Collection Settings**
 
-**Send stdout Logs to AOM 1.0** (**No more evolution**): Logging in AOM 1.0 has not been improved, so you are advised to disable this function and use LTS logging instead.
+**Send stdout Logs to AOM 1.0** (**No more evolution**): Logging in AOM 1.0 will not be improved, so you are advised to disable this function and use LTS logging instead.

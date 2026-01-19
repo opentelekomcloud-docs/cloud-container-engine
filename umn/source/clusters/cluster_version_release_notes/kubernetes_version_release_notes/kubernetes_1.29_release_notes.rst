@@ -65,7 +65,7 @@ New and Enhanced Features
 
    -  Backoff limit per index (beta)
 
-      The backoff limit per index moves to beta. By default, pod failures for indexed jobs are counted and restricted by the global limit of retries, specified by **.spec.backoffLimit**. This means that if there is a consistently failing index in a job, pods specified by the job will be restarted repeatedly until pod failures exhaust the limit. Once the limit is reached, the job is marked failed and pods for other indexes in the job may never be even started. The feature allows you to complete execution of all indexes, despite some indexes failing, and to better use the compute resources by avoiding unnecessary retries of consistently failing indexes.
+      The backoff limit per index moves to beta. By default, pod failures for indexed jobs are counted and restricted by the global limit of retries, specified by **.spec.backoffLimit**. This means that if there is a consistently failing index in a job, pods specified by the job will be restarted repeatedly until pod failures exhaust the limit. Once the limit is reached, the job is marked as failed, and pods for other indexes in the job may never start. The feature allows you to complete execution of all indexes, despite some indexes failing, and to better use the compute resources by avoiding unnecessary retries of consistently failing indexes.
 
 -  Native sidecar containers are in the beta state.
 
@@ -163,4 +163,4 @@ For details about cluster version updates, see :ref:`Patch Versions <cce_10_0405
 References
 ----------
 
-For more details about the performance comparison and function evolution between Kubernetes 1.29 and other versions, see `Kubernetes v1.29 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.29.md>`__.
+For more details about the performance comparison and functional evolution between Kubernetes 1.29 and other versions, see `Kubernetes v1.29 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.29.md>`__.

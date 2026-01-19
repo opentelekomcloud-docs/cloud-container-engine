@@ -8,14 +8,14 @@ Synchronizing the Data of Cloud Servers
 Scenario
 --------
 
-Each node in a cluster is a cloud server or physical machine. After a cluster node is created, you can change the cloud server name or specifications as required. Modifying node specifications will affect services. Perform the operation on nodes one by one.
+Each node in a cluster is a cloud server. After a cluster node is created, you can change the cloud server name or specifications as required. Modifying node specifications will affect services. Perform the operation on nodes one by one.
 
-Some CCE node information is maintained independently of the ECS console. After changing an ECS's name, EIP, or specifications on the ECS console, synchronize it with the target node on the CCE console to ensure consistency.
+Some CCE node information is maintained independently of the cloud server console. After changing a cloud server's name, EIP, or specifications on the cloud server console, synchronize it with the target node on the CCE console to ensure consistency.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
--  Data, including the VM status, ECS names, number of CPUs, size of memory, ECS specifications, and public IP addresses, can be synchronized.
+-  Data, including the statuses, names, number of CPUs, memory, specifications, and public IP addresses of cloud servers, can be synchronized.
 -  The following data cannot be synchronized: OS, image ID, and disk configuration.
 
 Synchronizing the Data of a Cloud Server
@@ -27,4 +27,4 @@ Synchronizing the Data of a Cloud Server
 
 #. Locate the target node and choose **More** > **Sync Server Data** in the **Operation** column.
 
-   After the synchronization is complete, the **ECS data synchronization requested** message is displayed in the upper right corner.
+   After the synchronization is complete, the "ECS data synchronization requested" message is displayed in the upper right corner.

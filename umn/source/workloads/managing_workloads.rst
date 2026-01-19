@@ -200,4 +200,4 @@ This section uses a Deployment as an example to describe how to view events of a
 
       Event data will be retained for one hour and then automatically deleted.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434239840.png
+.. |image1| image:: /_static/images/en-us_image_0000002483959098.png

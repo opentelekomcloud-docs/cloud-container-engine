@@ -7,14 +7,14 @@ Managing Node Taints
 
 Taints enable a node to repel specific pods to prevent these pods from being scheduled to the node.
 
-Procedure for Operations Performed on the Console
--------------------------------------------------
+Using Console
+-------------
 
 On the CCE console, you can also batch manage nodes' taints.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab, select the target node and click **Labels and Taints** in the upper left corner.
+#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab, select the target node and click **Manage Labels and Taints** above the node list.
 
 #. In the displayed dialog box, click **Add Operation** under **Batch Operation**, and then choose **Add/Update** or **Delete** as well as **Taint**.
 
@@ -22,8 +22,8 @@ On the CCE console, you can also batch manage nodes' taints.
 
 #. After the taint is added, check the added taint in node data.
 
-Procedure for Operations Performed Through kubectl
---------------------------------------------------
+Using kubectl
+-------------
 
 A taint is a key-value pair associated with an effect. The following effects are available:
 

@@ -27,7 +27,7 @@ Notes and Constraints
    +----------------------+--------------------------+---------------------+----------------------------------------------------------------------------------------------------------------------+
    | Cluster Type         | Cluster Network Model    | Version             | Remarks                                                                                                              |
    +======================+==========================+=====================+======================================================================================================================+
-   | CCE standard cluster | Container tunnel network | v1.15 or later      | IPv4/IPv6 dual-stack will be generally available for clusters of v1.23.                                              |
+   | CCE standard cluster | Container tunnel network | v1.15 or later      | IPv4/IPv6 dual-stack will be generally available for clusters v1.23.                                                 |
    |                      |                          |                     |                                                                                                                      |
    |                      |                          |                     | ELB dual-stack is not supported.                                                                                     |
    +----------------------+--------------------------+---------------------+----------------------------------------------------------------------------------------------------------------------+
@@ -52,7 +52,7 @@ Notes and Constraints
    | Nginx ingress         | Dual-stack is supported when the following conditions are met:                                                                                                                                                                                                                                                                                                                                                                                                                                 | Only IPv4 is supported. |
    |                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                         |
    |                       | -  For clusters from v1.19 to v1.23, nginx-ingress of v2.1.7 or later supports dual-stack.                                                                                                                                                                                                                                                                                                                                                                                                     |                         |
-   |                       | -  For clusters of v1.25 or later, nginx-ingress of v2.2.5 or later supports dual-stack.                                                                                                                                                                                                                                                                                                                                                                                                       |                         |
+   |                       | -  For clusters v1.25 or later, nginx-ingress of v2.2.5 or later supports dual-stack.                                                                                                                                                                                                                                                                                                                                                                                                          |                         |
    +-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+
    | LoadBalancer Service  | -  Layer 7 (HTTP/HTTPS): Dual-stack is supported.                                                                                                                                                                                                                                                                                                                                                                                                                                              | Only IPv4 is supported. |
    |                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                         |
@@ -82,8 +82,6 @@ Perform the following operations to create a VPC named **vpc-ipv6** and its defa
 
 #. Configure the VPC and subnet following instructions. For details about the mandatory parameters, see :ref:`Table 1 <cce_bestpractice_00222__en-us_topic_0226102195_en-us_topic_0213478735_en-us_topic_0118066459_table65603559163645>` and :ref:`Table 2 <cce_bestpractice_00222__en-us_topic_0226102195_en-us_topic_0213478735_en-us_topic_0118066459_table18912125318159>`.
 
-   When configuring a subnet, select **Enable** for **IPv6 CIDR Block** to automatically allocate an IPv6 CIDR block to the subnet. IPv6 cannot be disabled after the subnet is created. Currently, you are not allowed to specify a custom IPv6 CIDR block.
-
    .. _cce_bestpractice_00222__en-us_topic_0226102195_en-us_topic_0213478735_en-us_topic_0118066459_table65603559163645:
 
    .. table:: **Table 1** VPC configuration parameters
@@ -110,27 +108,27 @@ Perform the following operations to create a VPC named **vpc-ipv6** and its defa
 
    .. table:: **Table 2** Subnet parameters
 
-      +------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Parameter              | Description                                                                                                                                                                                                                          | Example Value         |
-      +========================+======================================================================================================================================================================================================================================+=======================+
-      | Name                   | Specifies the subnet name.                                                                                                                                                                                                           | subnet-ipv6           |
-      +------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | IPv4 CIDR Block        | Specifies the IPv4 CIDR block for the subnet. This value must be within the VPC CIDR range.                                                                                                                                          | 192.168.0.0/24        |
-      +------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | IPv6 CIDR Block        | Select **Enable** for **IPv6 CIDR Block**. An IPv6 CIDR block will be automatically assigned to the subnet. IPv6 cannot be disabled after the subnet is created. Currently, you are not allowed to specify a custom IPv6 CIDR block. | N/A                   |
-      +------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Associated Route Table | Specifies the default route table to which the subnet will be associated. You can change the route table to a custom route table.                                                                                                    | Default               |
-      +------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Advanced Settings      |                                                                                                                                                                                                                                      |                       |
-      +------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Gateway                | Specifies the gateway address of the subnet.                                                                                                                                                                                         | 192.168.0.1           |
-      |                        |                                                                                                                                                                                                                                      |                       |
-      |                        | This IP address is used to communicate with other subnets.                                                                                                                                                                           |                       |
-      +------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | DNS Server Address     | By default, two DNS server addresses are configured. You can change them if necessary. When multiple IP addresses are available, separate them with a comma (,).                                                                     | 100.125.x.x           |
-      +------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      +--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      | Parameter                | Description                                                                                                                                                                                                                          | Example Value         |
+      +==========================+======================================================================================================================================================================================================================================+=======================+
+      | Name                     | Specifies the subnet name.                                                                                                                                                                                                           | subnet-ipv6           |
+      +--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      | IPv4 CIDR Block          | Specifies the IPv4 CIDR block for the subnet. This value must be within the VPC CIDR range.                                                                                                                                          | 192.168.0.0/24        |
+      +--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      | IPv6 CIDR Block          | Select **Enable** for **IPv6 CIDR Block**. An IPv6 CIDR block will be automatically assigned to the subnet. IPv6 cannot be disabled after the subnet is created. Currently, you are not allowed to specify a custom IPv6 CIDR block. | N/A                   |
+      +--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      | Associated Route Table   | Specifies the default route table to which the subnet will be associated. You can change the route table to a custom route table.                                                                                                    | Default               |
+      +--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      | Advanced Settings (IPv6) |                                                                                                                                                                                                                                      |                       |
+      +--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      | Gateway                  | Specifies the gateway address of the subnet.                                                                                                                                                                                         | 192.168.0.1           |
+      |                          |                                                                                                                                                                                                                                      |                       |
+      |                          | This IP address is used to communicate with other subnets.                                                                                                                                                                           |                       |
+      +--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      | DNS Server Address       | By default, two DNS server addresses are configured. You can change them if necessary. When multiple IP addresses are available, separate them with a comma (,).                                                                     | 100.125.x.x           |
+      +--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
 
-#. Click **Create Now**.
+#. Click .
 
 Step 2: Create a CCE Cluster
 ----------------------------
@@ -180,9 +178,7 @@ Step 2: Create a CCE Cluster
 Step 3: Apply for a Shared Bandwidth and Adding an IPv6 Address to It
 ---------------------------------------------------------------------
 
-By default, the IPv6 address can only be used for private network communication. If you want to use this IPv6 address to access the Internet or be accessed by IPv6 clients on the Internet, apply for a shared bandwidth and add the IPv6 address to it.
-
-If you already have a shared bandwidth, you can add the IPv6 address to the shared bandwidth without applying for one.
+If you already have a shared bandwidth, you can add the to the shared bandwidth without applying for one.
 
 **Applying for a Shared Bandwidth**
 
@@ -199,7 +195,7 @@ If you already have a shared bandwidth, you can add the IPv6 address to the shar
       +===========+=======================================================================================================================================================================================================================================================================================================================================+===============+
       | Region    | Specifies the desired region. Regions are geographic areas that are physically isolated from each other. The networks inside different regions are not connected to each other, so resources cannot be shared across different regions. For lower network latency and faster access to your resources, select the region nearest you. | N/A           |
       +-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
-      | Bandwidth | Specifies the shared bandwidth size in Mbit/s. The minimum bandwidth that can be purchased is 5 Mbit/s.                                                                                                                                                                                                                               | 10            |
+      | Bandwidth | Specifies the shared bandwidth size in Mbit/s.                                                                                                                                                                                                                                                                                        | 10            |
       +-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
       | Name      | Specifies the name of the shared bandwidth.                                                                                                                                                                                                                                                                                           | Bandwidth-001 |
       +-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
@@ -209,7 +205,7 @@ If you already have a shared bandwidth, you can add the IPv6 address to the shar
 **Adding an IPv6 Address to a Shared Bandwidth**
 
 #. On the shared bandwidth list page, locate the row containing the target shared bandwidth and choose **More** > **Add Public IP Address** in the **Operation** column.
-#. Add the IPv6 address to the shared bandwidth.
+#. Add the to the shared bandwidth.
 #. Click **OK**.
 
 **Verifying the Result**
@@ -218,10 +214,10 @@ Log in to an ECS and ping an IPv6 address on the Internet to verify the connecti
 
 .. _cce_bestpractice_00222__en-us_topic_0226102195_en-us_topic_0213478735_en-us_topic_0118066459_fig12339172511196:
 
-.. figure:: /_static/images/en-us_image_0000002467676785.png
+.. figure:: /_static/images/en-us_image_0000002516198109.png
    :alt: **Figure 1** Result verification
 
    **Figure 1** Result verification
 
-.. |image1| image:: /_static/images/en-us_image_0000002467716933.png
-.. |image2| image:: /_static/images/en-us_image_0000002467676837.png
+.. |image1| image:: /_static/images/en-us_image_0000002483958176.png
+.. |image2| image:: /_static/images/en-us_image_0000002516078141.png

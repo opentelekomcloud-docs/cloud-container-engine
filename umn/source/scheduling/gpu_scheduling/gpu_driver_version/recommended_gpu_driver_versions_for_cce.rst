@@ -22,16 +22,20 @@ Supported GPU Drivers
 
       According to this policy, CCE does not provide technical support for GPU drivers that have reached EOL, including driver installation and updates. **The following drivers have reached EOL: 510.47.03, 470.141.03, and 470.57.02.**
 
-   -  When installing a GPU driver on Ubuntu, pay attention to the OS version. For details, see :ref:`Table 3 <cce_10_0141__table6519152112818>`. For more information, see `NVIDIA Driver Documentation <https://docs.nvidia.com/datacenter/tesla/>`__.
+   -  When installing a GPU driver on Ubuntu and CentOS, pay attention to the OS version. For details, see :ref:`Table 3 <cce_10_0141__table6519152112818>`. For more information, see `NVIDIA Driver Documentation <https://docs.nvidia.com/datacenter/tesla/>`__.
 
 .. table:: **Table 1** Supported GPU drivers
 
    +------------+------------------------+---------------+------------+--------------+---------------------+
-   | GPU Model  | Supported Cluster Type | Specification | HCE OS 2.0 | Ubuntu 22.04 | EulerOS release 2.9 |
+   | GPU Model  | Supported Cluster Type | Specification | OS         | OS           | OS                  |
    +============+========================+===============+============+==============+=====================+
-   | Tesla T4   | CCE standard cluster   | g6            | 535.216.03 | 535.216.03   | 535.54.03           |
+   |            |                        |               | HCE OS 2.0 | Ubuntu 22.04 | EulerOS release 2.9 |
+   +------------+------------------------+---------------+------------+--------------+---------------------+
+   | Tesla T4   | CCE standard cluster   | g6            | 570.86.15  | 570.86.15    | 535.54.03           |
    |            |                        |               |            |              |                     |
-   |            |                        | pi2           | 535.161.08 | 535.161.08   | 470.141.03          |
+   |            |                        | pi2           | 535.216.03 | 535.216.03   | 470.141.03          |
+   |            |                        |               |            |              |                     |
+   |            |                        |               | 535.161.08 | 535.161.08   |                     |
    |            |                        |               |            |              |                     |
    |            |                        |               | 535.54.03  | 535.54.03    |                     |
    |            |                        |               |            |              |                     |
@@ -39,11 +43,13 @@ Supported GPU Drivers
    |            |                        |               |            |              |                     |
    |            |                        |               | 470.57.02  |              |                     |
    +------------+------------------------+---------------+------------+--------------+---------------------+
-   | Tesla V100 | CCE standard cluster   | p2s           | 535.216.03 | 535.216.03   | 535.54.03           |
+   | Tesla V100 | CCE standard cluster   | p2s           | 570.86.15  | 570.86.15    | 535.54.03           |
    |            |                        |               |            |              |                     |
-   |            |                        | p2vs          | 535.161.08 | 535.161.08   | 470.141.03          |
+   |            |                        | p2vs          | 535.216.03 | 535.216.03   | 470.141.03          |
    |            |                        |               |            |              |                     |
-   |            |                        | p2v           | 535.54.03  | 535.54.03    |                     |
+   |            |                        | p2v           | 535.161.08 | 535.161.08   |                     |
+   |            |                        |               |            |              |                     |
+   |            |                        |               | 535.54.03  | 535.54.03    |                     |
    |            |                        |               |            |              |                     |
    |            |                        |               | 510.47.03  |              |                     |
    |            |                        |               |            |              |                     |

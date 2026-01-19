@@ -11,7 +11,7 @@ CCE provides the following options for configuring ingress certificates for the 
 -  ELB certificate. Use an ELB certificate created on the ELB console. There is no need to specify a secret certificate for the add-on.
 
 
-.. figure:: /_static/images/en-us_image_0000002467679005.png
+.. figure:: /_static/images/en-us_image_0000002483959602.png
    :alt: **Figure 1** Differences between the two methods of configuring certificates for the NGINX Ingress Controller
 
    **Figure 1** Differences between the two methods of configuring certificates for the NGINX Ingress Controller
@@ -69,7 +69,7 @@ Procedure
       |                                 |                       |                                                                                                                                                                                                                                                                               |
       |                                 |                       |    .. note::                                                                                                                                                                                                                                                                  |
       |                                 |                       |                                                                                                                                                                                                                                                                               |
-      |                                 |                       |       -  To configure TLS for ingresses, make sure the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or a later version.                                                                                                                                |
+      |                                 |                       |       -  To configure TLS for ingresses, make sure the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later.                                                                                                                                          |
       |                                 |                       |       -  TLS relies on ELB. Before enabling TLS on an ingress, check whether TLS is supported in the current region.                                                                                                                                                          |
       +---------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | kubernetes.io/elb.cert-id       | String                | ID of the ELB certificate.                                                                                                                                                                                                                                                    |

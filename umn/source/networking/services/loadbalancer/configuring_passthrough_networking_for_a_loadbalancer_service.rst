@@ -18,7 +18,7 @@ Solution
 CCE supports passthrough networking. You can configure the **kubernetes.io/elb.pass-through** annotation for the LoadBalancer Service so that the load balancer forwards the intra-cluster access to the IP address of the load balancer associated with the Service to backend pods.
 
 
-.. figure:: /_static/images/en-us_image_0000002434078948.png
+.. figure:: /_static/images/en-us_image_0000002516198373.png
    :alt: **Figure 1** Passthrough networking illustration
 
    **Figure 1** Passthrough networking illustration

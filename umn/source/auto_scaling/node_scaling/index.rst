@@ -10,6 +10,7 @@ Node Scaling
 -  :ref:`Creating a Node Auto Scaling Policy <cce_10_0209>`
 -  :ref:`Managing Node Scaling Policies <cce_10_0063>`
 -  :ref:`Specifying Node Scale-in Conditions for a Node Pool <cce_10_0967>`
+-  :ref:`Modifying the Node Scale-In Concurrency Settings <cce_10_1088>`
 
 .. toctree::
    :maxdepth: 1
@@ -20,3 +21,4 @@ Node Scaling
    creating_a_node_auto_scaling_policy
    managing_node_scaling_policies
    specifying_node_scale-in_conditions_for_a_node_pool
+   modifying_the_node_scale-in_concurrency_settings

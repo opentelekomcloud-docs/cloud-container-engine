@@ -5,7 +5,7 @@
 Kubernetes 1.27 Release Notes
 =============================
 
-CCE now supports Kubernetes 1.27 cluster features. This section describes the changes made in Kubernetes 1.27 compared with Kubernetes 1.25.
+CCE now supports Kubernetes 1.27 cluster features. This section describes the changes made in Kubernetes 1.27 compared to Kubernetes 1.25.
 
 Indexes
 -------
@@ -28,7 +28,7 @@ New Features
 
 -  Jobs' scheduling directives are configurable.
 
-   This feature was introduced in Kubernetes 1.22 and is stable in Kubernetes 1.27. In most cases, you use a job to influence where the pods will run, like all in the same AZ. This feature allows scheduling directives to be modified before a job starts. You can use the **suspend** field to suspend a job. In the suspension phase, the scheduling directives (such as the node selector, node affinity, anti-affinity, and tolerations) in the job's pod template can be modified. For details, see `Mutable Scheduling Directives <https://kubernetes.io/docs/concepts/workloads/controllers/job/#mutable-scheduling-directives>`__.
+   This feature was introduced in Kubernetes 1.22 and is stable in Kubernetes 1.27. In most cases, you use a job to influence where the pods will run, like all in the same AZ. This feature allows modifying scheduling directives before a job starts. You can suspend a job using the **suspend** field. In the suspension phase, the scheduling directives (such as the node selector, node affinity, anti-affinity, and tolerations) in the job's pod template can be modified. For details, see `Mutable Scheduling Directives <https://kubernetes.io/docs/concepts/workloads/controllers/job/#mutable-scheduling-directives>`__.
 
 -  Downward API hugepages are stable.
 
@@ -52,17 +52,17 @@ New Features
 
 -  The function of efficiently labeling SELinux volumes moves to beta.
 
-   By default, the container runtime recursively assigns the SELinux label to all files on all pod volumes. To speed up this process, Kubernetes uses the mount option **-o context=**\ *<label>* to immediately change the SELinux label of the volume. For details, see `Efficient SELinux volume relabeling <https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#efficient-selinux-volume-relabeling>`__.
+   By default, the container runtime recursively assigns the SELinux label to all files in all pod volumes. To speed up this process, Kubernetes uses the mount option **-o context=**\ *<label>* to immediately set the SELinux label of the volume. For details, see `Efficient SELinux volume relabeling <https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#efficient-selinux-volume-relabeling>`__.
 
 -  VolumeManager reconstruction goes to beta.
 
-   After the VolumeManager is reconstructed, if the NewVolumeManagerReconstruction `feature gate <https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/>`__ is enabled, mounted volumes will be obtained in a more effective way during kubelet startup.
+   After the VolumeManager is reconstructed, if the NewVolumeManagerReconstruction `feature gate <https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/>`__ is enabled, mounted volumes will be obtained more effectively during kubelet startup.
 
 -  Server side field validation and OpenAPI V3 are stable.
 
-   OpenAPI V3 was added in Kubernetes 1.23. In Kubernetes 1.24, it moved to beta. In Kubernetes 1.27, it is stable.
+   OpenAPI V3 was added to Kubernetes 1.23. In Kubernetes 1.24, it moved to beta. In Kubernetes 1.27, it is stable.
 
--  StatefulSet start ordinal moves to beta.
+-  StatefulSet start ordinals move to beta.
 
    Kubernetes 1.26 introduced a new, alpha-level feature for StatefulSets to control the ordinal numbering of pod replicas. Since Kubernetes 1.27, this feature moves to beta. The ordinals can start from arbitrary non-negative numbers. For details, see `Kubernetes 1.27: StatefulSet Start Ordinal Simplifies Migration <https://kubernetes.io/blog/2023/04/28/statefulset-start-ordinal/>`__.
 
@@ -72,7 +72,7 @@ New Features
 
 -  StatefulSet PVC auto deletion moves to beta.
 
-   Kubernetes 1.27 provides a new policy to control the lifecycle of PVCs of StatefulSets. This policy allows users to specify if the PVCs generated from the StatefulSet spec template should be automatically deleted or retained when the StatefulSet is deleted or replicas in the StatefulSet are scaled down. For details, see `PersistentVolumeClaim retention <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#persistentvolumeclaim-retention>`__.
+   Kubernetes 1.27 provides a new policy to control the lifecycle of PVCs of StatefulSets. This policy allows users to specify whether the PVCs generated from the StatefulSet spec template should be automatically deleted or retained when the StatefulSet is deleted or replicas in the StatefulSet are scaled down. For details, see `PersistentVolumeClaim retention <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#persistentvolumeclaim-retention>`__.
 
 -  Volume group snapshots are introduced.
 
@@ -102,7 +102,7 @@ New Features
 
 -  CRI v1alpha2 is removed.
 
-   Kubernetes 1.26 does not support CRI v1alpha2 any longer. Use CRI v1 (containerd version must be later than or equal to 1.5.0). containerd 1.5.x or earlier is not supported by Kubernetes 1.26. Update the containerd version to 1.6.x or later before upgrading kubelet to 1.26.
+   Kubernetes 1.26 does not support CRI v1alpha2. Use CRI v1 (containerd version must be later than or equal to 1.5.0). containerd 1.5.x or earlier is not supported by Kubernetes 1.26. Update the containerd version to 1.6.x or later before upgrading kubelet to 1.26.
 
    .. note::
 
@@ -110,7 +110,7 @@ New Features
 
 -  Alpha API for dynamic resource allocation is added.
 
-   In Kubernetes 1.26, `Dynamic Resource Allocation <https://kubernetes.io/docs/concepts/scheduling-eviction/dynamic-resource-allocation/>`__ is added to request and share resources between pods and between containers in a pod. Resources can be initialized based on parameters provided by the user. This function is still in the alpha phase. You need to enable the DynamicResourceAllocation feature gate and the **resource.k8s.io/v1alpha1** API group. You need to install drivers for specific resources to be managed. For details, see `Kubernetes 1.26: Alpha API for Dynamic Resource Allocation <https://kubernetes.io/blog/2022/12/15/dynamic-resource-allocation/>`__.
+   In Kubernetes 1.26, `Dynamic Resource Allocation <https://kubernetes.io/docs/concepts/scheduling-eviction/dynamic-resource-allocation/>`__ is added to request and share resources between pods and between containers in a pod. Resources are initialized based on parameters provided by the user. This function is still in the alpha phase. You need to enable the DynamicResourceAllocation feature gate and the **resource.k8s.io/v1alpha1** API group. You need to install drivers for specific resources to be managed. For details, see `Kubernetes 1.26: Alpha API for Dynamic Resource Allocation <https://kubernetes.io/blog/2022/12/15/dynamic-resource-allocation/>`__.
 
 -  The non-graceful node shutdown feature goes to beta.
 
@@ -138,7 +138,7 @@ New Features
 
 -  Retroactive default StorageClass assignment moves to beta.
 
-   In Kubernetes 1.25, an alpha feature was introduced to change the way how a default StorageClass is allocated to a PVC. After this feature is enabled, you no longer need to create a default StorageClass and then create a PVC to assign the class. Additionally, any PVCs without a StorageClass assigned can be updated later. This feature moves to beta in Kubernetes 1.26. For details, see `Retroactive default StorageClass assignment <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#retroactive-default-storageclass-assignment>`__.
+   In Kubernetes 1.25, an alpha feature was introduced to change the way a default StorageClass is allocated to a PVC. After this feature is enabled, you no longer need to create a default StorageClass and then create a PVC to assign the class. Additionally, any PVCs without a StorageClass assigned can be updated later. This feature moves to beta in Kubernetes 1.26. For details, see `Retroactive default StorageClass assignment <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#retroactive-default-storageclass-assignment>`__.
 
 -  PodDisruptionBudget allows users to specify the eviction policies for unhealthy pods.
 
@@ -158,7 +158,7 @@ Deprecations and Removals
 -  In Kubernetes 1.27, the feature gates that are used for volume extension and in the GA status, including ExpandCSIVolumes, ExpandInUsePersistentVolumes, and ExpandPersistentVolumes are removed and can no longer be referenced in the **--feature-gates** flag.
 -  The **--master-service-namespace** parameter is removed. This parameter specifies where to create a Service named **kubernetes** to represent the API server. This parameter was deprecated in Kubernetes 1.26 and is removed from Kubernetes 1.27.
 -  The ControllerManagerLeaderMigration feature gate is removed. `Leader Migration <https://github.com/kubernetes/enhancements/issues/2436>`__ provides a mechanism for HA clusters to safely migrate "cloud specific" controllers using a resource lock shared between kube-controller-manager and cloud-controller-manager when upgrading the replicated control plane. This feature has been enabled unconditionally since its release in Kubernetes 1.24. In Kubernetes 1.27, this feature is removed.
--  The **--enable-taint-manager** parameter is removed. The feature that it supports, taint-based eviction, is enabled by default and will continue to be implicitly enabled when the flag is removed.
+-  The **--enable-taint-manager** parameter is removed. The feature that it supports, taint-based eviction, is enabled by default. It will continue to be implicitly enabled when the flag is removed.
 -  The **--pod-eviction-timeout** parameter is removed from kube-controller-manager.
 -  The CSIMigration feature gate is removed. The `CSI migration <https://github.com/kubernetes/enhancements/issues/625>`__ program allows smooth migration from the in-tree volume plug-ins to the out-of-tree CSI drivers. This feature was officially released in Kubernetes 1.16.
 -  The CSIInlineVolume feature gate is removed. The feature (`CSI Ephemeral Volume <https://github.com/kubernetes/kubernetes/pull/111258>`__) allows CSI volumes to be specified directly in the pod specification for ephemeral use cases. They can be used to inject arbitrary states, such as configuration, secrets, identity, variables, or similar information, directly inside the pod using a mounted volume. This feature graduated to GA in Kubernetes 1.25 and is removed in Kubernetes 1.27.
@@ -222,7 +222,7 @@ For details about cluster version updates, see :ref:`Release Notes for CCE Clust
 References
 ----------
 
-For more details about the performance comparison and function evolution between Kubernetes 1.27 and other versions, see the following documents:
+For more details about the performance comparison and functional evolution between Kubernetes 1.27 and other versions, see the following documents:
 
 -  `Kubernetes v1.27 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.27.md>`__
 -  `Kubernetes v1.26 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.26.md>`__

@@ -12,8 +12,8 @@ Prerequisites
 
 The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be **1.2.8 or later**. This add-on identifies the mount options and transfers them to the underlying storage resources. The parameter settings take effect only if the underlying storage resources support the specified options.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  Mount options cannot be configured for secure containers.
 -  Due to the restrictions of the NFS protocol, if an SFS volume is mounted to a node for multiple times, link-related mounting parameters (such as **timeo**) take effect only when the SFS volume is mounted for the first time by default. For example, if the same SFS file system is mounted to multiple pods running on a node, the mounting parameter set later does not overwrite the existing parameter value. If you want to configure different mounting parameters in the preceding scenario, additionally configure the **nosharecache** parameter.

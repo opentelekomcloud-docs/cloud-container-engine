@@ -164,7 +164,7 @@ Properly plan the service distribution and data plane disk space to avoid the sc
             Size of logical volume vgpaas/thinpool changed from <67.00 GiB (23039 extents) to <167.00 GiB (48639 extents).
             Logical volume vgpaas/thinpool successfully resized.
 
-      #. Do not need to adjust the size of the file system, because the thin pool is not mounted to any devices.
+      #. Do not need to adjust the size of the file system because the thin pool is not mounted to any devices.
 
       #. Run the **lsblk** command to check the disk and partition space of the device and check whether the capacity has been expanded. If the new disk capacity was added to the thin pool, the capacity has been expanded.
 
@@ -252,4 +252,4 @@ Create and delete files in service containers in the local storage (such as empt
 
 If the OS uses OverlayFS, services can be deployed on such nodes to prevent the problem that the disk space occupied by files created or deleted in the container is not released immediately.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434078744.png
+.. |image1| image:: /_static/images/en-us_image_0000002516197787.png

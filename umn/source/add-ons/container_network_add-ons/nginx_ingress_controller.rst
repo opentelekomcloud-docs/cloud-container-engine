@@ -35,7 +35,7 @@ An Nginx ingress consists of the ingress object, ingress controller, and Nginx. 
 
 .. _cce_10_0034__fig204075132570:
 
-.. figure:: /_static/images/en-us_image_0000002467718661.png
+.. figure:: /_static/images/en-us_image_0000002484119084.png
    :alt: **Figure 1** Working principles of NGINX Ingress Controller
 
    **Figure 1** Working principles of NGINX Ingress Controller
@@ -52,7 +52,7 @@ Precautions
 Prerequisites
 -------------
 
-Before installing this add-on, you have one available cluster and there is a node running properly. If no cluster is available, create one according to :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
+Before installing this add-on, you have one available cluster with a node running properly. If no cluster is available, create one according to :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
 
 .. _cce_10_0034__section1152424015224:
 
@@ -71,7 +71,7 @@ Installing the Add-on
 
    -  .. _cce_10_0034__li0953175016455:
 
-      **Ingress Class**: Enter a controller name. The name of each controller in the same cluster must be unique and cannot be set to **cce** (which is the unique identifier of the LoadBalancer ingress controller.) When creating an ingress, you can specify the controller name to declare which controller should manage this ingress.
+      **Ingress Class**: Enter a controller name. The name of each controller in the same cluster must be unique and cannot be set to **cce** (which is the unique identifier of the LoadBalancer ingress controller). When creating an ingress, you can specify the controller name to declare which controller should manage this ingress.
 
    -  **Add-on Namespace**: Select a namespace for the ingress controller.
 
@@ -256,7 +256,7 @@ To avoid a situation where the node running NGINX Ingress Controller and its con
            app: nginx
        spec:
          containers:
-         - image: nginx:aplpine
+         - image: nginx:alpine
            imagePullPolicy: IfNotPresent
            name: nginx
          imagePullSecrets:

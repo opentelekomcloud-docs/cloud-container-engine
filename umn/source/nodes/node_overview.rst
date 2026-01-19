@@ -40,7 +40,7 @@ Nodes running on containerd use the ext4 file storage system.
 paas User and User Group
 ------------------------
 
-When you create a node in a cluster, the paas user or a user group will be created on the node by default. CCE components and CCE add-ons on a node run as a non-root user (user **paas** or a user group) to minimize the running permission. If the paas user or user group is modified, CCE components and pods may fail to run properly.
+When you create a node in a cluster, the **paas** user or user group will be created on the node by default. CCE components and CCE add-ons on a node run as a non-root user (the **paas** **paas** or user group) to minimize the running permission. If the **paas** user or user group is modified, CCE components and pods may fail to run properly.
 
 .. important::
 
@@ -57,28 +57,28 @@ A lifecycle indicates the node statuses recorded from the time when the node is 
 
 .. table:: **Table 1** Node statuses
 
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-   | Status                | Status Attribute      | Description                                                                                                                        |
-   +=======================+=======================+====================================================================================================================================+
-   | Running               | Stable state          | The node is running properly and is connected to the cluster.                                                                      |
-   |                       |                       |                                                                                                                                    |
-   |                       |                       | Nodes in this state can provide services.                                                                                          |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-   | Unavailable           | Stable state          | The node is not functioning correctly, which includes being in a stopped state.                                                    |
-   |                       |                       |                                                                                                                                    |
-   |                       |                       | Instances in this state cannot provide services.                                                                                   |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-   | Creating              | Intermediate state    | The node has been created but is not running.                                                                                      |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-   | Installing            | Intermediate state    | The Kubernetes software is being installed on the node.                                                                            |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-   | Upgrading             | Intermediate state    | The node is being upgraded.                                                                                                        |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-   | Deleting              | Intermediate state    | The node is being deleted.                                                                                                         |
-   |                       |                       |                                                                                                                                    |
-   |                       |                       | If this state stays for a long time, an exception occurred.                                                                        |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
-   | Error                 | Stable state          | The node is abnormal.                                                                                                              |
-   |                       |                       |                                                                                                                                    |
-   |                       |                       | Instances in this state no longer provide services. In this case, perform the operations in :ref:`Resetting a Node <cce_10_0003>`. |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------+
+   +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------+
+   | Status                | Status Attribute      | Description                                                                                                                    |
+   +=======================+=======================+================================================================================================================================+
+   | Running               | Stable state          | The node is running properly and is connected to the cluster.                                                                  |
+   |                       |                       |                                                                                                                                |
+   |                       |                       | Nodes in this state can provide services.                                                                                      |
+   +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------+
+   | Unavailable           | Stable state          | The node is not functioning correctly, which includes being in a stopped state.                                                |
+   |                       |                       |                                                                                                                                |
+   |                       |                       | Nodes in this state cannot provide services.                                                                                   |
+   +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------+
+   | Creating              | Intermediate state    | The node has been created but is not running.                                                                                  |
+   +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------+
+   | Installing            | Intermediate state    | The Kubernetes software is being installed on the node.                                                                        |
+   +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------+
+   | Upgrading             | Intermediate state    | The node is being upgraded.                                                                                                    |
+   +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------+
+   | Deleting              | Intermediate state    | The node is being deleted.                                                                                                     |
+   |                       |                       |                                                                                                                                |
+   |                       |                       | If this state stays for a long time, an exception occurred.                                                                    |
+   +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------+
+   | Error                 | Stable state          | The node is abnormal.                                                                                                          |
+   |                       |                       |                                                                                                                                |
+   |                       |                       | Nodes in this state no longer provide services. In this case, perform the operations in :ref:`Resetting a Node <cce_10_0003>`. |
+   +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------+

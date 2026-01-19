@@ -21,7 +21,7 @@ Notes and Constraints
 -  The URL registered in an ingress forwarding policy must be the same as the URL used to access the backend Service. Otherwise, a 404 error will be returned.
 -  The selected or created load balancer must be in the same VPC as the current cluster, and it must match the load balancer type (private or public network).
 -  The load balancer has at least two listeners, and ports 80 and 443 are not occupied by listeners.
--  When NGINX Ingress Controller accesses a dedicated load balancer and the service affinity is set to the node level, the load balancer's IP address may fail to be accessed within the cluster. For details, see :ref:`Why a Service Fail to Be Accessed from Within the Cluster <cce_10_0249__section52631714117>`.
+-  When NGINX Ingress Controller accesses a dedicated load balancer and the service affinity is set to the node level, the load balancer's IP address may fail to be accessed within the cluster. For details, see :ref:`Why a Service Fails to Be Accessed from Within the Cluster <cce_10_0249__section52631714117>`.
 
 Creating an Nginx Ingress
 -------------------------
@@ -52,7 +52,7 @@ This section uses an Nginx workload as an example to describe how to create an N
       -  **Domain Name**: actual domain name. Ensure that the entered domain name has been registered and archived. After the ingress is created, bind the domain name to the IP address of the automatically created load balancer (IP address of the ingress access address). If a domain name rule is configured, the domain name must always be used for access.
       -  **Path Matching Rule**:
 
-         -  **Default**: Prefix match is used by default.
+         -  **Default**: If **Default** is selected, **Prefix match** will be used.
          -  **Prefix match**: If the URL is set to **/healthz**, the URL that meets the prefix can be accessed, for example, **/healthz/v1** and **/healthz/v2**.
          -  **Exact match**: The URL can be accessed only when it is fully matched. For example, if the URL is set to **/healthz**, only **/healthz** can be accessed.
 

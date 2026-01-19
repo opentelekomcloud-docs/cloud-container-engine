@@ -1,6 +1,6 @@
-:original_name: cce_bestpractice_00253_0.html
+:original_name: cce_bestpractice_00253.html
 
-.. _cce_bestpractice_00253_0:
+.. _cce_bestpractice_00253:
 
 Dynamically Creating an SFS Turbo Subdirectory Using StorageClass
 =================================================================
@@ -15,7 +15,7 @@ The Everest add-on allows you to dynamically create subdirectories in an SFS Tur
 Notes and Constraints
 ---------------------
 
--  Only clusters of v1.15 or later are supported.
+-  Only clusters v1.15 or later are supported.
 
 -  The cluster must use the Everest add-on of version 1.1.13 or later.
 
@@ -49,7 +49,6 @@ Creating an SFS Turbo Volume of the subPath Type
         csi.storage.k8s.io/csi-driver-name: sfsturbo.csi.everest.io
         csi.storage.k8s.io/fstype: nfs
         everest.io/archive-on-delete: "true"
-        everest.io/share-access-to: 7ca2dba2-1234-1234-1234-626371a8fb3a
         everest.io/share-expand-type: bandwidth
         everest.io/share-export-location: 192.168.1.1:/sfsturbo/  # Mount directory configuration
         everest.io/share-source: sfs-turbo
@@ -78,9 +77,8 @@ Creating an SFS Turbo Volume of the subPath Type
             - hard
 
    -  **everest.io/volume-as**: This parameter is set to **subpath** to use the subPath volume.
-   -  **everest.io/share-access-to**: This parameter is optional. In a subPath volume, set this parameter to the ID of the VPC where the SFS Turbo file system is located.
    -  **everest.io/share-expand-type**: This parameter is optional. If the type of the SFS Turbo file system is SFS Turbo Standard - Enhanced or SFS Turbo Performance - Enhanced, set this parameter to **bandwidth**.
-   -  **everest.io/share-export-location**: This parameter indicates the mount directory. It consists of the SFS Turbo shared path and sub-directory. The shared path can be obtained on the SFS Turbo console. The sub-directory is user-defined. The PVCs created using the StorageClass are located in this sub-directory.
+   -  **everest.io/share-export-location**: This parameter indicates the mount directory. It consists of the SFS Turbo shared path and sub-directory. You can obtain the shared path on the SFS Turbo console and create the sub-directory by yourself. The PVCs created using the StorageClass are in this sub-directory.
    -  **everest.io/share-volume-type**: This parameter is optional. It specifies the SFS Turbo file system type. The value can be **STANDARD** or **PERFORMANCE**. For enhanced types, this parameter must be used together with **everest.io/share-expand-type** (whose value should be **bandwidth**).
    -  **everest.io/zone**: This parameter is optional. Set it to the AZ where the SFS Turbo file system is located.
    -  **everest.io/volume-id**: This parameter indicates the ID of the SFS Turbo volume. You can obtain the volume ID on the SFS Turbo page.

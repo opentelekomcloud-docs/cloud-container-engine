@@ -86,7 +86,7 @@ For example, two NUMA nodes provide resources, each with a total of 32 CPU cores
 
 .. _cce_10_0425__fig1216082014438:
 
-.. figure:: /_static/images/en-us_image_0000002434080664.png
+.. figure:: /_static/images/en-us_image_0000002516199439.png
    :alt: **Figure 1** Comparison of NUMA scheduling policies
 
    **Figure 1** Comparison of NUMA scheduling policies
@@ -125,7 +125,7 @@ Therefore, the optimal node is Node A.
 Enabling NUMA Affinity Scheduling for Volcano
 ---------------------------------------------
 
-#. Enable CPU management in the node pool. For details, see :ref:`Enabling CPU Management for a Custom Node Pool <cce_10_0351__section1460719557453>`.
+#. Enable CPU management in the node pool. For details, see :ref:`Configuring a Node Pool-level CPU Management Policy <cce_10_0351__section1460719557453>`.
 
    a. Log in to the CCE console and click the cluster name to access the cluster console.
    b. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right. Locate the target node pool and choose **More** > **Manage**.

@@ -42,7 +42,7 @@ Enabling Kubernetes Audit Logging
 #. Click the **Kubernetes Audit Logs** tab and modify the settings in **Logging Settings**.
 
 
-   .. figure:: /_static/images/en-us_image_0000002467679431.png
+   .. figure:: /_static/images/en-us_image_0000002516199615.png
       :alt: **Figure 1** Enabling audit logging for an existing cluster
 
       **Figure 1** Enabling audit logging for an existing cluster
@@ -75,5 +75,5 @@ Disabling Kubernetes Audit Logging
 
       After you disable audit logging, logs are no longer written to the original log stream, but the existing logs will not be deleted and expenditures may be incurred for this.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467719573.png
-.. |image2| image:: /_static/images/en-us_image_0000002467679437.png
+.. |image1| image:: /_static/images/en-us_image_0000002516199619.png
+.. |image2| image:: /_static/images/en-us_image_0000002484119646.png

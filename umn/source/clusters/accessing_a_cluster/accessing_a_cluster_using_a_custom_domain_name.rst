@@ -23,14 +23,14 @@ Prerequisites
 
 A cluster of v1.19 or later is available.
 
-Customizing a SAN
------------------
+Adding a Custom SAN
+-------------------
 
 You can add a custom SAN on the CCE console. To do so, perform the following operations:
 
 #. Log in to the CCE console.
 #. Click the name of the target cluster in the cluster list to go to the cluster **Overview** page.
-#. In the **Connection Information** area, click |image1| next to **Custom SAN**. In the dialog box displayed, enter the IP address or domain name and click **Save**.
+#. In the **Connection Information** area, click |image1| next to **Custom SAN**. In the dialog box displayed, enter the IP addresses or domain names and click **Save**.
 
    .. note::
 
@@ -93,7 +93,7 @@ After the SAN is modified, the original X.509 certificate becomes invalid. If yo
 
    a. Log in to the CCE console and click the cluster name to access the cluster console.
    b. On the **Overview** page, locate the **Connection Information** area, and click **Download** next to **X.509 certificate**.
-   c. In the **Obtain Certificate** dialog box displayed, select the certificate expiration time and download the X.509 certificate of the cluster as prompted.
+   c. In the **Obtain Certificate** dialog box displayed, select the certificate validity period and download the X.509 certificate of the cluster as prompted.
 
 #. Call Kubernetes native APIs using the cluster certificate.
 
@@ -114,4 +114,4 @@ After the SAN is modified, the original X.509 certificate becomes invalid. If yo
 
    For more cluster APIs, see `Kubernetes API <https://kubernetes.io/docs/reference/kubernetes-api/>`__.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467678717.png
+.. |image1| image:: /_static/images/en-us_image_0000002483959210.png

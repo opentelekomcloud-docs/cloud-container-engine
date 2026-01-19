@@ -34,5 +34,5 @@ If you find that the coredns add-on does not exist in **Add-ons Installed**, the
 
 Install it and add the corresponding domain name and DNS service address to resolve the domain name.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434238160.jpg
-.. |image2| image:: /_static/images/en-us_image_0000002434238164.jpg
+.. |image1| image:: /_static/images/en-us_image_0000002516077753.jpg
+.. |image2| image:: /_static/images/en-us_image_0000002516077749.jpg

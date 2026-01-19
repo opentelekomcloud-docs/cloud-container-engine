@@ -10,8 +10,8 @@ Check Items
 
 This check item is not typical and implies that an internal error was found during the pre-upgrade check.
 
-Solution
---------
+Solutions
+---------
 
 Perform the pre-upgrade check again.
 

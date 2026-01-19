@@ -88,8 +88,8 @@ When a node pool fails to be expanded, the event contains the following informat
 
 This issue can arise in the following scenarios:
 
--  Scenarios 1: A custom security group is set up for the node pool but gets deleted, so the node pool scale-out fails.
--  Scenarios 2: No custom security group is configured for the node pool and the default security group is deleted, so the node pool scale-out fails.
+-  Scenario 1: A custom security group is set up for the node pool but gets deleted, so the node pool scale-out fails.
+-  Scenario 2: No custom security group is configured for the node pool and the default security group is deleted, so the node pool scale-out fails.
 
 **Solution**
 

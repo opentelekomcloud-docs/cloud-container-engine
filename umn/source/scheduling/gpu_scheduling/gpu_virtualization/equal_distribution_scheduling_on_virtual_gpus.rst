@@ -60,7 +60,7 @@ Using the Console
       |                       |                       | -  If set, the container uses isolation of both compute and memory resources.                                                                                                     |
       +-----------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-#. Configure other parameters by referring to :ref:`Creating a Workload <cce_10_0673>`. Then, click **Create Workload** in the lower right corner. When the status changes to **Running**, the workload has been created.
+#. Configure other parameters by referring to :ref:`Creating a Workload <cce_10_0673>`. Then, click **Create Workload** in the lower right corner. When the workload changes to the **Running** state, it is created.
 
 Using kubectl
 -------------
@@ -113,7 +113,7 @@ The following example illustrates how to create a workload that uses equal distr
 
    To enable isolation of both compute and memory resources, configure **volcano.sh/gpu-core.percentage** in both **resources.requests** and **resources.limits** to allocate GPU compute power to pods, for example, set **volcano.sh/gpu-core.percentage** to **5**.
 
-#. Run the following command to create the workload:
+#. Create the workload.
 
    .. code-block::
 
@@ -125,7 +125,7 @@ The following example illustrates how to create a workload that uses equal distr
 
       deployment.apps/gpu-app created
 
-#. Run the following command to view the created pod:
+#. View the created pod.
 
    .. code-block::
 

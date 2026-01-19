@@ -16,7 +16,7 @@ LoadBalancer
 -  :ref:`Configuring Passthrough Networking for a LoadBalancer Service <cce_10_0355>`
 -  :ref:`Enabling a LoadBalancer Service to Obtain the Client IP Address <cce_10_0916>`
 -  :ref:`Changing a Custom EIP for a LoadBalancer Service <cce_10_0924>`
--  :ref:`Setting the Pod Ready Status Through the ELB Health Check <cce_10_0685>`
+-  :ref:`Setting the Pod Readiness Status Through an ELB Health Check <cce_10_0685>`
 -  :ref:`Enabling ICMP Security Group Rules <cce_10_0084>`
 
 .. toctree::
@@ -34,5 +34,5 @@ LoadBalancer
    configuring_passthrough_networking_for_a_loadbalancer_service
    enabling_a_loadbalancer_service_to_obtain_the_client_ip_address
    changing_a_custom_eip_for_a_loadbalancer_service
-   setting_the_pod_ready_status_through_the_elb_health_check
+   setting_the_pod_readiness_status_through_an_elb_health_check
    enabling_icmp_security_group_rules

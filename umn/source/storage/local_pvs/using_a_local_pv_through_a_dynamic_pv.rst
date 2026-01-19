@@ -12,8 +12,8 @@ Prerequisites
 -  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 -  You have imported a data disk of a node to the local PV storage pool. For details, see :ref:`Importing a PV to a Storage Pool <cce_10_0642>`.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  Local PVs are supported only when the cluster version is v1.21.2-r0 or later and the Everest add-on version is 2.1.23 or later. Version 2.1.23 or later is recommended.
 -  :ref:`Removing <cce_10_0338>`, :ref:`deleting <cce_10_0186>`, :ref:`resetting <cce_10_0003>`, or :ref:`scaling <cce_10_0291>` a node will cause the loss of the PVC/PV data of the local PV associated with the node. The lost data cannot be restored, and the affected PVC/PV cannot be used again. In these scenarios, the pod that uses the local PV is evicted from the node. A new pod will be created and stay in the pending state. This is because the PVC used by the pod has a node label, due to which the pod cannot be scheduled. After the node is reset, the pod may be scheduled to the reset node. In this case, the pod remains in the creating state because the underlying logical volume corresponding to the PVC does not exist.
@@ -41,7 +41,7 @@ Dynamically Creating a Local PV Using the Console
       |                                       |                                                                                                                                                                                                                                                                     |
       |                                       | You can customize a StorageClass and configure its reclaim policy and binding mode. For details, see :ref:`Creating a StorageClass Through the Console <cce_10_0380__section1074117311660>`.                                                                        |
       +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | (Optional) Storage Volume Name Prefix | Available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest of v2.4.15 or later is installed in the cluster.                                                                                                  |
+      | (Optional) Storage Volume Name Prefix | Available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest v2.4.15 or later is installed in the cluster.                                                                                                     |
       |                                       |                                                                                                                                                                                                                                                                     |
       |                                       | This parameter specifies the name of the underlying storage that is automatically created. The actual underlying storage name is in the format of "Storage volume name prefix + PVC UID". If this parameter is left blank, the default prefix **pvc** will be used. |
       |                                       |                                                                                                                                                                                                                                                                     |
@@ -63,7 +63,7 @@ Dynamically Creating a Local PV Using the Console
 
    b. Click **Create** to create a PVC and a PV.
 
-      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PVCs** and **PVs** tab pages, respectively.
+      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PVCs** and **PVs** tabs, respectively.
 
       .. note::
 
@@ -139,7 +139,7 @@ Dynamically Creating a Local PV Using kubectl
          +-----------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | Parameter                         | Mandatory             | Description                                                                                                                                                                                                                                                         |
          +===================================+=======================+=====================================================================================================================================================================================================================================================================+
-         | everest.io/csi.volume-name-prefix | No                    | (Optional) This parameter is available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest of v2.4.15 or later is installed in the cluster.                                                                     |
+         | everest.io/csi.volume-name-prefix | No                    | (Optional) This parameter is available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest v2.4.15 or later is installed in the cluster.                                                                        |
          |                                   |                       |                                                                                                                                                                                                                                                                     |
          |                                   |                       | This parameter specifies the name of the underlying storage that is automatically created. The actual underlying storage name is in the format of "Storage volume name prefix + PVC UID". If this parameter is left blank, the default prefix **pvc** will be used. |
          |                                   |                       |                                                                                                                                                                                                                                                                     |

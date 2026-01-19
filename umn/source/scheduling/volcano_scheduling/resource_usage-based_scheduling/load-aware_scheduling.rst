@@ -58,7 +58,7 @@ Using Cloud Native Cluster Monitoring
 
    If no Metrics API is found, you can manually create an APIService object to enable it.
 
-   a. Create a file named **metrics-apiservice.yaml**. The file content is as follows:
+   a. Create a file named **metrics-apiservice.yaml**. Example file content:
 
       .. code-block::
 
@@ -272,7 +272,7 @@ Using Cloud Native Cluster Monitoring
 
 #. Enable load-aware scheduling.
 
-   After Volcano is installed, you can enable or disable load-aware scheduling on the **Scheduling** page by choose **Settings** in the navigation pane. This function is disabled by default.
+   After Volcano is installed, you can enable or disable load-aware scheduling on the **Scheduling** page by choosing **Settings** in the navigation pane. This function is disabled by default.
 
    a. Log in to the CCE console and click the cluster name to access the cluster console.
    b. Choose **Settings** in the navigation pane and click the **Scheduling** tab.
@@ -357,7 +357,7 @@ Using On-premises Prometheus
 
    If any command output is displayed, Custom Metrics API has been enabled. If no command output is displayed, perform the following operations to register the APIService object. (Note that the Service name and namespace must be consistent with those in the actual installation environment.) The following uses the default values of kube-prometheus.
 
-   a. Create a file named **custom-metrics-apiservice.yaml**. The file content is as follows:
+   a. Create a file named **custom-metrics-apiservice.yaml**. Example file content:
 
       .. code-block::
 
@@ -468,7 +468,7 @@ Using On-premises Prometheus
 
    b. In the navigation pane, choose **Settings**. Then, click the **Scheduling** tab.
 
-   c. In the expert mode, click **Try Now**.
+   c. In **Expert mode**, click **Try Now**.
 
    d. In the Volcano Scheduler settings, load-aware scheduling is disabled by default. You need to add the parameters in expert mode to enable this function.
 
@@ -540,8 +540,8 @@ Using On-premises Prometheus
          | name                  | usage                 | The name of the enabled add-on. The value is fixed as **usage**.                                                                                                                                                                                                                                           |
          +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. |image1| image:: /_static/images/en-us_image_0000002434240760.png
-.. |image2| image:: /_static/images/en-us_image_0000002434080944.png
-.. |image3| image:: /_static/images/en-us_image_0000002434080952.png
-.. |image4| image:: /_static/images/en-us_image_0000002434240756.png
-.. |image5| image:: /_static/images/en-us_image_0000002467679261.png
+.. |image1| image:: /_static/images/en-us_image_0000002483959498.png
+.. |image2| image:: /_static/images/en-us_image_0000002516079443.png
+.. |image3| image:: /_static/images/en-us_image_0000002516079449.png
+.. |image4| image:: /_static/images/en-us_image_0000002483959494.png
+.. |image5| image:: /_static/images/en-us_image_0000002516079445.png

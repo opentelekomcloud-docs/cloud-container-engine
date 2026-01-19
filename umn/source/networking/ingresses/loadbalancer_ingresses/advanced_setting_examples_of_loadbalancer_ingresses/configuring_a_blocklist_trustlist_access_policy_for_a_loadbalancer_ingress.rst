@@ -27,7 +27,7 @@ Notes and Constraints
 ---------------------
 
 -  After a blocklist or trustlist access policy is configured, if you delete the blocklist or trustlist access policy configuration on the CCE console or delete the target annotation from the YAML file, the configuration on the ELB will be retained.
--  If multiple ingresses share the same external port on a load balancer, you are advised to use the same blocklist/trustlist configuration for these ingresses. Otherwise, the configuration of the first created ingress will take precedence. For details, see :ref:`Configuring Multiple Ingresses to Use the Same Load Balancer <cce_10_0954>`.
+-  If multiple ingresses share the same external port on a load balancer, you are advised to use the same blocklist/trustlist configuration for these ingresses. Otherwise, the configuration of the first created ingress will take precedence. For details, see :ref:`Configuring Multiple Ingresses in a Cluster to Use the Same Load Balancer <cce_10_0954>`.
 
 Using the CCE Console to Configure a Blocklist/Trustlist Access Policy
 ----------------------------------------------------------------------
@@ -107,7 +107,7 @@ Using kubectl to Configure a Blocklist/Trustlist Access Policy
                 service:
                   name: <your_service_name>  # Replace it with the name of your target Service.
                   port:
-                    number: 80             # Replace 80 with the port number of your target Service.
+                    number: 80             # Replace the number with that of your target Service.
               property:
                 ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
               pathType: ImplementationSpecific

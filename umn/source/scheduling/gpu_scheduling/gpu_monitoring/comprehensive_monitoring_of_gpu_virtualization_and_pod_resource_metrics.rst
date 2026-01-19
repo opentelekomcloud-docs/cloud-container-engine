@@ -105,5 +105,5 @@ To view GPU metrics in Grafana, install Grafana and enable **Public Access**. Gr
 
       Cloud Native Cluster Monitoring does not automatically collect :ref:`GPU pod monitoring metrics <cce_10_0955__table18614557123814>`. To view data in Grafana, set up a dashboard. For details, see "Monitoring > Collecting GPU Pod Monitoring Metrics and Setting Up a Grafana Dashboard" in *Best Practices*.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467678141.png
-.. |image2| image:: /_static/images/en-us_image_0000002467678129.png
+.. |image1| image:: /_static/images/en-us_image_0000002516198941.png
+.. |image2| image:: /_static/images/en-us_image_0000002516078931.png

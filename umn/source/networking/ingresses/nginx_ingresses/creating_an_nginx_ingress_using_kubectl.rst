@@ -40,7 +40,7 @@ Notes and Constraints
 -  The URL registered in an ingress forwarding policy must be the same as the URL used to access the backend Service. Otherwise, a 404 error will be returned.
 -  The selected or created load balancer must be in the same VPC as the current cluster, and it must match the load balancer type (private or public network).
 -  The load balancer has at least two listeners, and ports 80 and 443 are not occupied by listeners.
--  When NGINX Ingress Controller accesses a dedicated load balancer and the service affinity is set to the node level, the load balancer's IP address may fail to be accessed within the cluster. For details, see :ref:`Why a Service Fail to Be Accessed from Within the Cluster <cce_10_0249__section52631714117>`.
+-  When NGINX Ingress Controller accesses a dedicated load balancer and the service affinity is set to the node level, the load balancer's IP address may fail to be accessed within the cluster. For details, see :ref:`Why a Service Fails to Be Accessed from Within the Cluster <cce_10_0249__section52631714117>`.
 
 Creating an Nginx Ingress
 -------------------------
@@ -183,4 +183,4 @@ Creating an Nginx Ingress
 
    **121.**.**.*\*** indicates the IP address of the unified load balancer.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434239760.png
+.. |image1| image:: /_static/images/en-us_image_0000002516079007.png

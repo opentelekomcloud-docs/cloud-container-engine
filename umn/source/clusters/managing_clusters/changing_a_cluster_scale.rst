@@ -36,4 +36,4 @@ Helpful Links
 
 When a cluster is scaled to 1,000 nodes or more, some parameter values of the cluster are adjusted accordingly to ensure optimal performance. For details, see :ref:`Modifying Cluster Configurations <cce_10_0213>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434240112.png
+.. |image1| image:: /_static/images/en-us_image_0000002483959168.png

@@ -10,8 +10,8 @@ Check Items
 
 Check the historical upgrade records of the cluster and confirm that the current version of the cluster meets the requirements for upgrading to the target version.
 
-Solution
---------
+Solutions
+---------
 
 Upgrading your cluster from an earlier version can be risky and may result in this issue. To avoid this, it is recommended that you migrate the cluster beforehand.
 

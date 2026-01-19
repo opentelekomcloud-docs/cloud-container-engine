@@ -30,20 +30,24 @@ The CPU management policy does not apply to ECS (PM) nodes in CCE Turbo clusters
 
 .. _cce_10_0351__section173918176434:
 
-Enabling CPU Management for the Default Node Pool
--------------------------------------------------
+Configuring a Cluster-level CPU Management Policy (Nodes in **DefaultPool** Supported)
+--------------------------------------------------------------------------------------
 
-When creating a cluster, you can enable CPU management in **Advanced Settings**.
+When creating a cluster, you can enable CPU management in the **Advanced Settings** area. This setting applies to the entire cluster, and cluster-level CPU management policies **cannot be modified after the cluster creation**. If CPU management is not enabled during cluster creation, the nodes in **DefaultPool** will not support changes to CPU management policies. To apply CPU management policies, you must create a custom node pool and configure the desired settings for its nodes.
 
 -  If this function is enabled, the **static** Kubernetes policy is used, where CPU pinning is used.
 -  If this function is disabled, the **none** Kubernetes policy is used, where CPU pinning is not used.
 
 .. _cce_10_0351__section1460719557453:
 
-Enabling CPU Management for a Custom Node Pool
-----------------------------------------------
+Configuring a Node Pool-level CPU Management Policy
+---------------------------------------------------
 
-You can configure a CPU management policy in a custom node pool. After the configuration, the kubelet parameter **--cpu-manager-policy** will be automatically modified on the node in the node pool.
+You can configure a CPU management policy for a custom node pool. After the configuration, the kubelet parameter **--cpu-manager-policy** will be automatically modified on the nodes in the node pool.
+
+.. note::
+
+   The default node pool (**DefaultPool**) adheres to the cluster-level CPU management policies, and its CPU management policies cannot be modified.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right. Locate the target node pool and choose **More** > **Manage**.
@@ -55,7 +59,7 @@ Allowing Pods to Exclusively Use the CPU Resources
 
 Prerequisites:
 
--  Enable the **static** policy on the node. For details, see :ref:`Enabling CPU Management for the Default Node Pool <cce_10_0351__section173918176434>`.
+-  Enable the **static** policy on the node. For details, see :ref:`Configuring a Cluster-level CPU Management Policy (Nodes in DefaultPool Supported) <cce_10_0351__section173918176434>`.
 -  Both requests and limits must be configured in pods and their values must be the same integer.
 
 You can use :ref:`node affinity scheduling <cce_10_0892>` to schedule the configured pods to the nodes where the **static** policy is enabled. In this way, the pods can exclusively use the CPU resources.

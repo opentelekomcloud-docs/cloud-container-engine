@@ -33,4 +33,4 @@ Use either of the following methods:
 -  Rectify the APIService object in the error message. If the object is created by an add-on, ensure that the pod where the add-on locates is running properly.
 -  Delete the APIService object in the error message. If the object is created by an add-on, uninstall the add-on.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467677221.png
+.. |image1| image:: /_static/images/en-us_image_0000002516078121.png

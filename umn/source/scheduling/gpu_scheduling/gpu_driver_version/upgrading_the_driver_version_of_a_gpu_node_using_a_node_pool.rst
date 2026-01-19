@@ -91,5 +91,5 @@ Step 3: Verify the Driver Upgrade
 
 #. Confirm that the node and its services are running correctly. Then, perform the same operations on the remaining nodes in the node pool individually.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434080480.png
-.. |image2| image:: /_static/images/en-us_image_0000002467718941.png
+.. |image1| image:: /_static/images/en-us_image_0000002516079203.png
+.. |image2| image:: /_static/images/en-us_image_0000002483959260.png

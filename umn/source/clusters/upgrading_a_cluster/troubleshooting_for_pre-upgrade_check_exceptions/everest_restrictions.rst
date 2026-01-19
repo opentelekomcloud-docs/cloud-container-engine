@@ -15,12 +15,12 @@ Check whether there are any compatibility restrictions on the current Everest ad
    +-----------------------------------+-----------------------------------+
    | Add-on Name                       | Versions Involved                 |
    +===================================+===================================+
-   | everest                           | v1.0.2-v1.0.7                     |
+   | Everest                           | v1.0.2-v1.0.7                     |
    |                                   |                                   |
    |                                   | v1.1.1-v1.1.5                     |
    +-----------------------------------+-----------------------------------+
 
-Solution
---------
+Solutions
+---------
 
 There are compatibility restrictions on the current Everest add-on and it cannot be upgraded with the cluster upgrade. Contact technical support.

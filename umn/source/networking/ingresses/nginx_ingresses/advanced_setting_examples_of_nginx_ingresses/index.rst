@@ -6,6 +6,7 @@ Advanced Setting Examples of Nginx Ingresses
 ============================================
 
 -  :ref:`Configuring an HTTPS Certificate for an Nginx Ingress <cce_10_0693>`
+-  :ref:`Configuring SNI for an Nginx Ingress <cce_10_1076>`
 -  :ref:`Configuring HTTPS Backend Services for an Nginx Ingress <cce_10_0697>`
 -  :ref:`Configuring Consistent Hashing for Load Balancing of an Nginx Ingress <cce_10_0698>`
 -  :ref:`Nginx Ingress Usage Suggestions <cce_10_0857>`
@@ -17,6 +18,7 @@ Advanced Setting Examples of Nginx Ingresses
    :hidden: 
 
    configuring_an_https_certificate_for_an_nginx_ingress
+   configuring_sni_for_an_nginx_ingress
    configuring_https_backend_services_for_an_nginx_ingress
    configuring_consistent_hashing_for_load_balancing_of_an_nginx_ingress
    nginx_ingress_usage_suggestions

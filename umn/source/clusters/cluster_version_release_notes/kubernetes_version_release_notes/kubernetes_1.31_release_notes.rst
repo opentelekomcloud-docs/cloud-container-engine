@@ -74,4 +74,4 @@ For details about cluster version updates, see :ref:`Patch Versions <cce_10_0405
 References
 ----------
 
-For more details about the performance comparison and function evolution between Kubernetes 1.31 and other versions, see `Kubernetes v1.31 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.31.md>`__.
+For more details about the performance comparison and functional evolution between Kubernetes 1.31 and other versions, see `Kubernetes v1.31 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.31.md>`__.

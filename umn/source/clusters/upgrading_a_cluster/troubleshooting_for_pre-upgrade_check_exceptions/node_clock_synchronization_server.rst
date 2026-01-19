@@ -10,17 +10,17 @@ Check Items
 
 Check whether the clock synchronization server ntpd or chronyd of the node is running properly.
 
-Solution
---------
+Solutions
+---------
 
 -  **Scenario 1: ntpd is running abnormally.**
 
-   Log in to the node and run the **systemctl status ntpd** command to obtain the running status of ntpd. If the command output is abnormal, run the **systemctl restart ntpd** command and obtain the status again.
+   Log in to the node and run the **systemctl status ntpd** command to obtain the status of ntpd. If the command output is abnormal, run the **systemctl restart ntpd** command and obtain the status again.
 
    The normal command output is as follows:
 
 
-   .. figure:: /_static/images/en-us_image_0000002434240588.png
+   .. figure:: /_static/images/en-us_image_0000002483959640.png
       :alt: **Figure 1** Running status of ntpd
 
       **Figure 1** Running status of ntpd
@@ -34,7 +34,7 @@ Solution
    The normal command output is as follows:
 
 
-   .. figure:: /_static/images/en-us_image_0000002434080772.png
+   .. figure:: /_static/images/en-us_image_0000002516079589.png
       :alt: **Figure 2** Running status of chronyd
 
       **Figure 2** Running status of chronyd

@@ -43,26 +43,26 @@ Using the CCE Console
 
       -  This section uses an existing load balancer as an example. For details about the parameters for automatically creating a load balancer, see :ref:`Table 1 <cce_10_0681__table026610571395>`.
 
-   -  **Ports**
+   -  **Port**
 
       -  **Protocol**: Select **TCP**. If you select **UDP**, HTTP and HTTPS will be unavailable.
-      -  **Service Port**: the port used by the Service. The port number ranges from 1 to 65535.
+      -  **Service Port**: the port used by the Service. The port ranges from 1 to 65535.
       -  **Container Port**: the port that the workload listens on. For example, Nginx uses port 80 by default.
       -  **Frontend Protocol**: In this example, HTTPS must be enabled for the Service to use HTTP/2. For a :ref:`dedicated load balancer <cce_10_0842__li1995101610373>`, to use HTTP/HTTPS, the type of the load balancer must be **Application (HTTP/HTTPS)**.
 
    -  **Listener**
 
-      -  SSL authentication is available only in clusters of v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later versions.
+      -  SSL authentication is available only in dedicated load balancers in clusters of v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later versions.
 
          -  **One-way authentication**: Only the backend server is authenticated. If you also need to authenticate the identity of the client, select two-way authentication.
          -  **Two-way authentication**: Both the clients and the load balancer authenticate each other. This ensures only authenticated clients can access the load balancer. No additional backend server configuration is required if you select this option.
 
-      -  **CA Certificate**: If **SSL Authentication** is set to **Two-way authentication**, add a CA certificate to authenticate the client. A CA certificate is issued by a Certificate Authority (CA) and is used to verify the issuer of the client's certificate. If HTTPS mutual authentication is enabled, HTTPS connections can be established only if the client provides a certificate issued by a specific CA.
+      -  **CA Certificate**: If **SSL Authentication** is set to **Two-way authentication**, add a CA certificate to authenticate the client. A CA certificate is issued by a Certificate Authority (CA) and is used to verify the issuer of the client's certificate. If HTTPS two-way authentication is enabled, HTTPS connections can be established only if the client provides a certificate issued by a specific CA.
       -  **Server Certificate**: Select a server certificate when HTTPS is used.
       -  **SNI**: Add an SNI certificate containing a domain name.
       -  **Advanced Options**: Click **Add advanced options** and enable HTTP/2.
 
-#. Click **Create**.
+#. Click **OK**.
 
 Using kubectl
 -------------
