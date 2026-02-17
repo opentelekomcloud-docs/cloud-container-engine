@@ -32,6 +32,7 @@ Cluster Management
 -  :ref:`Updating a Specified Node Pool <cce_02_0356>`
 -  :ref:`Listing All Node Pools in a Specified Cluster <cce_02_0269>`
 -  :ref:`Deleting a Node Pool <cce_02_0357>`
+-  :ref:`Synchronizing Node Pool Configurations to Existing Nodes <cce_02_0358>`
 
 .. toctree::
    :maxdepth: 1
@@ -64,3 +65,4 @@ Cluster Management
    updating_a_specified_node_pool
    listing_all_node_pools_in_a_specified_cluster
    deleting_a_node_pool
+   synchronizing_node_pool_configurations_to_existing_nodes

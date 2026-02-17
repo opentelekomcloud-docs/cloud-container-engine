@@ -44,7 +44,7 @@ The basic logic for field matching is as follows:
    |image2|
 
    a. In step 1, the first disk in **dataVolumes** is matched by the EVS disk whose size is 100 GiB and storage class is SAS. In step 2, the second disk in **dataVolumes** is matched by the EVS disk whose size is 100 GiB because the first disk has been selected.
-   b. In step 3, two disks in **dataVolumes** can be matched because **volumeType** or **count** is not specified in **matchLabels**. In this case, no disk is available for matching in step 4.
+   b. In step 3, two disks in **dataVolumes** can be matched because **volumeType** or **count** is not specified. In this case, no disk is available for matching in step 4.
 
 #. **storageGroups** associates with **storageSelectors** based on **selectorName**. Finally, two 100 GiB disks are selected. The CCE backend groups the two PVs into a volume group (VG) and divides the VG into two logical volumes (LVs) in the ratio of 9:1. 10% of Kubernetes LVs are partitioned in striped mode. 90% runtime LVs are partitioned in linear mode by default because runtimeConfig is not configured.
 
@@ -278,7 +278,7 @@ Currently, the striped LV function is supported only by calling an API. The foll
 
 |image7|
 
-#. **storageSelectors** matches all EVS disks in **dataVolumes** because **matchLabels** is not contained in **storageSelectors**.
+#. If **matchLabels** in **storageSelectors** is empty, all EVS disks will be selected.
 #. Create a VG named **vgpaas** using LVM.
 #. Strip 90% of the **vgpaas** space into runtime LVs.
 #. Strip 10% of the **vgpaas** space into Kubernetes LVs.

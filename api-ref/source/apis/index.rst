@@ -13,6 +13,7 @@ APIs
 -  :ref:`Configuration Management <configuration_lifecycle_management>`
 -  :ref:`Tag Management <tags_lifecycle_management>`
 -  :ref:`Add-on Instance Parameters <cce_02_0366>`
+-  :ref:`Job Management <job_lifecycle_management>`
 
 .. toctree::
    :maxdepth: 1
@@ -26,3 +27,4 @@ APIs
    configuration_management/index
    tag_management/index
    add-on_instance_parameters/index
+   job_management/index
