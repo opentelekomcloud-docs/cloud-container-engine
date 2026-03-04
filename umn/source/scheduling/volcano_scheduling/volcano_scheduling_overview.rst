@@ -13,7 +13,7 @@ Volcano Scheduler
 Volcano Scheduler is a pod scheduling component, which consists of a series of actions and plugins. Actions should be executed in every step. Plugins provide the action algorithm details in different scenarios. Volcano Scheduler features high scalability. You can specify actions and plugins as needed.
 
 
-.. figure:: /_static/images/en-us_image_0000002434240368.png
+.. figure:: /_static/images/en-us_image_0000002483959460.png
    :alt: **Figure 1** Volcano Scheduler workflow
 
    **Figure 1** Volcano Scheduler workflow
@@ -22,7 +22,7 @@ The working process of Volcano Scheduler is as follows:
 
 #. Identify and cache the job submitted by the client.
 #. Start a periodical session. A scheduling cycle begins.
-#. Send jobs that are not scheduled the to-be-scheduled queue of the session.
+#. Send jobs that are not scheduled to the to-be-scheduled queue of the session.
 #. Traverse all jobs to be scheduled and perform actions such as enqueue, allocate, preempt, reclaim, and backfill in the configured sequence to find the most appropriate node for each job. Bind the job to the node. The specific algorithm logic executed in **action** depends on the implementation of each function in the registered plugin.
 #. Close the session.
 

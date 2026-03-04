@@ -7,7 +7,7 @@ Cluster
 
 -  :ref:`Suggestions on CCE Cluster Selection <cce_bestpractice_10016>`
 -  :ref:`Creating an IPv4/IPv6 Dual-Stack Cluster in CCE <cce_bestpractice_00222>`
--  :ref:`Executing the Pre- or Post-installation Commands During Node Creation <cce_bestpractice_10020>`
+-  :ref:`Executing the Pre- or Post-installation Commands During Node Creation <cce_bestpractice_10020_0>`
 -  :ref:`Connecting to Multiple Clusters Using kubectl <cce_bestpractice_00254>`
 -  :ref:`Selecting a Data Disk for the Node <cce_bestpractice_10012>`
 -  :ref:`Protecting a CCE Cluster Against Overload <cce_bestpractice_10024>`

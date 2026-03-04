@@ -10,8 +10,8 @@ Check Items
 
 Verify that the master nodes in your cluster have more than 2 CPU cores.
 
-Solution
---------
+Solutions
+---------
 
 The master nodes have only 2 CPU cores, which may lead to a cluster upgrade failure.
 

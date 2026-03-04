@@ -5,8 +5,8 @@
 How Do I Locate a Workload Networking Fault?
 ============================================
 
-Troubleshooting
----------------
+Fault Locating
+--------------
 
 The issues here are described in order of how likely they are to occur.
 
@@ -114,4 +114,4 @@ Log in to the management console and choose **Service List** > **Networking** > 
 
 For details about security group configuration, see :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
 
-.. |image1| image:: /_static/images/en-us_image_0000002434238492.png
+.. |image1| image:: /_static/images/en-us_image_0000002484117954.png

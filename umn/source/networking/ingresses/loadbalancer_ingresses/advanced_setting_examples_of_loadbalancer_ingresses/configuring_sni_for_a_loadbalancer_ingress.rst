@@ -7,7 +7,7 @@ Configuring SNI for a LoadBalancer Ingress
 
 An SNI certificate is an extended server certificate that allows the same IP address and port number to provide multiple access domain names for external systems. Different security certificates can be used based on the domain names requested by clients to ensure HTTPS communication security.
 
-When configuring SNI, set both the default server certificate and the SNI certificate bound to the target domain name. During the SSL handshake, the client sends the requested domain name. Upon receiving the request, the load balancer searches for the corresponding SNI certificate. If found, it returns that certificate to the client. Otherwise, it returns the default server certificate.
+Configure SNI by setting both the default server certificate and the SNI certificate associated with the specific domain name. In the SSL handshake, the client provides the requested domain name. The load balancer then checks for the matching SNI certificate based on the domain name. It returns this certificate if available. Otherwise, it uses the default server certificate.
 
 You are allowed to use either of the following ways to configure an ingress certificate in a cluster:
 
@@ -21,7 +21,7 @@ Prerequisites
 
 -  A Service for external access has been configured for the workload. :ref:`Services Supported by LoadBalancer Ingresses <cce_10_0094__section3565202819276>` lists the Service types supported by LoadBalancer ingresses.
 
--  You have obtained a trusted server certificate and SNI certificate from a certificate provider.
+-  You have obtained a trusted server certificate and an SNI certificate from your certificate provider.
 
 -  When using a TLS certificate to configure SNI, create an IngressTLS or kubernetes.io/tls secret for the certificate. For details about how to create a secret, see :ref:`Creating a Secret <cce_10_0153>`.
 
@@ -138,7 +138,7 @@ In this example, the **sni-test-secret** SNI certificate is used as an example. 
                 service:
                   name: <your_service_name>  # Replace it with the name of your target Service.
                   port:
-                    number: 80             # Replace 80 with the port number of your target Service.
+                    number: 80             # Replace it with the port number of your target Service.
               property:
                 ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
               pathType: ImplementationSpecific
@@ -315,7 +315,7 @@ To use an ELB certificate for an ingress, you can specify the **kubernetes.io/el
                     service:
                       name: <your_service_name>  # Replace it with the name of your target Service.
                       port:
-                        number: 80             # Replace 80 with the port number of your target Service.
+                        number: 80             # Replace it with the port number of your target Service.
                   property:
                     ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
                   pathType: ImplementationSpecific

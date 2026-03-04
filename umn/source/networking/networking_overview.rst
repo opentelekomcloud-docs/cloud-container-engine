@@ -29,7 +29,7 @@ Cluster networks are the core of Kubernetes. They ensure that containers in a cl
 -  **Container network**: Pods in a cluster are allocated independent IP addresses. All pods in a cluster are on a flat network and can be accessed using their IP addresses without NAT. Kubernetes uses `Container Network Interface (CNI) <https://github.com/containernetworking/cni>`__ to standardize the network between containers. Network model plugins are used to allocate independent IP addresses to pods for flat network communications in a cluster. Different network models have different allocation principles.
 
 
-   .. figure:: /_static/images/en-us_image_0000002467719141.png
+   .. figure:: /_static/images/en-us_image_0000002483959592.png
       :alt: **Figure 1** Container network
 
       **Figure 1** Container network
@@ -76,9 +76,9 @@ Services forward requests using TCP and UDP at Layer 4. Ingresses forward reques
 
 
 .. figure:: /_static/images/en-us_image_0258961458.png
-   :alt: **Figure 3** An ingress and associated Services
+   :alt: **Figure 3** An ingress and its associated Services
 
-   **Figure 3** An ingress and associated Services
+   **Figure 3** An ingress and its associated Services
 
 For details about the ingress, see :ref:`Ingress Overview <cce_10_0094>`.
 
@@ -88,7 +88,7 @@ DNS
 CCE uses CoreDNS to implement service discovery in a cluster. For example, a client can access backend pods through a ClusterIP Service whose name is mapped to a cluster-scoped virtual IP address. This approach decouples the invoking between applications in a cluster from specific IP addresses and deployment environments. For details about the cluster DNS settings, see :ref:`DNS Overview <cce_10_0360>`.
 
 
-.. figure:: /_static/images/en-us_image_0000002467679373.png
+.. figure:: /_static/images/en-us_image_0000002516079535.png
    :alt: **Figure 4** Example of domain name resolution in a cluster
 
    **Figure 4** Example of domain name resolution in a cluster
@@ -112,7 +112,7 @@ Workload access scenarios can be categorized as follows:
    -  Accessing a public network: Assign an EIP to the node where the workload runs (when a VPC network or tunnel network is used), bind an EIP to the pod IP address (when Cloud Native Network 2.0 is used), or configure an SNAT rule on the NAT gateway. For details, see :ref:`Accessing the Internet from a Container <cce_10_0400>`.
 
 
-.. figure:: /_static/images/en-us_image_0000002434080684.png
+.. figure:: /_static/images/en-us_image_0000002516199539.png
    :alt: **Figure 5** Network access diagram
 
    **Figure 5** Network access diagram

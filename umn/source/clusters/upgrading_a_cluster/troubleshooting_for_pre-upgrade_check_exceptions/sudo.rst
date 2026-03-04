@@ -8,10 +8,10 @@ sudo
 Check Items
 -----------
 
-Check whether the sudo commands and sudo-related files of the node are working.
+Check whether the sudo command and sudo-related files of the node are working.
 
-Solution
---------
+Solutions
+---------
 
 -  Scenario 1: The sudo command fails to be executed.
 

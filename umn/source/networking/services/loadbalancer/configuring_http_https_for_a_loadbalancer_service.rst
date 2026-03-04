@@ -10,25 +10,29 @@ By default, a Layer 4 TCP/UDP listener is created for a LoadBalancer Service. Yo
 Notes and Constraints
 ---------------------
 
--  Only clusters of v1.19.16 or later support HTTP or HTTPS.
+-  Clusters must meet version requirements to expose HTTP/HTTPS Services.
 
    .. _cce_10_0683__table13284135311563:
 
    .. table:: **Table 1** Scenarios where a load balancer supports HTTP or HTTPS
 
-      +-------------------------+------------------------------------------------+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | ELB Type                | Application                                    | Whether to Support HTTP or HTTPS | Description                                                                                                                                                                        |
-      +=========================+================================================+==================================+====================================================================================================================================================================================+
-      | Shared load balancer    | Interconnecting with an existing load balancer | Supported                        | None                                                                                                                                                                               |
-      +-------------------------+------------------------------------------------+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      |                         | Automatically creating a load balancer         | Supported                        | None                                                                                                                                                                               |
-      +-------------------------+------------------------------------------------+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Dedicated load balancer | Interconnecting with an existing load balancer | Supported                        | -  For versions earlier than v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10, or v1.27.1-r10, load balancer specifications must **support both layer-4 and layer-7 routing**. |
-      |                         |                                                |                                  | -  For v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10, v1.27.1-r10, and later versions, load balancer specifications must **support layer-7 routing**.                       |
-      +-------------------------+------------------------------------------------+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      |                         | Automatically creating a load balancer         | Supported                        | -  For versions earlier than v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10, or v1.27.1-r10, load balancer specifications must **support both layer-4 and layer-7 routing**. |
-      |                         |                                                |                                  | -  For v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10, v1.27.1-r10, and later versions, load balancer specifications must **support layer-7 routing**.                       |
-      +-------------------------+------------------------------------------------+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-------------------------+------------------------------------------------+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | ELB Type                | Application                                    | Whether to Support HTTP or HTTPS | Description                                                                                                                                                                 |
+      +=========================+================================================+==================================+=============================================================================================================================================================================+
+      | Shared load balancer    | Interconnecting with an existing load balancer | Supported                        | None                                                                                                                                                                        |
+      +-------------------------+------------------------------------------------+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      |                         | Automatically creating a load balancer         | Supported                        | None                                                                                                                                                                        |
+      +-------------------------+------------------------------------------------+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Dedicated load balancer | Interconnecting with an existing load balancer | Supported                        | Clusters must be of v1.19.16 or later. Requirements on ELB specifications vary depending on the following minor versions:                                                   |
+      |                         |                                                |                                  |                                                                                                                                                                             |
+      |                         |                                                |                                  | -  The ELB must **support both network and application types** for clusters of a version earlier than v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.27.1-r10, or v1.25.4-r10. |
+      |                         |                                                |                                  | -  The ELB must **support the application type** for clusters of v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10, v1.27.1-r10, or later.                               |
+      +-------------------------+------------------------------------------------+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      |                         | Automatically creating a load balancer         | Supported                        | Clusters must be of v1.19.16 or later. Requirements on ELB specifications vary depending on the following minor versions:                                                   |
+      |                         |                                                |                                  |                                                                                                                                                                             |
+      |                         |                                                |                                  | -  The ELB must **support both network and application types** for clusters of a version earlier than v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.27.1-r10, or v1.25.4-r10. |
+      |                         |                                                |                                  | -  The ELB must **support the application type** for clusters of v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10, v1.27.1-r10, or later.                               |
+      +-------------------------+------------------------------------------------+----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 -  Do not connect an ingress and an HTTP/HTTPS Service to the same listener of the same load balancer. Otherwise, a port conflict occurs.
 
@@ -50,11 +54,11 @@ Using the CCE Console
 
       -  This section uses an existing load balancer as an example. For details about the parameters for automatically creating a load balancer, see :ref:`Table 1 <cce_10_0681__table026610571395>`.
 
-   -  **Ports**
+   -  **Port**
 
       -  **Protocol**: Select **TCP**. If you select **UDP**, HTTP and HTTPS will be unavailable.
 
-      -  **Service Port**: the port used by the Service. The port number ranges from 1 to 65535.
+      -  **Service Port**: the port used by the Service. The port ranges from 1 to 65535.
 
       -  **Container Port**: the port that the workload listens on. For example, Nginx uses port 80 by default.
 
@@ -64,22 +68,22 @@ Using the CCE Console
 
    -  **Listener**
 
-      -  **SSL Authentication**: Select this option if :ref:`HTTPS <cce_10_0683__li8911126175719>` is enabled on the listener port. This parameter is available only in clusters of v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later versions.
+      -  **SSL Authentication**: Select this option if :ref:`HTTPS <cce_10_0683__li8911126175719>` is enabled on the listener port. Dedicated load balancers are available in clusters of v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later.
 
          -  **One-way authentication**: Only the backend server is authenticated. If you also need to authenticate the identity of the client, select two-way authentication.
          -  **Two-way authentication**: Both the clients and the load balancer authenticate each other. This ensures only authenticated clients can access the load balancer. No additional backend server configuration is required if you select this option.
 
-      -  **CA Certificate**: If **SSL Authentication** is set to **Two-way authentication**, add a CA certificate to authenticate the client. A CA certificate is issued by a Certificate Authority (CA) and is used to verify the issuer of the client's certificate. If HTTPS mutual authentication is enabled, HTTPS connections can be established only if the client provides a certificate issued by a specific CA.
-      -  **Server Certificate**: If :ref:`HTTPS <cce_10_0683__li8911126175719>` is enabled on the listener port, you must select a server certificate.
-      -  **SNI**: If :ref:`HTTPS <cce_10_0683__li8911126175719>` is enabled on the listener port, you must determine whether to add an SNI certificate. Before adding an SNI certificate, ensure the certificate contains a domain name.
-      -  **Security Policy**: If :ref:`HTTPS <cce_10_0683__li8911126175719>` is enabled on the listener port, you can select a security policy. This parameter is available only in clusters of v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later versions.
-      -  **Backend Protocol**: If :ref:`HTTPS <cce_10_0683__li8911126175719>` is enabled on the listener port, HTTP or HTTPS can be used to access the backend server. The default value is **HTTP**. This parameter is available only in clusters of v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later versions.
+      -  **CA Certificate**: If **SSL Authentication** is set to **Two-way authentication**, add a CA certificate to authenticate the client. A CA certificate is issued by a Certificate Authority (CA) and is used to verify the issuer of the client's certificate. If HTTPS two-way authentication is enabled, HTTPS connections can be established only if the client provides a certificate issued by a specific CA.
+      -  **Server Certificate**: If **Frontend Protocol** is set to **HTTPS** or **TLS**, you must select a server certificate.
+      -  **SNI**: If **Frontend Protocol** is set to **HTTPS** or **TLS**, you must determine whether to add an SNI certificate. Before adding an SNI certificate, ensure the certificate contains a domain name.
+      -  **Security Policy**: If **Frontend Protocol** is set to **HTTPS**, you can select a security policy. This parameter is available only in clusters of v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later.
+      -  **Backend Protocol**: If **Frontend Protocol** is set to **HTTPS**, HTTP or HTTPS can be used to access the backend server. The default value is **HTTP**. This parameter is available only in clusters of v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later.
 
       .. note::
 
          If multiple HTTPS Services are released, all listeners will use the same certificate configuration.
 
-#. Click **Create**.
+#. Click **OK**.
 
 Using kubectl
 -------------
@@ -138,19 +142,25 @@ The following uses an automatically created dedicated load balancer as an exampl
 
 .. table:: **Table 2** Key parameters
 
-   +---------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Parameter                       | Type                  | Description                                                                                                                                     |
-   +=================================+=======================+=================================================================================================================================================+
-   | kubernetes.io/elb.protocol-port | String                | If a Service is TLS/HTTP/HTTPS-compliant, configure the protocol and port number in the format of "protocol:port".                              |
-   |                                 |                       |                                                                                                                                                 |
-   |                                 |                       | where,                                                                                                                                          |
-   |                                 |                       |                                                                                                                                                 |
-   |                                 |                       | -  **protocol**: specifies the protocol used by the listener port. The value can be **tls**, **http**, or **https**.                            |
-   |                                 |                       | -  **port**: Service port specified by **spec.ports[].port**.                                                                                   |
-   |                                 |                       |                                                                                                                                                 |
-   |                                 |                       | In this example, ports 443 and 80 are enabled with HTTPS and HTTP, respectively. Therefore, the parameter value is *https:443,http:80*.         |
-   +---------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-   | kubernetes.io/elb.cert-id       | String                | ID of an ELB certificate, which is used as the TLS/HTTPS server certificate.                                                                    |
-   |                                 |                       |                                                                                                                                                 |
-   |                                 |                       | How to obtain: Log in to the ELB console and choose **Certificates**. In the load balancer list, copy the ID under the target certificate name. |
-   +---------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+   +-------------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter                           | Type                  | Description                                                                                                                                   |
+   +=====================================+=======================+===============================================================================================================================================+
+   | kubernetes.io/elb.protocol-port     | String                | If a Service is TLS/HTTP/HTTPS-compliant, configure the protocol and port number in the format of "protocol:port".                            |
+   |                                     |                       |                                                                                                                                               |
+   |                                     |                       | where,                                                                                                                                        |
+   |                                     |                       |                                                                                                                                               |
+   |                                     |                       | -  **protocol**: specifies the protocol used by the listener port. The value can be **tls**, **http**, or **https**.                          |
+   |                                     |                       | -  **port**: Service port specified by **spec.ports[].port**.                                                                                 |
+   |                                     |                       |                                                                                                                                               |
+   |                                     |                       | In this example, ports 443 and 80 are enabled with HTTPS and HTTP, respectively. Therefore, the parameter value is *https:443,http:80*.       |
+   +-------------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+   | kubernetes.io/elb.cert-id           | String                | ID of an ELB certificate, which is used as the TLS/HTTPS server certificate.                                                                  |
+   |                                     |                       |                                                                                                                                               |
+   |                                     |                       | How to obtain: Log in to the ELB console and choose **Certificates**. In the certificate list, copy the ID under the target certificate name. |
+   +-------------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+   | kubernetes.io/elb.client-ca-cert-id | String                | Required only for mutual authentication. The ELB certificate ID serves as the CA certificate.                                                 |
+   |                                     |                       |                                                                                                                                               |
+   |                                     |                       | How to obtain: Log in to the ELB console and choose **Certificates**. In the certificate list, copy the ID under the target certificate name. |
+   |                                     |                       |                                                                                                                                               |
+   |                                     |                       | Dedicated load balancers are available in clusters of v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later.                              |
+   +-------------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+

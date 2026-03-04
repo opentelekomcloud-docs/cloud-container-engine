@@ -40,7 +40,7 @@ Solution
 
 This section describes how to set a custom storage class in CCE and how to set the default storage class. You can specify different types of storage resources by setting **storageClassName**.
 
--  For the first scenario, you can define custom storageClassNames for SAS and SSD EVS disks. For example, define a storage class named **csi-disk-sas** for creating SAS disks. The following figure shows the differences before and after you use a custom storage class.
+-  For the first scenario, you can define custom storageClassNames for SAS and SSD EVS disks. For example, define a storage class named **csi-disk-sas** for creating SAS disks. The figure below shows the differences before and after you use a custom storage class. When writing a YAML file, you only need to specify **StorageClassName**. This meets the usage habits of specific users.
 
    |image1|
 
@@ -249,7 +249,7 @@ For an ultra-high I/O storage class, you can set the class name to **csi-disk-ss
 
 .. note::
 
-   The reclamation policy configured here has no impact on the SFS Turbo storage.
+   The reclamation policy configured here has no impact on the SFS Turbo volumes.
 
 If high data security is required, you are advised to select **Retain** to prevent data from being deleted by mistake.
 
@@ -498,4 +498,4 @@ The following steps are used to verify whether a PVC can be created without spec
 
    The result shows that if no storage class is specified, the system will automatically use the default storage class.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434238868.png
+.. |image1| image:: /_static/images/en-us_image_0000002516078763.png

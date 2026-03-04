@@ -26,7 +26,7 @@ New and Enhanced Features
 
 -  Pod scheduling readiness is in the GA state.
 
-   The pod scheduling readiness feature is advanced to GA. With this feature, you can add custom scheduling gates to a pod and manage when to eliminate them. The pod will only be deemed ready for scheduling once all scheduling gates have been removed. For details, see `Pod Scheduling Readiness <https://kubernetes.io/docs/concepts/scheduling-eviction/pod-scheduling-readiness/>`__.
+   The pod scheduling readiness feature is advanced to GA. With this feature, you can add custom scheduling gates to a pod and manage when to remove them. The pod will only be deemed ready for scheduling once all scheduling gates have been removed. For details, see `Pod Scheduling Readiness <https://kubernetes.io/docs/concepts/scheduling-eviction/pod-scheduling-readiness/>`__.
 
 -  Validating admission policies are in the GA state.
 
@@ -66,4 +66,4 @@ For details about cluster version updates, see :ref:`Patch Versions <cce_10_0405
 References
 ----------
 
-For more details about the performance comparison and function evolution between Kubernetes 1.30 and other versions, see `Kubernetes v1.30 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.30.md>`__.
+For more details about the performance comparison and functional evolution between Kubernetes 1.30 and other versions, see `Kubernetes v1.30 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.30.md>`__.

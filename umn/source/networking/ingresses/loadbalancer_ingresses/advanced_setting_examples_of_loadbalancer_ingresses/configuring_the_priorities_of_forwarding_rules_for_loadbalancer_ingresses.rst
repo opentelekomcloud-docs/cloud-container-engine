@@ -19,7 +19,7 @@ If the preceding annotations are not configured, the load balancer's :ref:`sorti
 For more details, see :ref:`Examples for Setting the Priorities of Forwarding Rules <cce_10_0939__section101086135489>`.
 
 
-.. figure:: /_static/images/en-us_image_0000002434079820.png
+.. figure:: /_static/images/en-us_image_0000002516198965.png
    :alt: **Figure 1** Customizing the priorities of forwarding rules
 
    **Figure 1** Customizing the priorities of forwarding rules

@@ -8,12 +8,12 @@ CoreDNS Configuration Consistency
 Check Items
 -----------
 
-Check whether the current CoreDNS key configuration Corefile is different from the Helm release record. The difference may be overwritten during the add-on upgrade, **affecting domain name resolution in the cluster**.
+Check whether the current CoreDNS key configuration Corefile is different from that in the Helm release record. The difference may be overwritten during the add-on upgrade, **affecting domain name resolution in the cluster**.
 
-Solution
---------
+Solutions
+---------
 
-You can upgrade CoreDNS separately after confirming the configuration differences.
+You can upgrade CoreDNS separately after confirming the configuration difference.
 
 #. Configure the **kubectl** command. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
@@ -28,7 +28,7 @@ You can upgrade CoreDNS separately after confirming the configuration difference
 
 #. .. _cce_10_0493__li111544111811:
 
-   Obtain the Corefile in the Helm Release records.
+   Obtain the Corefile in the Helm Release record.
 
    .. code-block::
 
@@ -48,14 +48,14 @@ You can upgrade CoreDNS separately after confirming the configuration difference
       " > corefile_record.txt
       cat corefile_record.txt
 
-#. Compare the output differences between :ref:`2 <cce_10_0493__li1178291934910>` and :ref:`3 <cce_10_0493__li111544111811>`.
+#. Compare the output between :ref:`2 <cce_10_0493__li1178291934910>` and :ref:`3 <cce_10_0493__li111544111811>`.
 
    .. code-block::
 
       diff corefile_now.txt corefile_record.txt -y;
 
 
-   .. figure:: /_static/images/en-us_image_0000002434081032.png
+   .. figure:: /_static/images/en-us_image_0000002516199557.png
       :alt: **Figure 1** Viewing output differences
 
       **Figure 1** Viewing output differences
@@ -72,7 +72,7 @@ You can upgrade CoreDNS separately after confirming the configuration difference
 
    -  Set **parameterSyncStrategy** to **force**. Manually enter the differential configuration. For details, see :ref:`CoreDNS <cce_10_0129>`.
 
-#. Click **OK**. After the add-on upgrade is complete, check whether all CoreDNS instances are available and whether Corefile meets the expectation.
+#. Click **OK**. After the add-on upgrade is complete, check whether all CoreDNS pods are available and whether Corefile meets the expectation.
 
    .. code-block::
 

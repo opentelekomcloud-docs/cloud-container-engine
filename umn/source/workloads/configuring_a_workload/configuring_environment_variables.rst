@@ -31,7 +31,7 @@ Before using a ConfigMap or secret as an environment variable, ensure that the C
 
    .. _cce_10_0113__fig164568529317:
 
-   .. figure:: /_static/images/en-us_image_0000002434239996.png
+   .. figure:: /_static/images/en-us_image_0000002484119078.png
       :alt: **Figure 1** Configuring environment variables
 
       **Figure 1** Configuring environment variables

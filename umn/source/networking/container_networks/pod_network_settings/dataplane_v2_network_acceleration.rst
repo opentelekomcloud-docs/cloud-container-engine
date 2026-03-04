@@ -5,7 +5,7 @@
 DataPlane V2 Network Acceleration
 =================================
 
-DataPlane V2 can be enabled for clusters that use VPC networks or Cloud Native 2.0 networks. Once enabled, eBPF redirection is supported, which allows the use of network policies.
+DataPlane V2 can be enabled in clusters that use VPC networks or Cloud Native Network 2.0. This function supports eBPF redirection for applying network policies.
 
 .. note::
 
@@ -16,9 +16,9 @@ DataPlane V2 can be enabled for clusters that use VPC networks or Cloud Native 2
 +===================================+==================================================================================================================================================================================================================================================================================================================================+
 | Technical implementation          | DataPlane V2 integrates open-source `Cilium <https://docs.cilium.io/en/stable/>`__ to provide capabilities such as network policies.                                                                                                                                                                                             |
 +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Supported cluster versions        | CCE standard clusters (using the VPC networks) of v1.27.16-r30, v1.28.15-r20, v1.29.13-r0, v1.30.10-r0, v1.31.6-r0, or later                                                                                                                                                                                                     |
+| Supported cluster versions        | CCE standard clusters using VPC networks for commercial use of v1.27.16-r30, v1.28.15-r20, v1.29.13-r0, v1.30.10-r0, v1.31.6-r0, or later                                                                                                                                                                                        |
 |                                   |                                                                                                                                                                                                                                                                                                                                  |
-|                                   | CCE Turbo clusters of v1.27.16-r10, v1.28.15-r0, v1.29.10-r0, v1.30.6-r0, or later                                                                                                                                                                                                                                               |
+|                                   | CCE Turbo clusters in limited OBT of v1.27.16-r10, v1.28.15-r0, v1.29.10-r0, v1.30.6-r0, or later                                                                                                                                                                                                                                |
 +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Usage                             | -  When creating a CCE standard cluster, select the VPC network in the container network configuration and enable **DataPlane V2**.                                                                                                                                                                                              |
 |                                   | -  When creating a CCE Turbo cluster, select Cloud Native Network 2.0 and enable **DataPlane V2**.                                                                                                                                                                                                                               |
@@ -30,7 +30,7 @@ DataPlane V2 can be enabled for clusters that use VPC networks or Cloud Native 2
 |                                   |    -  After DataPlane V2 is enabled, secure containers (Kata Containers as the container runtime) are not supported.                                                                                                                                                                                                             |
 |                                   |    -  Enabled DataPlane V2 cannot be disabled.                                                                                                                                                                                                                                                                                   |
 |                                   |    -  DataPlane V2 can only be enabled for new clusters.                                                                                                                                                                                                                                                                         |
-|                                   |    -  DataPlane V2 is in limited OBT. Upgrading it to a commercial version requires the node to be reset. Exercise caution when enabling this function.                                                                                                                                                                          |
+|                                   |    -  CCE Turbo DataPlane V2 is in limited OBT. Upgrading it to a commercial version requires the node to be reset. Exercise caution when enabling this function.                                                                                                                                                                |
 |                                   |    -  If Layer 7 network policies or DNS-based policies are enabled for services in your cluster, the traffic that matches these policies will be disrupted during a Cilium upgrade. For details, see the `constraints in the community <https://docs.cilium.io/en/v1.17/operations/upgrade/#version-specific-notes>`__.         |
 +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Supported OS                      | Only HCE OS 2.0 is supported.                                                                                                                                                                                                                                                                                                    |
@@ -69,43 +69,120 @@ After DataPlane V2 is enabled, components listed in the following table are inst
 |                       | -  Deploys cilium-agent.                                               |                       |
 +-----------------------+------------------------------------------------------------------------+-----------------------+
 
+Configuration Management
+------------------------
+
+You can use ConfigMaps to create custom network components of DataPlane V2.
+
++-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+-----------------+
+| ConfigMap Configuration | Description                                                                                                                                                                                                              | Configurable Component                                                                | Priority        |
++=========================+==========================================================================================================================================================================================================================+=======================================================================================+=================+
+| yangtse-cilium-config   | Default DataPlane V2 configuration. If this configuration is modified, the configuration will be restored to what it was during the cluster upgrade. **Do not modify this configuration.**                               | cilium-agent                                                                          | 1               |
++-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+-----------------+
+| cilium-config           | Native configuration of the Cilium community. The priority of this configuration is lower than that of yangtse-cilium-config. **If you need to create custom DataPlane V2 components, modify this configuration first.** | `cilium-agent <https://docs.cilium.io/en/v1.17/cmdref/cilium-agent/>`__               | 2               |
+|                         |                                                                                                                                                                                                                          |                                                                                       |                 |
+|                         |                                                                                                                                                                                                                          | `cilium-operator <https://docs.cilium.io/en/v1.17/cmdref/cilium-operator-generic/>`__ |                 |
++-------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+-----------------+
+
+.. note::
+
+   Currently, only the Cilium add-on of 2.1.1 or later supports custom configuration.
+
+Example custom network components:
+
+-  Example 1: When cilium-agent is abnormal, you can configure **--set-cilium-node-taints=true** for cilium-operator to automatically add taints to a node to prevent pods from being scheduled to that node.
+
+   You can create the following native ConfigMap configuration of the Cilium community:
+
+   .. code-block::
+
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: cilium-config
+        namespace: kube-system
+      data:
+        set-cilium-node-taints: "true"
+
+   After configuring cilium-config, you can run the following command to roll back and rebuild cilium-operator to apply the configuration:
+
+   .. code-block::
+
+      uuid=$(uuidgen)
+      kubectl patch deployment -n kube-system cilium-operator --type='json' -p="[{\"op\": \"add\", \"path\": \"/spec/template/metadata/annotations/change-id\", \"value\": \"$uuid\"}]"
+
+-  Example 2: If you want to enable Hubble of cilium-agent, you can create the following naive ConfigMap configuration of the Cilium community. For details about the parameter settings, see :ref:`Deploying Hubble for DataPlane V2 Network Observability <cce_10_1063>`.
+
+   .. code-block::
+
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: cilium-config
+        namespace: kube-system
+      data:
+        enable-hubble: "true"
+        hubble-disable-tls: "true"
+        hubble-listen-address: :4244
+        hubble-metrics: dns drop tcp flow port-distribution icmp http
+        hubble-metrics-server: :9965
+
+   After configuring cilium-config, you can run the following command to roll back and rebuild yangtse-cilium to apply the configuration:
+
+   .. code-block::
+
+      uuid=$(uuidgen)
+      kubectl patch daemonset -nkube-system yangtse-cilium --type='json' -p="[{\"op\": \"add\", \"path\": \"/spec/template/metadata/annotations/change-id\", \"value\": \"$uuid\"}]"
+
 Change History
 --------------
 
-+-----------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
-| Add-on Version  | Cluster Version | New Feature                                                                   | Community Version                            |
-+=================+=================+===============================================================================+==============================================+
-| 2.0.2           | v1.27           | -  Support for only the CCE standard clusters that use VPC networks           | `v1.17 <https://docs.cilium.io/en/v1.17/>`__ |
-|                 |                 | -  Upgraded Cilium to v1.17.3.                                                |                                              |
-|                 | v1.28           | -  Disabled bpf-lb-sock (by setting **bpf-lb-sock=false**).                   |                                              |
-|                 |                 | -  Disabled host-based firewalls (by setting **enable-host-firewall=false**). |                                              |
-|                 | v1.29           | -  Enabled Layer 7 network policies (by setting **enable-l7-proxy=true**).    |                                              |
-|                 |                 | -  Enabled host-routing (by setting **enable-host-legacy-routing=false**).    |                                              |
-|                 | v1.30           |                                                                               |                                              |
-|                 |                 |                                                                               |                                              |
-|                 | v1.31           |                                                                               |                                              |
-|                 |                 |                                                                               |                                              |
-|                 | v1.32           |                                                                               |                                              |
-+-----------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
-| 1.0.15          | v1.27           | -  Disabled bpf-lb-sock (by setting **bpf-lb-sock=false**).                   | `v1.14 <https://docs.cilium.io/en/v1.14/>`__ |
-|                 |                 |                                                                               |                                              |
-|                 | v1.28           |                                                                               |                                              |
-|                 |                 |                                                                               |                                              |
-|                 | v1.29           |                                                                               |                                              |
-|                 |                 |                                                                               |                                              |
-|                 | v1.30           |                                                                               |                                              |
-|                 |                 |                                                                               |                                              |
-|                 | v1.31           |                                                                               |                                              |
-|                 |                 |                                                                               |                                              |
-|                 | v1.32           |                                                                               |                                              |
-+-----------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
-| 1.08            | v1.27           | -  Supported CCE Turbo clusters that use Cloud Native 2.0 networks.           | `v1.14 <https://docs.cilium.io/en/v1.14/>`__ |
-|                 |                 | -  Disabled host-based firewalls (by setting **enable-host-firewall=false**). |                                              |
-|                 | v1.28           | -  Disabled L7 network policies (by setting **enable-l7-proxy=false**).       |                                              |
-|                 |                 |                                                                               |                                              |
-|                 | v1.29           |                                                                               |                                              |
-|                 |                 |                                                                               |                                              |
-|                 | v1.30           |                                                                               |                                              |
-|                 |                 |                                                                               |                                              |
-|                 | v1.31           |                                                                               |                                              |
-+-----------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
+You can run the following command to check the cilium-operator image tag for the DataPlane V2 version:
+
+.. code-block::
+
+   kubectl get deploy -nkube-system cilium-operator -oyaml | grep "image:" | cut -d ':' -f 3
+
+Information similar to the following is displayed:
+
+.. code-block::
+
+   2.1.1
+
++----------------+-------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
+| Add-on Version | Status      | Cluster Version | New Feature                                                                   | Community Version                            |
++================+=============+=================+===============================================================================+==============================================+
+| 2.0.2          | OBT         | v1.27           | -  Support for only the CCE standard clusters that use VPC networks           | `v1.17 <https://docs.cilium.io/en/v1.17/>`__ |
+|                |             |                 | -  Upgraded Cilium to v1.17.3.                                                |                                              |
+|                |             | v1.28           | -  Disabled bpf-lb-sock (by setting **bpf-lb-sock=false**).                   |                                              |
+|                |             |                 | -  Disabled host-based firewalls (by setting **enable-host-firewall=false**). |                                              |
+|                |             | v1.29           | -  Enabled Layer 7 network policies (by setting **enable-l7-proxy=true**).    |                                              |
+|                |             |                 | -  Enabled host-routing (by setting **enable-host-legacy-routing=false**).    |                                              |
+|                |             | v1.30           |                                                                               |                                              |
+|                |             |                 |                                                                               |                                              |
+|                |             | v1.31           |                                                                               |                                              |
+|                |             |                 |                                                                               |                                              |
+|                |             | v1.32           |                                                                               |                                              |
++----------------+-------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
+| 1.0.15         | Limited OBT | v1.27           | -  Disabled bpf-lb-sock (by setting **bpf-lb-sock=false**).                   | `v1.14 <https://docs.cilium.io/en/v1.14/>`__ |
+|                |             |                 |                                                                               |                                              |
+|                |             | v1.28           |                                                                               |                                              |
+|                |             |                 |                                                                               |                                              |
+|                |             | v1.29           |                                                                               |                                              |
+|                |             |                 |                                                                               |                                              |
+|                |             | v1.30           |                                                                               |                                              |
+|                |             |                 |                                                                               |                                              |
+|                |             | v1.31           |                                                                               |                                              |
+|                |             |                 |                                                                               |                                              |
+|                |             | v1.32           |                                                                               |                                              |
++----------------+-------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
+| 1.0.8          | Limited OBT | v1.27           | -  Supported CCE Turbo clusters that use Cloud Native 2.0 networks.           | `v1.14 <https://docs.cilium.io/en/v1.14/>`__ |
+|                |             |                 | -  Disabled host-based firewalls (by setting **enable-host-firewall=false**). |                                              |
+|                |             | v1.28           | -  Disabled L7 network policies (by setting **enable-l7-proxy=false**).       |                                              |
+|                |             |                 |                                                                               |                                              |
+|                |             | v1.29           |                                                                               |                                              |
+|                |             |                 |                                                                               |                                              |
+|                |             | v1.30           |                                                                               |                                              |
+|                |             |                 |                                                                               |                                              |
+|                |             | v1.31           |                                                                               |                                              |
++----------------+-------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+

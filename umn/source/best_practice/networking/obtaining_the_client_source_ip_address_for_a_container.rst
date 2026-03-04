@@ -109,7 +109,7 @@ For a LoadBalancer Service, different types of clusters obtain source IP address
 To enable the function of obtaining the source IP address on the console, take the following steps:
 
 #. When creating a LoadBalancer Service on the CCE console, set **Service Affinity** to **Node-level** instead of **Cluster-level**.
-#. Go to the ELB console and enable the function of obtaining the client IP address of the listener corresponding to the load balancer. **Transparent transmission of source IP addresses is enabled for dedicated load balancers by default. You do not need to manually enable this function.**
+#. Go to the ELB console, locate the load balancer and the corresponding listener, and enable the function of transferring client IP addresses. This option is enabled for dedicated load balancers by default. You do not need to manually enable it.
 
    a. Click |image2| in the upper left corner of the management console and select a region and a project.
    b. Choose **Service List** > **Networking** > **Elastic Load Balance**.
@@ -135,5 +135,5 @@ Set the service affinity of a NodePort Service to **Node-level** instead of **Cl
 
    In clusters using Cloud Native 2.0 networks, if NodePort Services are used, only workloads with hostNetwork enabled support node-level service affinity. Therefore, only such workloads can obtain source IP addresses.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434077688.png
-.. |image2| image:: /_static/images/en-us_image_0000002434237560.png
+.. |image1| image:: /_static/images/en-us_image_0000002484117804.png
+.. |image2| image:: /_static/images/en-us_image_0000002516197763.png

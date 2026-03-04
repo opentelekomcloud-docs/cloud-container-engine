@@ -10,8 +10,8 @@ Check Items
 
 Check whether the number of certificates on your node is greater than 1000. During an upgrade, certificate files will be processed in batches. An excessive number of certificate files will lead to a slow node upgrade and result in pod eviction from the node.
 
-Solution
---------
+Solutions
+---------
 
 Solution 1 (preferred): Reset the node. For details, see :ref:`Resetting a Node <cce_10_0003>`.
 

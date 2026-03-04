@@ -31,7 +31,7 @@ OBS provides multiple storage classes to meet customers' requirements on storage
 Performance
 -----------
 
-Every time an OBS volume is mounted to a container workload, a resident process is created in the backend. When a workload uses too many OBS volumes or reads and writes a large number of object storage files, resident processes will consume a significant amount of memory. The amount of memory required in these scenarios is listed :ref:`Table 1 <cce_10_0628__table1422659132012>`. To ensure stable running of the workload, make sure that the number of OBS volumes used does not exceed the requested memory. For example, if the workload requests for 4 GiB of memory, the number of OBS volumes should be **no more than** 4.
+Every time an OBS volume is mounted to a container workload, a resident process is created in the backend. When a workload uses too many OBS volumes or reads and writes a large number of object storage files, resident processes will consume a significant amount of memory. The amount of memory required in these scenarios is listed in :ref:`Table 1 <cce_10_0628__table1422659132012>`. To ensure stable running of the workload, make sure that the number of OBS volumes used does not exceed the requested memory. For example, if the workload requests 4 GiB of memory, the number of OBS volumes should be **no more than** 4.
 
 .. _cce_10_0628__table1422659132012:
 

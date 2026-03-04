@@ -47,7 +47,7 @@ Using kubectl
           kubernetes.io/elb.autocreate: '{"type":"public","bandwidth_name":"test-eip
       ","bandwidth_chargemode":"bandwidth","bandwidth_size":5,"bandwidth_sharetype":"PER","eip_type":"5_g-vm","name":"test-eip"}'
           kubernetes.io/elb.class: union
-          kubernetes.io/elb.eip-id: 10183660-0bb7-47d4-a899-18891b1ab2f7     # ID of the EIP automatically assigned during load balancer creation
+          kubernetes.io/elb.eip-id: 10183660-0bb7-47d4-a899-18891b1ab2f7     # ID of the EIP automatically assigned during load balancer creation, which cannot be changed
           kubernetes.io/elb.id: aed5d5c9-65eb-42ab-9f80-57825cbae309
           kubernetes.io/elb.ip: 1.1.1.1
           kubernetes.io/elb.port: "80"
@@ -83,7 +83,7 @@ Using kubectl
           kubernetes.io/elb.autocreate: '{"type":"public","bandwidth_name":"test-eip
       ","bandwidth_chargemode":"bandwidth","bandwidth_size":5,"bandwidth_sharetype":"PER","eip_type":"5_g-vm","name":"test-eip"}'
           kubernetes.io/elb.class: union
-          kubernetes.io/elb.eip-id: 10183660-0bb7-47d4-a899-18891b1ab2f7     # ID of the EIP automatically assigned during load balancer creation
+          kubernetes.io/elb.eip-id: 10183660-0bb7-47d4-a899-18891b1ab2f7     # ID of the EIP automatically assigned during load balancer creation, which cannot be changed
           kubernetes.io/elb.custom-eip-id: 57bf8bb2-8c7d-4d07-8799-aae16a421802  # ID of the custom EIP
           kubernetes.io/elb.id: aed5d5c9-65eb-42ab-9f80-57825cbae309
           kubernetes.io/elb.ip: 1.1.1.1
@@ -130,7 +130,7 @@ Using kubectl
           kubernetes.io/elb.autocreate: '{"type":"public","bandwidth_name":"test-eip
       ","bandwidth_chargemode":"bandwidth","bandwidth_size":5,"bandwidth_sharetype":"PER","eip_type":"5_g-vm","name":"test-eip"}'
           kubernetes.io/elb.class: union
-          kubernetes.io/elb.eip-id: 10183660-0bb7-47d4-a899-18891b1ab2f7     # ID of the EIP automatically assigned during load balancer creation
+          kubernetes.io/elb.eip-id: 10183660-0bb7-47d4-a899-18891b1ab2f7     # ID of the EIP automatically assigned during load balancer creation, which cannot be changed
           kubernetes.io/elb.custom-eip-id: 57bf8bb2-8c7d-4d07-8799-aae16a421802  # ID of the custom EIP
           kubernetes.io/elb.custom-eip-status: '{"id":"57bf8bb2-8c7d-4d07-8799-aae16a421802","public_ip_address":"3.3.3.3"}' # After the custom EIP is configured, record the EIP's ID and IP address.
           kubernetes.io/elb.id: aed5d5c9-65eb-42ab-9f80-57825cbae309

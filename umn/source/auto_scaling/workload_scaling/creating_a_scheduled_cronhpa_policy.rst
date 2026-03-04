@@ -38,7 +38,7 @@ When a CronHPA rule is triggered, the maximum or minimum number of pods is adjus
 
 .. _cce_10_0415__fig8528823151719:
 
-.. figure:: /_static/images/en-us_image_0000002467678317.png
+.. figure:: /_static/images/en-us_image_0000002516079039.png
    :alt: **Figure 1** CronHPA scaling scenarios
 
    **Figure 1** CronHPA scaling scenarios
@@ -327,7 +327,7 @@ CronHPA adjusts associated Deployments separately to periodically adjust the num
         targetReplicas: 3
         disable: false
 
-.. |image1| image:: /_static/images/en-us_image_0000002434079976.png
-.. |image2| image:: /_static/images/en-us_image_0000002467718461.png
-.. |image3| image:: /_static/images/en-us_image_0000002434239808.png
-.. |image4| image:: /_static/images/en-us_image_0000002467678313.png
+.. |image1| image:: /_static/images/en-us_image_0000002483959088.png
+.. |image2| image:: /_static/images/en-us_image_0000002483959090.png
+.. |image3| image:: /_static/images/en-us_image_0000002516199037.png
+.. |image4| image:: /_static/images/en-us_image_0000002484119066.png

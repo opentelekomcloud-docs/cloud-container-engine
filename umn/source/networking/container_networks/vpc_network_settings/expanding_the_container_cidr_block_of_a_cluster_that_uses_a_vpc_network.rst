@@ -14,7 +14,6 @@ Notes and Constraints
 ---------------------
 
 -  This function is available only for clusters of v1.19.16-r0 or later using a VPC network.
--  An added container CIDR block cannot be deleted.
 
 Adding a Container CIDR Block for a CCE Standard Cluster
 --------------------------------------------------------

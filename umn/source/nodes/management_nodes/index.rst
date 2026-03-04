@@ -13,7 +13,7 @@ Management Nodes
 -  :ref:`Draining a Node <cce_10_0605>`
 -  :ref:`Deleting a Node <cce_10_0186>`
 -  :ref:`Stopping a Node <cce_10_0036>`
--  :ref:`Performing Rolling Upgrade for Nodes <cce_10_0276>`
+-  :ref:`Performing a Rolling Upgrade for Nodes <cce_10_0276>`
 
 .. toctree::
    :maxdepth: 1
@@ -27,4 +27,4 @@ Management Nodes
    draining_a_node
    deleting_a_node
    stopping_a_node
-   performing_rolling_upgrade_for_nodes
+   performing_a_rolling_upgrade_for_nodes

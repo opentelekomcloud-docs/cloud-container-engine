@@ -10,7 +10,7 @@ Context
 
 Process IDs (PIDs) are a fundamental resource on nodes. It is trivial to hit the task limit without hitting any other resource limits, which can then cause instability to a host machine.
 
-You can adjust the PID limit (kernel.pid_max) according to service requirements.
+You can adjust the PID limit (**kernel.pid_max**) according to service requirements.
 
 kernel.pid_max Defaults
 -----------------------
@@ -72,7 +72,7 @@ Log in to the node and run the following command. **4194304** indicates the valu
 
    echo kernel.pid_max = 4194304 >> /etc/sysctl.conf && sysctl -p
 
-Run the following commands to check whether the returned value is the same as that you configured:
+Run the following command to check whether the returned value is the same as that you configured:
 
 .. code-block::
 

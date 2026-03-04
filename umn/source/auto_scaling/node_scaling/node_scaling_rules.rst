@@ -27,13 +27,13 @@ How Cluster Autoscaler Works
 
 -  Scale-in: Autoscaler scans all nodes every 10 seconds. If the number of pod requests on a node is less than the custom scale-in threshold (in percentage), Autoscaler will check whether pods on the current node can be migrated to other nodes.
 
-   When a cluster node is idle for a period of time (10 minutes by default), cluster scale-in is triggered, and the node is automatically deleted. However, a node cannot be deleted from a cluster if the following pods exist:
+   If a node's pre-allocated CPUs and memory remain below the scale-in threshold for a sustained period (10 minutes by default), the cluster initiates a scale-in operation, automatically deleting the underutilized node. However, a node cannot be deleted from a cluster if the following pods exist:
 
    -  Pods that do not meet specific requirements set in Pod Disruption Budgets (`PodDisruptionBudget <https://kubernetes.io/docs/tasks/run-application/configure-pdb/>`__)
    -  Pods that cannot be scheduled to other nodes due to constraints such as affinity and anti-affinity policies
    -  Pods that have the **cluster-autoscaler.kubernetes.io/safe-to-evict: 'false'** annotation
-   -  Pods (except those created by DaemonSets in the kube-system namespace) that exist in the kube-system namespace on the node
-   -  Pods that are not created by the controller (Deployment/ReplicaSet/job/StatefulSet)
+   -  Pods (except those created by DaemonSets in the kube-system namespace) that exist in the kube-system namespace
+   -  Pods that are not created by the controllers (such as Deployments, ReplicaSets, jobs, and StatefulSets)
 
    .. note::
 
@@ -47,7 +47,7 @@ Cluster Autoscaler Architecture
 
 .. _cce_10_0296__fig114831750115719:
 
-.. figure:: /_static/images/en-us_image_0000002434239688.png
+.. figure:: /_static/images/en-us_image_0000002484118984.png
    :alt: **Figure 1** Cluster Autoscaler architecture
 
    **Figure 1** Cluster Autoscaler architecture

@@ -14,10 +14,10 @@ Procedure
 
 #. On the **Overview** page, locate the **Connection Information** area, and click **Download** next to **X.509 certificate**.
 
-#. In the **Obtain Certificate** dialog box displayed, select the certificate expiration time and download the X.509 certificate of the cluster as prompted.
+#. In the **Obtain Certificate** dialog box, select the validity period and download the X.509 certificate of the cluster as prompted.
 
 
-   .. figure:: /_static/images/en-us_image_0000002434080488.png
+   .. figure:: /_static/images/en-us_image_0000002483959374.png
       :alt: **Figure 1** Downloading a certificate
 
       **Figure 1** Downloading a certificate

@@ -38,7 +38,7 @@ You can also configure a pre-installation or post-installation script to automat
 Permanently Storing Core Dumps
 ------------------------------
 
-A core file can be stored in your host (using a hostPath volume) or cloud storage (using a PVC). The following is an example YAML file for using a hostPath volume.
+A core file can be stored in your host (using a hostPath volume) or cloud storage (using a PVC). The following is an example YAML file (**pod.yaml**) for using a hostPath volume.
 
 .. code-block::
 

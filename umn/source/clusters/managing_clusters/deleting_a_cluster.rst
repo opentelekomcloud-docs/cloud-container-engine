@@ -30,7 +30,7 @@ Deleting a Cluster
          When deleting underlying cloud storage resources bound to storage volumes in a cluster, pay attention to following constraints:
 
          -  The underlying storage resources are deleted according to the reclamation policy you defined for the storage volumes. For example, if the reclamation policy of storage volumes is **Retain**, the underlying storage resources will be retained after the cluster is deleted.
-         -  If there are more than 1000 files in the OBS bucket, manually clear the files and then delete the cluster.
+         -  If there are more than 1,000 files in the OBS bucket, manually clear the files and then delete the cluster.
 
       If the storage volume's reclamation policy is set to **Retain**, the following table lists the method of deleting PVs based on their type.
 
@@ -60,4 +60,4 @@ Deleting a Cluster
 
    The delete operation takes 1 to 3 minutes to complete. If the cluster is removed from the cluster list, the cluster has been deleted.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434240380.png
+.. |image1| image:: /_static/images/en-us_image_0000002516079159.png

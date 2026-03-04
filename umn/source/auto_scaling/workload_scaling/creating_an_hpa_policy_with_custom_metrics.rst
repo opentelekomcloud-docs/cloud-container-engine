@@ -78,4 +78,4 @@ Step 4: Verify HPA Scaling
 #. Set **Policy Type** to **HPA+CronHPA** and enable an HPA policy. You can use the custom metrics configured in **rules** to create the HPA policy.
 #. Click the workload name and switch to the **Auto Scaling** tab. You can find that the HPA policy has been triggered.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434240060.png
+.. |image1| image:: /_static/images/en-us_image_0000002483959146.png

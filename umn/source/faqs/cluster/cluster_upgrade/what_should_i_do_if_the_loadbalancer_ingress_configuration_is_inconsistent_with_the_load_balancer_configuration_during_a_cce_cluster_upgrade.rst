@@ -332,5 +332,5 @@ Common Issues
 
    Resources managed by CCE must have descriptions. You need to check whether the descriptions exist.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434238176.png
-.. |image2| image:: /_static/images/en-us_image_0000002467716769.png
+.. |image1| image:: /_static/images/en-us_image_0000002516077771.png
+.. |image2| image:: /_static/images/en-us_image_0000002516077785.png

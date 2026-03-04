@@ -11,6 +11,7 @@ Add-ons
 -  :ref:`Cloud Native AI Add-ons <cce_10_0909>`
 -  :ref:`Container Network Add-ons <cce_10_0910>`
 -  :ref:`Container Storage Add-ons <cce_10_0911>`
+-  :ref:`Add-on Upgrade Checks <cce_10_1060>`
 
 .. toctree::
    :maxdepth: 1
@@ -22,3 +23,4 @@ Add-ons
    cloud_native_ai_add-ons/index
    container_network_add-ons/index
    container_storage_add-ons/index
+   add-on_upgrade_checks/index

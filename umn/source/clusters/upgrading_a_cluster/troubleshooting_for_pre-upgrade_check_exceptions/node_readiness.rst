@@ -10,8 +10,8 @@ Check Items
 
 Check whether the nodes in the cluster are ready.
 
-Solution
---------
+Solutions
+---------
 
 -  **Scenario 1: The nodes are in the unavailable status.**
 
@@ -21,5 +21,5 @@ Solution
 
    The possible causes are as follows:
 
-   #. The node status is normal on the nodes page, but the check result shows that the node is not ready. Check again.
-   #. The node is not found on the nodes page, but the check result shows that the node is in the cluster. Contact technical support.
+   #. The node status is normal on the **Nodes** tab, but the check result shows that the node is not ready. Check again.
+   #. The node is not found on the **Nodes** tab, but the check result shows that the node is in the cluster. Contact technical support.

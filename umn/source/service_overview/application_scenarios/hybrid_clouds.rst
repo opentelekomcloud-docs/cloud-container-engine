@@ -54,7 +54,7 @@ Related Services
 CCE integrates with other services, including Elastic Cloud Server (ECS), Virtual Private Network (VPN), and SoftWare Repository for Container (SWR).
 
 
-.. figure:: /_static/images/en-us_image_0000002434076708.png
+.. figure:: /_static/images/en-us_image_0000002516077255.png
    :alt: **Figure 1** How hybrid cloud works
 
    **Figure 1** How hybrid cloud works

@@ -10,8 +10,8 @@ Check Items
 
 Check whether the kubelet on the node is running properly.
 
-Solution
---------
+Solutions
+---------
 
 -  **Scenario: The kubelet status is abnormal.**
 

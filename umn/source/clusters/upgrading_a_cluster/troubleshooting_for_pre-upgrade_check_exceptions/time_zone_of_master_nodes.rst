@@ -12,7 +12,7 @@ Check whether the time zone of the master nodes matches the cluster's time zone.
 
 If there is a CronJob in your cluster, it may unexpectedly trigger an execution after the upgrade.
 
-Solution
---------
+Solutions
+---------
 
 Before the upgrade, disable the CronJob and perform the pre-upgrade check. After the upgrade is complete, enable the CronJob.

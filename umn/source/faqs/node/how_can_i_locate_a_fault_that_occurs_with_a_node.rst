@@ -101,7 +101,7 @@ Locating a Node Fault by Performing a Self-Check
 ------------------------------------------------
 
 
-.. figure:: /_static/images/en-us_image_0000002467716657.png
+.. figure:: /_static/images/en-us_image_0000002484117772.png
    :alt: **Figure 1** Performing a self-check
 
    **Figure 1** Performing a self-check
@@ -729,7 +729,7 @@ If there are not enough scheduling resources available on the node, pod scheduli
 The scheduler determines that node resources are insufficient using the following calculation methods:
 
 -  Whether the CPUs of a node are insufficient: Total CPUs requested by a pod > (Total allocatable CPUs on the node - Total CPUs that have been allocated to the pods on the node)
--  Whether the memory of a node is insufficient: Total memory requested by a > (Total allocatable memory on the node - Total memory that has been allocated to the pods on the node)
+-  Whether the memory of a node is insufficient: Total memory requested by a pod > (Total allocatable memory on the node - Total memory that has been allocated to the pods on the node)
 -  Whether the temporary storage space of a node is insufficient: Temporary storage space requested by a pod > (Total allocatable temporary storage space on the node - Total temporary storage space that has been allocated to the pods on the node)
 
 If the total resources requested by the pod exceed the allocatable resources on the node (after subtracting the allocated resources to the pods on the node), the pod will not be scheduled on that node.
@@ -866,10 +866,10 @@ If the resources on a node are not enough for pod scheduling, reduce the node lo
 -  Restrict the resource configurations of pods based on service requirements.
 -  Add more nodes to the cluster.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434078164.png
-.. |image2| image:: /_static/images/en-us_image_0000002434078100.png
-.. |image3| image:: /_static/images/en-us_image_0000002467676473.png
-.. |image4| image:: /_static/images/en-us_image_0000002467716601.png
-.. |image5| image:: /_static/images/en-us_image_0000002434237980.png
-.. |image6| image:: /_static/images/en-us_image_0000002434238020.png
-.. |image7| image:: /_static/images/en-us_image_0000002434238008.png
+.. |image1| image:: /_static/images/en-us_image_0000002483957760.png
+.. |image2| image:: /_static/images/en-us_image_0000002483957780.png
+.. |image3| image:: /_static/images/en-us_image_0000002483957768.png
+.. |image4| image:: /_static/images/en-us_image_0000002516197723.png
+.. |image5| image:: /_static/images/en-us_image_0000002516077723.png
+.. |image6| image:: /_static/images/en-us_image_0000002484117764.png
+.. |image7| image:: /_static/images/en-us_image_0000002484117752.png

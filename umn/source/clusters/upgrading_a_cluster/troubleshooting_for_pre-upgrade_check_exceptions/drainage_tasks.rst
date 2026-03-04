@@ -10,8 +10,8 @@ Check Items
 
 An unfinished drainage task is detected in the cluster, which may resume after the upgrade. If this happens, running pods will be evicted, which could impact your services.
 
-Solution
---------
+Solutions
+---------
 
 #. Configure the **kubectl** command. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
@@ -22,7 +22,7 @@ Solution
       kubectl get drainage
 
 
-   .. figure:: /_static/images/en-us_image_0000002467678321.png
+   .. figure:: /_static/images/en-us_image_0000002516079095.png
       :alt: **Figure 1** An in-progress drainage task
 
       **Figure 1** An in-progress drainage task

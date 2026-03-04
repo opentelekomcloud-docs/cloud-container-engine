@@ -28,7 +28,7 @@ CCE is a container service developed on Docker and Kubernetes. It offers a wide 
 -  HA: CCE supports three control plane nodes on the cluster management plane. These nodes run in different regions to ensure cluster HA. Nodes and workloads in a cluster can be deployed across AZs. This helps you build a multi-active architecture and ensures that the service system can run properly in the event of node faults, data center interruption, or natural disasters. This mechanism guarantees the stability of production environments and no service breakdowns.
 
 
-   .. figure:: /_static/images/en-us_image_0000002434236552.png
+   .. figure:: /_static/images/en-us_image_0000002516197259.png
       :alt: **Figure 1** Achieving cluster HA
 
       **Figure 1** Achieving cluster HA
@@ -81,7 +81,7 @@ Docker further encapsulates containers, including file systems, network intercon
 Traditional VM technology uses hypervisors to virtualize and allocate a host machine's hardware resources, such as memory, CPU, network, and disks. These virtualized resources are used to create separate VMs, each of which runs a complete OS independently. Every VM maintains its own system processes. On the contrary, a container does not require hardware resource virtualization or allocation. The application processes run directly in the OS kernel of the host node. This reduces the overhead of system processes, making Docker containers more lightweight and faster than VMs.
 
 
-.. figure:: /_static/images/en-us_image_0000002467715213.png
+.. figure:: /_static/images/en-us_image_0000002483957322.png
    :alt: **Figure 2** Comparison between Docker containers and VMs
 
    **Figure 2** Comparison between Docker containers and VMs

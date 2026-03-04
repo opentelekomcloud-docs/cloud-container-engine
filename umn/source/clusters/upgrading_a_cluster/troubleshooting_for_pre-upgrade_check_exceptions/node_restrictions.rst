@@ -15,8 +15,8 @@ Check the following items:
 -  Check whether the node is marked with unexpected node pool labels.
 -  Check whether the Kubernetes node name is the same as the ECS name.
 
-Solution
---------
+Solutions
+---------
 
 #. **The node is unavailable. Preferentially recover the node.**
 

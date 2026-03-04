@@ -130,7 +130,7 @@ As shown below, an emptyDir volume is mounted to **/var/log/nginx**. In this way
          imagePullSecrets:
            - name: default-secret
 
-The following shows how to use a hostPath volume. Compared with emptyDir, the type of **volumes** is changed to **hostPath**, and the path on the host needs to be configured for this hostPath volume. In the following example, **/tmp/log** on the host is mounted to **/var/log/nginx**. In this way, the ICAgent can collect logs in **/var/log/nginx**, without deleting the logs from **/tmp/log**.
+The following shows how to use a hostPath volume. Compared with emptyDir, the type of **volumes** is changed to **hostPath**, and the path on the host needs to be configured for this hostPath volume. In the following example, **/tmp/log** on the host is mounted to **/var/log/nginx**. In this way, the ICAgent can collect logs in **/var/log/nginx**, and the logs are still stored in **/tmp/log**.
 
 .. code-block::
 
@@ -270,4 +270,4 @@ You can also run the **kubectl logs** command to view the container stdout.
 
       kubectl logs -f <pod_name> -c <container_name> -n <namespace>
 
-.. |image1| image:: /_static/images/en-us_image_0000002467679305.png
+.. |image1| image:: /_static/images/en-us_image_0000002516079543.png

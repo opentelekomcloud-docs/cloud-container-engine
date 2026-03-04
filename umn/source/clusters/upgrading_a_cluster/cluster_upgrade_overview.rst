@@ -36,6 +36,7 @@ CCE clusters evolve iteratively based on the community Kubernetes version. A CCE
    v1.29                     v1.30 or v1.31
    v1.30                     v1.31
    v1.31                     v1.32
+   v1.32                     v1.33
    ========================= =========================
 
    .. note::
@@ -45,7 +46,7 @@ CCE clusters evolve iteratively based on the community Kubernetes version. A CCE
 
 -  Upgrading a patch version
 
-   Patch version management is available for CCE clusters of v1.19 or later to provide new features and fix bugs and vulnerability for in-maintenance clusters without requiring a major version upgrade.
+   Patch version management is available for CCE clusters v1.19 or later to provide new features and fix bugs and vulnerability for in-maintenance clusters without requiring a major version upgrade.
 
    After a new patch version is released, you can directly upgrade any patch version to the latest patch version. For details about the release history of patch versions, see :ref:`Patch Version Release Notes <cce_10_0405>`.
 
@@ -55,7 +56,7 @@ Cluster Upgrade Process
 The cluster upgrade process involves pre-upgrade check, backup, upgrade, and post-upgrade verification.
 
 
-.. figure:: /_static/images/en-us_image_0000002434081028.png
+.. figure:: /_static/images/en-us_image_0000002484119610.png
    :alt: **Figure 1** Process of upgrading a cluster
 
    **Figure 1** Process of upgrading a cluster
@@ -86,7 +87,7 @@ After determining the target version of the cluster, read the :ref:`precautions 
 
    Configure parameters before an upgrade. CCE has provided default settings, which can be modified as needed. After the configuration, upgrade add-ons, master nodes, and worker nodes in sequence.
 
-   -  **Add-on Upgrade Configuration**: Add-ons that have been installed in your cluster are listed. During the cluster upgrade, CCE automatically upgrades the selected add-ons to be compatible with the target cluster version. You can click **Set** to re-define the add-on parameters.
+   -  **Add-on Upgrade**: Add-ons that have been installed in your cluster are listed. During the cluster upgrade, CCE automatically upgrades the selected add-ons to be compatible with the target cluster version. You can click **Set** to re-define the add-on parameters.
 
       .. note::
 
@@ -117,17 +118,17 @@ Upgrade Modes
 
 .. table:: **Table 1** Upgrade modes
 
-   +------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------+-------------------------------------------------------------------+
-   | Upgrade Mode     | Description                                                                                                                                                    | Upgrade Scope                                                                                        | Advantage                                                                                 | Constraint                                                        |
-   +==================+================================================================================================================================================================+======================================================================================================+===========================================================================================+===================================================================+
-   | In-place upgrade | Kubernetes components, network components, and CCE management components are upgraded on nodes. During an upgrade, service pods and networks are not affected. | -  Node OSs are not upgraded.                                                                        | The one-click upgrade does not need to migrate services. This ensures service continuity. | In-place upgrade is supported only in clusters of v1.15 or later. |
-   |                  |                                                                                                                                                                | -  The add-ons that are incompatible with the target cluster version will be automatically upgraded. |                                                                                           |                                                                   |
-   |                  | Nodes are upgraded in batches. Only the nodes that have been upgraded can be used to schedule services.                                                        | -  Kubernetes components will be automatically upgraded.                                             |                                                                                           |                                                                   |
-   +------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------+-------------------------------------------------------------------+
+   +------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------+----------------------------------------------------------------+
+   | Upgrade Mode     | Description                                                                                                                                                    | Upgrade Scope                                                                                        | Advantage                                                                                 | Constraint                                                     |
+   +==================+================================================================================================================================================================+======================================================================================================+===========================================================================================+================================================================+
+   | In-place upgrade | Kubernetes components, network components, and CCE management components are upgraded on nodes. During an upgrade, service pods and networks are not affected. | -  Node OSs are not upgraded.                                                                        | The one-click upgrade does not need to migrate services. This ensures service continuity. | In-place upgrade is supported only in clusters v1.15 or later. |
+   |                  |                                                                                                                                                                | -  The add-ons that are incompatible with the target cluster version will be automatically upgraded. |                                                                                           |                                                                |
+   |                  | Nodes are upgraded in batches. Only the nodes that have been upgraded can be used to schedule services.                                                        | -  Kubernetes components will be automatically upgraded.                                             |                                                                                           |                                                                |
+   +------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------+----------------------------------------------------------------+
 
 Helpful Links
 -------------
 
 -  For details about how to upgrade node OSs, see :ref:`Upgrading an OS <cce_10_0660>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434240840.png
+.. |image1| image:: /_static/images/en-us_image_0000002516079581.png

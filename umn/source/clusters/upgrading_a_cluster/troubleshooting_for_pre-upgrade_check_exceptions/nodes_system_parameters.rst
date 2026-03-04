@@ -10,8 +10,8 @@ Check Items
 
 Check whether the default system parameter settings on your nodes are modified.
 
-Solution
---------
+Solutions
+---------
 
 If the MTU value of the **bond0** network on your BMS node is not the default value **1500**, this check item will fail.
 
@@ -33,7 +33,7 @@ Non-default parameter settings may lead to service packet loss. Change them back
 
       sudo ip link set dev bond0 mtu 1500
 
-#. Restart bond0.
+#. Restart **bond0**.
 
    .. code-block::
 

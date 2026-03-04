@@ -5,6 +5,19 @@
 How Do I Change the Node Specifications in a CCE Cluster?
 =========================================================
 
+Notes and Constraints
+---------------------
+
+.. caution::
+
+   Changing node specifications is not a best practice recommended by CCE. Certain restrictions may affect subsequent usage, so review this section carefully.
+
+   To upgrade node specifications that do not meet requirements, it is advised to add new nodes and then scale in the original nodes.
+
+-  After a node's specifications are changed, the maximum number of pods (**maxPods** configured by kubelet) will **not be updated automatically**. Ensure that the maximum number of pods configured for the node aligns with your requirements. Otherwise, even if the node specifications are increased, additional pods may still fail to run.
+-  After the specifications of a node in a node pool are modified on the ECS console, some node pool scaling issues occur. For details, see :ref:`What Are the Impacts of Changing the Flavor of a Node in a CCE Node Pool? <cce_faq_00445>`
+-  CCE Turbo cluster nodes of certain specifications can be created only on the CCE console and cannot be modified on the ECS console. You can call the ECS API to modify the specifications.
+
 Solution
 --------
 

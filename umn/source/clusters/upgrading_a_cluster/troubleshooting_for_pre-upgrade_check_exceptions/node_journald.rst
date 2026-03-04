@@ -10,15 +10,15 @@ Check Items
 
 Check whether journald of a node is normal.
 
-Solution
---------
+Solutions
+---------
 
-Log in to the node and run the **systemctl is-active systemd-journald** command to obtain the running status of journald. If the command output is abnormal, run the **systemctl restart systemd-journald** command and obtain the status again.
+Log in to the node and run the **systemctl is-active systemd-journald** command to obtain the status of journald. If the command output is abnormal, run the **systemctl restart systemd-journald** command and obtain the status again.
 
 The normal command output is as follows:
 
 
-.. figure:: /_static/images/en-us_image_0000002467718757.png
+.. figure:: /_static/images/en-us_image_0000002516079205.png
    :alt: **Figure 1** Running status of journald
 
    **Figure 1** Running status of journald

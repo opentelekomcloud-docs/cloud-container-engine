@@ -8,14 +8,14 @@ Node Mounting
 Check Items
 -----------
 
-This section describes how to diagnose and fix node-mount failures caused by CCE storage misconfigurations.
+This section describes how to diagnose and fix mounting failures caused by CCE storage misconfigurations.
 
-Solution
---------
+Solutions
+---------
 
--  **Check item 1**: mount point conflicts
+-  **Check item 1**: Mount point conflicts
 
-   **Check Content**
+   **Check content**
 
    Verify that all required paths are mounted as expected. CCE needs to use the subdirectories of these paths. If the paths have been mounted, they are inaccessible to CCE nodes. In this case, an exception may occur when the node is restarted or a node component is restarted during an upgrade.
 
@@ -29,29 +29,29 @@ Solution
 
 -  **Check item 2: symlinks and bind mounts**
 
-   **Check Content**
+   **Check content**
 
    Verify that the following key directories are correctly configured:
 
    #. General check: Check whether **/var/lib/kubelet** is linked to **/mnt/paas/kubernetes/kubelet**.
-   #. Conditional check: when the **vgpaas-share** volume group (shared disk) is used
+   #. Conditional check: when a **vgpaas-share** volume group (shared disk) is used
 
       -  If Docker is used, check whether **/var/lib/docker** is linked to **/mnt/paas/runtime**.
       -  If containerd is used, check whether **/var/lib/containerd** is linked to **/mnt/paas/runtime**.
 
    **Solution**
 
-   If the error message "the target path of the path link xxx" is displayed, the symlink either points to nothing or to a wrong location. If **ls** on the symlink target returns content, :ref:`drain <cce_10_0605>` and :ref:`reset <cce_10_0003>` the node. Use the fixes below only if the symlink or mount point is empty. The following uses **/var/lib/kubelet** as an example:
+   If the error message "the target path of the path link xxx" is displayed, the symlink is missing or points to a wrong location. If **ls** on the symlink target returns content, :ref:`drain <cce_10_0605>` and :ref:`reset <cce_10_0003>` the node. Use the fixes below only if the symlink or mount point is empty. The following uses **/var/lib/kubelet** as an example:
 
-   -  **Case 1: A symlink is missing.**
+   -  **Scenario 1: A symlink is missing.**
 
-      Create a symlink.
+      Create a symbolic link.
 
       .. code-block::
 
          sudo ln -sf /mnt/paas/kubernetes/kubelet /var/lib/kubelet
 
-   -  **Case 2: A symlink points to a wrong location.**
+   -  **Scenario 2: A symlink points to a wrong location.**
 
       #. Remove the incorrect symlink.
 
@@ -75,7 +75,7 @@ Common Issues
 #. Run the **lsblk** command to check whether **vgpaas-share** is mounted to **/mnt/paas**. If yes, a shared disk is used.
 
 
-   .. figure:: /_static/images/en-us_image_0000002467718381.png
+   .. figure:: /_static/images/en-us_image_0000002483959012.png
       :alt: **Figure 1** Checking whether a shared disk is used
 
       **Figure 1** Checking whether a shared disk is used

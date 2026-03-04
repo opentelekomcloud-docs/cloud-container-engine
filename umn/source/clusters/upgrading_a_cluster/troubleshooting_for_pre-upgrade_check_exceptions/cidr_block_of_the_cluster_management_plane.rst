@@ -10,9 +10,9 @@ Check Items
 
 Check whether the CIDR block of the cluster management plane is the same as that configured on the backbone network.
 
-Solution
---------
+Solutions
+---------
 
-The CIDR block of the management plane has been modified in your region. As a result, the CIDR block of the management plane and that of the backbone network are inconsistent.
+The CIDR block of the management plane has been modified in your region. As a result, the CIDR block of the management plane and that configured on the backbone network are inconsistent.
 
 Submit a service ticket to contact technical support to modify the settings, and recheck the configurations.

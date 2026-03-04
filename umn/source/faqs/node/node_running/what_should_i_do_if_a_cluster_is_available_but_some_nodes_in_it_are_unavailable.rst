@@ -215,5 +215,5 @@ Check Item 10: Whether the Docker Service Is Normal
 
    In this case, stop repeated creation and deletion of workloads or use more nodes to share the load. Typically, the node will be restored after a period of time. If necessary, run the **docker rm** *{container_id}* command to manually clear the abnormal containers.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434078944.png
-.. |image2| image:: /_static/images/en-us_image_0000002467677277.png
+.. |image1| image:: /_static/images/en-us_image_0000002516198141.png
+.. |image2| image:: /_static/images/en-us_image_0000002484118182.png

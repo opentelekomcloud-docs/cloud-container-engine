@@ -7,8 +7,8 @@ Accessing a Cluster Using kubectl
 
 kubectl is a command-line tool provided by Kubernetes, enabling you to manage cluster resources, view cluster status, deploy applications, and debug issues through the CLI. To access a CCE cluster using kubectl, you can use either of the following methods:
 
--  Intranet access: Clients access the cluster's API server via an intranet IP address, keeping data traffic internal and enhancing security.
--  Internet access: The cluster's API server exposes a public API, allowing clients to access the Kubernetes cluster over the Internet. When using Internet access, you can choose whether to enable **two-way domain name trust**.
+-  Private access: Clients access the cluster's API server via an intranet IP address, keeping data traffic internal and enhancing security.
+-  Public access: The cluster's API server exposes a public API, allowing clients to access the Kubernetes cluster over the Internet. When using the Internet for access, you can choose whether to enable **two-way domain name trust**.
 
    -  If **two-way domain name trust** is disabled, kubectl and the API server use one-way certificate authentication, which is less secure. In this mode, only kubectl verifies the API server's certificate, while the API server does not verify kubectl's certificate.
    -  If **two-way domain name trust** is enabled, kubectl and the API server use mutual certificate authentication, which is more secure. In this mode, kubectl verifies the API server's certificate, and the API server verifies kubectl's certificate (specified in the **client-certificate-data** field in the kubeconfig file). For more details, see :ref:`Two-Way Domain Name Trust <cce_10_0107__section1559919152711>`.
@@ -21,7 +21,7 @@ How It Works
 kubectl retrieves cluster information from a kubeconfig file and communicates with the Kubernetes API server. The `kubeconfig <https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/>`__ file is the identity credential for kubectl to access the Kubernetes cluster. It contains the API server address, user authentication credentials, and other configuration details. With these details, kubectl can interact with the Kubernetes cluster to perform management tasks.
 
 
-.. figure:: /_static/images/en-us_image_0000002434240904.png
+.. figure:: /_static/images/en-us_image_0000002516079611.png
    :alt: **Figure 1** Using kubectl to access a cluster
 
    **Figure 1** Using kubectl to access a cluster
@@ -29,16 +29,16 @@ kubectl retrieves cluster information from a kubeconfig file and communicates wi
 Prerequisites
 -------------
 
--  A client computer that can access the Internet is available.
--  Before using intranet access, ensure that the client and the cluster to be accessed are in the same VPC.
--  Before using Internet access, ensure the cluster to be accessed has an EIP bound. For details about how to bind an EIP, see :ref:`Procedure <cce_10_0864__section128889371044>`.
+-  A client that can access the Internet is available.
+-  If private access is used, the client and the cluster to be accessed must be in the same VPC.
+-  If public access is used, the cluster to be accessed has an EIP bound. For details about how to bind an EIP, see :ref:`Procedure <cce_10_0864__section128889371044>`.
 
    .. note::
 
       In a cluster with an EIP bound, kube-apiserver will be exposed to the Internet and may be attacked. To resolve this issue, you can configure Advanced Anti-DDoS for the EIP of the node on which kube-apiserver runs or :ref:`configure security group rules <cce_faq_00417>`.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 A kubeconfig file contains user authentication credentials. When you use this file to access a cluster, kubectl accesses the cluster based on the credentials and permissions specified in the file.
 
@@ -49,9 +49,9 @@ For details about user permissions, see :ref:`Cluster Permissions (IAM-based) an
 Step 1: Download kubectl
 ------------------------
 
-Before using kubectl to access a cluster, install kubectl on the client. Run the **kubectl version** command to check whether kubectl is installed. If it is, skip this step. This section uses Linux as an example to describe how to install and configure kubectl. For details, see `Installing kubectl <https://kubernetes.io/docs/tasks/tools/#kubectl>`__.
+Before using kubectl to access a cluster, install kubectl on the client. Run the **kubectl version** command to check whether kubectl is installed. If it is installed, skip this step. This section uses Linux as an example to describe how to install and configure kubectl. For details, see `Installing kubectl <https://kubernetes.io/docs/tasks/tools/#kubectl>`__.
 
-#. Log in to your client computer and download kubectl. *v1.25.0* specifies the version. Replace it as needed.
+#. Log in to your client and download kubectl. *v1.25.0* specifies the version. Replace it as needed.
 
    .. code-block::
 
@@ -84,11 +84,11 @@ Before using kubectl to access a cluster, install kubectl on the client. Run the
 Step 2: Obtain the kubectl Configuration File (kubeconfig)
 ----------------------------------------------------------
 
-Obtain the kubeconfig file from the cluster for access.
+Obtain kubeconfig (the kubectl configuration file) from the cluster for access.
 
 #. .. _cce_10_0107__li752814547369:
 
-   On the **Overview** page, locate the **Connection Information** area, and click **Configure** next to **kubectl**.
+   On the **Overview** page of the cluster console, locate the **Connection Information** area, and click **Configure** next to **kubectl**.
 
 #. .. _cce_10_0107__li15257117153716:
 
@@ -96,7 +96,7 @@ Obtain the kubeconfig file from the cluster for access.
 
    .. note::
 
-      -  The kubectl configuration file **kubeconfig** is used for cluster authentication. If the file is leaked, your clusters may be attacked.
+      -  kubeconfig is used for cluster authentication. If the file is leaked, your cluster may be attacked.
       -  The Kubernetes permissions assigned by the configuration file downloaded by IAM users are the same as those assigned to the IAM users on the CCE console.
       -  In Linux, if the KUBECONFIG environment variable is set, kubectl will load it instead of **$home/.kube/config**.
       -  An issued kubeconfig certificate remains valid even if the user who requested it is deleted. To ensure cluster security, manually revoke the user's cluster access credentials. For details, see :ref:`Revoking a Cluster Access Credential <cce_10_0744>`.
@@ -108,7 +108,7 @@ The kubeconfig file is stored on the client, and kubectl uses it to access and i
 
 #. Log in to your client.
 
-#. Create the **kubeconfig.yaml** file, the name of which is customizable. The file is used to store the configuration file information obtained in :ref:`2 <cce_10_0107__li15257117153716>`.
+#. Create the **kubeconfig.yaml** file. You can change the file name as needed. The file is used to store the configuration file information obtained in :ref:`2 <cce_10_0107__li15257117153716>`.
 
    .. code-block::
 
@@ -126,7 +126,7 @@ The kubeconfig file is stored on the client, and kubectl uses it to access and i
 
 #. Switch the kubectl access mode based on service scenarios.
 
-   -  If private access is used via a VPC, run the following command:
+   -  If private access is used through a VPC, run the following command:
 
       .. code-block::
 
@@ -169,17 +169,17 @@ Two-way domain name trust is a mutual authentication mechanism that verifies the
 
 -  After an EIP is bound to an API server, two-way domain name trust is disabled by default if kubectl is used to access the cluster. You can run **kubectl config use-context externalTLSVerify** to enable the two-way domain name trust.
 
--  When an EIP is bound to or unbound from a cluster, or a custom domain name is configured or updated, the cluster server certificate will be added the latest cluster access address (including the EIP bound to the cluster and all custom domain names configured for the cluster).
+-  When an EIP is bound to or unbound from a cluster, or a custom domain name is configured or updated, the cluster access address (including the EIP bound to the cluster and all custom domain names configured for the cluster) will be added to the cluster server certificate.
 
 -  Asynchronous cluster synchronization takes about 5 to 10 minutes. You can view the synchronization result in **Synchronize Certificate** in **Operation Records**.
 
--  For a cluster that has been bound to an EIP, if the authentication fails (x509: certificate is valid) when two-way trust is used, bind the EIP again and download **kubeconfig.yaml** again.
+-  For a cluster that has an EIP bound, if the authentication fails (x509: certificate is valid) when two-way domain name trust is used, bind the EIP again and download **kubeconfig.yaml** again.
 
--  If the two-way domain name trust is not supported, **kubeconfig.yaml** contains the **"insecure-skip-tls-verify": true** field, as shown in :ref:`Figure 2 <cce_10_0107__fig1941342411>`. To use two-way trust, download the **kubeconfig.yaml** file again and enable two-way domain name trust.
+-  If the two-way domain name trust is not supported, **kubeconfig.yaml** contains the **"insecure-skip-tls-verify": true** field, as shown in :ref:`Figure 2 <cce_10_0107__fig1941342411>`. To use two-way domain name trust, download the **kubeconfig.yaml** file again and enable two-way domain name trust.
 
    .. _cce_10_0107__fig1941342411:
 
-   .. figure:: /_static/images/en-us_image_0000002434081108.png
+   .. figure:: /_static/images/en-us_image_0000002483959672.png
       :alt: **Figure 2** Two-way trust disabled for domain names
 
       **Figure 2** Two-way trust disabled for domain names

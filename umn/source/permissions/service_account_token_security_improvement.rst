@@ -5,6 +5,9 @@
 Service Account Token Security Improvement
 ==========================================
 
+Service Accounts No Longer Auto Create Permanent Tokens
+-------------------------------------------------------
+
 In clusters earlier than v1.21, a token is obtained by mounting the secret of the service account to a pod. Tokens obtained this way are permanent. This approach is no longer recommended starting from version 1.21. Service accounts will stop auto creating secrets in clusters from version 1.25.
 
 In clusters of version 1.21 or later, you can use the `TokenRequest <https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/>`__ API to obtain the token and use the projected volume to mount the token to the pod. Such tokens are valid for a fixed period (one hour by default). Before expiration, kubelet refreshes the token to ensure that the pod always uses a valid token. When the mounting pod is deleted, the token automatically becomes invalid. This approach is implemented by the `BoundServiceAccountTokenVolume <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/#bound-service-account-token-volume>`__ feature to improve the token security of the service account. Kubernetes clusters of v1.21 and later enable this approach by default.
@@ -38,4 +41,4 @@ Perform the following operations to check your CCE clusters of v1.21 or later:
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000002467678877.png
+.. |image1| image:: /_static/images/en-us_image_0000002516079279.png

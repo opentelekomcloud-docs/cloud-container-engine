@@ -48,10 +48,10 @@ Using the CCE Console
 
    -  **Health Check**: defaults to **Global health check**. You can configure this parameter as needed.
 
-   -  **Ports**
+   -  **Port**
 
       -  **Protocol**: the protocol used by the Service.
-      -  **Service Port**: the port used by the Service. The port number ranges from 1 to 65535.
+      -  **Service Port**: the port used by the Service. The port ranges from 1 to 65535.
       -  **Container Port**: the port that the workload listens on. For example, Nginx uses port 80 by default.
 
    -  **Access Control**

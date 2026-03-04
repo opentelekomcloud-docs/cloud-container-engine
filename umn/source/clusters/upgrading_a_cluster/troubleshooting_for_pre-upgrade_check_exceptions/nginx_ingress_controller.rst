@@ -8,9 +8,9 @@ NGINX Ingress Controller
 Check Items
 -----------
 
--  Check item 1: Check whether there is an Nginx Ingress route whose ingress type is not specified (**kubernetes.io/ingress.class: nginx** is not added to **annotations**) in the cluster.
--  Check item 2: Check whether the DefaultBackend Service specified by the NGINX Ingress Controller backend is available.
--  Check item 3: Check whether the key length of the default server certificate specified by the NGINX Ingress Controller meets the security requirements. (Message: ee key too small)
+-  Check whether there is an Nginx Ingress route whose ingress type is not specified (**kubernetes.io/ingress.class: nginx** is not added to **annotations**) in the cluster.
+-  Check whether the default backend Service specified by the NGINX Ingress Controller backend is available.
+-  Check whether the key length of the default server certificate specified by the NGINX Ingress Controller meets the security requirements. (If the length fails to meet the security requirements, error message "xxx" is displayed.)
 
 .. _cce_10_0508__section18775201773016:
 
@@ -71,9 +71,9 @@ For Nginx Ingress, check the YAML. If the ingress type is not specified in the Y
 
       - '--default-backend-service=<namespace>/<backend-svc-name>'
 
-   In the preceding command, *<backend-svc-name>* is the name of the DefaultBackend Service for the NGINX Ingress Controller.
+   *<backend-svc-name>* is the name of the DefaultBackend Service for the NGINX Ingress Controller.
 
-#. Check whether the DefaultBackend Service of the NGINX Ingress Controller is available.
+#. Check whether the default backend Service of the NGINX Ingress Controller is available.
 
    .. code-block::
 
@@ -134,11 +134,11 @@ Add an annotation to the Nginx ingresses as follows:
 
 **For Check Item 2**
 
-Create the DefaultBackend Service again.
+Create the default backend Service again.
 
--  If a custom DefaultBackend Service has been specified in the default 404 service configuration during add-on installation, create the same Service.
+-  If a custom default backend Service has been specified in the default 404 service configuration during add-on installation, create the same Service.
 
--  If the default DefaultBackend Service is used during add-on installation, the re-created YAML example is as follows:
+-  If the default backend Service is used during add-on installation, the following is an example YAML file for re-creating a Service:
 
    .. code-block::
 
@@ -179,8 +179,8 @@ Create the DefaultBackend Service again.
 -  Change the secret of the certificate described in :ref:`1 <cce_10_0508__li7636134164413>` and configure a certificate that meets the key length specified by OpenSSL SECLEVEL. For details about the relationship between the security levels and key lengths, see `official OpenSSL documents <https://docs.openssl.org/3.3/man3/SSL_CTX_set_security_level/#default-callback-behaviour>`__.
 -  Add the **@SECLEVEL** field to the **ssl-ciphers** parameter to support certificates with lower security levels.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434078988.png
-.. |image2| image:: /_static/images/en-us_image_0000002434079000.png
-.. |image3| image:: /_static/images/en-us_image_0000002434238836.png
-.. |image4| image:: /_static/images/en-us_image_0000002434080164.png
-.. |image5| image:: /_static/images/en-us_image_0000002467678485.png
+.. |image1| image:: /_static/images/en-us_image_0000002483958008.png
+.. |image2| image:: /_static/images/en-us_image_0000002483958012.png
+.. |image3| image:: /_static/images/en-us_image_0000002484117990.png
+.. |image4| image:: /_static/images/en-us_image_0000002483959286.png
+.. |image5| image:: /_static/images/en-us_image_0000002484119256.png

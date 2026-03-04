@@ -18,7 +18,7 @@ nvidia-gpu-device-plugin is one of the core components of CCE AI Suite (NVIDIA G
 This component runs as a DaemonSet so that the GPUs on every node can be identified by kubelet and reported to Kubernetes. You only need to declare the GPU resource requests in pod specs to use the GPUs on nodes. kubelet does not automatically detect GPU devices on its own. Instead, it relies on nvidia-gpu-device-plugin to register and report GPU information. nvidia-gpu-device-plugin runs on every GPU node and uses the gRPC protocol to communicate with kubelet Device Plugin Manager and complete the registration. The workflow is shown below.
 
 
-.. figure:: /_static/images/en-us_image_0000002434240212.png
+.. figure:: /_static/images/en-us_image_0000002516079373.png
    :alt: **Figure 1** GPU resource reporting and health
 
    **Figure 1** GPU resource reporting and health
@@ -216,18 +216,22 @@ Supported GPU Drivers
 
       According to this policy, CCE does not provide technical support for GPU drivers that have reached EOL, including driver installation and updates. **The following drivers have reached EOL: 510.47.03, 470.141.03, and 470.57.02.**
 
-   -  When installing a GPU driver on Ubuntu, pay attention to the OS version. For details, see :ref:`Table 3 <cce_10_0141__table6519152112818>`. For more information, see `NVIDIA Driver Documentation <https://docs.nvidia.com/datacenter/tesla/>`__.
+   -  When installing a GPU driver on Ubuntu and CentOS, pay attention to the OS version. For details, see :ref:`Table 3 <cce_10_0141__table6519152112818>`. For more information, see `NVIDIA Driver Documentation <https://docs.nvidia.com/datacenter/tesla/>`__.
 
 .. _cce_10_0141__table056413288409:
 
 .. table:: **Table 2** Supported GPU drivers
 
    +------------+------------------------+---------------+------------+--------------+---------------------+
-   | GPU Model  | Supported Cluster Type | Specification | HCE OS 2.0 | Ubuntu 22.04 | EulerOS release 2.9 |
+   | GPU Model  | Supported Cluster Type | Specification | OS         | OS           | OS                  |
    +============+========================+===============+============+==============+=====================+
-   | Tesla T4   | CCE standard cluster   | g6            | 535.216.03 | 535.216.03   | 535.54.03           |
+   |            |                        |               | HCE OS 2.0 | Ubuntu 22.04 | EulerOS release 2.9 |
+   +------------+------------------------+---------------+------------+--------------+---------------------+
+   | Tesla T4   | CCE standard cluster   | g6            | 570.86.15  | 570.86.15    | 535.54.03           |
    |            |                        |               |            |              |                     |
-   |            |                        | pi2           | 535.161.08 | 535.161.08   | 470.141.03          |
+   |            |                        | pi2           | 535.216.03 | 535.216.03   | 470.141.03          |
+   |            |                        |               |            |              |                     |
+   |            |                        |               | 535.161.08 | 535.161.08   |                     |
    |            |                        |               |            |              |                     |
    |            |                        |               | 535.54.03  | 535.54.03    |                     |
    |            |                        |               |            |              |                     |
@@ -235,11 +239,13 @@ Supported GPU Drivers
    |            |                        |               |            |              |                     |
    |            |                        |               | 470.57.02  |              |                     |
    +------------+------------------------+---------------+------------+--------------+---------------------+
-   | Tesla V100 | CCE standard cluster   | p2s           | 535.216.03 | 535.216.03   | 535.54.03           |
+   | Tesla V100 | CCE standard cluster   | p2s           | 570.86.15  | 570.86.15    | 535.54.03           |
    |            |                        |               |            |              |                     |
-   |            |                        | p2vs          | 535.161.08 | 535.161.08   | 470.141.03          |
+   |            |                        | p2vs          | 535.216.03 | 535.216.03   | 470.141.03          |
    |            |                        |               |            |              |                     |
-   |            |                        | p2v           | 535.54.03  | 535.54.03    |                     |
+   |            |                        | p2v           | 535.161.08 | 535.161.08   |                     |
+   |            |                        |               |            |              |                     |
+   |            |                        |               | 535.54.03  | 535.54.03    |                     |
    |            |                        |               |            |              |                     |
    |            |                        |               | 510.47.03  |              |                     |
    |            |                        |               |            |              |                     |
@@ -253,6 +259,8 @@ Supported GPU Drivers
    +-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+
    | Driver Version                                                                                                                | Ubuntu 22.04                      |
    +===============================================================================================================================+===================================+
+   | `570.86.15 <https://docs.nvidia.com/datacenter/tesla/tesla-release-notes-570-86-15/index.html#hardware-software-support>`__   | Ubuntu 22.04.z LTS (where z <= 5) |
+   +-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+
    | `535.216.03 <https://docs.nvidia.com/datacenter/tesla/tesla-release-notes-535-216-03/index.html#hardware-software-support>`__ | Ubuntu 22.04.z LTS (where z <= 4) |
    +-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+
    | `535.161.08 <https://docs.nvidia.com/datacenter/tesla/tesla-release-notes-535-161-08/index.html#hardware-software-support>`__ | Ubuntu 22.04.z LTS (where z <= 3) |
@@ -277,7 +285,7 @@ Obtaining a Driver Link from the Internet
 3. Log in to the `NVIDIA driver download page <https://www.nvidia.com/en-us/drivers/>`__ and search for the driver information. The OS must be **Linux 64-bit**.
 
 
-   .. figure:: /_static/images/en-us_image_0000002434240216.png
+   .. figure:: /_static/images/en-us_image_0000002516199373.png
       :alt: **Figure 2** Selecting parameters
 
       **Figure 2** Selecting parameters
@@ -285,7 +293,7 @@ Obtaining a Driver Link from the Internet
 4. After confirming the driver information, click **Find**. On the displayed page, find the driver to be downloaded and click **View**.
 
 
-   .. figure:: /_static/images/en-us_image_0000002467678685.png
+   .. figure:: /_static/images/en-us_image_0000002483959410.png
       :alt: **Figure 3** Viewing the driver information
 
       **Figure 3** Viewing the driver information
@@ -293,7 +301,7 @@ Obtaining a Driver Link from the Internet
 5. Click **Download** and copy the download link.
 
 
-   .. figure:: /_static/images/en-us_image_0000002434080356.png
+   .. figure:: /_static/images/en-us_image_0000002516079355.png
       :alt: **Figure 4** Obtaining the link
 
       **Figure 4** Obtaining the link
@@ -460,5 +468,5 @@ Release History
    |                       | v1.19                     |                                                                                                                                                                                  |
    +-----------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. |image1| image:: /_static/images/en-us_image_0000002434240224.png
-.. |image2| image:: /_static/images/en-us_image_0000002434240204.png
+.. |image1| image:: /_static/images/en-us_image_0000002516199377.png
+.. |image2| image:: /_static/images/en-us_image_0000002516079369.png

@@ -10,10 +10,10 @@ Check Items
 
 Check whether there are discarded resources in the clusters.
 
-Solution
---------
+Solutions
+---------
 
--  **Scenario 1: The Service in the clusters of v1.25 or later has deprecated annotation tolerate-unready-endpoints.**
+-  **Scenario 1: The Services in the clusters v1.25 or later have deprecated annotation tolerate-unready-endpoints.**
 
    Error log:
 
@@ -29,7 +29,7 @@ Solution
 
          kubectl edit service test-svc
 
-   #. Delete the **"tolerate-unready-endpoints"** annotation and add the following field to **spec** to replace the annotation:
+   #. Delete the **tolerate-unready-endpoints** annotation and add the following field to **spec** to replace the annotation:
 
       .. code-block::
 
@@ -37,7 +37,7 @@ Solution
 
       |image1|
 
--  **Scenario 2: The Service in the clusters of v1.27 or later has deprecated annotation service.kubernetes.io/topology-aware-hints.**
+-  **Scenario 2: The Services in the clusters v1.27 or later has deprecated annotation service.kubernetes.io/topology-aware-hints.**
 
    Error log:
 
@@ -45,7 +45,7 @@ Solution
 
       some check failed in cluster upgrade: this cluster has deprecated service list: map[test-svc] with deprecated annotation list [service.kubernetes.io/topology-aware-hints]
 
-   In this example, check the log to see if the Service (**test-svc**) contains the **service.kubernetes.io/topology-aware-hints** annotation. This annotation was used to enable topology aware hints in Services. However, this function have been renamed. If the deprecated annotation exists, delete it and use **service.kubernetes.io/topology-mode** as a replacement (For details, see `Topology Aware Routing <https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/>`__):
+   In this example, check the log to see if the Service (**test-svc**) contains the **service.kubernetes.io/topology-aware-hints** annotation. This annotation was used to enable topology aware hints in Services. However, this function has been renamed. If the deprecated annotation exists, delete it and use **service.kubernetes.io/topology-mode** as a replacement (for details, see `Topology Aware Routing <https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/>`__):
 
    #. Run the kubectl command to modify the YAML file of the Service.
 
@@ -53,9 +53,9 @@ Solution
 
          kubectl edit service test-svc
 
-   #. Delete the **"service.kubernetes.io/topology-aware-hints"** annotation and add the **"service.kubernetes.io/topology-mode"** annotation to **spec**.
+   #. Delete the **service.kubernetes.io/topology-aware-hints** annotation and add the **service.kubernetes.io/topology-mode** annotation to **spec**.
 
       |image2|
 
-.. |image1| image:: /_static/images/en-us_image_0000002434080064.png
-.. |image2| image:: /_static/images/en-us_image_0000002467718549.png
+.. |image1| image:: /_static/images/en-us_image_0000002516199061.png
+.. |image2| image:: /_static/images/en-us_image_0000002516079061.png

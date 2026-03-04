@@ -14,11 +14,11 @@ Determining Which Ingress the Listener Settings Have Been Applied To
 
 Listener parameters can be configured for all ingresses associated with the same listener, so CCE uses the listener annotation configurations (excluding SNI certificates) from the earliest created ingress (the first ingress). The first ingress is determined by sorting the **metadata.createTimestamp** fields of the ingresses in ascending order.
 
--  The first ingress information is written into annotations in clusters of v1.21.15-r0, v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, v1.29.1-r0, and later. You can check **kubernetes.io/elb.listener-master-ingress** in the annotations of the existing ingresses.
+-  The first ingress information is written into annotations in clusters v1.21.15-r0, v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, v1.29.1-r0, and later. You can check **kubernetes.io/elb.listener-master-ingress** in the annotations of the existing ingresses.
 
    |image1|
 
--  To get the first ingress in clusters earlier than v1.21.15-r0, v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, and v1.29.1-r0, use the kubectl command to obtain the ingresses associated with the same load balancer listener, sort these ingresses in ascending order, based on their creation time, and check the first one.
+-  To get the first ingress in clusters earlier than v1.29.1-r0, v1.28.4-r0, v1.27.6-r0, v1.25.9-r0, v1.23.14-r0, and v1.21.15-r0, use the kubectl command to obtain the ingresses associated with the same load balancer listener, sort these ingresses in ascending order based on their creation time, and check the first one.
 
    The query command is as follows: (Replace the load balancer ID and port number as needed.)
 
@@ -48,7 +48,7 @@ You can configure an ingress certificate in a cluster using either of the follow
 
    ELB server certificates are also maintained on the ELB console, so you do not need to import the certificate content to CCE secrets. This allows for unified cross-namespace configuration. It is recommended that you use ELB server certificates to configure the certificates for ingresses.
 
-   ELB server certificates are supported in clusters of versions v1.19.16-r2, v1.21.5-r0, and v1.23.3-r0.
+   ELB server certificates are supported in clusters v1.19.16-r2, v1.21.5-r0, and v1.23.3-r0.
 
 To update the listener server certificate created by an ingress using a TLS certificate, follow these steps:
 
@@ -147,4 +147,4 @@ Listener settings only apply to the first ingress configuration (excluding SNI c
                secretName: default-ns-secret-2
          ...
 
-.. |image1| image:: /_static/images/en-us_image_0000002467676981.png
+.. |image1| image:: /_static/images/en-us_image_0000002484117972.png

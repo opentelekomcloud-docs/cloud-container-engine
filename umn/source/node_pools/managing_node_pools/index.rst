@@ -7,7 +7,7 @@ Managing Node Pools
 
 -  :ref:`Updating a Node Pool <cce_10_0653>`
 -  :ref:`Updating an AS Configuration <cce_10_0727>`
--  :ref:`Modifying Node Pool Configurations <cce_10_0652>`
+-  :ref:`Managing Node Pool Configurations <cce_10_0652>`
 -  :ref:`Accepting Nodes in a Node Pool <cce_10_0886>`
 -  :ref:`Copying a Node Pool <cce_10_0655>`
 -  :ref:`Synchronizing Node Pools <cce_10_0654>`
@@ -21,7 +21,7 @@ Managing Node Pools
 
    updating_a_node_pool
    updating_an_as_configuration
-   modifying_node_pool_configurations
+   managing_node_pool_configurations
    accepting_nodes_in_a_node_pool
    copying_a_node_pool
    synchronizing_node_pools

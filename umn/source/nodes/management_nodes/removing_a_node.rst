@@ -14,8 +14,8 @@ Removing a node will not delete the server corresponding to the node. You are ad
 
 After a node is removed from the cluster, the node is still running.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  If the OS fails to be re-installed after the node is removed, manually re-install the OS. After the re-installation, log in to the node and run the clearance script to clear CCE components. For details, see :ref:`Handling Failed OS Reinstallation <cce_10_0338__section149069481111>`.
 -  Removing a node will cause PVC/PV data loss for the :ref:`local PV <cce_10_0391>` associated with the node. These PVCs and PVs cannot be restored or used again. In this scenario, the pod that uses the local PV is evicted from the node. A new pod is created and stays in the pending state. This is because the PVC used by the pod has a node label, due to which the pod cannot be scheduled.

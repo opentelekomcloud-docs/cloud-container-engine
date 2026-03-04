@@ -21,7 +21,7 @@ The credentials can be revoked in the following scenarios:
 Prerequisites
 -------------
 
-A cluster of v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10, v1.27.1-r10, or later is available.
+A cluster v1.19.16-r50, v1.21.11-r10, v1.23.9-r10, v1.25.4-r10, v1.27.1-r10, or later is available.
 
 Operations Performed by IAM Users
 ---------------------------------
@@ -29,7 +29,7 @@ Operations Performed by IAM Users
 IAM users can only revoke their own credentials. To revoke a credential, perform the following operations:
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. Choose **Overview** in the navigation pane. In the **Connection Info** area on the right of the page, click **Revoke**.
+#. Choose **Overview** in the navigation pane. On the **Overview** page, locate the **Connection Information** area on the right, click **Revoke**.
 #. In the dialog box displayed, enter **REVOKE** in the confirmation box and click **OK** if you are sure you want to revoke the credential.
 
 Operations Performed by Accounts or Administrators
@@ -39,7 +39,7 @@ Accounts or administrators (users in the admin user group) can revoke the creden
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. Choose **Overview** in the navigation pane. In the **Connection Info** area on the right of the page, click **Revoke**.
+#. Choose **Overview** in the navigation pane. On the **Overview** page, locate the **Connection Information** area on the right, click **Revoke**.
 
 #. Select a certificate applicant to revoke the certificate. For details about the parameters, see :ref:`Table 1 <cce_10_0744__table1450610254177>`. After the certificate is revoked, the original X.509 certificate and kubectl configuration file become invalid. If the certificate applicant needs to regain access to the cluster, they must download the certificate or kubectl configuration file again.
 
@@ -50,9 +50,9 @@ Accounts or administrators (users in the admin user group) can revoke the creden
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Parameter                         | Description                                                                                                                                                                                                                                                |
       +===================================+============================================================================================================================================================================================================================================================+
-      | User                              | **User**: Select an IAM user and revoke their credential.                                                                                                                                                                                                  |
+      | User                              | Select an IAM user and revoke their credential.                                                                                                                                                                                                            |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Account                           | **Account**: Select an agency account and revoke their credential.                                                                                                                                                                                         |
+      | Account                           | Select an agency account and revoke their credential.                                                                                                                                                                                                      |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Other user/agency ID              | If your IAM user or account has been deleted, or if you log in to the system through an identity provider, you need to manually enter the user ID or agency ID. To obtain an ID, do as follows:                                                            |
       |                                   |                                                                                                                                                                                                                                                            |

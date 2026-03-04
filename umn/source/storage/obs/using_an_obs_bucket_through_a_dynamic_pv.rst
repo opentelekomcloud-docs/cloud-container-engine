@@ -7,8 +7,8 @@ Using an OBS Bucket Through a Dynamic PV
 
 This section describes how to automatically create an OBS bucket. It is applicable when no underlying storage volume is available.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  If OBS volumes are used, the owner group and permission of the mount point cannot be modified.
 -  Every time an OBS volume is mounted to a workload through a PVC, a resident process is created in the backend. When a workload uses too many OBS volumes or reads and writes a large number of object storage files, resident processes will consume a significant amount of memory. To ensure stable running of the workload, make sure that the number of OBS volumes used does not exceed the requested memory. For example, if the workload requests for 4 GiB of memory, the number of OBS volumes should be **no more than** 4.
@@ -42,7 +42,7 @@ Automatically Creating an OBS Bucket Using the Console
       |                                       |                                                                                                                                                                                                                                                                     |
       |                                       | You can customize a StorageClass and configure its reclaim policy and binding mode. For details, see :ref:`Creating a StorageClass Through the Console <cce_10_0380__section1074117311660>`.                                                                        |
       +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | (Optional) Storage Volume Name Prefix | Available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest of v2.4.15 or later is installed in the cluster.                                                                                                  |
+      | (Optional) Storage Volume Name Prefix | Available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest v2.4.15 or later is installed in the cluster.                                                                                                     |
       |                                       |                                                                                                                                                                                                                                                                     |
       |                                       | This parameter specifies the name of the underlying storage that is automatically created. The actual underlying storage name is in the format of "Storage volume name prefix + PVC UID". If this parameter is left blank, the default prefix **pvc** will be used. |
       |                                       |                                                                                                                                                                                                                                                                     |
@@ -69,7 +69,7 @@ Automatically Creating an OBS Bucket Using the Console
 
    b. Click **Create** to create a PVC and a PV.
 
-      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PVCs** and **PVs** tab pages, respectively.
+      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PVCs** and **PVs** tabs, respectively.
 
 #. Create an application.
 
@@ -159,7 +159,7 @@ Automatically Creating an OBS Bucket Using kubectl
          +--------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | csi.storage.k8s.io/node-publish-secret-namespace | No                    | Namespace of a custom secret.                                                                                                                                                                                                                                       |
          +--------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | everest.io/csi.volume-name-prefix                | No                    | (Optional) This parameter is available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest of v2.4.15 or later is installed in the cluster.                                                                     |
+         | everest.io/csi.volume-name-prefix                | No                    | (Optional) This parameter is available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest v2.4.15 or later is installed in the cluster.                                                                        |
          |                                                  |                       |                                                                                                                                                                                                                                                                     |
          |                                                  |                       | This parameter specifies the name of the underlying storage that is automatically created. The actual underlying storage name is in the format of "Storage volume name prefix + PVC UID". If this parameter is left blank, the default prefix **pvc** will be used. |
          |                                                  |                       |                                                                                                                                                                                                                                                                     |
@@ -169,7 +169,7 @@ Automatically Creating an OBS Bucket Using kubectl
          +--------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | storage                                          | Yes                   | Requested capacity in the PVC, in Gi.                                                                                                                                                                                                                               |
          |                                                  |                       |                                                                                                                                                                                                                                                                     |
-         |                                                  |                       | For OBS, this parameter is only for verification. It must not be empty or 0, and its value is fixed at **1Gi**. Any value you set will not take effect.                                                                                                             |
+         |                                                  |                       | For OBS, this parameter is only for verification. It must not be empty or **0**, and its value is fixed at **1**. Any value you set will not take effect.                                                                                                           |
          +--------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | storageClassName                                 | Yes                   | StorageClass name, which is **csi-obs** for an OBS volume.                                                                                                                                                                                                          |
          +--------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -233,7 +233,7 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl get pod | grep web-demo
+         kubectl get pod -n <namespace> | grep web-demo
 
       Expected output:
 
@@ -246,8 +246,8 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl exec web-demo-846b489584-mjhm9 -- ls /data
-         kubectl exec web-demo-846b489584-wvv5s -- ls /data
+         kubectl exec -n <namespace> web-demo-846b489584-mjhm9 -- ls /data
+         kubectl exec -n <namespace> web-demo-846b489584-wvv5s -- ls /data
 
       If no result is returned for both pods, no file exists in the **/data** path.
 
@@ -255,13 +255,13 @@ Verifying Data Persistence and Sharing
 
    .. code-block::
 
-      kubectl exec web-demo-846b489584-mjhm9 --  touch /data/static
+      kubectl exec -n <namespace> web-demo-846b489584-mjhm9 --  touch /data/static
 
 #. Run the following command to check the files in the **/data** path:
 
    .. code-block::
 
-      kubectl exec web-demo-846b489584-mjhm9 -- ls /data
+      kubectl exec -n <namespace> web-demo-846b489584-mjhm9 -- ls /data
 
    Expected output:
 
@@ -275,7 +275,7 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl delete pod web-demo-846b489584-mjhm9
+         kubectl delete pod -n <namespace> web-demo-846b489584-mjhm9
 
       Expected output:
 
@@ -289,7 +289,7 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl get pod | grep web-demo
+         kubectl get pod -n <namespace> | grep web-demo
 
       The expected output is as follows, in which **web-demo-846b489584-d4d4j** is the newly created pod:
 
@@ -302,7 +302,7 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl exec web-demo-846b489584-d4d4j -- ls /data
+         kubectl exec -n <namespace> web-demo-846b489584-d4d4j -- ls /data
 
       Expected output:
 
@@ -318,7 +318,7 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl get pod | grep web-demo
+         kubectl get pod -n <namespace> | grep web-demo
 
       Expected output:
 
@@ -331,13 +331,13 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl exec web-demo-846b489584-d4d4j --  touch /data/share
+         kubectl exec -n <namespace> web-demo-846b489584-d4d4j --  touch /data/share
 
       Check the files in the **/data** path of the pod.
 
       .. code-block::
 
-         kubectl exec web-demo-846b489584-d4d4j -- ls /data
+         kubectl exec -n <namespace> web-demo-846b489584-d4d4j -- ls /data
 
       Expected output:
 
@@ -350,7 +350,7 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl exec web-demo-846b489584-wvv5s -- ls /data
+         kubectl exec -n <namespace> web-demo-846b489584-wvv5s -- ls /data
 
       Expected output:
 
@@ -385,4 +385,7 @@ You can also perform the operations listed in :ref:`Table 3 <cce_10_0630__table1
    +------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Viewing a YAML file    | View, copy, or download the YAML file of a PVC or PV.                                                                                      | #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** or **PVs** tab.                                                                                     |
    |                        |                                                                                                                                            | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view, copy, or download the YAML.                                                                         |
+   +------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Editing Reclaim Policy | Modify the reclaim policy of a PV.                                                                                                         | #. In the navigation pane, choose **Storage**. Then click the **PVs** tab.                                                                                                              |
+   |                        |                                                                                                                                            | #. Locate the row containing the target PV and choose **More** > **Edit Reclaim Policy**.                                                                                               |
    +------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

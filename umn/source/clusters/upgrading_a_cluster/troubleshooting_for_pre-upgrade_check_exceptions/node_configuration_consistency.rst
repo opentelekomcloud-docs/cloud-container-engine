@@ -54,7 +54,7 @@ The expected modification will not be intercepted. The following table lists the
    | Docker    | /etc/docker/daemon.json                               | dm.basesize           | Later than v1.19 |
    +-----------+-------------------------------------------------------+-----------------------+------------------+
 
-Solution
---------
+Solutions
+---------
 
 If you modify some parameters in these files, exceptions may occur after the upgrade. If you are not sure whether the modified parameters will affect the upgrade, contact technical support.

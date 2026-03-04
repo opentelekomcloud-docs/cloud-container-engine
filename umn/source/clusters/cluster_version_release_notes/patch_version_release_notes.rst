@@ -5,10 +5,27 @@
 Patch Version Release Notes
 ===========================
 
+Version 1.33
+------------
+
+.. table:: **Table 1** Release notes for the v1.33 patch
+
+   +---------------------------+------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+-----------------------------+
+   | CCE Cluster Patch Version | Kubernetes Version                                                                                   | Feature Updates                                                                                                                                                       | Optimization | Vulnerability Fixing        |
+   +===========================+======================================================================================================+=======================================================================================================================================================================+==============+=============================+
+   | v1.33.5-r0                | `v1.33.5 <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.33.md#v1335>`__ | -  You can enable the kubelet's port 127.0.0.1:10255 in the node pool configuration to expose monitoring metrics via HTTP. This configuration is disabled by default. | None         | Fixed some security issues. |
+   |                           |                                                                                                      | -  You can enable container-isolated resource view in the node pool configuration. Containers only access and manage their own assigned resources.                    |              |                             |
+   +---------------------------+------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+-----------------------------+
+   | v1.33.1-r0                | `v1.33.1 <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.33.md#v1331>`__ | CCE clusters of v1.33 are released for the first time. For more information, see :ref:`Kubernetes 1.33 Release Notes <cce_bulletin_0105>`.                            | None         | None                        |
+   |                           |                                                                                                      |                                                                                                                                                                       |              |                             |
+   |                           |                                                                                                      | -  Shared LoadBalancer ingresses can be redirected from HTTP to HTTPS.                                                                                                |              |                             |
+   |                           |                                                                                                      | -  CCE standard clusters support custom agencies for cluster-level access control.                                                                                    |              |                             |
+   +---------------------------+------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+-----------------------------+
+
 Version 1.32
 ------------
 
-.. table:: **Table 1** Release notes for the v1.32 patch
+.. table:: **Table 2** Release notes for the v1.32 patch
 
    +---------------------------+------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+-----------------------------+
    | CCE Cluster Patch Version | Kubernetes Version                                                                                   | Feature Updates                                                                                                                                                              | Optimization                                                                                                               | Vulnerability Fixing        |
@@ -19,7 +36,7 @@ Version 1.32
    |                           |                                                                                                      |                                                                                                                                                                              | -  The **cce-pause** container image can be protected against accidental deletion.                                         |                             |
    |                           |                                                                                                      | -  Service pod scheduling can be deferred until node post-installation scripts complete.                                                                                     | -  The system labels used by the NodeLocal DNSCache add-on can be protected against accidental deletion.                   |                             |
    |                           |                                                                                                      | -  DataPlane V2 is available for newly created CCE clusters that use the VPC networks. After DataPlane V2 is enabled, you can configure network policies for these clusters. |                                                                                                                            |                             |
-   |                           |                                                                                                      | -  AK/SK credentials for parallel file systems of OBS can be automatically updated.                                                                                          |                                                                                                                            |                             |
+   |                           |                                                                                                      | -  AK/SK automatic updates are supported for parallel file systems of OBS.                                                                                                   |                                                                                                                            |                             |
    |                           |                                                                                                      | -  During the creation of a LoadBalancer Service, you can configure specific IP addresses for the ELB backend.                                                               |                                                                                                                            |                             |
    |                           |                                                                                                      |                                                                                                                                                                              |                                                                                                                            |                             |
    |                           |                                                                                                      | -  AppArmor can be used to restrict container access to resources.                                                                                                           |                                                                                                                            |                             |
@@ -28,7 +45,7 @@ Version 1.32
 Version 1.31
 ------------
 
-.. table:: **Table 2** Release notes for the v1.31 patch
+.. table:: **Table 3** Release notes for the v1.31 patch
 
    +---------------------------+------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
    | CCE Cluster Patch Version | Kubernetes Version                                                                                   | Feature Updates                                                                                                                            | Optimization                                                                                    | Vulnerability Fixing        |
@@ -40,14 +57,14 @@ Version 1.31
    +---------------------------+------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
    | v1.31.1-r0                | `v1.31.1 <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.31.md#v1311>`__ | CCE clusters of v1.31 are released for the first time. For more information, see :ref:`Kubernetes 1.31 Release Notes <cce_bulletin_0099>`. | -  During a cluster upgrade, you can scale out the nodes in the cluster.                        | None                        |
    |                           |                                                                                                      |                                                                                                                                            | -  You can choose multiple blocklists or trustlists to manage access to a LoadBalancer ingress. |                             |
-   |                           |                                                                                                      | -  LoadBalancer ingresses support more advanced forwarding actions such as return a specific response body.                                |                                                                                                 |                             |
+   |                           |                                                                                                      | -  LoadBalancer ingresses support more advanced forwarding actions and return fixed responses.                                             |                                                                                                 |                             |
    |                           |                                                                                                      | -  DataPlane V2 is available for CCE Turbo clusters. After DataPlane V2 is enabled, you can configure network policies for these clusters. |                                                                                                 |                             |
    +---------------------------+------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
 
 Version 1.30
 ------------
 
-.. table:: **Table 3** Release notes for the v1.30 patch
+.. table:: **Table 4** Release notes for the v1.30 patch
 
    +---------------------------+--------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+-----------------------------+
    | CCE Cluster Patch Version | Kubernetes Version                                                                                     | Feature Updates                                                                                                                                                 | Optimization                                                                                                              | Vulnerability Fixing        |
@@ -74,7 +91,7 @@ Version 1.30
 Version 1.29
 ------------
 
-.. table:: **Table 4** Release notes for the v1.29 patch
+.. table:: **Table 5** Release notes for the v1.29 patch
 
    +---------------------------+--------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+-----------------------------+
    | CCE Cluster Patch Version | Kubernetes Version                                                                                     | Feature Updates                                                                                                                                                 | Optimization                                                                                                              | Vulnerability Fixing        |
@@ -100,7 +117,7 @@ Version 1.29
 Version 1.28
 ------------
 
-.. table:: **Table 5** Release notes for the v1.28 patch
+.. table:: **Table 6** Release notes for the v1.28 patch
 
    +---------------------------+--------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | CCE Cluster Patch Version | Kubernetes Version                                                                                     | Feature Updates                                                                                                                                                 | Optimization                                                                                                              | Vulnerability Fixing                                                                         |
@@ -141,7 +158,7 @@ Version 1.28
 Version 1.27
 ------------
 
-.. table:: **Table 6** Release notes for the v1.27 patch
+.. table:: **Table 7** Release notes for the v1.27 patch
 
    +---------------------------+--------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | CCE Cluster Patch Version | Kubernetes Version                                                                                     | Feature Updates                                                                                                                                                 | Optimization                                                                                                              | Vulnerability Fixing                                                                         |
@@ -186,7 +203,7 @@ Version 1.25
 
    In CCE clusters of v1.25, containerd is the default runtime for nodes, except for nodes running EulerOS 2.5. In addition, clusters of v1.25 or later no longer support EulerOS 2.5.
 
-.. table:: **Table 7** Release notes for the v1.25 patch
+.. table:: **Table 8** Release notes for the v1.25 patch
 
    +---------------------------+--------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | CCE Cluster Patch Version | Kubernetes Version                                                                                     | Feature Updates                                                                                                                                                 | Optimization                                                                                                              | Vulnerability Fixing                                                                         |
@@ -231,7 +248,7 @@ Version 1.25
 Version 1.23
 ------------
 
-.. table:: **Table 8** Release notes for the v1.23 patch
+.. table:: **Table 9** Release notes for the v1.23 patch
 
    +---------------------------+--------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | CCE Cluster Patch Version | Kubernetes Version                                                                                     | Feature Updates                                                                                                                                                 | Optimization                                                                                                              | Vulnerability Fixing                                                                         |
@@ -282,7 +299,7 @@ Version 1.23
 Version 1.21
 ------------
 
-.. table:: **Table 9** Release notes for the v1.21 patch
+.. table:: **Table 10** Release notes for the v1.21 patch
 
    +---------------------------+----------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | CCE Cluster Patch Version | Kubernetes Version                                                                                                   | Feature Updates                                                                                                                            | Optimization                                                                                  | Vulnerability Fixing                                                                         |
@@ -316,7 +333,7 @@ Version 1.21
 Version 1.19
 ------------
 
-.. table:: **Table 10** Release notes for the v1.19 patch
+.. table:: **Table 11** Release notes for the v1.19 patch
 
    +---------------------------+--------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+
    | CCE Cluster Patch Version | Kubernetes Version                                                                                     | Feature Updates                                                                                                                          | Optimization                                                                                                                     | Vulnerability Fixing                                                                         |

@@ -44,7 +44,7 @@ Using kubectl
       metadata:
         annotations:
           kubernetes.io/elb.autocreate: '{"type":"public","bandwidth_name":"aaaaa","bandwidth_chargemode":"bandwidth","bandwidth_size":5,"bandwidth_sharetype":"PER","eip_type":"5_g-vm","name":"xxx","available_zone":["xxx"],"elb_virsubnet_ids":["fc0c61cd-c987-49c4-99a4-b7d816b57581"],"l7_flavor_name":"","l4_flavor_name":"L4_flavor.elb.pro.max","vip_subnet_cidr_id":"cf35b03f-c6ca-4f75-aa70-e2166cb1f800"}'
-          kubernetes.io/elb.eip-id: 8560972c-2cc5-4699-94d6-e46f146eb73d     # ID of the EIP automatically assigned during load balancer creation
+          kubernetes.io/elb.eip-id: 8560972c-2cc5-4699-94d6-e46f146eb73d     # ID of the EIP automatically assigned during load balancer creation, which cannot be changed
           kubernetes.io/elb.class: performance
           kubernetes.io/elb.id: 0e78a84a-7deb-4747-aeb6-09b6a820b001
         labels:
@@ -89,7 +89,7 @@ Using kubectl
       metadata:
         annotations:
           kubernetes.io/elb.autocreate: '{"type":"public","bandwidth_name":"aaaaa","bandwidth_chargemode":"bandwidth","bandwidth_size":5,"bandwidth_sharetype":"PER","eip_type":"5_g-vm","name":"xxx","available_zone":["xxx"],"elb_virsubnet_ids":["fc0c61cd-c987-49c4-99a4-b7d816b57581"],"l7_flavor_name":"","l4_flavor_name":"L4_flavor.elb.pro.max","vip_subnet_cidr_id":"cf35b03f-c6ca-4f75-aa70-e2166cb1f800"}'
-          kubernetes.io/elb.eip-id: 8560972c-2cc5-4699-94d6-e46f146eb73d     # ID of the EIP automatically assigned during load balancer creation
+          kubernetes.io/elb.eip-id: 8560972c-2cc5-4699-94d6-e46f146eb73d     # ID of the EIP automatically assigned during load balancer creation, which cannot be changed
           kubernetes.io/elb.custom-eip-id: 88c197a1-cb85-4b38-b672-1d60dc5d00db  # ID of the custom EIP
           kubernetes.io/elb.class: performance
           kubernetes.io/elb.id: 0e78a84a-7deb-4747-aeb6-09b6a820b001
@@ -145,7 +145,7 @@ Using kubectl
       metadata:
         annotations:
           kubernetes.io/elb.autocreate: '{"type":"public","bandwidth_name":"aaaaa","bandwidth_chargemode":"bandwidth","bandwidth_size":5,"bandwidth_sharetype":"PER","eip_type":"5_g-vm","name":"xxx","available_zone":["xxx"],"elb_virsubnet_ids":["fc0c61cd-c987-49c4-99a4-b7d816b57581"],"l7_flavor_name":"","l4_flavor_name":"L4_flavor.elb.pro.max","vip_subnet_cidr_id":"cf35b03f-c6ca-4f75-aa70-e2166cb1f800"}'
-          kubernetes.io/elb.eip-id: 8560972c-2cc5-4699-94d6-e46f146eb73d     # ID of the EIP automatically assigned during load balancer creation
+          kubernetes.io/elb.eip-id: 8560972c-2cc5-4699-94d6-e46f146eb73d     # ID of the EIP automatically assigned during load balancer creation, which cannot be changed
           kubernetes.io/elb.custom-eip-id: 88c197a1-cb85-4b38-b672-1d60dc5d00db  # ID of the custom EIP
           kubernetes.io/elb.custom-eip-status: '{"id":"88c197a1-cb85-4b38-b672-1d60dc5d00db","public_ip_address":"2.2.2.2"}' # After the custom EIP is configured, record the EIP and its ID.
           kubernetes.io/elb.class: performance

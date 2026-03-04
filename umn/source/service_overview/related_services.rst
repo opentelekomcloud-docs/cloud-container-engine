@@ -8,7 +8,7 @@ Related Services
 CCE needs to be interconnected with the following cloud services. It requires permissions to access these cloud services.
 
 
-.. figure:: /_static/images/en-us_image_0000002467715337.png
+.. figure:: /_static/images/en-us_image_0000002516197289.png
    :alt: **Figure 1** Relationships between CCE and other services
 
    **Figure 1** Relationships between CCE and other services

@@ -37,7 +37,7 @@ Dynamically Creating an SFS file system Using the Console
       |                                       |                                                                                                                                                                                                                                                                     |
       |                                       | You can customize a StorageClass and configure its reclaim policy and binding mode. For details, see :ref:`Creating a StorageClass Through the Console <cce_10_0380__section1074117311660>`.                                                                        |
       +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | (Optional) Storage Volume Name Prefix | Available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest of v2.4.15 or later is installed in the cluster.                                                                                                  |
+      | (Optional) Storage Volume Name Prefix | Available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest v2.4.15 or later is installed in the cluster.                                                                                                     |
       |                                       |                                                                                                                                                                                                                                                                     |
       |                                       | This parameter specifies the name of the underlying storage that is automatically created. The actual underlying storage name is in the format of "Storage volume name prefix + PVC UID". If this parameter is left blank, the default prefix **pvc** will be used. |
       |                                       |                                                                                                                                                                                                                                                                     |
@@ -48,7 +48,7 @@ Dynamically Creating an SFS file system Using the Console
 
    b. Click **Create** to create a PVC and a PV.
 
-      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PVCs** and **PVs** tab pages, respectively.
+      You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PVCs** and **PVs** tabs, respectively.
 
 #. Create an application.
 
@@ -123,7 +123,7 @@ Dynamically Creating an SFS File System Using kubectl
          +===================================+=======================+=====================================================================================================================================================================================================================================================================+
          | storage                           | Yes                   | Requested capacity in the PVC, in Gi.                                                                                                                                                                                                                               |
          |                                   |                       |                                                                                                                                                                                                                                                                     |
-         |                                   |                       | For SFS, this parameter is used only for verification (cannot be empty or **0**). Its value is fixed at **1**, and any value you set does not take effect for SFS file systems.                                                                                     |
+         |                                   |                       | For SFS, this parameter is only for verification. It must not be empty or **0**, and its value is fixed at **1**. Any value you set will not take effect.                                                                                                           |
          +-----------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | everest.io/crypt-key-id           | No                    | If the StorageClass is **csi-nas**, you can determine whether to encrypt the underlying storage.                                                                                                                                                                    |
          |                                   |                       |                                                                                                                                                                                                                                                                     |
@@ -139,7 +139,7 @@ Dynamically Creating an SFS File System Using kubectl
          |                                   |                       |                                                                                                                                                                                                                                                                     |
          |                                   |                       | To obtain a tenant ID, hover the cursor over the username in the upper right corner of the ECS console, choose **My Credentials**, and copy the account ID.                                                                                                         |
          +-----------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-         | everest.io/csi.volume-name-prefix | No                    | (Optional) This parameter is available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest of v2.4.15 or later is installed in the cluster.                                                                     |
+         | everest.io/csi.volume-name-prefix | No                    | (Optional) This parameter is available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest v2.4.15 or later is installed in the cluster.                                                                        |
          |                                   |                       |                                                                                                                                                                                                                                                                     |
          |                                   |                       | This parameter specifies the name of the underlying storage that is automatically created. The actual underlying storage name is in the format of "Storage volume name prefix + PVC UID". If this parameter is left blank, the default prefix **pvc** will be used. |
          |                                   |                       |                                                                                                                                                                                                                                                                     |
@@ -207,7 +207,7 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl get pod | grep web-demo
+         kubectl get pod -n <namespace> | grep web-demo
 
       Expected output:
 
@@ -220,8 +220,8 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl exec web-demo-846b489584-mjhm9 -- ls /data
-         kubectl exec web-demo-846b489584-wvv5s -- ls /data
+         kubectl exec -n <namespace> web-demo-846b489584-mjhm9 -- ls /data
+         kubectl exec -n <namespace> web-demo-846b489584-wvv5s -- ls /data
 
       If no result is returned for both pods, no file exists in the **/data** path.
 
@@ -229,13 +229,13 @@ Verifying Data Persistence and Sharing
 
    .. code-block::
 
-      kubectl exec web-demo-846b489584-mjhm9 --  touch /data/static
+      kubectl exec -n <namespace> web-demo-846b489584-mjhm9 --  touch /data/static
 
 #. Run the following command to check the files in the **/data** path:
 
    .. code-block::
 
-      kubectl exec web-demo-846b489584-mjhm9 -- ls /data
+      kubectl exec -n <namespace> web-demo-846b489584-mjhm9 -- ls /data
 
    Expected output:
 
@@ -249,7 +249,7 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl delete pod web-demo-846b489584-mjhm9
+         kubectl delete pod -n <namespace> web-demo-846b489584-mjhm9
 
       Expected output:
 
@@ -263,7 +263,7 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl get pod | grep web-demo
+         kubectl get pod -n <namespace> | grep web-demo
 
       The expected output is as follows, in which **web-demo-846b489584-d4d4j** is the newly created pod:
 
@@ -276,7 +276,7 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl exec web-demo-846b489584-d4d4j -- ls /data
+         kubectl exec -n <namespace> web-demo-846b489584-d4d4j -- ls /data
 
       Expected output:
 
@@ -292,7 +292,7 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl get pod | grep web-demo
+         kubectl get pod -n <namespace> | grep web-demo
 
       Expected output:
 
@@ -305,13 +305,13 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl exec web-demo-846b489584-d4d4j --  touch /data/share
+         kubectl exec -n <namespace> web-demo-846b489584-d4d4j --  touch /data/share
 
       Check the files in the **/data** path of the pod.
 
       .. code-block::
 
-         kubectl exec web-demo-846b489584-d4d4j -- ls /data
+         kubectl exec -n <namespace> web-demo-846b489584-d4d4j -- ls /data
 
       Expected output:
 
@@ -324,7 +324,7 @@ Verifying Data Persistence and Sharing
 
       .. code-block::
 
-         kubectl exec web-demo-846b489584-wvv5s -- ls /data
+         kubectl exec -n <namespace> web-demo-846b489584-wvv5s -- ls /data
 
       Expected output:
 
@@ -344,12 +344,21 @@ You can also perform the operations listed in :ref:`Table 3 <cce_10_0620__table1
 
 .. table:: **Table 3** Related operations
 
-   +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Operation             | Description                                                                                                                                | Procedure                                                                                                                                                 |
-   +=======================+============================================================================================================================================+===========================================================================================================================================================+
-   | Viewing events        | View event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** or **PVs** tab.                                                       |
-   |                       |                                                                                                                                            | #. Click **View Events** in the **Operation** column of the target PVC or PV to view events generated within one hour (events are retained for one hour). |
-   +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Viewing a YAML file   | View, copy, or download the YAML file of a PVC or PV.                                                                                      | #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** or **PVs** tab.                                                       |
-   |                       |                                                                                                                                            | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view or download the YAML.                                                  |
-   +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+   +----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Operation                                                                                                                  | Description                                                                                                                                | Procedure                                                                                                                                                 |
+   +============================================================================================================================+============================================================================================================================================+===========================================================================================================================================================+
+   | Viewing events                                                                                                             | View event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** or **PVs** tab.                                                       |
+   |                                                                                                                            |                                                                                                                                            | #. Click **View Events** in the **Operation** column of the target PVC or PV to view events generated within one hour (events are retained for one hour). |
+   +----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Viewing a YAML file                                                                                                        | View, copy, or download the YAML file of a PVC or PV.                                                                                      | #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** or **PVs** tab.                                                       |
+   |                                                                                                                            |                                                                                                                                            | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view or download the YAML.                                                  |
+   +----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Editing Reclaim Policy                                                                                                     | Modify the reclaim policy of a PV.                                                                                                         | #. In the navigation pane, choose **Storage**. Then click the **PVs** tab.                                                                                |
+   |                                                                                                                            |                                                                                                                                            | #. Locate the row containing the target PV and choose **More** > **Edit Reclaim Policy**.                                                                 |
+   +----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Synchronizing PVC capacity (supported only for PVCs created from non-subdirectories of SFS Capacity-Oriented file systems) | When the underlying storage outgrows the PVC, resize the PVC capacity on the CCE console to match the new size.                            | #. In the navigation pane, choose **Storage**. Then, click the **PVCs** tab.                                                                              |
+   |                                                                                                                            |                                                                                                                                            |                                                                                                                                                           |
+   |                                                                                                                            |                                                                                                                                            | #. Locate the target PVC and click **Synchronize** in the **Capacity** column to make the PVC capacity consistent with the underlying storage capacity.   |
+   |                                                                                                                            |                                                                                                                                            |                                                                                                                                                           |
+   |                                                                                                                            |                                                                                                                                            |    **Synchronize** is only displayed when the underlying storage capacity is greater than the PVC capacity.                                               |
+   +----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+

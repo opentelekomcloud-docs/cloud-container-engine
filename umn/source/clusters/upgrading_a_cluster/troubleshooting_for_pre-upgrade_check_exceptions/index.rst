@@ -10,7 +10,6 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Upgrade Management <cce_10_0432>`
 -  :ref:`Add-ons <cce_10_0433>`
 -  :ref:`Helm Charts <cce_10_0434>`
--  :ref:`SSH Connectivity of Master Nodes <cce_10_0435>`
 -  :ref:`Node Pools <cce_10_0436>`
 -  :ref:`Security Groups <cce_10_0437>`
 -  :ref:`Residual Nodes <cce_10_0439>`
@@ -18,7 +17,6 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Compatibility Risks <cce_10_0441>`
 -  :ref:`CCE Agent Versions <cce_10_0442>`
 -  :ref:`Node CPU Usage <cce_10_0443>`
--  :ref:`CRDs <cce_10_0444>`
 -  :ref:`Node Disks <cce_10_0445>`
 -  :ref:`Node DNS <cce_10_0446>`
 -  :ref:`Node Key Directory File Permissions <cce_10_0447>`
@@ -27,13 +25,12 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Node Clock Synchronization Server <cce_10_0450>`
 -  :ref:`Node OS <cce_10_0451>`
 -  :ref:`Node CPU Cores <cce_10_0452>`
--  :ref:`Node Python Commands <cce_10_0453>`
 -  :ref:`Node Readiness <cce_10_0455>`
 -  :ref:`Node journald <cce_10_0456>`
 -  :ref:`containerd.sock <cce_10_0457>`
 -  :ref:`Internal Error <cce_10_0458>`
 -  :ref:`Node Mount Points <cce_10_0459>`
--  :ref:`Kubernetes Node Taints <cce_10_0460>`
+-  :ref:`Kubernetes Node Taint <cce_10_0460>`
 -  :ref:`Everest Restrictions <cce_10_0478>`
 -  :ref:`cce-hpa-controller Limitations <cce_10_0479>`
 -  :ref:`Enhanced CPU Policies <cce_10_0480>`
@@ -66,7 +63,6 @@ Troubleshooting for Pre-upgrade Check Exceptions
 -  :ref:`Key CCE AI Suite (NVIDIA GPU) Parameters <cce_10_0511>`
 -  :ref:`GPU Pod Rebuild Risks <cce_10_0512>`
 -  :ref:`ELB Listener Access Control <cce_10_0513>`
--  :ref:`Master Node Flavor <cce_10_0514>`
 -  :ref:`Subnet Quota of Master Nodes <cce_10_0515>`
 -  :ref:`Node Runtime <cce_10_0516>`
 -  :ref:`Node Pool Runtime <cce_10_0517>`
@@ -93,7 +89,6 @@ Troubleshooting for Pre-upgrade Check Exceptions
    upgrade_management
    add-ons
    helm_charts
-   ssh_connectivity_of_master_nodes
    node_pools
    security_groups
    residual_nodes
@@ -101,7 +96,6 @@ Troubleshooting for Pre-upgrade Check Exceptions
    compatibility_risks
    cce_agent_versions
    node_cpu_usage
-   crds
    node_disks
    node_dns
    node_key_directory_file_permissions
@@ -110,13 +104,12 @@ Troubleshooting for Pre-upgrade Check Exceptions
    node_clock_synchronization_server
    node_os
    node_cpu_cores
-   node_python_commands
    node_readiness
    node_journald
    containerd.sock
    internal_error
    node_mount_points
-   kubernetes_node_taints
+   kubernetes_node_taint
    everest_restrictions
    cce-hpa-controller_limitations
    enhanced_cpu_policies
@@ -149,7 +142,6 @@ Troubleshooting for Pre-upgrade Check Exceptions
    key_cce_ai_suite_nvidia_gpu_parameters
    gpu_pod_rebuild_risks
    elb_listener_access_control
-   master_node_flavor
    subnet_quota_of_master_nodes
    node_runtime
    node_pool_runtime

@@ -11,7 +11,7 @@ Prerequisites
 -------------
 
 -  A cluster of v1.19 or later is available. For details, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
--  The Volcano add-on has been installed. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
+-  The Volcano Scheduler add-on has been installed. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
 
 Overview
 --------

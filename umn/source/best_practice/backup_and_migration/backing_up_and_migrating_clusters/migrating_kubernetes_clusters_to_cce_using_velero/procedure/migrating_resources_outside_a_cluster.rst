@@ -31,7 +31,7 @@ Manually migrate container images.
    -  *[Image name 1*:*tag 1]*: name and tag of the local image to be pulled.
    -  *[Image repository address]*: You can obtain the image repository address on the SWR console.
    -  *[Organization name]*: Enter the name of the organization you created on the SWR console.
-   -  *{Image name 2*:*Tag 2}*: image name and tag displayed on the SWR console.
+   -  *[Image name 2*:*Tag 2]*: image name and tag displayed on the SWR console.
 
    The following is an example:
 

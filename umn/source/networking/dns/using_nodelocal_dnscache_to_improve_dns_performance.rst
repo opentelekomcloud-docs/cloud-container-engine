@@ -16,12 +16,12 @@ When the number of DNS requests in a cluster increases, the load of CoreDNS incr
 Solution
 --------
 
-To minimize the impact of DNS delay, deploy NodeLocal DNSCache in the cluster to improve the networking stability and performance. NodeLocal DNSCache runs a DNS cache proxy on cluster nodes. All pods with DNS configurations use the DNS cache proxy running on nodes instead of the CoreDNS service for domain name resolution. This reduces CoreDNS' load and improves the cluster DNS performance.
+To minimize the impact of DNS delay, deploy NodeLocal DNSCache in the cluster to improve the networking stability and performance. NodeLocal DNSCache runs a DNS cache proxy on cluster nodes. All pods with DNS configurations use the DNS cache proxy running on nodes instead of the CoreDNS service for domain name resolution. This reduces CoreDNS's load and improves the cluster DNS performance.
 
 After NodeLocal DNSCache is enabled, a DNS query goes through the path as shown below.
 
 
-.. figure:: /_static/images/en-us_image_0000002434080364.png
+.. figure:: /_static/images/en-us_image_0000002483959282.png
    :alt: **Figure 1** NodeLocal DNSCache query path
 
    **Figure 1** NodeLocal DNSCache query path

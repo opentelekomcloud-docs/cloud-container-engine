@@ -65,7 +65,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
          |                                   |    -  **Elastic**: applies to fluctuating traffic, billed based on total traffic. Clusters of v1.21.10-r10, v1.23.8-r10, v1.25.3-r10, and later versions support elastic specifications.                                                                                        |
          |                                   |    -  **Fixed**: applies to stable traffic, billed based on specifications.                                                                                                                                                                                                     |
          |                                   |                                                                                                                                                                                                                                                                                 |
-         |                                   | -  **EIP**: If you select **Auto assign**, you can configure the size of the public network bandwidth.                                                                                                                                                                          |
+         |                                   | -  **EIP**: If you select **Auto assign**, you can configure the bandwidth size for the public network.                                                                                                                                                                         |
          |                                   | -  **Resource Tag**: You can add resource tags to classify resources. You can create **predefined tags** on the TMS console. These tags are available to all resources that support tags. You can use these tags to improve the tag creation and resource migration efficiency. |
          +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
@@ -75,7 +75,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
       -  **Frontend Protocol**: **HTTP** and **HTTPS** are available.
 
-      -  **External Port**: port number that is open to the ELB service address. The port number is configurable.
+      -  **External Port**: port number that is open to the ELB service address. The port number is configurable. If you select an existing load balancer, the listener ports of different clusters cannot be reused. Multiple ingresses within the same cluster can share the same listener port, but the listener configuration that works is determined by the earliest ingress configuration.
 
       -  **Access Control**
 
@@ -129,12 +129,12 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
          +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
          | Configuration         | Description                                                                                                                                                                                                                                                                                 | Constraint                                                                                               |
          +=======================+=============================================================================================================================================================================================================================================================================================+==========================================================================================================+
-         | Idle Timeout          | The duration for which a client connection can remain idle before being terminated. If there are no requests reaching the load balancer during this period, the load balancer will disconnect the connection from the client and establish a new connection when there is a new request.    | None                                                                                                     |
+         | Idle Timeout          | The duration for which a client connection can remain idle before being terminated. If there are no requests reaching the load balancer during this period, the load balancer will disconnect the connection from the client and establish a new connection when there is a new request.    | This configuration is not supported if the port of a shared load balancer uses UDP.                      |
          +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
          | Request Timeout       | The duration within which a request from a client must be received. There are two cases:                                                                                                                                                                                                    | This function is available only for HTTP and HTTPS listeners.                                            |
          |                       |                                                                                                                                                                                                                                                                                             |                                                                                                          |
          |                       | -  If the client fails to send a request header to the load balancer during this period, the request will be interrupted.                                                                                                                                                                   |                                                                                                          |
-         |                       | -  If the interval between two consecutive request bodies exceeds the timeout duration, the connection will be disconnected.                                                                                                                                                                |                                                                                                          |
+         |                       | -  If the interval between two consecutive request bodies reaching the load balancer exceeds the timeout duration, the connection will be disconnected.                                                                                                                                     |                                                                                                          |
          +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
          | Response Timeout      | The duration within which a response from the backend server is expected. If the backend server does not respond within this period after receiving a request, the load balancer will stop waiting and return an HTTP 504 error.                                                            | This function is available only for HTTP and HTTPS listeners.                                            |
          +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
@@ -164,7 +164,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
          -  .. _cce_10_0251__li8170555132211:
 
-            **Algorithm**: Three algorithms are available: weighted round robin, weighted least connections algorithm, or source IP hash.
+            **Load balancing algorithm**: You can select **Weighted round robin**, **Weighted least connections**, or **Source IP hash**.
 
             .. note::
 
@@ -192,8 +192,8 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
             +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
             | Port                              | By default, the service port (NodePort or container port of the Service) is used for health check. You can also specify another port for health check. After the port is specified, a service port named **cce-healthz** will be added for the Service. |
             |                                   |                                                                                                                                                                                                                                                         |
-            |                                   | -  **Node Port**: If a shared load balancer is used or no ENI instance is associated, the node port is used as the health check port. If this parameter is not specified, a random port is used. The value ranges from 30000 to 32767.                  |
-            |                                   | -  **Container Port**: When a dedicated load balancer is associated with an ENI instance, the container port is used for health check. The value ranges from 1 to 65535.                                                                                |
+            |                                   | -  **Node Port**: If a shared load balancer is used or no network interface is associated, the node port is used as the health check port. If this parameter is not specified, a random port is used. The value ranges from 30000 to 32767.             |
+            |                                   | -  **Container Port**: When a dedicated load balancer is associated with a network interface, the container port is used for health check. The value ranges from 1 to 65535.                                                                            |
             +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
             | Check Period (s)                  | Specifies the maximum interval between health checks. The value ranges from 1 to 50.                                                                                                                                                                    |
             +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -208,7 +208,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
 #. Click **OK**. After the ingress is created, it is displayed in the ingress list.
 
-   On the ELB console, you can check the load balancer automatically created through CCE. The default name is **cce-lb-<ingress.UID>**. Click the load balancer name to go to the details page. On the **Listeners** tab page, check the listener and forwarding policy of the target ingress.
+   On the ELB console, you can check the load balancer automatically created through CCE. The default name is **cce-lb-<ingress.UID>**. Click the load balancer name to go to the details page. On the **Listeners** tab, check the listener and forwarding policy of the target ingress.
 
    .. important::
 
@@ -218,13 +218,13 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
 
    a. Obtain the access address of the **/healthz** interface of the workload. The access address consists of the load balancer IP address, external port, and mapping URL, for example, 10.**.**.**:80/healthz.
 
-   b. Enter the URL of the /healthz interface, for example, http://10.**.**.**:80/healthz, in the address box of the browser to access the workload, as shown in :ref:`Figure 1 <cce_10_0251__fig17115192714367>`.
+   b. Enter the URL of the **/healthz** interface, for example, **http://10.**.**.**:80/healthz**, in the address bar of the browser to access the workload, as shown in :ref:`Figure 1 <cce_10_0251__fig17115192714367>`.
 
       .. _cce_10_0251__fig17115192714367:
 
-      .. figure:: /_static/images/en-us_image_0000002434240696.png
+      .. figure:: /_static/images/en-us_image_0000002516199417.png
          :alt: **Figure 1** Accessing the /healthz interface of defaultbackend
 
          **Figure 1** Accessing the /healthz interface of defaultbackend
 
-.. |image1| image:: /_static/images/en-us_image_0000002434080872.png
+.. |image1| image:: /_static/images/en-us_image_0000002484119440.png

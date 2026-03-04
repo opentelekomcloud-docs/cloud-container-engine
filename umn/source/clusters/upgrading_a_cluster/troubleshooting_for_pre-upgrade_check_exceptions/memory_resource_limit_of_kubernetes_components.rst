@@ -8,10 +8,10 @@ Memory Resource Limit of Kubernetes Components
 Check Items
 -----------
 
-Check whether the resources of Kubernetes components, such as etcd and kube-controller-manager, exceed the upper limit.
+Check whether the resources of Kubernetes components, such as etcd and kube-controller-manager, exceed the limits.
 
-Solution
---------
+Solutions
+---------
 
 -  Solution 1: Reduce Kubernetes resources that are needed.
 -  Solution 2: Modify cluster specifications. For details, see :ref:`Changing a Cluster Scale <cce_10_0403>`.

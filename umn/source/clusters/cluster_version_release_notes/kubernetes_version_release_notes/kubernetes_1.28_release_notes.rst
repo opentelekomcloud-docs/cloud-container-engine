@@ -53,7 +53,7 @@ Features in alpha stage are disabled by default, those in beta stage are enabled
 
 -  Non-graceful node shutdown moves to GA.
 
-   The non-graceful node shutdown is now GA in Kubernetes 1.28. When a node was shut down and that shutdown was not detected by the kubelet's Node Shutdown Manager, the StatefulSet pods that run on this node will stay in the terminated state and cannot be moved to a running node. If you have confirmed that the shutdown node is unrecoverable, you can add an **out-of-service** taint to the node. This ensures that the StatefulSet pods and VolumeAttachments on this node can be forcibly deleted and the corresponding pods will be created on a healthy node. For details, see `Non-Graceful Node Shutdown Moves to GA <https://kubernetes.io/blog/2023/08/16/kubernetes-1-28-non-graceful-node-shutdown-ga/>`__.
+   The non-graceful node shutdown is now GA in Kubernetes 1.28. When a node was shut down and that shutdown was not detected by the kubelet's Node Shutdown Manager, the StatefulSet pods that run on this node will stay in the terminated state and cannot be moved to a running node. If you have confirmed that the shutdown node is irrecoverable, you can add an **out-of-service** taint to the node. This ensures that the StatefulSet pods and VolumeAttachments on this node can be forcibly deleted and the corresponding pods will be created on a healthy node. For details, see `Non-Graceful Node Shutdown Moves to GA <https://kubernetes.io/blog/2023/08/16/kubernetes-1-28-non-graceful-node-shutdown-ga/>`__.
 
 -  NodeSwap moves to beta.
 
@@ -67,17 +67,17 @@ Features in alpha stage are disabled by default, those in beta stage are enabled
 
       By default, when a pod enters the terminating state (for example, due to the preemption or eviction), Kubernetes immediately creates a replacement pod. Therefore, both pods are running concurrently.
 
-      In Kubernetes 1.28, this feature can be enabled by turning on the JobPodReplacementPolicy feature gate. With this feature gate enabled, you can set the **podReplacementPolicy** field under **spec** of a job to **Failed**. In this way, pods would only be replaced when they reached the failed phase, and not when they are terminating. Additionally, you can check the **.status.termination** field of a job. The value of this field is the number of pods owned by the job that are currently terminating.
+      In Kubernetes 1.28, this feature can be enabled by turning on the JobPodReplacementPolicy feature gate. With this feature gate enabled, you can set the **podReplacementPolicy** field under **spec** of a job to **Failed**. In this way, pods would only be replaced when they reached the failed phase, and not when they are terminating. Additionally, you can check the **.status.termination** field of a job. The value of this field specifies the number of pods associated with the job during termination.
 
    -  Backoff limit per index
 
-      By default, pod failures for indexed jobs are recorded and restricted by the global limit of retries, specified by **.spec.backoffLimit**. This means that if there is a consistently failing index in a job, pods specified by the job will be restarted repeatedly until pod failures exhaust the limit. Once the limit is reached, the job is marked failed and pods for other indexes in the job may never be even started.
+      By default, pod failures for indexed jobs are recorded and restricted by the global limit of retries, specified by **.spec.backoffLimit**. This means that if there is a consistently failing index in a job, pods specified by the job will be restarted repeatedly until pod failures exhaust the limit. Once the limit is reached, the job is marked as failed, and pods for other indexes in the job may never start.
 
       In Kubernetes 1.28, this feature can be enabled by turning on the JobBackoffLimitPerIndex feature gate of a cluster. With this feature gate enabled, **.spec.backoffLimitPerIndex** can be specified when an indexed job is created. Only if the failures of pods with all indexes specified in this job exceed the upper limit, pods specified by the job will not be restarted.
 
 -  Some CEL related features are improved.
 
-   CEL related capabilities are enhanced.
+   CEL related features are enhanced.
 
    -  CEL used to validate CRDs moves to beta.
 
@@ -118,9 +118,9 @@ API Changes and Removals
 -  If **hostNetwork** is set to **true** and ports are specified for a pod, the **hostport** field will be automatically configured.
 -  StatefulSet pods have the pod index set as a pod label **statefulset.kubernetes.io/pod-index**.
 -  **PodHasNetwork** in the **Condition** field of pods has been renamed to **PodReadyToStartContainers**. The new field specifies that containers are ready to start after the network, volumes, and sandbox pod have been created.
--  A new configuration option **delayCacheUntilActive** is added to **KubeSchedulerConfiguration** to specify when to start caching data. This parameter defaults to **false**. If this parameter is set to **true**, leader election is enabled. In this case, the scheduler starts to cache the scheduling information only after a control plane node becomes the leader. This reduces memory overheads of the control plane nodes, but also slows down the failover speed.
+-  A new configuration option **delayCacheUntilActive** is added to **KubeSchedulerConfiguration** to specify when to start caching data. This parameter defaults to **false**. If this parameter is set to **true**, leader election is enabled. In this case, the scheduler starts to cache the scheduling information only after a control plane node becomes the leader. This reduces memory overhead of the control plane nodes, but also slows down the failover speed.
 -  The **namespaceParamRef** field is added to **admissionregistration.k8s.io/v1alpha1.ValidatingAdmissionPolicy**.
--  The **reason** and **fieldPath** fields are added to CRD validation rules to allow you to specify reason and field path after verification failed.
+-  The **reason** and **fieldPath** fields are added to CRD validation rules to allow you to specify reason and field path if verification fails.
 -  The CEL expression of ValidatingAdmissionPolicy supports namespace access via namespaceObject.
 -  API groups ValidatingAdmissionPolicy and ValidatingAdmissionPolicyBinding are promoted to betav1.
 -  A ValidatingAdmissionPolicy now has its **messageExpression** field checked against resolved types.
@@ -133,7 +133,7 @@ Feature Gate and Command Line Parameter Changes and Removals
 -  **-short** is removed from kubelet. Therefore, the default output of **kubectl version** is the same as that of **kubectl version -short**.
 -  **--volume-host-cidr-denylist** and **--volume-host-allow-local-loopback** are removed from kube-controller-manager. **--volume-host-cidr-denylist** is a comma-separated list of CIDR ranges. Volume plugins at these IP addresses are not allowed. If **--volume-host-allow-local-loopback** is set to **false**, the local loopback IP address and the CIDR ranges specified in **--volume-host-cidr-denylist** are disabled.
 -  **--azure-container-registry-config** is deprecated in kubelet and will be deleted in later Kubernetes versions. Use **--image-credential-provider-config** and **--image-credential-provider-bin-dir** instead.
--  **--lock-object-namespace** and **--lock-object-name** are removed from kube-scheduler. Use **--leader-elect-resource-namespace** and **--leader-elect-resource-name** or **ComponentConfig** instead. (**--lock-object-namespace** is used to define the namespace of a lock object, and **--lock-object-name** is used to define the name of a lock object.)
+-  **--lock-object-namespace** and **--lock-object-name** are removed from kube-scheduler. Use **--leader-elect-resource-namespace** and **--leader-elect-resource-name** or **ComponentConfig** instead. **--lock-object-namespace** is used to define the namespace of a lock object, and **--lock-object-name** is used to define the name of a lock object.
 -  KMS v1 is deprecated and will only receive security updates. Use KMS v2 instead. In later Kubernetes versions, use **--feature-gates=KMSv1=true** to configure a KMS v1 provider.
 -  The DelegateFSGroupToCSIDriver, DevicePlugins, KubeletCredentialProviders, MixedProtocolLBService, ServiceInternalTrafficPolicy, ServiceIPStaticSubrange, and EndpointSliceTerminatingCondition feature gates are removed.
 
@@ -151,4 +151,4 @@ For details about cluster version updates, see :ref:`Release Notes for CCE Clust
 References
 ----------
 
-For more details about the performance comparison and function evolution between Kubernetes 1.28 and other versions, see `Kubernetes v1.28 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.28.md>`__.
+For more details about the performance comparison and functional evolution between Kubernetes 1.28 and other versions, see `Kubernetes v1.28 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.28.md>`__.

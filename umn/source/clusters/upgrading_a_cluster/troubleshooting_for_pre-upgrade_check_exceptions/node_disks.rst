@@ -13,8 +13,8 @@ Check the following items:
 -  Check whether the key data disks on the node meet the upgrade requirements.
 -  Check whether the **/tmp** directory has 500 MB of available space.
 
-Solution
---------
+Solutions
+---------
 
 During the node upgrade, the key disks store the upgrade component package, and the **/tmp** directory stores temporary files.
 

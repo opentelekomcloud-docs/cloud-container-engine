@@ -26,7 +26,7 @@ When Dex is used for OIDC authentication in a Kubernetes cluster, two key compon
 -  dex-k8s-authenticator is a web application that interacts with Dex. It retrieves tokens from Dex and provides necessary commands to create or update a kubeconfig file. After running these commands, you can configure the kubeconfig file.
 
 
-.. figure:: /_static/images/en-us_image_0000002467719041.png
+.. figure:: /_static/images/en-us_image_0000002484119506.png
    :alt: **Figure 1** Dex login verification process
 
    **Figure 1** Dex login verification process
@@ -355,4 +355,4 @@ Step 7: Perform Login Tests
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000002467719057.png
+.. |image1| image:: /_static/images/en-us_image_0000002516079487.png

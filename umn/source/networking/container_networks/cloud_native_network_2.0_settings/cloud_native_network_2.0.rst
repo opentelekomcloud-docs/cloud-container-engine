@@ -11,7 +11,7 @@ Model Definition
 The proprietary, next-generation Cloud Native Network 2.0 combines the network interfaces and supplementary network interfaces of VPC. This allows you to bind network interfaces or supplementary network interfaces to pods, giving each pod unique IP address within the VPC. Cloud Native Network 2.0 also has features like ELB passthrough networking and association of security groups and EIPs with pods. Because container tunnel encapsulation and NAT are not required, Cloud Native Network 2.0 delivers higher network performance than the container tunnel and VPC networks.
 
 
-.. figure:: /_static/images/en-us_image_0000002467678269.png
+.. figure:: /_static/images/en-us_image_0000002483959072.png
    :alt: **Figure 1** Cloud Native Network 2.0
 
    **Figure 1** Cloud Native Network 2.0
@@ -23,8 +23,8 @@ In a cluster using Cloud Native Network 2.0, pods rely on network interfaces and
 -  To run a pod, bind a network interface to it. The maximum number of pods that can run on a single node depends on the number of network interfaces that can be bound to the node and the number of network interface ports available on the node.
 -  Traffic for communications between pods on a node, communications between pods on different nodes, and pod access to networks outside a cluster is forwarded through the elastic or supplementary network interfaces of VPC.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 This network model is available only to CCE Turbo clusters.
 
@@ -182,12 +182,12 @@ Network Interface Pre-binding Policies in CCE Turbo Clusters
 In Cloud Native Network 2.0, ECS nodes use supplementary network interfaces. The allocation policies are as follows:
 
 -  Pod IP addresses are allocated from the VPC subnets configured for the container network.
--  To add an ECS node to a cluster, bind the elastic network interface that carries the supplementary network interfaces first to the ECS. After the elastic network interface is bound, supplementary network interfaces are bound.
--  Number of elastic network interfaces bound to an ECS node: **For clusters of v1.19.16-r40, v1.21.11-r0, v1.23.9-r0, v1.25.4-r0, v1.27.1-r0, and later versions, the value is 1. For clusters of earlier versions, the value is the maximum number of supplementary network interfaces that can be bound to the node divided by 64 (rounded up).**
--  Number of network interfaces bound to an ECS node = **Number of elastic network interfaces used to bear supplementary network interfaces + Number of supplementary network interfaces currently used by pods + Number of pre-bound supplementary network interfaces**
+-  To add an ECS node to a cluster, first attach the network interface that owns the supplementary network interfaces. The supplementary network interfaces are then attached automatically.
+-  Number of network interfaces that can be attached to an ECS node: **For clusters of v1.19.16-r40, v1.21.11-r0, v1.23.9-r0, v1.25.4-r0, v1.27.1-r0, or later versions, the value is 1. For clusters of earlier versions, the value is the maximum number of supplementary network interfaces that can be attached to the node divided by 64 (rounded up).**
+-  Number of network interfaces that can be attached to an ECS node = **Number of network interfaces that own supplementary network interfaces + Number of supplementary network interfaces currently used by pods + Number of pre-bound supplementary network interfaces**
 -  When a pod is created, an available network interface is randomly allocated from the pre-binding network interface pool of the node.
 -  When a pod is deleted, the network interface is released back to the network interface pool of the node.
--  When a node is deleted, the network interfaces are all released. The elastic network interfaces are released backed to the pool. The supplementary network interfaces are deleted.
+-  When a node is deleted, all of its network interfaces are released. The network interfaces are released backed to the pool, and the supplementary network interfaces are deleted.
 
 Cloud Native 2.0 networks support **dynamic** network interface pre-binding policies. The following table lists the scenarios.
 

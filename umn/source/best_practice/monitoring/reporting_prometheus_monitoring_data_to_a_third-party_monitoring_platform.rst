@@ -79,6 +79,6 @@ After the preceding configuration is complete, log in to the Prometheus console 
 
 |image3|
 
-.. |image1| image:: /_static/images/en-us_image_0000002434078352.png
-.. |image2| image:: /_static/images/en-us_image_0000002434078340.png
-.. |image3| image:: /_static/images/en-us_image_0000002467716841.png
+.. |image1| image:: /_static/images/en-us_image_0000002483958232.png
+.. |image2| image:: /_static/images/en-us_image_0000002484118214.png
+.. |image3| image:: /_static/images/en-us_image_0000002516078181.png

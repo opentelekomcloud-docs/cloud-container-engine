@@ -14,7 +14,7 @@ An ingress is an independent resource in the Kubernetes cluster and defines rule
 
 .. _cce_10_0094__fig18155819416:
 
-.. figure:: /_static/images/en-us_image_0000002434240944.png
+.. figure:: /_static/images/en-us_image_0000002516079671.png
    :alt: **Figure 1** Ingress diagram
 
    **Figure 1** Ingress diagram
@@ -84,7 +84,7 @@ CCE Standard Clusters
 ---------------------
 
 
-.. figure:: /_static/images/en-us_image_0000002434081112.png
+.. figure:: /_static/images/en-us_image_0000002516079667.png
    :alt: **Figure 2** Working flow of a LoadBalancer ingress in a CCE standard cluster
 
    **Figure 2** Working flow of a LoadBalancer ingress in a CCE standard cluster
@@ -93,7 +93,7 @@ CCE Turbo Clusters Where a Shared Load Balancer Is Used
 -------------------------------------------------------
 
 
-.. figure:: /_static/images/en-us_image_0000002434081116.png
+.. figure:: /_static/images/en-us_image_0000002483959718.png
    :alt: **Figure 3** Working flow of a LoadBalancer ingress in a CCE Turbo cluster where a shared load balancer is used
 
    **Figure 3** Working flow of a LoadBalancer ingress in a CCE Turbo cluster where a shared load balancer is used
@@ -104,7 +104,7 @@ CCE Turbo Clusters Where a Dedicated Load Balancer Is Used
 When a **CCE Turbo cluster** is used, pod IP addresses are directly allocated from the VPC. **Dedicated load balancers** enable passthrough networking to pods. When creating an ingress for external cluster access, you can use ELB to access a ClusterIP Service and use pods as the backend server of the ELB listener. In this way, external traffic can directly access the pods in the cluster without being forwarded by node ports.
 
 
-.. figure:: /_static/images/en-us_image_0000002434081124.png
+.. figure:: /_static/images/en-us_image_0000002483959720.png
    :alt: **Figure 4** Working flow of a LoadBalancer ingress in a CCE Turbo cluster where a dedicated load balancer is used
 
    **Figure 4** Working flow of a LoadBalancer ingress in a CCE Turbo cluster where a dedicated load balancer is used
@@ -126,7 +126,7 @@ NGINX Ingress Controller is deployed on worker nodes through pods, which will re
 
 .. _cce_10_0094__fig2042781115133:
 
-.. figure:: /_static/images/en-us_image_0000002434081132.png
+.. figure:: /_static/images/en-us_image_0000002483959722.png
    :alt: **Figure 5** Working rules of NGINX Ingress Controller
 
    **Figure 5** Working rules of NGINX Ingress Controller

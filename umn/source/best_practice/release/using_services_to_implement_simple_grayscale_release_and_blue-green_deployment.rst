@@ -38,7 +38,7 @@ Resource Creation
 
 You can use YAML to deploy Deployments and Services in either of the following ways:
 
--  On the **Create Deployment** page, click **Create YAML** on the right and edit the YAML file in the window.
+-  On the **Create Deployment** page, click **Create from YAML** on the right and edit the YAML file in the window.
 -  Save the sample YAML file in this section as a file and use kubectl to specify the YAML file. For example, run the **kubectl create -f xxx.yaml** command.
 
 Step 1: Deploy Services of Two Versions
@@ -259,6 +259,6 @@ Step 3: Implement Blue-Green Deployment
       Nginx-v2
       Nginx-v2
 
-.. |image1| image:: /_static/images/en-us_image_0000002434238296.png
-.. |image2| image:: /_static/images/en-us_image_0000002434078452.png
-.. |image3| image:: /_static/images/en-us_image_0000002467676797.png
+.. |image1| image:: /_static/images/en-us_image_0000002516198257.png
+.. |image2| image:: /_static/images/en-us_image_0000002484118292.png
+.. |image3| image:: /_static/images/en-us_image_0000002516198239.png

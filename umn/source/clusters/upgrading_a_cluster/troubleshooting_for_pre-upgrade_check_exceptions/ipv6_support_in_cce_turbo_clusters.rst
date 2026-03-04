@@ -10,8 +10,8 @@ Check Items
 
 If IPv6 is enabled for a CCE Turbo cluster, check whether the target cluster version supports IPv6.
 
-Solution
---------
+Solutions
+---------
 
 CCE Turbo clusters support IPv6 since v1.23. This feature is available in the following versions:
 

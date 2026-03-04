@@ -5,19 +5,19 @@
 Using Third-Party Images
 ========================
 
-Third-party images are container images provided by organizations or individuals other than the official image repository and SWR image repository. These images typically contain custom applications, tools, or specific versions of OSs to meet particular service requirements. In a CCE standard or Turbo cluster, you can create workloads using third-party images pulled through secret authentication. For more information, see `Images \| Kubernetes <https://kubernetes.io/docs/concepts/containers/images/?spm=a2c4g.11186623.2.1.XVyfik#using-a-private-registry>`__.
+Third-party images are container images provided by organizations or individuals other than the official image repository and SWR image repository. These images typically contain custom applications, tools, or specific versions of OSs to meet particular service requirements. In a CCE standard or Turbo cluster, you can create workloads using third-party images pulled through secret authentication. For more information, see `Using a Private Registry <https://kubernetes.io/docs/concepts/containers/images/>`__.
 
 Prerequisites
 -------------
 
 If third-party images are used, the CCE standard or Turbo cluster must be able to access the network environment where the third-party image repository is deployed. The network access types include:
 
--  **Intranet**: If the third-party image repository supports intranet access, consider the following scenarios:
+-  **Private access**: If the third-party image repository supports private access, consider the following scenarios:
 
    -  If the third-party image repository is in the same VPC as the cluster, pods can directly pull images over the intranet without additional configurations.
    -  If the third-party image repository and the cluster are in different VPCs in the same region, you can use a VPC peering connection to enable network connectivity between the two VPCs. Pods can then directly pull images over the intranet.
 
--  **Internet**: If the third-party image repository is accessible over the Internet, pods can pull images directly. In this case, ensure the **pods can access the Internet** using one of the following methods:
+-  **Public access**: If the third-party image repository is accessible over the Internet, pods can pull images directly. In this case, ensure the **pods can access the Internet** using one of the following methods:
 
    .. note::
 
@@ -46,29 +46,29 @@ To create a secret on the console and pull a third-party image to create a workl
 
    .. table:: **Table 1** Parameters for creating a secret
 
-      +-----------------------+-----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter             | Example Value                                 | Description                                                                                                                                                 |
-      +=======================+===============================================+=============================================================================================================================================================+
-      | Name                  | test                                          | Name for the secret.                                                                                                                                        |
-      |                       |                                               |                                                                                                                                                             |
-      |                       |                                               | Enter up to 253 characters, starting and ending with a lowercase letter or digit. Only lowercase letters, digits, hyphens (-), and periods (.) are allowed. |
-      +-----------------------+-----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Secret Type           | kubernetes.io/dockerconfigjson                | Type of the secret.                                                                                                                                         |
-      |                       |                                               |                                                                                                                                                             |
-      |                       |                                               | The value is fixed at **kubernetes.io/dockerconfigjson**, indicating that the secret is used for authentication when third-party images are pulled.         |
-      +-----------------------+-----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Data                  | Image Repository Address: **www.example.com** | -  **Image Repository Address**: Enter the address of the third-party image repository.                                                                     |
-      |                       |                                               | -  **Username**: Enter the username for accessing the third-party image repository.                                                                         |
-      |                       | Username: **ssl**                             | -  **Password**: Enter the password for accessing the third-party image repository.                                                                         |
-      |                       |                                               |                                                                                                                                                             |
-      |                       | Password: *xxx*                               |                                                                                                                                                             |
-      +-----------------------+-----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-----------------------+-----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter             | Example Value                                 | Description                                                                                                                                           |
+      +=======================+===============================================+=======================================================================================================================================================+
+      | Name                  | test                                          | Secret name.                                                                                                                                          |
+      |                       |                                               |                                                                                                                                                       |
+      |                       |                                               | Enter up to 253 characters. Start and end with a lowercase letter or digit. Only lowercase letters, digits, hyphens (-), and periods (.) are allowed. |
+      +-----------------------+-----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Secret Type           | kubernetes.io/dockerconfigjson                | Secret type.                                                                                                                                          |
+      |                       |                                               |                                                                                                                                                       |
+      |                       |                                               | The value is fixed at **kubernetes.io/dockerconfigjson**, indicating that the secret is used for authentication when third-party images are pulled.   |
+      +-----------------------+-----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Data                  | Image Repository Address: **www.example.com** | -  **Image Repository Address**: Enter the address of the third-party image repository.                                                               |
+      |                       |                                               | -  **Username**: Enter the username for accessing the third-party image repository.                                                                   |
+      |                       | Username: **ssl**                             | -  **Password**: Enter the password for accessing the third-party image repository.                                                                   |
+      |                       |                                               |                                                                                                                                                       |
+      |                       | Password: *xxx*                               |                                                                                                                                                       |
+      +-----------------------+-----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. In the navigation pane, choose **Workloads**. In the upper right corner of the displayed page, click **Create Workload**. On the **Create Workload** page, set **Image Name** (**Container Settings** > **Container Information** > **Basic Info**) to the third-party image path. Select the secret created in :ref:`1 <cce_10_0009__li6594823114717>` for **Image Access Credential**.
 
    .. caution::
 
-      If you do not specify a domain name when entering a third-party image address, for example, **nginx:latest**, the image will be pulled from docker.io by default. To specify the default image pull address, configure the **Modify Image Repository Configuration** parameter in the :ref:`container engine configuration <cce_10_0652__section942261815116>` of the node pool.
+      If you do not specify a domain name when entering a third-party image address, for example, **nginx:latest**, the image will be pulled from **docker.io** by default. To specify the default image pull address, configure the **Modify Image Repository Configuration** parameter in the :ref:`container engine configuration <cce_10_0652__section942261815116>` of the node pool.
 
 #. Configure other parameters and click **Create Workload**. If the workload status is **Running**, the third-party image has been pulled.
 
@@ -76,7 +76,7 @@ Using kubectl
 -------------
 
 #. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
-#. If the third-party image repository has an account and password, you need to create a secret in the cluster as the identity credential for pulling images.
+#. If the third-party image repository has an account and password, create a secret in the cluster as the identity credential for pulling images.
 
    a. Create a secret. The secret type is **kubernetes.io/dockerconfigjson** by default, which indicates that the secret is used for authentication when third-party images are pulled.
 
@@ -159,7 +159,7 @@ Using kubectl
 
       .. caution::
 
-         If you do not specify a domain name when entering a third-party image address, for example, **nginx:latest**, the image will be pulled from docker.io by default. To specify the default image pull address, configure the **Modify Image Repository Configuration** parameter in the :ref:`container engine configuration <cce_10_0652__section942261815116>` of the node pool.
+         If you do not specify a domain name when entering a third-party image address, for example, **nginx:latest**, the image will be pulled from **docker.io** by default. To specify the default image pull address, configure the **Modify Image Repository Configuration** parameter in the :ref:`container engine configuration <cce_10_0652__section942261815116>` of the node pool.
 
    b. Create the workload.
 

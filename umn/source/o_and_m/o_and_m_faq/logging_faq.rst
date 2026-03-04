@@ -19,6 +19,7 @@ Indexes
 -  :ref:`What Can I Do If Some Pod Information Is Missing During Log Collection Due to Excessive Node Load? <cce_10_0809__section1990316243587>`
 -  :ref:`How Do I Change the Log Storage Period on Logging? <cce_10_0809__section1053145216227>`
 -  :ref:`What Can I Do If the Log Group or Stream Specified in the Log Collection Policy Does Not Exist? <cce_10_0809__section494412903313>`
+-  :ref:`What Can I Do If FailedAssignENI Is Generated When a Node Is Created in a CCE Turbo Cluster? <cce_10_0809__section242432981511>`
 
 .. _cce_10_0809__section79501212173811:
 
@@ -27,7 +28,7 @@ How Do I Disable Logging?
 
 **Disabling container log and Kubernetes event collection**
 
-Method 1: Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Logging**. In the upper right corner, click **View Log Collection Policies**. Then, locate and delete the corresponding log collection policy.
+Method 1: Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Logging**. In the upper right corner, click **View Log Policy**. Then, locate and delete the corresponding log collection policy.
 
 Method 2: Access the **Add-ons** page and uninstall the Cloud Native Log Collection add-on. **Note that after you uninstall this add-on, it will no longer report Kubernetes events to AOM.**
 
@@ -128,7 +129,7 @@ What Can I Do If the Cloud Native Log Collection Add-on Is Running Normally but 
 
    Select the fluent-bit container, search for the keyword "fail to push {event/log} data via lts exporter" in the log, and view the error message.
 
-   #. If the error message "The log streamId does not exist." is displayed, the log group or log stream does not exist. In this case, choose **Logging** > **View Log Collection Policies**, edit or delete the log collection policy, and recreate a log collection policy to update the log group or log stream.
+   #. If the error message "The log streamId does not exist." is displayed, the log group or log stream does not exist. In this case, choose **Logging** > **View Log Policy**, edit or delete the log collection policy, and recreate a log collection policy to update the log group or log stream.
    #. For other errors, go to LTS to search for the error code and view the cause.
 
 .. _cce_10_0809__section1990316243587:
@@ -153,7 +154,7 @@ Run the **kubectl edit deploy -n monitoring log-agent-log-operator** command on 
    If the Cloud Native Log Collection add-on is upgraded, you need to reconfigure **kubernetes-buffer-size**.
 
 
-.. figure:: /_static/images/en-us_image_0000002467678261.png
+.. figure:: /_static/images/en-us_image_0000002516198997.png
    :alt: **Figure 1** Modifying the command line parameter of the log-operator container
 
    **Figure 1** Modifying the command line parameter of the log-operator container
@@ -176,7 +177,7 @@ What Can I Do If the Log Group or Stream Specified in the Log Collection Policy 
 
    Take Kubernetes events as an example. If the default log group or stream does not exist, a message will be displayed on the Kubernetes events page of the console. You can click **Create Log Collection Policy** to create a log group or stream.
 
-   After the log group or steam is created, the ID of the default log group or stream changes, and the existing log collection policy of the default log group or stream does not take effect. In this case, you can rectify the fault by referring to :ref:`Scenario 2 <cce_10_0809__li146683521096>`.
+   After the log group or stream is created, the ID of the default log group or stream changes, and the existing log collection policy of the default log group or stream does not take effect. In this case, you can rectify the fault by referring to :ref:`Scenario 2 <cce_10_0809__li146683521096>`.
 
 -  .. _cce_10_0809__li146683521096:
 
@@ -185,13 +186,13 @@ What Can I Do If the Log Group or Stream Specified in the Log Collection Policy 
    -  The log collection policy, for example, **default-stdout**, can be modified as follows:
 
       #. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Logging**.
-      #. In the upper right corner, click **View Log Collection Policies**. Then, locate the log collection policy and click **Edit** in the **Operation** column.
+      #. In the upper right corner, click **View Log Policy**. Then, locate the log collection policy and click **Edit** in the **Operation** column.
       #. Select **Custom** and configure the default log group or stream.
 
    -  If a log collection policy cannot be modified, for example, **default-event**, you need to re-create a log collection policy as follows:
 
       #. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Logging**.
-      #. In the upper right corner, click **View Log Collection Policies**. Then, locate the log collection policy and click **Delete** in the **Operation** column.
+      #. In the upper right corner, click **View Log Policy**. Then, locate the log collection policy and click **Delete** in the **Operation** column.
       #. Click **Create Log Collection Policy**. Then, select **Kubernetes events** and click **OK**.
 
 -  **Scenario 3: The custom log group (stream) does not exist.**
@@ -201,5 +202,12 @@ What Can I Do If the Log Group or Stream Specified in the Log Collection Policy 
    After the creation is complete, take the following steps:
 
    #. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Logging**.
-   #. In the upper right corner, click **View Log Collection Policies**. Then, locate the log collection policy and click **Edit** in the **Operation** column.
+   #. In the upper right corner, click **View Log Policy**. Then, locate the log collection policy and click **Edit** in the **Operation** column.
    #. Select **Custom** and configure a log group or stream.
+
+.. _cce_10_0809__section242432981511:
+
+What Can I Do If FailedAssignENI Is Generated When a Node Is Created in a CCE Turbo Cluster?
+--------------------------------------------------------------------------------------------
+
+If the log add-on has been installed in a CCE Turbo cluster and is running normally, when a node is created, the log-agent-fluent component on the node may report the FailedAssignENI alarm because the network interface of the new node is not ready. The alarm will not be reported again after 5 seconds. The log collection function is not affected.

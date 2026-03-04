@@ -13,8 +13,8 @@ Check the following items:
 -  Check whether the add-on status is normal.
 -  Check whether the add-on supports the target version.
 
-Solution
---------
+Solutions
+---------
 
 -  **Scenario 1: The add-on malfunctions.**
 

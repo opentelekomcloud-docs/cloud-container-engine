@@ -8,14 +8,14 @@ Accessing the Internet from a Container
 Containers can access the Internet in either of the following ways:
 
 -  Bind an EIP to the node where the container is located if the network model is VPC or tunnel.
--  Bind an EIP to the target pod if the cluster uses a Cloud Native 2.0 network. For details, see :ref:`Configuring an EIP for a Pod <cce_10_0734>`.
+-  Bind an EIP to the target pod if the cluster uses a Cloud Native 2.0 network. For details, see :ref:`Configuring an EIP for a Pod in a CCE Turbo Cluster <cce_10_0734>`.
 -  Configure SNAT rules through NAT Gateway.
 
 You can use NAT Gateway to enable pods in a VPC to access the Internet. NAT Gateway provides source network address translation (SNAT), which translates private IP addresses to a public IP address using the assigned EIP. Pods in the VPC can share this EIP to access the Internet. :ref:`Figure 1 <cce_10_0400__en-us_topic_0261817696_en-us_topic_0241700138_en-us_topic_0144420145_fig34611314153619>` shows the SNAT architecture. SNAT allows the pods in a VPC to access the Internet without being bound to EIPs. SNAT supports a large number of concurrent connections, which makes it suitable for applications involving a large number of requests and connections.
 
 .. _cce_10_0400__en-us_topic_0261817696_en-us_topic_0241700138_en-us_topic_0144420145_fig34611314153619:
 
-.. figure:: /_static/images/en-us_image_0000002434240924.png
+.. figure:: /_static/images/en-us_image_0000002484119606.png
    :alt: **Figure 1** SNAT
 
    **Figure 1** SNAT
@@ -59,4 +59,4 @@ To enable a container to access the Internet, perform the following steps:
 
    After the SNAT rule is configured, workloads can access the Internet from the container. The Internet can be pinged from the container.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434240932.png
+.. |image1| image:: /_static/images/en-us_image_0000002516199581.png

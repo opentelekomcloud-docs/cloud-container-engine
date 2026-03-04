@@ -8,7 +8,7 @@ How Can I Check Whether an ENI Is Used by a Cluster?
 Scenarios
 ---------
 
-Pod subnets can be deleted from CCE Turbo clusters of v1.23.17-r0, v1.25.12-r0, v1.27.9-r0, v1.28.7-r0, v1.29.3-r0, or later versions.
+Pod subnets can be deleted from CCE Turbo clusters v1.23.17-r0, v1.25.12-r0, v1.27.9-r0, v1.28.7-r0, v1.29.3-r0, or later versions.
 
 Deleting a pod subnet from a cluster can be risky. It is important to ensure that none of the ENIs currently in use by the cluster belong to the subnet, including those being used by pods and pre-bound to pods.
 

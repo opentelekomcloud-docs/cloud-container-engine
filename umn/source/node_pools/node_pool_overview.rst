@@ -8,9 +8,9 @@ Node Pool Overview
 Introduction
 ------------
 
-CCE introduces node pools to help you better manage nodes in Kubernetes clusters. A node pool contains one node or a group of nodes with identical configuration in a cluster.
+CCE introduces node pools to help you better manage nodes in Kubernetes clusters. A node pool contains one node or a group of nodes with identical configurations in a cluster.
 
-You can create custom node pools on the CCE console. With node pools, you can quickly create, manage, and destroy nodes without affecting the cluster. All nodes in a custom node pool have identical parameters and node type. You cannot configure a single node in a node pool; any configuration changes affect all nodes in the node pool.
+You can create custom node pools on the CCE console. With node pools, you can quickly create, manage, and destroy nodes without affecting the cluster. All nodes in a custom node pool share the same type and configurations. You cannot configure a single node in a node pool. Any change applies to every node in the node pool.
 
 You can also use node pools for auto scaling.
 
@@ -22,7 +22,7 @@ This section describes how node pools work in CCE and how to create and manage n
 Node Pool Architecture
 ----------------------
 
-Generally, all nodes in a node pool have the following same attributes:
+All nodes in a pool typically share:
 
 -  Node OS
 -  Node login mode
@@ -91,11 +91,36 @@ Functions and Precautions
 Deploying a Workload in a Specified Node Pool
 ---------------------------------------------
 
-When configuring a workload, you can set the workload affinity and node affinity on the **Scheduling** tab to forcibly deploy the workload to a specific node pool. This way, the workload runs only on nodes in that node pool. To better control where the workload is to be scheduled, you can use affinity or anti-affinity policies between workloads and nodes described in :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`.
+All nodes within a node pool carry the **cce.cloud.com/cce-nodepool** label. To ensure that a workload is scheduled onto nodes from a specific node pool, you can use the **nodeSelector** field in the workload settings. An example is as follows:
 
-For example, you can use container's resource request as a nodeSelector so that workloads will run only on the nodes that meet the resource request.
+.. code-block::
 
-If the workload definition file defines a container that requires four CPUs, the scheduler will not choose the nodes with two CPUs to run workloads.
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: nginx
+   spec:
+     replicas: 3
+     selector:
+       matchLabels:
+         app: nginx
+     template:
+       metadata:
+         labels:
+           app: nginx
+       spec:
+         nodeSelector:
+           cce.cloud.com/cce-nodepool: "nodepool_name" # The label value is the node pool name.
+         containers:
+         - image: nginx:latest
+           imagePullPolicy: IfNotPresent
+           name: nginx
+         imagePullSecrets:
+         - name: default-secret
+
+For more complex scheduling, you can define custom affinity rules, such as hard constraints, where scheduling occurs only if all specified conditions are met, and soft constraints, where scheduling may proceed even if some conditions are not met. For details, see :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`.
+
+Additionally, you can specify resource requests for containers to ensure workloads are scheduled only on nodes that meet the required resource criteria. For details, see `Resource Management for Pods and Containers <https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/>`__. For example, if a workload pod requests four CPU cores, it will not be scheduled on a node that offers only two.
 
 Helpful Links
 -------------

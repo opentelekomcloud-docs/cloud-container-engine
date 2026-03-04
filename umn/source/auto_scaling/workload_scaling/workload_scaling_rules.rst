@@ -34,13 +34,13 @@ A prerequisite for auto scaling is that your container running data can be colle
 -  `Prometheus <https://prometheus.io/>`__ is an open-source monitoring and alarming framework that can collect multiple types of metrics. Prometheus has been a standard monitoring solution of Kubernetes.
 -  `Metrics Server <https://github.com/kubernetes-sigs/metrics-server>`__ is a cluster-wide aggregator of resource utilization data. Metrics Server collects metrics from the Summary API exposed by kubelet. These metrics are set for core Kubernetes resources, such as pods, nodes, containers, and Services. Metrics Server provides a set of standard APIs for external systems to collect these metrics.
 
-HPA can work with Metrics Server for auto scaling based on CPU and memory usages. It can also work with Prometheus for auto scaling based on custom metrics.
+HPA can work with Metrics Server for auto scaling based on CPU and memory usage. It can also work with Prometheus for auto scaling based on custom metrics.
 
 :ref:`Figure 1 <cce_10_0290__fig4979183710538>` shows how HPA works.
 
 .. _cce_10_0290__fig4979183710538:
 
-.. figure:: /_static/images/en-us_image_0000002467718781.png
+.. figure:: /_static/images/en-us_image_0000002483959248.png
    :alt: **Figure 1** HPA working process
 
    **Figure 1** HPA working process
@@ -63,7 +63,7 @@ HPA can work with Metrics Server for auto scaling based on CPU and memory usages
 
    For example, if the current metric value is 200m and the target value is 100m, the desired number of pods will be doubled according to the formula. In practice, pods may be constantly added or reduced. To ensure stability, the HPA controller is optimized from the following aspects:
 
-   -  Cooldown interval: In v1.11 and earlier versions, Kubernetes introduced the startup parameters **horizontal-pod-autoscaler-downscale-stabilization-window** and **horizontal-pod-autoScaler-upscale-stabilization-window** to indicate the cooldown intervals after a scale-in and scale-out, respectively, in which no scaling operation will not be performed. In versions later than v1.14, the scheduling queue is introduced to store all decision-making suggestions detected within a period of time. Then, the system makes decisions based on all valid decision-making suggestions to minimize changes of the desired number of pods to ensure stability.
+   -  Cooldown interval: In v1.11 and earlier versions, Kubernetes introduced the startup parameters **horizontal-pod-autoscaler-downscale-stabilization-window** and **horizontal-pod-autoScaler-upscale-stabilization-window** to indicate the cooldown intervals after a scale-in and scale-out, respectively, in which no scaling operation will be performed. In versions later than v1.14, the scheduling queue is introduced to store all decision-making suggestions detected within a period of time. Then, the system makes decisions based on all valid decision-making suggestions to minimize changes of the desired number of pods to ensure stability.
 
    -  Tolerance: It can be considered as a buffer zone. If the pod number changes can be tolerated, the number of pods remains unchanged.
 
@@ -84,7 +84,7 @@ CronHPA is a time-based auto scaling mechanism in Kubernetes. It automatically a
 
 #. **User-defined CronHPA CRDs**
 
-   You can define CronHPA CDRs by using Kubernetes YAML files. You can specify the time rule, the lower and upper limits of replicas, and other settings in the YAML files.
+   You can define CronHPA CRDs by using Kubernetes YAML files. You can specify the time rule, the lower and upper limits of replicas, and other settings in the YAML files.
 
 #. **CronHPA Controller Monitoring**
 
@@ -108,7 +108,7 @@ How AHPA Works
 AHPA is a more advanced auto scaling policy. It improves the functions and flexibility of the traditional HPA to meet more complex scaling requirements, such as predictive scaling.
 
 
-.. figure:: /_static/images/en-us_image_0000002467678629.png
+.. figure:: /_static/images/en-us_image_0000002483959246.png
    :alt: **Figure 2** AHPA working process
 
    **Figure 2** AHPA working process

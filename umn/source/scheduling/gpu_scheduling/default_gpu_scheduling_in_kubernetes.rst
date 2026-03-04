@@ -19,7 +19,7 @@ Prerequisites
 
 -  The CCE AI Suite (NVIDIA GPU) add-on has been installed, with the selected driver matching the GPU model on the node. For details, see :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>`.
 
--  When default GPU scheduling is used in clusters of v1.27 or earlier, the CCE AI Suite (NVIDIA GPU) add-on mounts the driver directory to **/usr/local/nvidia/lib64**. To use GPU resources in containers, you need to add **/usr/local/nvidia/lib64** to the **LD_LIBRARY_PATH** environment variable. You can skip this step for clusters of v1.28 or later.
+-  When default GPU scheduling is used in clusters earlier than v1.28, the CCE AI Suite (NVIDIA GPU) add-on mounts the driver directory to **/usr/local/nvidia/lib64**. To use GPU resources in containers, you need to append **/usr/local/nvidia/lib64** to the **LD_LIBRARY_PATH** environment variable. You can skip this step for clusters of v1.28 or later.
 
    You can add environment variables in any of the following ways:
 
@@ -169,4 +169,4 @@ Using kubectl
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000002467678641.png
+.. |image1| image:: /_static/images/en-us_image_0000002516199121.png

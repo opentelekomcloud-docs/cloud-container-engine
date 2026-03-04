@@ -15,7 +15,7 @@ Open-source community: https://github.com/kubernetes/dns
 After NodeLocal DNSCache is enabled, a DNS query goes through the path as shown below.
 
 
-.. figure:: /_static/images/en-us_image_0000002467719053.png
+.. figure:: /_static/images/en-us_image_0000002516199253.png
    :alt: **Figure 1** NodeLocal DNSCache query path
 
    **Figure 1** NodeLocal DNSCache query path
@@ -220,5 +220,5 @@ Release History
    |                 | v1.32                     |                                   |                   |
    +-----------------+---------------------------+-----------------------------------+-------------------+
 
-.. |image1| image:: /_static/images/en-us_image_0000002467719381.png
-.. |image2| image:: /_static/images/en-us_image_0000002467719393.png
+.. |image1| image:: /_static/images/en-us_image_0000002516079513.png
+.. |image2| image:: /_static/images/en-us_image_0000002483959570.png

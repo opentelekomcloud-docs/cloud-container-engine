@@ -15,7 +15,7 @@ To prevent pods from using up node resources without limit during peak hours, it
 Solution
 --------
 
-Two major auto scaling policies are HPA (Horizontal Pod Autoscaling) and CA (Cluster AutoScaling). HPA is for workload auto scaling and CA is for node auto scaling.
+Two major auto scaling policies are HPA (Horizontal Pod Autoscaling) and CA (Cluster AutoScaling). HPA is for workload auto scaling and CA for node auto scaling.
 
 HPA and CA work with each other. HPA requires sufficient cluster resources for successful scaling. When the cluster resources are insufficient, CA is needed to add nodes. If HPA reduces workloads, the cluster will have a large number of idle resources. In this case, CA needs to release nodes to avoid resource waste.
 
@@ -23,7 +23,7 @@ As shown in :ref:`Figure 1 <cce_10_0300__cce_bestpractice_00282_fig6540132372015
 
 .. _cce_10_0300__cce_bestpractice_00282_fig6540132372015:
 
-.. figure:: /_static/images/en-us_image_0000002467676509.png
+.. figure:: /_static/images/en-us_image_0000002516077999.png
    :alt: **Figure 1** HPA and CA working flows
 
    **Figure 1** HPA and CA working flows
@@ -378,5 +378,5 @@ Summary
 
 By using HPA and CA, auto scaling can be effortlessly implemented in various scenarios. Additionally, the scaling process of nodes and pods can be conveniently tracked.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434237960.png
-.. |image2| image:: /_static/images/en-us_image_0000002467716629.png
+.. |image1| image:: /_static/images/en-us_image_0000002484118024.png
+.. |image2| image:: /_static/images/en-us_image_0000002483958054.png

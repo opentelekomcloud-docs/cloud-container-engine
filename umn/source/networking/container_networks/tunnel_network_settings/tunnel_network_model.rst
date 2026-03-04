@@ -13,7 +13,7 @@ A container tunnel network creates a separate network plane for containers by us
 While there may be some performance costs, packet encapsulation and tunnel transmission allow for greater interoperability and compatibility with advanced features, such as network policy-based isolation, in most common scenarios.
 
 
-.. figure:: /_static/images/en-us_image_0000002467719549.png
+.. figure:: /_static/images/en-us_image_0000002483959624.png
    :alt: **Figure 1** Container tunnel network
 
    **Figure 1** Container tunnel network
@@ -50,14 +50,15 @@ Pod IP Address Management
 
 The container tunnel network allocates pod IP addresses according to the following rules:
 
--  Container CIDR blocks are separate from node CIDR blocks.
--  IP addresses are allocated by node. One or more CIDR blocks with a fixed size (16 by default) are allocated to each node in a cluster from the container CIDR block.
--  When the IP addresses on a node are used up, you can apply for a new CIDR block.
--  A container CIDR block assigns CIDR blocks to new nodes or existing nodes in a cyclical sequence.
--  IP addresses from one or more CIDR blocks assigned to a node are allocated to pods scheduled to that node in a cyclical manner.
+-  **Separate CIDR blocks**: The container CIDR block is completely separated from the node CIDR blocks. They do not overlap. This avoids IP address conflicts between nodes and pods. Additionally, these CIDR blocks can be adjusted separately.
+-  **Dynamic allocation of CIDR blocks to nodes by block**: Pod CIDR blocks with a fixed size (16 IP addresses by default, that is, mask /28) are allocated from the container CIDR block. These CIDR blocks are assigned to nodes in the cluster in sequence.
+
+-  **Addition of pod IP addresses after exhaustion**: After the pod CIDR blocks assigned to a node are used up, a new pod CIDR block is automatically applied for from the container CIDR block to ensure that new pods can be created when pod IP addresses are insufficient.
+-  **Cyclic allocation of container CIDR block**: Pod CIDR blocks are assigned to new or existing nodes in a cyclic manner based on the sequence in the container CIDR block to prevent some pod CIDR blocks from being excessively occupied.
+-  **Pod IP address allocated from the CIDR blocks assigned to nodes**: After a pod is scheduled to a node, it obtains an IP address from one or more pod CIDR blocks assigned to the node in sequence to ensure that its IP address is allocated in order and remains unique. For example, if the pod CIDR blocks allocated to a node are 172.16.0.0/28 and 172.16.1.16/28 and IP addresses in 172.16.0.0/28 are used up, pod IP addresses will then be allocated from 172.16.1.16/28.
 
 
-.. figure:: /_static/images/en-us_image_0000002434081088.png
+.. figure:: /_static/images/en-us_image_0000002516079573.png
    :alt: **Figure 2** IP address allocation of the container tunnel network
 
    **Figure 2** IP address allocation of the container tunnel network

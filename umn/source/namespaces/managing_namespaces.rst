@@ -29,7 +29,7 @@ Isolating Namespaces
       The following figure shows namespaces created for the development, joint debugging, and testing environments, respectively.
 
 
-      .. figure:: /_static/images/en-us_image_0000002434240556.png
+      .. figure:: /_static/images/en-us_image_0000002484119408.png
          :alt: **Figure 1** One namespace for one environment
 
          **Figure 1** One namespace for one environment
@@ -39,7 +39,7 @@ Isolating Namespaces
    You are advised to use this method if a large number of workloads are deployed in the same environment. For example, in the following figure, different namespaces (APP1 and APP2) are created to logically manage workloads as different groups. Workloads in the same namespace access each other using the Service name, and workloads in different namespaces access each other using the Service name or namespace name.
 
 
-   .. figure:: /_static/images/en-us_image_0000002467679065.png
+   .. figure:: /_static/images/en-us_image_0000002516199385.png
       :alt: **Figure 2** Grouping workloads into different namespaces
 
       **Figure 2** Grouping workloads into different namespaces
@@ -66,9 +66,13 @@ Enabling Node Affinity in a Namespace
 
 After node affinity is enabled in a namespace, the workloads newly created in the namespace can be scheduled only to nodes with specific labels. For details, see `PodNodeSelector <https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#podnodeselector>`__.
 
+.. note::
+
+   Label keys are unique per node or node pool. No two namespaces can share affinity to the same node or node pool.
+
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Namespace**. Locate the row containing the target namespace and click |image1| in the **Node Affinity** column.
+#. In the navigation pane, choose **Namespaces**. Locate the row containing the target namespace and click |image1| in the **Node Affinity** column.
 
 #. In the displayed dialog box, select **Enable** and click **OK**.
 
@@ -87,4 +91,4 @@ If a namespace is deleted, all resources (such as workloads, jobs, and ConfigMap
 
    Follow the prompts to delete the namespace. The default namespaces cannot be deleted.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467679061.png
+.. |image1| image:: /_static/images/en-us_image_0000002483959438.png

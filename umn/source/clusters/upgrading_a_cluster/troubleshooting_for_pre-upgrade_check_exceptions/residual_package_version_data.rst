@@ -10,10 +10,10 @@ Check Items
 
 Check whether there is residual package version data in the current cluster.
 
-Solution
---------
+Solutions
+---------
 
-A message is displayed indicating that there are residual 10.12.1.109 CRD resources in your cluster. This issue occurs because CRD resources are not cleared after nodes in earlier CCE versions are deleted.
+A message is displayed indicating that there are residual CRD resources (such as 10.12.1.109) in your cluster. This issue occurs because CRD resources are not cleared after nodes in earlier CCE versions are deleted.
 
 Manually perform the following operations to clear the residual resources:
 

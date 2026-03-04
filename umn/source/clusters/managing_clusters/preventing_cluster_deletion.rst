@@ -13,4 +13,4 @@ Preventing Cluster Deletion
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Settings**.
-#. On the **Dashboard** tab page, locate **Cluster Deletion Protection** in the **Cluster Settings** area and click **Enable**. After this function is enabled, you are not allowed to delete clusters on CCE.
+#. On the **Dashboard** tab, locate **Cluster Deletion Protection** in the **Cluster Settings** area and click **Enable**. After this function is enabled, you are not allowed to delete clusters on CCE.

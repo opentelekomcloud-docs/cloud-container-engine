@@ -10,8 +10,8 @@ Check Items
 
 Check whether the target cluster is under upgrade management.
 
-Solution
---------
+Solutions
+---------
 
 CCE may temporarily restrict the cluster upgrade due to the following reasons:
 

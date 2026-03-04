@@ -15,7 +15,7 @@ CCE clusters enable the management of both x86 and Arm resources. With CCE, you 
 -  Jobs and CronJobs: Job and CronJob applications can be containerized to reduce the dependency on the host system. Global resource scheduling secures the resource usage during task running and improves the overall resource utilization in the cluster.
 
 
-.. figure:: /_static/images/en-us_image_0000002434236556.png
+.. figure:: /_static/images/en-us_image_0000002516197263.png
    :alt: **Figure 1** CCE cluster
 
    **Figure 1** CCE cluster
@@ -41,7 +41,7 @@ Advantages
    CCE supports auto scaling of nodes and workloads.
 
 
-.. figure:: /_static/images/en-us_image_0000002467675109.png
+.. figure:: /_static/images/en-us_image_0000002484117304.png
    :alt: **Figure 2** Workload
 
    **Figure 2** Workload

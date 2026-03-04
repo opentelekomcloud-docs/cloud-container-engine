@@ -10,7 +10,7 @@ In a CCE cluster that uses a VPC network, when pods try to communicate with exte
 You are allowed to configure private CIDR blocks for your clusters using the **nonMasqueradeCIDRs** parameter. If a pod tries to access a private CIDR block, the source node will not perform NAT on the pod IP address. Instead, the VPC route table can directly send the pod data packet to the destination, which means, the pod IP address is directly used to communicate with the private CIDR block in the cluster.
 
 
-.. figure:: /_static/images/en-us_image_0000002434077980.png
+.. figure:: /_static/images/en-us_image_0000002484118018.png
    :alt: **Figure 1** Pod IP address translation
 
    **Figure 1** Pod IP address translation

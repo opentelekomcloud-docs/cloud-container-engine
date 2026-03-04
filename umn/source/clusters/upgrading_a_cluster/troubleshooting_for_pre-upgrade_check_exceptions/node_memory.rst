@@ -10,8 +10,8 @@ Check Items
 
 Check whether the node's memory usage is above 90%.
 
-Solution
---------
+Solutions
+---------
 
 -  **Upgrade the cluster during off-peak hours.**
 -  Log in to the node, run the **top** command to obtain the memory usage of the process, and adjust the services running on the node as needed.

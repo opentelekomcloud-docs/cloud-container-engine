@@ -10,8 +10,8 @@ Check Items
 
 Check whether the commands required for the upgrade are available on the node.
 
-Solution
---------
+Solutions
+---------
 
 The cluster upgrade failure is typically caused by the lack of key node commands that are required in the cluster upgrade.
 

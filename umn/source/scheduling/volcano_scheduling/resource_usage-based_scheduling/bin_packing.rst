@@ -49,7 +49,7 @@ A larger bin packing weight leads to a higher score. A larger resource weight le
 
 .. _cce_10_0773__fig565130165812:
 
-.. figure:: /_static/images/en-us_image_0000002434240896.png
+.. figure:: /_static/images/en-us_image_0000002483959660.png
    :alt: **Figure 1** Bin packing example
 
    **Figure 1** Bin packing example

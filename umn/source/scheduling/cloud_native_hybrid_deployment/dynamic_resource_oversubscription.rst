@@ -12,7 +12,7 @@ Resource oversubscription is the process of using idle requested resources. Over
 Hybrid deployment of online and offline jobs in a cluster can better utilize cluster resources.
 
 
-.. figure:: /_static/images/en-us_image_0000002467679025.png
+.. figure:: /_static/images/en-us_image_0000002516079395.png
    :alt: **Figure 1** Resource oversubscription
 
    **Figure 1** Resource oversubscription

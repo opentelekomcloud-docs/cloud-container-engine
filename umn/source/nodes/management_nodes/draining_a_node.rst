@@ -39,23 +39,23 @@ Rules for Draining Nodes
 
 When a node is drained, all pods on the node will be safely evicted. However, CCE will take specific actions for pods that meet certain filtering criteria.
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Filter Criterion                                                                                                                                    | Forced Drainage Enabled | Forced Drainage Disabled                                                                                                                                                                          |
-+=====================================================================================================================================================+=========================+===================================================================================================================================================================================================+
-| The `status.phase <https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase>`__ field of the pod is **Succeeded** or **Failed**. | Deletion                | Deletion                                                                                                                                                                                          |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| The pod is not managed by the workload controller.                                                                                                  | Deletion                | Drainage cancellation                                                                                                                                                                             |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| The pod is managed by DaemonSet.                                                                                                                    | None                    | Drainage cancellation                                                                                                                                                                             |
-|                                                                                                                                                     |                         |                                                                                                                                                                                                   |
-|                                                                                                                                                     |                         | .. note::                                                                                                                                                                                         |
-|                                                                                                                                                     |                         |                                                                                                                                                                                                   |
-|                                                                                                                                                     |                         |    For clusters of v1.23.18-r10, v1.25.16-r0, v1.27.16-r0, v1.28.13-r0, v1.29.8-r0, v1.30.4-r0, or later, if forcible drainage is not used for DaemonSet pods, the default operation is **None**. |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| A volume of the emptyDir type is mounted to the pod.                                                                                                | Eviction                | Drainage cancellation                                                                                                                                                                             |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| The pod is a `static pod <https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/>`__ directly managed by kubelet                      | None                    | None                                                                                                                                                                                              |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Filter Criterion                                                                                                                                    | Forced Drainage Enabled | Forced Drainage Disabled                                                                                                                                                                       |
++=====================================================================================================================================================+=========================+================================================================================================================================================================================================+
+| The `status.phase <https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase>`__ field of the pod is **Succeeded** or **Failed**. | Deletion                | Deletion                                                                                                                                                                                       |
++-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| The pod is not managed by the workload controller.                                                                                                  | Deletion                | Drainage cancellation                                                                                                                                                                          |
++-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| The pod is managed by DaemonSet.                                                                                                                    | None                    | Drainage cancellation                                                                                                                                                                          |
+|                                                                                                                                                     |                         |                                                                                                                                                                                                |
+|                                                                                                                                                     |                         | .. note::                                                                                                                                                                                      |
+|                                                                                                                                                     |                         |                                                                                                                                                                                                |
+|                                                                                                                                                     |                         |    For clusters v1.23.18-r10, v1.25.16-r0, v1.27.16-r0, v1.28.13-r0, v1.29.8-r0, v1.30.4-r0, or later, if forcible drainage is not used for DaemonSet pods, the default operation is **None**. |
++-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| A volume of the emptyDir type is mounted to the pod.                                                                                                | Eviction                | Drainage cancellation                                                                                                                                                                          |
++-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| The pod is a `static pod <https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/>`__ directly managed by kubelet                      | None                    | None                                                                                                                                                                                           |
++-----------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. note::
 
@@ -66,16 +66,16 @@ When a node is drained, all pods on the node will be safely evicted. However, CC
    -  None: The pod will not be evicted or deleted.
    -  Drainage cancellation: If a pod on a node cancels drainage, the drainage process of the node is terminated and no pod is evicted or deleted.
 
-Drainage Through the Console
-----------------------------
+Drainage Using the Console
+--------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.
-#. Locate the target node and choose **More** > **Nodal Drainage** in the **Operation** column.
-#. In the **Nodal Drainage** window displayed, set parameters.
+#. Locate the target node and choose **More** > **Drain Node** in the **Operation** column.
+#. In the **Drain Node** window, configure the parameters.
 
    -  **Timeout (s)**: Node drain tasks automatically fail after the specified timeout expires. A value of 0 indicates that task will not time out.
-   -  **Forced Drainage**: If this function is enabled, pods managed by DaemonSet will be ignored, and pods with emptyDir volumes and pods not managed by controllers will be deleted. For details, see :ref:`Rules for Draining Nodes <cce_10_0605__section14957193483118>`.
+   -  **Forcible Drain**: If this function is enabled, pods managed by DaemonSet will be ignored, and pods with emptyDir volumes and pods not managed by controllers will be deleted. For details, see :ref:`Rules for Draining Nodes <cce_10_0605__section14957193483118>`.
 
 #. Click **OK** and wait until the node drainage is complete.
 
@@ -155,8 +155,8 @@ Drainage Using kubectl
           type: Finished
         phase: Succeeded
 
-Drainage Through APIs
----------------------
+Drainage Using APIs
+-------------------
 
 #. Obtain the token in the region where the cluster is located.
 
@@ -220,12 +220,12 @@ Drainage Through APIs
 
    -  **timeout**: timeout measured in seconds. Node drain tasks automatically fail after the specified timeout expires. A value of 0 indicates that task will not time out.
 
-Cancellation Through the Console
---------------------------------
+Cancellation Using the Console
+------------------------------
 
 .. note::
 
-   In clusters of v1.23.16-r0, v1.25.11-r0, v1.27.8-r0, v1.28.6-r0, v1.29.2-r0, or later versions, node drainage can be canceled.
+   In clusters v1.23.16-r0, v1.25.11-r0, v1.27.8-r0, v1.28.6-r0, v1.29.2-r0, or later versions, node drainage can be canceled.
 
    This operation will abort drainage on nodes, but workloads that have been evicted from these nodes will not be automatically migrated back.
 
@@ -239,7 +239,7 @@ Cancellation Using kubectl
 
 .. note::
 
-   In clusters of v1.23.16-r0, v1.25.11-r0, v1.27.8-r0, v1.28.6-r0, v1.29.2-r0, or later versions, node drainage can be canceled.
+   In clusters v1.23.16-r0, v1.25.11-r0, v1.27.8-r0, v1.28.6-r0, v1.29.2-r0, or later versions, node drainage can be canceled.
 
    This operation will abort drainage on nodes, but workloads that have been evicted from these nodes will not be automatically migrated back.
 
@@ -307,8 +307,8 @@ Cancellation Using kubectl
           type: Cancelled
         phase: Cancelled
 
-Cancellation Through APIs
--------------------------
+Cancellation Using APIs
+-----------------------
 
 #. Obtain the token in the region where the cluster is located.
 

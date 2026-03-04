@@ -14,7 +14,7 @@ CCE uses proprietary, high-performance container networking add-ons to support t
 -  **Tunnel network**: The container network is an overlay tunnel network on top of a VPC network and uses the VXLAN technology. This network model is applicable when there is no high requirements on performance. VXLAN encapsulates Ethernet packets as UDP packets for tunnel transmission. Though at some cost of performance, the tunnel encapsulation enables higher interoperability and compatibility with advanced features (such as network policy-based isolation), meeting the requirements of most applications.
 
 
-   .. figure:: /_static/images/en-us_image_0000002434238776.png
+   .. figure:: /_static/images/en-us_image_0000002483958404.png
       :alt: **Figure 1** Container tunnel network
 
       **Figure 1** Container tunnel network
@@ -22,7 +22,7 @@ CCE uses proprietary, high-performance container networking add-ons to support t
 -  **VPC network**: The container network uses VPC routing to integrate with the underlying network. This network model is applicable to performance-intensive scenarios. The maximum number of nodes allowed in a cluster depends on the route quota in a VPC network. Each node is assigned a CIDR block of a fixed size. VPC networks are free from tunnel encapsulation overhead and outperform container tunnel networks. In addition, as VPC routing includes routes to node IP addresses and container network segment, container pods in the cluster can be directly accessed from outside the cluster.
 
 
-   .. figure:: /_static/images/en-us_image_0000002467677273.png
+   .. figure:: /_static/images/en-us_image_0000002483958400.png
       :alt: **Figure 2** VPC network
 
       **Figure 2** VPC network
@@ -30,7 +30,7 @@ CCE uses proprietary, high-performance container networking add-ons to support t
 -  **Cloud Native Network 2.0**: The container network deeply integrates the elastic network interface capability of VPC, uses the VPC CIDR block to allocate container addresses, and supports passthrough networking to pods through load balancers.
 
 
-   .. figure:: /_static/images/en-us_image_0000002467677281.png
+   .. figure:: /_static/images/en-us_image_0000002483958406.png
       :alt: **Figure 3** Cloud Native 2.0 network
 
       **Figure 3** Cloud Native 2.0 network

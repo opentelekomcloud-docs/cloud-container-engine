@@ -25,7 +25,7 @@ Basic Concepts
 Procedure
 ---------
 
-#. Log in as the **root** user to the device running Docker.
+#. Log in as user **root** to the device running Docker.
 
 #. Enter the **apptest** directory.
 
@@ -41,4 +41,4 @@ Procedure
 
 #. Upload the image to SWR. For details, see `Uploading an Image Through the Client <https://docs.otc.t-systems.com/usermanual/swr/swr_01_0011.html>`__.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467716173.png
+.. |image1| image:: /_static/images/en-us_image_0000002516197739.png

@@ -27,7 +27,7 @@ Notes and Constraints
 
 -  Only an HTTPS-compliant load balancer supports HTTP/2.
 -  After HTTP/2 is configured, if you delete the advanced configuration for enabling HTTP/2 on the CCE console or delete the target annotation from the YAML file, HTTP/2 will be disabled on the ELB.
--  If multiple ingresses share the same external port on a load balancer, you are advised to use the same HTTP/2 configuration for these ingresses. Otherwise, the configuration of the first created ingress will take precedence. For details, see :ref:`Configuring Multiple Ingresses to Use the Same Load Balancer <cce_10_0954>`.
+-  If multiple ingresses share the same external port on a load balancer, you are advised to use the same HTTP/2 configuration for these ingresses. Otherwise, the configuration of the first created ingress will take precedence. For details, see :ref:`Configuring Multiple Ingresses in a Cluster to Use the Same Load Balancer <cce_10_0954>`.
 
 .. _cce_10_0694__section125271123193813:
 

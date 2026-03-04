@@ -15,7 +15,6 @@ After the configuration of a node pool is updated, some configurations cannot be
    -  Only some node pool parameters can be synchronized by resetting nodes. The constraints are as follows:
 
       -  Changes to the container engine, OS, security hardening, or pre-/post-installation script in a node pool take effect only on new nodes. To synchronize the modification onto existing nodes, manually reset these nodes.
-      -  The modification of the system disk or data disk size and data disk space allocation rule of a node pool applies only to new nodes. The settings cannot be synchronized for existing nodes even if they are reset.
       -  Changes to resource tags and Kubernetes labels/taints in a node pool will be automatically synchronized to existing nodes. You do not need to reset these nodes.
 
       -  If a new OS patch exists in the environment, you can synchronize the node pool to update the OS.

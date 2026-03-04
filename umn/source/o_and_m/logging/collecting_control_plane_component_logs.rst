@@ -29,7 +29,7 @@ CCE can collect the following types of control plane logs. Each log stream corre
    +-------------------------+---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | kube-controller-manager | kube-controller-manager-{{clusterID}} | Manages controllers and embeds the core control loops shipped with Kubernetes. For more information, see `kube-controller-manager <https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/>`__. |
    +-------------------------+---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | kube-scheduler          | kube-scheduler-{{clusterID}}          | Manages when and where to run Pods in your cluster. For more information, see `kube-scheduler <https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/>`__.                                              |
+   | kube-scheduler          | kube-scheduler-{{clusterID}}          | The default scheduler of a Kubernetes cluster. For more information, see `kube-scheduler <https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/>`__.                                                   |
    +-------------------------+---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Enabling Control Plane Logging
@@ -52,7 +52,7 @@ Enabling Control Plane Logging
 #. Click the **Control Plane Logs** tab and modify the settings in **Logging Settings**.
 
 
-   .. figure:: /_static/images/en-us_image_0000002467719105.png
+   .. figure:: /_static/images/en-us_image_0000002484119292.png
       :alt: **Figure 1** Modifying logging settings
 
       **Figure 1** Modifying logging settings
@@ -92,5 +92,5 @@ Disabling Control Plane Logging
 
       After you disable control plane logging, logs are no longer written to the original log stream, but the existing logs will not be deleted and expenses may be incurred for this.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467678985.png
-.. |image2| image:: /_static/images/en-us_image_0000002467719125.png
+.. |image1| image:: /_static/images/en-us_image_0000002484119302.png
+.. |image2| image:: /_static/images/en-us_image_0000002516199277.png

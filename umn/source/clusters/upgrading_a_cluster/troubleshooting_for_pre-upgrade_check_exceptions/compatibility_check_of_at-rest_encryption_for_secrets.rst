@@ -10,10 +10,10 @@ Check Items
 
 Check whether the target version supports at-rest encryption for secrets. If it does not, clusters that have this feature enabled cannot be upgraded to the target version.
 
-Solution
---------
+Solutions
+---------
 
-At-rest encryption for secrets is supported in CCE clusters of v1.27 or later versions. The feature is available in the following versions:
+At-rest encryption for secrets is supported in CCE clusters v1.27 or later versions. The feature is available in the following versions:
 
 -  v1.27: v1.27.10-r0 or later
 -  v1.28: v1.28.8-r0 or later

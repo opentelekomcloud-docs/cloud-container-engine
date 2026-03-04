@@ -7,10 +7,16 @@ Configuring Specified Node Scheduling (nodeSelector)
 
 In Kubernetes, to schedule a workload to a specified node, simply configure the **nodeSelector** field in the workload. By setting the target node label in this field, Kubernetes will schedule the workload only to the node with the matching label.
 
+When a node is created, some labels are automatically added to it. You can schedule workloads to the node based on these labels. For details, see :ref:`Inherent Labels of a Node <cce_10_0004__section74111324152813>`. The typically used node labels include:
+
+-  **topology.kubernetes.io/zone**: the AZ where the node is located, which can be used for scheduling in a specified AZ
+-  **kubernetes.io/hostname**: hostname of a node, which can be used for specified node scheduling
+-  **cce.cloud.com/cce-nodepool**: node pool to which a node belongs, which can be used for scheduling in a specified node pool
+
 Prerequisites
 -------------
 
-A custom label has been added to the target node so that workload pods can be scheduled based on the node label. For details, see :ref:`Adding or Deleting a Node Label <cce_10_0004__section33951611481>`.
+If the default labels of a node cannot meet your requirements, you can add custom labels to the node so that workloads can be scheduled based on the labels. For details, see :ref:`Adding or Deleting a Node Label <cce_10_0004__section33951611481>`.
 
 Creating a Workload Scheduled to a Specified Node
 -------------------------------------------------

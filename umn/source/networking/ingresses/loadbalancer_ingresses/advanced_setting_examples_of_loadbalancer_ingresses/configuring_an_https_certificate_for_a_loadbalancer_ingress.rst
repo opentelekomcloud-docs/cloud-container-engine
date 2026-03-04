@@ -170,7 +170,7 @@ Using kubectl to Configure a TLS Certificate
                 service:
                   name: <your_service_name>  # Replace it with the name of your target Service.
                   port:
-                    number: 80             # Replace 80 with the port number of your target Service.
+                    number: 80             # Replace it with the port number of your target Service.
               property:
                 ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
               pathType: ImplementationSpecific
@@ -389,6 +389,7 @@ To use an ELB certificate, you can specify the **kubernetes.io/elb.tls-certifica
           kubernetes.io/elb.port: '443'
           kubernetes.io/elb.id: 0b9a6c4d-bd8b-45cc-bfc8-ff0f9da54e95
           kubernetes.io/elb.class: union
+          kubernetes.io/elb.tls-ciphers-policy: tls-1-2
           kubernetes.io/elb.tls-certificate-ids: 058cc023690d48a3867ad69dbe9cd6e5,b98382b1f01c473286653afd1ed9ab63
       spec:
         rules:
@@ -398,9 +399,9 @@ To use an ELB certificate, you can specify the **kubernetes.io/elb.tls-certifica
                 - path: '/'
                   backend:
                     service:
-                      name: <your_service_name>  # Replace it with the name of your target Service.
+                  name: <your_service_name>  # Replace it with the name of your target Service.
                       port:
-                        number: 80             # Replace 80 with the port number of your target Service.
+                    number: 80             # Replace it with the port number of your target Service.
                   property:
                     ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
                   pathType: ImplementationSpecific
@@ -419,6 +420,7 @@ To use an ELB certificate, you can specify the **kubernetes.io/elb.tls-certifica
           kubernetes.io/elb.port: '443'
           kubernetes.io/elb.id: 0b9a6c4d-bd8b-45cc-bfc8-ff0f9da54e95
           kubernetes.io/elb.class: union
+          kubernetes.io/elb.tls-ciphers-policy: tls-1-2
           kubernetes.io/elb.tls-certificate-ids: 058cc023690d48a3867ad69dbe9cd6e5,b98382b1f01c473286653afd1ed9ab63
       spec:
         rules:
@@ -476,7 +478,7 @@ Configuring a Same Port for Multiple Ingresses
 
 In a cluster, multiple ingresses can share a listener, allowing them to use the same port on a single load balancer. When two ingresses are set up with HTTPS certificates, the server certificate that is used will be based on the configuration of the earliest ingress.
 
-Starting from v1.21.15-r0, v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, v1.29.1-r0, and later, the YAML file of ingresses includes **annotation: kubernetes.io/elb.listener-master-ingress**. This annotation specifies the server certificate configured and used by ingresses.
+Starting from v1.21.15-r0, v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.29.1-r0, or v1.28.4-r0, the YAML file of ingresses includes **annotation: kubernetes.io/elb.listener-master-ingress**. This annotation specifies the server certificate configured and used by ingresses.
 
 For example, the configurations of two ingresses are as follows:
 

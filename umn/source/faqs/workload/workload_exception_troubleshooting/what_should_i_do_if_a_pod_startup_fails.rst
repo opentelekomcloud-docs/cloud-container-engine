@@ -332,7 +332,7 @@ To expand a disk capacity, perform the following operations:
             Size of logical volume vgpaas/thinpool changed from <67.00 GiB (23039 extents) to <167.00 GiB (48639 extents).
             Logical volume vgpaas/thinpool successfully resized.
 
-      #. Do not need to adjust the size of the file system, because the thin pool is not mounted to any devices.
+      #. Do not need to adjust the size of the file system because the thin pool is not mounted to any devices.
 
       #. Run the **lsblk** command to check the disk and partition space of the device and check whether the capacity has been expanded. If the new disk capacity was added to the thin pool, the capacity has been expanded.
 
@@ -465,7 +465,7 @@ Container Port Conflict in the Pod
    Rectify the fault of the workload based on logs. As shown in the following figure, container ports in the same pod conflict. As a result, the container fails to be started.
 
 
-   .. figure:: /_static/images/en-us_image_0000002467677145.png
+   .. figure:: /_static/images/en-us_image_0000002516197861.png
       :alt: **Figure 1** Pod restart failure due to a container port conflict
 
       **Figure 1** Pod restart failure due to a container port conflict
@@ -570,7 +570,7 @@ Check whether the workload startup command is correctly executed or whether the 
    Note: In the preceding command, *containerID* indicates the ID of the container that has exited.
 
 
-   .. figure:: /_static/images/en-us_image_0000002467717277.png
+   .. figure:: /_static/images/en-us_image_0000002516077859.png
       :alt: **Figure 2** Incorrect startup command of the container
 
       **Figure 2** Incorrect startup command of the container
@@ -581,6 +581,6 @@ Check whether the workload startup command is correctly executed or whether the 
 
 Create a new workload and configure a correct startup command.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467677157.png
-.. |image2| image:: /_static/images/en-us_image_0000002434238660.png
-.. |image3| image:: /_static/images/en-us_image_0000002434238636.png
+.. |image1| image:: /_static/images/en-us_image_0000002516077871.png
+.. |image2| image:: /_static/images/en-us_image_0000002484117900.png
+.. |image3| image:: /_static/images/en-us_image_0000002516197853.png

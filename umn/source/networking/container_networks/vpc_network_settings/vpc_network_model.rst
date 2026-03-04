@@ -11,7 +11,7 @@ Model Definition
 The VPC network model seamlessly combines VPC routing with the underlying network, making it ideal for high-performance scenarios. However, the maximum number of nodes allowed in a cluster is determined by the VPC route quota. In the VPC network model, container CIDR blocks are separate from node CIDR blocks. To allocate IP addresses to pods running on a node in a cluster, each node in the cluster is allocated with a pod IP range for a fixed number of IP addresses. The VPC network model outperforms the container tunnel network model in terms of performance because it does not have tunnel encapsulation overhead. When the VPC network model is used in a cluster, the routes between container CIDR blocks and VPC CIDR blocks are automatically configured in the VPC route table. This means that pods within the cluster can be accessed directly from cloud servers in the same VPC, even if they are outside the cluster.
 
 
-.. figure:: /_static/images/en-us_image_0000002467719233.png
+.. figure:: /_static/images/en-us_image_0000002484119444.png
    :alt: **Figure 1** VPC network model
 
    **Figure 1** VPC network model
@@ -51,15 +51,16 @@ Application Scenarios
 Pod IP Address Management
 -------------------------
 
-The VPC network model assigns pod IP addresses based on the following guidelines:
+A VPC network allocates pod IP addresses based on the rules below. The core rule is to pre-allocate pod CIDR blocks from the container CIDR block to nodes and then allocate IP addresses from the pod CIDR blocks to pods.
 
--  Container CIDR blocks are separate from node CIDR blocks.
--  IP addresses are allocated by node. One CIDR block with a fixed size (configurable) is allocated to each node in a cluster from the container CIDR block.
--  A container CIDR block assigns CIDR blocks to new nodes in a cyclical sequence.
--  IP addresses from the CIDR blocks assigned to a node are allocated to pods scheduled to that node in a cyclical manner.
+-  **Separate CIDR blocks**: The container CIDR block is completely separated from the node CIDR blocks. They do not overlap. This avoids IP address conflicts between nodes and pods. Additionally, these CIDR blocks can be adjusted separately.
+-  **Each node pre-allocated a fixed-size pod CIDR block**: A fixed-size pod CIDR block is pre-allocated to each node from the container CIDR block. For example, 128 IP addresses (/25 mask) can be allocated to each node. The CIDR block size can be configured during cluster creation to ensure that each node has sufficient IP addresses for its pods.
+-  **Each node assigned a pod CIDR block in sequence**: When a node is added, a preset-size pod CIDR block is sequentially assigned to it from the container CIDR block. For example, if the container CIDR block is 172.16.0.0/16, then 172.16.0.0/25 is assigned to the first node, 172.16.0.128/25 to the second node, and so on until the container CIDR block is exhausted, as shown in :ref:`Figure 2 <cce_10_0283__fig790744862219>`.
+-  **Each pod assigned an IP address from the pod CIDR block on the node**: After a pod is scheduled to a node, it obtains an IP address from the pod CIDR block pre-allocated to that node in sequence. Pod IP addresses cannot exceed the range of the pod CIDR block on the node.
 
+.. _cce_10_0283__fig790744862219:
 
-.. figure:: /_static/images/en-us_image_0000002434080764.png
+.. figure:: /_static/images/en-us_image_0000002516199419.png
    :alt: **Figure 2** IP address management of the VPC network
 
    **Figure 2** IP address management of the VPC network

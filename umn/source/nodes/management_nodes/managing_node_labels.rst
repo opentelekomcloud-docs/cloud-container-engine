@@ -15,8 +15,8 @@ Node labels are mainly used in the following scenarios:
 
 .. _cce_10_0004__section74111324152813:
 
-Inherent Label of a Node
-------------------------
+Inherent Labels of a Node
+-------------------------
 
 After a node is created, some fixed labels exist and cannot be deleted. For details about these labels, see :ref:`Table 1 <cce_10_0004__table83962234533>`.
 
@@ -77,12 +77,17 @@ Adding or Deleting a Node Label
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab, select the target node and click **Labels and Taints** in the upper left corner.
+#. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab, select the target node and click **Manage Labels and Taints** above the node list.
 
-#. In the displayed dialog box, click **Add operation** under **Batch Operation**, and then choose **Add/Update** or **Delete**.
+#. In the displayed window, click **Add Operation** under **Batch Operation** and then choose **Add/Update** or **Delete**.
 
    Enter the key and value of the label to be added or deleted, and click **OK**.
 
    For example, the key is **deploy_qa** and the value is **true**, indicating that the node is used to deploy the QA (test) environment.
 
-#. After the label is added, check the added label in node data.
+#. Check the added label in node data.
+
+Helpful Links
+-------------
+
+You can schedule workloads based on node labels. For details, see :ref:`Overview <cce_10_0232>`.

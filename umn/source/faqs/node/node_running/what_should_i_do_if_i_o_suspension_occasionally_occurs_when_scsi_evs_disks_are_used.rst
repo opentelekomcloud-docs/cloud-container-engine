@@ -36,4 +36,4 @@ Solution
 
 Upgrade the kernel to a later version **by resetting the node**.
 
-.. |image1| image:: /_static/images/en-us_image_0000002434238264.png
+.. |image1| image:: /_static/images/en-us_image_0000002516197779.png

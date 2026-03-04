@@ -20,7 +20,7 @@ Cluster Information
 
 It includes:
 
--  **ID**: uniquely identifies a cluster resource. It is automatically generated after a cluster is created and can be used in scenarios such as API calling.
+-  **Cluster ID**: uniquely identifies a cluster resource. It is automatically generated after a cluster is created and can be used in scenarios such as API calling.
 -  **Current Name**: After a cluster is created, you can click |image1| to change its name.
 -  **Original Name**: specifies a cluster's original name after its current name is changed. The current name of a cluster must be unique.
 -  **Status**: specifies the status of a cluster. For details, see :ref:`Cluster Lifecycle <cce_10_0430__section2048514305592>`.
@@ -48,7 +48,7 @@ After a cluster is created, you can modify the following items for it:
 
    The global access secret (**paas.longaksk**) is used by project. Once a global access secret is used, it is automatically created for each cluster within the same project. However, this can lead to security and management complexities. Therefore, it is not recommended that you use global access secrets. To disable global access keys, check whether the cluster uses global access keys. For details, see :ref:`What Is an OBS Global Access Key and How Do I Check Whether a Global Access Key Is Used in a Cluster? <cce_faq_00484>`
 
--  **Cluster Deletion Protection**: A measure taken to prevent accidental deletion of clusters through the console or APIs. After this function is enabled, you will not be able to delete or unsubscribe from clusters.
+-  **Cluster Deletion Protection**: a measure taken to prevent accidental deletion of clusters through the console or APIs. After this function is enabled, you will not be able to delete or unsubscribe from clusters.
 
 .. _cce_10_0782__section8442632978:
 
@@ -62,6 +62,6 @@ You can check how many master nodes are supported in a cluster.
 Installed Add-ons
 -----------------
 
-You can check the installed add-ons in a cluster. If there is an add-on to be upgraded in the cluster, click **Go to Upgrade** to go to the **Add-ons** page and see more details.
+You can check the installed add-ons in a cluster. If there is an add-on to be upgraded in the cluster, click **Upgrade Now** to go to the **Add-ons** page and see more details.
 
-.. |image1| image:: /_static/images/en-us_image_0000002467719409.png
+.. |image1| image:: /_static/images/en-us_image_0000002484119318.png

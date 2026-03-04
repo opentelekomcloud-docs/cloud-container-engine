@@ -37,7 +37,7 @@ Notes and Constraints
 ---------------------
 
 -  If you delete the timeout configuration when updating an ingress, the timeout configuration of the existing listener will be retained.
--  If multiple ingresses share the same external port on a load balancer, you are advised to use the same timeout configuration for these ingresses. Otherwise, the configuration of the first created ingress will take precedence. For details, see :ref:`Configuring Multiple Ingresses to Use the Same Load Balancer <cce_10_0954>`.
+-  If multiple ingresses share the same external port on a load balancer, you are advised to use the same timeout configuration for these ingresses. Otherwise, the configuration of the first created ingress will take precedence. For details, see :ref:`Configuring Multiple Ingresses in a Cluster to Use the Same Load Balancer <cce_10_0954>`.
 
 Using the CCE Console to Configure Timeout
 ------------------------------------------

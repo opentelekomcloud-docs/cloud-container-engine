@@ -5,39 +5,52 @@
 Using a Custom Access Key (AK/SK) to Mount an OBS Volume
 ========================================================
 
-Scenario
---------
-
-:ref:`CCE Container Storage (Everest) <cce_10_0066>` of v1.2.8 or later supports custom access keys. In this way, IAM users can use their own custom access keys to mount an OBS volume.
+:ref:`CCE Container Storage (Everest) <cce_10_0066>` supports custom access keys. In this way, IAM users can use their own custom access keys to mount an OBS volume.
 
 Prerequisites
 -------------
 
--  The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be 2.1.46 or later.
+-  The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be 1.2.8 or later.
 -  The cluster version must be 1.15.11 or later.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  When an OBS volume is mounted using a custom access key (AK/SK), the access key cannot be deleted or disabled. Otherwise, the service container cannot access the mounted OBS volume.
 -  Custom access keys cannot be configured for secure containers.
 
-Disabling Auto Key Mounting
----------------------------
+Disabling a Global AK
+---------------------
 
-On the earlier version's console, you need to upload the AK/SK, which is then used by default for mounting an OBS volume. As a result, all IAM users within your account will use the same key to mount OBS buckets, and they will have identical permissions on the buckets. However, this setting does not allow you to set different permissions for individual IAM users.
+When creating an OBS volume on the console of an earlier version, you need to upload the AK/SK (global access key), which is then used by default for mounting the OBS volume. As a result, all IAM users within your account will use the same key to mount the OBS buckets, and they will have identical permissions on the buckets. However, this setting does not allow you to set different permissions for individual IAM users.
 
-If you have uploaded the AK/SK, disable the automatic mounting of access keys by enabling the **DISABLE_AUTO_MOUNT_SECRET** parameter in the Everest add-on to prevent IAM users from performing unauthorized operations. In this way, the access keys uploaded on the console will not be used when you use OBS volumes.
+If you have uploaded the AK/SK, disable the automatic mounting of global access keys by enabling the **DISABLE_AUTO_MOUNT_SECRET** parameter in the CCE Container Storage (Everest) add-on to prevent IAM users from performing unauthorized operations. In this way, the global access keys uploaded on the console will not be used when you use OBS volumes.
 
 .. note::
 
    -  Before enabling **DISABLE_AUTO_MOUNT_SECRET**, ensure that there are no OBS volumes in the cluster. Workloads using OBS volumes may fail to remount after scaling or restart due to missing access keys, which are blocked by **DISABLE_AUTO_MOUNT_SECRET**.
    -  If **DISABLE_AUTO_MOUNT_SECRET** is set to **true**, an access key must be specified when a PV or PVC is created. Otherwise, mounting the OBS volume will fail.
 
+The following steps apply to CCE Container Storage (Everest) 2.\ *x* (2.1.42 or later):
+
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Add-ons**. In the right pane, find the CCE Container Storage (Everest) add-on and click **Edit**.
 #. Configure the add-on parameters. Set **Prohibit Global Secret from Mounting Object Storage (disable_auto_mount_secret)** to **Yes**.
 #. Click **OK**.
+
+The following steps apply to CCE Container Storage (Everest) 1.\ *x*. (The modified settings cannot be retained during the add-on upgrades. You are advised to use the add-on of 2.\ *x*.)
+
+#. Use kubectl to access the cluster and run the following command to modify the add-on settings:
+
+   .. code-block::
+
+      kubectl edit ds everest-csi-driver -nkube-system
+
+#. Search for **disable-auto-mount-secret** and set it to **true**.
+
+   |image1|
+
+#. Run **:wq** to save the settings and exit. Wait until the pod is restarted.
 
 .. _cce_10_0336__section4633162355911:
 
@@ -54,11 +67,12 @@ Creating a Secret Using an Access Key
 
 #. Obtain an access key.
 
-#. Encode the keys using Base64. (Assume that the AK is xxx and the SK is yyy.)
+#. Encode the keys using Base64. (Assume that the obtained AK is **xxx** and the SK is **yyy**.)
 
-   **echo -n xxx|base64**
+   .. code-block::
 
-   **echo -n yyy|base64**
+      echo -n xxx|base64
+      echo -n yyy|base64
 
    Record the encoded AK and SK.
 
@@ -83,13 +97,13 @@ Creating a Secret Using an Access Key
    +-----------------------------------+---------------------------------------------------------------------------------------------------+
    | Parameter                         | Description                                                                                       |
    +===================================+===================================================================================================+
-   | access.key                        | Base64-encoded AK.                                                                                |
+   | access.key                        | A Base64-encoded AK                                                                               |
    +-----------------------------------+---------------------------------------------------------------------------------------------------+
-   | secret.key                        | Base64-encoded SK.                                                                                |
+   | secret.key                        | A Base64-encoded SK                                                                               |
    +-----------------------------------+---------------------------------------------------------------------------------------------------+
-   | name                              | Secret name.                                                                                      |
+   | name                              | Secret name                                                                                       |
    +-----------------------------------+---------------------------------------------------------------------------------------------------+
-   | namespace                         | Namespace of the secret.                                                                          |
+   | namespace                         | Namespace of a secret                                                                             |
    +-----------------------------------+---------------------------------------------------------------------------------------------------+
    | secret.kubernetes.io/used-by: csi | Add this label if you want to make it available on the CCE console when you create an OBS PV/PVC. |
    +-----------------------------------+---------------------------------------------------------------------------------------------------+
@@ -100,7 +114,9 @@ Creating a Secret Using an Access Key
 
 #. Create the secret.
 
-   **kubectl create -f test-user.yaml**
+   .. code-block::
+
+      kubectl create -f test-user.yaml
 
 Specifying a Secret for Mounting During Static Creation of an OBS Volume
 ------------------------------------------------------------------------
@@ -141,7 +157,7 @@ After a secret is created using the AK/SK, you can associate the secret with the
    +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Parameter                         | Description                                                                                                                                                           |
    +===================================+=======================================================================================================================================================================+
-   | nodePublishSecretRef              | Secret specified during the mounting.                                                                                                                                 |
+   | nodePublishSecretRef              | Secret specified during the mounting                                                                                                                                  |
    |                                   |                                                                                                                                                                       |
    |                                   | -  **name**: name of the secret                                                                                                                                       |
    |                                   | -  **namespace**: The namespace of the secret                                                                                                                         |
@@ -153,7 +169,9 @@ After a secret is created using the AK/SK, you can associate the secret with the
 
 #. Create a PV.
 
-   **kubectl create -f pv-example.yaml**
+   .. code-block::
+
+      kubectl create -f pv-example.yaml
 
    After a PV is created, you can create a PVC and associate it with the PV.
 
@@ -183,17 +201,19 @@ After a secret is created using the AK/SK, you can associate the secret with the
         storageClassName: csi-obs
         volumeName: pv-obs-example
 
-   +--------------------------------------------------+-----------------------------+
-   | Parameter                                        | Description                 |
-   +==================================================+=============================+
-   | csi.storage.k8s.io/node-publish-secret-name      | The name of the secret      |
-   +--------------------------------------------------+-----------------------------+
-   | csi.storage.k8s.io/node-publish-secret-namespace | The namespace of the secret |
-   +--------------------------------------------------+-----------------------------+
+   +--------------------------------------------------+---------------------------+
+   | Parameter                                        | Description               |
+   +==================================================+===========================+
+   | csi.storage.k8s.io/node-publish-secret-name      | The name of a secret      |
+   +--------------------------------------------------+---------------------------+
+   | csi.storage.k8s.io/node-publish-secret-namespace | The namespace of a secret |
+   +--------------------------------------------------+---------------------------+
 
 #. Create a PVC.
 
-   **kubectl create -f pvc-example.yaml**
+   .. code-block::
+
+      kubectl create -f pvc-example.yaml
 
    After the PVC is created, you can create a workload and associate it with the PVC to create volumes.
 
@@ -224,17 +244,19 @@ When dynamically creating an OBS volume, you can use the following method to spe
             storage: 1Gi
         storageClassName: csi-obs
 
-   +--------------------------------------------------+-----------------------------+
-   | Parameter                                        | Description                 |
-   +==================================================+=============================+
-   | csi.storage.k8s.io/node-publish-secret-name      | The name of the secret      |
-   +--------------------------------------------------+-----------------------------+
-   | csi.storage.k8s.io/node-publish-secret-namespace | The namespace of the secret |
-   +--------------------------------------------------+-----------------------------+
+   +--------------------------------------------------+---------------------------+
+   | Parameter                                        | Description               |
+   +==================================================+===========================+
+   | csi.storage.k8s.io/node-publish-secret-name      | The name of a secret      |
+   +--------------------------------------------------+---------------------------+
+   | csi.storage.k8s.io/node-publish-secret-namespace | The namespace of a secret |
+   +--------------------------------------------------+---------------------------+
 
 #. Create a PVC.
 
-   **kubectl create -f pvc-example.yaml**
+   .. code-block::
+
+      kubectl create -f pvc-example.yaml
 
    After the PVC is created, you can create a workload and associate it with the PVC to create volumes.
 
@@ -245,7 +267,9 @@ You can use a secret of an IAM user to mount an OBS volume. Assume that a worklo
 
 #. Query the name of the workload pod.
 
-   **kubectl get po \| grep obs-secret**
+   .. code-block::
+
+      kubectl get pod | grep obs-secret
 
    Expected outputs:
 
@@ -255,11 +279,15 @@ You can use a secret of an IAM user to mount an OBS volume. Assume that a worklo
 
 #. Query the objects in the mount path. In this example, the query is successful.
 
-   **kubectl exec obs-secret-5cd558f76f-vxslv -- ls -l /temp/**
+   .. code-block::
+
+      kubectl exec obs-secret-5cd558f76f-vxslv -- ls -l /temp/
 
 #. Write data into the mount path. In this example, the write operation failed.
 
-   **kubectl exec obs-secret-5cd558f76f-vxslv -- touch /temp/test**
+   .. code-block::
+
+      kubectl exec obs-secret-5cd558f76f-vxslv -- touch /temp/test
 
    Expected outputs:
 
@@ -270,15 +298,19 @@ You can use a secret of an IAM user to mount an OBS volume. Assume that a worklo
 
 #. Set the read/write permissions for the IAM user who mounted the OBS volume by referring to the bucket policy configuration.
 
-   |image1|
+   |image2|
 
 #. Write data into the mount path again. In this example, the write operation succeeded.
 
-   **kubectl exec obs-secret-5cd558f76f-vxslv -- touch /temp/test**
+   .. code-block::
+
+      kubectl exec obs-secret-5cd558f76f-vxslv -- touch /temp/test
 
 #. Check the mount path in the container to see whether the data is successfully written.
 
-   **kubectl exec obs-secret-5cd558f76f-vxslv -- ls -l /temp/**
+   .. code-block::
+
+      kubectl exec obs-secret-5cd558f76f-vxslv -- ls -l /temp/
 
    Expected outputs:
 
@@ -286,4 +318,5 @@ You can use a secret of an IAM user to mount an OBS volume. Assume that a worklo
 
       -rwxrwxrwx 1 root root 0 Jun  7 01:52 test
 
-.. |image1| image:: /_static/images/en-us_image_0000002434240800.png
+.. |image1| image:: /_static/images/en-us_image_0000002484119690.png
+.. |image2| image:: /_static/images/en-us_image_0000002516079657.png

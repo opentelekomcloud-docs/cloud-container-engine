@@ -16,7 +16,7 @@ Prerequisites
 Precautions
 -----------
 
--  Theoretically, migration during container running will interrupt services for a short period of time. Therefore, it is strongly recommended that the services to be migrated have been deployed as multi-instance. In addition, you are advised to test the migration impact in the test environment to minimize potential risks.
+-  Theoretically, container runtime migration will interrupt services for a short period of time. You should have deployed the services on multiple instances for high availability. In addition, you are advised to test the migration impact in the test environment to minimize potential risks.
 -  containerd cannot build images. Do not use the **docker build** command to build images on containerd nodes. For other differences between Docker and containerd, see :ref:`Container Engines <cce_10_0462>`.
 
 Procedure for Migrating Nodes in the Default Node Pool
@@ -26,13 +26,13 @@ Procedure for Migrating Nodes in the Default Node Pool
 
 #. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.
 
-#. In the node list, select one or more nodes to be reset and choose **More** > **Reset Node** in the **Operation** column.
+#. In the node list, select one or more nodes to be reset and choose **More** > **Reset Node**.
 
 #. Set **Container Engine** to **containerd**. You can adjust other parameters as required or retain them as set during creation.
 
 #. If the node status is **Installing**, the node is being reset.
 
-   When the node status is **Running**, you can see that the node version is switched to containerd. You can log in to the node and run containerd commands such as **crictl** to view information about the containers running on the node.
+   When the node status is **Running**, you can see that the node runtime is switched to containerd. You can log in to the node and run containerd commands such as **crictl** to view information about the containers running on the node.
 
 Procedure for Migrating Nodes in a Custom Node Pool
 ---------------------------------------------------
@@ -41,11 +41,11 @@ You can :ref:`copy a node pool <cce_10_0655>`, set the container engine of the n
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Nodes**. On the **Node Pools** tab page, locate the Docker node pool to be copied and choose **More** > **Copy** in the **Operation** column.
+#. In the navigation pane, choose **Nodes**. On the **Node Pools** tab, locate the Docker node pool to be copied and choose **More** > **Copy**.
 
-#. In the **Configurations** area, set **Container Engine** to **containerd** and modify other parameter settings as needed to create the node pool.
+#. In the **Node** **Configuration** area, set **Container Engine** to **containerd** and modify other parameter settings as needed to create the node pool.
 
-#. Scale the number of created containerd node pools to the number of original Docker node pools and delete nodes from the Docker node pools one by one.
+#. Scale the number of created containerd node pool to the number of original Docker node pool and delete nodes from the Docker node pool one by one.
 
    Rolling migration is preferred. That is, add some containerd nodes and then delete some Docker nodes until the number of nodes in the new containerd node pool is the same as that in the original Docker node pool.
 
@@ -53,4 +53,4 @@ You can :ref:`copy a node pool <cce_10_0655>`, set the container engine of the n
 
       If you have configured node affinity for the workloads deployed on the original Docker nodes or node pool, configure affinity policies for the workloads to run on the new containerd nodes or node pool.
 
-#. After the migration, delete the original Docker node pool.
+#. Delete the original Docker node pool.

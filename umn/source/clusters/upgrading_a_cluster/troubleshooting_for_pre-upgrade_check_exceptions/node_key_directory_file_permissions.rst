@@ -10,8 +10,8 @@ Check Items
 
 Check whether the root directory permissions are properly assigned.
 
-Solution
---------
+Solutions
+---------
 
 -  **Scenario 1: The error message "user paas must have at least read and execute permissions on the root directory" is displayed.**
 
