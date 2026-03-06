@@ -954,65 +954,118 @@ Response
    |                       |                       | N/A                                                                                                     |
    +-----------------------+-----------------------+---------------------------------------------------------------------------------------------------------+
 
-**Example response:**
+Example Responses
+-----------------
+
+**Status code: 201**
+
+The cluster creation job is successfully delivered.
 
 .. code-block::
 
-       "kind": "Cluster",
-       "apiVersion": "v3",
-       "metadata": {
-           "name": "test-create-cluster",
-           "uid": "d6a883a1-8529-11ea-8e34-0255ac101108",
-           "creationTimestamp": "2020-04-23 06:15:32.974281119 +0000 UTC",
-           "updateTimestamp": "2020-04-23 06:15:32.974281688 +0000 UTC",
-           "labels": {
-               "foo": "bar"
-           },
-           "annotations": {
-               "foo2": "bar2"
-           }
-           "timezone" : "******"
+   {
+     "kind" : "Cluster",
+     "apiVersion" : "v3",
+     "metadata" : {
+       "name" : "cluster",
+       "uid" : "1df09f9a-5b9e-11ef-8f52-0255ac10003e",
+       "creationTimestamp" : "2024-08-16 07:06:53.704389459 +0000 UTC",
+       "updateTimestamp" : "2024-08-16 07:06:53.704389529 +0000 UTC",
+       "annotations" : {
+         "jobid" : "1e50bfbe-5b9e-11ef-8f52-0255ac10003e",
+         "resourceJobId" : "1df0ec6b-5b9e-11ef-8f52-0255ac10003e"
        },
-       "spec": {
-           "type": "VirtualMachine",
-           "flavor": "cce.s2.small",
-           "version": "v1.17.9-r0",
-           "description": "this is a demo cluster",
-           "ipv6enable": false,
-           "hostNetwork": {
-               "vpc": "23d3725f-6ffe-400e-8fb6-b4f9a7b3e8c1",
-               "subnet": "c90b3ce5-e1f1-4c87-a006-644d78846438"
-           },
-           "containerNetwork": {
-               "mode": "overlay_l2",
-               "cidr": "172.16.0.0/16"
-           },
-           "eniNetwork": {},
-           "authentication": {
-               "mode": "rbac",
-               "authenticatingProxy": {}
-           },
-           "billingMode": 0,
-           "extendParam": {
-               "clusterAZ": "multi_az"
-           },
-           "kubernetesSvcIpRange": "10.247.0.0/16",
-           "kubeProxyMode": "iptables"
+       "timezone" :
+     },
+     "spec" : {
+       "publicAccess" : { },
+       "category" : "CCE",
+       "type" : "VirtualMachine",
+       "enableAutopilot" : false,
+       "flavor" : "cce.s1.small",
+       "version" : "v1.29",
+       "platformVersion" : "cce.4.0",
+       "configurationsOverride" : [ {
+         "name" : "kube-apiserver",
+         "configurations" : [ {
+           "name" : "support-overload",
+           "value" : true
+         } ]
+       },{
+          "name": "eni",
+          "configurations": [ {
+          "name": "dataplane-v2",
+          "value": true
+         } ]
+       } ],
+       "hostNetwork" : {
+         "vpc" : "0538a5d0-9a65-4c1d-a8bf-e9acee237980",
+         "subnet" : "bc81be88-6e34-4b02-83bd-df0a1f7672c5"
        },
-       "status": {
-           "phase": "Creating",
-           "jobID": "d6bcbb0b-8529-11ea-8e34-0255ac101108"
+       "containerNetwork" : {
+         "mode" : "vpc-router",
+         "cidr" : "172.17.0.0/16",
+         "cidrs" : [ {
+           "cidr" : "172.17.0.0/16"
+         } ]
+       },
+       "eniNetwork" : { },
+       "serviceNetwork" : {
+         "IPv4CIDR" : "10.247.0.0/16"
+       },
+       "authentication" : {
+         "mode" : "rbac",
+         "authenticatingProxy" : { }
+       },
+       "billingMode" : 0,
+       "kubernetesSvcIpRange" : "10.247.0.0/16",
+       "kubeProxyMode" : "iptables",
+       "extendParam" : {
+         "alpha.cce/fixPoolMask" : "25",
+         "enterpriseProjectId" : "0",
+         "orderID" : ""
        }
+     },
+     "status" : {
+       "phase" : "Creating",
+       "jobID" : "1e50bfbe-5b9e-11ef-8f52-0255ac10003e"
+     }
    }
+
+.. _cce_02_0236__table1873418287490:
+
+.. table:: **Table 29** Parameter Description
+
+   +-------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter                                                   | Description                                                                                                                                                                                                                                                     |
+   +=============================================================+=================================================================================================================================================================================================================================================================+
+   | support-overload                                            | Cluster overload control. After this function is enabled, CCE will dynamically adjust concurrent requests based on the resource demands received by master nodes to ensure the stability and reliability of the master nodes and the cluster.                   |
+   |                                                             |                                                                                                                                                                                                                                                                 |
+   |                                                             | **Configuration suggestion**: Enable this function. In scenarios like short-term request bursts, a cluster may still become overloaded even with overload control enabled. In such cases, you are advised to manage and control access to the cluster promptly. |
+   |                                                             |                                                                                                                                                                                                                                                                 |
+   |                                                             | **Applicable cluster version**: This parameter is available only in clusters v1.23 or later.                                                                                                                                                                    |
+   +-------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | dataplane-v2 (supported by clusters using the VPC networks) | eBPF is used at the kernel layer for Kubernetes network acceleration, enhancing high-performance service communication through ClusterIP Services, precise traffic control via network policies, and intelligent bandwidth management with egress bandwidth.    |
+   |                                                             |                                                                                                                                                                                                                                                                 |
+   |                                                             | This function has the restrictions below.                                                                                                                                                                                                                       |
+   |                                                             |                                                                                                                                                                                                                                                                 |
+   |                                                             | -  Restrictions on clusters: This function can be enabled only for clusters v1.27.16-r30, v1.28.15-r20, v1.29.13-r0, v1.30.10-r0, v1.31.6-r0, or later that use VPC networks.                                                                                   |
+   |                                                             | -  Restrictions on memory: After this function is enabled, CCE will automatically deploy the cilium-agent on every node in a cluster. Each cilium-agent will use 80 MiB of memory, and the memory usage will increase by 10 KiB whenever a new pod is added.    |
+   |                                                             | -  Restrictions on OSs: After a node is created, it can only use HCE OS 2.0.                                                                                                                                                                                    |
+   |                                                             |                                                                                                                                                                                                                                                                 |
+   |                                                             | .. note::                                                                                                                                                                                                                                                       |
+   |                                                             |                                                                                                                                                                                                                                                                 |
+   |                                                             |    CCE DataPlane V2 is released with restrictions. To use this feature, submit a service ticket to CCE.                                                                                                                                                         |
+   +-------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Status Code
 -----------
 
-:ref:`Table 29 <cce_02_0236__en-us_topic_0079614900_table46761928>` describes the status code of this API.
+:ref:`Table 30 <cce_02_0236__en-us_topic_0079614900_table46761928>` describes the status code of this API.
 
 .. _cce_02_0236__en-us_topic_0079614900_table46761928:
 
-.. table:: **Table 29** Status code
+.. table:: **Table 30** Status code
 
    =========== =========================================================
    Status Code Description

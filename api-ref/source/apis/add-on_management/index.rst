@@ -11,6 +11,8 @@ Add-on Management
 -  :ref:`Deleting an Add-on Instance <cce_02_0324>`
 -  :ref:`Reading an Add-on Instance <cce_02_0325>`
 -  :ref:`Listing Add-on Instances <cce_02_0326>`
+-  :ref:`Creating Add-on Check Tasks in Batches <batchcreateaddonprecheck>`
+-  :ref:`Obtaining the Add-on Check Task Results <listaddonprechecktasks>`
 
 .. toctree::
    :maxdepth: 1
@@ -22,3 +24,5 @@ Add-on Management
    deleting_an_add-on_instance
    reading_an_add-on_instance
    listing_add-on_instances
+   creating_add-on_check_tasks_in_batches
+   obtaining_the_add-on_check_task_results
