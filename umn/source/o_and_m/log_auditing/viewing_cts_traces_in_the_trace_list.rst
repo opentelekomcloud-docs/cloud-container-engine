@@ -22,7 +22,7 @@ Viewing Traces in the Trace List
 
 #. In the navigation pane, choose **Trace List**.
 
-#. In the upper right corner of the page, set a desired query time range: **Last 1 hour**, **Last 1 day**, or **Last 1 week**. You can also click **Customize** to specify a custom time range within the last seven days.
+#. In the upper right corner of the page, select a desired query time range: **Last 1 hour**, **Last 1 day**, or **Last 1 week**. You can also specify a custom time range within the last seven days.
 
 #. Set filters to search for your desired traces, as shown in :ref:`Figure 1 <cce_10_0026__en-us_topic_0179639644_fig139361441134311>`.
 

@@ -75,7 +75,7 @@ Overview of DaemonSet
 
 A DaemonSet runs a pod on each node in a cluster and ensures that there is only one pod. This works well for certain system-level applications such as log collection and resource monitoring since they must run on each node. A good example is kube-proxy.
 
-DaemonSets are closely related to nodes. If a node becomes faulty, the DaemonSet will not create the same pods on other nodes.
+DaemonSets are closely related to nodes. If a node becomes faulty, the DaemonSet will not migrate the pod on that node to other nodes for re-creation.
 
 
 .. figure:: /_static/images/en-us_image_0258871213.png

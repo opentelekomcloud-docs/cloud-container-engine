@@ -768,7 +768,7 @@ Pay attention to the resource allocation in the command output:
 Specifically:
 
 -  **Allocatable**: specifies the total number of allocatable resources like CPUs, memory, and temporary storage on a node.
--  **Allocated resources**: specifies the total number of resources like CPUs, memory, and temporary storage that have been allocated to the pods on a node.
+-  **Allocated resources**: specifies the total number or amount of resources (such as CPU, memory, and temporary storage) that has been allocated to the pods on a node.
 
 **Solution**
 

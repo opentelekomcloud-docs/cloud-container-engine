@@ -12,8 +12,8 @@ Prerequisites
 
 The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be **1.2.8 or later**. This add-on identifies the mount options and transfers them to the underlying storage resources. The parameter settings take effect only if the underlying storage resources support the specified options.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  Mount options cannot be configured for secure containers.
 -  Due to the restrictions of the NFS protocol, if an SFS volume is mounted to a node for multiple times, link-related mounting parameters (such as **timeo**) take effect only when the SFS volume is mounted for the first time by default. For example, if the same SFS file system is mounted to multiple pods running on a node, the mounting parameter set later does not overwrite the existing parameter value. If you want to configure different mounting parameters in the preceding scenario, additionally configure the **nosharecache** parameter.
@@ -58,7 +58,7 @@ The Everest add-on in CCE presets the options described in :ref:`Table 1 <cce_10
    |                         |                       |    The **nosharecache** setting will affect the performance. The mounting information must be obtained for each mounting, which increases the communication overhead with the NFS server and the memory consumption of the NFS clients. In addition, the **nosharecache** setting on the NFS clients may lead to inconsistent caches. Determine whether to use **nosharecache** based on site requirements. |
    +-------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-You can configure other mount options if needed. For details, see `Mounting an NFS File System to ECSs (Linux) <https://docs.otc.t-systems.com/en-us/usermanual/sfs/sfs_01_1001.html>`__.
+You can configure other mount options if needed. For details, see `Mounting an NFS File System to ECSs (Linux) <https://docs.otc.t-systems.com/scalable-file-service/umn/getting_started/mount_a_file_system/mounting_an_nfs_file_system_to_ecss_linux.html>`__.
 
 Configuring Mount Options in a PV
 ---------------------------------
@@ -86,12 +86,13 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
         csi:
           driver: nas.csi.everest.io    # Dependent storage driver for the mounting
           fsType: nfs
-          volumeHandle: <your_volume_id>   # The ID of the SFS Capacity-Oriented volume
+          volumeHandle: <your_volume_id>   # The ID of the SFS Capacity-Oriented volume or the file system name when a general purpose file system (SFS 3.0 Capacity-Oriented) is used
           volumeAttributes:
             everest.io/share-export-location: <your_location>  # Shared path of the SFS volume
             storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
+            everest.io/sfs-version: sfs3.0       # A general purpose file system (SFS 3.0 Capacity-Oriented) is used.
         persistentVolumeReclaimPolicy: Retain    # Reclaim policy
-        storageClassName: csi-nas                # StorageClass name.
+        storageClassName: csi-nas                # StorageClass name. csi-nas indicates that SFS Capacity-Oriented is used. csi-sfs indicates that a general purpose file system (SFS 3.0 Capacity-Oriented) is used.
         mountOptions:                            # Mount options
         - vers=3
         - nolock
@@ -148,6 +149,7 @@ You can use **mountOptions** to configure mount options in a StorageClass. The o
         csi.storage.k8s.io/csi-driver-name: nas.csi.everest.io
         csi.storage.k8s.io/fstype: nfs
       everest.io/share-access-to: <your_vpc_id> # VPC ID of the cluster
+        everest.io/sfs-version: sfs3.0              # A general purpose file system (SFS 3.0 Capacity-Oriented) is used. This parameter is not required for SFS Capacity-Oriented.
       reclaimPolicy: Delete
       volumeBindingMode: Immediate
       mountOptions:                            # Mount options

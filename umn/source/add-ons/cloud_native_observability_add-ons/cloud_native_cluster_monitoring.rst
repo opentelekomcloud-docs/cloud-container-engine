@@ -50,7 +50,7 @@ Installing the Add-on
 
    -  Original agent mode: Disable **Local Data Storage** and enable at least one of **Report Monitoring Data to AOM** and **Report Monitoring Data to a Third-Party Platform**.
 
-   -  Original server mode: Enable **Local data storage** and **Report Monitoring Data to AOM** or **Report Monitoring Data to a Third-Party Platform**.
+   -  Original server mode: Enable **Local Data Storage** and **Report Monitoring Data to AOM** or **Report Monitoring Data to a Third-Party Platform**.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 

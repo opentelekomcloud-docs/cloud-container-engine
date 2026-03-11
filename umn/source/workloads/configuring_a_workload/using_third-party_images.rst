@@ -91,7 +91,7 @@ Using kubectl
          +-----------------+-----------------+--------------------------------------------------------------------------------+
          | Parameter       | Example Value   | Description                                                                    |
          +=================+=================+================================================================================+
-         | docker-server   | www.example.com | Enter the address of the third image repository.                               |
+         | docker-server   | www.example.com | Enter the address of the third-party image repository.                         |
          +-----------------+-----------------+--------------------------------------------------------------------------------+
          | docker-username | ssl             | Enter the username for accessing the third-party image repository.             |
          +-----------------+-----------------+--------------------------------------------------------------------------------+

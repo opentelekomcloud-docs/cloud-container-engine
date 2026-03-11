@@ -12,6 +12,14 @@ Prerequisites
 
 -  You have created a cluster and installed the :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on in the cluster.
 -  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
+-  Before using a general purpose file system (SFS 3.0 Capacity-Oriented) for storage, ensure a VPC endpoint has been created in the VPC where the cluster is located for the cluster to access the file system. For details, see `Configure a VPC Endpoint <https://docs.otc.t-systems.com/en-us/usermanual/sfs/sfs_01_0134.html>`__.
+
+Notes and Constraints
+---------------------
+
+-  If a general purpose file system (SFS 3.0 Capacity-Oriented) is used, :ref:`CCE Container Storage (Everest) <cce_10_0066>` of v2.0.9 or later must be installed in the cluster.
+-  If a general purpose file system (SFS 3.0 Capacity-Oriented) is used, the owner group and permission of the mount point cannot be modified. The default owner of the mount point is user **root**.
+-  If a general purpose file system (SFS 3.0 Capacity-Oriented) is used, there may be a latency during the creation or deletion of PVCs and PVs. The billing duration is determined by the time when the resource is created or deleted on the SFS console.
 
 Dynamically Creating an SFS file system Using the Console
 ---------------------------------------------------------
@@ -114,7 +122,7 @@ Dynamically Creating an SFS File System Using kubectl
            resources:
              requests:
                storage: 1Gi             # SFS volume capacity
-           storageClassName: csi-nas    # The StorageClass is SFS.
+           storageClassName: csi-nas    # The StorageClass is SFS. csi-sfs indicates that a general purpose file system (SFS 3.0 Capacity-Oriented) is used.
 
       .. table:: **Table 2** Key parameters
 

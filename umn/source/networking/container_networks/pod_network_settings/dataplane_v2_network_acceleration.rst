@@ -149,40 +149,68 @@ Information similar to the following is displayed:
 
    2.1.1
 
-+----------------+-------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
-| Add-on Version | Status      | Cluster Version | New Feature                                                                   | Community Version                            |
-+================+=============+=================+===============================================================================+==============================================+
-| 2.0.2          | OBT         | v1.27           | -  Support for only the CCE standard clusters that use VPC networks           | `v1.17 <https://docs.cilium.io/en/v1.17/>`__ |
-|                |             |                 | -  Upgraded Cilium to v1.17.3.                                                |                                              |
-|                |             | v1.28           | -  Disabled bpf-lb-sock (by setting **bpf-lb-sock=false**).                   |                                              |
-|                |             |                 | -  Disabled host-based firewalls (by setting **enable-host-firewall=false**). |                                              |
-|                |             | v1.29           | -  Enabled Layer 7 network policies (by setting **enable-l7-proxy=true**).    |                                              |
-|                |             |                 | -  Enabled host-routing (by setting **enable-host-legacy-routing=false**).    |                                              |
-|                |             | v1.30           |                                                                               |                                              |
-|                |             |                 |                                                                               |                                              |
-|                |             | v1.31           |                                                                               |                                              |
-|                |             |                 |                                                                               |                                              |
-|                |             | v1.32           |                                                                               |                                              |
-+----------------+-------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
-| 1.0.15         | Limited OBT | v1.27           | -  Disabled bpf-lb-sock (by setting **bpf-lb-sock=false**).                   | `v1.14 <https://docs.cilium.io/en/v1.14/>`__ |
-|                |             |                 |                                                                               |                                              |
-|                |             | v1.28           |                                                                               |                                              |
-|                |             |                 |                                                                               |                                              |
-|                |             | v1.29           |                                                                               |                                              |
-|                |             |                 |                                                                               |                                              |
-|                |             | v1.30           |                                                                               |                                              |
-|                |             |                 |                                                                               |                                              |
-|                |             | v1.31           |                                                                               |                                              |
-|                |             |                 |                                                                               |                                              |
-|                |             | v1.32           |                                                                               |                                              |
-+----------------+-------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
-| 1.0.8          | Limited OBT | v1.27           | -  Supported CCE Turbo clusters that use Cloud Native 2.0 networks.           | `v1.14 <https://docs.cilium.io/en/v1.14/>`__ |
-|                |             |                 | -  Disabled host-based firewalls (by setting **enable-host-firewall=false**). |                                              |
-|                |             | v1.28           | -  Disabled L7 network policies (by setting **enable-l7-proxy=false**).       |                                              |
-|                |             |                 |                                                                               |                                              |
-|                |             | v1.29           |                                                                               |                                              |
-|                |             |                 |                                                                               |                                              |
-|                |             | v1.30           |                                                                               |                                              |
-|                |             |                 |                                                                               |                                              |
-|                |             | v1.31           |                                                                               |                                              |
-+----------------+-------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
++----------------+----------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
+| Add-on Version | Status         | Cluster Version | New Feature                                                                   | Community Version                            |
++================+================+=================+===============================================================================+==============================================+
+| 2.1.1          | Commercial use | v1.27           | -  Support for only the CCE standard clusters that use VPC networks           | `v1.17 <https://docs.cilium.io/en/v1.17/>`__ |
+|                |                |                 | -  Upgraded Cilium to v1.17.6.                                                |                                              |
+|                |                | v1.28           | -  Support for CCE standard clusters of v1.33                                 |                                              |
+|                |                |                 | -  Custom Cilium parameters                                                   |                                              |
+|                |                | v1.29           | -  Configurable Hubble observability                                          |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.30           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.31           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.32           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.33           |                                                                               |                                              |
++----------------+----------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
+| 2.0.2          | OBT            | v1.27           | -  Support for only the CCE standard clusters that use VPC networks           | `v1.17 <https://docs.cilium.io/en/v1.17/>`__ |
+|                |                |                 | -  Upgraded Cilium to v1.17.3.                                                |                                              |
+|                |                | v1.28           | -  Disabled bpf-lb-sock (by setting **bpf-lb-sock=false**).                   |                                              |
+|                |                |                 | -  Disabled host-based firewalls (by setting **enable-host-firewall=false**). |                                              |
+|                |                | v1.29           | -  Enabled Layer 7 network policies (by setting **enable-l7-proxy=true**).    |                                              |
+|                |                |                 | -  Enabled host-routing (by setting **enable-host-legacy-routing=false**).    |                                              |
+|                |                | v1.30           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.31           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.32           |                                                                               |                                              |
++----------------+----------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
+| 1.0.16         | Limited OBT    | v1.27           | -  Support for CCE Turbo clusters of v1.33                                    | `v1.14 <https://docs.cilium.io/en/v1.14/>`__ |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.28           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.29           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.30           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.31           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.32           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.33           |                                                                               |                                              |
++----------------+----------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
+| 1.0.15         | Limited OBT    | v1.27           | -  Disabled bpf-lb-sock (by setting **bpf-lb-sock=false**).                   | `v1.14 <https://docs.cilium.io/en/v1.14/>`__ |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.28           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.29           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.30           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.31           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.32           |                                                                               |                                              |
++----------------+----------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+
+| 1.0.8          | Limited OBT    | v1.27           | -  Supported CCE Turbo clusters that use Cloud Native 2.0 networks.           | `v1.14 <https://docs.cilium.io/en/v1.14/>`__ |
+|                |                |                 | -  Disabled host-based firewalls (by setting **enable-host-firewall=false**). |                                              |
+|                |                | v1.28           | -  Disabled L7 network policies (by setting **enable-l7-proxy=false**).       |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.29           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.30           |                                                                               |                                              |
+|                |                |                 |                                                                               |                                              |
+|                |                | v1.31           |                                                                               |                                              |
++----------------+----------------+-----------------+-------------------------------------------------------------------------------+----------------------------------------------+

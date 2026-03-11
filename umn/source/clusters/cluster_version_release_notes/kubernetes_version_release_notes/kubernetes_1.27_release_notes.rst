@@ -68,7 +68,7 @@ New Features
 
 -  **ContainerResource** metric in HorizontalPodAutoscaler moves to beta.
 
-   Kubernetes 1.20 introduced the `ContainerResource <https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#container-resource-metrics>`__ metric in HorizontalPodAutoscaler (HPA). In Kubernetes 1.27, this feature moves to beta, and the HPAContainerMetrics feature gate is enabled by default.
+   Kubernetes 1.20 introduced `container resource metrics <https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/#container-resource-metrics>`__ in Horizontal Pod Autoscalers (HPAs). In Kubernetes 1.27, this feature moves to beta, and the HPAContainerMetrics feature gate is enabled by default.
 
 -  StatefulSet PVC auto deletion moves to beta.
 
@@ -122,7 +122,7 @@ New Features
 
 -  Pod scheduling readiness is introduced.
 
-   Kubernetes 1.26 introduces a new feature schedulingGates, which enables the scheduler to detect when pod scheduling can be performed. For details, see `Pod Scheduling Readiness <https://kubernetes.io/docs/concepts/scheduling-eviction/pod-scheduling-readiness/>`__.
+   Kubernetes 1.26 introduces a new feature schedulingGates, which enables the scheduler to be aware of when pod scheduling can be performed. For details, see `Pod Scheduling Readiness <https://kubernetes.io/docs/concepts/scheduling-eviction/pod-scheduling-readiness/>`__.
 
 -  CPU manager is officially released.
 
@@ -144,7 +144,7 @@ New Features
 
    You are allowed to specify unhealthy pod eviction policies for `PodDisruptionBudget <https://kubernetes.io/docs/concepts/workloads/pods/disruptions/#pod-disruption-budgets>`__ (PDB). This feature helps ensure node availability during node management. This feature is in the beta phase. For details, see `Unhealthy Pod Eviction Policy <https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy>`__.
 
--  The number of Horizontal Pod Autoscaler (HPA) can be configured.
+-  The number of Horizontal Pod Autoscalers (HPAs) can be configured.
 
    **kube-controller-manager** allows **--concurrent-horizontal-pod-autoscaler-syncs** to configure the number of worker nodes of the pod autoscaler for horizontal scaling.
 
@@ -155,7 +155,7 @@ Deprecations and Removals
 
 **Kubernetes 1.27**
 
--  In Kubernetes 1.27, the feature gates that are used for volume extension and in the GA status, including ExpandCSIVolumes, ExpandInUsePersistentVolumes, and ExpandPersistentVolumes are removed and can no longer be referenced in the **--feature-gates** flag.
+-  In Kubernetes 1.27, the feature gates that are used for volume extension and in the GA status, including ExpandCSIVolumes, ExpandInUsePersistentVolumes, and ExpandPersistentVolumes, are removed and can no longer be referenced in the **--feature-gates** flag.
 -  The **--master-service-namespace** parameter is removed. This parameter specifies where to create a Service named **kubernetes** to represent the API server. This parameter was deprecated in Kubernetes 1.26 and is removed from Kubernetes 1.27.
 -  The ControllerManagerLeaderMigration feature gate is removed. `Leader Migration <https://github.com/kubernetes/enhancements/issues/2436>`__ provides a mechanism for HA clusters to safely migrate "cloud specific" controllers using a resource lock shared between kube-controller-manager and cloud-controller-manager when upgrading the replicated control plane. This feature has been enabled unconditionally since its release in Kubernetes 1.24. In Kubernetes 1.27, this feature is removed.
 -  The **--enable-taint-manager** parameter is removed. The feature that it supports, taint-based eviction, is enabled by default. It will continue to be implicitly enabled when the flag is removed.
@@ -165,10 +165,10 @@ Deprecations and Removals
 -  The EphemeralContainers feature gate is removed. For Kubernetes 1.27, API support for ephemeral containers is unconditionally enabled.
 -  The LocalStorageCapacityIsolation feature gate is removed. This feature gate (`Local Ephemeral Storage Capacity Isolation <https://github.com/kubernetes/kubernetes/pull/111513>`__) moved to GA in Kubernetes 1.25. The feature provides support for capacity isolation of local ephemeral storage between pods, such as emptyDir volumes, so that a pod can be limited in its consumption of shared resources. kubelet will evict a pod if its consumption of local ephemeral storage exceeds the configured limit.
 -  The NetworkPolicyEndPort feature gate is removed. In Kubernetes 1.25, **endPort** in NetworkPolicy moved to GA. NetworkPolicy providers that support the **endPort** field can be used to specify a range of ports to apply NetworkPolicy.
--  The StatefulSetMinReadySeconds feature gate is removed. For a pod that is part of a StatefulSet, Kubernetes marks the pod as read-only when the pod is available (and passes the check) at least within the period specified in `minReadySeconds <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#minimum-ready-seconds>`__. This feature was officially released in Kubernetes 1.25. It is locked to **true** and removed from Kubernetes 1.27.
+-  The StatefulSetMinReadySeconds feature gate is removed. For a pod that is part of a StatefulSet, Kubernetes marks the pod as read-only when the pod is available (and passes the check) for at least within the period specified in `minReadySeconds <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#minimum-ready-seconds>`__. This feature was officially released in Kubernetes 1.25. It is locked to **true** and removed from Kubernetes 1.27.
 -  The IdentifyPodOS feature gate is removed. If this feature is enabled, you can specify an OS for a pod. It has been stable since Kubernetes 1.25. This feature is removed from Kubernetes 1.27.
 -  The DaemonSetUpdateSurge feature gate is removed. In Kubernetes 1.25, this feature was stable. It was implemented to minimize DaemonSet downtime during deployment, but it is removed from Kubernetes 1.27.
--  The **--container-runtime** parameter is removed. kubelet accepts a deprecated parameter **--container-runtime**, and the only valid value will be **remote** after the dockershim code is removed. This parameter was deprecated in 1.24 and later versions and is removed from Kubernetes 1.27.
+-  The **--container-runtime** parameter is removed. kubelet accepts a deprecated parameter **--container-runtime**. After the dockershim code is removed, the only valid value for this parameter will be **remote**. This parameter was deprecated in 1.24 and later versions and is removed from Kubernetes 1.27.
 
 **Kubernetes 1.26**
 

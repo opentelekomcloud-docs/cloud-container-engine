@@ -34,7 +34,7 @@ Run the **cat /etc/resolv.conf** command on a Linux node or container to view th
 
 .. note::
 
-   For more information about configuration options in the resolver configuration file used by Linux operating systems, visit http://man7.org/linux/man-pages/man5/resolv.conf.5.html.
+   For details about the configuration items in the Linux DNS resolver configuration file, see https://man7.org/linux/man-pages/man5/resolv.conf.5.html.
 
 Configuring DNS for a Workload Through the Console
 --------------------------------------------------
@@ -55,7 +55,7 @@ Kubernetes provides DNS-related configuration options for applications. The use 
    -  **Optional Objects**: The options parameters in the :ref:`dnsConfig field <cce_10_0365__table16581121652515>`. Each object may have a name property (required) and a value property (optional). After setting the properties, click **confirm to add**.
 
       -  **timeout**: Timeout interval, in seconds.
-      -  **ndots**: Number of dots (.) that must be present in a domain name. If a domain name has dots fewer than this value, the operating system will look up the name in the search domain. If not, the name is a fully qualified domain name (FQDN) and will be tried first as an absolute name.
+      -  **ndots**: Number of dots (.) that must be present in a domain name. If a domain name has fewer dots than this value, the operating system will look up the name in the search domain. If not, the name is a fully qualified domain name (FQDN) and will be tried first as an absolute name.
 
    -  **IP Address of DNS Server**: **nameservers** in :ref:`dnsConfig <cce_10_0365__table16581121652515>`. You can configure a domain name server for a custom domain name. The value is one or a group of DNS IP addresses.
    -  **Search Domain**: **searches** in the :ref:`dnsConfig <cce_10_0365__table16581121652515>`. A list of DNS search domains for hostname lookup in the pod. This property is optional. When specified, the provided list will be merged into the search domain names generated from the chosen DNS policy in **dnsPolicy**. Duplicate domain names are removed.

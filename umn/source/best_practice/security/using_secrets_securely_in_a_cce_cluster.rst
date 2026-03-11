@@ -2,14 +2,14 @@
 
 .. _cce_bestpractice_0320:
 
-Configuration Suggestions on CCE Secret Security
-================================================
+Using Secrets Securely in a CCE Cluster
+=======================================
 
-Currently, CCE has configured static encryption for secret resources. The secrets created by users will be encrypted and stored in etcd of the CCE cluster. Secrets can be used in two modes: environment variable and file mounting. No matter which mode is used, CCE still transfers the configured data to users. Therefore, it is recommended that:
+CCE now provides static encryption for secrets. Secrets created by users are encrypted and stored in the clusters' etcd. Currently, Secrets are mainly used as environment variables or through file mounts. Regardless of which method is used, CCE always delivers the data exactly as you originally configured it. Therefore, it is advised to:
 
-#. Do not record sensitive information in logs.
+#. Avoid logging any sensitive information.
 
-#. For the secret that uses the file mounting mode, the default file permission mapped in the container is 0644. Configure stricter permissions for the file. For example:
+#. Configure stricter permissions if secrets are used through file mounts and the default file permission inside the container is 0644. An example is as follows:
 
    .. code-block::
 
@@ -32,7 +32,7 @@ Currently, CCE has configured static encryption for secret resources. The secret
 
    In **defaultMode: 256**, **256** is a decimal number, which corresponds to the octal number **0400**.
 
-#. When the file mounting mode is used, configure the secret file name to hide the file in the container.
+#. Hide secrets in containers by customizing the file names when mounting them as files.
 
    .. code-block::
 
@@ -66,12 +66,12 @@ Currently, CCE has configured static encryption for secret resources. The secret
 
    In this way, **.secret-file** cannot be seen by running **ls -l** in the **/etc/secret-volume/** directory, but can be viewed by running **ls -al**.
 
-#. Encrypt sensitive information before creating a secret and decrypt the information when using it.
+#. Encrypt sensitive data by yourself before creating secrets and decrypt them only when needed.
 
-Using a Bound ServiceAccount Token to Access a Cluster
-------------------------------------------------------
+Using a Bound Service Account Token to Access a Cluster
+-------------------------------------------------------
 
-The secret-based ServiceAccount token does not support expiration time or auto update. In addition, after the mounting pod is deleted, the token is still stored in the secret. Token leakage may incur security risks. A bound ServiceAccount token is recommended for CCE clusters of version 1.23 or later. In this mode, the expiration time can be set and is the same as the pod lifecycle, reducing token leakage risks. An example is as follows:
+Service account tokens based on secrets do not support expiration settings or automatic updates. Because they are stored in secrets, the tokens remain in the secrets even after the pods are deleted. This can pose a security risk if the tokens are leaked. For CCE clusters v1.23 or later, it is advised to use bound service account tokens. They support token expiration settings and align the tokens' lifecycle with the pods, reducing the risk of credential leakage. An example is as follows:
 
 .. code-block::
 

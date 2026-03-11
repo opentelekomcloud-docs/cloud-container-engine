@@ -105,6 +105,10 @@ Storage Volumes
       -  The **persistentVolumeReclaimPolicy** parameter in the PVs must be set to **Retain**. Otherwise, when a PV is deleted, the associated underlying volume may be deleted. In this case, other PVs associated with the underlying volume malfunction.
       -  When the underlying volume is repeatedly used, enable isolation and protection for ReadWriteMany at the application layer to prevent data overwriting and loss.
 
+   -  If a general purpose file system (SFS 3.0 Capacity-Oriented) is used, Everest v2.0.9 or later must be installed in the cluster.
+   -  If a general purpose file system (SFS 3.0 Capacity-Oriented) is used, the owner group and permission of the mount point cannot be modified. The default owner of the mount point is user **root**.
+   -  If a general purpose file system (SFS 3.0 Capacity-Oriented) is used, there may be latency during the creation or deletion of PVCs and PVs. The billing duration is determined by the time when the resource is created or deleted on the SFS console.
+
    -  SFS volumes are available only in certain regions.
 
 -  Constraints on OBS volumes:

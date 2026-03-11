@@ -497,7 +497,7 @@ This section describes how to configure volcano-scheduler.
 
    Only Volcano of v1.7.1 and later support this function.
 
-Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Settings** and click the **Scheduling** tab. In the **Select Cluster Scheduler** area, find the expert mode and click **Try Now**.
+Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Settings** and click the **Scheduling** tab. In the **Default Cluster Scheduler** area, find the expert mode and click **Try Now**.
 
 -  Using **resource_exporter**:
 
@@ -653,7 +653,7 @@ Release History
    |                       |                           |                                                                                                                                                                             |
    |                       | v1.32                     |                                                                                                                                                                             |
    +-----------------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | 1.16.17               | v1.25                     | Supported even scheduling on virtual GPUs.                                                                                                                                  |
+   | 1.16.17               | v1.25                     | Supported even scheduling in virtual GPUs.                                                                                                                                  |
    |                       |                           |                                                                                                                                                                             |
    |                       | v1.27                     |                                                                                                                                                                             |
    |                       |                           |                                                                                                                                                                             |

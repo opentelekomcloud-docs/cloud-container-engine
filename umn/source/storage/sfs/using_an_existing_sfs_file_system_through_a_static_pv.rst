@@ -13,15 +13,20 @@ Prerequisites
 -  You have created a cluster and installed the :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on in the cluster.
 -  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 -  You have created an SFS file system that is in the same VPC as the cluster.
+-  Before using a general purpose file system (SFS 3.0 Capacity-Oriented) for storage, ensure a VPC endpoint has been created in the VPC where the cluster is located for the cluster to access the file system. For details, see `Configuring a VPC Endpoint <https://docs.otc.t-systems.com/en-us/usermanual/sfs/sfs_01_0134.html>`__.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  Multiple PVs can use the same SFS or SFS Turbo file system with the following restrictions:
 
    -  If a pod mounts an SFS or SFS Turbo volume used by multiple PVCs/PVs, and the PVs have identical **volumeHandle** values, the pod may fail to start. To avoid this issue, do not mount the same SFS or SFS Turbo file system to the same pod.
    -  The **persistentVolumeReclaimPolicy** parameter in the PVs must be set to **Retain**. Otherwise, when a PV is deleted, the associated underlying volume may be deleted. In this case, other PVs associated with the underlying volume malfunction.
    -  When the underlying volume is repeatedly used, enable isolation and protection for ReadWriteMany at the application layer to prevent data overwriting and loss.
+
+-  If a general purpose file system (SFS 3.0 Capacity-Oriented) is used, Everest v2.0.9 or later must be installed in the cluster.
+-  If a general purpose file system (SFS 3.0 Capacity-Oriented) is used, the owner group and permission of the mount point cannot be modified. The default owner of the mount point is user **root**.
+-  If a general purpose file system (SFS 3.0 Capacity-Oriented) is used, there may be latency during the creation or deletion of PVCs and PVs. The billing duration is determined by the time when the resource is created or deleted on the SFS console.
 
 Using an Existing SFS File System on the Console
 ------------------------------------------------
@@ -48,6 +53,10 @@ Using an Existing SFS File System on the Console
       |                                   | You do not need to specify this parameter in this example.                                                                                                                                                          |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | SFS\ :sup:`b`                     | Click **Select SFS**. On the displayed page, select the SFS file system that meets your requirements and click **OK**.                                                                                              |
+      |                                   |                                                                                                                                                                                                                     |
+      |                                   | .. note::                                                                                                                                                                                                           |
+      |                                   |                                                                                                                                                                                                                     |
+      |                                   |    Only general purpose file systems (SFS 3.0 Capacity-Oriented) are supported.                                                                                                                                     |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | PV Name\ :sup:`b`                 | Enter the PV name, which must be unique in the same cluster.                                                                                                                                                        |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -109,6 +118,8 @@ Using an Existing SFS File System on the Console
    c. After the configuration, click **Create Workload**.
 
       After the workload is created, the data in the container mount directory will be persistently stored. Verify the storage by referring to :ref:`Verifying Data Persistence and Sharing <cce_10_0619__section11593165910013>`.
+
+.. _cce_10_0619__section99931811195117:
 
 Using an Existing SFS Capacity-Oriented File System Through kubectl
 -------------------------------------------------------------------

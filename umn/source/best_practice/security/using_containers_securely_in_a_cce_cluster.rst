@@ -2,36 +2,36 @@
 
 .. _cce_bestpractice_0319:
 
-Configuration Suggestions on CCE Container Security
-===================================================
+Using Containers Securely in a CCE Cluster
+==========================================
 
 Controlling the Pod Scheduling Scope
 ------------------------------------
 
 The nodeSelector or nodeAffinity is used to limit the range of nodes to which applications can be scheduled, preventing the entire cluster from being threatened due to the exceptions of a single application.
 
-To achieve strong isolation, like in logical multi-tenancy situations, it is important to have system add-ons run on separate nodes or node pools. This helps keep them separated from service pods and reduces the risk of privilege escalation within a cluster. To do this, you can set the node affinity policy to either **Node Affinity** or **Specified Node Pool Scheduling** on the add-on installation page.
+To achieve strong isolation, like in logical multi-tenancy situations, it is important to have system add-ons run on separate nodes or node pools. This helps keep them separated from service pods and reduces the risk of privilege escalation within a cluster. To do this, you can set the node affinity policy to either **Specify node** or **Specify node pool** on the add-on installation page.
 
-Suggestions on Container Security Configuration
------------------------------------------------
+Ensuring Container Security
+---------------------------
 
--  Set the computing resource limits (**request** and **limit**) of a container. This prevents the container from occupying too many resources and affecting the stability of the host and other containers on the same node.
--  Unless necessary, do not mount sensitive host directories to containers, such as **/**, **/boot**, **/dev**, **/etc**, **/lib**, **/proc**, **/sys**, and **/usr**.
--  Do not run the sshd process in containers unless necessary.
--  Unless necessary, it is not recommended that containers and hosts share the network namespace.
--  Unless necessary, it is not recommended that containers and hosts share the process namespace.
--  Unless necessary, it is not recommended that containers and hosts share the IPC namespace.
--  Unless necessary, it is not recommended that containers and hosts share the UTS namespace.
+-  Configure compute resource request and limit for a container. This prevents the container from occupying too many resources and affecting the stability of the node and other containers on the same node.
+-  Unless necessary, do not mount sensitive node directories, such as **/**, **/boot**, **/dev**, **/etc**, **/lib**, **/proc**, **/sys**, and **/usr**, to a container.
+-  Unless necessary, do not run the sshd process in a container.
+-  Unless necessary, do not share the network namespace between containers and nodes.
+-  Unless necessary, do not share the process namespace between containers and nodes.
+-  Unless necessary, do not share the IPC namespace between containers and nodes.
+-  Unless necessary, do not share the UTS namespace between containers and nodes.
 -  Unless necessary, do not mount the sock file of Docker to any container.
 
-Container Permission Access Control
------------------------------------
+Controlling Access Permissions
+------------------------------
 
-When using a containerized application, comply with the minimum privilege principle and properly set securityContext of Deployments or StatefulSets.
+When using a containerized application, comply with the principle of least privilege (PoLP) and properly configure **securityContext** of Deployments or StatefulSets.
 
 -  Configure runAsUser to specify a non-root user to run a container.
 
--  Configure privileged to prevent containers being used in scenarios where privilege is not required.
+-  Configure privileged to prevent containers from being used in scenarios where privilege is not required.
 
 -  Configure capabilities to accurately control the privileged access permission of containers.
 
@@ -99,8 +99,8 @@ When using a containerized application, comply with the minimum privilege princi
               - emptyDir: {}
                 name: tmpfs-example-001
 
-Restricting the Access of Service Containers to the Management Plane
---------------------------------------------------------------------
+Restricting Service Container Access to the Management Plane
+------------------------------------------------------------
 
 To avoid unnecessary service interruption when restricting the service containers on a node from accessing the Kubernetes management plane, consider the following:
 
@@ -108,7 +108,7 @@ To avoid unnecessary service interruption when restricting the service container
 
    Once you have restricted the service containers on the node from accessing the management plane, all containers on that node will be unable to access the kube-apiserver of the cluster. Before making the configuration, make sure that none of the containers on the node need to access the kube-apiserver of the cluster.
 
-   Keep in mind that certain CCE add-ons, like CCE Advanced HPA, still require access to kube-apiserver. It is not recommended that you configure the access restriction on a node where such add-ons are running.
+   Keep in mind that certain CCE add-ons, like CCE Advanced HPA, still require access to kube-apiserver. It is not recommended that you configure the access restriction on a node where such add-on pods are running.
 
 -  **Configure taints and affinity for the node.**
 
@@ -122,7 +122,7 @@ To restrict the service containers on a node from accessing the management plane
 
 #. Configure access rules.
 
-   -  CCE cluster: Log in to each node in the cluster as user **root** and run the following command:
+   -  CCE standard cluster: Log in to each node in the cluster as user **root** and run the following command:
 
       -  VPC network
 
@@ -136,16 +136,16 @@ To restrict the service containers on a node from accessing the management plane
 
             iptables -I FORWARD -s {container_cidr} -d {Private API server IP} -j REJECT
 
-      *{container_cidr}* indicates the container CIDR of the cluster, for example, 10.0.0.0/16.
+      *{container_cidr}* indicates the container CIDR block of the cluster, for example, **10.0.0.0/16**.
 
       To ensure configuration persistence, write the command to the **/etc/rc.local** script.
 
-   -  CCE Turbo cluster: Add an outbound rule to the ENI security group of the cluster.
+   -  CCE Turbo cluster: Add an outbound rule to the network interface security group of the cluster.
 
       a. Log in to the VPC console.
       b. In the navigation pane, choose **Access Control** > **Security Groups**.
-      c. Locate the ENI security group corresponding to the cluster and name it in the format of *{Cluster name}*\ **-cce-eni-**\ *{Random ID}*. Click the security group name and configure rules.
-      d. Click the **Outbound Rules** tab and click **Add Rule** to add an outbound rule for the security group.
+      c. Locate the network interface security group of the cluster and name it in the format of *{Cluster name}*\ **-cce-eni-**\ *{Random ID}*. Click the security group name and configure rules.
+      d. Click the **Outbound Rules** tab and click **Add Rule** to add an outbound rule to the security group.
 
          -  **Priority**: Set it to **1**.
          -  **Action**: Select **Deny**, indicating that the access to the destination address is denied.
@@ -161,20 +161,20 @@ To restrict the service containers on a node from accessing the management plane
 
       curl -k https://{Private API server IP}:5443
 
-Properly Setting Volume Propagation
------------------------------------
+Properly Configuring Volume Propagation
+---------------------------------------
 
-When mounting a host path, set the propagation mode to **None**. Exercise caution when using the **Bidirectional** mode.
+When mounting a host path, set the propagation mode to **None**. **Bidirectional** should be used with caution.
 
-The **mountPropagation** field in **Container.volumeMounts** controls the mount propagation feature of a volume. Value options are as follows:
+The **mountPropagation** field in **Container.volumeMounts** controls the mount propagation behavior of a volume. Value options are:
 
--  **None**: the default value, equal to the **private** mount propagation option described in `Linux kernel documentation <https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt>`__. This volume mount will not receive any subsequent mounts that are mounted to this volume or any of its subdirectories by the host. In similar fashion, no mounts created by the container will be visible on the host.
+-  **None**: the default value and corresponds to the **private** mount propagation option in the `Linux kernel documentation <https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt>`__. After the volume is mounted, the pod will not see any subsequent mount changes made on the node for this volume or any of its subdirectories. Likewise, any mounts created by the pod will not be visible on the node.
 
--  **HostToContainer**: equal to the **rslave** mount propagation option described in `Linux kernel documentation <https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt>`__. This volume mount will receive all subsequent mounts that are mounted to this volume or any of its subdirectories. In other words, if the host mounts anything inside the volume mount, the container will see it mounted there. If a Bidirectional pod mounts anything to the same volume, this change is visible to all HostToContainer pods.
+-  **HostToContainer**: corresponds to the **rslave** mount propagation option in the `Linux kernel documentation <https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt>`__. After the volume is mounted, the pod will see any subsequent mount operations performed on the node for this volume or its subdirectories. If the node mounts anything inside this volume, the pod will be able to see it. If a pod is configured with **Bidirectional** and mounts something on the same volume, pods using **HostToContainer** will also see those changes.
 
--  **Bidirectional**: equal to the **rshared** mount propagation option described in `Linux kernel documentation <https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt>`__. All volume mounts created by the container will be propagated back to the host and to all containers of all pods that use the same volume.
+-  **Bidirectional**: corresponds to the **rshared** mount propagation option in the `Linux kernel documentation <https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt>`__. Mounts created inside the pod are propagated back to the node and to all containers in all pods that use the same volume.
 
-   Bidirectional mount propagation can be dangerous. It can damage the host operating system and therefore it is allowed only in privileged containers. An example is as follows:
+   Using **Bidirectional** can damage the node OS. So it is only allowed in privileged containers. An example is as follows:
 
    .. code-block::
 
