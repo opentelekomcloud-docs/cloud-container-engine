@@ -207,7 +207,7 @@ To expand a disk capacity, perform the following operations:
          NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
          sda                   8:0    0   50G  0 disk
          └─sda1                8:1    0   50G  0 part /
-         sdb                   8:16   0  150G  0 disk      # The data disk has been expanded to 150 GiB, but 50 GiB space is free.
+         sdb                   8:16   0  150G  0 disk      # The data disk has been expanded to 150 GiB, but 50-GiB space is not allocated.
          ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/containerd
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 

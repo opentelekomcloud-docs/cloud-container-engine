@@ -113,9 +113,6 @@ To confirm and modify the DNS of the subnet where the node resides, take the fol
 #. View the node subnet.
 
    -  For the default node pool: In the navigation pane, choose **Overview**. In the **Networking Configuration** area, view the subnet name.
-
-      |image1|
-
    -  For a custom node pool: In the navigation pane, choose **Node Pools**. On the **Node Pools** tab, click the node pool name and view the subnet name. A node pool may be associated with multiple subnets.
 
 #. Confirm and modify the DNS of the node subnet. If there are multiple node subnets, confirm and modify them one by one.
@@ -125,5 +122,3 @@ To confirm and modify the DNS of the subnet where the node resides, take the fol
    b. Search for the name of the subnet where the node is located in the search box and click the subnet name.
 
    c. Confirm and modify the DNS server address. You are advised to add the default private DNS.
-
-.. |image1| image:: /_static/images/en-us_image_0000002516198045.png

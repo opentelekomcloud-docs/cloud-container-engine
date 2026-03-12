@@ -16,7 +16,7 @@ Prerequisites
 Precautions
 -----------
 
--  Theoretically, container runtime migration will interrupt services for a short period of time. You should have deployed the services on multiple instances for high availability. In addition, you are advised to test the migration impact in the test environment to minimize potential risks.
+-  Theoretically, container runtime migration will interrupt services for a short period of time. You should have deployed the services on multiple instances for high availability. In addition, you are advised to test the migration impact in the testing environment to minimize potential risks.
 -  containerd cannot build images. Do not use the **docker build** command to build images on containerd nodes. For other differences between Docker and containerd, see :ref:`Container Engines <cce_10_0462>`.
 
 Procedure for Migrating Nodes in the Default Node Pool
@@ -26,7 +26,7 @@ Procedure for Migrating Nodes in the Default Node Pool
 
 #. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.
 
-#. In the node list, select one or more nodes to be reset and choose **More** > **Reset Node**.
+#. In the node list, select one or more nodes to be reset and choose **More** > **Reset Node** in the **Operation** column.
 
 #. Set **Container Engine** to **containerd**. You can adjust other parameters as required or retain them as set during creation.
 
@@ -45,7 +45,7 @@ You can :ref:`copy a node pool <cce_10_0655>`, set the container engine of the n
 
 #. In the **Node** **Configuration** area, set **Container Engine** to **containerd** and modify other parameter settings as needed to create the node pool.
 
-#. Scale the number of created containerd node pool to the number of original Docker node pool and delete nodes from the Docker node pool one by one.
+#. Scale the created containerd node pool as large as the original Docker node pool and delete nodes from the Docker node pool one by one.
 
    Rolling migration is preferred. That is, add some containerd nodes and then delete some Docker nodes until the number of nodes in the new containerd node pool is the same as that in the original Docker node pool.
 

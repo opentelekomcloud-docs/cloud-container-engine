@@ -87,10 +87,10 @@ Single-VPC Multi-Cluster Scenarios
 
 Pod packets are forwarded through VPC routes. CCE automatically configures a routing table on the VPC routes to each container CIDR block. The network scale is limited by the VPC route table. :ref:`Figure 4 <cce_bestpractice_00004__en-us_topic_0099587154_fig69527530400>` shows the CIDR block planning of the cluster.
 
--  VPC CIDR Block: specifies the VPC CIDR block where the cluster resides. The size of this CIDR block affects the maximum number of nodes that can be created in the cluster.
--  Subnet CIDR Block: The subnet CIDR block in each cluster cannot overlap with the container CIDR block.
--  Container CIDR Block: If multiple VPC network model clusters exist in a single VPC, the container CIDR blocks of all clusters cannot overlap because the clusters use the same routing table. In this case, if the node security group allows container CIDR block from the peer cluster, pods in one cluster can directly access pods in another cluster through the pod IP addresses.
--  Service CIDR Block: can be used only in clusters. Therefore, the Service CIDR blocks of different clusters can overlap, but cannot overlap with the cluster subnet CIDR block and container subnet CIDR block.
+-  VPC CIDR block: specifies the VPC CIDR block where the cluster resides. The size of this CIDR block affects the maximum number of nodes that can be created in the cluster.
+-  Subnet CIDR block: The subnet CIDR block in each cluster cannot overlap with the container CIDR block.
+-  Container CIDR block: If multiple VPC network model clusters exist in a single VPC, the container CIDR blocks of all clusters cannot overlap because the clusters use the same routing table. In this case, if the node security group allows container CIDR block from the peer cluster, pods in one cluster can directly access pods in another cluster through the pod IP addresses.
+-  Service CIDR block: can be used only in clusters. Therefore, the Service CIDR blocks of different clusters can overlap, but cannot overlap with the cluster CIDR block and container subnet CIDR block.
 
 .. _cce_bestpractice_00004__en-us_topic_0099587154_fig69527530400:
 
@@ -103,10 +103,10 @@ Pod packets are forwarded through VPC routes. CCE automatically configures a rou
 
 Though at some cost of performance, the tunnel encapsulation enables higher interoperability and compatibility with advanced features (such as network policy-based isolation), meeting the requirements of most applications. :ref:`Figure 5 <cce_bestpractice_00004__en-us_topic_0099587154_fig8672112184219>` shows the CIDR block planning of the cluster.
 
--  VPC CIDR Block: specifies the VPC CIDR block where the cluster resides. The size of this CIDR block affects the maximum number of nodes that can be created in the cluster.
--  Subnet CIDR Block: The subnet CIDR block in each cluster cannot overlap with the container CIDR block.
--  Container CIDR Block: The container CIDR blocks of all clusters can overlap. In this case, pods in different clusters cannot be directly accessed through pod IP addresses. Services are required for accessing pods in different clusters. The LoadBalancer Services are recommended.
--  Service CIDR Block: can be used only in clusters. Therefore, the Service CIDR blocks of different clusters can overlap, but cannot overlap with the cluster CIDR block and container subnet CIDR block.
+-  VPC CIDR block: specifies the VPC CIDR block where the cluster resides. The size of this CIDR block affects the maximum number of nodes that can be created in the cluster.
+-  Subnet CIDR block: The subnet CIDR block in each cluster cannot overlap with the container CIDR block.
+-  Container CIDR block: The container CIDR blocks of all clusters can overlap. In this case, pods in different clusters cannot be directly accessed through pod IP addresses. Services are required for accessing pods in different clusters. The LoadBalancer Services are recommended.
+-  Service CIDR block: can be used only in clusters. Therefore, the Service CIDR blocks of different clusters can overlap, but cannot overlap with the cluster CIDR block and container subnet CIDR block.
 
 .. _cce_bestpractice_00004__en-us_topic_0099587154_fig8672112184219:
 
@@ -186,7 +186,7 @@ Pay attention to the following:
 After creating a VPC peering connection, add routes of the VPC peering connection to both ends so that the two VPCs can communicate with each other. Pay attention to the following:
 
 -  The VPC CIDR blocks of the clusters at the two ends must not overlap.
--  If the request end cluster uses the Cloud Native 2.0 network, check whether the elastic network interface security group (named in the format of *{Cluster name}*\ **-cce-eni-**\ *{Random ID}*) of the target cluster allows the VPC CIDR block (including the node subnets and container CIDR block) of the request end cluster. If yes, pods in one cluster can directly access pods in another cluster through the pod IP addresses. Similarly, if nodes in the clusters at the two ends of the VPC peering need to access each other, allow the VPC CIDR block of the peer cluster in the node security group (named in the format of *{Cluster name}*\ **-cce-node-**\ *{Random ID}*).
+-  If the request end cluster uses the Cloud Native 2.0 network, check whether the elastic network interface security group (named in the format of *{Cluster name}*\ **-cce-eni-**\ *{Random ID}*) of the target cluster allows the VPC CIDR block (including the node subnets and container CIDR block) of the request end cluster. If yes, pods in one cluster can directly access pods in another cluster through pod IP addresses. Similarly, if nodes in the clusters at the two ends of the VPC peering need to access each other, allow the VPC CIDR block of the peer cluster in the node security group (named in the format of *{Cluster name}*\ **-cce-node-**\ *{Random ID}*).
 -  You need to add routes for accessing the peer network CIDR block to the VPC routing tables at both ends. For example, you need to add a route for accessing the CIDR block of VPC 2 to the route table of VPC 1, and add a route for accessing VPC 1 to the route table of VPC 2. After the route of the VPC CIDR block is added, the pod can access pod IP addresses or nodes in another cluster.
 
 **Clusters using different networks**

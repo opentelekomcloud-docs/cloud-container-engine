@@ -21,18 +21,26 @@ Expandable to petabytes, SFS provides fully hosted shared file storage, highly a
 Performance
 -----------
 
-CCE supports SFS Capacity-Oriented. For more details, see `File System Types <https://docs.otc.t-systems.com/en-us/usermanual/sfs/sfs_01_0005.html>`__.
+CCE supports SFS Capacity-Oriented and general-purpose file systems (SFS 3.0 Capacity-Oriented). For more details, see `File System Types <https://docs.otc.t-systems.com/en-us/usermanual/sfs/sfs_01_0005.html>`__.
+
+.. note::
+
+   -  If SFS Capacity-Oriented is used, you can still create PVs through :ref:`kubectl <cce_10_0619__section99931811195117>` even if the file system is sold out and cannot be created directly via the CCE console. No new SFS Capacity-Oriented file systems can be created via the console anymore.
+   -  General purpose file systems (SFS 3.0 Capacity-Oriented) are currently being rolled out across different regions. Their availability may vary depending on the region. If you encounter any issues, contact SFS customer support or wait for further updates. If the region where your application is located already has SFS 3.0 available, use it for new applications and migrate existing SFS Capacity-Oriented file systems to SFS 3.0 as soon as possible to prevent any service disruptions caused by insufficient capacity.
 
 .. table:: **Table 1** Performance
 
-   ================= =====================
-   Parameter         SFS Capacity-Oriented
-   ================= =====================
-   Maximum bandwidth 2 GB/s
-   Maximum IOPS      2000
-   Latency           3-20 ms
-   Maximum capacity  4 PB
-   ================= =====================
+   +-------------------+-----------------------+---------------------------------------------------------+
+   | Parameter         | SFS Capacity-Oriented | General Purpose File System (SFS 3.0 Capacity-Oriented) |
+   +===================+=======================+=========================================================+
+   | Maximum bandwidth | 2 GB/s                | 1.25 TB/s                                               |
+   +-------------------+-----------------------+---------------------------------------------------------+
+   | Maximum IOPS      | 2000                  | Million                                                 |
+   +-------------------+-----------------------+---------------------------------------------------------+
+   | Latency           | 3-20 ms               | 10 ms                                                   |
+   +-------------------+-----------------------+---------------------------------------------------------+
+   | Maximum capacity  | 4 PB                  | EB                                                      |
+   +-------------------+-----------------------+---------------------------------------------------------+
 
 Application Scenarios
 ---------------------

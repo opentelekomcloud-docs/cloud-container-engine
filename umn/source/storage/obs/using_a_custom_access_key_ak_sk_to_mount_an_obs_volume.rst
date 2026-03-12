@@ -13,10 +13,10 @@ Prerequisites
 -  The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be 1.2.8 or later.
 -  The cluster version must be 1.15.11 or later.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
--  When an OBS volume is mounted using a custom access key (AK/SK), the access key cannot be deleted or disabled. Otherwise, the service container cannot access the mounted OBS volume.
+-  When an OBS volume is mounted using custom access keys (AK/SK), the access key cannot be deleted or disabled. Otherwise, the service container cannot access the mounted OBS volume.
 -  Custom access keys cannot be configured for secure containers.
 
 Disabling a Global AK
@@ -24,33 +24,39 @@ Disabling a Global AK
 
 When creating an OBS volume on the console of an earlier version, you need to upload the AK/SK (global access key), which is then used by default for mounting the OBS volume. As a result, all IAM users within your account will use the same key to mount the OBS buckets, and they will have identical permissions on the buckets. However, this setting does not allow you to set different permissions for individual IAM users.
 
-If you have uploaded the AK/SK, disable the automatic mounting of global access keys by enabling the **DISABLE_AUTO_MOUNT_SECRET** parameter in the CCE Container Storage (Everest) add-on to prevent IAM users from performing unauthorized operations. In this way, the global access keys uploaded on the console will not be used when you use OBS volumes.
+If you have uploaded the AK/SK (specifically, if **paas.longaksk** exists in the **kube-system** namespace of the cluster), you should disable the global access secret to prevent IAM users from performing unauthorized operations. This ensures that the uploaded global access secret in the console will not be used when OBS volumes are used. **If you have not uploaded any AK/SK, skip this section.**
 
 .. note::
 
-   -  Before enabling **DISABLE_AUTO_MOUNT_SECRET**, ensure that there are no OBS volumes in the cluster. Workloads using OBS volumes may fail to remount after scaling or restart due to missing access keys, which are blocked by **DISABLE_AUTO_MOUNT_SECRET**.
-   -  If **DISABLE_AUTO_MOUNT_SECRET** is set to **true**, an access key must be specified when a PV or PVC is created. Otherwise, mounting the OBS volume will fail.
+   -  Before disabling the global access secret, ensure that there are no OBS volumes in the cluster. Workloads using OBS volumes may fail to remount after scaling or restart due to missing access keys.
+   -  After the global access secret is disabled, you must specify the access keys when creating a PV and PVC. Otherwise, the OBS volume fails to be mounted.
 
-The following steps apply to CCE Container Storage (Everest) 2.\ *x* (2.1.42 or later):
+To disable the global access secret, do as follows:
 
-#. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Add-ons**. In the right pane, find the CCE Container Storage (Everest) add-on and click **Edit**.
-#. Configure the add-on parameters. Set **Prohibit Global Secret from Mounting Object Storage (disable_auto_mount_secret)** to **Yes**.
-#. Click **OK**.
+-  Disable the automatic mounting of access secrets in the CCE Container Storage (Everest) add-on by setting **disable_auto_mount_secret** to **true**.
 
-The following steps apply to CCE Container Storage (Everest) 1.\ *x*. (The modified settings cannot be retained during the add-on upgrades. You are advised to use the add-on of 2.\ *x*.)
+   The following steps apply to CCE Container Storage (Everest) 2.\ *x* (2.1.42 or later):
 
-#. Use kubectl to access the cluster and run the following command to modify the add-on settings:
+   #. Log in to the CCE console and click the cluster name to access the cluster console.
+   #. In the navigation pane, choose **Add-ons**. In the right pane, find the CCE Container Storage (Everest) add-on and click **Edit**.
+   #. Configure the add-on parameters. Set **Prohibit Global Secret from Mounting Object Storage (disable_auto_mount_secret)** to **Yes**.
+   #. Click **OK**.
 
-   .. code-block::
+   The following steps apply to CCE Container Storage (Everest) 1.\ *x*. The modified settings cannot be retained during the add-on upgrades. You are advised to use the add-on of 2.\ *x*.
 
-      kubectl edit ds everest-csi-driver -nkube-system
+   #. Use kubectl to access the cluster and run the following command to modify the add-on settings:
 
-#. Search for **disable-auto-mount-secret** and set it to **true**.
+      .. code-block::
 
-   |image1|
+         kubectl edit ds everest-csi-driver -nkube-system
 
-#. Run **:wq** to save the settings and exit. Wait until the pod is restarted.
+   #. Search for **disable-auto-mount-secret** and set it to **true**.
+
+      |image1|
+
+   #. Run **:wq** to save the settings and exit. Wait until the pod is restarted.
+
+-  In the :ref:`Settings > Cluster Settings <cce_10_0782__section138274223718>` area, disable the global access secret of the cluster. The global access secret (**paas.longaksk**) in the **kube-system** namespace of the cluster will be deleted.
 
 .. _cce_10_0336__section4633162355911:
 
@@ -318,5 +324,5 @@ You can use a secret of an IAM user to mount an OBS volume. Assume that a worklo
 
       -rwxrwxrwx 1 root root 0 Jun  7 01:52 test
 
-.. |image1| image:: /_static/images/en-us_image_0000002484119690.png
+.. |image1| image:: /_static/images/en-us_image_0000002518226090.png
 .. |image2| image:: /_static/images/en-us_image_0000002516079657.png

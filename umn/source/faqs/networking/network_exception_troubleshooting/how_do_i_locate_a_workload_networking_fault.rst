@@ -8,9 +8,9 @@ How Do I Locate a Workload Networking Fault?
 Fault Locating
 --------------
 
-The issues here are described in order of how likely they are to occur.
+Possible causes are described here in order of how likely they are to occur.
 
-If the fault persists after you have ruled out one cause, move on to the next one.
+If the fault persists after you have ruled out a cause, check other causes.
 
 -  :ref:`Check Item 1: Container and Container Port <cce_faq_00202__section11960929145416>`
 -  :ref:`Check Item 2: Node IP Address and Node Port <cce_faq_00202__section138152218598>`

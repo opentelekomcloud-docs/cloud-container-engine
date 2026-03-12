@@ -34,7 +34,7 @@ New and Enhanced Features
 
 -  Horizontal pod auto scaling based on container resource metrics is in the GA state.
 
-   The horizontal pod auto scaling feature based on container resource metrics is advanced to GA. This feature allows HPA to configure auto scaling based on the resource usage of each container within a pod, rather than just the overall resource usage of the pod. This makes it easier to set scaling thresholds for the most critical containers in a pod. For details, see `Container resource metrics <https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#container-resource-metrics>`__.
+   The horizontal pod auto scaling feature based on container resource metrics is advanced to GA. This feature allows HPA to configure auto scaling based on the resource usage of each container within a pod, rather than just the overall resource usage of the pod. This makes it easier to set scaling thresholds for the most critical containers in a pod. For details, see `Container resource metrics <https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/#container-resource-metrics>`__.
 
 -  The legacy ServiceAccount token cleaner is in the GA state.
 

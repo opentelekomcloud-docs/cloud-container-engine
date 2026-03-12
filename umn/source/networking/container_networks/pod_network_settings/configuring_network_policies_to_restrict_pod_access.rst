@@ -330,7 +330,7 @@ Using Egress Rules Through YAML
                  matchLabels:
                    role: web
 
-   #. Run the following command to create the network policy defined the **access-egress2.yaml** file:
+   #. Run the following command to create the network policy defined in the **access-egress2.yaml** file:
 
       .. code-block::
 

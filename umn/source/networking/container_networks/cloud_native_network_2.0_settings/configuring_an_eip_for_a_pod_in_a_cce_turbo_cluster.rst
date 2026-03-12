@@ -81,7 +81,7 @@ The following uses a Deployment named **nginx** as an example. For details about
               yangtse.io/pod-with-eip: "true"  # An EIP will be automatically allocated when the pod is created.
               yangtse.io/eip-bandwidth-size: "5"  # EIP bandwidth
               yangtse.io/eip-network-type: 5_bgp  # EIP type
-              yangtse.io/eip-charge-mode: bandwidth  # EIP billing mode
+              yangtse.io/eip-charge-mode: traffic  # EIP billing mode
               yangtse.io/eip-bandwidth-name: <eip_bandwidth_name>  # EIP bandwidth name
           spec:
             containers:
@@ -110,8 +110,8 @@ The following uses a Deployment named **nginx** as an example. For details about
       +-------------------------------+-------------+---------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
       | yangtse.io/eip-network-type   | No          | 5_bgp         | EIP type                                                                                                                                                                              | The type varies depending on the region. For details, see the EIP console.                                    |
       +-------------------------------+-------------+---------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-      | yangtse.io/eip-charge-mode    | No          | None          | Billed by traffic or bandwidth                                                                                                                                                        | -  **bandwidth**: billed by bandwidth                                                                         |
-      |                               |             |               |                                                                                                                                                                                       | -  **traffic**: billed by traffic                                                                             |
+      | yangtse.io/eip-charge-mode    | No          | None          | Bandwidth mode.                                                                                                                                                                       | -  **traffic**: billed by traffic                                                                             |
+      |                               |             |               |                                                                                                                                                                                       |                                                                                                               |
       |                               |             |               | **You are advised to configure this parameter.** If this parameter is left blank, no billing mode is specified. In this case, the default value of the EIP API in the region is used. |                                                                                                               |
       +-------------------------------+-------------+---------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
       | yangtse.io/eip-bandwidth-name | No          | Pod name      | Bandwidth name                                                                                                                                                                        | -  Enter 1 to 64 characters. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. |
@@ -245,7 +245,7 @@ You can configure an init container for the pod, associate the **yangtse.io/allo
        yangtse.io/pod-with-eip: "true"
        yangtse.io/eip-bandwidth-size: "5"
        yangtse.io/eip-network-type: 5_bgp
-       yangtse.io/eip-charge-mode: bandwidth
+       yangtse.io/eip-charge-mode: traffic
        yangtse.io/eip-bandwidth-name: "xxx"
    spec:
      initContainers:

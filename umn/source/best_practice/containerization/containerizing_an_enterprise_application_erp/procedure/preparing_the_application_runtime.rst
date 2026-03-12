@@ -61,7 +61,7 @@ In this example, the web application of the Tomcat type is used. This applicatio
 
       Download address: https://www.oracle.com/java/technologies/jdk8-downloads.html.
 
-   b. Download Tomcat 7.0 from http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.82/bin/apache-tomcat-7.0.82.tar.gz.
+   b. Download Tomcat 7.0 from https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.82/bin/apache-tomcat-7.0.82.tar.gz.
 
    c. Download MongoDB 3.2 from https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.2.9.tgz.
 
