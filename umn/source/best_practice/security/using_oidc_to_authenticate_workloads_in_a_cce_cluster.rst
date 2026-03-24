@@ -180,7 +180,7 @@ Step 3: Use a Workload Identity
 
    .. code-block::
 
-      curl -i --location --request POST 'https://{{iam endpoint}}/v3.0/OS-AUTH/id-token/tokens' \
+      curl -iv --location --request POST 'https://{{iam endpoint}}/v3.0/OS-AUTH/id-token/tokens' \
        --header 'X-Idp-Id: workload_identity' \
        --header 'Content-Type: application/json' \
        --data @token_body.json

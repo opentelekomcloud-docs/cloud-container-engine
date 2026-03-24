@@ -13,6 +13,7 @@ Configuring a Workload
 -  :ref:`Configuring the Container Lifecycle <cce_10_0105>`
 -  :ref:`Configuring Container Health Check <cce_10_0112>`
 -  :ref:`Configuring Environment Variables <cce_10_0113>`
+-  :ref:`Configuring APM <cce_10_0055>`
 -  :ref:`Upgrading and Rolling Back a Workload <cce_10_0397>`
 -  :ref:`Configuring Tolerance Policies <cce_10_0728>`
 -  :ref:`Configuring Labels and Annotations <cce_10_0386>`
@@ -29,6 +30,7 @@ Configuring a Workload
    configuring_the_container_lifecycle
    configuring_container_health_check
    configuring_environment_variables
+   configuring_apm
    upgrading_and_rolling_back_a_workload
    configuring_tolerance_policies
    configuring_labels_and_annotations

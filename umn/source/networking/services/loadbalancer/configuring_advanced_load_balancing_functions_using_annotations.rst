@@ -364,20 +364,20 @@ HTTP or HTTPS
 
 .. table:: **Table 7** Annotations for using HTTP or HTTPS
 
-   +---------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+
-   | Parameter                       | Type            | Description                                                                                                                                     | Supported Cluster Version |
-   +=================================+=================+=================================================================================================================================================+===========================+
-   | kubernetes.io/elb.protocol-port | String          | If a Service is HTTP/HTTPS-compliant, configure the protocol and port number in the format of "protocol:port".                                  | v1.19.16 or later         |
-   |                                 |                 |                                                                                                                                                 |                           |
-   |                                 |                 | where,                                                                                                                                          |                           |
-   |                                 |                 |                                                                                                                                                 |                           |
-   |                                 |                 | -  **protocol**: specifies the protocol used by the listener port. The value can be **http** or **https**.                                      |                           |
-   |                                 |                 | -  **ports**: Service ports specified by **spec.ports[].port**.                                                                                 |                           |
-   +---------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+
-   | kubernetes.io/elb.cert-id       | String          | ID of an ELB certificate, which is used as the HTTPS server certificate.                                                                        | v1.19.16 or later         |
-   |                                 |                 |                                                                                                                                                 |                           |
-   |                                 |                 | How to obtain: Log in to the ELB console and choose **Certificates**. In the load balancer list, copy the ID under the target certificate name. |                           |
-   +---------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+
+   +---------------------------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+
+   | Parameter                       | Type            | Description                                                                                                                                   | Supported Cluster Version |
+   +=================================+=================+===============================================================================================================================================+===========================+
+   | kubernetes.io/elb.protocol-port | String          | If a Service is HTTP/HTTPS-compliant, configure the protocol and port number in the format of "protocol:port".                                | v1.19.16 or later         |
+   |                                 |                 |                                                                                                                                               |                           |
+   |                                 |                 | where,                                                                                                                                        |                           |
+   |                                 |                 |                                                                                                                                               |                           |
+   |                                 |                 | -  **protocol**: specifies the protocol used by the listener port. The value can be **http** or **https**.                                    |                           |
+   |                                 |                 | -  **ports**: Service ports specified by **spec.ports[].port**.                                                                               |                           |
+   +---------------------------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+
+   | kubernetes.io/elb.cert-id       | String          | ID of an ELB certificate, which is used as the HTTPS server certificate.                                                                      | v1.19.16 or later         |
+   |                                 |                 |                                                                                                                                               |                           |
+   |                                 |                 | How to obtain: Log in to the ELB console and choose **Certificates**. In the certificate list, copy the ID under the target certificate name. |                           |
+   +---------------------------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+
 
 For details about application scenarios and use cases, see :ref:`Configuring HTTP/HTTPS for a LoadBalancer Service <cce_10_0683>`.
 
@@ -388,13 +388,13 @@ SNI
 
 .. table:: **Table 8** Annotations for using SNIs
 
-   +---------------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------+
-   | Parameter                             | Type            | Description                                                                                                                                     | Supported Cluster Version                                 |
-   +=======================================+=================+=================================================================================================================================================+===========================================================+
-   | kubernetes.io/elb.tls-certificate-ids | String          | In ELB, the IDs of SNI certificates that must contain a domain name are separated by commas (,).                                                | v1.23.13-r0, v1.25.8-r0, v1.27.5-r0, v1.28.3-r0, or later |
-   |                                       |                 |                                                                                                                                                 |                                                           |
-   |                                       |                 | How to obtain: Log in to the ELB console and choose **Certificates**. In the load balancer list, copy the ID under the target certificate name. |                                                           |
-   +---------------------------------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------+
+   +---------------------------------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------+
+   | Parameter                             | Type            | Description                                                                                                                                   | Supported Cluster Version                                 |
+   +=======================================+=================+===============================================================================================================================================+===========================================================+
+   | kubernetes.io/elb.tls-certificate-ids | String          | In ELB, the IDs of SNI certificates that must contain a domain name are separated by commas (,).                                              | v1.23.13-r0, v1.25.8-r0, v1.27.5-r0, v1.28.3-r0, or later |
+   |                                       |                 |                                                                                                                                               |                                                           |
+   |                                       |                 | How to obtain: Log in to the ELB console and choose **Certificates**. In the certificate list, copy the ID under the target certificate name. |                                                           |
+   +---------------------------------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------+
 
 HTTPS must be enabled. For details, see :ref:`Configuring SNI for a LoadBalancer Service <cce_10_0841>`.
 

@@ -7,8 +7,8 @@ Troubleshooting
 
 .. _cce_bestpractice_0314__section11197194820367:
 
-Storage Volumes of the HostPath Type Cannot Be Backed Up
---------------------------------------------------------
+hostPath Volumes Cannot Be Backed Up
+------------------------------------
 
 Both hostPath and local volumes are local storage volumes. However, restic, which is integrated into Velero, cannot back up hostPath PVs. It only supports the local type. So, you need to replace the storage volumes of the hostPath type with the local type in the source cluster.
 

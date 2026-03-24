@@ -9,6 +9,7 @@ O&M Best Practices
 -  :ref:`Monitoring Custom Metrics on AOM <cce_10_0201>`
 -  :ref:`Migrating Custom Views of Grafana <cce_10_0960>`
 -  :ref:`Switching the AOM Instance Connected to Grafana <cce_10_1027>`
+-  :ref:`Configuring Alarms for Java Applications on APM <en-us_topic_0000002516078019>`
 
 .. toctree::
    :maxdepth: 1
@@ -18,3 +19,4 @@ O&M Best Practices
    monitoring_custom_metrics_on_aom
    migrating_custom_views_of_grafana
    switching_the_aom_instance_connected_to_grafana
+   configuring_alarms_for_java_applications_on_apm
