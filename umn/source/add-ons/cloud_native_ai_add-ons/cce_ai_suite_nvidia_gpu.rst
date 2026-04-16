@@ -282,7 +282,7 @@ Obtaining a Driver Link from the Internet
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. Create a node. In the **Specifications** area, select the GPU node flavor. The GPU card models are displayed in the lower part of the area.
 
-3. Log in to the `NVIDIA driver download page <https://www.nvidia.com/en-us/drivers/>`__ and search for the driver information. The OS must be **Linux 64-bit**.
+3. Log in to the `NVIDIA driver download page <https://www.nvidia.com/en-us/drivers/>`__ and search for driver information. The OS must be **Linux 64-bit**.
 
 
    .. figure:: /_static/images/en-us_image_0000002516199373.png
@@ -349,6 +349,32 @@ Release History
    +-----------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Add-on Version        | Supported Cluster Version | New Feature                                                                                                                                                                      |
    +=======================+===========================+==================================================================================================================================================================================+
+   | 2.11.1                | v1.28                     | CCE clusters v1.34 are supported.                                                                                                                                                |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.29                     |                                                                                                                                                                                  |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.30                     |                                                                                                                                                                                  |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.31                     |                                                                                                                                                                                  |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.32                     |                                                                                                                                                                                  |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.33                     |                                                                                                                                                                                  |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.34                     |                                                                                                                                                                                  |
+   +-----------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | 2.10.2                | v1.28                     | Supported NVIDIA driver 570.86.15.                                                                                                                                               |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.29                     |                                                                                                                                                                                  |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.30                     |                                                                                                                                                                                  |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.31                     |                                                                                                                                                                                  |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.32                     |                                                                                                                                                                                  |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.33                     |                                                                                                                                                                                  |
+   +-----------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | 2.8.4                 | v1.28                     | Fixed `CVE-2025-23266 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-23266>`__ and `CVE-2025-23267 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-23267>`__. |
    |                       |                           |                                                                                                                                                                                  |
    |                       | v1.29                     |                                                                                                                                                                                  |
