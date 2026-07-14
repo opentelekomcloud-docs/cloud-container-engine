@@ -274,7 +274,7 @@ The following is an API example. There are two data disks. One is used by CCE, a
 Creating Striped LVs to Improve Disk Performance
 ------------------------------------------------
 
-Currently, the striped LV function is supported only by calling an API. The following is an example:
+Currently, striped LVs can only be created by calling APIs. An example is shown below.
 
 |image7|
 
