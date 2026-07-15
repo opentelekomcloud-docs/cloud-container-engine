@@ -37,6 +37,7 @@ CCE clusters evolve iteratively based on the community Kubernetes version. A CCE
    v1.30                     v1.31
    v1.31                     v1.32
    v1.32                     v1.33
+   v1.33                     v1.34
    ========================= =========================
 
    .. note::

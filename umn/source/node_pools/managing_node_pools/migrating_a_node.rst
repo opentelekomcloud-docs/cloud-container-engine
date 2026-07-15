@@ -50,6 +50,7 @@ Migrating Nodes from the Default Node Pool to a Custom Node Pool
 #. In the **Migrate Node** dialog box, select the nodes that meet the following conditions:
 
    -  The nodes and the current node pool are deployed in the same VPC and subnet.
+   -  The nodes and the current node pool belong to the same enterprise project.
    -  The nodes and the current node pool are in the same cloud server group.
    -  The billing mode of the nodes is supported by the current node pool.
    -  The nodes are running and they are from the default node pool.

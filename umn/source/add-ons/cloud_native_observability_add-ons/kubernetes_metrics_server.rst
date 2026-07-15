@@ -75,12 +75,26 @@ Components
 Release History
 ---------------
 
-.. table:: **Table 3** Kubernetes Metrics Server add-on
+.. table:: **Table 3** Kubernetes Metrics Server updates
 
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                                                                     | Community Version                                                                 |
    +=================+===========================+=================================================================================+===================================================================================+
-   | 1.3.104         | v1.25                     | CCE clusters v1.33 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   | 1.3.111         | v1.28                     | Supported CCE clusters v1.34.                                                   | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.29                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.30                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.31                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.32                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.33                     |                                                                                 |                                                                                   |
+   |                 |                           |                                                                                 |                                                                                   |
+   |                 | v1.34                     |                                                                                 |                                                                                   |
+   +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
+   | 1.3.104         | v1.25                     | Supported CCE clusters v1.33.                                                   | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.27                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |
@@ -96,7 +110,7 @@ Release History
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.33                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | 1.3.102         | v1.25                     | CCE clusters v1.32 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   | 1.3.102         | v1.25                     | Supported CCE clusters v1.32.                                                   | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.27                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |
@@ -110,7 +124,7 @@ Release History
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.32                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | 1.3.90          | v1.25                     | CCE clusters v1.31 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   | 1.3.90          | v1.25                     | Supported CCE clusters v1.31.                                                   | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.27                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |
@@ -122,7 +136,7 @@ Release History
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.31                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | 1.3.68          | v1.21                     | CCE clusters v1.30 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   | 1.3.68          | v1.21                     | Supported CCE clusters v1.30.                                                   | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.23                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |
@@ -136,7 +150,7 @@ Release History
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.30                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | 1.3.60          | v1.21                     | CCE clusters v1.29 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   | 1.3.60          | v1.21                     | Supported CCE clusters v1.29.                                                   | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.23                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |
@@ -158,7 +172,7 @@ Release History
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.28                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | 1.3.37          | v1.21                     | CCE clusters v1.28 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   | 1.3.37          | v1.21                     | Supported CCE clusters v1.28.                                                   | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.23                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |
@@ -186,7 +200,7 @@ Release History
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.25                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | 1.3.2           | v1.19                     | CCE clusters v1.25 are supported.                                               | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
+   | 1.3.2           | v1.19                     | Supported CCE clusters v1.25.                                                   | `0.6.2 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.6.2>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.21                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |
@@ -194,13 +208,13 @@ Release History
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.25                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | 1.2.1           | v1.19                     | CCE clusters v1.23 are supported.                                               | `0.4.4 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.4.4>`__ |
+   | 1.2.1           | v1.19                     | Supported CCE clusters v1.23.                                                   | `0.4.4 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.4.4>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.21                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.23                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
-   | 1.1.10          | v1.15                     | CCE clusters v1.21 are supported.                                               | `0.4.4 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.4.4>`__ |
+   | 1.1.10          | v1.15                     | Supported CCE clusters v1.21.                                                   | `0.4.4 <https://github.com/kubernetes-sigs/metrics-server/releases/tag/v0.4.4>`__ |
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.17                     |                                                                                 |                                                                                   |
    |                 |                           |                                                                                 |                                                                                   |

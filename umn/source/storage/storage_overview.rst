@@ -109,6 +109,26 @@ Local Storage Comparison
 |                         |                                                                                                                                           |                                                                                                                                                                                                                                                        |                                                                                                                                                                                                      |    Avoid using hostPath volumes as much as possible, as they are prone to security risks. If hostPath volumes must be used, they can only be applied to files or directories and mounted in read-only mode. |
 +-------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+Enterprise Project Support
+--------------------------
+
+.. note::
+
+   To use this function, the Everest add-on must be upgraded to v1.2.33 or later.
+
+-  Automatically creating storage:
+
+   When creating EVS or OBS PVCs using a StorageClass in CCE, you can specify an enterprise project to assign the created storage resources (EVS disks and OBS) to. **This enterprise project can either be the default one or the same one as the cluster belongs to.**
+
+   If no enterprise project is specified, the enterprise project specified in StorageClass will be used by default for creating storage resources.
+
+   -  For a custom StorageClass, you can specify an enterprise project in StorageClass. For details, see :ref:`Creating a StorageClass Through the Console <cce_10_0380__section1074117311660>`. If no enterprise project is specified in StorageClass, the default enterprise project is used.
+   -  For the csi-disk and csi-obs storage classes provided by CCE, the created storage resources belong to the default enterprise project.
+
+-  Use existing storage:
+
+   When you create a PVC using a PV, ensure that **everest.io/enterprise-project-id** specified in the PVC and PV are the same because an enterprise project has been specified during storage resource creation. Otherwise, the PVC and PV cannot be bound.
+
 Helpful Links
 -------------
 

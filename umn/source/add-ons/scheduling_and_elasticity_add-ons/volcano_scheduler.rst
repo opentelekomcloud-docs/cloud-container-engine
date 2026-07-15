@@ -636,12 +636,12 @@ Release History
 
    It is a good practice to upgrade Volcano to the latest version that is supported by the cluster.
 
-.. table:: **Table 9** Volcano Scheduler add-on
+.. table:: **Table 9** Volcano Scheduler updates
 
    +-----------------------+---------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Add-on Version        | Supported Cluster Version | New Feature                                                                                                                                                                 |
    +=======================+===========================+=============================================================================================================================================================================+
-   | 1.21.2                | v1.28                     | -  Supported inference workload management.                                                                                                                                 |
+   | 1.21.6                | v1.28                     | -  Supported inference workload management.                                                                                                                                 |
    |                       |                           | -  Supported multi-dimensional parallelism and collaborative scheduling across multi-level network topologies for training tasks.                                           |
    |                       | v1.29                     |                                                                                                                                                                             |
    |                       |                           |                                                                                                                                                                             |
