@@ -20,6 +20,8 @@ To grant an IAM user the permissions to view or use resources of other cloud ser
 
 .. note::
 
+   **Enterprise projects** can group and manage resources across different projects of an enterprise. Resources are thereby isolated. IAM allows you to implement fine-grained authorization. It is strongly recommended that you use IAM for permissions management.
+
    CCE supports fine-grained permissions configuration, but has the following restrictions:
 
    -  AOM does not support resource-level monitoring. After operation permissions on specific resources are configured using IAM's fine-grained cluster resource management function, IAM users can view cluster monitoring information on the **Overview** page of the CCE console, but cannot view the data on non-fine-grained metrics.

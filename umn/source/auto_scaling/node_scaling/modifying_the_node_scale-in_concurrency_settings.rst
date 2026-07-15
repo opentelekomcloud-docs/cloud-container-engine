@@ -12,7 +12,7 @@ By setting **maxGracefulTerminationFlag**, you can specify a graceful terminatio
 Prerequisites
 -------------
 
-The CCE Cluster Autoscaler add-on of 1.27.205, 1.28.172, 1.29.134, 1.30.100, 1.31.62, 1.32.38, 1.33.31, or later has been installed in the cluster.
+CCE Cluster Autoscaler v1.27.205, v1.28.172, v1.29.134, v1.30.100, v1.31.62, v1.32.38, v1.33.31, v1.34.35, or later is installed in the cluster.
 
 Procedure
 ---------

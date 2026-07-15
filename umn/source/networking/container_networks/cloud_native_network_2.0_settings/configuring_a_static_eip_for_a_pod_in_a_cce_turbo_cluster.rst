@@ -58,7 +58,7 @@ The following uses a StatefulSet named **nginx** as an example. For details abou
               yangtse.io/pod-with-eip: 'true'   # An EIP will be automatically allocated when the pod is created.
               yangtse.io/eip-bandwidth-size: '5'    # EIP bandwidth
               yangtse.io/eip-network-type: 5_bgp    # EIP type
-              yangtse.io/eip-charge-mode: bandwidth    # EIP billing mode
+              yangtse.io/eip-charge-mode: traffic    # EIP billing mode
           spec:
             containers:
               - name: container-0

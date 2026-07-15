@@ -37,6 +37,7 @@ Notes and Constraints
 -  AHPA needs extra memory as it analyzes and processes historical workload data. It is advised to allocate 100m CPU cores and 300 MiB of memory for every 100 AHPA policies.
 -  After an AHPA policy is created, the type of its associated workload cannot be changed.
 -  Either an AHPA policy or a CustomedHPA policy can be enabled.
+-  AHPA policies do not support `pod-level resources <https://kubernetes.io/blog/2025/09/22/kubernetes-v1-34-pod-level-resources/>`__ in clusters v1.34.
 
 Enabling an AHPA Policy
 -----------------------

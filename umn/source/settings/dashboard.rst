@@ -40,6 +40,8 @@ After a cluster is created, you can modify the following items for it:
 
 -  **Network Model**: specifies the network model of a cluster, which cannot be changed. For details about network models, see :ref:`Container Networks <cce_10_0280>`.
 
+-  **Enterprise Project**: specifies the enterprise project to which a cluster belongs.
+
 -  **Resource Tag**: You can add resource tags to classify resources.
 
 -  **Cluster Description**: specifies the description that you entered for a cluster. A maximum of 200 characters are allowed.

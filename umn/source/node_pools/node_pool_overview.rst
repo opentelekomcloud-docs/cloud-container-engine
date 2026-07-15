@@ -27,6 +27,7 @@ All nodes in a pool typically share:
 -  Node OS
 -  Node login mode
 -  Node container runtime
+-  Enterprise project
 -  Startup parameters of Kubernetes components on a node
 -  Custom startup script of a node
 -  Kubernetes labels and taints

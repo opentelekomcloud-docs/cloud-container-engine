@@ -28,6 +28,11 @@ New and Enhanced Features
 
    MultiCIDRServiceAllocator moved to GA. ServiceCIDRs and IPAddresses are introduced to record the allocations of Service cluster IP addresses. You can use ServiceCIDRs to increase the number of available cluster IP addresses.
 
+   .. note::
+
+      -  New Service CIDR blocks cannot overlap with the subnet CIDR block or container CIDR block of the cluster.
+      -  CCE Turbo clusters do not support this feature due to the special Service network.
+
 -  JobBackoffLimitPerIndex (GA)
 
    JobBackoffLimitPerIndex moved to GA. It allows you to control the maximum number of retries per index in an indexed job. For details, see `Kubernetes v1.33: Job's Backoff Limit Per Index Goes GA <https://kubernetes.io/blog/2025/05/13/kubernetes-v1-33-jobs-backoff-limit-per-index-goes-ga/>`__.
@@ -63,7 +68,7 @@ New and Enhanced Features
 
 -  StreamingCollectionEncodingToProtobuf (beta)
 
-   StreamingCollectionEncodingToProtobuf moved to beta. kube-apiserver disables the watch-list strategy and uses streaming encoding instead. This feature gate effectively reduces memory usage and improves system when a large number of resources are requested. For details, see `Kubernetes v1.33: Streaming List responses <https://kubernetes.io/blog/2025/05/09/kubernetes-v1-33-streaming-list-responses/>`__.
+   StreamingCollectionEncodingToProtobuf moved to beta. kube-apiserver disables the watch-list strategy and uses streaming encoding instead. This feature gate effectively reduces memory usage and improves system stability when a large number of resources are requested. For details, see `Kubernetes v1.33: Streaming List responses <https://kubernetes.io/blog/2025/05/09/kubernetes-v1-33-streaming-list-responses/>`__.
 
 -  SchedulerPopFromBackoffQ (beta)
 
@@ -88,7 +93,7 @@ API Changes and Removals
 
 -  **annotation service.kubernetes.io/topology-mode** of EndpointSlices has been deprecated and replaced by **spec.trafficDistribution** to maintain backward compatibility.
 
--  The apidiscovery.k8s.io/v2beta1 API group has been deprecated. This API is used by a client to obtain information about all registered APIs in a cluster. Use the stable version v2.
+-  The apidiscovery.k8s.io/v2beta1 API group has been deprecated. This API group allows clients to obtain information about all registered APIs in a cluster. The v2 stable version is recommended.
 
 -  WatchFromStorageWithoutResourceVersion has been deprecated. This function enables watches based on etcd without **resourceVersion**.
 
@@ -106,7 +111,7 @@ API Changes and Removals
 Enhanced Kubernetes 1.33 on CCE
 -------------------------------
 
-During a version maintenance period, CCE periodically updates Kubernetes 1.33 and provides enhanced functions.
+During a version maintenance period, CCE periodically updates Kubernetes 1.33 with enhanced functions.
 
 For details about cluster version updates, see :ref:`Patch Versions <cce_10_0405>`.
 
@@ -115,4 +120,4 @@ For details about cluster version updates, see :ref:`Patch Versions <cce_10_0405
 References
 ----------
 
-For more details about the performance comparison and functional evolution between Kubernetes 1.33 and other versions, see `Kubernetes v1.33 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.33.md>`__.
+For more details about the performance comparison and functional enhancements between Kubernetes 1.33 and other versions, see `Kubernetes v1.33 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.33.md>`__.
