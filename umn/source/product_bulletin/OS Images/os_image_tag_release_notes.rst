@@ -1,4 +1,5 @@
 :original_name: cce_bulletin_0036.html
+
 .. _cce_bulletin_0036:
 
 OS Image Tag Release Notes
