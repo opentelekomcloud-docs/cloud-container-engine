@@ -30,6 +30,7 @@ The cloud servers to be managed must meet the following requirements:
 -  The node to be accepted and the cluster must be in the same VPC. (If the cluster version is earlier than v1.13.10, the node to be accepted and the CCE cluster must be in the same subnet.)
 -  Data disks must be attached to the nodes to be managed if the system components of these nodes are stored separately. These nodes can be attached with either a local disk (disk-intensive disk) or a data disk of at least 20 GiB. Additionally, any data disks already attached must not be smaller than 10 GiB.
 -  The node to be accepted must have at least 2 CPU cores, 4 GiB of memory, and only one network interface.
+-  If an enterprise project is used, the node to be accepted and the cluster must be in the same enterprise project. Otherwise, resources cannot be identified during management. As a result, the node cannot be accepted.
 -  Only cloud servers with the same data disk configuration can be accepted in batches for management.
 -  If IPv6 is enabled for a cluster, only nodes in a subnet with IPv6 enabled can be accepted and managed. If IPv6 is not enabled for the cluster, only nodes in a subnet without IPv6 enabled can be accepted.
 -  CCE Turbo clusters require that each node supports supplementary network interfaces, or you will need to bind at least 16 network interfaces. For details about the node flavors, see the options provided on the console when you create a node.

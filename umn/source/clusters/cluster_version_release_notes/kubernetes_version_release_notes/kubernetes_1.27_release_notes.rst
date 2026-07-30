@@ -10,15 +10,15 @@ CCE now supports Kubernetes 1.27 cluster features. This section describes the ch
 Indexes
 -------
 
--  :ref:`New Features <cce_bulletin_0059__en-us_topic_0000001649273541_section14972102702312>`
+-  :ref:`Highlights <cce_bulletin_0059__en-us_topic_0000001649273541_section14972102702312>`
 -  :ref:`Deprecations and Removals <cce_bulletin_0059__en-us_topic_0000001649273541_section1898982110241>`
 -  :ref:`Enhanced Kubernetes 1.27 on CCE <cce_bulletin_0059__en-us_topic_0000001649273541_section115291322132513>`
 -  :ref:`References <cce_bulletin_0059__en-us_topic_0000001649273541_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583>`
 
 .. _cce_bulletin_0059__en-us_topic_0000001649273541_section14972102702312:
 
-New Features
-------------
+Highlights
+----------
 
 **Kubernetes 1.27**
 
@@ -114,11 +114,11 @@ New Features
 
 -  The non-graceful node shutdown feature goes to beta.
 
-   In Kubernetes 1.26, the non-graceful node shutdown feature goes to beta and is enabled by default. A node shutdown can be graceful only if the kubelet's node shutdown manager can detect the upcoming node shutdown action. For details, see `Non-graceful node shutdown handling <https://kubernetes.io/docs/concepts/architecture/nodes/#non-graceful-node-shutdown>`__.
+   In Kubernetes 1.26, the non-graceful node shutdown feature is in beta phase and is enabled by default. A node shutdown is considered graceful only if kubelet's node shutdown manager can detect the upcoming node shutdown action. For details, see `Non-graceful node shutdown handling <https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/>`__.
 
 -  Passing pod **fsGroup** to CSI drivers during mounting is supported.
 
-   In Kubernetes 1.22, delegation of **fsGroup** to CSI drivers was first introduced as an alpha feature. In Kubernetes 1.25, it moved to beta. In Kubernetes 1.26, this feature enters the official release phase. For details, see `Delegating volume permission and ownership change to CSI driver <https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#delegating-volume-permission-and-ownership-change-to-csi-driver>`__.
+   Delegating fsGroup management to CSI drivers was first introduced as an alpha feature in Kubernetes 1.22 and graduated to beta in Kubernetes 1.25. This feature has been officially released in Kubernetes 1.26. For details, see `Delegating volume permission and ownership change to CSI driver <https://kubernetes.io/docs/tasks/configure-pod-container/security-context/>`__.
 
 -  Pod scheduling readiness is introduced.
 
@@ -142,7 +142,7 @@ New Features
 
 -  PodDisruptionBudget allows users to specify the eviction policies for unhealthy pods.
 
-   You are allowed to specify unhealthy pod eviction policies for `PodDisruptionBudget <https://kubernetes.io/docs/concepts/workloads/pods/disruptions/#pod-disruption-budgets>`__ (PDB). This feature helps ensure node availability during node management. This feature is in the beta phase. For details, see `Unhealthy Pod Eviction Policy <https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy>`__.
+   Kubernetes 1.26 allows users to specify eviction policies for unhealthy pods through `PodDisruptionBudgets <https://kubernetes.io/docs/concepts/workloads/pods/disruptions/>`__ (PDBs). This helps maintain availability during node management. This feature is in the beta phase. For details, see `Unhealthy Pod Eviction Policy <https://kubernetes.io/docs/tasks/run-application/configure-pdb/#before-you-begin>`__.
 
 -  The number of Horizontal Pod Autoscalers (HPAs) can be configured.
 
@@ -165,7 +165,7 @@ Deprecations and Removals
 -  The EphemeralContainers feature gate is removed. For Kubernetes 1.27, API support for ephemeral containers is unconditionally enabled.
 -  The LocalStorageCapacityIsolation feature gate is removed. This feature gate (`Local Ephemeral Storage Capacity Isolation <https://github.com/kubernetes/kubernetes/pull/111513>`__) moved to GA in Kubernetes 1.25. The feature provides support for capacity isolation of local ephemeral storage between pods, such as emptyDir volumes, so that a pod can be limited in its consumption of shared resources. kubelet will evict a pod if its consumption of local ephemeral storage exceeds the configured limit.
 -  The NetworkPolicyEndPort feature gate is removed. In Kubernetes 1.25, **endPort** in NetworkPolicy moved to GA. NetworkPolicy providers that support the **endPort** field can be used to specify a range of ports to apply NetworkPolicy.
--  The StatefulSetMinReadySeconds feature gate is removed. For a pod that is part of a StatefulSet, Kubernetes marks the pod as read-only when the pod is available (and passes the check) for at least within the period specified in `minReadySeconds <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#minimum-ready-seconds>`__. This feature was officially released in Kubernetes 1.25. It is locked to **true** and removed from Kubernetes 1.27.
+-  The StatefulSetMinReadySeconds feature gate is removed. For a pod that is part of a StatefulSet, Kubernetes marks the pod as read-only when the pod is available (and passes the check) for at least the period specified in `minReadySeconds <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#minimum-ready-seconds>`__. This feature was officially released in Kubernetes 1.25. It is set to **true** by default and removed from Kubernetes 1.27.
 -  The IdentifyPodOS feature gate is removed. If this feature is enabled, you can specify an OS for a pod. It has been stable since Kubernetes 1.25. This feature is removed from Kubernetes 1.27.
 -  The DaemonSetUpdateSurge feature gate is removed. In Kubernetes 1.25, this feature was stable. It was implemented to minimize DaemonSet downtime during deployment, but it is removed from Kubernetes 1.27.
 -  The **--container-runtime** parameter is removed. kubelet accepts a deprecated parameter **--container-runtime**. After the dockershim code is removed, the only valid value for this parameter will be **remote**. This parameter was deprecated in 1.24 and later versions and is removed from Kubernetes 1.27.
@@ -178,13 +178,13 @@ Deprecations and Removals
 
 -  The **flowcontrol.apiserver.k8s.io/v1beta1** API is removed.
 
-   In Kubernetes 1.26 and later versions, the API of the **flowcontrol.apiserver.k8s.io/v1beta1** version for FlowSchema and PriorityLevelConfiguration is no longer served. For details, see `Removed APIs by release <https://kubernetes.io/docs/reference/using-api/deprecation-guide/#horizontalpodautoscaler-v126>`__. The **flowcontrol.apiserver.k8s.io/v1beta2** version is available in Kubernetes 1.23 and later versions, and the **flowcontrol.apiserver.k8s.io/v1beta3** version is available in Kubernetes 1.26 and later versions.
+   In Kubernetes 1.26 and later versions, the **flowcontrol.apiserver.k8s.io/v1beta1** API version of FlowSchema and PriorityLevelConfiguration are no longer provided. For details, see `Removed APIs by release <https://kubernetes.io/docs/reference/using-api/deprecation-guide/#horizontalpodautoscaler-v126>`__. As of Kubernetes 1.23, the **flowcontrol.apiserver.k8s.io/v1beta2** API version can be used instead. From Kubernetes 1.26, the **flowcontrol.apiserver.k8s.io/v1beta3** API version can be used instead.
 
--  The cloud service vendors' in-tree storage drivers are removed.
+-  Cloud service vendors' in-tree storage drivers are removed.
 
 -  The kube-proxy userspace mode is removed.
 
-   The deprecated userspace mode is no longer supported by Linux or Windows. Linux users can use Iptables or IPVS, and Windows users can use the Kernelspace mode. Errors are returned if you use **--mode userspace**.
+   The deprecated userspace mode is no longer supported by Linux or Windows. Linux users can use iptables or IPVS, and Windows users can use the kernel space. Errors are returned if you use **--mode userspace**.
 
    -  Windows winkernel kube-proxy no longer supports Windows HNS v1 APIs.
 
@@ -194,7 +194,7 @@ Deprecations and Removals
 
 -  The DynamicKubeletConfig feature gate is removed.
 
-   The kubelet configuration of nodes can be dynamically updated through the API. The feature gate is removed from the kubelet in Kubernetes 1.24 and removed from the API server in Kubernetes 1.26. This simplifies the code and improves stability. It is recommended that you modify the kubelet configuration file instead and then restart the kubelet. For details, see `Remove DynamicKubeletConfig feature gate from the code <https://github.com/kubernetes/kubernetes/pull/112643>`__.
+   The kubelet configuration of nodes can be dynamically updated through the API. The feature gate is removed from the kubelet in Kubernetes 1.24 and removed from the API Server in Kubernetes 1.26. This simplifies the code and improves stability. It is recommended that you modify the kubelet configuration file instead and then restart the kubelet. For details, see `Remove DynamicKubeletConfig feature gate from the code <https://github.com/kubernetes/kubernetes/pull/112643>`__.
 
 -  A kube-apiserver command line parameter is removed.
 
@@ -202,7 +202,7 @@ Deprecations and Removals
 
 -  Several **kubectl run** parameters are deprecated.
 
-   Several unused kubectl subcommands are marked as `deprecated <https://github.com/kubernetes/kubernetes/pull/112261>`__ and will be removed in later versions. These subcommands include **--cascade**, **--filename**, **--force**, **--grace-period**, **--kustomize**, **--recursive**, **--timeout**, and **--wait**.
+   Several unused kubectl flags are marked as `deprecated <https://github.com/kubernetes/kubernetes/pull/112261>`__ and will be removed in later versions. These flags include **--cascade**, **--filename**, **--force**, **--grace-period**, **--kustomize**, **--recursive**, **--timeout**, and **--wait**.
 
 -  Some command line parameters related to logging are removed.
 
@@ -213,7 +213,7 @@ Deprecations and Removals
 Enhanced Kubernetes 1.27 on CCE
 -------------------------------
 
-During a version maintenance period, CCE periodically updates Kubernetes 1.27 and provides enhanced functions.
+During a version maintenance period, CCE periodically updates Kubernetes 1.27 with enhanced functions.
 
 For details about cluster version updates, see :ref:`Release Notes for CCE Cluster Versions <cce_10_0405>`.
 
@@ -222,7 +222,7 @@ For details about cluster version updates, see :ref:`Release Notes for CCE Clust
 References
 ----------
 
-For more details about the performance comparison and functional evolution between Kubernetes 1.27 and other versions, see the following documents:
+For more details about the performance comparison and functional enhancements between Kubernetes 1.27 and other versions, see the following documents:
 
 -  `Kubernetes v1.27 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.27.md>`__
 -  `Kubernetes v1.26 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.26.md>`__

@@ -10,15 +10,15 @@ This section describes the changes made in Kubernetes 1.25 compared to Kubernete
 Indexes
 -------
 
--  :ref:`New Features <cce_bulletin_0058__en-us_topic_0000001596950457_en-us_topic_0000001389397618_en-us_topic_0000001430891141_en-us_topic_0000001072975092_section51381161799>`
+-  :ref:`Highlights <cce_bulletin_0058__en-us_topic_0000001596950457_en-us_topic_0000001389397618_en-us_topic_0000001430891141_en-us_topic_0000001072975092_section51381161799>`
 -  :ref:`Deprecations and Removals <cce_bulletin_0058__en-us_topic_0000001596950457_section1096111394018>`
 -  :ref:`Enhanced Kubernetes 1.25 on CCE <cce_bulletin_0058__en-us_topic_0000001596950457_section115291322132513>`
 -  :ref:`References <cce_bulletin_0058__en-us_topic_0000001596950457_en-us_topic_0000001389397618_en-us_topic_0000001430891141_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583>`
 
 .. _cce_bulletin_0058__en-us_topic_0000001596950457_en-us_topic_0000001389397618_en-us_topic_0000001430891141_en-us_topic_0000001072975092_section51381161799:
 
-New Features
-------------
+Highlights
+----------
 
 **Kubernetes 1.25**
 
@@ -32,44 +32,44 @@ New Features
 
 -  Support for cgroups v2 enters the stable phase.
 
-   Kubernetes supports cgroups v2, which provides some improvements over cgroup v1. For details, see `About cgroup v2 <https://kubernetes.io/docs/concepts/architecture/cgroups/>`__.
+   Kubernetes supports cgroups v2, which provides some improvements over cgroups v1. For details, see `About cgroup v2 <https://kubernetes.io/docs/concepts/architecture/cgroups/>`__.
 
 -  SeccompDefault moves to beta.
 
-   To enable this feature, add the startup parameter **--seccomp-default=true** to kubelet. In this way, **seccomp** is set to **RuntimeDefault** by default, improving system security. Clusters of v1.25 no longer support **seccomp.security.alpha.kubernetes.io/pod** and **container.seccomp.security.alpha.kubernetes.io/annotation**. Replace them with the **securityContext.seccompProfile** field in pods or containers. For details, see `Configure a Security Context for a Pod or Container <https://kubernetes.io/docs/tasks/configure-pod-container/security-context/>`__.
+   To enable this feature, add the startup parameter **--seccomp-default=true** to kubelet. In this way, **seccomp** is set to **RuntimeDefault** by default, improving system security. Clusters v1.25 no longer support **seccomp.security.alpha.kubernetes.io/pod** and **container.seccomp.security.alpha.kubernetes.io/annotation**. Replace them with the **securityContext.seccompProfile** field in pods or containers. For details, see `Configure a Security Context for a Pod or Container <https://kubernetes.io/docs/tasks/configure-pod-container/security-context/>`__.
 
    .. note::
 
       After this feature is enabled, certain system calls required by the application may be restricted by the runtime. So, enable the feature only in a testing environment first to verify that the application functions properly and is not affected.
 
--  The EndPort in the network policy moves to stable.
+-  endPort in the network policy moves to stable.
 
-   EndPort in Network Policy is stable. This feature is incorporated in version 1.21. EndPort is added to NetworkPolicy. You can specify a port range.
+   endPort in Network Policy is stable. This feature is incorporated in version 1.21. endPort is added to NetworkPolicy. You can specify a port range.
 
 -  Local ephemeral storage capacity isolation is stable.
 
-   This feature provides support for capacity isolation of local ephemeral storage between pods, such as emptyDir. If a pod's consumption of shared resources exceeds the limit, it will be evicted.
+   This feature supports capacity isolation of local ephemeral storage shared between pods, such as emptyDir. If a pod consumes more local ephemeral storage capacity than the limit, the pod can be evicted to limit its consumption of shared resources.
 
 -  The CRD verification expression language moves to beta.
 
-   This makes it possible to declare how to validate custom resources using `CEL <https://github.com/google/cel-spec>`__. For details, see `Extend the Kubernetes API with CustomResourceDefinitions <https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/>`__.
+   This makes it possible to declare how to validate custom resources using `CEL <https://github.com/google/cel-spec>`__. For details, see `Validation rules <https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/>`__.
 
 -  KMS v2 APIs are introduced.
 
-   The KMS v2 alpha1 API is introduced to add performance, rotation, and observability improvements. This API uses AES-GCM to replace AES-CBC and uses DEK to encrypt data at rest (Kubernetes Secrets). No additional operation is required during this process. Additionally, data can be read through AES-GCM and AES-CBC. For details, see `Using a KMS provider for data encryption <https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/>`__.
+   The **KMS v2 alpha1** API is introduced to add performance, rotation, and observability improvements. This API uses AES-GCM to replace AES-CBC and uses DEK to encrypt data at rest (Kubernetes Secrets). No additional operation is required during this process. Additionally, data can be read through AES-GCM and AES-CBC. For details, see `Using a KMS provider for data encryption <https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/>`__.
 
 -  Pod network readiness is introduced.
 
-   Kubernetes 1.25 introduces Alpha support for PodHasNetwork. This status is in the **status** field of the pod. For details, see `Pod network readiness <https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-has-network>`__.
+   Kubernetes 1.25 introduces alpha support for PodHasNetwork. This status is in the **status** field of the pod. For details, see `Pod network readiness <https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-has-network>`__.
 
 -  The two features used for application rollout are stable.
 
    -  In Kubernetes 1.25, **minReadySeconds** for StatefulSets is stable. It allows each pod to wait for an expected period of time to slow down the rollout of a StatefulSet. For details, see `Minimum ready seconds <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#minimum-ready-seconds>`__.
-   -  In Kubernetes 1.25, **maxSurge** for DaemonSets is stable. It allows a DaemonSet workload to run multiple instances of the same pod on one node during a rollout. This minimizes DaemonSet downtime for users. DaemonSet does not allow **maxSurge** and **hostPort** to be used at the same time because two active pods cannot share the same port on the same node. For details, see `Perform a Rolling Update on a DaemonSet <https://kubernetes.io/docs/tasks/manage-daemon/update-daemon-set/>`__.
+   -  In Kubernetes 1.25, **maxSurge** for DaemonSets is stable. It allows a DaemonSet to run more than one pod on a node during a rollout. This minimizes DaemonSet downtime for users. DaemonSet does not allow **maxSurge** and **hostPort** to be used at the same time because two active pods cannot share the same port on the same node. For details, see `Perform a Rolling Update on a DaemonSet <https://kubernetes.io/docs/tasks/manage-daemon/update-daemon-set/>`__.
 
 -  Alpha support for running pods with user namespaces is provided.
 
-   This feature maps the **root** user in a pod to a non-zero ID outside the container. In this way, the container runs as the **root** user and the node runs as a regular unprivileged user. This feature is still in the internal test phase. The UserNamespacesStatelessPodsSupport gate needs to be enabled, and the container runtime must support this function. For details, see `Kubernetes 1.25: alpha support for running Pods with user namespaces <https://kubernetes.io/blog/2022/10/03/userns-alpha/>`__.
+   Alpha support for running pods with user namespaces is provided. The root user in a pod is mapped to a non-zero ID outside the container, so that the root user appears to be running as root in the containers, while as a regular unprivileged ID from the host point of view. This feature is behind a feature gate, so make sure to enable the UserNamespacesStatelessPodsSupport gate before you can use the new feature. For details, see `Alpha support for running pods with user namespaces <https://kubernetes.io/blog/2022/10/03/userns-alpha/>`__.
 
 **Kubernetes 1.24**
 
@@ -83,7 +83,7 @@ New Features
 
 -  Beta APIs are disabled by default.
 
-   The Kubernetes community found 90% cluster administrators did not care about the beta APIs and left them enabled. However, the beta features are not recommended because these APIs enabled in the production environment by default incur risks. Therefore, in 1.24 and later versions, beta APIs are disabled by default, but the existing beta APIs will retain the original settings.
+   The Kubernetes community found 90% of cluster administrators did not care about the beta APIs and left them enabled. However, beta features are not recommended because these APIs are enabled in the production environment by default and introduce risks. Therefore, in 1.24 and later versions, beta APIs are disabled by default, but the existing beta APIs will retain the original settings.
 
 -  OpenAPI v3 is supported.
 
@@ -103,7 +103,7 @@ New Features
 
 -  IP address conflict is prevented.
 
-   In Kubernetes 1.24, `an IP address pool is soft reserved for the static IP addresses of Services <https://kubernetes.io/docs/concepts/services-networking/service/#service-ip-static-sub-range>`__. After you manually enable this function, Service IP addresses will be automatically assigned from the IP address pool to minimize IP address conflict.
+   Kubernetes 1.24 introduces a new feature that allows users to soft-reserve a range for static IP address assignments to Services. After you enable this function, Service IP addresses will be automatically assigned from the IP address pool to minimize IP address conflict. For details, see `Avoid Collisions Assigning IP Addresses to Services <https://kubernetes.io/blog/2022/05/23/service-ip-dynamic-and-static-allocation/>`__.
 
 -  Clusters are compiled based on Go 1.18.
 
@@ -115,7 +115,7 @@ New Features
 
 -  Alpha support for non-graceful node shutdown is introduced.
 
-   The non-graceful node shutdown is introduced as alpha in Kubernetes v1.24. A node shutdown is considered graceful only if kubelet's node shutdown manager can detect the upcoming node shutdown action. For details, see `Non-graceful node shutdown handling <https://kubernetes.io/docs/concepts/architecture/nodes/#non-graceful-node-shutdown>`__.
+   In Kubernetes 1.24, non-graceful node shutdown is in the alpha stage. A node shutdown is considered graceful only if kubelet's node shutdown manager can detect the upcoming node shutdown action. For details, see `Non-graceful node shutdown handling <https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/#non-graceful-node-shutdown>`__.
 
 .. _cce_bulletin_0058__en-us_topic_0000001596950457_section1096111394018:
 
@@ -128,7 +128,7 @@ Deprecations and Removals
 
    Kubernetes typically creates iptables chains to ensure data packets can be sent to the destination. These iptables chains and their names are for internal use only. These chains were never intended to be part of any Kubernetes API/ABI guarantees. For details, see `Kubernetes's IPTables Chains Are Not API <https://kubernetes.io/blog/2022/09/07/iptables-chains-not-api/>`__.
 
-   In versions later than Kubernetes 1.25, Kubelet uses IPTablesCleanup to migrate the Kubernetes-generated iptables chains used by the components outside of Kubernetes in phases so that iptables chains such as KUBE-MARK-DROP, KUBE-MARK-MASQ, and KUBE-POSTROUTING will not be created in the NAT table. For more details, see `Cleaning Up IPTables Chain Ownership <https://github.com/kubernetes/enhancements/issues/3178>`__.
+   In versions later than Kubernetes 1.25, Kubelet uses IPTablesCleanup to migrate the Kubernetes-generated iptables chains used by the components outside of Kubernetes in phases so that iptables chains such as KUBE-MARK-DROP, KUBE-MARK-MASQ, and KUBE-POSTROUTING will not be created in the NAT table. For more details, see `Cleaning Up iptables Chain Ownership <https://github.com/kubernetes/enhancements/issues/3178>`__.
 
 -  In-tree volume drivers from cloud service vendors are removed.
 
@@ -141,7 +141,7 @@ Deprecations and Removals
 -  In Kubernetes 1.24 and later versions, the startup parameter **--network-plugin** is removed from kubelet. This Docker-specific parameter is available only when the container runtime environment is **Docker** and it is deleted with Dockershim.
 -  In Kubernetes 1.24 and later versions, dynamic log clearance has been discarded and removed accordingly. A log filter is introduced to the logs of all Kubernetes system components to prevent sensitive information from being leaked through logs. However, this function may block logs and therefore is discarded. For more details, see `Dynamic log sanitization <https://github.com/kubernetes/kubernetes/pull/107207>`__ and `KEP-1753 <https://github.com/kubernetes/enhancements/tree/master/keps/sig-instrumentation/1753-logs-sanitization#deprecation>`__.
 -  VolumeSnapshot v1beta1 CRD is discarded in Kubernetes 1.20 and removed in Kubernetes 1.24. Use VolumeSnapshot v1 instead.
--  In Kubernetes 1.24 and later versions, **service annotation tolerate-unready-endpoints** discarded in Kubernetes 1.11 is replaced by **Service.spec.publishNotReadyAddresses**.
+-  In Kubernetes 1.24 and later versions, **service annotation tolerate-unready-endpoints** discarded in Kubernetes 1.11 is replaced with **Service.spec.publishNotReadyAddresses**.
 -  In Kubernetes 1.24 and later versions, the **metadata.clusterName** field is discarded and will be deleted in the next version.
 -  In Kubernetes 1.24 and later versions, the logic for kube-proxy to listen to NodePorts is removed. If NodePorts conflict with **kernel net.ipv4.ip_local_port_range**, TCP connections may fail occasionally, which leads to a health check failure or service exception. Before the upgrade, ensure that cluster NodePorts do not conflict with **net.ipv4.ip_local_port_range** of all nodes in the cluster. For more details, see `Kubernetes PR <https://github.com/kubernetes/kubernetes/pull/108496>`__.
 
@@ -150,7 +150,7 @@ Deprecations and Removals
 Enhanced Kubernetes 1.25 on CCE
 -------------------------------
 
-During a version maintenance period, CCE periodically updates Kubernetes 1.25 and provides enhanced functions.
+During a version maintenance period, CCE periodically updates Kubernetes 1.25 with enhanced functions.
 
 For details about cluster version updates, see :ref:`Release Notes for CCE Cluster Versions <cce_10_0405>`.
 
@@ -159,7 +159,7 @@ For details about cluster version updates, see :ref:`Release Notes for CCE Clust
 References
 ----------
 
-For more details about the performance comparison and functional evolution between Kubernetes 1.25 and other versions, see the following documents:
+For more details about the performance comparison and functional enhancements between Kubernetes 1.25 and other versions, see the following documents:
 
 -  `Kubernetes v1.25 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.25.md>`__
 -  `Kubernetes v1.24 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.24.md>`__

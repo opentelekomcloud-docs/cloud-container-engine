@@ -117,6 +117,7 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
             storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
             everest.io/obs-volume-type: STANDARD
             everest.io/region: <your_region>                        # Region where the OBS volume is
+            everest.io/enterprise-project-id: <your_enterprise_project_id>     # (Optional) Enterprise project ID of an OBS volume. This parameter is available only for enterprise accounts with enterprise projects enabled. If an enterprise project is specified, you must specify the same enterprise project when creating a PVC. Otherwise, the PVC cannot bind to a PV.
           nodePublishSecretRef:            # Custom secret of the OBS volume
             name: <your_secret_name>       # Custom secret name
             namespace: <your_namespace>    # Namespace of the custom secret

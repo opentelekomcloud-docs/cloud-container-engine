@@ -82,7 +82,7 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
           volumeHandle: {your_volume_id}   # SFS Turbo volume ID
           volumeAttributes:
             everest.io/share-export-location: {your_location}   # Shared path of the SFS Turbo volume
-
+            everest.io/enterprise-project-id: {your_enterprise_project_id}  # Enterprise project ID of the SFS Turbo volume
             storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
         persistentVolumeReclaimPolicy: Retain    # Reclaim policy
         storageClassName: csi-sfsturbo           # StorageClass name of the SFS Turbo file system

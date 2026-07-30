@@ -168,12 +168,34 @@ This add-on can collect container standard output logs, container file logs, nod
 Release History
 ---------------
 
-.. table:: **Table 4** Cloud Native Log Collection add-on
+.. table:: **Table 4** Cloud Native Log Collection updates
 
    +-----------------------+---------------------------+----------------------------------------------------------+
    | Add-on Version        | Supported Cluster Version | New Feature                                              |
    +=======================+===========================+==========================================================+
-   | 1.7.6                 | v1.21                     | -  CCE clusters v1.33 are supported.                     |
+   | 1.7.9                 | v1.21                     | Supported CCE clusters v1.34.                            |
+   |                       |                           |                                                          |
+   |                       | v1.23                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.25                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.27                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.28                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.29                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.30                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.31                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.32                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.33                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.34                     |                                                          |
+   +-----------------------+---------------------------+----------------------------------------------------------+
+   | 1.7.6                 | v1.21                     | -  Supported CCE clusters v1.33.                         |
    |                       |                           | -  Optimized the memory consumption of event collection. |
    |                       | v1.23                     |                                                          |
    |                       |                           |                                                          |
@@ -193,7 +215,7 @@ Release History
    |                       |                           |                                                          |
    |                       | v1.33                     |                                                          |
    +-----------------------+---------------------------+----------------------------------------------------------+
-   | 1.7.3                 | v1.21                     | CCE clusters v1.32 are supported.                        |
+   | 1.7.3                 | v1.21                     | Supported CCE clusters v1.32.                            |
    |                       |                           |                                                          |
    |                       | v1.23                     |                                                          |
    |                       |                           |                                                          |

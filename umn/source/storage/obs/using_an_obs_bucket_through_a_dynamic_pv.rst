@@ -7,8 +7,8 @@ Using an OBS Bucket Through a Dynamic PV
 
 This section describes how to automatically create an OBS bucket. It is applicable when no underlying storage volume is available.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  If OBS volumes are used, the owner group and permission of the mount point cannot be modified.
 -  Every time an OBS volume is mounted to a workload through a PVC, a resident process is created in the backend. When a workload uses too many OBS volumes or reads and writes a large number of object storage files, resident processes will consume a significant amount of memory. To ensure stable running of the workload, make sure that the number of OBS volumes used does not exceed the requested memory. For example, if the workload requests for 4 GiB of memory, the number of OBS volumes should be **no more than** 4.
@@ -65,6 +65,8 @@ Automatically Creating an OBS Bucket Using the Console
       |                                       | -  **Name**: Enter a secret name.                                                                                                                                                                                                                                   |
       |                                       | -  **Namespace**: Select the namespace where the secret is.                                                                                                                                                                                                         |
       |                                       | -  **Access Key (AK/SK)**: Upload a key file in .csv format. For details, see :ref:`Obtaining an Access Key <cce_10_0336__section4633162355911>`.                                                                                                                   |
+      +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Enterprise Project                    | This parameter is available only for enterprise accounts with enterprise projects enabled. The enterprise project can be the default project, the project where the cluster is located, or the project specified by the StorageClass.                               |
       +---------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    b. Click **Create** to create a PVC and a PV.
@@ -129,6 +131,7 @@ Automatically Creating an OBS Bucket Using kubectl
              csi.storage.k8s.io/fstype: obsfs        # Instance type
              csi.storage.k8s.io/node-publish-secret-name: <your_secret_name>       # Custom secret name
              csi.storage.k8s.io/node-publish-secret-namespace: <your_namespace>    # Namespace of the custom secret
+             everest.io/enterprise-project-id: <your_enterprise_project_id>     # (Optional) Enterprise project ID
              everest.io/csi.volume-name-prefix: test  # (Optional) Storage volume name prefix of the automatically created underlying storage
          spec:
            accessModes:
@@ -158,6 +161,10 @@ Automatically Creating an OBS Bucket Using kubectl
          |                                                  |                       | (Recommended) Select this option if you want to assign different user permissions to different OBS storage devices. For details, see :ref:`Using a Custom Access Key (AK/SK) to Mount an OBS Volume <cce_10_0336>`.                                                 |
          +--------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | csi.storage.k8s.io/node-publish-secret-namespace | No                    | Namespace of a custom secret.                                                                                                                                                                                                                                       |
+         +--------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | everest.io/enterprise-project-id                 | No                    | This parameter specifies the ID of the enterprise project where an OBS volume is created. It is applicable only to enterprise accounts with enterprise projects enabled.                                                                                            |
+         |                                                  |                       |                                                                                                                                                                                                                                                                     |
+         |                                                  |                       | To obtain an enterprise project ID, log in to the EPS console, click the name of the target enterprise project, and copy the enterprise project ID.                                                                                                                 |
          +--------------------------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | everest.io/csi.volume-name-prefix                | No                    | (Optional) This parameter is available only when the cluster version is v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later, and Everest v2.4.15 or later is installed in the cluster.                                                                        |
          |                                                  |                       |                                                                                                                                                                                                                                                                     |

@@ -14,8 +14,8 @@ Prerequisites
 -  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 -  You have created an available SFS Turbo file system, and the SFS Turbo file system and the cluster are in the same VPC.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  Multiple PVs can use the same SFS or SFS Turbo file system with the following restrictions:
 
@@ -143,6 +143,7 @@ Using an Existing SFS Turbo File System Through kubectl
              volumeHandle: <your_volume_id>   # SFS Turbo volume ID
              volumeAttributes:
                everest.io/share-export-location: <your_location>   # Shared path of the SFS Turbo volume
+               everest.io/enterprise-project-id: <your_enterprise_project_id>  # Enterprise project ID of the SFS Turbo volume
                storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
            persistentVolumeReclaimPolicy: Retain    # Reclaim policy
            storageClassName: csi-sfsturbo          # StorageClass name of the SFS Turbo file system
@@ -160,6 +161,10 @@ Using an Existing SFS Turbo File System Through kubectl
          | everest.io/share-export-location | Yes                   | Shared path of the SFS Turbo volume.                                                                                                                                                                                                                                                                                                                                                                                          |
          |                                  |                       |                                                                                                                                                                                                                                                                                                                                                                                                                               |
          |                                  |                       | Log in to the CCE console and choose **Service List** > **Storage** > **Scalable File Service**. In the navigation pane, choose **SFS Turbo** > **File Systems**. You can obtain the shared path of the file system.                                                                                                                                                                                                          |
+         +----------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | everest.io/enterprise-project-id | No                    | This parameter specifies the ID of the enterprise project where an SFS Turbo file system is created. It is applicable only to enterprise accounts with enterprise projects enabled.                                                                                                                                                                                                                                           |
+         |                                  |                       |                                                                                                                                                                                                                                                                                                                                                                                                                               |
+         |                                  |                       | How to obtain: On the SFS console, choose **SFS Turbo** > **File Systems** in the navigation pane. Click the name of the SFS Turbo file system. On the **Basic Info** tab, find and click the enterprise project to go to its console, and copy the project ID.                                                                                                                                                               |
          +----------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
          | mountOptions                     | No                    | Mount options.                                                                                                                                                                                                                                                                                                                                                                                                                |
          |                                  |                       |                                                                                                                                                                                                                                                                                                                                                                                                                               |
@@ -201,6 +206,7 @@ Using an Existing SFS Turbo File System Through kubectl
            namespace: default
            annotations:
              volume.beta.kubernetes.io/storage-provisioner: everest-csi-provisioner
+             everest.io/enterprise-project-id: <your_enterprise_project_id>  # Enterprise project ID of the SFS Turbo volume
          spec:
            accessModes:
            - ReadWriteMany                  # The value must be ReadWriteMany for SFS Turbo.
@@ -212,19 +218,23 @@ Using an Existing SFS Turbo File System Through kubectl
 
       .. table:: **Table 3** Key parameters
 
-         +-----------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------+
-         | Parameter             | Mandatory             | Description                                                                                                           |
-         +=======================+=======================+=======================================================================================================================+
-         | storage               | Yes                   | Requested capacity in the PVC, in Gi.                                                                                 |
-         |                       |                       |                                                                                                                       |
-         |                       |                       | The value must be the same as the storage size of the existing PV.                                                    |
-         +-----------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------+
-         | storageClassName      | Yes                   | StorageClass name, which must be the same as the StorageClass of the PV in :ref:`1 <cce_10_0625__li162841212145314>`. |
-         |                       |                       |                                                                                                                       |
-         |                       |                       | The StorageClass name of SFS Turbo volumes is **csi-sfsturbo**.                                                       |
-         +-----------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------+
-         | volumeName            | Yes                   | PV name, which must be the same as the PV name in :ref:`1 <cce_10_0625__li162841212145314>`.                          |
-         +-----------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------+
+         +----------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Parameter                        | Mandatory             | Description                                                                                                                                                                                                                                                     |
+         +==================================+=======================+=================================================================================================================================================================================================================================================================+
+         | everest.io/enterprise-project-id | No                    | This parameter specifies the ID of the enterprise project where an SFS Turbo file system is created. It is applicable only to enterprise accounts with enterprise projects enabled.                                                                             |
+         |                                  |                       |                                                                                                                                                                                                                                                                 |
+         |                                  |                       | How to obtain: On the SFS console, choose **SFS Turbo** > **File Systems** in the navigation pane. Click the name of the SFS Turbo file system. On the **Basic Info** tab, find and click the enterprise project to go to its console, and copy the project ID. |
+         +----------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | storage                          | Yes                   | Requested capacity in the PVC, in Gi.                                                                                                                                                                                                                           |
+         |                                  |                       |                                                                                                                                                                                                                                                                 |
+         |                                  |                       | The value must be the same as the storage size of the existing PV.                                                                                                                                                                                              |
+         +----------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | storageClassName                 | Yes                   | StorageClass name, which must be the same as the StorageClass of the PV in :ref:`1 <cce_10_0625__li162841212145314>`.                                                                                                                                           |
+         |                                  |                       |                                                                                                                                                                                                                                                                 |
+         |                                  |                       | The StorageClass name of SFS Turbo volumes is **csi-sfsturbo**.                                                                                                                                                                                                 |
+         +----------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | volumeName                       | Yes                   | PV name, which must be the same as the PV name in :ref:`1 <cce_10_0625__li162841212145314>`.                                                                                                                                                                    |
+         +----------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    b. Run the following command to create a PVC:
 
@@ -306,7 +316,7 @@ Using Subdirectories of an Existing SFS Turbo File System Through kubectl
              volumeHandle: pv-sfsturbo   # PV name
              volumeAttributes:
                storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
-
+               everest.io/enterprise-project-id: <your_enterprise_project_id>  # Enterprise project ID of the SFS Turbo volume
                everest.io/volume-as: absolute-path   # The PV is associated with an SFS Turbo subdirectory.
                everest.io/share-export-location: <sfsturbo_path>:/<absolute_path>   # The value consists of the shared path of the SFS Turbo file system and the absolute path of the subdirectory.
                everest.io/sfsturbo-share-id: <sfsturbo_id>    # SFS Turbo ID
@@ -392,7 +402,7 @@ Using Subdirectories of an Existing SFS Turbo File System Through kubectl
            namespace: default
            annotations:
              volume.beta.kubernetes.io/storage-provisioner: everest-csi-provisioner
-
+             everest.io/enterprise-project-id: <your_enterprise_project_id>  # Enterprise project ID of the SFS Turbo volume
          spec:
            accessModes:
            - ReadWriteMany                  # The value must be ReadWriteMany for SFS Turbo.
@@ -404,19 +414,23 @@ Using Subdirectories of an Existing SFS Turbo File System Through kubectl
 
       .. table:: **Table 5** Key parameters
 
-         +-----------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------+
-         | Parameter             | Mandatory             | Description                                                                                                           |
-         +=======================+=======================+=======================================================================================================================+
-         | storage               | Yes                   | Requested capacity in the PVC, in Gi.                                                                                 |
-         |                       |                       |                                                                                                                       |
-         |                       |                       | The value must be the same as the storage size of the existing PV.                                                    |
-         +-----------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------+
-         | storageClassName      | Yes                   | StorageClass name, which must be the same as the StorageClass of the PV in :ref:`1 <cce_10_0625__li186261858193110>`. |
-         |                       |                       |                                                                                                                       |
-         |                       |                       | The StorageClass name of SFS Turbo volumes is **csi-sfsturbo**.                                                       |
-         +-----------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------+
-         | volumeName            | Yes                   | PV name, which must be the same as the PV name in :ref:`1 <cce_10_0625__li186261858193110>`.                          |
-         +-----------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------+
+         +----------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Parameter                        | Mandatory             | Description                                                                                                                                                                                                                                                     |
+         +==================================+=======================+=================================================================================================================================================================================================================================================================+
+         | everest.io/enterprise-project-id | No                    | This parameter specifies the ID of the enterprise project where an SFS Turbo file system is created. It is applicable only to enterprise accounts with enterprise projects enabled.                                                                             |
+         |                                  |                       |                                                                                                                                                                                                                                                                 |
+         |                                  |                       | How to obtain: On the SFS console, choose **SFS Turbo** > **File Systems** in the navigation pane. Click the name of the SFS Turbo file system. On the **Basic Info** tab, find and click the enterprise project to go to its console, and copy the project ID. |
+         +----------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | storage                          | Yes                   | Requested capacity in the PVC, in Gi.                                                                                                                                                                                                                           |
+         |                                  |                       |                                                                                                                                                                                                                                                                 |
+         |                                  |                       | The value must be the same as the storage size of the existing PV.                                                                                                                                                                                              |
+         +----------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | storageClassName                 | Yes                   | StorageClass name, which must be the same as the StorageClass of the PV in :ref:`1 <cce_10_0625__li186261858193110>`.                                                                                                                                           |
+         |                                  |                       |                                                                                                                                                                                                                                                                 |
+         |                                  |                       | The StorageClass name of SFS Turbo volumes is **csi-sfsturbo**.                                                                                                                                                                                                 |
+         +----------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+         | volumeName                       | Yes                   | PV name, which must be the same as the PV name in :ref:`1 <cce_10_0625__li186261858193110>`.                                                                                                                                                                    |
+         +----------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    b. Run the following command to create a PVC:
 
