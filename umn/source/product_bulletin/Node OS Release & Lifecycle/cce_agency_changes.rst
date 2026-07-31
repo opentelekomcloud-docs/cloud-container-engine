@@ -32,7 +32,7 @@ New agencies are automatically generated when a cluster is created or upgraded t
 .. note::
 
     For details about the new agencies, see Adjustment: `Agency Permission Isolation and Least Privilege <cce_bulletin_0133__section214823415110>`.
-    For more information, see :ref:`Creating a Custom Policy <iam_01_0016>`, :ref:`Assigning Permissions to an IAM User <en-us_topic_0079496985>` and :ref:`Managing Permissions of a User Group <iam_03_0004>`.
+    For more information, see `Creating a Custom Policy <https://docs.otc.t-systems.com/en-us/usermanual/iam/iam_01_0016.html>`__, `Assigning Permissions to an IAM User <https://docs.otc.t-systems.com/en-us/usermanual/iam/en-us_topic_0079496985.html>`__ and `Managing Permissions of a User Group <https://docs.otc.t-systems.com/en-us/usermanual/iam/iam_03_0004.html>`__.
 
 Detailed Description of Agency Adjustment
 --------------------------------------------
