@@ -3,7 +3,7 @@
 .. _cce_bulletin_nodeos_release_lifecycle:
 
 Node OS Release & Lifecycle
-================
+==============================
 
 -  :ref:`OS Image Tag Release Notes <cce_bulletin_0036>`
 -  :ref:`EOM of CentOS <cce_bulletin_0098>`

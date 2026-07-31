@@ -3,7 +3,7 @@
 .. _cce_bulletin_0000:
 
 Product Bulletin
-================
+==================
 
 -  :ref:`Kubernetes Version Policy <cce_bulletin_0033>`
 -  :ref:`Node OS Release & Lifecycle <cce_bulletin_nodeos_release_lifecycle>`
