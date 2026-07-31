@@ -9,6 +9,7 @@ Background
 ------------
 
 To improve the security of CCE agencies and provide more refined permission control, CCE has adjusted and upgraded the dependent agencies as follows:
+
 - **Agency permission isolation and least privilege**: Added an independent agency to provide temporary credentials for user node system components in CCE clusters.
 
 Cluster Operations May Be Affected
@@ -29,18 +30,12 @@ New agencies are automatically generated when a cluster is created or upgraded t
     - **iam:roles:listRoles**: for listing permissions
     - **iam:agencies:listAgencies**: for querying agencies based on specified conditions
 
-.. note::
-
-    For details about the new agencies, see Adjustment: `Agency Permission Isolation and Least Privilege <cce_bulletin_0133__section214823415110>`.
     For more information, see `Creating a Custom Policy <https://docs.otc.t-systems.com/en-us/usermanual/iam/iam_01_0016.html>`__, `Assigning Permissions to an IAM User <https://docs.otc.t-systems.com/en-us/usermanual/iam/en-us_topic_0079496985.html>`__ and `Managing Permissions of a User Group <https://docs.otc.t-systems.com/en-us/usermanual/iam/iam_03_0004.html>`__.
 
 Detailed Description of Agency Adjustment
 --------------------------------------------
 
-.. _cce_bulletin_0133__section214823415110:
-
-Added CCENodeAgency.
-^^^^^^^^^^^^^^^^^^^^^^
+**Added CCENodeAgency**
 
 Providing temporary access credentials, such as authentication details for accessing SWR image repositories from components running on CCE worker nodes.
 
