@@ -3,10 +3,10 @@
 .. _cce_bulletin_0000:
 
 Product Bulletin
-================
+==================
 
 -  :ref:`Kubernetes Version Policy <cce_bulletin_0033>`
--  :ref:`EOM of CentOS <cce_bulletin_0098>`
+-  :ref:`Node OS Release & Lifecycle <cce_bulletin_nodeos_release_lifecycle>`
 -  :ref:`Security Vulnerability Responses <cce_bulletin_0169>`
 
 .. toctree::
@@ -14,5 +14,5 @@ Product Bulletin
    :hidden: 
 
    kubernetes_version_policy
-   eom_of_centos
+   Node OS Release & Lifecycle/index
    security_vulnerability_responses/index

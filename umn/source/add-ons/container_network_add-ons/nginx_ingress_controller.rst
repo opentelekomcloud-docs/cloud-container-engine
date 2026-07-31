@@ -278,6 +278,8 @@ To avoid a situation where the node running NGINX Ingress Controller and its con
                    - kube-system
                  topologyKey: kubernetes.io/hostname
 
+.. _cce_10_0034_release_history:
+
 Release History
 ---------------
 
