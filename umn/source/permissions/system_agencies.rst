@@ -28,6 +28,7 @@ After you agree to the entrustment, CCE automatically creates an agency in IAM t
 The agencies automatically created by CCE are as follows:
 
 -  :ref:`cce_admin_trust <cce_10_0556__section123269912477>` has permission to call all cloud services that CCE depends on, with the exception of IAM.
+-  :ref:`CCENodeAgency <cce_10_0556__section15299192910539>` provides temporary access credentials such as SWR image repository credentials to components running on worker nodes in CCE clusters.
 
 .. note::
 
@@ -51,3 +52,17 @@ The **cce_admin_trust** agency has permission to call all cloud services that CC
 To use CCE in multiple regions, request for cloud resource permissions in each region. You can go to the IAM console, choose **Agencies** and click **cce_admin_trust** to view the permissions of each region.
 
 To ensure CCE can run normally, do not delete or modify the **cce_admin_trust** agency on IAM, as CCE requires the permissions.
+
+.. _cce_10_0556__section15299192910539:
+
+CCENodeAgency
+--------------
+
+Providing temporary access credentials, such as authentication details for accessing SWR image repositories from components running on CCE worker nodes.
+
+**CCENodeAgency** uses **All resources** as the authorization scope and is granted the **CCEClusterNodePolicy** system policy. For details, see :ref:`System Policies <cce_10_1069__section1348855433317>`.
+
+.. note::
+
+   - It is not advised to delete or modify CCENodeAgency in IAM while using CCE.
+   - The CCENodeAgency is required only for clusters running version v1.28.15-r80, v1.29.15-r40, v1.30.14-r40, v1.31.14-r0, v1.32.9-r0, v1.33.7-r0, or later. When a cluster is created or upgraded to one of these versions, the agency is automatically created if it does not already exist.
