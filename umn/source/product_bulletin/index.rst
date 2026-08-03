@@ -14,5 +14,5 @@ Product Bulletin
    :hidden: 
 
    kubernetes_version_policy
-   Node OS Release & Lifecycle/index
+   nodeos_release_and_lifecycle/index
    security_vulnerability_responses/index
