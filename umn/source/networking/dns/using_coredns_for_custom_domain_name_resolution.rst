@@ -226,3 +226,7 @@ If the domain name is not in the Kubernetes domain, CoreDNS will use the **/etc/
 #. Click **OK**.
 
 #. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.
+
+.. meta::
+   :description: Learn how to resolve custom internal domain names in T Cloud Public CCE using CoreDNS.
+   :keywords: Cloud Container Engine, CoreDNS, custom domain name resolution, Kubernetes Services, DNS configuration

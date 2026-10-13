@@ -16,3 +16,7 @@ Migrating Kubernetes Clusters to CCE Using Velero
    solution_overview
    resource_planning_for_the_target_cluster
    procedure/index
+
+.. meta::
+   :description: Learn how to migrate Kubernetes clusters to T Cloud Public CCE using Velero.
+   :keywords: CCE, Kubernetes, Migration, Velero, Cloud Provider

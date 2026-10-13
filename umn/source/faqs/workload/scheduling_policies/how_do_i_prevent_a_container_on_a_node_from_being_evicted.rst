@@ -31,3 +31,7 @@ BestEffort -> Burstable -> Guaranteed
    -  If a pod is killed because of excessive resource usage (while the node resources are still sufficient), the system tends to restart the pod on the same node.
    -  If resources are sufficient, you can assign the QoS class of Guaranteed to all pods. In this way, more compute resources are used to improve service performance and stability, reducing troubleshooting time and costs.
    -  To improve resource utilization, assign the QoS class of Guaranteed to service pods and Burstable or BestEffort to other pods (for example, filebeat).
+
+.. meta::
+   :description: Learn how to prevent container eviction on T Cloud Public CCE nodes by configuring QoS classes like Guaranteed, Burstable, and BestEffort to optimize resourc...
+   :keywords: Cloud Container Engine, kubelet, pod eviction, Quality of Service, resource scheduling

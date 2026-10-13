@@ -77,3 +77,7 @@ Solution
    After the creation is complete, reset the node.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516197923.png
+
+.. meta::
+   :description: Fix damaged vdb disk in T Cloud Public CCE nodes.
+   :keywords: Cloud Container Engine, vdb disk, node recovery, volume group, partition table

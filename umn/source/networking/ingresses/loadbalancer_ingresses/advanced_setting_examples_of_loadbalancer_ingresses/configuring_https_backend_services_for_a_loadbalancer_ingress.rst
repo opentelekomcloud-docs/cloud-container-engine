@@ -140,3 +140,7 @@ Using kubectl to Configure an HTTPS Backend Service
 
       NAME          CLASS    HOSTS     ADDRESS          PORTS   AGE
       ingress-test  cce      *         121.**.**.**     80,443  10s
+
+.. meta::
+   :description: Learn how to configure HTTPS backend services for LoadBalancer Ingresses in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, LoadBalancer Ingress, HTTPS Backend Services, Kubernetes, T Cloud Public

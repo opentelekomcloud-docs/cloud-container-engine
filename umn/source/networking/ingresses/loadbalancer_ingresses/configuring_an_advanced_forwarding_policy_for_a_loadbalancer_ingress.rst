@@ -1044,3 +1044,7 @@ The YAML file example is as follows:
                      name: use-annotation  # If the forward to custom backend server group ("type": "ForwardPool") action is specified, port.name must be set to use-annotation.
                property:
                  ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
+
+.. meta::
+   :description: Learn how to configure advanced forwarding policies for LoadBalancer Ingress in T Cloud Public CCE clusters.
+   :keywords: Cloud Container Engine, LoadBalancer Ingress, Advanced Forwarding Policy, ELB, kubectl

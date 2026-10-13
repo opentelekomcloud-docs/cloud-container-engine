@@ -14,3 +14,7 @@ Cluster Upgrade
 
    what_do_i_do_if_a_cluster_add-on_fails_to_be_upgraded_during_the_cce_cluster_upgrade
    what_should_i_do_if_the_loadbalancer_ingress_configuration_is_inconsistent_with_the_load_balancer_configuration_during_a_cce_cluster_upgrade
+
+.. meta::
+   :description: Resolve CCE cluster upgrade issues on T Cloud Public, including add-on failures and LoadBalancer configuration inconsistencies.
+   :keywords: Cloud Container Engine, Cluster Upgrade, T Cloud Public, Kubernetes, Add-on

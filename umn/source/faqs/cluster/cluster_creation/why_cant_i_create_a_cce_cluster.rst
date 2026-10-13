@@ -28,3 +28,7 @@ View the cluster logs to identify the cause and rectify the fault.
 #. Log in to the CCE console and click **Operation Records** above the cluster list to view operation records.
 #. Click the record of the **Failed** status to view error information.
 #. Rectify the fault based on the error information and create a cluster again.
+
+.. meta::
+   :description: Troubleshoot CCE cluster creation failures on T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, Kubernetes, cluster creation, troubleshooting

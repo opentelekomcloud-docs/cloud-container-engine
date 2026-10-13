@@ -593,3 +593,7 @@ Procedure
       kubectl patch pv {pv_name} -p '{"metadata":{"finalizers":null}}'
 
 .. |image1| image:: /_static/images/en-us_image_0000002483958212.png
+
+.. meta::
+   :description: Learn how to migrate storage from FlexVolume to CSI Everest in T Cloud Public CCE clusters.
+   :keywords: Cloud Container Engine, CSI Everest, FlexVolume, PersistentVolume, Storage Migration

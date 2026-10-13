@@ -35,3 +35,7 @@ Run **cat /etc/resolv.conf** in the container to check the DNS configuration. An
    options ndots:5
 
 If **nameserver** is set to **10.247.x.x**, DNS is connected to the CoreDNS of the cluster. Ensure that the CoreDNS of the cluster is running properly. If another IP address is displayed, an in-cloud or on-premises DNS server is used. Ensure that the domain name resolution is correctly configured.
+
+.. meta::
+   :description: Resolve container internet access issues in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, container network, DNS configuration, node internet access, T Cloud Public

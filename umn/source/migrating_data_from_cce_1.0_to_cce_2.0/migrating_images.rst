@@ -57,3 +57,7 @@ Procedure
       :alt: **Figure 3** Migrate the image
 
       **Figure 3** Migrate the image
+
+.. meta::
+   :description: Learn how to migrate images from CCE 1.
+   :keywords: Cloud Container Engine, image migration, CCE 1.0, CCE 2.0, image repository

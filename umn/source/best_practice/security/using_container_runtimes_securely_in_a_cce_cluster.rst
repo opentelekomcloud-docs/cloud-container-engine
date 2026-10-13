@@ -77,3 +77,7 @@ Both systems are integrated into Kubernetes, allowing security policies to be ap
           level: "s0:c123,c456"
 
    For details, see `Assign SELinux labels to a Container <https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#assign-selinux-labels-to-a-container>`__.
+
+.. meta::
+   :description: Secure your T Cloud Public CCE clusters with Linux namespaces, cgroups, and capabilities.
+   :keywords: Cloud Container Engine, CCE, Container Runtime Security, Kubernetes, Linux Namespaces

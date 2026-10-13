@@ -125,3 +125,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Learn how to use the ShowUserChartsQuotas API on T Cloud Public to retrieve user chart quotas.
+   :keywords: Cloud Container Engine, T Cloud Public, User Chart, Quota, API

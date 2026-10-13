@@ -27,3 +27,7 @@ Adding a Container CIDR Block for a CCE Standard Cluster
       New container CIDR blocks cannot conflict with service CIDR blocks, VPC CIDR blocks, and existing container CIDR blocks.
 
 #. Click **OK**.
+
+.. meta::
+   :description: Learn how to expand the container CIDR block for a CCE cluster on T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, Container CIDR Block, VPC Network, Cluster

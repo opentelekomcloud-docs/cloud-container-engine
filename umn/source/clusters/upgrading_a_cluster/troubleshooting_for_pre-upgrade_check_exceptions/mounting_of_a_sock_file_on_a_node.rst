@@ -62,3 +62,7 @@ Solutions
 -  Scenario 4: The "failed to execute docker ps -aq" error is displayed in the log analysis.
 
    This error is usually caused by a container engine exception. Submit a service ticket and contact O&M personnel.
+
+.. meta::
+   :description: Learn to resolve sock file inconsistency on T Cloud Public CCE nodes by mounting directories instead of direct sock files to ensure service stability during ...
+   :keywords: Cloud Container Engine, Kubernetes, Docker, containerd, sock file

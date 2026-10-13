@@ -33,3 +33,7 @@ Solutions
    a. Log in to the ELB console and click the name of the target load balancer.
    b. On the **Summary** tab, click **Bind** next to **Private IPv4 address**.
    c. Configure the subnet and IPv4 address, and click **OK**.
+
+.. meta::
+   :description: Learn how to resolve private IPv4 address issues for load balancers in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Load Balancer, Private IPv4 Address, ELB, Service

@@ -31,3 +31,7 @@ Viewing CRDs and Their Resources
    -  View the resources of a CRD.
 
       Locate a CDR in the list and click **View Details** in the **Operation** column to view the resources.
+
+.. meta::
+   :description: Learn how to manage Custom Resource Definitions (CRDs) in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Custom Resource Definition, CRD, Kubernetes API, cluster management

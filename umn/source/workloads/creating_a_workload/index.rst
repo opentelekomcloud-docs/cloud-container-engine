@@ -20,3 +20,7 @@ Creating a Workload
    creating_a_daemonset
    creating_a_job
    creating_a_cronjob
+
+.. meta::
+   :description: Learn how to create Deployments, StatefulSets, DaemonSets, Jobs, and CronJobs on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Workload, Deployment, Kubernetes

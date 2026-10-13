@@ -226,3 +226,7 @@ Example Request
            }
        }
    }
+
+.. meta::
+   :description: Learn about the NGINX Ingress Controller add-on for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, NGINX Ingress Controller, T Cloud Public, containerized applications, add-on

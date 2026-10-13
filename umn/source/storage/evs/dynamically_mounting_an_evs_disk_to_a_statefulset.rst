@@ -395,3 +395,7 @@ You can also perform the operations listed in :ref:`Table 3 <cce_10_0616__cce_10
    |                                       |                                                                                                                                            |                                                                                                                                                                                 |
    |                                       |                                                                                                                                            |    **Synchronize** is only displayed when the underlying storage capacity is greater than the PVC capacity.                                                                     |
    +---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to dynamically mount EVS disks to StatefulSets using T Cloud Public CCE.
+   :keywords: Cloud Container Engine, StatefulSet, EVS Disk, Dynamic Mounting, PVC

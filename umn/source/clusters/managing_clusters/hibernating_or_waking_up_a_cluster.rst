@@ -33,3 +33,7 @@ You can wake up a hibernated cluster as needed.
 #. Log in to the CCE console. In the navigation pane, choose **Clusters**.
 #. Click **Wake Up** in the row of the target cluster.
 #. Check whether the cluster is woken up. When the cluster status changes from **Waking up** to **Running**, the cluster is woken up. It takes about 3 to 5 minutes to wake up the cluster.
+
+.. meta::
+   :description: Learn how to hibernate or wake up T Cloud Public CCE clusters to reduce costs.
+   :keywords: Cloud Container Engine, hibernate, wake up, cluster, cost reduction

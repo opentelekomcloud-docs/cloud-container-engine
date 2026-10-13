@@ -535,3 +535,7 @@ After the application is successfully deployed, :ref:`access Prometheus <cce_10_
    nginx_connections_accepted{cluster="2048c170-8359-11ee-9527-0255ac1000cf", cluster_category="CCE", cluster_name="cce-test", endpoint="servicemonitor-ports", instance="10.0.0.47:9113", job="nginx-test3", namespace="default", pod="nginx-test3-6f8bccd9-f27hv", prometheus="monitoring/server", service="nginx-test3"}
 
 .. |image1| image:: /_static/images/en-us_image_0000002484119266.png
+
+.. meta::
+   :description: Learn to monitor custom metrics in T Cloud Public's CCE using the Cloud Native Cluster Monitoring add-on with Prometheus.
+   :keywords: Cloud Container Engine, Prometheus, Custom Metrics, Cloud Native Cluster Monitoring, Monitoring

@@ -42,3 +42,7 @@ Procedure
 #. Upload the image to SWR. For details, see `Uploading an Image Through the Client <https://docs.otc.t-systems.com/usermanual/swr/swr_01_0011.html>`__.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516197739.png
+
+.. meta::
+   :description: Learn to build Docker images and upload them to SWR using T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Docker image, SWR, container deployment, application upgrade

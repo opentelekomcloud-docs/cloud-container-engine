@@ -24,3 +24,7 @@ Add-ons
    container_network_add-ons/index
    container_storage_add-ons/index
    add-on_upgrade_checks/index
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine add-ons for scheduling, observability, AI, networking, and storage.
+   :keywords: Cloud Container Engine, T Cloud Public, Add-ons, Kubernetes, Container Management

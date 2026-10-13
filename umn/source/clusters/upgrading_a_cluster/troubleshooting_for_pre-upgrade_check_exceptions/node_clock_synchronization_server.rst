@@ -40,3 +40,7 @@ Solutions
       **Figure 2** Running status of chronyd
 
    If the problem persists after chronyd is restarted, contact technical support.
+
+.. meta::
+   :description: Troubleshoot node clock sync issues on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Node Clock Synchronization, NTPD, Chronyd, T Cloud Public

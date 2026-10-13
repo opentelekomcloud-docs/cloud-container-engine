@@ -148,3 +148,7 @@ Node OS
 -------
 
 Service container runtimes share the kernel and underlying calls of nodes. To ensure compatibility, select a Linux distribution version that is the same as or close to that of the final service container image for the node OS.
+
+.. meta::
+   :description: Learn CCE cluster selection best practices.
+   :keywords: Cloud Container Engine, CCE, Kubernetes cluster, cluster types, best practices

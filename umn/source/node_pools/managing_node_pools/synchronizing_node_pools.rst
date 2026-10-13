@@ -41,3 +41,7 @@ Batch Synchronization
    -  In the node list, select the nodes requiring the synchronization of node pool configurations.
 
 #. Click **OK**.
+
+.. meta::
+   :description: Learn how to manually synchronize node pool configurations in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node Pools, Configuration Synchronization, Kubernetes, T Cloud Public

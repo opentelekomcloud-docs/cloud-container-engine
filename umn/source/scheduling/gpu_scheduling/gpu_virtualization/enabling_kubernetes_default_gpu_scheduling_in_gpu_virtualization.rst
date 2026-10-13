@@ -107,3 +107,7 @@ Example of Shared GPU Scheduling
    The output shows that the total GPU memory that can be used by the pod is 2304 MiB.
 
    In this example, the node offers 24258 MiB of GPU memory in total. A 0.1-GPU request (2425.8 MiB) is rounded down to the nearest 128 MiB block, yielding 2304 MiB (18 x 128 MiB).
+
+.. meta::
+   :description: Enable Kubernetes' default GPU scheduling on T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, Kubernetes, GPU virtualization, GPU scheduling, nvidia.com/gpu

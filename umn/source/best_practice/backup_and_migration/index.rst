@@ -12,3 +12,7 @@ Backup and Migration
    :hidden: 
 
    backing_up_and_migrating_clusters/index
+
+.. meta::
+   :description: Learn how to backup and migrate clusters with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Backup, Migration, Clusters

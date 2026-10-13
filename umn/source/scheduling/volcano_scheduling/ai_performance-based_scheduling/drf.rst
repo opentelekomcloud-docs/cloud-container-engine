@@ -52,3 +52,7 @@ After Volcano is installed, you can enable or disable DRF scheduling on the **Sc
    This function helps you enhance the service throughput of the cluster and improve service running performance.
 
 #. Click **Confirm**.
+
+.. meta::
+   :description: Learn how T Cloud Public's Cloud Container Engine uses Dominant Resource Fairness for fair multi-resource scheduling, boosting performance for AI and big dat...
+   :keywords: Cloud Container Engine, DRF, Volcano, Scheduling Algorithm, Resource Allocation

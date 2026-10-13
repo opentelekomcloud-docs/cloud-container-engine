@@ -175,3 +175,7 @@ The SNI certificate **example-test** is used as an example. The domain name must
       curl -H "Host:example.com" -k https://${ELB_IP}:443
 
    If the ingress can be accessed, the certificate is correctly configured.
+
+.. meta::
+   :description: Learn to configure SNI for Nginx Ingress on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Nginx Ingress, SNI, HTTPS, Kubernetes

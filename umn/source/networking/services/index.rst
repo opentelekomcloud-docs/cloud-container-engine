@@ -20,3 +20,7 @@ Services
    nodeport
    loadbalancer/index
    headless_service
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine services: ClusterIP, NodePort, LoadBalancer, and Headless.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Container Orchestration, Cloud Services

@@ -12,3 +12,7 @@ Priority-based Scheduling
    :hidden: 
 
    priority-based_scheduling
+
+.. meta::
+   :description: Explore Priority-based Scheduling on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Priority-based Scheduling, Container Orchestration, Cloud Service

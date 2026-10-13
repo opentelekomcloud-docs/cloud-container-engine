@@ -79,3 +79,7 @@ The rules for configuring the priority of a forwarding policy are as follows:
    ================== =============== ========
 
 In this example, the access request to **www.example.com/test1** satisfies both forwarding policies 1 and 2, so the request will be forwarded based on the **forwarding policy 1**.
+
+.. meta::
+   :description: Learn how T Cloud Public CCE integrates ELB forwarding policies for LoadBalancer ingresses, supporting URL redirection, rewriting, and priority-based traffic...
+   :keywords: Cloud Container Engine, CCE, LoadBalancer Ingress, ELB, Forwarding Policy

@@ -395,3 +395,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Update node pool configuration parameters in T Cloud Public CCE clusters via API.
+   :keywords: Cloud Container Engine, Node Pool, T Cloud Public, Configuration, API

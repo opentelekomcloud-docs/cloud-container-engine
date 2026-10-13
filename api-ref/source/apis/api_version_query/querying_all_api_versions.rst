@@ -103,3 +103,7 @@ Status Code
    =========== ==================================
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Query all available API versions for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, API versions, container orchestration, cloud service

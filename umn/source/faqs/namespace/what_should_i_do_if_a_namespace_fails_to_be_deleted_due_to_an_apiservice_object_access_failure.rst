@@ -34,3 +34,7 @@ Use either of the following methods:
 -  Delete the APIService object in the error message. If the object is created by an add-on, uninstall the add-on.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516078121.png
+
+.. meta::
+   :description: Resolve CCE namespace deletion failures caused by APIService access errors on T Cloud Public.
+   :keywords: Cloud Container Engine, Kubernetes, Namespace, APIService, metrics-server

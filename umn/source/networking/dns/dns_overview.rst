@@ -92,3 +92,7 @@ Helpful Links
 You can also configure DNS in a workload. For details, see :ref:`DNS Configuration <cce_10_0365>`.
 
 You can also use CoreDNS to implement user-defined domain name resolution. For details, see :ref:`Using CoreDNS for Custom Domain Name Resolution <cce_10_0361>`.
+
+.. meta::
+   :description: Learn how T Cloud Public's Cloud Container Engine uses CoreDNS for automatic domain name resolution.
+   :keywords: Cloud Container Engine, CoreDNS, Kubernetes, DNS resolution, T Cloud Public

@@ -287,3 +287,7 @@ To use a specific NVIDIA driver version, perform the following operations to ins
       .. code-block::
 
          kubectl uncordon <NODE_NAME>
+
+.. meta::
+   :description: Learn how to manually upgrade GPU node drivers in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, GPU Node, NVIDIA Driver, kubectl, Node Pool

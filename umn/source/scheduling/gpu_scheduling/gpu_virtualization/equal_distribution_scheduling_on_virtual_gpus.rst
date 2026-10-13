@@ -180,3 +180,7 @@ Additional Information
 When GPU memory or compute is allocated to xGPU services, CCE applies bin packing by default to distribute workloads efficiently across multiple GPUs on a node. This helps reduce resource fragmentation and improves overall utilization in the cluster. However, when an equal distribution scheduling job is delivered, it may still enter a pending state despite sufficient total idle resources on the node. This happens because the number of available GPUs may not meet the scheduling requirement. That is an expected behavior.
 
 For example, a node has three GPUs (numbered 0, 1, and 2) with remaining memory of 4 GiB, 4 GiB, and 8 GiB, respectively. There is a workload with two pods, each pod requesting two GPUs and 4 GiB of memory per GPU. The total GPU memory available on the node is 16 GiB (4 + 4 + 8), exactly what the workload demands (2 pods x 2 x 4 = 16 GiB). Following bin packing rules, CCE assigns GPU 0 and GPU 1 to the first pod. This satisfies its requirements of two separate GPUs and 4 GiB of memory. There is only one GPU left, GPU 2 with 8 GiB of memory. The second pod still needs two separate GPUs, but the node no longer meets that condition. So even though there is enough memory, the second pod fails to schedule, and the workload cannot be placed on the node.
+
+.. meta::
+   :description: Optimize GPU resource use with T Cloud Public's Equal Distribution Scheduling on Virtual GPUs.
+   :keywords: Cloud Container Engine, Virtual GPUs, Equal Distribution Scheduling, GPU Memory Isolation, Resource Utilization

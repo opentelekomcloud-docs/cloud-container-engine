@@ -155,3 +155,7 @@ Using kubectl to Configure HTTP/2
 
       NAME          CLASS    HOSTS     ADDRESS          PORTS   AGE
       ingress-test  cce      *         121.**.**.**     80,443  10s
+
+.. meta::
+   :description: Learn how to configure HTTP/2 for LoadBalancer Ingress in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, HTTP/2, LoadBalancer Ingress, Kubernetes, ELB

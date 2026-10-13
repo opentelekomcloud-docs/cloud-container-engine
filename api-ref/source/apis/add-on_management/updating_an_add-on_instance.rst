@@ -332,3 +332,7 @@ Status Codes
    =========== ===========
 
 For the description about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Update an add-on instance in T Cloud Public's Cloud Container Engine using the PUT /api/v3/addons/{id} API.
+   :keywords: Cloud Container Engine, T Cloud Public, add-on instance, cluster management, API update

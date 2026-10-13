@@ -391,3 +391,7 @@ To use an ELB certificate for an ingress, you can specify the **kubernetes.io/el
       curl -H "Host:example.com" -k https://${ELB_IP}:443
 
    If the ingress can be accessed, the certificate is configured.
+
+.. meta::
+   :description: Learn to configure SNI for LoadBalancer Ingress in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, LoadBalancer Ingress, SNI, TLS certificate, ELB certificate

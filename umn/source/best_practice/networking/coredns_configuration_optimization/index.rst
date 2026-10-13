@@ -16,3 +16,7 @@ CoreDNS Configuration Optimization
    coredns_optimization_overview
    client/index
    server/index
+
+.. meta::
+   :description: Optimize CoreDNS in T Cloud Public's Cloud Container Engine for better performance.
+   :keywords: Cloud Container Engine, CoreDNS, Configuration Optimization, Kubernetes, T Cloud Public

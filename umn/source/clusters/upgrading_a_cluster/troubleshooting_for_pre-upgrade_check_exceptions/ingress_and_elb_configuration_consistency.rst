@@ -16,3 +16,7 @@ Solutions
 ---------
 
 Based on the diagnostic analysis logs, determine which configurations require correction. Typically, this issue occurs when different forwarding policies are configured for the listener associated with the target ingress. This causes a mismatch with the forwarding policies configured for the cluster ingress. To resolve this, delete the additional forwarding policies from the current listener and add them on another listener.
+
+.. meta::
+   :description: Ensure Ingress and ELB configuration consistency in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, Ingress, ELB, Configuration Consistency, Kubernetes

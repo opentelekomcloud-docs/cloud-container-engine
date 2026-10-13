@@ -36,3 +36,7 @@ LoadBalancer
    changing_a_custom_eip_for_a_loadbalancer_service
    setting_the_pod_readiness_status_through_an_elb_health_check
    enabling_icmp_security_group_rules
+
+.. meta::
+   :description: Learn to create and configure LoadBalancer services in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, LoadBalancer, T Cloud Public, Kubernetes, Container Networking

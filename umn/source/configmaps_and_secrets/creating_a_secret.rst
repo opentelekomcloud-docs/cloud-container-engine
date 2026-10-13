@@ -255,3 +255,7 @@ After creating a secret, you can update or delete it as described in :ref:`Table
    |                                   | #. Click **Delete** above the secret list.                                                |
    |                                   | #. Follow the prompts to delete the secrets.                                              |
    +-----------------------------------+-------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to create secrets in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Secret, Kubernetes, sensitive data, containerized workload

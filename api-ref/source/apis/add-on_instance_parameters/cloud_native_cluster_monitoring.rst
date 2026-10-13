@@ -190,3 +190,7 @@ Example Request
            }
        }
    }
+
+.. meta::
+   :description: Monitor your Kubernetes clusters with T Cloud Public's Cloud Container Engine add-on.
+   :keywords: Cloud Container Engine, Kubernetes, Monitoring, Prometheus, T Cloud Public

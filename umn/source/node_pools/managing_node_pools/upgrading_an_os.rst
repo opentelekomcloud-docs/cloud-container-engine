@@ -78,3 +78,7 @@ Procedure for Non-default Node Pools
    -  In the node list, select the nodes requiring the synchronization of node pool configurations.
 
 #. Click **OK**.
+
+.. meta::
+   :description: Learn how to manually upgrade OS images for nodes in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, OS upgrade, node pool, Kubernetes, T Cloud Public

@@ -14,3 +14,7 @@ VPC Network Settings
 
    vpc_network_model
    expanding_the_container_cidr_block_of_a_cluster_that_uses_a_vpc_network
+
+.. meta::
+   :description: Manage VPC network settings for Cloud Container Engine clusters on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, VPC, Container CIDR Block, Network Settings

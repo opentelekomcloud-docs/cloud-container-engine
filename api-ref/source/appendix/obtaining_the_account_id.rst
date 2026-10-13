@@ -18,3 +18,7 @@ An account ID is required for some URLs when an API is called. To obtain an acco
       :alt: **Figure 1** Obtaining the Account ID
 
       **Figure 1** Obtaining the Account ID
+
+.. meta::
+   :description: Learn how to obtain your account ID for T Cloud Public Cloud Container Engine APIs.
+   :keywords: Cloud Container Engine, T Cloud Public, Account ID, API, Management Console

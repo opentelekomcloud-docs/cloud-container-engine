@@ -336,3 +336,7 @@ You can mount a secret as a volume to the specified container path. Contents in 
          kubectl exec nginx-secret-*** -- cat /etc/foo/username
 
       The expected output is the same as the content in the secret.
+
+.. meta::
+   :description: Learn how to use secrets in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, Secrets, Kubernetes, Workloads, Environment Variables

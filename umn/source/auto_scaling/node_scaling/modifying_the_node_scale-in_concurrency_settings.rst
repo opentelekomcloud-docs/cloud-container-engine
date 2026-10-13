@@ -55,3 +55,7 @@ You can view the logs of the add-on pods to ensure that the new startup paramete
    kubectl logs -f -n kube-system -l app=cluster-autoscaler
 
 .. |image1| image:: /_static/images/en-us_image_0000002484119358.png
+
+.. meta::
+   :description: Learn how to modify node scale-in concurrency settings in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, Node Scale-In, Cluster Autoscaler, Auto Scaling, Container Management

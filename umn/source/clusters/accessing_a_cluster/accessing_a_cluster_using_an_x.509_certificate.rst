@@ -51,3 +51,7 @@ Procedure
       ...
 
    For more cluster APIs, see `Kubernetes API <https://kubernetes.io/docs/reference/kubernetes-api/>`__.
+
+.. meta::
+   :description: Learn how to securely access T Cloud Public CCE clusters using X.
+   :keywords: Cloud Container Engine, X.509 certificate, cluster access, Kubernetes, security

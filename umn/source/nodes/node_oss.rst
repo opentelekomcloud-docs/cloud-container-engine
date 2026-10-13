@@ -44,3 +44,7 @@ Node OSs and Cluster Types
     +                     +-----------------+----------------------+----------------------------+---------------------------+--------------------------+
     |                     | v1.31           | Supported            | Not supported              | Supported                 | Supported                |
     +---------------------+-----------------+----------------------+----------------------------+---------------------------+--------------------------+
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine node OS mappings.
+   :keywords: Cloud Container Engine, Node OS, Cluster Types, HCE OS 2.0, Cluster Versions

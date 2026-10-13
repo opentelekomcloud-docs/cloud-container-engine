@@ -22,3 +22,7 @@ Procedure
    updating_resources_accordingly
    performing_additional_tasks
    troubleshooting
+
+.. meta::
+   :description: Learn how to migrate resources in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, cluster migration, resource management, troubleshooting

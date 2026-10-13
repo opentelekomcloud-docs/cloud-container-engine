@@ -32,3 +32,7 @@ Notes and Constraints
 -  Local EVs are supported only when the cluster version is v1.21.2-r0 or later and the Everest add-on version is 1.2.29 or later.
 -  Do not manually delete the corresponding storage pool or detach data disks from the node. Otherwise, exceptions such as data loss may occur.
 -  Ensure that the **/var/lib/kubelet/pods/** directory is not mounted to the pod on the node. Otherwise, the pod, mounted with such volumes, may fail to be deleted.
+
+.. meta::
+   :description: Learn about emptyDir ephemeral volumes in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, emptyDir, ephemeral volumes, Kubernetes, T Cloud Public

@@ -260,3 +260,7 @@ Helpful Links
 -  `Using AppArmor in Ubuntu <https://documentation.ubuntu.com/server/how-to/security/apparmor/index.html>`__
 -  `Using AppArmor to Confine Container Access to Resources <https://kubernetes.io/docs/tutorials/security/apparmor/>`__
 -  `AppArmor Profile Quick Guide <https://gitlab.com/apparmor/apparmor/-/wikis/QuickProfileLanguage>`__
+
+.. meta::
+   :description: Learn to use AppArmor to confine container access to resources on Ubuntu nodes in T Cloud Public CCE clusters.
+   :keywords: Cloud Container Engine, AppArmor, Container Security, Ubuntu, Access Control

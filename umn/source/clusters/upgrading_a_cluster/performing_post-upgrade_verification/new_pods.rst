@@ -64,3 +64,7 @@ Solution
 --------
 
 If the pod cannot be created or the pod status is abnormal, contact technical support and specify whether the exception occurs on new nodes or existing nodes.
+
+.. meta::
+   :description: Learn how to verify new pods on existing and new nodes after upgrading your T Cloud Public CCE cluster using DaemonSets.
+   :keywords: Cloud Container Engine, CCE, Pod Creation, Cluster Upgrade, DaemonSet

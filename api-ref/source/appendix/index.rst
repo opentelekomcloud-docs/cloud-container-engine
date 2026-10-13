@@ -36,3 +36,7 @@ Appendix
    node_flavor_description
    attaching_disks_to_a_node
    space_allocation_of_a_data_disk
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine API appendix.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Container Management, API Documentation

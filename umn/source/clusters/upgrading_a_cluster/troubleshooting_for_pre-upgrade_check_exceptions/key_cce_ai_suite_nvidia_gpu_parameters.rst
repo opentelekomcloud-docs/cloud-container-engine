@@ -24,3 +24,7 @@ Solutions
 #. Check whether the **UpdateStrategy** value is changed to **OnDelete**. If so, change it back to **RollingUpdate**.
 
 #. Check whether the **NVIDIA_DRIVER_DOWNLOAD_URL** value is the same as the GPU driver version on the add-on page. If not, correct the version on the add-on page.
+
+.. meta::
+   :description: Learn to fix CCE AI Suite NVIDIA GPU config errors.
+   :keywords: CCE, AI Suite, NVIDIA GPU, Kubernetes, Cluster Management

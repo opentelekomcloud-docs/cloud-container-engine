@@ -16,3 +16,7 @@ How Do I Download kubeconfig for Connecting to a Cluster Using kubectl?
       :alt: **Figure 1** Downloading kubeconfig.json
 
       **Figure 1** Downloading kubeconfig.json
+
+.. meta::
+   :description: Learn how to download kubeconfig for your T Cloud Public CCE cluster to connect via kubectl.
+   :keywords: Cloud Container Engine, CCE, kubeconfig, kubectl, Kubernetes

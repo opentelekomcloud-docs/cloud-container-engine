@@ -22,3 +22,7 @@ GPU Scheduling
    gpu_monitoring/index
    gpu_auto_scaling/index
    gpu_fault_handling
+
+.. meta::
+   :description: Explore GPU scheduling features in T Cloud Public's Cloud Container Engine, including virtualization, auto-scaling, monitoring, and fault handling.
+   :keywords: Cloud Container Engine, GPU Scheduling, Kubernetes, GPU Virtualization, T Cloud Public

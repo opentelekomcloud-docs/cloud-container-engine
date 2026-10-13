@@ -155,3 +155,7 @@ You can run the **kill -l** command to view the signals and corresponding values
    +---------+-------+--------+-------------------------------------------------------------------------------------------------------------------------------------+
    | SIGTTOU | 22    | Stop   | The background process reads the output value from the terminal.                                                                    |
    +---------+-------+--------+-------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to locate faults in T Cloud Public's Cloud Container Engine using Kubernetes exit codes.
+   :keywords: Cloud Container Engine, Kubernetes, exit code, fault location, kubectl

@@ -94,3 +94,7 @@ Procedure
    |image1|
 
 .. |image1| image:: /_static/images/en-us_image_0000002484118404.png
+
+.. meta::
+   :description: Learn how to use Init Containers in T Cloud Public's Cloud Container Engine to initialize applications, wait for dependencies, and configure settings before ...
+   :keywords: Cloud Container Engine, Init Containers, Kubernetes, Application Initialization, Pod Configuration

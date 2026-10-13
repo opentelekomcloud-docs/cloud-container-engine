@@ -16,3 +16,7 @@ Job Management
    obtaining_the_job_list
    obtaining_job_details
    deleting_a_job
+
+.. meta::
+   :description: Manage job lifecycles on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Job Management, T Cloud Public, Job Lifecycle, Container Orchestration

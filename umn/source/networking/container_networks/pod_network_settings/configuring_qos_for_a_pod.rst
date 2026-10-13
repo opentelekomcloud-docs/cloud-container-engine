@@ -82,3 +82,7 @@ If these two parameters are not specified, the bandwidth is not limited.
 .. note::
 
    After modifying the ingress or egress bandwidth limit of a pod, restart the container for the modification to take effect. After annotations are modified in a pod not managed by workloads, the container will not be restarted, so the bandwidth limits do not take effect. You can create a pod again or manually restart the container.
+
+.. meta::
+   :description: Learn how to configure pod bandwidth limits in T Cloud Public's Cloud Container Engine to resolve jitter caused by bandwidth preemption.
+   :keywords: Cloud Container Engine, QoS, Pod, Bandwidth Limitation, T Cloud Public

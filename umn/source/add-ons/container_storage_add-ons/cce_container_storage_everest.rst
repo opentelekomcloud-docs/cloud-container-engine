@@ -411,3 +411,7 @@ Release History
    |                       |                           | -  Optimized and enhanced disk status detection and log output for attaching and detaching operations. |
    |                       |                           | -  Improved the reliability of determining authentication expiration.                                  |
    +-----------------------+---------------------------+--------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: CCE Container Storage (Everest) by T Cloud Public provides unified, persistent storage for Kubernetes.
+   :keywords: CCE, Container Storage, Everest, CSI, Kubernetes

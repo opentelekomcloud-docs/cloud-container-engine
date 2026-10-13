@@ -26,3 +26,7 @@ Managing Clusters
    deleting_a_cluster
    preventing_cluster_deletion
    hibernating_or_waking_up_a_cluster
+
+.. meta::
+   :description: Manage T Cloud Public CCE clusters: modify configs, scale nodes, enable overload control, and manage deletion or hibernation states.
+   :keywords: Cloud Container Engine, T Cloud Public, Cluster Management, Kubernetes, Container Orchestration

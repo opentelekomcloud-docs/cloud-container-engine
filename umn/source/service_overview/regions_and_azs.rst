@@ -36,3 +36,7 @@ Regions and Endpoints
 ---------------------
 
 When using an API to access resources, you must specify a region and endpoint. For more information about regions and endpoints, see `Regions and Endpoints <https://docs.otc.t-systems.com/en-us/endpoint/index.html>`__.
+
+.. meta::
+   :description: Learn about T Cloud Public's Cloud Container Engine regions and availability zones.
+   :keywords: Cloud Container Engine, T Cloud Public, Regions, Availability Zones, Cloud Services

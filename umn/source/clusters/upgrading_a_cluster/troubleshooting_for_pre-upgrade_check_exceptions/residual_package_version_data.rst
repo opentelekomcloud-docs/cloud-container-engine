@@ -30,3 +30,7 @@ Manually perform the following operations to clear the residual resources:
       kubectl delete packageversion 10.12.1.109
 
 #. Check residual package versions again.
+
+.. meta::
+   :description: Resolve residual CRD package version data in T Cloud Public CCE clusters.
+   :keywords: Cloud Container Engine, residual package version, CRD resources, kubectl, cluster maintenance

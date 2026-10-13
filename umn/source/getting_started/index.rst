@@ -20,3 +20,7 @@ Getting Started
    creating_a_kubernetes_cluster
    deploying_a_deployment_nginx
    deploying_wordpress_and_mysql_that_depend_on_each_other/index
+
+.. meta::
+   :description: Get started with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes Cluster, Deployment, Nginx, WordPress

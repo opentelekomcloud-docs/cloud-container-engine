@@ -91,3 +91,7 @@ Helpful Links
 -------------
 
 You can schedule workloads based on node labels. For details, see :ref:`Overview <cce_10_0232>`.
+
+.. meta::
+   :description: Learn how to manage node labels in T Cloud Public's Cloud Container Engine for node classification and workload scheduling affinity.
+   :keywords: Cloud Container Engine, Node Labels, Node Management, Node Affinity, T Cloud Public

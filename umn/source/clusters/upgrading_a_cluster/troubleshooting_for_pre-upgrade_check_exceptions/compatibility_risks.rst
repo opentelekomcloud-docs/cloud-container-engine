@@ -63,3 +63,7 @@ Version Compatibility
    +----------------------------------------------------------+---------------------------------------------------------+-------------------------------------------------------------------+-----------------+
    | Burstable                                                | Guaranteed                                              | Burstable                                                         | Yes             |
    +----------------------------------------------------------+---------------------------------------------------------+-------------------------------------------------------------------+-----------------+
+
+.. meta::
+   :description: Manage cloud containers with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Version Compatibility, Patch Upgrade, Self-Check

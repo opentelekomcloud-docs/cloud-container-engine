@@ -63,3 +63,7 @@ kubectl Permissions
 You can use :ref:`kubectl <cce_10_0107>` to access Kubernetes resources in a cluster.
 
 When you access a cluster using kubectl, CCE uses the kubeconfig.json file generated on the cluster for authentication. This file contains user information, based on which CCE determines which Kubernetes resources can be accessed via kubectl. The permissions recorded in a kubeconfig.json file vary from user to user. The permissions that a user has are listed in :ref:`Table 1 <cce_10_0187__table886210176509>`.
+
+.. meta::
+   :description: Manage CCE permissions with IAM and Kubernetes RBAC.
+   :keywords: Cloud Container Engine, IAM, Kubernetes RBAC, Permissions Management, Cluster-level Permissions

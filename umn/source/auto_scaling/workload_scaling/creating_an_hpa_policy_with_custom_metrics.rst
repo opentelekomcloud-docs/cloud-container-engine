@@ -79,3 +79,7 @@ Step 4: Verify HPA Scaling
 #. Click the workload name and switch to the **Auto Scaling** tab. You can find that the HPA policy has been triggered.
 
 .. |image1| image:: /_static/images/en-us_image_0000002483959146.png
+
+.. meta::
+   :description: Learn how to create HPA policies with custom metrics in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, HPA Policy, Custom Metrics, Cloud Native Cluster Monitoring, Prometheus

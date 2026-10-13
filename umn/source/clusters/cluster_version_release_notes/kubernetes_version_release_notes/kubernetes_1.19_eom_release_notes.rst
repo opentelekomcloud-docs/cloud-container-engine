@@ -89,3 +89,7 @@ For more details about the performance comparison and function evolution between
 
 -  `Kubernetes v1.19.0 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#changes>`__
 -  `Kubernetes v1.18.0 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.18.md#changes>`__
+
+.. meta::
+   :description: Explore T Cloud Public's CCE Kubernetes 1.
+   :keywords: Cloud Container Engine, Kubernetes, T Cloud Public, Release Notes, Container Management

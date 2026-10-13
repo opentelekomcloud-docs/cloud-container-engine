@@ -20,3 +20,7 @@ Network Exception Troubleshooting
    what_should_i_do_if_a_container_fails_to_access_the_internet
    what_should_i_do_if_a_node_fails_to_access_the_internet
    what_could_cause_access_exceptions_after_configuring_an_https_certificate_for_a_loadbalancer_ingress
+
+.. meta::
+   :description: Troubleshoot network exceptions in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Network Troubleshooting, Container Networking, LoadBalancer

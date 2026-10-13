@@ -24,3 +24,7 @@ Networking
    coredns_configuration_optimization/index
    pre-binding_container_elastic_network_interfaces_for_cce_turbo_clusters
    accessing_an_ip_address_outside_a_cluster_that_uses_a_vpc_network_by_using_source_pod_ip_addresses_within_the_cluster
+
+.. meta::
+   :description: Explore T Cloud Public's CCE networking best practices, including CIDR planning, network models, load balancing, and CoreDNS optimization.
+   :keywords: Cloud Container Engine, Networking, CIDR Blocks, Load Balancing, VPC

@@ -87,3 +87,7 @@ The kubelet option **cpu-manager-policy** defaults to **static**. This allows gr
    Verify that workloads on the node can be successfully restarted or created.
 
    For details, see :ref:`What Should I Do If I Fail to Restart or Create Workloads on a Node After Modifying the Node Specifications? <cce_faq_00189>`
+
+.. meta::
+   :description: Resolve T Cloud Public CCE workloads stuck in creating state.
+   :keywords: Cloud Container Engine, workload, sandbox, pause image, node

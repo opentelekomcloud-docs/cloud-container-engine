@@ -80,3 +80,7 @@ HPA frequently scales down the number of the coredns add-on replicas. Therefore,
    In the **HPA Policies** area, you can customize HPA policies based on metrics such as CPU usage and memory usage to automatically scale out the CoreDNS pods.
 
 #. Click **Create**. If the latest status is **Started**, the policy has taken effect.
+
+.. meta::
+   :description: Learn best practices for adjusting CoreDNS in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, CoreDNS, Kubernetes, Pod Anti-Affinity, HPA

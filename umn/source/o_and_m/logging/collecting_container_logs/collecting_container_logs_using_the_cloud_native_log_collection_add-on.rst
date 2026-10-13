@@ -110,3 +110,7 @@ Enabling Logging on the Console
 
    a. In the navigation pane, choose **Logging**.
    b. View different types of logs:
+
+.. meta::
+   :description: Learn how to collect container logs using the Cloud Native Log Collection add-on on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Log Collection, Fluent Bit, OpenTelemetry, Kubernetes

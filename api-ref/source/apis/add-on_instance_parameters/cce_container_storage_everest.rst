@@ -228,3 +228,7 @@ Example Request
        }
      }
    }
+
+.. meta::
+   :description: Manage Kubernetes storage with CCE Container Storage (Everest) on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, Container Storage, Kubernetes, CSI

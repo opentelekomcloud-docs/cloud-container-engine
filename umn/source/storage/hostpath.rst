@@ -107,3 +107,7 @@ Using a hostPath Through kubectl
 #. Create a workload.
 
    **kubectl apply -f nginx-hostpath.yaml**
+
+.. meta::
+   :description: Learn to mount host directories to containers in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, hostPath, volume, container, CCE

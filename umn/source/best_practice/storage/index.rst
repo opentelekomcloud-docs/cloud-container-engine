@@ -22,3 +22,7 @@ Storage
    migrating_the_storage_class_used_by_a_cluster_of_v1.15_from_flexvolume_to_csi_everest
    using_custom_storage_classes
    scheduling_evs_disks_across_azs_using_csi-disk-topology
+
+.. meta::
+   :description: Explore T Cloud Public's CCE storage best practices: expand space, mount object storage across accounts, and use SFS Turbo with StorageClass.
+   :keywords: CCE, Storage, SFS Turbo, EVS, CSI

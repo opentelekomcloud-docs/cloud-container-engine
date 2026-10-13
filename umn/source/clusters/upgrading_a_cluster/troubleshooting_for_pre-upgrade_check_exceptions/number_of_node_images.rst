@@ -38,3 +38,7 @@ Solutions
             crictl images | grep "<none>" | awk '{print $3}' | xargs -r crictl rmi
 
 -  Too many images slow Docker or containerd startup on your nodes. This delays containers that burst stdout logs for just a few seconds typically. Skip this check if services are not affected.
+
+.. meta::
+   :description: Manage Cloud Container Engine node images.
+   :keywords: Cloud Container Engine, node images, Docker, containerd, image pruning

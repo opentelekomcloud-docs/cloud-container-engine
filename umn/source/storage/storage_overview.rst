@@ -143,3 +143,7 @@ Helpful Links
    -  :ref:`Local PVs <cce_10_0391>`
    -  :ref:`emptyDir <cce_10_0636>`
    -  :ref:`hostPath <cce_10_0377>`
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine storage.
+   :keywords: CCE, Kubernetes, CSI, Container Storage, T Cloud Public

@@ -195,3 +195,7 @@ You can perform the operations listed in :ref:`Table 2 <cce_10_0277__table161953
 
       -  v1.28 and later clusters: 2.7.35 and later versions (The source version must be later than 2.7.13).
       -  v1.27 and earlier clusters: 2.1.19 and later versions (The source version must be later than 2.1.8).
+
+.. meta::
+   :description: Manage extended cluster functions with CCE add-ons on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, add-ons, Helm charts, containerized applications

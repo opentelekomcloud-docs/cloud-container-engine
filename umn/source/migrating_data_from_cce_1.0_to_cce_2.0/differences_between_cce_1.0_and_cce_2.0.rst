@@ -35,3 +35,7 @@ The following table compares the two versions.
    App Designer       ``-``
    App Manager        Deployment
    ================== ====================================
+
+.. meta::
+   :description: Explore CCE 2.
+   :keywords: Cloud Container Engine, T Cloud Public, CCE 2.0, Kubernetes, Container Orchestration

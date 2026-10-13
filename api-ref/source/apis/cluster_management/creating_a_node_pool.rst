@@ -1122,3 +1122,7 @@ Status Code
    +-------------+-------------------------------------------------------------------------------+
 
 For the description about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Learn how to create a node pool in a specified cluster using the Cloud Container Engine API from T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, Node Pool, Kubernetes, API

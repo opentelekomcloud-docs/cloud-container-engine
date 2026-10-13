@@ -55,3 +55,7 @@ Changes since Helm v2:
 
 -  Differences between Helm v2 and Helm v3: https://v3.helm.sh/docs/faq/changes_since_helm2
 -  How to migrate from Helm v2 to Helm v3: https://helm.sh/docs/topics/v2_v3_migration
+
+.. meta::
+   :description: Learn Helm v2 to v3 differences for T Cloud Public CCE.
+   :keywords: Cloud Container Engine, CCE, Helm v3, Kubernetes, T Cloud Public

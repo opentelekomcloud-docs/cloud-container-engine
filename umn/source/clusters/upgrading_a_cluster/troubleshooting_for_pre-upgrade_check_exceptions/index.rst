@@ -158,3 +158,7 @@ Troubleshooting for Pre-upgrade Check Exceptions
    time_zone_of_master_nodes
    snatipranges
    add-on_configuration_consistency
+
+.. meta::
+   :description: Resolve Pre-upgrade Check exceptions in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Kubernetes, Troubleshooting, Node Management, Pre-upgrade Check

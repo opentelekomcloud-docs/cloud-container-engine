@@ -277,3 +277,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Use T Cloud Public's Cloud Container Engine API to get configurable node pool parameters.
+   :keywords: Cloud Container Engine, Node Pool, Configuration, API, T Cloud Public

@@ -73,3 +73,7 @@ Drain, cordon, and uncordon operations of kubectl:
 -  **uncordon**: Marks the node as schedulable.
 
 For more information, see the `kubectl documentation <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#drain>`__.
+
+.. meta::
+   :description: Learn how to safely evict all pods on a node using kubectl drain in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, kubectl drain, pod eviction, node management, container orchestration

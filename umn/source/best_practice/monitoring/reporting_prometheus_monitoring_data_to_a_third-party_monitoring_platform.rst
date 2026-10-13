@@ -82,3 +82,7 @@ After the preceding configuration is complete, log in to the Prometheus console 
 .. |image1| image:: /_static/images/en-us_image_0000002483958232.png
 .. |image2| image:: /_static/images/en-us_image_0000002484118214.png
 .. |image3| image:: /_static/images/en-us_image_0000002516078181.png
+
+.. meta::
+   :description: Learn how to configure Cloud Container Engine to report Prometheus metrics to third-party monitoring platforms using Remote Write APIs and authentication.
+   :keywords: Cloud Container Engine, Prometheus, Monitoring, Remote Write, Kubernetes

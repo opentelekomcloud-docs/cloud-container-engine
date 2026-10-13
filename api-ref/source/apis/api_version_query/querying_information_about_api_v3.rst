@@ -75,3 +75,7 @@ Status Code
    =========== ==================================
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Query API v3 information for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, API v3, Container Service, T Cloud Public, Kubernetes

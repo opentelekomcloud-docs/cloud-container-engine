@@ -212,3 +212,7 @@ Example Request
        }
      }
    }
+
+.. meta::
+   :description: Deploy and manage containerized apps with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Native Log Collection, Fluent Bit, OpenTelemetry, Kubernetes, AOM

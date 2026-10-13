@@ -10,3 +10,7 @@ CCE PersistentVolumeClaims (PVCs) are implemented as they are in Kubernetes. A P
 Cloud Eye allows users to view cloud service metrics. These metrics are built-in based on cloud service attributes. After users enable a cloud service on the cloud platform, Cloud Eye automatically associates its built-in metrics. Users can track the cloud service status by monitoring these metrics.
 
 It is recommended that users who have storage fault detection requirements use Cloud Eye to monitor underlying storage and send alarm notifications.
+
+.. meta::
+   :description: Learn why CCE PVCs cannot detect underlying storage faults.
+   :keywords: CCE, Kubernetes, PVC, Cloud Eye, Storage Faults

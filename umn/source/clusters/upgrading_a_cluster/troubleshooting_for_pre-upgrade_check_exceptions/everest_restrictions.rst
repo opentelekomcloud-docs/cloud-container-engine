@@ -24,3 +24,7 @@ Solutions
 ---------
 
 There are compatibility restrictions on the current Everest add-on and it cannot be upgraded with the cluster upgrade. Contact technical support.
+
+.. meta::
+   :description: Learn about Everest add-on compatibility restrictions in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Everest add-on, compatibility restrictions, cluster upgrade, technical support

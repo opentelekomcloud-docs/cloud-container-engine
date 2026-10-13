@@ -140,3 +140,7 @@ If these discrepancies are not detected in advance, they may lead to unintended 
 
 .. |image1| image:: /_static/images/en-us_image_0000002484119160.png
 .. |image2| image:: /_static/images/en-us_image_0000002516199131.png
+
+.. meta::
+   :description: Ensure T Cloud Public CCE add-ons are ready before upgrades.
+   :keywords: Cloud Container Engine, T Cloud Public, Add-on Status, Helm Charts, Kubernetes

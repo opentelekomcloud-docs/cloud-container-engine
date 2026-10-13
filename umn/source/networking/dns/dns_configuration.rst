@@ -371,3 +371,7 @@ The following example describes how to configure DNS for workloads.
       nameserver 10.2.3.4
       search default.svc.cluster.local svc.cluster.local cluster.local
       options timeout:2 single-request-reopen ndots:5
+
+.. meta::
+   :description: Tune DNS config in T Cloud Public's CCE to prevent CoreDNS bottlenecks.
+   :keywords: Kubernetes, DNS, CoreDNS, Kube-DNS, performance tuning

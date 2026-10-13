@@ -126,3 +126,7 @@ A Docker image is built up from a series of layers that are stacked. When you cr
    Performance          Near-native             Poor
    Per-machine capacity Thousands of containers Tens of VMs
    ==================== ======================= ===========
+
+.. meta::
+   :description: Deploy scalable, secure Kubernetes clusters with T Cloud Public's CCE.
+   :keywords: CCE, Container Engine, Kubernetes, Docker, High Availability

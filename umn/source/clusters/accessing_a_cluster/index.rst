@@ -22,3 +22,7 @@ Accessing a Cluster
    accessing_a_cluster_using_a_custom_domain_name
    configuring_a_clusters_api_server_for_internet_access
    revoking_a_cluster_access_credential
+
+.. meta::
+   :description: Learn how to access your T Cloud Public Cloud Container Engine clusters using kubectl, X.
+   :keywords: Cloud Container Engine, T Cloud Public, cluster access, kubectl, API server

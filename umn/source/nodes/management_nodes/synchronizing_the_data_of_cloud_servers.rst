@@ -28,3 +28,7 @@ Synchronizing the Data of a Cloud Server
 #. Locate the target node and choose **More** > **Sync Server Data** in the **Operation** column.
 
    After the synchronization is complete, the "ECS data synchronization requested" message is displayed in the upper right corner.
+
+.. meta::
+   :description: Learn how to sync cloud server data like specs and IPs with CCE nodes.
+   :keywords: Cloud Container Engine, CCE, Cloud Server, Node, Synchronization

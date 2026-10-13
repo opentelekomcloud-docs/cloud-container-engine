@@ -110,3 +110,7 @@ Using kubectl
 
       NAME          CLASS    HOSTS           ADDRESS          PORTS   AGE
       ingress-test  cce      example.com     121.**.**.**     80,443  10s
+
+.. meta::
+   :description: Learn how to configure a range of listening ports for a LoadBalancer Ingress in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, LoadBalancer Ingress, Kubernetes, kubectl, T Cloud Public

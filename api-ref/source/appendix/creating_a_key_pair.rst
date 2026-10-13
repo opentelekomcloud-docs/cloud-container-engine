@@ -28,3 +28,7 @@ Procedure
 #. In the displayed dialog box, click **OK**.
 
    A key file in the **.pem** format is generated and automatically saved to the default directory on your local computer.
+
+.. meta::
+   :description: Create a key pair for T Cloud Public's Cloud Container Engine to authenticate node login.
+   :keywords: Cloud Container Engine, key pair, node authentication, ECS, T Cloud Public

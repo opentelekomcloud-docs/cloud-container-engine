@@ -86,3 +86,7 @@ To grant an IAM user the permissions to view or use resources of other cloud ser
    +-------------------------------------+------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Switching to other related services | Software Repository for Container (SWR)  | The CCE console provides links to other related services. To view or use these services, an IAM user must be assigned required permissions for the services.                                                                                  |
    +-------------------------------------+------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn about CCE console permission dependencies on T Cloud Public.
+   :keywords: CCE, IAM, permissions, policy, namespace

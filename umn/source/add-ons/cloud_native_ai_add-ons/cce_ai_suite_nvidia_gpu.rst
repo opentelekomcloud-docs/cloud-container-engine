@@ -510,3 +510,7 @@ Release History
 
 .. |image1| image:: /_static/images/en-us_image_0000002516199377.png
 .. |image2| image:: /_static/images/en-us_image_0000002516079369.png
+
+.. meta::
+   :description: Manage NVIDIA GPUs in T Cloud Public CCE.
+   :keywords: CCE AI Suite, NVIDIA GPU, container scheduling, GPU resource management, cloud native

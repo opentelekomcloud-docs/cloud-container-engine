@@ -19,3 +19,7 @@ Solution
 --------
 
 If a node malfunctions, :ref:`reset the node <cce_10_0003>`. If the fault persists, contact technical support.
+
+.. meta::
+   :description: Verify CCE node statuses post-upgrade.
+   :keywords: Cloud Container Engine, Node Statuses, Cluster Upgrade, Running State, Node Reset

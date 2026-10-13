@@ -46,3 +46,7 @@ Node Flavor Description
          GPU-accelerated        g7, pi5e, p5e
          Container-plus         m3n
          ====================== ===========================
+
+.. meta::
+   :description: Explore CCE node flavors for T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, node flavors, ECS specifications, cluster types

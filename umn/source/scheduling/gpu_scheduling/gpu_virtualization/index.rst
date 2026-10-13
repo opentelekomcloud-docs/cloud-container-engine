@@ -20,3 +20,7 @@ GPU Virtualization
    using_gpu_virtualization
    enabling_kubernetes_default_gpu_scheduling_in_gpu_virtualization
    equal_distribution_scheduling_on_virtual_gpus
+
+.. meta::
+   :description: Learn about GPU Virtualization in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, GPU Virtualization, Kubernetes, GPU Scheduling, T Cloud Public

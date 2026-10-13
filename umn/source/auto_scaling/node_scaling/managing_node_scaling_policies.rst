@@ -57,3 +57,7 @@ Enabling or Disabling a Node Scaling Policy
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Policies**. On the page displayed, click the **Node Scaling Policies** tab, locate the row containing the target policy click **Disable** in the **Operation** column. If the policy is in the disabled state, click **Enable** in the **Operation** column.
 #. In the dialog box displayed, confirm whether to disable or enable the node policy.
+
+.. meta::
+   :description: Learn to manage node scaling policies in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node Scaling Policies, Auto Scaling, Node Pools, CCE Console

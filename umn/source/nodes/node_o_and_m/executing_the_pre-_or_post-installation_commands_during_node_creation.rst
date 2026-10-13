@@ -52,3 +52,7 @@ Procedure
 #. Click **Submit**.
 
 .. |image1| image:: /_static/images/en-us_image_0000002484118386.png
+
+.. meta::
+   :description: Learn best practices for pre- and post-installation commands in T Cloud Public CCE.
+   :keywords: CCE, Cloud Container Engine, T Cloud Public, node creation, pre-installation

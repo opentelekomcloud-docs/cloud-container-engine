@@ -229,3 +229,7 @@ This section uses an Nginx workload as an example to describe how to add a LoadB
          **Figure 1** Accessing the /healthz interface of defaultbackend
 
 .. |image1| image:: /_static/images/en-us_image_0000002484119440.png
+
+.. meta::
+   :description: Learn how to create a LoadBalancer Ingress on the T Cloud Public CCE console to configure external access rules for your Kubernetes cluster workloads.
+   :keywords: Cloud Container Engine, Kubernetes, Ingress, LoadBalancer, Nginx

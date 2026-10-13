@@ -42,3 +42,7 @@ Procedure
       sed -i "s|password=.*|password=$MYSQL_PASSWORD|g" /root/apache-tomcat-7.0.82/webapps/awcp/WEB-INF/classes/conf/jdbc.properties
       # Start Tomcat.
       bash /root/apache-tomcat-7.0.82/bin/catalina.sh run
+
+.. meta::
+   :description: Learn to compile startup scripts for Cloud Container Engine on T Cloud Public.
+   :keywords: Cloud Container Engine, startup script, containerization, Docker, shell script

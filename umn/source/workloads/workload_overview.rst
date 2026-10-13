@@ -138,3 +138,7 @@ Workload Lifecycle
    +------------+-------------------------------------------------------------------------------------------------------------------------+
    | Deleting   | The workload is being deleted.                                                                                          |
    +------------+-------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: T Cloud Public's Cloud Container Engine simplifies Kubernetes workload management.
+   :keywords: Cloud Container Engine, Kubernetes, Workloads, Pods, T Cloud Public

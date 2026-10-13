@@ -182,3 +182,7 @@ Using kubectl
           ingress:
           - ip: 2.2.2.2
           - ip: 192.168.0.15
+
+.. meta::
+   :description: Learn to customize the EIP for a LoadBalancer Service in T Cloud Public CCE using the kubernetes.
+   :keywords: Cloud Container Engine, Kubernetes, LoadBalancer, Custom EIP, kubectl

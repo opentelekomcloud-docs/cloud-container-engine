@@ -14,3 +14,7 @@ AI Performance-based Scheduling
 
    drf
    gang
+
+.. meta::
+   :description: Optimize resource allocation with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, AI Performance-based Scheduling, DRF, Gang, T Cloud Public

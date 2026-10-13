@@ -396,3 +396,7 @@ You can also perform the operations listed in :ref:`Table 3 <cce_10_0630__table1
    | Editing Reclaim Policy | Modify the reclaim policy of a PV.                                                                                                         | #. In the navigation pane, choose **Storage**. Then click the **PVs** tab.                                                                                                              |
    |                        |                                                                                                                                            | #. Locate the row containing the target PV and choose **More** > **Edit Reclaim Policy**.                                                                                               |
    +------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn to dynamically create OBS buckets via PVCs in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, OBS Bucket, Dynamic PV, PVC, T Cloud Public

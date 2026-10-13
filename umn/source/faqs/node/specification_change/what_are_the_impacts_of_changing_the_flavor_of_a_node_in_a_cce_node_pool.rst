@@ -44,3 +44,7 @@ You are not advised to change the flavor of a node in a node pool. Instead, you 
 #. In the window that slides out from the right, select the node flavors to be expanded, configure the number of nodes to be added, and click **OK**.
 #. Click the **Nodes** tab, locate the row containing the target node, and choose **More** > **Nodal Drainage** to safely evict the service pods on the node.
 #. After the service pods are scheduled to a new node, locate the row containing the target node pool, click **Scaling**, select the flavor of the node to be reduced, configure the number of nodes to be removed, and click **OK**.
+
+.. meta::
+   :description: Learn how changing a node flavor in CCE impacts CPU, memory, and pod limits.
+   :keywords: Cloud Container Engine, CCE, Node Pool, Node Flavor, Auto Scaling

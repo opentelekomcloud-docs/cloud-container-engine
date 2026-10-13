@@ -36,3 +36,7 @@ Install it and add the corresponding domain name and DNS service address to reso
 
 .. |image1| image:: /_static/images/en-us_image_0000002516077753.jpg
 .. |image2| image:: /_static/images/en-us_image_0000002516077749.jpg
+
+.. meta::
+   :description: Fix CCE container DNS resolution failures.
+   :keywords: Cloud Container Engine, DNS resolution, CCE, container, add-ons

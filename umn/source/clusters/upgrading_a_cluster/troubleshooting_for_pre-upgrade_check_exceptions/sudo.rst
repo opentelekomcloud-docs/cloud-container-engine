@@ -36,3 +36,7 @@ Solutions
    .. code-block::
 
       chattr -i /etc/sudoers.d/sudoerspaas /etc/sudoers
+
+.. meta::
+   :description: Resolve sudo command and file permission issues during T Cloud Public CCE in-place cluster upgrades.
+   :keywords: Cloud Container Engine, T Cloud Public, sudo, cluster upgrade, node permissions

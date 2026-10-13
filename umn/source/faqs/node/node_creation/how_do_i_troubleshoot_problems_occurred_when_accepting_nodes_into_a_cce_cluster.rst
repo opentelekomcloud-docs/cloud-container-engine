@@ -56,3 +56,7 @@ If a node fails to be managed, a message will be displayed, indicating that the 
    disk /dev/sda has been partition, will skip this device\nRaw disk /dev/sdb has been partition, will skip this device\nwarning: selector can not match any evs volume
 
 To resolve this issue, attach an unpartitioned data disk of 20 GiB or higher to the node. After the node is managed, the unpartitioned data disk is used to store the container engine and kubelet. You can perform operations on the partitioned data disk that does not work as required.
+
+.. meta::
+   :description: Learn how to troubleshoot adding ECSs to a T Cloud Public CCE cluster.
+   :keywords: Cloud Container Engine, CCE, ECS, cluster, node

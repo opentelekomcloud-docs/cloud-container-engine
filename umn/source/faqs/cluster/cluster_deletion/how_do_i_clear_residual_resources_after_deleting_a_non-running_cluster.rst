@@ -42,3 +42,7 @@ An SFS file system dynamically created using a PVC is named in the format of **p
    .. note::
 
       Deleted data cannot be restored. Exercise caution when performing this operation.
+
+.. meta::
+   :description: Learn how to manually clear residual ELB, EVS, and SFS resources after deleting a non-running T Cloud Public CCE cluster.
+   :keywords: Cloud Container Engine, T Cloud Public, residual resources, ELB, EVS

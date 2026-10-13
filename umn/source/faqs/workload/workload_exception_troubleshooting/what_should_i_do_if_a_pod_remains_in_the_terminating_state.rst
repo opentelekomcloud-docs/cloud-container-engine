@@ -61,3 +61,7 @@ Run the following command to delete the terminating pod described at the very be
 .. code-block::
 
    kubectl delete pod aos-apiserver-5f8f5b5585-s9l92 -n aos --grace-period=0 --force
+
+.. meta::
+   :description: Fix stuck pods in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, pod, terminating, kubectl, namespace

@@ -16,3 +16,7 @@ Solutions
 ---------
 
 Log in to the node and manually delete unnecessary images.
+
+.. meta::
+   :description: Optimize T Cloud Public CCE nodes by keeping image layers under 5000.
+   :keywords: Cloud Container Engine, Image Layers, Node, Docker, containerd

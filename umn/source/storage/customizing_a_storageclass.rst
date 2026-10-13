@@ -636,3 +636,7 @@ To simplify the manual creation and maintenance of PVs, see the following resour
 -  SFS Turbo: :ref:`(Recommended) Creating an SFS Turbo Subdirectory Using a Dynamic PV <cce_10_0839>`
 -  OBS: :ref:`Using an OBS Bucket Through a Dynamic PV <cce_10_0630>`
 -  Local PV: :ref:`Using a Local PV Through a Dynamic PV <cce_10_0634>`
+
+.. meta::
+   :description: Learn how to customize StorageClasses in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, StorageClass, Kubernetes, dynamic provisioning, PVC

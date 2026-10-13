@@ -180,3 +180,7 @@ On the CCE console, you can assign permissions to a user or user group to access
 -  drainage-viewer: view the nodal drainage status but cannot drain a node.
 
 In addition to the preceding typical ClusterRoles, you can define Role and RoleBinding to grant permissions to add, delete, modify, and obtain resources (such as nodes, PVs, and CustomResourceDefinitions) and different resources (such as pods, Deployments, and Services) within specific namespaces. This allows for more precise permission control.
+
+.. meta::
+   :description: Manage CCE permissions with IAM and RBAC.
+   :keywords: Cloud Container Engine, IAM, RBAC, Permissions, Kubernetes

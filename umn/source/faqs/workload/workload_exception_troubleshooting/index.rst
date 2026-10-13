@@ -32,3 +32,7 @@ Workload Exception Troubleshooting
    what_should_i_do_if_a_workload_is_stopped_caused_by_pod_deletion
    what_should_i_do_if_an_error_occurs_when_i_deploy_a_service_on_a_gpu_node
    how_can_i_locate_faults_using_an_exit_code
+
+.. meta::
+   :description: Troubleshoot workload exceptions in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Workload Exception, Troubleshooting, Pod, T Cloud Public

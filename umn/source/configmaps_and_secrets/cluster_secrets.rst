@@ -112,3 +112,7 @@ By default, Kubernetes creates a service account named **default** for each name
       Mountable secrets:   default-token-xxxxx
       Tokens:              default-token-xxxxx
       Events:              <none>
+
+.. meta::
+   :description: Learn about CCE default secrets on T Cloud Public, including default-secret for SWR image pulling and paas.
+   :keywords: Cloud Container Engine, CCE, Kubernetes, Secrets, SWR

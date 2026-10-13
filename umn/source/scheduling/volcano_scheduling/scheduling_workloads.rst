@@ -130,3 +130,7 @@ You can obtain pod details to check whether the pod is scheduled by Volcano to t
         Normal  Scheduled  0s (x3 over 2s)  volcano  pod group is ready
 
 .. |image1| image:: /_static/images/en-us_image_0000002483959334.png
+
+.. meta::
+   :description: Learn to schedule workloads using Volcano on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Volcano, Kubernetes, Scheduling Workloads

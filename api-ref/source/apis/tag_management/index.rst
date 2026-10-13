@@ -20,3 +20,7 @@ Tag Management
    obtaining_resource_tags
    obtaining_custom_tags
    obtaining_node_labels
+
+.. meta::
+   :description: Manage tags and node labels for clusters in batches with T Cloud Public's Cloud Container Engine.
+   :keywords: T Cloud Public, Cloud Container Engine, Tag Management, Resource Tags, Node Labels

@@ -131,3 +131,7 @@ Recommended Configuration for the Container Engine Space
 -  The container engine space should be greater than the total disk space used by containers. Formula: **Container engine space** > **Number of containers** x **basesize**
 -  You are advised to create and delete files of containerized services in local storage volumes (such as emptyDir and hostPath volumes) or cloud storage directories mounted to the containers. In this way, the thin pool space is not occupied. emptyDir volumes occupy the kubelet space. Therefore, properly plan the size of the kubelet space.
 -  You can deploy services on nodes that use the OverlayFS (for details, see :ref:`Mapping Between OS and Container Storage Rootfs <cce_10_0341__section1473612279214>`) so that the disk space occupied by files created or deleted in containers can be released immediately.
+
+.. meta::
+   :description: Learn how to allocate data disk space for nodes in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Data Disk Space Allocation, Container Runtime, Kubelet, Node Configuration

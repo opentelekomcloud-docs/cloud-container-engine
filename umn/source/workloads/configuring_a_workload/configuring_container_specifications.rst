@@ -138,3 +138,7 @@ In the following example, a pod contains two containers. The requested value of 
        - name: ephemeral
          emptyDir:
            sizeLimit: 500Mi
+
+.. meta::
+   :description: Learn to configure CPU and memory requests and limits in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, Container Specifications, CPU, Memory, Kubernetes

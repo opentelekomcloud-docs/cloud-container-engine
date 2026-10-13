@@ -14,3 +14,7 @@ Collecting Container Logs
 
    collecting_container_logs_using_the_cloud_native_log_collection_add-on
    collecting_container_logs_using_icagent
+
+.. meta::
+   :description: Learn how to collect container logs with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Container Logs, Log Collection, Cloud Native, ICAgent

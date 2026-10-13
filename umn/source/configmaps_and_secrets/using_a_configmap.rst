@@ -427,3 +427,7 @@ The data stored in a ConfigMap can be referenced in a volume of type ConfigMap. 
       .. code-block::
 
          Hello
+
+.. meta::
+   :description: Learn how to use ConfigMaps in T Cloud Public's Cloud Container Engine for environment variables, command line parameters, and data volumes.
+   :keywords: Cloud Container Engine, ConfigMap, Kubernetes, Workload, Environment Variables

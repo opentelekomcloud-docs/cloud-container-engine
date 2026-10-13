@@ -26,3 +26,7 @@ Procedure
    compiling_the_dockerfile
    building_and_uploading_an_image
    creating_a_container_workload
+
+.. meta::
+   :description: Learn how to containerize an entire application with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Containerization, Dockerfile, Container Workload

@@ -16,3 +16,7 @@ Solutions
 Rolling upgrades cannot be performed if the tenant's resource quotas are insufficient.
 
 Contact O&M personnel to expand resources and perform the check again.
+
+.. meta::
+   :description: Resolve CCE cluster rolling upgrade failures.
+   :keywords: Cloud Container Engine, rolling upgrade, resource quotas, cluster management, T Cloud Public

@@ -28,3 +28,7 @@ Cloud Container Engine - User Guide
    faqs/index
    migrating_data_from_cce_1.0_to_cce_2.0/index
    change_history
+
+.. meta::
+   :description: Master Cloud Container Engine on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, containers, Kubernetes, cloud service

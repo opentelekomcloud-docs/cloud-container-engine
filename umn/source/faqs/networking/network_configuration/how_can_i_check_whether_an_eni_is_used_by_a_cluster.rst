@@ -28,3 +28,7 @@ Procedure
 #. Check the names or descriptions of the network interfaces. If the name or description of a network interface contains the ID of the cluster, it indicates that the network interface is used by the cluster. You can obtain the cluster ID on the **Overview** page of the CCE console.
 
    To delete the subnet ENIs used in the cluster, submit a service ticket.
+
+.. meta::
+   :description: Learn how to check if an ENI is used by a T Cloud Public CCE cluster before deleting pod subnets.
+   :keywords: Cloud Container Engine, ENI, Cluster, Subnet, Network Interface

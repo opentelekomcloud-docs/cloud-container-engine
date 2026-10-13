@@ -47,3 +47,7 @@ Differences in Default Paths to kubelet and Runtime
       This is because CSI uses mountPropagation to mount volumes to target containers. kubelet includes the mount path (**/mnt/paas/kubernetes/kubelet/pods/{podID}/volume/...**) related to kubelet **root-dir** into the CSI request for mounting a volume. When the CSI container mounts a volume to the mount path requested by kubelet CSI, if the mount path is irrelevant to the hostPath, the mount propagation will be invalid. For example, the CSI container mounts host **/var/lib/kubelet** to container **/var/lib/kubelet**, and **/mnt/paas/kubernetes/kubelet/pods/{podID}/volume/...** in the CSI container is irrelevant to the hostPath.
 
       Update the **root-dir** path in CSI to match the kubelet **root-dir** path on the current CCE node.
+
+.. meta::
+   :description: Explore CCE kubelet & runtime config differences on T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, Kubernetes, kubelet, container runtime

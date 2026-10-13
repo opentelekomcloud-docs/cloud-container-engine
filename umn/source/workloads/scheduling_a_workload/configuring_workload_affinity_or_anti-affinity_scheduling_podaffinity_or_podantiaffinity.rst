@@ -267,3 +267,7 @@ Using YAML
       For workload anti-affinity, when **requiredDuringSchedulingIgnoredDuringExecution** is used, the default access controller **LimitPodHardAntiAffinityTopology** of Kubernetes requires that **topologyKey** can only be **kubernetes.io/hostname**. To use other custom topology logic, modify or disable the access controller.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516199353.png
+
+.. meta::
+   :description: Learn to configure pod affinity and anti-affinity scheduling in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, workload affinity, anti-affinity scheduling, Kubernetes, topology key

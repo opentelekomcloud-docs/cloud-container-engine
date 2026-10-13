@@ -167,3 +167,7 @@ Using kubectl to Configure a Blocklist/Trustlist Access Policy
 
       NAME          CLASS    HOSTS     ADDRESS          PORTS   AGE
       ingress-test  cce      *         121.**.**.**     80      10s
+
+.. meta::
+   :description: Learn how to configure blocklist and trustlist access policies for LoadBalancer Ingress in T Cloud Public CCE to control IP access.
+   :keywords: Cloud Container Engine, LoadBalancer Ingress, Trustlist, Blocklist, IP Address Control

@@ -592,3 +592,7 @@ Community-related issue: https://github.com/kubernetes/kubernetes/issues/112228
 Set the CPU request of the init container to a decimal value that matches the CPU limit and avoid using CPU pinning.
 
 For example: the main container: {"limits":{"cpu":"7","memory":"60G"},"requests":{"cpu":"7","memory":"60G"}}; the init container: {"limits":{"cpu":"6.9","memory":"60G"},"requests":{"cpu":"6.9","memory":"60G"}}
+
+.. meta::
+   :description: Resolve T Cloud Public CCE pod scheduling failures.
+   :keywords: Cloud Container Engine, Pod Scheduling, Pending State, Fault Locating, T Cloud Public

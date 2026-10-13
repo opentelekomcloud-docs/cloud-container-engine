@@ -26,3 +26,7 @@ EVS
    expanding_the_capacity_of_an_evs_disk
    snapshots_and_backups
    configuring_evs_mount_options
+
+.. meta::
+   :description: Learn how to use Elastic Volume Service with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, EVS, Kubernetes, Storage

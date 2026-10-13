@@ -16,3 +16,7 @@ Creating a Cluster
    comparison_between_cluster_types
    creating_a_cce_standard_turbo_cluster
    comparing_iptables_and_ipvs
+
+.. meta::
+   :description: Learn how to create CCE Standard or Turbo clusters with T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, Container Cluster, Kubernetes, Cloud Service

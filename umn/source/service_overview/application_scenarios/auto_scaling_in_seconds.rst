@@ -41,3 +41,7 @@ Add-ons: autoscaler and cce-hpa-controller
    :alt: **Figure 1** How auto scaling works
 
    **Figure 1** How auto scaling works
+
+.. meta::
+   :description: Scale containers in seconds with T Cloud Public's CCE.
+   :keywords: CCE, auto scaling, container engine, cloud servers, cloud provider

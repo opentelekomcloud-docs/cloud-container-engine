@@ -129,3 +129,7 @@ Using kubectl
       all-no                     map[matchLabels:map[app:nginx]]   4h1m
       s001test                   map[matchLabels:map[app:nginx]]   19m
       demo                       map[matchLabels:map[app:nginx]]   2m9s
+
+.. meta::
+   :description: Learn how to bind security groups to CCE workloads using Security Group Policies.
+   :keywords: Cloud Container Engine, Security Group, Kubernetes, Workload, Network

@@ -137,3 +137,7 @@ Using kubectl
 
       NAME          CLASS    HOSTS     ADDRESS          PORTS   AGE
       ingress-test  cce      *         121.**.**.**     80      10s
+
+.. meta::
+   :description: Learn to configure custom header forwarding policies for LoadBalancer Ingress on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, LoadBalancer Ingress, Custom Header Forwarding, kubectl, YAML

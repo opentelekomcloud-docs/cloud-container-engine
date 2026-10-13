@@ -18,3 +18,7 @@ Node Pools
    creating_a_node_pool
    scaling_a_node_pool
    managing_node_pools/index
+
+.. meta::
+   :description: Learn how to create, scale, and manage node pools in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Node Pools, Kubernetes, Container Management

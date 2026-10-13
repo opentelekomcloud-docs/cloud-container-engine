@@ -14,3 +14,7 @@ Log Auditing
 
    cce_operations_supported_by_cts
    viewing_cts_traces_in_the_trace_list
+
+.. meta::
+   :description: Learn how to enable log auditing for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Log Auditing, CTS, Trace List

@@ -16,3 +16,7 @@ Scheduling and Elasticity Add-ons
    volcano_scheduler
    cce_cluster_autoscaler
    cce_advanced_hpa
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine scheduling and elasticity add-ons, including Volcano Scheduler, Cluster Autoscaler, and Advanced HPA.
+   :keywords: Cloud Container Engine, T Cloud Public, Scheduling, Elasticity, Add-ons

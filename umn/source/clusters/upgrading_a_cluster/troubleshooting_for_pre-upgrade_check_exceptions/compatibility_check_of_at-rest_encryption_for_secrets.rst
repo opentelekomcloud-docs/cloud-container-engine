@@ -21,3 +21,7 @@ At-rest encryption for secrets is supported in CCE clusters v1.27 or later versi
 -  Other clusters of later versions
 
 If at-rest encryption for secrets is enabled in the cluster before the upgrade, the target cluster version must also support this feature. Select a target version that supports at-rest encryption for secrets for the upgrade.
+
+.. meta::
+   :description: Check CCE cluster version compatibility for at-rest encryption of secrets.
+   :keywords: Cloud Container Engine, at-rest encryption, secrets, Kubernetes version, compatibility check

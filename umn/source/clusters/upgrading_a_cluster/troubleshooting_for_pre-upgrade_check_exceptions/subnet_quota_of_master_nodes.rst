@@ -16,3 +16,7 @@ Solutions
 A rolling upgrade is not supported if there are not enough IP addresses in the selected cluster subnet.
 
 Move nodes out of the target subnet and check again. If you are unsure about the impact of migration, submit a service ticket to contact O&M personnel.
+
+.. meta::
+   :description: Resolve T Cloud Public CCE subnet IP quota issues for master nodes.
+   :keywords: Cloud Container Engine, Master Nodes, Subnet Quota, Rolling Upgrade, IP Addresses

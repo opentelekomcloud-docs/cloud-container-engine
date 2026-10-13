@@ -874,3 +874,7 @@ You can configure LoadBalancer Service access using kubectl when creating a work
       :alt: **Figure 4** Accessing Nginx through the LoadBalancer Service
 
       **Figure 4** Accessing Nginx through the LoadBalancer Service
+
+.. meta::
+   :description: Learn how to create a LoadBalancer Service in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, LoadBalancer Service, external traffic, CCE Turbo, passthrough networking

@@ -121,3 +121,7 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
       .. code-block::
 
          <Your mount path> on /data type nfs (rw,relatime,vers=3,rsize=1048576,wsize=1048576,namlen=255,hard,nolock,noresvport,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=**.**.**.**,mountvers=3,mountport=20048,mountproto=tcp,local_lock=all,addr=**.**.**.**)
+
+.. meta::
+   :description: Learn how to configure SFS Turbo mount options in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, SFS Turbo, Mount Options, PV, PVC

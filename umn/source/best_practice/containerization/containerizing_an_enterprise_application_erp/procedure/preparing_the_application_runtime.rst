@@ -98,3 +98,7 @@ In this example, the web application of the Tomcat type is used. This applicatio
    **./../../../jdk1.8.0_151/bin/jar -xf apptest.war**
 
    **rm -rf apptest.war**
+
+.. meta::
+   :description: Learn to prepare the application runtime for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Docker, Container Image, Application Runtime, T Cloud Public

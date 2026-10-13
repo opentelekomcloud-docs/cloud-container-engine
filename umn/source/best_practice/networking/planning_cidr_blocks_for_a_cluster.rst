@@ -227,3 +227,7 @@ VPC-IDC Scenarios
 -----------------
 
 Similar to the VPC interconnection scenario, some CIDR blocks in the VPC are routed to the IDC. The pod IP addresses of CCE clusters cannot overlap with the addresses within these CIDR blocks. To access the pod IP addresses in the cluster from the IDC, configure the route table to the private line for the IDC.
+
+.. meta::
+   :description: Learn how to plan CIDR blocks for your CCE cluster on T Cloud Public.
+   :keywords: CCE, CIDR Blocks, VPC, Kubernetes, Networking

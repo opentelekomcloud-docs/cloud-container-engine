@@ -65,3 +65,7 @@ Migrating Nodes from the Default Node Pool to a Custom Node Pool
       -  After the migration, the pool's agency will take over the nodes' original agency.
       -  After the migration, the nodes' original login mode will remain unchanged.
       -  After a node is migrated to a node pool after being accepted by the cluster, its acceptance tag will be removed. Scaling in the node pool may result in the removal of the node.
+
+.. meta::
+   :description: Migrate nodes between node pools in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node Migration, Node Pools, Cluster Management, T Cloud Public

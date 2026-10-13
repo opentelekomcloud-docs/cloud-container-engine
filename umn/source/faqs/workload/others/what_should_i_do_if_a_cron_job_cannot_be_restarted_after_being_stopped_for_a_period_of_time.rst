@@ -46,3 +46,7 @@ Example YAML:
              restartPolicy: OnFailure
 
 If you create a cron job again, you can temporarily avoid this issue.
+
+.. meta::
+   :description: Resolve T Cloud Public CCE Cron Job restart issues.
+   :keywords: Cloud Container Engine, Cron Job, startingDeadlineSeconds, Kubernetes, missed scheduling

@@ -94,3 +94,7 @@ Disabling Control Plane Logging
 
 .. |image1| image:: /_static/images/en-us_image_0000002484119302.png
 .. |image2| image:: /_static/images/en-us_image_0000002516199277.png
+
+.. meta::
+   :description: Learn how to collect logs for kube-apiserver, kube-controller-manager, and kube-scheduler in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Control Plane, Kubernetes, Logs, T Cloud Public

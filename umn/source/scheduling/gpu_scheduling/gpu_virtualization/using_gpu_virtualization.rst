@@ -277,3 +277,7 @@ Creating a GPU Virtualization Application
          +-----------------------------------------------------------------------------+
 
       The expected output indicates that the total GPU memory on the GPU node is 16160 MiB. Since the sample pod does not run any GPU program, the used GPU memory is 0 MiB.
+
+.. meta::
+   :description: Learn to use GPU virtualization in T Cloud Public's Cloud Container Engine.
+   :keywords: GPU Virtualization, Cloud Container Engine, GPU Memory Isolation, Kubernetes, CCE

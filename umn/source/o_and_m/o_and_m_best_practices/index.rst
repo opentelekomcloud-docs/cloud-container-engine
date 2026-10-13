@@ -20,3 +20,7 @@ O&M Best Practices
    migrating_custom_views_of_grafana
    switching_the_aom_instance_connected_to_grafana
    configuring_alarms_for_java_applications_on_apm
+
+.. meta::
+   :description: Learn O&M best practices for Cloud Container Engine by T Cloud Public.
+   :keywords: Cloud Container Engine, O&M, Custom Metrics, Grafana, AOM

@@ -98,3 +98,7 @@ Using a Temporary Path Through kubectl
 #. Create a workload.
 
    **kubectl apply -f nginx-emptydir.yaml**
+
+.. meta::
+   :description: Learn to create and mount temporary emptyDir volumes in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Kubernetes, emptyDir, temporary path, pod lifecycle

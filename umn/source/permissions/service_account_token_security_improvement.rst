@@ -42,3 +42,7 @@ Perform the following operations to check your CCE clusters of v1.21 or later:
    |image1|
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079279.png
+
+.. meta::
+   :description: Learn how T Cloud Public's CCE improves service account token security by deprecating permanent tokens.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Service Account, Token Security

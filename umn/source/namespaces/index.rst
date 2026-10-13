@@ -16,3 +16,7 @@ Namespaces
    creating_a_namespace
    managing_namespaces
    configuring_resource_quotas
+
+.. meta::
+   :description: Learn to create, manage, and configure resource quotas for namespaces in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Namespaces, Resource Quotas, Container Management

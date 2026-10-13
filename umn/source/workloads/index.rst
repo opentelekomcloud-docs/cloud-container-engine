@@ -26,3 +26,7 @@ Workloads
    managing_workloads
    managing_custom_resources
    pod_security/index
+
+.. meta::
+   :description: Learn to create, configure, and manage workloads on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Workloads, Kubernetes, Container Management, T Cloud Public

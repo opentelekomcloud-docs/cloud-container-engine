@@ -366,3 +366,7 @@ References
 -  `kube-apiserver <https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/>`__
 -  `kube-controller-manager <https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/>`__
 -  `kube-scheduler <https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/>`__
+
+.. meta::
+   :description: Learn how to modify T Cloud Public CCE cluster configurations.
+   :keywords: Cloud Container Engine, Cluster Configuration, Resource Allocation, Scaling Policies, T Cloud Public

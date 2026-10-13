@@ -48,3 +48,7 @@ Components
    +=============================================+========================================================================================================================================+=========================================================================================+=====================================================+
    | :ref:`CCE Cluster Autoscaler <cce_10_0154>` | An open-source Kubernetes component for horizontal scaling of nodes, which is optimized by CCE in scheduling, auto scaling, and costs. | Online services, deep learning, and large-scale computing with limited resource budgets | :ref:`Creating a Node Scaling Policy <cce_10_0209>` |
    +---------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------+-----------------------------------------------------+
+
+.. meta::
+   :description: Discover T Cloud Public's Cloud Container Engine auto-scaling.
+   :keywords: Cloud Container Engine, Auto Scaling, Kubernetes, Workload Scaling, Node Scaling

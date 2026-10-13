@@ -176,3 +176,7 @@ Conversion Process (Using the Helm v3 Client)
       [Helm 2] ReleaseVersion "test-convert.v1" deleted.
       [Helm 2] Release 'test-convert' deleted.
       Helm v2 data was cleaned up successfully.
+
+.. meta::
+   :description: Learn how to safely convert Helm v2 releases to v3 in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Helm v2, Helm v3, release conversion, kubernetes

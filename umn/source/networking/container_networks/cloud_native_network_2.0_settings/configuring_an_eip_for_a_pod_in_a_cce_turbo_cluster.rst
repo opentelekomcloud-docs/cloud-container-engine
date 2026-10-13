@@ -263,3 +263,7 @@ You can configure an init container for the pod, associate the **yangtse.io/allo
                fieldRef:
                  fieldPath: metadata.annotations['yangtse.io/allocated-ipv4-eip']
    ...
+
+.. meta::
+   :description: Learn to bind EIPs to pods in CCE Turbo clusters using annotations.
+   :keywords: Cloud Container Engine, CCE Turbo, Pod, EIP, Kubernetes

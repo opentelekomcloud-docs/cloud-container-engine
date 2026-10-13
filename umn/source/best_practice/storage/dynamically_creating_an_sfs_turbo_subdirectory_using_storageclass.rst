@@ -247,3 +247,7 @@ Dynamically Creating a subPath Volume for a StatefulSet
 2. Create the StatefulSet.
 
    **kubectl create -f statefulset-test.yaml**
+
+.. meta::
+   :description: Learn to dynamically create SFS Turbo subdirectories using StorageClass in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, SFS Turbo, StorageClass, Everest add-on, subPath

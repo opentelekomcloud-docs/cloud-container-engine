@@ -59,3 +59,7 @@ Process of GPU Virtualization
 
 -  :ref:`Preparing Virtualized GPU Resources <cce_10_0645>`: Prepare nodes that support GPU virtualization.
 -  :ref:`Using GPU Virtualization <cce_10_0646>`: Create a GPU virtualization workload to meet service needs.
+
+.. meta::
+   :description: T Cloud Public's CCE uses xGPU virtualization to dynamically split GPU memory and compute.
+   :keywords: Cloud Container Engine, GPU virtualization, xGPU, HCE OS, Tesla T4

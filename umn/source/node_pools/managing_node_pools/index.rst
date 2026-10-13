@@ -28,3 +28,7 @@ Managing Node Pools
    upgrading_an_os
    migrating_a_node
    deleting_a_node_pool
+
+.. meta::
+   :description: Manage node pools in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node Pools, T Cloud Public, Container Management, Kubernetes Nodes

@@ -97,3 +97,7 @@ According to the constraints, this section provides an example of setting an IPv
       Hexadecimal:   f    c    x    x ...    y    0    0     0/115
 
    **x** is a hexadecimal string. The last digit of the 4-bit binary string corresponding to **y** is always **0**. This means that the hexadecimal string **y** can be **0**, **2**, **4**, **6**, **8**, **a**, **c**, or **e**.
+
+.. meta::
+   :description: Learn to configure IPv6 Service CIDR blocks for T Cloud Public CCE Turbo clusters.
+   :keywords: Cloud Container Engine, CCE, IPv6, Service CIDR, Turbo Cluster

@@ -20,3 +20,7 @@ Container
    using_init_containers_to_initialize_an_application
    configuring_the_etc_hosts_file_of_a_pod_using_hostaliases
    locating_container_faults_using_the_core_dump_file
+
+.. meta::
+   :description: Master container best practices with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Container Computing Resources, Kernel Parameters, Init Containers, Core Dump File

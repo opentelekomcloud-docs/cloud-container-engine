@@ -488,3 +488,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Use T Cloud Public's CCE API to list all jobs in a project via GET /api/v2/projects/{project_id}/jobs.
+   :keywords: Cloud Container Engine, T Cloud Public, Jobs, API, Project

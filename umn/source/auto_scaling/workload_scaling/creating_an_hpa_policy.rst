@@ -98,3 +98,7 @@ Procedure
       +--------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Click **Create**.
+
+.. meta::
+   :description: Learn how to create HPA policies in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, HPA Policy, Horizontal Pod Autoscaling, Kubernetes Metrics Server, Auto Scaling

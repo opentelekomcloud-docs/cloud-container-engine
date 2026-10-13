@@ -28,3 +28,7 @@ Procedure
    .. note::
 
       After the node is added to a new security group, the original security group is retained. To remove the instance, click **Manage Instance** of the original security group and select the node servers to be removed.
+
+.. meta::
+   :description: Learn how to batch change security groups for nodes in a T Cloud Public Cloud Container Engine cluster.
+   :keywords: Cloud Container Engine, Security Group, Batch Operation, Node Management, T Cloud Public

@@ -360,3 +360,7 @@ Cancellation Using APIs
               }
           }
       }
+
+.. meta::
+   :description: Learn how to safely drain nodes in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, nodal drainage, Kubernetes, pod eviction, cluster management

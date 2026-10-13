@@ -24,3 +24,7 @@ Solutions
    Log in to the node and run the **systemctl is-active kube-proxy** command to check the status of kube-proxy. If you encounter an error, run the **systemctl restart kube-proxy** command and check the status again.
 
    If the fault persists, reset the node. For details, see :ref:`Resetting a Node <cce_10_0003>`.
+
+.. meta::
+   :description: Troubleshoot unhealthy worker node components in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Worker Node, Container Runtime, Network Components, Troubleshooting

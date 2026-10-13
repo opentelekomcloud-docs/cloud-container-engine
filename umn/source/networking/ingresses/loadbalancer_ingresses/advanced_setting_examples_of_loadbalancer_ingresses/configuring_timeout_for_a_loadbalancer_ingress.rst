@@ -178,3 +178,7 @@ Using kubectl to Configure Timeout
 
       NAME          CLASS    HOSTS     ADDRESS          PORTS   AGE
       ingress-test  cce      *         121.**.**.**     80      10s
+
+.. meta::
+   :description: Learn how to configure LoadBalancer ingress timeouts for CCE on T Cloud Public.
+   :keywords: Cloud Container Engine, LoadBalancer, Timeout, CCE, Ingress

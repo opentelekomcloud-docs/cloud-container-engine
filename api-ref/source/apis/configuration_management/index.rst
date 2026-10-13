@@ -18,3 +18,7 @@ Configuration Management
    obtaining_the_list_of_parameters_that_can_be_configured_for_a_cluster
    obtaining_the_parameters_that_can_be_configured_for_a_node_pool
    changing_the_values_of_configuration_parameters_of_a_node_pool
+
+.. meta::
+   :description: Manage T Cloud Public Cloud Container Engine node pool and cluster configurations.
+   :keywords: Cloud Container Engine, T Cloud Public, Node Pool, Cluster, Configuration Management

@@ -190,3 +190,7 @@ You can use **mountOptions** to configure mount options in a StorageClass. The o
       .. code-block::
 
          root      1355     1  0 Jun03 ?        00:03:16 /usr/bin/obsfs {your_obs_name} /mnt/paas/kubernetes/kubelet/pods/{pod_uid}/volumes/kubernetes.io~csi/{your_pv_name}/mount -o url=https://{endpoint}:443 -o endpoint={region} -o passwd_file=/opt/everest-host-connector/***_obstmpcred/{your_obs_name} -o allow_other -o nonempty -o big_writes -o use_ino -o no_check_certificate -o ssl_verify_hostname=0 -o max_background=100 -o umask=027 -o max_write=131072
+
+.. meta::
+   :description: Learn to configure OBS volume mount options in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, T Cloud Public, OBS Mount Options, CCE, Everest add-on

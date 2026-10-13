@@ -70,3 +70,7 @@ You can set the script to be executed after a node or node pool is created. When
    .. code-block::
 
       cat /etc/systemd/journald.conf | grep RuntimeMaxUse
+
+.. meta::
+   :description: Learn how to change or automatically configure RuntimeMaxUse for Journald log cache on T Cloud Public CCE nodes to optimize memory usage.
+   :keywords: Cloud Container Engine, T Cloud Public, RuntimeMaxUse, journald, node configuration

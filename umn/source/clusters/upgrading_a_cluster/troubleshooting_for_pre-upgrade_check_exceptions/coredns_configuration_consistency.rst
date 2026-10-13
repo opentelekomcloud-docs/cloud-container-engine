@@ -81,3 +81,7 @@ You can upgrade CoreDNS separately after confirming the configuration difference
 #. Change the value of **parameterSyncStrategy** to **ensureConsistent** to enable configuration consistency verification.
 
    In addition, it is a good practice to use the parameter configuration function of CCE add-ons to modify the Corefile configuration for consistency.
+
+.. meta::
+   :description: Resolve CoreDNS config inconsistencies in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, CoreDNS, Kubernetes, kubectl, Helm

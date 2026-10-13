@@ -130,3 +130,7 @@ Creating a Headless Service
    .. code-block::
 
       wget -qO- web-0.nginx-headless
+
+.. meta::
+   :description: Learn how to create headless services in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Headless Service, Kubernetes, StatefulSet, DNS

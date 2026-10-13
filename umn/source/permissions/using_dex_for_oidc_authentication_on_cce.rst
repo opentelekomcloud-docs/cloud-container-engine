@@ -356,3 +356,7 @@ Step 7: Perform Login Tests
    |image1|
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079487.png
+
+.. meta::
+   :description: Learn to configure Dex for OIDC authentication on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Dex, OIDC, Kubernetes, Authentication

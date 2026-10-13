@@ -20,3 +20,7 @@ If the type of dnsPolicy is not specified, **ClusterFirst** is used by default.
    The kube-dns service responds to queries on the domains that use the configured cluster domain suffix as the root. All other queries (for example, www.kubernetes.io) are forwarded to the upstream name server inherited from the node. Before this feature was supported, stub domains were typically introduced by a custom resolver, instead of the upstream DNS. However, this causes the custom resolver itself to be the key path to DNS resolution, where scalability and availability issues can make the DNS functions unavailable to the cluster. This feature allows you to introduce custom resolvers without taking over the entire resolution path.
 
 If a workload does not need to use CoreDNS in the cluster, you can use kubectl or call the APIs to set the dnsPolicy to Default.
+
+.. meta::
+   :description: Learn how to configure DNS policies for containers in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, DNS Policy, Container, Kubernetes, DNS Configuration

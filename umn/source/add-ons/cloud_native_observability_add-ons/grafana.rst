@@ -197,3 +197,7 @@ Release History
    |                       |                           |                                                          |
    |                       | v1.32                     |                                                          |
    +-----------------------+---------------------------+----------------------------------------------------------+
+
+.. meta::
+   :description: Install Grafana on T Cloud Public CCE for real-time monitoring.
+   :keywords: Cloud Container Engine, Grafana, monitoring, add-ons, visualization

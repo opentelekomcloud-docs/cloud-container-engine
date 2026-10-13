@@ -12,3 +12,7 @@ DevOps
    :hidden: 
 
    interconnecting_gitlab_with_swr_and_cce_for_ci_cd
+
+.. meta::
+   :description: Streamline DevOps with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, DevOps, CI/CD, GitLab, SWR

@@ -18,3 +18,7 @@ Node OS Release & Lifecycle
    cce_agency_changes
    eom_of_centos
    cce_node_euler_os_2_9_eom
+
+.. meta::
+   :description: Explore CCE Node OS release notes, lifecycle updates, agency changes, and end-of-life notices for CentOS and EulerOS on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, Node OS, Lifecycle, Release Notes

@@ -45,3 +45,7 @@ Advantages
    :alt: **Figure 2** Workload
 
    **Figure 2** Workload
+
+.. meta::
+   :description: T Cloud Public's Cloud Container Engine manages Kubernetes clusters for x86/Arm apps.
+   :keywords: Kubernetes, Containerized Applications, Auto Scaling, Workload Management, Middleware Deployment

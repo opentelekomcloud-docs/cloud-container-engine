@@ -54,3 +54,7 @@ You can :ref:`copy a node pool <cce_10_0655>`, set the container engine of the n
       If you have configured node affinity for the workloads deployed on the original Docker nodes or node pool, configure affinity policies for the workloads to run on the new containerd nodes or node pool.
 
 #. Delete the original Docker node pool.
+
+.. meta::
+   :description: Learn how to migrate nodes from Docker to containerd in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, containerd, Docker

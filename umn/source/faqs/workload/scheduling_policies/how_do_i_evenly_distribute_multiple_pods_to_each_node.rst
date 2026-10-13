@@ -56,3 +56,7 @@ An example is as follows:
                    topologyKey: kubernetes.io/hostname     # It takes effect on the node.
          imagePullSecrets:
            - name: default-secret
+
+.. meta::
+   :description: Learn how to evenly distribute multiple pods across nodes in T Cloud Public's Cloud Container Engine using pod anti-affinity policies.
+   :keywords: Cloud Container Engine, Kubernetes, Pod Scheduling, Pod Anti-Affinity, Node Distribution

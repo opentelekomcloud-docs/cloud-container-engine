@@ -123,3 +123,7 @@ Operations supported by a fine-grained policy are specific to APIs. The followin
    |                                                 |                    | -  IAM projects        |                                                                            |
    |                                                 |                    | -  Enterprise projects |                                                                            |
    +-------------------------------------------------+--------------------+------------------------+----------------------------------------------------------------------------+
+
+.. meta::
+   :description: Manage T Cloud Public CCE with fine-grained IAM policies.
+   :keywords: Cloud Container Engine, CCE, IAM, Permissions, RBAC

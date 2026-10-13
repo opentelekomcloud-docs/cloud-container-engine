@@ -14,3 +14,7 @@ Cluster Deletion
 
    what_can_i_do_if_a_cluster_deletion_fails_due_to_residual_resources_in_the_security_group
    how_do_i_clear_residual_resources_after_deleting_a_non-running_cluster
+
+.. meta::
+   :description: Learn how to resolve cluster deletion failures in T Cloud Public's Cloud Container Engine caused by residual security group resources.
+   :keywords: Cloud Container Engine, Cluster Deletion, Residual Resources, Security Group, T Cloud Public

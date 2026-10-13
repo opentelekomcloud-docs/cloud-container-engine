@@ -145,3 +145,7 @@ To completely uninstall Velero from a cluster, run the following command to dele
 .. code-block::
 
    velero uninstall
+
+.. meta::
+   :description: Learn how to use Velero to backup and migrate Kubernetes clusters on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Velero, Kubernetes, Backup, Migration

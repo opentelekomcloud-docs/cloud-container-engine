@@ -28,3 +28,7 @@ APIs
    tag_management/index
    add-on_instance_parameters/index
    job_management/index
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine APIs.
+   :keywords: Cloud Container Engine, T Cloud Public, Cluster Management, API, Kubernetes

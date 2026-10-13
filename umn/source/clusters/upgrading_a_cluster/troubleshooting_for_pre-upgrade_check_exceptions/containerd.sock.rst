@@ -19,3 +19,7 @@ Solutions
 #. Run the **rpm -qa \| grep docker \| grep euleros** command. If the command output is not empty, the Docker used on the node is Euler-docker.
 #. Run the **stat /run/containerd/containerd.sock** command. If the file exists, Docker startup will fail.
 #. Run the **rm -rf /run/containerd/containerd.sock** command and perform the cluster upgrade check again.
+
+.. meta::
+   :description: Resolve EulerOS Docker startup failures on T Cloud Public CCE nodes by removing the conflicting containerd.
+   :keywords: Cloud Container Engine, containerd.sock, EulerOS, node, Docker

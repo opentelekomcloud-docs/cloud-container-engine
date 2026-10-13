@@ -331,3 +331,7 @@ CronHPA adjusts associated Deployments separately to periodically adjust the num
 .. |image2| image:: /_static/images/en-us_image_0000002483959090.png
 .. |image3| image:: /_static/images/en-us_image_0000002516199037.png
 .. |image4| image:: /_static/images/en-us_image_0000002484119066.png
+
+.. meta::
+   :description: Learn how CCE CronHPA scales resources during traffic peaks by adjusting HPA policies or Deployment pods in fixed periods on T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, CronHPA, HPA, Kubernetes

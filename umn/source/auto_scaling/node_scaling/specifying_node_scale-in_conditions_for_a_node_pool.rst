@@ -66,3 +66,7 @@ Helpful Links
 
 -  For details about the CCE Cluster Autoscaler add-on, see :ref:`CCE Cluster Autoscaler <cce_10_0193>`.
 -  For details about the steps of how to create an auto scaling policy and the parameters, see :ref:`Creating a Node Scaling Policy <cce_10_0209>`.
+
+.. meta::
+   :description: Learn how to specify node scale-in conditions for CCE node pools on T Cloud Public.
+   :keywords: Cloud Container Engine, Node Pool, Cluster Autoscaler, Scale-in Conditions, T Cloud Public

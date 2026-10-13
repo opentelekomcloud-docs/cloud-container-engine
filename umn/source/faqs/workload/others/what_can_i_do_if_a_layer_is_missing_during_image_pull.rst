@@ -34,3 +34,7 @@ You can use either of the following methods to solve this problem:
    #. Use the newly pulled image to create a workload.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516197953.png
+
+.. meta::
+   :description: Resolve missing image layers in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, containerd, image pull, image layer, workload

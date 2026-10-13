@@ -29,3 +29,7 @@ Switching the AOM Instance Connected to Grafana
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079275.png
 .. |image2| image:: /_static/images/en-us_image_0000002516199271.png
+
+.. meta::
+   :description: Learn how to switch the AOM instance connected to Grafana in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Grafana, AOM, Data Sources, Provisioning

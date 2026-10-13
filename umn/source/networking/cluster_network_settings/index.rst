@@ -12,3 +12,7 @@ Cluster Network Settings
    :hidden: 
 
    adding_a_secondary_vpc_cidr_block_for_a_cluster
+
+.. meta::
+   :description: Learn how to add a secondary VPC CIDR block for a cluster in Cloud Container Engine by T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, Cluster Network, VPC CIDR Block, Container Service

@@ -326,3 +326,7 @@ You can use a secret of an IAM user to mount an OBS volume. Assume that a worklo
 
 .. |image1| image:: /_static/images/en-us_image_0000002518226090.png
 .. |image2| image:: /_static/images/en-us_image_0000002516079657.png
+
+.. meta::
+   :description: Learn to use custom AK/SK to mount OBS volumes in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, OBS Volume, Custom Access Key, IAM User, CCE Container Storage

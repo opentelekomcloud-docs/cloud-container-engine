@@ -199,3 +199,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Manage custom tags for your containers with T Cloud Public's Cloud Container Engine API.
+   :keywords: Cloud Container Engine, T Cloud Public, Custom Tags, API, Project ID

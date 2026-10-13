@@ -299,3 +299,7 @@ Updating a Node Pool
 #. After the configuration, click **OK**.
 
    After node pool parameters are modified, you can find the update on the **Nodes** page. Reset the nodes in the target node pool to synchronize the configuration update.
+
+.. meta::
+   :description: Learn how to update a node pool in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node Pool, T Cloud Public, Kubernetes, Cluster Management

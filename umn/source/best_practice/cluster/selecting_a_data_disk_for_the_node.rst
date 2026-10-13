@@ -139,3 +139,7 @@ Perform the following operations to clear unused images:
 **Solution 2: Expanding the disk capacity**
 
 Expand the data disk capacity as required. For details, see :ref:`Expanding the Storage Space <cce_bestpractice_00198>`.
+
+.. meta::
+   :description: Learn how to optimize costs by adjusting data disk capacity for CCE nodes on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, data disk, node, kubelet

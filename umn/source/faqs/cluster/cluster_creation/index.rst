@@ -16,3 +16,7 @@ Cluster Creation
    why_cant_i_create_a_cce_cluster
    is_management_scale_of_a_cluster_related_to_the_number_of_master_nodes
    which_resource_quotas_should_i_pay_attention_to_when_using_cce
+
+.. meta::
+   :description: Resolve common Cloud Container Engine cluster creation issues, management scale questions, and resource quota guidance with T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, Cluster Creation, Master Nodes, Resource Quotas

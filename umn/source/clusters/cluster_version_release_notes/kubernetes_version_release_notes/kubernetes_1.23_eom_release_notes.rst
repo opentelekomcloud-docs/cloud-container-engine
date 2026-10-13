@@ -40,3 +40,7 @@ For more details about the performance comparison and function evolution between
 
 -  `Kubernetes v1.23 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.23.md>`__
 -  `Kubernetes v1.22 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.22.md>`__
+
+.. meta::
+   :description: Manage Kubernetes 1.
+   :keywords: Kubernetes, Container Engine, PodSecurity, CSI, Ingress

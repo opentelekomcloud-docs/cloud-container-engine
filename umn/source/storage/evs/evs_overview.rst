@@ -51,3 +51,7 @@ EVS disks can be mounted in the following modes based on application scenarios:
 -  :ref:`Using an Existing EVS Disk Through a Static PV <cce_10_0614>`: static creation mode, where you use an existing EVS disk to create a PV and then mount storage to the workload through a PVC. This mode applies if the underlying storage is available.
 -  :ref:`Using an EVS Disk Through a Dynamic PV <cce_10_0615>`: dynamic creation mode, in which you do not need to create EVS volumes beforehand. Instead, specify a StorageClass when creating a PVC. Then, an EVS volume and PV will be created automatically. This mode applies to scenarios where no underlying storage is available.
 -  :ref:`Dynamically Mounting an EVS Disk to a StatefulSet <cce_10_0616>`: available only for StatefulSets. In this mode, each pod is associated with a unique PVC and PV. After a pod is rescheduled, the original data can still be mounted to it based on the PVC name. This mode applies to StatefulSets with multiple pods.
+
+.. meta::
+   :description: Learn how T Cloud Public's CCE uses EVS for persistent container storage.
+   :keywords: Cloud Container Engine, EVS, persistent storage, container migration, disk performance

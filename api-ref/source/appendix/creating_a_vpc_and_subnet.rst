@@ -41,3 +41,7 @@ Creating a Subnet
       :alt: **Figure 2** Obtaining the network ID of a subnet
 
       **Figure 2** Obtaining the network ID of a subnet
+
+.. meta::
+   :description: Learn how to create a VPC and subnet for T Cloud Public's Cloud Container Engine to ensure a secure, isolated network environment for your clusters.
+   :keywords: Cloud Container Engine, Virtual Private Cloud, Subnet, Network, Cluster

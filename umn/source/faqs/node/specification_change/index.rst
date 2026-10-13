@@ -16,3 +16,7 @@ Specification Change
    how_do_i_change_the_node_specifications_in_a_cce_cluster
    what_are_the_impacts_of_changing_the_flavor_of_a_node_in_a_cce_node_pool
    what_should_i_do_if_i_fail_to_restart_or_create_workloads_on_a_node_after_modifying_the_node_specifications
+
+.. meta::
+   :description: Learn how to change node specifications in T Cloud Public's CCE cluster, understand impacts on node pools, and resolve workload restart issues.
+   :keywords: Cloud Container Engine, T Cloud Public, Node Specifications, Node Pool, Workloads

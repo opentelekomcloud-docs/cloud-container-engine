@@ -297,3 +297,7 @@ After a CronJob is created, you can perform operations listed in :ref:`Table 1 <
    |                                   |                                                                                                   |
    |                                   |    Deleted jobs cannot be restored. Exercise caution when deleting a job.                         |
    +-----------------------------------+---------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn to create Kubernetes CronJobs on T Cloud Public CCE.
+   :keywords: CCE, CronJob, Kubernetes, Workload, Cloud Container Engine

@@ -24,3 +24,7 @@ Solutions
    -  If the add-on configurations are inconsistent and a forced upgrade is required, you cannot skip this check item. In this case, reconfigure the add-on parameters through the CCE console or APIs to ensure configuration consistency before proceeding with the upgrade.
 
    If the CoreDNS add-on configurations are inconsistent, see :ref:`CoreDNS Configuration Consistency <cce_10_0493>`.
+
+.. meta::
+   :description: Prevent CCE add-on config overwrites during upgrades.
+   :keywords: Cloud Container Engine, T Cloud Public, add-on configuration, CoreDNS, cluster upgrade

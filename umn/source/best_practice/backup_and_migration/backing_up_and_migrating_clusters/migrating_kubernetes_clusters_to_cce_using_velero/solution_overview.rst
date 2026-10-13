@@ -108,3 +108,7 @@ The cluster migration process is as follows:
    After cluster resources are properly deployed, verify application functions after the migration and switch service traffic to the target cluster. After confirming that all services are running properly, bring the source cluster offline.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516078173.png
+
+.. meta::
+   :description: Migrate on-premises Kubernetes clusters to T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, Kubernetes, Cluster Migration, Container Management, Cloud Provider

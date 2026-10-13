@@ -599,3 +599,7 @@ CCE allows you to connect to an existing load balancer when creating an ingress.
    **121.**.**.*\*** indicates the IP address of the unified load balancer.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516199555.png
+
+.. meta::
+   :description: Learn to create LoadBalancer Ingress using kubectl in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, LoadBalancer Ingress, kubectl, Ingress API Version Upgrade, VPC

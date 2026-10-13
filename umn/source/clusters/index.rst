@@ -22,3 +22,7 @@ Clusters
    accessing_a_cluster/index
    managing_clusters/index
    upgrading_a_cluster/index
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, clusters, Kubernetes, container orchestration

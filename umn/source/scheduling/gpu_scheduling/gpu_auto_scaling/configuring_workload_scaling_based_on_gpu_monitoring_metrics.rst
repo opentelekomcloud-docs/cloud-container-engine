@@ -86,3 +86,7 @@ Creating an Auto Scaling Policy
    You can select GPU monitoring parameters in **Custom Policy** to create an auto scaling policy.
 
 #. Return to the **Scaling Policies** page and check whether the HPA policy has been created.
+
+.. meta::
+   :description: Configure HPA for GPU workloads in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, GPU Monitoring, Workload Scaling, HPA, CCE AI Suite

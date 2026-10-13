@@ -66,3 +66,7 @@ The following modes are available for containerizing applications:
    +----------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Mode 1** is used as an example in this tutorial to illustrate how to containerize an enterprise resource planning (ERP) system.
+
+.. meta::
+   :description: Learn CCE best practices on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, containerization, enterprise-class service

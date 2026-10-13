@@ -22,3 +22,7 @@ Client
    using_nodelocal_dnscache
    upgrading_the_coredns_in_the_cluster_timely
    adjusting_the_dns_configuration_of_the_vpc_and_vm
+
+.. meta::
+   :description: Optimize DNS resolution with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, DNS Resolution, CoreDNS, NodeLocal DNSCache, T Cloud Public

@@ -190,3 +190,7 @@ Helpful Links
 -------------
 
 -  For details about the maximum number of pods that can run on a node in a cluster with different network models, see :ref:`Maximum Number of Pods That Can Be Created on a Node <cce_10_0348>`.
+
+.. meta::
+   :description: Deploy high-performance pods on T Cloud Public CCE using the VPC network model.
+   :keywords: Cloud Container Engine, VPC Network Model, High Performance, Pod IP Allocation, NAT

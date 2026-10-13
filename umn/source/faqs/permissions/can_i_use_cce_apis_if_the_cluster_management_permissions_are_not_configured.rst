@@ -14,3 +14,7 @@ CCE has cloud service APIs and cluster APIs.
 -  Cluster APIs: You can perform operations on cluster resources (such as creating workloads) through the Kubernetes native API server, but not on cloud infrastructure resources (such as creating nodes).
 
    When using cluster APIs, you only need to add the cluster certificate. Only the users with the IAM permissions can download the cluster certificate. Note that information leakage may occur during certificate transmission.
+
+.. meta::
+   :description: Learn if you can use CCE APIs without cluster management permissions.
+   :keywords: Cloud Container Engine, CCE, Kubernetes, API, IAM permissions

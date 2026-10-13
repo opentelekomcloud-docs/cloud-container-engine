@@ -225,3 +225,7 @@ If an error occurs during an upgrade, you can roll back the Deployment to its pr
    .. code-block::
 
       deployment.apps/nginx rolled back
+
+.. meta::
+   :description: Manage workload upgrades and rollbacks on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Workload Upgrade, Rollback, T Cloud Public, Deployments

@@ -16,3 +16,7 @@ Solutions
 The CIDR block of the management plane has been modified in your region. As a result, the CIDR block of the management plane and that configured on the backbone network are inconsistent.
 
 Submit a service ticket to contact technical support to modify the settings, and recheck the configurations.
+
+.. meta::
+   :description: Resolve CCE cluster management plane CIDR block inconsistencies with T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, CIDR Block, Cluster Management Plane, Network Configuration

@@ -184,3 +184,7 @@ Creating an Nginx Ingress
    **121.**.**.*\*** indicates the IP address of the unified load balancer.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079007.png
+
+.. meta::
+   :description: Learn to create an Nginx Ingress using kubectl in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Nginx Ingress, kubectl, Ingress API, CCE

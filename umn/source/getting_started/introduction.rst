@@ -57,3 +57,7 @@ FAQs
    You can create a service of the ClusterIP type. The ClusterIP Services allow workloads in the same cluster to access each other using their cluster-internal domain names.
 
    Cluster-internal domain names are in the format of *<Custom service name>*\ **.**\ *<Workload's namespace>*\ **.svc.cluster.local:**\ *<Port number>*. For example, **nginx.default.svc.cluster.local:80**.
+
+.. meta::
+   :description: Get started with Cloud Container Engine (CCE) from T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, Kubernetes cluster, containerized applications, workload deployment

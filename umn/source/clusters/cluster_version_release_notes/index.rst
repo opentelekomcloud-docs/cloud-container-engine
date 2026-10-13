@@ -14,3 +14,7 @@ Cluster Version Release Notes
 
    kubernetes_version_release_notes/index
    patch_version_release_notes
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine release notes.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Cluster Version, Release Notes

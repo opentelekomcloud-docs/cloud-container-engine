@@ -19,3 +19,7 @@ Solution
 NodeLocal DNSCache can improve the stability and performance of service discovery.
 
 For details about NodeLocal DNSCache and how to deploy it in a cluster, see :ref:`Using NodeLocal DNSCache to Improve DNS Performance <cce_10_0362>`.
+
+.. meta::
+   :description: Improve DNS performance and stability in T Cloud Public CCE with NodeLocal DNSCache.
+   :keywords: Cloud Container Engine, NodeLocal DNSCache, DNS performance, CoreDNS, service discovery

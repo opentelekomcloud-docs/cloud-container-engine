@@ -42,3 +42,7 @@ To ensure the security of a cluster's API server, it is important to modify the 
       In addition to the client IP address, the port must allow traffic from the CIDR blocks of the VPC, container, and the control plane of the hosted service mesh to ensure that the API Server can be accessed from within the cluster.
 
 #. Click **Confirm**.
+
+.. meta::
+   :description: Learn how to bind an EIP to your CCE API server for internet access.
+   :keywords: Cloud Container Engine, Kubernetes, API Server, EIP, Security Group

@@ -77,3 +77,7 @@ Disabling Kubernetes Audit Logging
 
 .. |image1| image:: /_static/images/en-us_image_0000002516199619.png
 .. |image2| image:: /_static/images/en-us_image_0000002484119646.png
+
+.. meta::
+   :description: Learn how to enable Kubernetes audit logs in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, CCE, Kubernetes audit logs, Logging, LTS

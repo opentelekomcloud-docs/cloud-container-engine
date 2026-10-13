@@ -19,3 +19,7 @@ Expected Result
 ---------------
 
 After the previous settings are complete and the workload is running, the IP addresses of the workload's pods are the same as the node IP addresses. After the workload is restarted, these IP addresses will keep unchanged.
+
+.. meta::
+   :description: Learn how to keep container IP addresses unchanged after restarts in T Cloud Public CCE using hostNetwork or node affinity policies.
+   :keywords: Cloud Container Engine, container IP addresses, container restart, hostNetwork, node affinity

@@ -15,3 +15,7 @@ Solutions
 
 -  Solution 1: Reduce Kubernetes resources that are needed.
 -  Solution 2: Modify cluster specifications. For details, see :ref:`Changing a Cluster Scale <cce_10_0403>`.
+
+.. meta::
+   :description: Learn how to resolve memory resource limits for Kubernetes components like etcd and kube-controller-manager on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, Memory Resource Limit, Cluster Specifications, T Cloud Public

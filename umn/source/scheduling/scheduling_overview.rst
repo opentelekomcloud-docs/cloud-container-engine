@@ -69,3 +69,7 @@ The cloud native hybrid deployment solution focuses on the Volcano and Kubernete
 +===================================+============================================================================================================================================================================================================================================================================================================================================+========================================================+
 | Dynamic resource oversubscription | Based on the types of online and offline jobs, Volcano scheduling is used to utilize the resources that are requested but not used in the cluster (the difference between the number of requested resources and the number of used resources) for resource oversubscription and hybrid deployment to improve cluster resource utilization. | :ref:`Dynamic Resource Oversubscription <cce_10_0384>` |
 +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------+
+
+.. meta::
+   :description: Explore T Cloud Public's CCE scheduling overview.
+   :keywords: Cloud Container Engine, CPU Scheduling, GPU Heterogeneous Scheduling, Volcano Scheduling, Kubernetes

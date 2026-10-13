@@ -152,3 +152,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Synchronize node pool configurations to existing nodes using T Cloud Public's Cloud Container Engine API.
+   :keywords: Cloud Container Engine, Node Pool, Configuration, Synchronization, API

@@ -127,3 +127,7 @@ Verifying that the Container and Node Are in the Same Time Zone
    .. code-block::
 
       Sat, 12 Apr 2025 16:59:23 +0800
+
+.. meta::
+   :description: Learn how to configure time zone synchronization in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Time Zone Synchronization, Container, Workload, hostPath

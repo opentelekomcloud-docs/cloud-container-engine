@@ -24,3 +24,7 @@ Node Running
    how_do_i_fix_an_abnormal_container_or_node_due_to_no_thin_pool_disk_space
    how_do_i_rectify_failures_when_the_nvidia_driver_is_used_to_start_containers_on_gpu_nodes
    what_can_i_do_if_a_gpu_card_is_unavailable_on_a_gpu_node
+
+.. meta::
+   :description: Resolve CCE node issues like disk damage, I/O suspension, and GPU failures.
+   :keywords: CCE, Node Running, Cluster, GPU Nodes, Troubleshooting

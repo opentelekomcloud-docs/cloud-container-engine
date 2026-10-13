@@ -97,3 +97,7 @@ By default, the add-on scheduling policy can handle single-node faults. However,
 #. Choose **Workload**, click the **Deployments** tab, and view the CoreDNS pods. Select the **kube-system** namespace to view the pod distribution of the add-on.
 
 #. View that the Deployment pods of the add-on has been allocated to nodes in two AZs.
+
+.. meta::
+   :description: Learn how to implement high availability for CCE add-ons in T Cloud Public.
+   :keywords: Cloud Container Engine, High Availability, Add-ons, Anti-affinity, Multi-AZ

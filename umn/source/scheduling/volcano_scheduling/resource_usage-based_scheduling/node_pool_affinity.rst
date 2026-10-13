@@ -120,3 +120,7 @@ Configuring Soft Affinity Scheduling for Volcano Node Pools
       ...
 
 #. Click **OK**.
+
+.. meta::
+   :description: Learn how to use soft affinity scheduling in T Cloud Public's Cloud Container Engine to safely replace node pools without affecting services.
+   :keywords: Cloud Container Engine, Soft Affinity, Node Pool, Volcano, Pod Scheduling

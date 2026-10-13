@@ -111,3 +111,7 @@ Procedure
 
       NAME          CLASS    HOSTS     ADDRESS          PORTS   AGE
       ingress-test  cce      *         121.**.**.**     80      10s
+
+.. meta::
+   :description: Learn how to configure slow start for LoadBalancer Ingress on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Slow Start, LoadBalancer Ingress, Kubernetes, T Cloud Public

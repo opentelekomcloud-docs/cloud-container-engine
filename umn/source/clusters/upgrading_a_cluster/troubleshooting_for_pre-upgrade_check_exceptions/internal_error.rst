@@ -16,3 +16,7 @@ Solutions
 Perform the pre-upgrade check again.
 
 If it fails again, submit a service ticket to contact technical support.
+
+.. meta::
+   :description: Resolve Cloud Container Engine internal errors during pre-upgrade checks.
+   :keywords: Cloud Container Engine, T Cloud Public, pre-upgrade check, internal error, technical support

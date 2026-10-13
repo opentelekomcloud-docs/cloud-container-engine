@@ -192,3 +192,7 @@ Procedure
    .. note::
 
       Rectify errors as prompted during cluster upgrading. If you have any questions, contact O&M personnel.
+
+.. meta::
+   :description: Learn how to migrate Kubernetes resources from CCE 1.
+   :keywords: Cloud Container Engine, Kubernetes, Application Migration, Deployments, CCE

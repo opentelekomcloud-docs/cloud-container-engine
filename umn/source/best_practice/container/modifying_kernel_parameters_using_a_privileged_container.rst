@@ -133,3 +133,7 @@ Procedure
    .. code-block::
 
       net.ipv4.tcp_tw_reuse=1
+
+.. meta::
+   :description: Learn how to modify kernel parameters using a privileged container in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, DaemonSet, Privileged Container, Kernel Parameters

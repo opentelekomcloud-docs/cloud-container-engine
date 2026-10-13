@@ -87,3 +87,7 @@ To use pod readiness gates, perform the following steps:
 #. Go to the ELB console and check the backend server group. The health check status is normal.
 
 #. On the CCE console, the workload is in the **Running** status.
+
+.. meta::
+   :description: Learn how to associate pod readiness with ELB health checks in T Cloud Public's CCE for graceful rolling upgrades.
+   :keywords: Cloud Container Engine, ELB health check, pod readiness, rolling upgrade, Kubernetes

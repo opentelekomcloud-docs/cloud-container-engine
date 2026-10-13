@@ -558,3 +558,7 @@ Release History
    |                 |                           |                                                    |                                                                                       |
    |                 | v1.25                     |                                                    |                                                                                       |
    +-----------------+---------------------------+----------------------------------------------------+---------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Monitor abnormal cluster node events with CCE Node Problem Detector on T Cloud Public.
+   :keywords: CCE Node Problem Detector, Kubernetes add-on, cluster node monitoring, daemon set, privileged mode

@@ -16,3 +16,7 @@ Solutions
 Check whether network policies need to be disabled on the network component canal-controller based on the diagnostic analysis logs. For example, if a cluster uses a Direct Connect connection to access an external address, the external switch does not support **ip-option**. Enabling network policies in this scenario could result in network access failure. In such cases, manually disable the network policies.
 
 If you need to modify the network policy setting, skip this check. After the upgrade, you can modify the network policy setting on the **Network** tab in **Settings**.
+
+.. meta::
+   :description: Learn how to manage network policies in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Network Policies, Cluster Network Components, canal-controller, Network Settings

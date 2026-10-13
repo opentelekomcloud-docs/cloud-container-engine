@@ -12,3 +12,7 @@ Containerization
    :hidden: 
 
    containerizing_an_enterprise_application_erp/index
+
+.. meta::
+   :description: Learn how to containerize enterprise ERP applications with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, containerization, enterprise application, ERP

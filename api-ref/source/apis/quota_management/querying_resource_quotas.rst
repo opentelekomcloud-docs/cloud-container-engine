@@ -111,3 +111,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Query CCE resource quotas via T Cloud Public API.
+   :keywords: Cloud Container Engine, T Cloud Public, Resource Quotas, API, Project ID

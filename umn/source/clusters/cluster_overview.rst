@@ -57,3 +57,7 @@ Cluster Lifecycle
    +-------------+----------------------------------------------------------------+
    | Deleting    | A cluster is being deleted.                                    |
    +-------------+----------------------------------------------------------------+
+
+.. meta::
+   :description: Discover Cloud Container Engine (CCE) by T Cloud Public.
+   :keywords: Cloud Container Engine, Kubernetes, containerized applications, cluster network, high availability

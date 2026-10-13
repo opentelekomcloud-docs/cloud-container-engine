@@ -137,3 +137,7 @@ This section uses an existing load balancer as an example. An example YAML file 
    |                                       |                       |                                                                                                                                                      |
    |                                       |                       | Dedicated load balancers are available in clusters of v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later.                                     |
    +---------------------------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to configure SNI for LoadBalancer Services in T Cloud Public CCE to secure HTTPS communication with multiple domain names.
+   :keywords: Cloud Container Engine, SNI, LoadBalancer, Kubernetes, HTTPS

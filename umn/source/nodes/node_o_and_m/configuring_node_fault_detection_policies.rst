@@ -312,3 +312,7 @@ Check items cover events and statuses.
       |                             |                                                                        | -  Threshold: 90%                                                                                                                                                                                                                                                                                                        |
       | DiskPressure                |                                                                        |                                                                                                                                                                                                                                                                                                                          |
       +-----------------------------+------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn to configure node fault detection policies in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, Node Fault Detection, CCE Node Problem Detector, Add-on, Cluster Management

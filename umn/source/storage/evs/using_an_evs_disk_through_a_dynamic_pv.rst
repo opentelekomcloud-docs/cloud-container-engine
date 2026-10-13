@@ -435,3 +435,7 @@ You can also perform the operations listed in :ref:`Table 3 <cce_10_0615__table1
    |                                       |                                                                                                                                            |                                                                                                                                                                                 |
    |                                       |                                                                                                                                            |    **Synchronize** is only displayed when the underlying storage capacity is greater than the PVC capacity.                                                                     |
    +---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to use an EVS disk through a dynamic PV in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, EVS, Dynamic PV, StorageClass, PVC

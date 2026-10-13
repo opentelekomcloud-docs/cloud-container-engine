@@ -226,3 +226,7 @@ Status Code
    =========== ===========================================================
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Query job progress with a specified job ID on T Cloud Public Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, job progress, API, cluster management

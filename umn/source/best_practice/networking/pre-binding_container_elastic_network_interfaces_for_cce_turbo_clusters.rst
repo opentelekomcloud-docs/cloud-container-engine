@@ -95,3 +95,7 @@ Custom Settings at the Node Pool Level
 #. After the configuration is complete, click **OK**. Wait for about 10 seconds for the configuration to take effect.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516078127.png
+
+.. meta::
+   :description: Accelerate pod startup in T Cloud Public CCE Turbo clusters.
+   :keywords: Cloud Container Engine, CCE Turbo, Elastic Network Interfaces, Pod Startup Speed, Cloud Native 2.0

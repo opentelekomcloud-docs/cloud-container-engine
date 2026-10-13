@@ -18,3 +18,7 @@ Check Item 2: Whether a Network ACL Has Been Configured for the Node
 --------------------------------------------------------------------
 
 Log in to the VPC console. In the navigation pane, choose **Access Control** > **Firewalls**. Check whether a firewall has been configured for the subnet where the node is located and whether external access is restricted.
+
+.. meta::
+   :description: Resolve T Cloud Public CCE node internet access issues.
+   :keywords: Cloud Container Engine, Node Network Connectivity, Elastic IP, VPC Firewall, Troubleshooting

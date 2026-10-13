@@ -36,3 +36,7 @@ Advanced Setting Examples of LoadBalancer Ingresses
    configuring_the_priorities_of_forwarding_rules_for_loadbalancer_ingresses
    configuring_a_custom_header_forwarding_policy_for_a_loadbalancer_ingress
    configuring_a_custom_eip_for_a_loadbalancer_ingress
+
+.. meta::
+   :description: Explore advanced LoadBalancer Ingress settings on T Cloud Public.
+   :keywords: Cloud Container Engine, LoadBalancer Ingress, HTTPS Certificate, SNI, T Cloud Public

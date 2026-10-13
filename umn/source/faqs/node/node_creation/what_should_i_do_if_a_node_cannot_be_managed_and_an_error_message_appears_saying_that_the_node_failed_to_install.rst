@@ -32,3 +32,7 @@ Run the following command to manually create a logical volume:
 After the node is reset on the GUI, the node becomes normal.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516077721.jpg
+
+.. meta::
+   :description: Resolve CCE node installation errors by manually creating LVM logical volumes on /dev/vdb.
+   :keywords: Cloud Container Engine, node management, LVM, logical volume, troubleshooting

@@ -195,3 +195,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Get CCE node pool configuration details via T Cloud Public API.
+   :keywords: CCE, Cloud Container Engine, Node Pool, API, T Cloud Public

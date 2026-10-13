@@ -402,3 +402,7 @@ Creating a Network Policy on the Console
 .. |image2| image:: /_static/images/en-us_image_0000002483959172.png
 .. |image3| image:: /_static/images/en-us_image_0000002516199125.png
 .. |image4| image:: /_static/images/en-us_image_0000002483959180.png
+
+.. meta::
+   :description: Learn to configure network policies in T Cloud Public's Cloud Container Engine to restrict pod access and enhance application layer security using namespace,...
+   :keywords: Cloud Container Engine, Network Policies, Kubernetes, Pod Access, CCE

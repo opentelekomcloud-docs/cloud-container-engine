@@ -16,3 +16,7 @@ Deploying WordPress and MySQL That Depend on Each Other
    overview
    step_1_deploying_mysql
    step_2_deploying_wordpress
+
+.. meta::
+   :description: Deploy WordPress and MySQL on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, WordPress, MySQL, Deployment

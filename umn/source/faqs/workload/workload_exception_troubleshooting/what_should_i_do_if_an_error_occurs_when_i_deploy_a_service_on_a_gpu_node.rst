@@ -69,3 +69,7 @@ Helpful Links
 -------------
 
 -  :ref:`How Do I Rectify Failures When the NVIDIA Driver Is Used to Start Containers on GPU Nodes? <cce_faq_00020>`
+
+.. meta::
+   :description: Resolve GPU deployment errors in T Cloud Public CCE.
+   :keywords: CCE, GPU, NVIDIA, Container, Driver

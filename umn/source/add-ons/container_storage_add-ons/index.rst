@@ -14,3 +14,7 @@ Container Storage Add-ons
 
    cce_container_storage_everest
    flexvolume_discarded
+
+.. meta::
+   :description: Explore T Cloud Public's Container Storage Add-ons for CCE.
+   :keywords: Cloud Container Engine, T Cloud Public, Container Storage, Everest, FlexVolume

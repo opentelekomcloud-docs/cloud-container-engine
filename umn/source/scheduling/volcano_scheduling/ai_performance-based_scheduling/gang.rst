@@ -120,3 +120,7 @@ After Volcano is installed, you can enable or disable Gang scheduling on the **S
                          requests:
                            cpu: "1"
                    restartPolicy: OnFailure
+
+.. meta::
+   :description: Learn about Gang scheduling in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Gang scheduling, Volcano, AI, Big Data

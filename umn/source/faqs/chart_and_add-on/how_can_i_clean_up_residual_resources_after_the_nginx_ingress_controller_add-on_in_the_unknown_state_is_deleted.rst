@@ -43,3 +43,7 @@ Solution
    **className** specifies the name of a controller. **namespace** specifies the namespace where NGINX Ingress Controller was installed.
 
 #. Manually delete the residual resources if the preceding resources are present.
+
+.. meta::
+   :description: Learn how to clean up residual resources after deleting the NGINX Ingress Controller add-on in T Cloud Public's Cloud Container Engine.
+   :keywords: CCE, NGINX Ingress Controller, Kubernetes, Residual Resources, kubectl

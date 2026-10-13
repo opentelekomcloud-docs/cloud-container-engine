@@ -30,3 +30,7 @@ Storage
    emptydir/index
    hostpath
    customizing_a_storageclass
+
+.. meta::
+   :description: Explore storage options for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Storage, Kubernetes, EVS

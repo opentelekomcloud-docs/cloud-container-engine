@@ -57,3 +57,7 @@ During the node upgrade, the key disks store the upgrade component package, and 
    .. code-block::
 
       df -h /tmp
+
+.. meta::
+   :description: Resolve Cloud Container Engine node upgrade issues.
+   :keywords: Cloud Container Engine, node upgrade, disk space, worker node, technical support

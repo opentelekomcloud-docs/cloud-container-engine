@@ -249,3 +249,7 @@ Release History
    |                       |                           |                                                          |
    |                       | v1.31                     |                                                          |
    +-----------------------+---------------------------+----------------------------------------------------------+
+
+.. meta::
+   :description: Learn about Cloud Native Log Collection in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, Cloud Native Log Collection, Fluent Bit, OpenTelemetry, AOM

@@ -163,3 +163,7 @@ For more details about the performance comparison and functional enhancements be
 
 -  `Kubernetes v1.25 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.25.md>`__
 -  `Kubernetes v1.24 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.24.md>`__
+
+.. meta::
+   :description: Explore Kubernetes 1.
+   :keywords: Kubernetes 1.25, Pod Security Admission, cgroups v2, Ephemeral Containers, T Cloud Public

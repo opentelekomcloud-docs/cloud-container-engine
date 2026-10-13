@@ -16,3 +16,7 @@ Node Creation
    how_do_i_troubleshoot_problems_occurred_when_adding_nodes_to_a_cce_cluster
    how_do_i_troubleshoot_problems_occurred_when_accepting_nodes_into_a_cce_cluster
    what_should_i_do_if_a_node_cannot_be_managed_and_an_error_message_appears_saying_that_the_node_failed_to_install
+
+.. meta::
+   :description: Learn how to troubleshoot node creation issues in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, CCE, Node Creation, Troubleshooting, T Cloud Public

@@ -23,3 +23,7 @@ As shown in :ref:`Figure 1 <cce_faq_00266__fig43963373019>`, a region may consis
    :alt: **Figure 1** Relationship between clusters, VPCs, and subnets
 
    **Figure 1** Relationship between clusters, VPCs, and subnets
+
+.. meta::
+   :description: Learn how clusters, VPCs, and subnets relate in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Cluster, VPC, Subnet, ECS

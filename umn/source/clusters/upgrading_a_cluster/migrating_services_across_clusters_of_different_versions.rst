@@ -71,3 +71,7 @@ Procedure
 #. **Delete the old cluster.**
 
    When all functions of the new cluster are ready, delete the old cluster. For details about how to delete a cluster, see :ref:`Deleting a Cluster <cce_10_0212>`.
+
+.. meta::
+   :description: Learn how to migrate services across CCE clusters of different versions on T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, cluster migration, cross-version upgrade, service migration

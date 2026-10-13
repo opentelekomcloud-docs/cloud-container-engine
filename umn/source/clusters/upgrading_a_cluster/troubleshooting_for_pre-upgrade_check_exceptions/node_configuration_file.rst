@@ -30,3 +30,7 @@ Solutions
 ---------
 
 Reset the node. For details, see :ref:`Resetting a Node <cce_10_0003>`. Alternatively, contact technical support to restore the files and then perform the upgrade.
+
+.. meta::
+   :description: Learn how to check key component configuration files on nodes in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Node Configuration, Kubernetes, kubelet

@@ -441,3 +441,7 @@ Status Code
    =========== =========================================================
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Delete a specified cluster via T Cloud Public's Cloud Container Engine API.
+   :keywords: Cloud Container Engine, T Cloud Public, cluster deletion, API, cluster management

@@ -26,3 +26,7 @@ Possible Causes of Why Pod Loads Are Unevenly Distributed on Nodes
 ------------------------------------------------------------------
 
 When allocating pods, kube-scheduler does not take into account the actual load of applications. This can result in some nodes being heavily loaded while others are lightly loaded, especially if the application load is uneven.
+
+.. meta::
+   :description: Learn why pods aren't evenly distributed on T Cloud Public CCE nodes.
+   :keywords: Cloud Container Engine, Kubernetes, Pod Scheduling, kube-scheduler, T Cloud Public

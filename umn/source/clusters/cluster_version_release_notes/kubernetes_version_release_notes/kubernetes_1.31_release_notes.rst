@@ -75,3 +75,7 @@ References
 ----------
 
 For more details about the performance comparison and functional evolution between Kubernetes 1.31 and other versions, see `Kubernetes v1.31 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.31.md>`__.
+
+.. meta::
+   :description: Explore Kubernetes 1.
+   :keywords: CCE, Kubernetes 1.31, StatefulSet, Elastic indexed jobs, Pod failure policy

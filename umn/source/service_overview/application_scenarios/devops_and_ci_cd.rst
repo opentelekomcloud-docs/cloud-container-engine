@@ -40,3 +40,7 @@ Software Repository for Container (SWR), Object Storage Service (OBS), Virtual P
    :alt: **Figure 1** How DevOps works
 
    **Figure 1** How DevOps works
+
+.. meta::
+   :description: Boost DevOps with T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, DevOps, CI/CD, containerized architecture, SWR

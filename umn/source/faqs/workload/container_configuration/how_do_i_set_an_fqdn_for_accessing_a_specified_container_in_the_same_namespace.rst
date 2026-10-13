@@ -20,3 +20,7 @@ Solution
 Solution 1: Use the domain name for service discovery. The host name and namespace must be pre-configured. The domain name of the registered service is in the format of *service name*.\ *namespace name*\ **.svc.cluster.local**. The limitation of this solution is that the registration center must be deployed using containers.
 
 Solution 2: Use the host network to deploy containers and then configure affinity between the containers and a node in the cluster. In this way, the service address (that is, the node address) of the containers can be determined. The registered address is the IP address of the node where the service is located. This solution allows you to deploy the registration center using VMs, whereas the disadvantage is that the host network is not as efficient as the container network.
+
+.. meta::
+   :description: Learn how to set an FQDN for accessing a container in the same namespace on T Cloud Public.
+   :keywords: Cloud Container Engine, FQDN, service discovery, namespace, container access

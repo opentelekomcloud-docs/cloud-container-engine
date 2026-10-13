@@ -217,3 +217,7 @@ Helpful Links
 .. |image2| image:: /_static/images/en-us_image_0000002511366536.png
 .. |image3| image:: /_static/images/en-us_image_0000002542806499.png
 .. |image4| image:: /_static/images/en-us_image_0000002511366538.png
+
+.. meta::
+   :description: Migrate from retiring Ingress NGINX to T Cloud Public CCE LoadBalancer Ingress.
+   :keywords: Cloud Container Engine, Nginx Ingress, LoadBalancer Ingress, Traffic Migration, Kubernetes

@@ -88,3 +88,7 @@ Solutions
       If you have any questions about the preceding operations, contact technical support.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079383.png
+
+.. meta::
+   :description: Resolve CCE agent update issues on T Cloud Public.
+   :keywords: CCE Agent, Cloud Container Engine, T Cloud Public, node management, version update

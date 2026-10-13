@@ -48,3 +48,7 @@ The certificate referenced by an HTTPS ingress created on CCE is modified on the
       Solution 2: Overwrite the certificate used by an ingress with the corresponding secret resource of the cluster to prevent the certificate being updated on the ELB console during the cluster upgrade.
 
       Log in to the CCE console and click the cluster name to access the cluster console. Choose **ConfigMaps and Secrets** in the navigation pane, click the **Secrets** tab, locate the row containing the target secret, click **Update** in the **Operation** column, and enter the certificate you are using.
+
+.. meta::
+   :description: Resolve HTTPS load balancer certificate inconsistencies in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, HTTPS Load Balancer, Certificate Consistency, Ingress, ELB

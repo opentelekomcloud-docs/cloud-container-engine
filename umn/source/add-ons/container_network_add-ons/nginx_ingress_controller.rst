@@ -430,3 +430,7 @@ Release History
    |                 |                           |                                                           |                                                                                        |
    |                 | v1.29                     |                                                           |                                                                                        |
    +-----------------+---------------------------+-----------------------------------------------------------+----------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn about the NGINX Ingress Controller in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, NGINX Ingress Controller, Kubernetes, load balancing, application-layer forwarding

@@ -272,3 +272,7 @@ If you configure CoreDNS with an upstream DNS server, you can implement a cache 
       }
 
 .. |image1| image:: /_static/images/en-us_image_0000002483958418.png
+
+.. meta::
+   :description: Learn to customize CoreDNS specifications and configure stub domains in T Cloud Public's Cloud Container Engine for optimal DNS resolution.
+   :keywords: Cloud Container Engine, CoreDNS, DNS resolution, add-ons, Kubernetes

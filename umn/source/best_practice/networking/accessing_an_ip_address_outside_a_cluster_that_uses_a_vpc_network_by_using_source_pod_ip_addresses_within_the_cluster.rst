@@ -83,3 +83,7 @@ To reserve the source IP address of a pod when the pod accesses a CIDR block, yo
    -  The **nonMasqueradeCIDRs** parameter must contain all destination CIDR blocks that you want them to use the original pod IP addresses for communications.
 
 #. After the modification, click **Confirm configuration**. The setting takes effect within 1 minute.
+
+.. meta::
+   :description: Learn how CCE handles SNAT and configure nonMasqueradeCIDRs to allow pods to use their original IP addresses for private network communication.
+   :keywords: CCE, VPC, SNAT, Pod IP, nonMasqueradeCIDRs

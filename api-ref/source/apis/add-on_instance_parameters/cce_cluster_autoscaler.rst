@@ -200,3 +200,7 @@ Example Request
            }
        }
    }
+
+.. meta::
+   :description: Learn about the CCE Cluster Autoscaler add-on for T Cloud Public.
+   :keywords: CCE, Cluster Autoscaler, Node Pools, Scaling, T Cloud Public

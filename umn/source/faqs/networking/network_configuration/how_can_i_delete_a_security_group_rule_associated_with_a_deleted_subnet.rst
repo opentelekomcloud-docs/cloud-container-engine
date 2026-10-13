@@ -21,3 +21,7 @@ Procedure
 #. In the navigation pane, choose **Overview**. In the **Networking Configuration** area, click the name of the default node security group.
 #. On the page displayed, click the **Inbound Rules** tab, locate the row containing the target subnet CIDR block based on the source IP address, and find the corresponding security group rule.
 #. Click **Delete** in the **Operation** column.
+
+.. meta::
+   :description: Learn how to manually delete security group rules associated with deleted subnets in T Cloud Public CCE Turbo clusters.
+   :keywords: Cloud Container Engine, Security Group Rule, Subnet, CCE Turbo, Kubernetes

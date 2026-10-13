@@ -198,3 +198,7 @@ The **mountPropagation** field in **Container.volumeMounts** controls the mount 
               path: /opt/
 
 For details, see the `community documentation <https://kubernetes.io/docs/concepts/storage/volumes/>`__.
+
+.. meta::
+   :description: Secure your T Cloud Public CCE cluster with best practices: isolate add-ons, restrict resource usage, and enforce least privilege access.
+   :keywords: CCE, Pod Scheduling, Container Security, Least Privilege, Node Isolation

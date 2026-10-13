@@ -27,3 +27,7 @@ You can specify a specification in a node pool for scaling.
          Scaling in can result in the unavailability of resources associated with a node, such as local storage and workloads that were scheduled to that node. Exercise caution when performing this operation to avoid impact on running services.
 
 #. Click **OK**.
+
+.. meta::
+   :description: Learn how to scale node pools in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Node Pool, Scaling, Cluster Management

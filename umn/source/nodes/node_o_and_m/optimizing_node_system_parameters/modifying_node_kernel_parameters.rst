@@ -209,3 +209,7 @@ The **tcp_keepalive_time** parameter is used as an example to describe how to ch
          echo net.ipv4.tcp_keepalive_time=600 >> /etc/sysctl.conf && sysctl -p
 
 #. After the node is created, log in to the node and run the command in :ref:`Table 1 <cce_10_0412__table1079113581068>` to check whether the modification is successful.
+
+.. meta::
+   :description: Learn to modify Linux kernel parameters in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Node Kernel Parameters, sysctl, Linux

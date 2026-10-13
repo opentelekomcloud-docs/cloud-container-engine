@@ -12,3 +12,7 @@ You can upgrade CoreDNS in a cluster by performing the following procedure:
 #. Log in to the CCE console and click the name of the target cluster to access the cluster console. In the navigation pane, choose **Add-ons**.
 #. Locate the CoreDNS add-on and click **Upgrade**.
 #. Set parameters.
+
+.. meta::
+   :description: Upgrade CoreDNS in T Cloud Public CCE clusters easily.
+   :keywords: Cloud Container Engine, CoreDNS, Kubernetes, add-on, cluster management

@@ -206,3 +206,7 @@ Common Issues
       The connection to the server localhost:8080 was refused - did you specify the right host or port?
 
    The cause is that cluster authentication is not configured for the kubectl client. For details, see :ref:`Step 2: Obtain the kubectl Configuration File (kubeconfig) <cce_10_0107__section1388915135311>`.
+
+.. meta::
+   :description: Learn to access T Cloud Public CCE clusters via kubectl.
+   :keywords: CCE, kubectl, Kubernetes, cluster access, kubeconfig

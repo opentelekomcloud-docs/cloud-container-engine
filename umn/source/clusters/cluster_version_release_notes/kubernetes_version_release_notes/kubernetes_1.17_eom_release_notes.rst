@@ -40,3 +40,7 @@ For more details about the performance comparison and function evolution between
 
 -  `Kubernetes v1.17.0 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.17.md#changes>`__
 -  `Kubernetes v1.16.0 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.16.md#kubernetes-v1160-release-notes>`__
+
+.. meta::
+   :description: Review CCE Kubernetes 1.
+   :keywords: Cloud Container Engine, Kubernetes, API Deprecation, Container Orchestration, T Cloud Public

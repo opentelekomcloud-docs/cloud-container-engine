@@ -13,3 +13,7 @@ The following are Kubernetes log management methods:
 -  Collect container logs to AOM 1.0. For details, see :ref:`Collecting Container Logs Using ICAgent <cce_10_0018>`.
 -  Collect control plane component logs and Kubernetes audit logs from the CCE control plane and add them to the LTS log streams in your account. For details, see :ref:`Collecting Control Plane Component Logs <cce_10_0554>` and :ref:`Collecting Audit Logs <cce_10_0792>`.
 -  Collect Kubernetes events and add them to the LTS log stream in your account for persistent storage and statistical analysis. For details, see :ref:`Collecting Kubernetes Events <cce_10_0793>`.
+
+.. meta::
+   :description: Manage Kubernetes logs on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, log management, LTS, AOM

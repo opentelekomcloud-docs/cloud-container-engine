@@ -62,3 +62,7 @@ Procedure
    -  **Run** statement: indicates that a shell command is executed in the container.
    -  **COPY** statement: indicates that files in the local computer are copied to the container.
    -  **ENTRYPOINT** statement: indicates the commands that are run after the container is started.
+
+.. meta::
+   :description: Learn how to compile Dockerfiles for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Dockerfile, Container Image, Docker, T Cloud Public

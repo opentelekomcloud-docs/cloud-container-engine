@@ -16,3 +16,7 @@ Solutions
 ---------
 
 Before the upgrade, disable the CronJob and perform the pre-upgrade check. After the upgrade is complete, enable the CronJob.
+
+.. meta::
+   :description: Prevent CronJob issues in T Cloud Public CCE by disabling jobs before master node upgrades to ensure time zone consistency.
+   :keywords: Cloud Container Engine, Master Nodes, Time Zone, CronJob, Rolling Upgrade

@@ -264,3 +264,7 @@ After a one-off job is created, you can perform operations listed in :ref:`Table
    |                                   |                                                                                                                |
    |                                   |    Deleted jobs cannot be restored. Exercise caution when deleting a job.                                      |
    +-----------------------------------+----------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn to create Kubernetes Jobs in T Cloud Public CCE for batch processing.
+   :keywords: Cloud Container Engine, Kubernetes, Job, Batch Processing, T Cloud Public

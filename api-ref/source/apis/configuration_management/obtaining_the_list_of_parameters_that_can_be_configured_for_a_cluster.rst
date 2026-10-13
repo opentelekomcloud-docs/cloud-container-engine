@@ -179,3 +179,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Use T Cloud Public's CCE API to get configurable parameters for your cluster.
+   :keywords: Cloud Container Engine, CCE, Cluster Configuration, API, T Cloud Public

@@ -18,3 +18,7 @@ Auto Scaling
    workload_scaling/index
    node_scaling/index
    using_hpa_and_ca_for_auto_scaling_of_workloads_and_nodes
+
+.. meta::
+   :description: Learn about Auto Scaling in Cloud Container Engine by T Cloud Public.
+   :keywords: Cloud Container Engine, Auto Scaling, T Cloud Public, Workload Scaling, Node Scaling

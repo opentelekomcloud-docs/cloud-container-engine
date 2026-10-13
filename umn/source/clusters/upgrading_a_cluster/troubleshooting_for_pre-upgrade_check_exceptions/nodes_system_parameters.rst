@@ -46,3 +46,7 @@ Non-default parameter settings may lead to service packet loss. Change them back
       ip link show dev bond0 | grep mtu
 
    If the command output is **mtu 1500**, the setting has been modified.
+
+.. meta::
+   :description: Manage T Cloud Public Cloud Container Engine nodes.
+   :keywords: Cloud Container Engine, Nodes' System Parameters, MTU, bond0, BMS

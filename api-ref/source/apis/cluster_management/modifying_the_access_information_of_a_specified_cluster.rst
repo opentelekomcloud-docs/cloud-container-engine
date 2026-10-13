@@ -184,3 +184,7 @@ Status Code
    =========== ===========================================================
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Use T Cloud Public's CCE API to modify access info for a cluster.
+   :keywords: Cloud Container Engine, Cluster, Access Information, API, T Cloud Public

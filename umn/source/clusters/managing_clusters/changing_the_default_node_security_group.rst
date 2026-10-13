@@ -26,3 +26,7 @@ Procedure
 
    -  Ensure that correct port rules are configured for the selected security group. Otherwise, the nodes cannot be created. The port rules that a security group must comply with vary with the cluster type.
    -  The new security group takes effect only for newly created or managed nodes. For existing nodes, modify the security group rules and reset the nodes in real time. The original security group is still used.
+
+.. meta::
+   :description: Learn how to change the default node security group in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, CCE, Node Security Group, Cluster Networking, Security Group Rules

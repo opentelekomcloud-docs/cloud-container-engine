@@ -40,3 +40,7 @@ To fix this issue, perform the following operations:
 #. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Settings**.
 #. Click the **Network** tab and set the **Threshold for Unbinding Pre-bound Container ENIs** value to a maximum of 256.
 #. Click **Confirm Configuration**.
+
+.. meta::
+   :description: Fix CCE "nic-max-above-warm-target" errors on T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, Node Pool, Network Configuration, ENI

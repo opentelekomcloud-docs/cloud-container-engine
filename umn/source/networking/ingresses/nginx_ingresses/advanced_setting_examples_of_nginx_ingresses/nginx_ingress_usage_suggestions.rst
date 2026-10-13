@@ -80,3 +80,7 @@ Advanced Functions of NGINX Ingress Controller
    By default, an Nginx ingress accesses backend services using HTTP.
 
    -  HTTPS: For details, see :ref:`Configuring HTTPS Backend Services for an Nginx Ingress <cce_10_0697>`.
+
+.. meta::
+   :description: Learn best practices for Nginx Ingress on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Nginx Ingress, NGINX Ingress Controller, Kubernetes, T Cloud Public

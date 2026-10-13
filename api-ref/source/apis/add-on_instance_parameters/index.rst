@@ -32,3 +32,7 @@ Add-on Instance Parameters
    volcano_scheduler
    cloud_native_cluster_monitoring
    cloud_native_log_collection
+
+.. meta::
+   :description: Explore add-on instance parameters for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, T Cloud Public, Add-ons, Container Management

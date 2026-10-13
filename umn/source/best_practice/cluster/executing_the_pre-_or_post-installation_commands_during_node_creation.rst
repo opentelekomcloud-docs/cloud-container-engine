@@ -52,3 +52,7 @@ Procedure
 #. Click **Submit**.
 
 .. |image1| image:: /_static/images/en-us_image_0000002484118386.png
+
+.. meta::
+   :description: Learn how to use pre- or post-installation commands during node creation in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, node creation, pre-installation, post-installation, scripts

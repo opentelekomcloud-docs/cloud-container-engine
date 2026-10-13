@@ -92,3 +92,7 @@ Information similar to the following is displayed:
      Warning  FailedScheduling  49s   default-scheduler  0/2 nodes are available: 2 Insufficient cpu.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516078081.png
+
+.. meta::
+   :description: Learn how to locate the root cause of abnormal workloads in T Cloud Public's Cloud Container Engine.
+   :keywords: CCE, Workload, Pod, Fault Locating, Troubleshooting

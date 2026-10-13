@@ -336,3 +336,7 @@ You can also perform the operations listed in :ref:`Table 3 <cce_10_0634__table1
    | Viewing a YAML file   | View, copy, or download the YAML file of a PVC or PV.                                                                                      | #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** or **PVs** tab.                                                       |
    |                       |                                                                                                                                            | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view, copy, or download the YAML.                                           |
    +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn to use Local PVs dynamically in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Local PV, Dynamic PV, CSI, T Cloud Public

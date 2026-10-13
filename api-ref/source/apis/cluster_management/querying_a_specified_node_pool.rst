@@ -944,3 +944,7 @@ Status Code
    =========== ================================================
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Query a specified node pool in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node Pool, API, Cluster, T Cloud Public

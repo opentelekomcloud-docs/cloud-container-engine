@@ -162,3 +162,7 @@ Verification
 #. Wait for a while and check the monitoring data on the ELB console.
 
    If a new access connection is displayed, the access is forwarded by the load balancer as expected.
+
+.. meta::
+   :description: Learn to configure passthrough networking for LoadBalancer Services in T Cloud Public CCE to ensure reliable intra-cluster traffic forwarding to backend pods.
+   :keywords: Cloud Container Engine, Passthrough Networking, LoadBalancer Service, Kubernetes, CCE

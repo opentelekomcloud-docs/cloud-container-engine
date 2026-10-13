@@ -32,3 +32,7 @@ After confirming that the service on the target cluster is normal, bring the sou
 -  Delete backup files.
 
 .. |image1| image:: /_static/images/en-us_image_0000002483958426.png
+
+.. meta::
+   :description: Learn how to verify WordPress functions, switch live traffic, and bring source clusters offline during migration with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, cluster migration, DNS traffic switching, application data, T Cloud Public

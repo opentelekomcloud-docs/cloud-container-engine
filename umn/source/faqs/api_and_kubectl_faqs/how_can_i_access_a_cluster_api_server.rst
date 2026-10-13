@@ -9,3 +9,7 @@ You can use either of the following methods to access a cluster API server:
 
 -  (Recommended) Through the cluster API. This access mode uses certificate authentication. It is suitable for API calls on scale thanks to its direct connection to the API Server. This is a recommended option.
 -  Through API Gateway. This access mode uses token authentication. You need to obtain a toke using your account. This access mode applies to small-scale API calls. API gateway flow control may be triggered when APIs are called on scale.
+
+.. meta::
+   :description: Learn how to access T Cloud Public's Cluster API Server via certificate authentication for scale or token-based API Gateway for small-scale calls.
+   :keywords: Cloud Container Engine, T Cloud Public, Cluster API, API Server, Certificate Authentication

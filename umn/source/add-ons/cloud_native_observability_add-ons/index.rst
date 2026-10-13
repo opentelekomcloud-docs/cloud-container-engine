@@ -20,3 +20,7 @@ Cloud Native Observability Add-ons
    cce_node_problem_detector
    kubernetes_metrics_server
    grafana
+
+.. meta::
+   :description: Manage Kubernetes clusters with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Observability, Add-ons

@@ -22,3 +22,7 @@ Performing Post-Upgrade Verification
    services
    new_nodes
    new_pods
+
+.. meta::
+   :description: Perform post-upgrade verification for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Post-Upgrade Verification, Cluster Status, Node Status

@@ -46,3 +46,7 @@ Checking Whether a Global Access Key Is Used in a Cluster
 
 .. |image1| image:: /_static/images/en-us_image_0000002484118228.png
 .. |image2| image:: /_static/images/en-us_image_0000002483958246.png
+
+.. meta::
+   :description: Learn how to identify and manage OBS Global Access Keys in T Cloud Public CCE clusters.
+   :keywords: Cloud Container Engine, OBS, Global Access Key, PVC, Kubernetes

@@ -56,3 +56,7 @@ You can use the API server of a Kubernetes cluster to call Kubernetes native API
    For example, if you run the **curl** command to call the API to view the pod information, you only need to carry the certificate in the command as follows:
 
    **curl --cert ./client.crt --key ./client.key https://192.168.0.198:5443/api/v1/namespaces/default/pods/**
+
+.. meta::
+   :description: Manage Kubernetes clusters with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes APIs, API Gateway, Cluster Resources, RESTful Interface

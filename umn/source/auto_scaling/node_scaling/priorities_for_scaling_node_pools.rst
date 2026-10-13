@@ -52,3 +52,7 @@ Configuring Priorities
 For details about how to configure the priorities of node pool flavors, see :ref:`Configuring an Auto Scaling Policy for a Cluster <cce_10_0209__section6521214191020>`.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079049.png
+
+.. meta::
+   :description: Learn how T Cloud Public's Cloud Container Engine scales node pools using predictive filtering, priority sorting, and balanced AZ distribution for efficient ...
+   :keywords: Cloud Container Engine, T Cloud Public, Node Pools, Autoscaler, Scaling

@@ -106,3 +106,7 @@ Recommended configurations:
 
    -  Actual CPU threshold: **65**
    -  Actual memory threshold: **60**
+
+.. meta::
+   :description: Configure Volcano scheduling policies in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Volcano, Node Scoring, Scheduling Policies, Bin packing

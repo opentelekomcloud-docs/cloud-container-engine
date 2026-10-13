@@ -16,3 +16,7 @@ Solutions
 Log in to the node and run the **systemctl is-active NetworkManager** command to obtain the status of NetworkManager. If the command output is abnormal, run the **systemctl restart NetworkManager** command and obtain the status again.
 
 If the fault persists, reset the node. For details, see :ref:`Resetting a Node <cce_10_0003>`. Alternatively, contact technical support to restore the file and then perform the upgrade.
+
+.. meta::
+   :description: Troubleshoot NetworkManager issues in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, NetworkManager, Node, Troubleshooting, T Cloud Public

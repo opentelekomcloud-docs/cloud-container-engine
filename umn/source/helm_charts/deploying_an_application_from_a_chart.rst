@@ -155,3 +155,7 @@ Uninstalling a Chart-based Workload
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **App Templates**. On the right, click the **Releases** tab.
 #. Click **More** > **Uninstall** next to the release to be uninstalled, and click **Yes**. Exercise caution when performing this operation because releases cannot be restored after being uninstalled.
+
+.. meta::
+   :description: Learn to upload Helm charts, deploy applications, and manage pods on T Cloud Public's CCE console.
+   :keywords: Cloud Container Engine, Helm chart, CCE, Kubernetes, deployment

@@ -71,3 +71,7 @@ Viewing GC Alarms of an Application
 #. In the navigation pane, choose **Alarm Center** > **Alarms**. Select an application from the application drop-down list and view alarms of the application.
 
    For details about how to configure the notification receiving mode (such as email or SMS), see `Alarm Notification <https://docs.otc.t-systems.com/application-performance-management/umn/alarm_management/alarm_notification.html>`__.
+
+.. meta::
+   :description: Configure alarms for Java apps on CCE with T Cloud Public APM.
+   :keywords: Cloud Container Engine, APM, Java, Alarms, Workloads

@@ -306,3 +306,7 @@ You can also perform the operations listed in :ref:`Table 3 <cce_10_0635__cce_10
    | Viewing a YAML file   | View, copy, or download the YAML file of a PVC or PV.                                                                                      | #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** or **PVs** tab.                                                       |
    |                       |                                                                                                                                            | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view, copy, or download the YAML.                                           |
    +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to dynamically mount local PVs to StatefulSets in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Dynamic Mounting, Local PV, StatefulSet, Volume Claim Template

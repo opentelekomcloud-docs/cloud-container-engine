@@ -21,3 +21,7 @@ In addition, Deployments, StatefulSets, Services, and pods can be displayed on t
 
    #. At lease one label of the workload uses **app** as its key.
    #. The label of a Service is the same as that of the workload.
+
+.. meta::
+   :description: Learn why some Kubernetes resources aren't shown in the T Cloud Public CCE console and how to view them using kubectl or specific label conditions.
+   :keywords: CCE, Kubernetes, Console, kubectl, Deployments

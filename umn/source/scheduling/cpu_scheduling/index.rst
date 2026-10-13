@@ -14,3 +14,7 @@ CPU Scheduling
 
    cpu_policy
    enhanced_cpu_policy
+
+.. meta::
+   :description: Explore CPU Scheduling options in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, CPU Scheduling, CPU Policy, Enhanced CPU Policy

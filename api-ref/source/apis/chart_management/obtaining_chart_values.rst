@@ -111,3 +111,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Get chart values via GET /v2/charts/{chart_id}/values on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Chart Values, API, GET Request

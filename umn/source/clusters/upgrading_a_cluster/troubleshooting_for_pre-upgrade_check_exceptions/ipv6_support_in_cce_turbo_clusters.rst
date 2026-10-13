@@ -20,3 +20,7 @@ CCE Turbo clusters support IPv6 since v1.23. This feature is available in the fo
 -  v1.25 or later
 
 If IPv6 has been enabled in the cluster before the upgrade, the target cluster version must also support IPv6. Select a proper cluster version.
+
+.. meta::
+   :description: Learn about IPv6 support in T Cloud Public's CCE Turbo clusters.
+   :keywords: CCE Turbo, IPv6, Cluster Version, Kubernetes, Cloud Container Engine

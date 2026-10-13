@@ -14,3 +14,7 @@ Solutions
 ---------
 
 If your node pool's runtime is not containerd, change it to containerd by updating the node pool.
+
+.. meta::
+   :description: Learn to upgrade T Cloud Public CCE node pool runtime to containerd for v1.
+   :keywords: Cloud Container Engine, Node Pool, containerd, Docker, Cluster Upgrade

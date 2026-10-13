@@ -18,3 +18,7 @@ Permissions
    can_i_use_cce_apis_if_the_cluster_management_permissions_are_not_configured
    can_i_use_kubectl_if_the_cluster_management_permissions_are_not_configured
    what_is_an_obs_global_access_key_and_how_do_i_check_whether_a_global_access_key_is_used_in_a_cluster
+
+.. meta::
+   :description: Learn about CCE permissions on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, permissions, cluster management, kubectl

@@ -277,3 +277,7 @@ By way of example, **Merge Patch** and **Strategic Merge Patch** method operatio
       }
 
    The **containers** merge with the new content according to the value of the **name** field.
+
+.. meta::
+   :description: Learn how to use Merge Patch and Strategic Merge Patch methods with T Cloud Public's Cloud Container Engine to manage ReplicationController resources efficie...
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, API, Container

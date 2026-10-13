@@ -18,3 +18,7 @@ Scheduling a Workload
    configuring_specified_node_scheduling_nodeselector
    configuring_node_affinity_scheduling_nodeaffinity
    configuring_workload_affinity_or_anti-affinity_scheduling_podaffinity_or_podantiaffinity
+
+.. meta::
+   :description: Learn to schedule workloads on T Cloud Public CCE using nodeSelector, node affinity, and pod affinity rules for optimized resource management.
+   :keywords: Cloud Container Engine, workload scheduling, node affinity, pod affinity, T Cloud Public

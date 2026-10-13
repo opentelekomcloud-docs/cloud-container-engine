@@ -253,3 +253,7 @@ Create and delete files in service containers in the local storage (such as empt
 If the OS uses OverlayFS, services can be deployed on such nodes to prevent the problem that the disk space occupied by files created or deleted in the container is not released immediately.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516197787.png
+
+.. meta::
+   :description: Fix abnormal containers or nodes on T Cloud Public's Cloud Container Engine when thin pool disk space runs out.
+   :keywords: Cloud Container Engine, Thin Pool, Disk Space, Docker, Node

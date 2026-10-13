@@ -22,3 +22,7 @@ Procedure
    .. note::
 
       Disk sizes can only be increased, not decreased.
+
+.. meta::
+   :description: Learn how to expand EVS disk capacity in T Cloud Public's CCE via the console.
+   :keywords: Cloud Container Engine, EVS disk, storage, PVC, scale-out

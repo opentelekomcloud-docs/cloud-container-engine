@@ -55,3 +55,7 @@ Currently, three types of patch request method operations are supported:
    Strategic merge patch is used to add legal metadata to API objects, and uses new metadata to determine which list should be merged and which should not. The current metadata is used as the structure labels.
 
 For more information about the difference between **Merge Patch** and **Strategic Merge Patch**, see :ref:`Patch Request Method Operation Example <cce_02_0086>`.
+
+.. meta::
+   :description: Learn about JSON, Merge, and Strategic Merge Patch operations in T Cloud Public's Cloud Container Engine Kubernetes APIs.
+   :keywords: Cloud Container Engine, Kubernetes, JSON Patch, Merge Patch, T Cloud Public

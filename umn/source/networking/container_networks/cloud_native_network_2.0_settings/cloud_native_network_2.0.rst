@@ -262,3 +262,7 @@ Helpful Links
 -------------
 
 -  For details about the maximum number of pods that can run on a node in a cluster with different network models, see :ref:`Maximum Number of Pods That Can Be Created on a Node <cce_10_0348>`.
+
+.. meta::
+   :description: Explore Cloud Native Network 2.
+   :keywords: Cloud Native Network 2.0, CCE Turbo, VPC, Elastic Network Interface, Pod

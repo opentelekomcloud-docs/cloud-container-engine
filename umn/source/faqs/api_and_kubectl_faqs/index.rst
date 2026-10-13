@@ -20,3 +20,7 @@ API & kubectl FAQs
    how_do_i_download_kubeconfig_for_connecting_to_a_cluster_using_kubectl
    how_do_i_rectify_the_error_reported_when_running_the_kubectl_top_node_command
    why_is_error_from_server_forbidden_displayed_when_i_use_kubectl
+
+.. meta::
+   :description: Resolve common CCE API & kubectl FAQs on T Cloud Public.
+   :keywords: Cloud Container Engine, Kubernetes, kubectl, API, cluster management

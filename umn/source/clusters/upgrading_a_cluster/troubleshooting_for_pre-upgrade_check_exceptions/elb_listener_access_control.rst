@@ -16,3 +16,7 @@ Solutions
 ---------
 
 If the configurations are incorrect, reconfigure them by following the operations provided in :ref:`Configuring a Blocklist/Trustlist Access Policy for a LoadBalancer Service <cce_10_0831>`.
+
+.. meta::
+   :description: Learn how to configure and verify ELB listener access control annotations for Services in T Cloud Public CCE clusters to ensure correct security policies.
+   :keywords: Cloud Container Engine, ELB Listener, Access Control, Kubernetes, LoadBalancer

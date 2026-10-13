@@ -14,3 +14,7 @@ Permission
 
    configuring_kubeconfig_for_fine-grained_management_on_cluster_resources
    performing_rbac_authentication_on_a_namespace_using_kubectl_commands
+
+.. meta::
+   :description: Secure T Cloud Public CCE with fine-grained kubeconfig management and namespace-level RBAC authentication for precise cluster resource control.
+   :keywords: Cloud Container Engine, Kubernetes, RBAC, kubeconfig, T Cloud Public

@@ -115,3 +115,7 @@ Documentation
 -  `Mapping PodSecurityPolicies to Pod Security Standards <https://kubernetes.io/docs/reference/access-authn-authz/psp-to-pod-security-standards/>`__
 -  `Enforce Pod Security Standards with Namespace Labels <https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-namespace-labels/>`__
 -  `Enforce Pod Security Standards by Configuring the Built-in Admission Controller <https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-admission-controller/>`__
+
+.. meta::
+   :description: Learn to configure Pod Security Admission in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Pod Security Admission, Kubernetes, Pod Security Standards, Namespace Security

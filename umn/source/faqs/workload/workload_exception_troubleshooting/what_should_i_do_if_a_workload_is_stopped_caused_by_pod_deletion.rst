@@ -23,3 +23,7 @@ Solution
 Delete the **enable** field or set it to **true**.
 
 .. |image1| image:: /_static/images/en-us_image_0000002483957796.png
+
+.. meta::
+   :description: Resolve stopped workloads in T Cloud Public's Cloud Container Engine caused by pod deletion.
+   :keywords: Cloud Container Engine, Workload, Pod Deletion, YAML, T Cloud Public

@@ -149,3 +149,7 @@ HTTPS certificates can be configured for ingresses to provide security services.
 #. Enter **https://example.com** in the address box of the browser to access the workload (for example, :ref:`Nginx workload <cce_10_0047__section155246177178>`).
 
    Replace **example.com** with your domain name.
+
+.. meta::
+   :description: Learn to configure HTTPS certificates for Nginx Ingress on T Cloud Public's Cloud Container Engine using kubectl and TLS secrets.
+   :keywords: Cloud Container Engine, Nginx Ingress, HTTPS Certificate, TLS Secret, kubectl

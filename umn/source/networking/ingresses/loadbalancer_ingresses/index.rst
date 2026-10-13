@@ -24,3 +24,7 @@ LoadBalancer Ingresses
    configuring_advanced_loadbalancer_ingress_functions_using_annotations
    configuring_multiple_ingresses_in_a_cluster_to_use_the_same_load_balancer
    advanced_setting_examples_of_loadbalancer_ingresses/index
+
+.. meta::
+   :description: Learn to create and configure LoadBalancer Ingresses in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, LoadBalancer, Ingress, kubectl, T Cloud Public

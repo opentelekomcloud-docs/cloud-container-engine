@@ -148,3 +148,7 @@ Listener settings only apply to the first ingress configuration (excluding SNI c
          ...
 
 .. |image1| image:: /_static/images/en-us_image_0000002484117972.png
+
+.. meta::
+   :description: Learn how to identify which Ingress CCE applies listener settings to by checking annotations or sorting ingresses by creation timestamp.
+   :keywords: Cloud Container Engine, Ingress, Load Balancer, Listener, Kubernetes

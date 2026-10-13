@@ -233,3 +233,7 @@ The following procedure uses Nginx as an example to describe how to create a wor
       nginx-daemonset   1         1         0       1            0           daemon=need     116s
 
 #. If the workload will be accessed through a ClusterIP or NodePort Service, configure the access mode. For details, see :ref:`Networking <cce_10_0020>`.
+
+.. meta::
+   :description: Learn how to create a DaemonSet in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, DaemonSet, Kubernetes, T Cloud Public, Workloads

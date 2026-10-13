@@ -39,3 +39,7 @@ CCE provides two methods to authenticate requests for calling an API: token and 
 
 .. |image1| image:: /_static/images/en-us_image_0000001854551680.png
 .. |image2| image:: /_static/images/en-us_image_0000001868229221.png
+
+.. meta::
+   :description: Learn Cloud Container Engine API guidelines from T Cloud Public.
+   :keywords: Cloud Container Engine, RESTful API, Kubernetes, Cluster Management, X-Auth-Token

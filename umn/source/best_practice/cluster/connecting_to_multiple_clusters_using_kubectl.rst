@@ -392,3 +392,7 @@ This example configures only the public network access to the clusters. If you w
       To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 .. |image1| image:: /_static/images/en-us_image_0000002483957958.png
+
+.. meta::
+   :description: Learn how to connect to multiple CCE clusters using kubectl.
+   :keywords: Cloud Container Engine, kubectl, kubeconfig, Kubernetes, cluster management

@@ -587,3 +587,7 @@ Status Code
    +-------------+------------------------------------------------------------------+
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Learn how to update a specified cluster in T Cloud Public's Cloud Container Engine via the PUT API.
+   :keywords: Cloud Container Engine, T Cloud Public, cluster update, API, container management

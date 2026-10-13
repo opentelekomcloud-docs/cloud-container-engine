@@ -34,3 +34,7 @@ Configuring a Workload
    upgrading_and_rolling_back_a_workload
    configuring_tolerance_policies
    configuring_labels_and_annotations
+
+.. meta::
+   :description: Learn to configure workloads on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Workload, Container, Kubernetes

@@ -20,3 +20,7 @@ Container Configuration
    what_should_i_do_if_health_check_probes_occasionally_fail
    how_do_i_set_the_umask_value_for_a_container
    what_is_the_retry_mechanism_when_cce_fails_to_start_a_pod
+
+.. meta::
+   :description: Explore T Cloud Public's CCE container configuration FAQs.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Pods, Container Configuration

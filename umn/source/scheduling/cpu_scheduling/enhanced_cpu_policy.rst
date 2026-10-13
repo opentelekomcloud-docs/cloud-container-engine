@@ -123,3 +123,7 @@ Take a node with 8 vCPUs and 32 GiB of memory as an example. Deploy a workload w
       1
 
 .. |image1| image:: /_static/images/en-us_image_0000002516198949.png
+
+.. meta::
+   :description: Learn about the enhanced CPU policy in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, CPU Policy, HCE OS

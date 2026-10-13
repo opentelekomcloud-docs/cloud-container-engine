@@ -157,3 +157,7 @@ Status Code
    =========== ===========================================================
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Query cluster access info via T Cloud Public CCE API.
+   :keywords: Cloud Container Engine, T Cloud Public, cluster access, API query, Kubernetes cluster

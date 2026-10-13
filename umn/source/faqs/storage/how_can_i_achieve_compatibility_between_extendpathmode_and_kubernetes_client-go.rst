@@ -131,3 +131,7 @@ The following is an example YAML of creating a pod. After the **kubernetes.io/ex
    |                       |                       | -  **PodUID/ContainerName**: ID of a pod or name of a container.                                                                       |
    |                       |                       | -  **PodName/ContainerName**: Name of a pod or container.                                                                              |
    +-----------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to achieve compatibility between ExtendPathMode and Kubernetes client-go in T Cloud Public CCE by adding specific annotations to your pods.
+   :keywords: Cloud Container Engine, Kubernetes, client-go, ExtendPathMode, annotations

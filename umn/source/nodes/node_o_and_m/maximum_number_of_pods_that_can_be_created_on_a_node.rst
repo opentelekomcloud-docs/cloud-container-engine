@@ -81,3 +81,7 @@ When creating a pod, you can select the container network or host network for th
 -  .. _cce_10_0348__li13752132911597:
 
    Host network: Pods with **hostNetwork: true** configured directly use the network of the host. After the configuration, the pods use the ports on the host and their IP address is identical to that of the host, without relying on the IP addresses of the container network. When using a host network, avoid conflicts between the pod ports and service ports on the host. Use a host network only if a particular application requires access to a specific port on the host.
+
+.. meta::
+   :description: Learn how to calculate the maximum number of pods per node in T Cloud Public's Cloud Container Engine based on cluster type and network model.
+   :keywords: Cloud Container Engine, Maximum Pods, Node, Cluster Type, Tunnel Network

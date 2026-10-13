@@ -22,3 +22,7 @@ Workload Scaling
    creating_a_scheduled_cronhpa_policy
    creating_an_ahpa_policy
    managing_workload_scaling_policies
+
+.. meta::
+   :description: Learn to scale workloads in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Workload Scaling, HPA, AHPA, CronHPA

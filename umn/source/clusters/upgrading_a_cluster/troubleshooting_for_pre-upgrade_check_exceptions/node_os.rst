@@ -25,3 +25,7 @@ Solutions
 
    #. Empty and isolate the affected nodes before upgrading the cluster.
    #. Upgrade the version to v1.19 or later and reset the nodes to replace the image with one of a later version, for example, EulerOS release 2.9.
+
+.. meta::
+   :description: Ensure T Cloud Public CCE node OS kernel compatibility.
+   :keywords: Cloud Container Engine, Node OS, Kernel Version, Cluster Upgrade, EulerOS

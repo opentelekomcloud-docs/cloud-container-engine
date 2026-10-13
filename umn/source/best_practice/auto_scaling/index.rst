@@ -12,3 +12,7 @@ Auto Scaling
    :hidden: 
 
    using_hpa_and_ca_for_auto_scaling_of_workloads_and_nodes
+
+.. meta::
+   :description: Learn how to use HPA and CA for auto scaling workloads and nodes with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Auto Scaling, HPA, CA, Workloads

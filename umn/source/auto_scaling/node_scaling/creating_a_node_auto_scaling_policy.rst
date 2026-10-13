@@ -303,3 +303,7 @@ The following is a YAML example of a node scaling policy:
    +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | spec.targetNodepoolIds[x]                   | String  | UID of the node pool associated with the scaling policy.                                                                                                                   |
    +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Manage dynamic loads with T Cloud Public CCE node auto scaling.
+   :keywords: Cloud Container Engine, T Cloud Public, Node Auto Scaling, Kubernetes, Cluster Autoscaler

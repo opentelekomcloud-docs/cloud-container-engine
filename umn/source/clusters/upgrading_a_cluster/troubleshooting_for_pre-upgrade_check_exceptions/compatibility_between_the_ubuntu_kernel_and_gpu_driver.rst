@@ -14,3 +14,7 @@ Solutions
 ---------
 
 This issue may occur when you create or reset an Ubuntu node after an upgrade. In this case, upgrade the CCE AI Suite (NVIDIA GPU) driver to version 535.161.08 or later, and restart the node.
+
+.. meta::
+   :description: Ensure Ubuntu kernel and GPU driver compatibility in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Ubuntu Kernel, GPU Driver, NVIDIA, CCE AI Suite

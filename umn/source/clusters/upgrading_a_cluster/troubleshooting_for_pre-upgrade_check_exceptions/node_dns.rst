@@ -17,3 +17,7 @@ Solutions
 ---------
 
 During the node upgrade, obtain the upgrade component package from OBS. If this check fails, contact technical support.
+
+.. meta::
+   :description: Resolve OBS DNS issues on T Cloud Public CCE nodes.
+   :keywords: Cloud Container Engine, Node DNS, OBS, Node Upgrade, Technical Support

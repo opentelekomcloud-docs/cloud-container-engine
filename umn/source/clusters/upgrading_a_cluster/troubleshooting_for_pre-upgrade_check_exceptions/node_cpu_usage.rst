@@ -15,3 +15,7 @@ Solutions
 
 -  **Upgrade the cluster during off-peak hours.**
 -  Check whether too many pods are deployed on the node. If yes, reschedule pods to other idle nodes.
+
+.. meta::
+   :description: Learn how to resolve high CPU usage on CCE nodes.
+   :keywords: Cloud Container Engine, Node CPU Usage, Kubernetes, Pod Rescheduling, Cluster Optimization

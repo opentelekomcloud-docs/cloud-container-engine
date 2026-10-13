@@ -14,3 +14,7 @@ API Version Query
 
    querying_all_api_versions
    querying_information_about_api_v3
+
+.. meta::
+   :description: Query API versions for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, API Version, Container Service, Cloud Infrastructure

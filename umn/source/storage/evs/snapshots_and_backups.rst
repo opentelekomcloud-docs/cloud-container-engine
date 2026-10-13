@@ -200,3 +200,7 @@ After creating a snapshot, you can use it to create an EVS PVC. The operations d
 
       NAME      STATUS   VOLUME                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
       pvc-test   Bound    pvc-7b9f4c8d-1a2b-3c4d-5e6f-7g8h9i0jkl   10Gi     RWO         csi-disk     1m
+
+.. meta::
+   :description: Learn how T Cloud Public CCE uses EVS snapshots for routine backups and rapid data restoration.
+   :keywords: Cloud Container Engine, Snapshots, Backups, EVS, CSI

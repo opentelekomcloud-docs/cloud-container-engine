@@ -873,3 +873,7 @@ If the resources on a node are not enough for pod scheduling, reduce the node lo
 .. |image5| image:: /_static/images/en-us_image_0000002516077723.png
 .. |image6| image:: /_static/images/en-us_image_0000002484117764.png
 .. |image7| image:: /_static/images/en-us_image_0000002484117752.png
+
+.. meta::
+   :description: Learn how to locate node faults in T Cloud Public's CCE using the Node Problem Detector add-on or self-checks.
+   :keywords: Cloud Container Engine, Node Fault, Node Problem Detector, Add-on, T Cloud Public

@@ -229,3 +229,7 @@ Status Code
    =========== ========================================================
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Learn how to delete a specified node in T Cloud Public's Cloud Container Engine using the DELETE API.
+   :keywords: Cloud Container Engine, Node, API, Cluster, Delete

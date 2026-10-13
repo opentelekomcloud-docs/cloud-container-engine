@@ -556,3 +556,7 @@ The Cilium official website provides a Grafana dashboard for Hubble metrics. Com
    |image1|
 
 .. |image1| image:: /_static/images/en-us_image_0000002483959250.png
+
+.. meta::
+   :description: Learn to deploy Hubble for DataPlane V2 network observability on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Hubble, DataPlane V2, Network Observability, Cilium

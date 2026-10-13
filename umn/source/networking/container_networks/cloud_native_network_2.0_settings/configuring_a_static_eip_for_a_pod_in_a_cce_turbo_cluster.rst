@@ -167,3 +167,7 @@ Deleting a Static EIP
 ---------------------
 
 After a pod is deleted, if another pod with the same name is created before the static EIP expires, the EIP can still be used. The static EIP is deleted only if there is no new pod with the name the same as that of the deleted pod before the EIP expires, or the function of deleting the EIP with the associated StatefulSet is enabled and the StatefulSet is deleted.
+
+.. meta::
+   :description: Learn how to configure static EIPs for pods in CCE Turbo clusters.
+   :keywords: Cloud Container Engine, CCE Turbo Cluster, Static EIP, Pod, StatefulSet

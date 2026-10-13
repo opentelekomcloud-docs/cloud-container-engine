@@ -140,3 +140,7 @@ Common Events
    If this alarm persists, rebuild the pod and then check whether the fault is rectified.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516198957.png
+
+.. meta::
+   :description: Learn how CCE automatically updates OBS volume access keys, eliminating manual restarts and ensuring seamless service continuity for your containers.
+   :keywords: Cloud Container Engine, CCE, OBS, Container Storage, Everest

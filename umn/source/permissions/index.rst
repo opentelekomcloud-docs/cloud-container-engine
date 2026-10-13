@@ -28,3 +28,7 @@ Permissions
    service_account_token_security_improvement
    system_agencies
    custom_agencies
+
+.. meta::
+   :description: Manage CCE permissions on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, IAM, RBAC

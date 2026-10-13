@@ -195,3 +195,7 @@ Using kubectl
 
       NAME           CLASS  HOSTS                               ADDRESS          PORTS   AGE
       ingress-test   cce    www.example.com,foo.example.com     121.**.**.**     80      10s
+
+.. meta::
+   :description: Learn how to configure multiple forwarding policies for a LoadBalancer Ingress in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Ingress, LoadBalancer, Forwarding Policies, Services

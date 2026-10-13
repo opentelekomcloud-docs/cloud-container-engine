@@ -67,3 +67,7 @@ Installed Add-ons
 You can check the installed add-ons in a cluster. If there is an add-on to be upgraded in the cluster, click **Upgrade Now** to go to the **Add-ons** page and see more details.
 
 .. |image1| image:: /_static/images/en-us_image_0000002484119318.png
+
+.. meta::
+   :description: Manage T Cloud Public CCE cluster settings.
+   :keywords: Cloud Container Engine, CCE, T Cloud Public, cluster settings, Kubernetes
