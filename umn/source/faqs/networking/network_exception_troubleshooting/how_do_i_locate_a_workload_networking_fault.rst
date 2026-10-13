@@ -115,3 +115,7 @@ Log in to the management console and choose **Service List** > **Networking** > 
 For details about security group configuration, see :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
 
 .. |image1| image:: /_static/images/en-us_image_0000002484117954.png
+
+.. meta::
+   :description: Learn how to locate workload networking faults in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, workload networking, fault locating, container port, node IP address

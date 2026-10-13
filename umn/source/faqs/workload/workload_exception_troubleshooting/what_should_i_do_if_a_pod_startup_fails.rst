@@ -584,3 +584,7 @@ Create a new workload and configure a correct startup command.
 .. |image1| image:: /_static/images/en-us_image_0000002516077871.png
 .. |image2| image:: /_static/images/en-us_image_0000002484117900.png
 .. |image3| image:: /_static/images/en-us_image_0000002516197853.png
+
+.. meta::
+   :description: Troubleshoot Cloud Container Engine pod startup failures on T Cloud Public.
+   :keywords: Cloud Container Engine, Pod startup failure, Container logs, Docker, containerd

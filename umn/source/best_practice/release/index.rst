@@ -14,3 +14,7 @@ Release
 
    overview
    using_services_to_implement_simple_grayscale_release_and_blue-green_deployment
+
+.. meta::
+   :description: Learn best practices for T Cloud Public's Cloud Container Engine, including overview and grayscale release strategies.
+   :keywords: Cloud Container Engine, T Cloud Public, grayscale release, blue-green deployment, container orchestration

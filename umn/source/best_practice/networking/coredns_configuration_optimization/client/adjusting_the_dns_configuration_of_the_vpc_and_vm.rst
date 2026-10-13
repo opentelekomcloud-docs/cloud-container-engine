@@ -9,3 +9,7 @@ When the coredns add-on is started, it obtains the DNS configuration in the **re
 
 -  Ensure that the **resolve.conf** configuration of each node in the cluster is the same. In this way, the coredns add-on can schedule requests to any node in the cluster.
 -  When modifying the **resolve.conf** file, if the node has a coredns add-on, restart the coredns add-on timely to ensure status consistency.
+
+.. meta::
+   :description: Learn how to adjust DNS configuration for CCE on T Cloud Public.
+   :keywords: DNS Configuration, VPC, coredns, resolve.conf, node

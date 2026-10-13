@@ -121,3 +121,7 @@ References
 ----------
 
 For more details about the performance comparison and functional enhancements between Kubernetes 1.33 and other versions, see `Kubernetes v1.33 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.33.md>`__.
+
+.. meta::
+   :description: Explore Kubernetes 1.
+   :keywords: Cloud Container Engine, Kubernetes, CCE, T Cloud Public, Container Orchestration

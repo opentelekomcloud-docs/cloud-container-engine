@@ -26,3 +26,7 @@ Nodes
    logging_in_to_a_node
    management_nodes/index
    node_o_and_m/index
+
+.. meta::
+   :description: Manage nodes in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Nodes, Container Engines, Node O&M

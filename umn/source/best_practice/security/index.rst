@@ -24,3 +24,7 @@ Security
    using_images_securely_in_a_cce_cluster
    using_secrets_securely_in_a_cce_cluster
    using_oidc_to_authenticate_workloads_in_a_cce_cluster
+
+.. meta::
+   :description: Secure your T Cloud Public CCE clusters, nodes, containers, images, and secrets.
+   :keywords: CCE, Container Engine, Security, Best Practices, Cloud

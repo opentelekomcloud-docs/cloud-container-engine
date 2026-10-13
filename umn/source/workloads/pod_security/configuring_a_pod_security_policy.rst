@@ -225,3 +225,7 @@ If you have modified the default pod security policy and want to restore the ori
 #. Run the following command:
 
    **kubectl apply -f policy.yaml**
+
+.. meta::
+   :description: Learn to configure Pod Security Policies in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Pod Security Policy, Kubernetes, security, clusters

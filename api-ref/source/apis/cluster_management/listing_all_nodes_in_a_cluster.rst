@@ -627,3 +627,7 @@ Status Code
    +-------------+------------------------------------------------------------------------------------+
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Learn to list all nodes in a T Cloud Public CCE cluster using the GET /api/v3/projects/{project_id}/clusters/{cluster_id}/nodes API.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Cluster Nodes, API

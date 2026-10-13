@@ -99,3 +99,7 @@ Until now, you have completed all the Getting Started walkthroughs and have unde
 #. Click |image1| next to the cluster to be deleted, select **Delete Cluster**, and confirm the information as prompted.
 
 .. |image1| image:: /_static/images/en-us_image_0000001851742724.png
+
+.. meta::
+   :description: Deploy WordPress on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, WordPress, Kubernetes, CCE, Container Deployment

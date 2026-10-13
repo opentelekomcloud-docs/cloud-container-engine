@@ -27,3 +27,7 @@ Upgrade to a cluster version that supports the enhanced CPU policy function. The
    Clusters of v1.21            Not supported
    Clusters of v1.23 or later   Supported
    ============================ ===================
+
+.. meta::
+   :description: Learn about Enhanced CPU Policies in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Enhanced CPU Policies, Cluster Version, Upgrade, T Cloud Public

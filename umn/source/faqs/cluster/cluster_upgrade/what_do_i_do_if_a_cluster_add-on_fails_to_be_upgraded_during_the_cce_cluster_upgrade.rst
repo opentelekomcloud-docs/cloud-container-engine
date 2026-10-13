@@ -19,3 +19,7 @@ Procedure
 #. Rectify the fault based on the exception information. For example, delete the pod that is not started or restart it.
 #. After the processing is successful, the add-on status changes to **Running**. Ensure that all add-ons are in the **Running** status.
 #. Go to the cluster upgrade page and click **Retry**.
+
+.. meta::
+   :description: Resolve CCE cluster add-on upgrade failures on T Cloud Public.
+   :keywords: Cloud Container Engine, Cluster Upgrade, Add-on, Kubernetes, Troubleshooting

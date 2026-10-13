@@ -41,3 +41,7 @@ Prerequisites
 -  You have created a CCE cluster.
 -  You can access the cluster using kubectl.
 -  The CoreDNS add-on is installed in the cluster. The latest version of CoreDNS is recommended.
+
+.. meta::
+   :description: Learn CoreDNS optimization best practices for T Cloud Public CCE.
+   :keywords: CoreDNS, Kubernetes, DNS Optimization, NodeLocal DNSCache, CCE

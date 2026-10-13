@@ -25,3 +25,7 @@ Solution
 #. Additionally, remove the Service from the mesh because the proxy only forwards packets and does not perform any other operations. If requests pass through the ingress gateway, the grayscale release function of the Service is not affected.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516197919.png
+
+.. meta::
+   :description: Resolve "host not found" errors when CCE services upload files to OBS via proxy.
+   :keywords: Cloud Container Engine, CCE, OBS, proxy, memory

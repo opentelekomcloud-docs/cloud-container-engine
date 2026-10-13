@@ -157,3 +157,7 @@ Try querying Deployments and Services in the namespace. The output shows **user-
    Error from server (Forbidden): services is forbidden: User "0c97ac3cb280f4d91fa7c0096739e1f8" cannot list resource "services" in API group "" in the namespace "default"
    # kubectl get pod --namespace=kube-system
    Error from server (Forbidden): pods is forbidden: User "0c97ac3cb280f4d91fa7c0096739e1f8" cannot list resource "pods" in API group "" in the namespace "kube-system"
+
+.. meta::
+   :description: Learn to use kubectl for RBAC authentication on namespaces in T Cloud Public CCE.
+   :keywords: CCE, Kubernetes RBAC, Namespace Permissions, kubectl, IAM

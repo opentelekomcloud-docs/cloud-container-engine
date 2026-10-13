@@ -20,3 +20,7 @@ SFS Turbo
    configuring_sfs_turbo_mount_options
    recommended_creating_an_sfs_turbo_subdirectory_using_a_dynamic_pv
    dynamically_creating_an_sfs_turbo_subdirectory_using_storageclass
+
+.. meta::
+   :description: Manage SFS Turbo with T Cloud Public Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, SFS Turbo, StorageClass, PV

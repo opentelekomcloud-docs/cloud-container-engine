@@ -26,3 +26,7 @@ Settings
    monitoring
    kubernetes
    heterogeneous_resources
+
+.. meta::
+   :description: Manage Kubernetes clusters on T Cloud Public.
+   :keywords: Cloud Container Engine, Kubernetes, Cluster, Auto Scaling, Heterogeneous Resources

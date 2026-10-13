@@ -434,3 +434,7 @@ Cloud Trace Service (CTS) records operations on cloud service resources, allowin
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
    | Deleting a cluster maintenance window                                             | Cluster             | DeleteMaintenanceWindow        |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
+
+.. meta::
+   :description: Learn how Cloud Trace Service records CCE operations.
+   :keywords: Cloud Container Engine, CCE, Cloud Trace Service, CTS, Operations

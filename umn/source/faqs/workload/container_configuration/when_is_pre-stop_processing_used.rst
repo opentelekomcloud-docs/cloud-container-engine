@@ -12,3 +12,7 @@ When is pre-stop processing used?
 **Answer**
 
 Service processing takes a long time. Pre-stop processing makes sure that during an upgrade, a pod is killed only when the service in the pod has been processed.
+
+.. meta::
+   :description: Learn when to use pre-stop processing in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, pre-stop processing, pod upgrade, service processing, T Cloud Public

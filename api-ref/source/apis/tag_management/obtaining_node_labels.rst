@@ -195,3 +195,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Use T Cloud Public's Cloud Container Engine API to obtain node labels in a cluster.
+   :keywords: Cloud Container Engine, T Cloud Public, Node Labels, Cluster API, Container Service

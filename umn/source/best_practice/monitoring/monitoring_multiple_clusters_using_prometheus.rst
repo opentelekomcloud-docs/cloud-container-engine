@@ -197,3 +197,7 @@ Procedure
 .. |image4| image:: /_static/images/en-us_image_0000002484118012.png
 .. |image5| image:: /_static/images/en-us_image_0000002484117998.png
 .. |image6| image:: /_static/images/en-us_image_0000002484118006.png
+
+.. meta::
+   :description: Learn how to monitor multiple T Cloud Public CCE clusters with a single Prometheus instance.
+   :keywords: Cloud Container Engine, Prometheus, Multiple Clusters, Monitoring, Kubernetes

@@ -257,3 +257,7 @@ By default, all security groups created by CCE allow all the **outbound** traffi
    +------------------------------------------------------------------------+---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
    | TCP port 6443                                                          | 100.125.0.0/16                        | Allow the worker nodes to report that the worker nodes have been installed.                                                        |
    +------------------------------------------------------------------------+---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to configure security group rules for T Cloud Public CCE clusters.
+   :keywords: CCE, Security Group, Cluster, Network Model, VPC

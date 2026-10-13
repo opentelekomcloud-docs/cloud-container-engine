@@ -25,3 +25,7 @@ SFS Turbo supports the following mounting modes:
 
 -  :ref:`Using an Existing SFS Turbo File System Through a Static PV <cce_10_0625>`: static creation mode, where you use an existing SFS volume to create a PV and then mount storage to the workload through a PVC.
 -  :ref:`Dynamically Creating an SFS Turbo Subdirectory Using StorageClass <cce_bestpractice_00253>`: SFS Turbo allows you to dynamically create subdirectories and mount them to containers so that SFS Turbo can be shared and the SFS Turbo storage capacity can be used more economically and properly.
+
+.. meta::
+   :description: Mount SFS Turbo volumes to containers for data persistence.
+   :keywords: Cloud Container Engine, SFS Turbo, file storage, container mount, data persistence

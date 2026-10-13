@@ -30,3 +30,7 @@ Using Local Cache
 -----------------
 
 If the cluster specifications are large and the number of DNS resolution requests is large, you can cache the DNS resolution result on the node. You are advised to use NodeLocal DNSCache. For details, see :ref:`Using NodeLocal DNSCache to Improve DNS Performance <cce_10_0362>`.
+
+.. meta::
+   :description: Optimize DNS resolution in T Cloud Public's Cloud Container Engine using connection pools, local caching, and best practices for Kubernetes clusters.
+   :keywords: Cloud Container Engine, DNS resolution, Kubernetes, connection pool, NodeLocal DNSCache

@@ -119,3 +119,7 @@ Procedure
    |image1|
 
 .. |image1| image:: /_static/images/en-us_image_0000002483957908.png
+
+.. meta::
+   :description: Learn to configure /etc/hosts in pods using hostAliases on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, hostAliases, Pod, /etc/hosts, kubectl

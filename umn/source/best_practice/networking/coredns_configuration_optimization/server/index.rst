@@ -16,3 +16,7 @@ Server
    monitoring_the_coredns_add-on
    adjusting_the_coredns_deployment_status
    configuring_coredns
+
+.. meta::
+   :description: Learn to monitor, adjust, and configure CoreDNS in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, CoreDNS, DNS

@@ -109,3 +109,7 @@ For details about how to restore the metadata, see the "Notes" section in `Obtai
 
                curl 169.254.169.254/openstack/latest/meta_data.json
                curl 169.254.169.254/openstack/latest/user_data
+
+.. meta::
+   :description: Secure your T Cloud Public CCE cluster.
+   :keywords: CCE, Cloud Container Engine, Node Security, Security Group, Kubernetes

@@ -79,3 +79,7 @@ Common Issues
       :alt: **Figure 1** Checking whether a shared disk is used
 
       **Figure 1** Checking whether a shared disk is used
+
+.. meta::
+   :description: Diagnose and fix CCE storage mounting failures.
+   :keywords: Cloud Container Engine, Node Mounting, Mount Point Conflicts, Symlinks, Bind Mounts

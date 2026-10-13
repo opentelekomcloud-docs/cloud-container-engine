@@ -82,3 +82,7 @@ Changing the ECS Group of an ECS
 #. Locate the row containing the target ECS group and click **Add ECS** in the **Operation** column.
 #. In the dialog box displayed, select the ECS to be added.
 #. Click **OK** to add the ECS to the ECS group.
+
+.. meta::
+   :description: Learn how to modify ECS configurations to manage instances with T Cloud Public Cloud Container Engine when node pool compatibility issues arise.
+   :keywords: Cloud Container Engine, ECS, Node Pool, Configuration, T Cloud Public

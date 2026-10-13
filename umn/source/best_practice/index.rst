@@ -38,3 +38,7 @@ Best Practice
    container/index
    permission/index
    release/index
+
+.. meta::
+   :description: Master cloud containers with T Cloud Public's best practices.
+   :keywords: Cloud Container Engine, T Cloud Public, Containerization, DevOps, Kubernetes

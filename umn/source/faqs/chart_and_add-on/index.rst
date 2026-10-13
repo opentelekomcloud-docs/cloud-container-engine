@@ -20,3 +20,7 @@ Chart and Add-on
    how_do_i_configure_the_add-on_resource_quotas_based_on_cluster_scale
    how_can_i_clean_up_residual_resources_after_the_nginx_ingress_controller_add-on_in_the_unknown_state_is_deleted
    how_can_i_drain_a_gpu_node_after_upgrading_or_rolling_back_the_cce_ai_suite_nvidia_gpu_add-on
+
+.. meta::
+   :description: Resolve CCE add-on issues like residual resources, installation failures, and GPU node management on T Cloud Public.
+   :keywords: CCE, Add-on, Chart, Kubernetes, GPU

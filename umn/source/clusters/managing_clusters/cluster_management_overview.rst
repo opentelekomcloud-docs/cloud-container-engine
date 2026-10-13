@@ -32,3 +32,7 @@ Cluster Security and Access Control
 -----------------------------------
 
 A security group is a virtual firewall that controls inbound and outbound network traffic for a cluster. You can modify the default security group rules of cluster nodes to enhance network security based on your needs. For details, see :ref:`Changing the Default Security Group of a Node <cce_10_0426>`.
+
+.. meta::
+   :description: Manage CCE standard and Turbo clusters with T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, Cluster Management, Resource Scheduling, Containerized Applications

@@ -83,3 +83,7 @@ Command output:
 .. code-block::
 
    kernel.pid_max = 4194304
+
+.. meta::
+   :description: Learn how to adjust kernel.
+   :keywords: Cloud Container Engine, Process ID Limits, kernel.pid_max, EulerOS, Ubuntu

@@ -38,3 +38,7 @@ Scenario 1: The node is skipped during the cluster upgrade.
    .. note::
 
       Resetting a node will reset all node labels, which may affect workload scheduling. Before resetting a node, check and retain the labels that you have manually added to the node.
+
+.. meta::
+   :description: Learn to resolve Kubernetes Node Taint issues on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, Node Taint, Cluster Upgrade, kubectl

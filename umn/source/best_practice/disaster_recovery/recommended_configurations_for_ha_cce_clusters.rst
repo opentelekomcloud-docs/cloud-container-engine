@@ -296,3 +296,7 @@ Viewing Logs, Monitoring Metrics, and Adding Alarm Rules
 -  Monitoring
 
    -  Metrics of the applications: CCE can comprehensively monitor applications in clusters by checking these metrics. In addition to standard metrics, you can configure custom metrics of your applications that comply with their specifications to improve the observability.
+
+.. meta::
+   :description: Learn recommended configurations for HA CCE clusters on T Cloud Public.
+   :keywords: Cloud Container Engine, Kubernetes, HA, Master node, Recommended Configurations

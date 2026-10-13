@@ -11,3 +11,7 @@ Cloud Container Engine - API Reference
    permissions_policies_and_supported_actions
    appendix/index
    change_history
+
+.. meta::
+   :description: Explore the T Cloud Public Cloud Container Engine API reference.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes APIs, API Reference, Permissions Policies

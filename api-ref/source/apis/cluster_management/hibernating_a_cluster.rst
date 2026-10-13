@@ -75,3 +75,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Learn how to hibernate a T Cloud Public Cloud Container Engine cluster to pause resource management.
+   :keywords: Cloud Container Engine, T Cloud Public, Hibernating, Cluster, API

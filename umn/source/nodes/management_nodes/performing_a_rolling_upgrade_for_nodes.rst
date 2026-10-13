@@ -111,3 +111,7 @@ Procedure If the Original Node Is Not in the Default Pool
 4. Delete the original node.
 
    After the workload is successfully migrated and runs properly, delete the original node.
+
+.. meta::
+   :description: Learn how to perform a rolling upgrade for nodes in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Rolling Upgrade, Node Migration, Kubernetes, T Cloud Public

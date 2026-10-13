@@ -72,4 +72,7 @@ Providing temporary access credentials, such as authentication details for acces
     |                                                                               |                   | For details, see :ref:`System Agencies        |
     |                                                                               |                   | <cce_10_0556>`.                               |
     +-------------------------------------------------------------------------------+-------------------+-----------------------------------------------+
-                                                     
+
+.. meta::
+   :description: Learn about CCE agency changes for enhanced security.
+   :keywords: Cloud Container Engine, CCE, Agency, IAM, Least Privilege

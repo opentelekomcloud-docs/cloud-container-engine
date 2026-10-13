@@ -13,3 +13,7 @@ The musl libc library of the Alpine container image differs from the standard gl
 -  If the domain name cannot be resolved when Alpine is used as the base container image, update the base container image for testing.
 
 For details about the functional differences from glibc, see `Functional differences from glibc <https://wiki.musl-libc.org/functional-differences-from-glibc.html>`__.
+
+.. meta::
+   :description: Learn about musl libc differences in Alpine images on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Alpine, musl libc, glibc, DNS

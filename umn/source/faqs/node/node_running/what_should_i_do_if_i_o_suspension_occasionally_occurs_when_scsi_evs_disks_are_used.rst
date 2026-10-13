@@ -37,3 +37,7 @@ Solution
 Upgrade the kernel to a later version **by resetting the node**.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516197779.png
+
+.. meta::
+   :description: Resolve I/O suspension with SCSI EVS disks on CentOS in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, SCSI EVS Disks, I/O Suspension, CentOS Kernel, PCI Bridge

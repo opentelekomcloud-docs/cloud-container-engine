@@ -271,3 +271,7 @@ You can also run the **kubectl logs** command to view the container stdout.
       kubectl logs -f <pod_name> -c <container_name> -n <namespace>
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079543.png
+
+.. meta::
+   :description: Learn how to collect container logs using ICAgent on T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, ICAgent, workload logs, AOM 1.0, log policy

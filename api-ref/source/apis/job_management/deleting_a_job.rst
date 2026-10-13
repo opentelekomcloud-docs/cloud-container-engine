@@ -132,3 +132,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Learn how to delete a job in T Cloud Public's Cloud Container Engine using the DeleteJob API.
+   :keywords: Cloud Container Engine, T Cloud Public, Delete Job, API, Kubernetes

@@ -103,3 +103,7 @@ Using a Local EV Through kubectl
 #. Create a workload.
 
    **kubectl apply -f nginx-emptydir.yaml**
+
+.. meta::
+   :description: Learn how to use Local Ephemeral Volumes in T Cloud Public's Cloud Container Engine for better performance and scale-out.
+   :keywords: Cloud Container Engine, Local EV, T Cloud Public, CSI, Kubernetes

@@ -211,3 +211,7 @@ Release History
    |                       |                           |                                               |
    |                       | v1.27                     |                                               |
    +-----------------------+---------------------------+-----------------------------------------------+
+
+.. meta::
+   :description: Learn about CCE Advanced HPA from T Cloud Public.
+   :keywords: Cloud Container Engine, HPA, Auto Scaling, Kubernetes, Metrics Server

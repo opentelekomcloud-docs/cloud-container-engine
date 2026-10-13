@@ -61,3 +61,7 @@ Deleting a Cluster
    The delete operation takes 1 to 3 minutes to complete. If the cluster is removed from the cluster list, the cluster has been deleted.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079159.png
+
+.. meta::
+   :description: Learn how to delete a cluster in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, cluster deletion, workload management, data backup, storage reclamation

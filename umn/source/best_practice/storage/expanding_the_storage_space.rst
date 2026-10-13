@@ -546,3 +546,7 @@ Cloud storage:
 
       -  If the expanded capacity does not surpass the underlying SFS Turbo file system's capacity, you can increase the PVC capacity on the CCE console.
       -  If the expanded capacity exceeds the underlying SFS Turbo file system's capacity, you can expand the file system capacity on the SFS console first and then adjust the capacity in the PVC on the CCE console.
+
+.. meta::
+   :description: Learn how to expand storage space for CCE nodes on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, storage expansion, system disk, data disk

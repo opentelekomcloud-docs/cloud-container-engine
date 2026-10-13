@@ -63,3 +63,7 @@ Accounts or administrators (users in the admin user group) can revoke the creden
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. In the dialog box displayed, enter **REVOKE** in the confirmation box and click **OK** if you are sure you want to revoke the credential.
+
+.. meta::
+   :description: Learn how to revoke CCE cluster access credentials in T Cloud Public.
+   :keywords: Cloud Container Engine, credential revocation, cluster access, security, IAM

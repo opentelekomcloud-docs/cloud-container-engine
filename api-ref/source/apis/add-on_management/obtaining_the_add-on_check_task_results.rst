@@ -478,3 +478,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Get add-on check task results for your T Cloud Public Cloud Container Engine cluster via the ListAddonPrecheckTasks API.
+   :keywords: Cloud Container Engine, T Cloud Public, Add-on, Precheck, API

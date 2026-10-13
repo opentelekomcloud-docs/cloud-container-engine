@@ -75,3 +75,7 @@ Cluster Upgrade
 Periodically upgrade CCE clusters for better user experience. Using an EOS version, you cannot obtain technical support and CCE SLA assurance. Upgrade CCE clusters in a timely manner.
 
 On the CCE console, you can easily upgrade clusters in a visualized manner, improving the stability and reliability of clusters. For details, see :ref:`Upgrade Overview <cce_10_0197>`.
+
+.. meta::
+   :description: Explore T Cloud Public's CCE Kubernetes version policy.
+   :keywords: T Cloud Public, Cloud Container Engine, Kubernetes, Cluster Lifecycle, Version Policy

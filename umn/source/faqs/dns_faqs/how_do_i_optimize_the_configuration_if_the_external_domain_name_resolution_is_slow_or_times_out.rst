@@ -48,3 +48,7 @@ Optimization Solution
 #. If it takes more than 2s to resolve the domain name, you can set **timeout** to a larger value.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516077813.png
+
+.. meta::
+   :description: Learn how to optimize DNS settings in T Cloud Public CCE to fix slow resolution or timeouts.
+   :keywords: Cloud Container Engine, DNS, resolv.conf, Kubernetes, domain name resolution

@@ -142,3 +142,7 @@ The Cilium official website provides a Grafana dashboard for Cilium metrics. Com
    |image1|
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079245.png
+
+.. meta::
+   :description: Enable cilium-agent observability in T Cloud Public CCE clusters with DataPlane V2.
+   :keywords: CCE, cilium-agent, DataPlane V2, Observability, Kubernetes

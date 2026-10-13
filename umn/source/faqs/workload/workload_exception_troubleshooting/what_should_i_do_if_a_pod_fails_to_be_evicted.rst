@@ -173,3 +173,7 @@ References
 ----------
 
 `Kubelet does not delete evicted pods <https://github.com/kubernetes/kubernetes/issues/55051>`__
+
+.. meta::
+   :description: Learn how T Cloud Public handles pod eviction when nodes become abnormal.
+   :keywords: Cloud Container Engine, Kubernetes, Pod Eviction, Node Controller, Workload Availability

@@ -239,3 +239,7 @@ To effectively reduce the impact of List requests on the Kubernetes control plan
 
 -  QPS reduction: Avoid calling the List API cyclically or frequently in service logic. Reconstruct all unnecessary List operations to use the informer-based event-driven mode.
 -  Pagination: For List requests that will return a large number of objects, use the **limit** and **continue** parameters to perform pagination. This prevents a single request from consuming too much memory.
+
+.. meta::
+   :description: Learn how to protect your T Cloud Public CCE cluster from overload.
+   :keywords: Cloud Container Engine, Kubernetes, Cluster Overload, Control Plane, Overload Control

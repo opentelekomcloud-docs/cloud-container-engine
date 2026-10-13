@@ -53,3 +53,7 @@ Solution
    .. important::
 
       To upgrade a node's OS, replace the system disks in batches. It is important to avoid storing any important data in the system disks or back up the data beforehand. The upgrade process will not affect the data disks.
+
+.. meta::
+   :description: Learn about CentOS EOM impacts on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, CentOS EOM, Node Pool, OS Migration, T Cloud Public

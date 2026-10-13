@@ -110,3 +110,7 @@ Helpful Links
 -------------
 
 `Custom NGINX upstream hashing <https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-nginx-upstream-hashing>`__
+
+.. meta::
+   :description: Learn how to configure consistent hashing for Nginx Ingress on T Cloud Public CCE to minimize session loss and cache invalidation during node changes.
+   :keywords: Cloud Container Engine, Nginx Ingress, Consistent Hashing, Load Balancing, kubectl

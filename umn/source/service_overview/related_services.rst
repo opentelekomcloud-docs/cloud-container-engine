@@ -47,3 +47,7 @@ Relationships Between CCE and Other Services
    +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Cloud Trace Service (CTS)         | CTS records operations on your cloud resources, allowing you to obtain, audit, and backtrack resource operation requests initiated from the management console or open APIs as well as responses to these requests.                                                                                 |
    +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Manage Kubernetes clusters on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, ECS, EVS, Kubernetes

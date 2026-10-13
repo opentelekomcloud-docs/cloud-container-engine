@@ -41,3 +41,7 @@ You can view the rules, latest status, and events of a workload scaling policy a
    | CronHPA                           | -  **View YAML**: In the dialog box displayed, copy or download the YAML file but you are not allowed to modify it.                               |
    |                                   | -  **Delete**: In the dialog box displayed, click **Yes**.                                                                                        |
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Manage workload scaling policies in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, workload scaling, HPA policies, CCE console, Kubernetes

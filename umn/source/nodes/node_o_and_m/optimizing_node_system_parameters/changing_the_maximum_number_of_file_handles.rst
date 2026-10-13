@@ -249,3 +249,7 @@ You can set the script to be executed after a node or node pool is created. When
       In the preceding command, **1048576** is the recommended maximum number of file handles.
 
 #. After the node is created, log in to the node to check whether the parameter is successfully modified.
+
+.. meta::
+   :description: Learn how to change the maximum number of file handles on T Cloud Public Cloud Container Engine nodes, including system-level and user-level restrictions.
+   :keywords: Cloud Container Engine, T Cloud Public, file handles, Linux, sysctl

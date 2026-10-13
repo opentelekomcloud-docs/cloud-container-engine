@@ -14,3 +14,7 @@ Add-on Upgrade Checks
 
    general_check_items
    checks_before_an_nginx_ingress_controller_upgrade
+
+.. meta::
+   :description: Learn about add-on upgrade checks for T Cloud Public's Cloud Container Engine, including general items and NGINX Ingress Controller pre-upgrade steps.
+   :keywords: Cloud Container Engine, T Cloud Public, Add-on Upgrade, NGINX Ingress Controller, Upgrade Checks

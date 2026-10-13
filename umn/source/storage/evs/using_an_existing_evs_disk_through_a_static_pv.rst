@@ -495,3 +495,7 @@ You can also perform the operations listed in :ref:`Table 4 <cce_10_0614__table1
    |                                       |                                                                                                                                            |                                                                                                                                                                                                                                      |
    |                                       |                                                                                                                                            |    **Synchronize** is only displayed when the underlying storage capacity is greater than the PVC capacity.                                                                                                                          |
    +---------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to use existing EVS disks as static PVs in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, EVS Disk, Static PV, PVC, Kubernetes

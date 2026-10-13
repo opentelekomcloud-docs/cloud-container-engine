@@ -56,3 +56,7 @@ A project ID is required for some URLs when an API is called. To obtain a projec
       :alt: **Figure 1** Obtaining the Project ID
 
       **Figure 1** Obtaining the Project ID
+
+.. meta::
+   :description: Learn how to obtain a Project ID in T Cloud Public's Cloud Container Engine via API or console.
+   :keywords: Cloud Container Engine, T Cloud Public, Project ID, IAM API, Management Console

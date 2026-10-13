@@ -20,3 +20,7 @@ Optimizing Node System Parameters
    changing_the_maximum_number_of_file_handles
    modifying_node_kernel_parameters
    changing_process_id_limits_kernel.pid_max
+
+.. meta::
+   :description: Learn how to optimize node system parameters in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node System Parameters, Kernel Parameters, Container Optimization, T Cloud Public

@@ -193,3 +193,7 @@ On-demand Configuration
 
 .. |image1| image:: /_static/images/en-us_image_0000002516199533.png
 .. |image2| image:: /_static/images/en-us_image_0000002484119560.png
+
+.. meta::
+   :description: Learn how to obtain Pod network interfaces in T Cloud Public CCE Turbo clusters.
+   :keywords: CCE, Pod Network, Network Interface, YangtseConfiguration, Troubleshooting

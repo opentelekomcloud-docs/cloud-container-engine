@@ -20,3 +20,7 @@ Solution
 
 -  If the kubectl command is executed outside the cluster, check whether the cluster is bound to an EIP. If yes, download the **kubeconfig** file and run the kubectl command again.
 -  If the kubectl command is executed on a node in the cluster, check the security group of the node and check whether the TCP/UDP communication between the worker node and master node is allowed. For details about security groups, see :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
+
+.. meta::
+   :description: Resolve kubectl top node ServiceUnavailable errors in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, kubectl top node, ServiceUnavailable, kubeconfig, security group

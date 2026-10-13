@@ -537,3 +537,7 @@ Handling Suggestions
 -  If an offline job is deployed on a node ahead of an online job and the online job cannot be scheduled due to insufficient resources, configure a higher priorityClass for the online job than that for the offline job.
 
 -  If there are only online jobs on a node and the eviction threshold is reached, the offline jobs that are scheduled to the current node will be evicted soon. This is normal.
+
+.. meta::
+   :description: Learn about dynamic resource oversubscription in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Dynamic Resource Oversubscription, Hybrid Deployment, Resource Utilization, T Cloud Public

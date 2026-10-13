@@ -20,3 +20,7 @@ ConfigMaps and Secrets
    creating_a_secret
    using_a_secret
    cluster_secrets
+
+.. meta::
+   :description: Learn how to create and use ConfigMaps and Secrets in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, ConfigMaps, Secrets, T Cloud Public, Kubernetes

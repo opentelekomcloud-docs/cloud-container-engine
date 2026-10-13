@@ -816,3 +816,7 @@ Parameters for Automatically Creating a Load Balancer
    |                     |                 |                 |                                                                                                                              |
    |                     |                 |                 | Value range: 1 to 60. Default value: **60**                                                                                  |
    +---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Configure advanced load balancing in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, LoadBalancer, Annotations, ELB, Kubernetes

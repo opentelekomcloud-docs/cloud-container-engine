@@ -226,3 +226,7 @@ For more details about the performance comparison and functional enhancements be
 
 -  `Kubernetes v1.27 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.27.md>`__
 -  `Kubernetes v1.26 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.26.md>`__
+
+.. meta::
+   :description: Explore Kubernetes 1.
+   :keywords: Kubernetes 1.27, CCE, SeccompDefault, Mutable Scheduling Directives, Downward API

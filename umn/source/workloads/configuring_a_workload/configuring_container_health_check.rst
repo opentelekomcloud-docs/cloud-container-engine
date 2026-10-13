@@ -255,3 +255,7 @@ Example YAML
 
       NAME               READY      STATUS       RESTARTS    AGE
       liveness-http      1/1        Running      1           4m59s
+
+.. meta::
+   :description: Learn to configure Liveness, Readiness, and Startup probes in T Cloud Public's Cloud Container Engine to ensure application stability and high availability.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Health Check, Container Probe

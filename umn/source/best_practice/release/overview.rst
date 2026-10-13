@@ -58,3 +58,7 @@ This document describes the principles and practices of grayscale release and bl
 .. |image9| image:: /_static/images/en-us_image_0000002516077887.png
 .. |image10| image:: /_static/images/en-us_image_0000002516197849.png
 .. |image11| image:: /_static/images/en-us_image_0000002483957952.png
+
+.. meta::
+   :description: Learn grayscale release and blue-green deployment best practices on T Cloud Public CCE to ensure zero-downtime upgrades and minimize service risks.
+   :keywords: Cloud Container Engine, grayscale release, blue-green deployment, service upgrade, zero-downtime

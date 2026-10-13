@@ -200,3 +200,7 @@ Resetting nodes in a batch varies depending on application scenarios.
 +----------------------------------------------------+-------------------------+-----------------------------------------------------------------------------------------------------------------+
 | Resetting nodes in different node pools in a batch | Not supported           | Only the nodes in the same node pool can be reset in a batch.                                                   |
 +----------------------------------------------------+-------------------------+-----------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to reset nodes in T Cloud Public's Cloud Container Engine to fix faults or modify configurations.
+   :keywords: Cloud Container Engine, Node Reset, Kubernetes, Worker Node, CCE

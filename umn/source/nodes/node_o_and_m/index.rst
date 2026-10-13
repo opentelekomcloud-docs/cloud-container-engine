@@ -26,3 +26,7 @@ Node O&M
    optimizing_node_system_parameters/index
    configuring_node_fault_detection_policies
    executing_the_pre-_or_post-installation_commands_during_node_creation
+
+.. meta::
+   :description: Learn node O&M for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node O&M, T Cloud Public, Kubernetes, Containerization

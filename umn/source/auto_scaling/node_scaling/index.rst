@@ -22,3 +22,7 @@ Node Scaling
    managing_node_scaling_policies
    specifying_node_scale-in_conditions_for_a_node_pool
    modifying_the_node_scale-in_concurrency_settings
+
+.. meta::
+   :description: Learn about node scaling rules, auto-scaling policies, and scale-in conditions for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node Scaling, Node Pools, Auto Scaling Policy, Scale-in Conditions

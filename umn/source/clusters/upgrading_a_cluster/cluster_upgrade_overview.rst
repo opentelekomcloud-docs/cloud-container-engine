@@ -133,3 +133,7 @@ Helpful Links
 -  For details about how to upgrade node OSs, see :ref:`Upgrading an OS <cce_10_0660>`.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079581.png
+
+.. meta::
+   :description: Upgrade T Cloud Public CCE clusters to reduce risks, access new features, and ensure stability.
+   :keywords: Cloud Container Engine, Kubernetes, cluster upgrade, security, stability

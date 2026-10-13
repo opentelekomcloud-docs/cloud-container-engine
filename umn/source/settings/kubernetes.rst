@@ -266,3 +266,7 @@ Controller Manager Settings (kube-controller-manager)
    |                           |                       | -  **false**: Auto creation is disabled.                                                                                                                                                                                                                                        |                 |
    |                           |                       | -  **true**: Auto creation is enabled. For details about the resource quota defaults, see :ref:`Configuring Resource Quotas <cce_10_0287>`.                                                                                                                                     |                 |
    +---------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+
+.. meta::
+   :description: Manage Kubernetes clusters with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, T Cloud Public, kube-apiserver, container eviction

@@ -318,3 +318,7 @@ In this example, a Nginx workload is used and the EVS volume is dynamically moun
       service/nginx-svc created
 
 #. If the workload will be accessed through a ClusterIP or NodePort Service, configure the access mode. For details, see :ref:`Networking <cce_10_0020>`.
+
+.. meta::
+   :description: Learn to create StatefulSets on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, StatefulSet, Kubernetes, Persistent Storage, Headless Service

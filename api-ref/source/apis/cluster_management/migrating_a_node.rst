@@ -392,3 +392,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Learn how to migrate a node between clusters in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Node Migration, Kubernetes Cluster, API

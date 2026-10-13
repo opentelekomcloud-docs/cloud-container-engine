@@ -69,3 +69,7 @@ Solution
          /dev/mapper/vgpaas-kubernetes          11G    41M     11G     1%   /etc/hosts
          /dev/mapper/vgpaas-dockersys           20G   1.1G     18G     6%   /etc/hostname
          ...
+
+.. meta::
+   :description: Learn how to expand container storage in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Storage Capacity, Container, Node, Data Disk

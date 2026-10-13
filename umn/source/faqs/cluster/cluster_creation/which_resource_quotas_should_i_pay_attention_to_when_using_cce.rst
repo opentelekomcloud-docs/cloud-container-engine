@@ -13,3 +13,7 @@ What Is Quota?
 Quotas are enforced for service resources on the platform to prevent unforeseen spikes in resource usage. Quotas can limit the quantity and capacity of resources available to users, such as the maximum number of ECSs or EVS disks that can be created.
 
 If a quota cannot meet your needs, apply for a higher quota.
+
+.. meta::
+   :description: Learn about CCE resource quotas on T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, Resource Quotas, Elastic Cloud Server, Virtual Private Cloud

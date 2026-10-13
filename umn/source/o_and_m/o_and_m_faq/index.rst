@@ -12,3 +12,7 @@ O&M FAQ
    :hidden: 
 
    logging_faq
+
+.. meta::
+   :description: Explore Cloud Container Engine O&M FAQs from T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, O&M, FAQ, Logging

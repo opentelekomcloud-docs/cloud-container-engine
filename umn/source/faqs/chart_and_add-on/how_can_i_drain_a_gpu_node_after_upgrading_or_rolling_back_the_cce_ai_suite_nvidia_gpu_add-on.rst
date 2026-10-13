@@ -26,3 +26,7 @@ When draining a GPU node, make sure to reserve enough GPU resources on other nod
    You can see that the **nvidia-gpu-device-plugin-**\ *xxx* pod is in the **Abnormal** state. Once it transitions to the **Running** state and **Drained** appears in the **Status** column, the GPU virtualization workloads on the GPU node have been drained.
 
 #. In the node list, locate the row containing the GPU node and choose **More** > **Enable Scheduling** in the **Operation** column. You can continue repeating the previous steps until all GPU nodes have been drained.
+
+.. meta::
+   :description: Learn how to drain a GPU node after upgrading or rolling back the CCE AI Suite (NVIDIA GPU) add-on on T Cloud Public.
+   :keywords: Cloud Container Engine, GPU Node, Drain Node, NVIDIA GPU, CCE AI Suite

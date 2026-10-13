@@ -257,3 +257,7 @@ The following methods can be used to solve this problem:
       -  Passthrough networking is not supported for clusters of v1.15 or earlier.
       -  In IPVS network mode, the passthrough settings of Services connected to the same load balancer must be the same.
       -  If node-level (local) service affinity is used, **kubernetes.io/elb.pass-through** is automatically set to **onlyLocal** to enable pass-through.
+
+.. meta::
+   :description: Learn how Kubernetes Services provide stable IPs and load balancing for pods on T Cloud Public's Cloud Container Engine.
+   :keywords: Kubernetes, Service, Pods, Load Balancing, DNS

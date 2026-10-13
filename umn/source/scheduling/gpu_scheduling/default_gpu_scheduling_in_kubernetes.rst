@@ -170,3 +170,7 @@ Using kubectl
    |image1|
 
 .. |image1| image:: /_static/images/en-us_image_0000002516199121.png
+
+.. meta::
+   :description: Learn about default GPU scheduling in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Kubernetes, GPU scheduling, NVIDIA GPU, T Cloud Public

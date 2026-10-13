@@ -22,3 +22,7 @@ Cluster
    connecting_to_multiple_clusters_using_kubectl
    selecting_a_data_disk_for_the_node
    protecting_a_cce_cluster_against_overload
+
+.. meta::
+   :description: Manage CCE clusters on T Cloud Public.
+   :keywords: Cloud Container Engine, Cluster, kubectl, IPv4/IPv6 Dual-Stack, Node Creation

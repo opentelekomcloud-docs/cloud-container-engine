@@ -16,3 +16,7 @@ Solutions
 Upgrading your cluster from an earlier version can be risky and may result in this issue. To avoid this, it is recommended that you migrate the cluster beforehand.
 
 If you still want to proceed with the cluster upgrade, submit a service ticket to contact technical support for evaluation.
+
+.. meta::
+   :description: Learn how to check historical upgrade records for T Cloud Public Cloud Container Engine clusters.
+   :keywords: Cloud Container Engine, cluster upgrade, T Cloud Public, version check, service ticket

@@ -16,3 +16,7 @@ Container Network Add-ons
    coredns
    nginx_ingress_controller
    nodelocal_dnscache
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine network add-ons, including CoreDNS, NGINX Ingress Controller, and NodeLocal DNSCache for optimized Kubernetes...
+   :keywords: Cloud Container Engine, Container Network Add-ons, CoreDNS, NGINX Ingress Controller, NodeLocal DNSCache

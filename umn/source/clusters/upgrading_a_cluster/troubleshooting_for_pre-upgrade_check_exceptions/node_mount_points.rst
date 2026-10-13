@@ -58,3 +58,7 @@ If NFS (such as obsfs or SFS) is used by the node and the node is disconnected f
 .. |image1| image:: /_static/images/en-us_image_0000002516199071.png
 .. |image2| image:: /_static/images/en-us_image_0000002516199073.png
 .. |image3| image:: /_static/images/en-us_image_0000002484119096.png
+
+.. meta::
+   :description: Resolve inaccessible NFS mount points on T Cloud Public CCE nodes.
+   :keywords: Cloud Container Engine, Node Mount Points, NFS, Unmount, D State

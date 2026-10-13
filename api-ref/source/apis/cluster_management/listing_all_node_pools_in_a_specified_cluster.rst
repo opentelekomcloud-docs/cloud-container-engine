@@ -992,3 +992,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: List all node pools in a specified T Cloud Public cluster.
+   :keywords: Cloud Container Engine, T Cloud Public, Node Pool, Kubernetes Cluster, API

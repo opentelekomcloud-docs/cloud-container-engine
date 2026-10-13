@@ -115,3 +115,7 @@ After the SAN is modified, the original X.509 certificate becomes invalid. If yo
    For more cluster APIs, see `Kubernetes API <https://kubernetes.io/docs/reference/kubernetes-api/>`__.
 
 .. |image1| image:: /_static/images/en-us_image_0000002483959210.png
+
+.. meta::
+   :description: Learn how to access T Cloud Public CCE clusters via custom domain names using Subject Alternative Name (SAN) for secure two-way authentication.
+   :keywords: Cloud Container Engine, Custom Domain Name, Subject Alternative Name, TLS, Two-way Authentication

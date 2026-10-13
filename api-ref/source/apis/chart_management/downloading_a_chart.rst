@@ -95,3 +95,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Learn to download Helm charts via T Cloud Public's Cloud Container Engine API.
+   :keywords: Cloud Container Engine, T Cloud Public, Download Chart, Kubernetes, Container Registry

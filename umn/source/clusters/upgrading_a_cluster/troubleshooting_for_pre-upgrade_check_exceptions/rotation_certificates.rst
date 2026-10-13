@@ -29,3 +29,7 @@ Solution 2: Fix the certificate rotation issue on the node.
 
       find -maxdepth 1 -type f -name 'kubelet-server-*.pem' -delete
       rm -f ./kubelet-server-current.pem
+
+.. meta::
+   :description: Learn how to resolve slow node upgrades and pod evictions in T Cloud Public CCE by managing excessive kubelet certificates.
+   :keywords: Cloud Container Engine, CCE, Certificate Rotation, Node Upgrade, Kubernetes

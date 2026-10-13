@@ -49,3 +49,7 @@ SFS supports the following mounting modes based on application scenarios:
 
 -  :ref:`Using an Existing SFS File System Through a Static PV <cce_10_0619>`: static creation mode, where you use an existing SFS volume to create a PV and then mount storage to the workload through a PVC. This mode applies if the underlying storage is available.
 -  :ref:`Using an SFS File System Through a Dynamic PV <cce_10_0620>`: dynamic creation mode, in which you do not need to create SFS file systems beforehand. Instead, specify a StorageClass when creating a PVC. Then, a file system and PV will be created automatically. This mode applies to scenarios where no underlying storage is available.
+
+.. meta::
+   :description: Mount SFS volumes to CCE containers for persistent storage.
+   :keywords: Cloud Container Engine, Scalable File Service, persistent storage, ReadWriteMany, SFS

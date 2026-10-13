@@ -124,3 +124,7 @@ If the host name and DNS settings are correct, you can use the following optimiz
                 - name: single-request-reopen
 
    You are advised to change the value of **ndots** to **2**.
+
+.. meta::
+   :description: Resolve domain name resolution failures in T Cloud Public CCE clusters.
+   :keywords: CCE, CoreDNS, DNS Resolution, Add-ons, Cluster

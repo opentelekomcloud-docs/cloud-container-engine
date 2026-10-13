@@ -18,3 +18,7 @@ Convert the discarded Kubernetes APIs to APIs that are compatible with both the 
 .. note::
 
    This item has been automatically processed in the upgrade process. You can ignore this item.
+
+.. meta::
+   :description: Manage Helm charts in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Helm Charts, Kubernetes APIs, Cluster Upgrade, API Compatibility

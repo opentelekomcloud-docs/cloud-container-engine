@@ -51,3 +51,7 @@ When deleting container subnets, pay attention to the following:
    To find out if any network interfaces are being used by a cluster, copy the ID of the subnet that you plan to delete. Then, access **Network Console** and use this ID to filter the network interfaces and supplementary network interfaces associated with the VPC subnet on the **Network Interfaces** tab. If the name or description of any of the filtered network interfaces contains a cluster ID, then those network interfaces are being used by the cluster.
 
 -  After a subnet is deleted, the security group of the cluster node will not automatically remove the rules associated with the subnet. Make sure that no network interfaces in the cluster are still using the subnet and manually clear these rules that are associated with it.
+
+.. meta::
+   :description: Learn how to add or delete default pod subnets in T Cloud Public's CCE Turbo clusters to meet expansion needs.
+   :keywords: Cloud Container Engine, CCE Turbo, Pod Subnet, Networking Configuration, Kubernetes Cluster

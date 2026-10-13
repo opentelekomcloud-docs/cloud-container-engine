@@ -277,3 +277,7 @@ After an application is deployed, you can access Nginx to construct some access 
 #. Log in to AOM. In the navigation pane, choose **Monitoring** > **Metric Monitoring** to view Nginx-related metrics, for example, **nginx_connections_active**.
 
 .. |image1| image:: /_static/images/en-us_image_0000002484119266.png
+
+.. meta::
+   :description: Learn to upload custom metrics from CCE workloads to AOM using ICAgent.
+   :keywords: Cloud Container Engine, AOM, ICAgent, Prometheus, Custom Metrics

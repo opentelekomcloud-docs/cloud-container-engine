@@ -21,3 +21,7 @@ The settings of **restartPolicy** vary depending on the controller:
 
 -  **Replication Controller (RC)** and **DaemonSet**: **restartPolicy** must be set to **Always** to ensure continuous running of the containers.
 -  **Job**: **restartPolicy** must be set to **OnFailure** or **Never** to ensure that containers are not restarted after being executed.
+
+.. meta::
+   :description: Learn how T Cloud Public CCE handles pod restarts via Kubernetes restartPolicy.
+   :keywords: Cloud Container Engine, Kubernetes, Pod, restartPolicy, kubelet

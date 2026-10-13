@@ -301,3 +301,7 @@ Priority Forwarding Rule Ingress
 4        C               ingress-b
 5        D               ingress-b
 ======== =============== =============
+
+.. meta::
+   :description: Learn how to configure priorities for LoadBalancer Ingresses in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, LoadBalancer, Ingress, Forwarding Rules, Kubernetes

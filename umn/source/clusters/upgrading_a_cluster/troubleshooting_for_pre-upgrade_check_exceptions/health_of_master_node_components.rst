@@ -16,3 +16,7 @@ Solutions
 Perform the pre-upgrade check again.
 
 If it fails again, submit a service ticket to contact technical support.
+
+.. meta::
+   :description: Check Kubernetes, container runtime, and network components for CCE on T Cloud Public before upgrades.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Master Node, Health Check

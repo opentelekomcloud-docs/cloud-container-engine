@@ -51,3 +51,7 @@ Before containerizing an application, analyze the running environment and depend
    |                       |                            |    -  For the configurations (such as peripheral interconnection information and log levels) that are frequently changed, you are advised to configure them as environment variables.                                                                       |
    |                       |                            |    -  For the configurations that remain unchanged, directly write them into images.                                                                                                                                                                        |
    +-----------------------+----------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn to analyze application environments and dependencies before containerizing with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, containerization, application deployment, runtime environment

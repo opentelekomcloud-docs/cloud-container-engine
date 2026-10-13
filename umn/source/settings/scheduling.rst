@@ -105,3 +105,7 @@ Heterogeneous Resource Scheduling (Supported by Volcano Scheduler)
 **GPU Scheduling**
 
 To use this capability, the CCE AI Suite (NVIDIA GPU) add-on (:ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>`) must be installed. With this option enabled, GPUs can be used for AI training jobs, and the scheduler provides full GPU dispatch and GPU sharing to improve resource utilization.
+
+.. meta::
+   :description: Optimize cluster efficiency with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Volcano Scheduler, AI task performance, heterogeneous resource management, priority-based scheduling

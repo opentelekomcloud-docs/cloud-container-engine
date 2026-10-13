@@ -231,3 +231,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Use the GetResourceTags API on T Cloud Public's Cloud Container Engine to retrieve tags for specific resources via the GET endpoint.
+   :keywords: Cloud Container Engine, T Cloud Public, Resource Tags, API, Container Management

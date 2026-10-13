@@ -22,3 +22,7 @@ Volcano Scheduling
    priority-based_scheduling/index
    ai_performance-based_scheduling/index
    numa_affinity_scheduling
+
+.. meta::
+   :description: Learn about Volcano Scheduling in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Volcano, Scheduling, Kubernetes, AI Workloads

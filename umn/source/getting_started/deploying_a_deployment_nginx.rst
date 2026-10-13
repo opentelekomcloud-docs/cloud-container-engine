@@ -92,3 +92,7 @@ The following is the procedure for creating a containerized workload from a cont
       :alt: **Figure 2** Accessing Nginx
 
       **Figure 2** Accessing Nginx
+
+.. meta::
+   :description: Learn how to deploy an Nginx deployment on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Nginx, Deployment, Workload, Kubernetes Cluster

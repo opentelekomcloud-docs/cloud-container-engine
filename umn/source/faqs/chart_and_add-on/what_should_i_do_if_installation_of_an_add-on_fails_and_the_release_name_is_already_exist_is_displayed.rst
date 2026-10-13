@@ -66,3 +66,7 @@ Use kubectl to connect to the cluster and manually clear the Secret and ConfigMa
 .. |image2| image:: /_static/images/en-us_image_0000002483958168.png
 .. |image3| image:: /_static/images/en-us_image_0000002483958162.png
 .. |image4| image:: /_static/images/en-us_image_0000002516078111.png
+
+.. meta::
+   :description: Resolve "release name already exists" errors in T Cloud Public CCE by manually clearing Helm release Secrets and ConfigMaps using kubectl.
+   :keywords: Cloud Container Engine, Kubernetes, Add-on, Helm, kubectl

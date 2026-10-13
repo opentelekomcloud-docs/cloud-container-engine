@@ -228,3 +228,7 @@ Release History
    |                 |                           |                                                                                 |                                                                                   |
    |                 | v1.19                     |                                                                                 |                                                                                   |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Install Kubernetes Metrics Server on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Kubernetes Metrics Server, T Cloud Public, HPA, cce

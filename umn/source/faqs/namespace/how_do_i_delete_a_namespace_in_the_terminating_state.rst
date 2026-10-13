@@ -178,3 +178,7 @@ To solve this problem, perform the following operations:
    .. code-block::
 
       kubectl  get ns  | grep rdb
+
+.. meta::
+   :description: Learn how to resolve stuck terminating Kubernetes namespaces in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, Namespace, Terminating State, Finalizers

@@ -195,3 +195,7 @@ Status Code
    +-------------+---------------------------------------------------------------+
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Learn how to update a specified node in T Cloud Public's Cloud Container Engine using the PUT API.
+   :keywords: Cloud Container Engine, Node, API, Cluster, T Cloud Public

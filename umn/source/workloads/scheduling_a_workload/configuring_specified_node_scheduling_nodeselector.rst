@@ -72,3 +72,7 @@ Creating a Workload Scheduled to a Specified Node
       nginx-66859f4f48-xgp2g   1/1     Running   0          6h57m   172.16.3.0   192.168.0.103   <none>           <none>
       nginx-66859f4f48-t9gqj   1/1     Running   0          6h57m   172.16.3.1   192.168.0.103   <none>           <none>
       nginx-66859f4f48-2grhq   1/1     Running   0          6h57m   172.16.3.2   192.168.0.103   <none>           <none>
+
+.. meta::
+   :description: Learn to schedule Kubernetes workloads to specific nodes in T Cloud Public's Cloud Container Engine using nodeSelector and built-in labels.
+   :keywords: Cloud Container Engine, Kubernetes, nodeSelector, workload scheduling, node labels

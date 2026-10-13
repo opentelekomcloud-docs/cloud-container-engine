@@ -248,3 +248,7 @@ For more information about users and identity authentication in Kubernetes, see 
 .. |image7| image:: /_static/images/en-us_image_0000002516077965.png
 .. |image8| image:: /_static/images/en-us_image_0000002516077973.png
 .. |image9| image:: /_static/images/en-us_image_0000002516077969.png
+
+.. meta::
+   :description: Learn to configure kubeconfig for fine-grained management on T Cloud Public CCE cluster resources using RBAC.
+   :keywords: Cloud Container Engine, kubeconfig, RBAC, Fine-Grained Management, Kubernetes

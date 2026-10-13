@@ -12,3 +12,7 @@ You can copy the configuration of an existing node pool on the CCE console to cr
 #. Choose **More** > **Copy** in the **Operation** column of the target node pool.
 #. In the **Copy Resource Pool** window, the configurations of the node pool to be copied are displayed. Modify the configurations as needed. For details, see :ref:`Creating a Node Pool <cce_10_0012>`. After confirming the configuration, click **Next: Confirm**.
 #. On the **Confirm** page, confirm the node pool configurations and click **Submit**. Then, a new node pool is created based on the modified configurations.
+
+.. meta::
+   :description: Learn how to copy node pool configurations in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Node Pool, Copy Configuration, Kubernetes

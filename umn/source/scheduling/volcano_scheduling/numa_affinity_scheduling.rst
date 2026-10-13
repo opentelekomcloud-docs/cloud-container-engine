@@ -387,3 +387,7 @@ If Volcano is set as the scheduler and only NUMA is enabled without configuring 
    #. Correctly configure the topology management policy (**topology-manager-policy**) in the node pool.
    #. Configure a correct topology policy for pods to filter nodes with the same topology policy in the node pool. For details, see :ref:`Example of NUMA Affinity Scheduling <cce_10_0425__section20735201818553>`.
    #. Configure the Volcano scheduler to schedule application pods. For details, see :ref:`Scheduling Workloads <cce_10_0722>`. Make sure that the CPU requests for all containers within the pods are integers (measured in cores).
+
+.. meta::
+   :description: Learn how Volcano's NUMA affinity scheduling optimizes performance for HPC and memory-intensive workloads in T Cloud Public CCE clusters.
+   :keywords: Cloud Container Engine, NUMA Affinity Scheduling, Volcano, HPC, Pod Scheduling

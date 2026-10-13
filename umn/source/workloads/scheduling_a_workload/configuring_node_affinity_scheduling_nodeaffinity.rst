@@ -149,3 +149,7 @@ In this example, the rule that **must be met** indicates that the node to be sch
    There is no anti-affinity policy for node affinity scheduling. For node anti-affinity, you can filter nodes by label using the **NotIn** and **DoesNotExist** operators.
 
 .. |image1| image:: /_static/images/en-us_image_0000002483959384.png
+
+.. meta::
+   :description: Learn how to configure node affinity scheduling in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, Node Affinity, GPU Computing, Workload Scheduling

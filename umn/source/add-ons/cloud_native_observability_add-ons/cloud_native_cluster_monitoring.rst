@@ -393,3 +393,7 @@ Release History
    |                 |                           |                                  |                                                                            |
    |                 | v1.29                     |                                  |                                                                            |
    +-----------------+---------------------------+----------------------------------+----------------------------------------------------------------------------+
+
+.. meta::
+   :description: Enable end-to-end Kubernetes cluster monitoring with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, Prometheus, cluster monitoring, kube-prometheus-stack

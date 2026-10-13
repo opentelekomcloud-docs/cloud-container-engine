@@ -23,3 +23,7 @@ Procedure
 #. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.
 #. Locate the target node and click its name.
 #. In the upper right corner of the ECS details page, click **Stop**. In the displayed dialog box, click **OK**.
+
+.. meta::
+   :description: Learn how to safely stop a node in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node, Stop, Cluster, Pod Migration

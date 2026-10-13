@@ -99,3 +99,7 @@ Procedure
 #. Configure other mandatory parameters as required and click **Install**. For details about the parameters, see :ref:`NGINX Ingress Controller <cce_10_0034>`.
 
 #. After completing the configuration, choose **Services & Ingresses** in the navigation pane, switch to the **kube-system** namespace, and check the protocols and listening ports of the add-on. In this example, the protocol is HTTP and HTTPS instead of TCP.
+
+.. meta::
+   :description: Learn to configure an ELB certificate for the NGINX Ingress Controller add-on in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, NGINX Ingress Controller, ELB Certificate, T Cloud Public, Kubernetes Ingress

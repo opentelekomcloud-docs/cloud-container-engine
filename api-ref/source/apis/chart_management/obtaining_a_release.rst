@@ -155,3 +155,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Learn how to obtain a Helm release using T Cloud Public's Cloud Container Engine API.
+   :keywords: Cloud Container Engine, T Cloud Public, CCE, Kubernetes, Helm

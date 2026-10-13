@@ -231,3 +231,7 @@ After enabling an APM probe, you can modify the probe settings.
          +-----------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. After completing the configuration, click **OK** in the lower right corner. After the workload status changes to **Running**, APM will update the settings, which takes about 3 minutes.
+
+.. meta::
+   :description: Configure APM probes for Java workloads in T Cloud Public CCE clusters.
+   :keywords: Cloud Container Engine, T Cloud Public, APM, Java workload, O&M

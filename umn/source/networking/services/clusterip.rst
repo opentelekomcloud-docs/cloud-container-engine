@@ -218,3 +218,7 @@ You can configure Service access using kubectl. This section uses an Nginx workl
          <p><em>Thank you for using nginx.</em></p>
          </body>
          </html>
+
+.. meta::
+   :description: Learn how to use ClusterIP in T Cloud Public's Cloud Container Engine for stable intra-cluster access via virtual IPs and CoreDNS.
+   :keywords: Cloud Container Engine, Kubernetes, ClusterIP, Service, Intra-cluster Access

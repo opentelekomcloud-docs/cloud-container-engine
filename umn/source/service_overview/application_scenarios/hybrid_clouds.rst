@@ -58,3 +58,7 @@ CCE integrates with other services, including Elastic Cloud Server (ECS), Virtua
    :alt: **Figure 1** How hybrid cloud works
 
    **Figure 1** How hybrid cloud works
+
+.. meta::
+   :description: Deploy hybrid cloud apps with T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, Hybrid Cloud, Auto Scaling, Disaster Recovery, Multi-cloud Deployment

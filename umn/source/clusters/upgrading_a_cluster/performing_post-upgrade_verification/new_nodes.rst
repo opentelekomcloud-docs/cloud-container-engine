@@ -20,3 +20,7 @@ Solution
 --------
 
 If nodes cannot be created in your cluster after the cluster is upgraded, contact technical support.
+
+.. meta::
+   :description: Learn how to troubleshoot node creation issues in T Cloud Public's Cloud Container Engine after cluster upgrades.
+   :keywords: Cloud Container Engine, CCE, Nodes, Cluster, Create Node

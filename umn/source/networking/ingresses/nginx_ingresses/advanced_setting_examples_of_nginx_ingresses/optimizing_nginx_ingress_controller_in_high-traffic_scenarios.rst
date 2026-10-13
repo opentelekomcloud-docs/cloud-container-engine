@@ -184,3 +184,7 @@ Add **initContainers** to NGINX Ingress Controller pods and configure the preced
              fieldRef:
                apiVersion: v1
                fieldPath: status.hostIP
+
+.. meta::
+   :description: Optimize NGINX Ingress Controller in high-traffic scenarios with T Cloud Public CCE.
+   :keywords: Cloud Container Engine, NGINX Ingress Controller, high-traffic scenarios, optimization, T Cloud Public

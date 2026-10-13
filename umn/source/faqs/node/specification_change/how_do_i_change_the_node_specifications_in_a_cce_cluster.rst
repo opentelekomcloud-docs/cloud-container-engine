@@ -34,3 +34,7 @@ Common Issues
 -------------
 
 After the specifications of a node configured with CPU management policies are changed, the node may fail to be rebooted or workloads may fail to be created. In this case, see :ref:`What Should I Do If I Fail to Restart or Create Workloads on a Node After Modifying the Node Specifications? <cce_faq_00189>` to rectify the fault.
+
+.. meta::
+   :description: Learn how to change CCE node specs.
+   :keywords: CCE, Node Specifications, ECS, Kubernetes, Cluster

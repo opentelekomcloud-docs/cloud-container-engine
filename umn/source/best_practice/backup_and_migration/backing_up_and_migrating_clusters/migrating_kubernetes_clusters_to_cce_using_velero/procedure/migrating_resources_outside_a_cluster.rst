@@ -55,3 +55,7 @@ Migrating Databases and Storage (On-Demand)
 -------------------------------------------
 
 You can determine whether to use **Relational Database Service (RDS)** and **Object Storage Service (OBS)** based on your production requirements. After the migration is complete, reconfigure the database and storage for applications in the target CCE cluster.
+
+.. meta::
+   :description: Learn how to migrate container images to SWR with T Cloud Public CCE for automated delivery and improved efficiency.
+   :keywords: Cloud Container Engine, SWR, Container Images, Migration, Docker

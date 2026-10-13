@@ -110,3 +110,7 @@ Verification
    .. code-block::
 
       core.coredump.bash.18.1650438992
+
+.. meta::
+   :description: Learn to locate container faults using core dumps on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Core Dump, Container Faults, Cloud Storage, Kubernetes

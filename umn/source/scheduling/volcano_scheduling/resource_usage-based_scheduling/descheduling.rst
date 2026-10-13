@@ -352,3 +352,7 @@ If an input parameter is incorrect, for example, the entered value is beyond the
 
 .. |image1| image:: /_static/images/en-us_image_0000002484119280.png
 .. |image2| image:: /_static/images/en-us_image_0000002483959314.png
+
+.. meta::
+   :description: T Cloud Public's CCE uses Volcano Scheduler for load-aware descheduling.
+   :keywords: Cloud Container Engine, Volcano Scheduler, Load-aware Descheduling, Kubernetes, Resource Balancing

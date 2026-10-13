@@ -66,3 +66,7 @@ Solution
 .. |image1| image:: /_static/images/en-us_image_0000002516078175.png
 .. |image2| image:: /_static/images/en-us_image_0000002483958226.png
 .. |image3| image:: /_static/images/en-us_image_0000002483958234.png
+
+.. meta::
+   :description: Learn how to troubleshoot pod exits caused by node label updates in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, Pod scheduling, Node labels, Kubelet

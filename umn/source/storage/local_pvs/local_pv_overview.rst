@@ -31,3 +31,7 @@ Notes and Constraints
 -  :ref:`Removing <cce_10_0338>`, :ref:`deleting <cce_10_0186>`, :ref:`resetting <cce_10_0003>`, or :ref:`scaling <cce_10_0291>` a node will cause the loss of the PVC/PV data of the local PV associated with the node. The lost data cannot be restored, and the affected PVC/PV cannot be used again. In these scenarios, the pod that uses the local PV is evicted from the node. A new pod will be created and stay in the pending state. This is because the PVC used by the pod has a node label, due to which the pod cannot be scheduled. After the node is reset, the pod may be scheduled to the reset node. In this case, the pod remains in the creating state because the underlying logical volume corresponding to the PVC does not exist.
 -  Do not manually delete the corresponding storage pool or detach data disks from the node. Otherwise, exceptions such as data loss may occur.
 -  Local PVs are in non-shared mode and cannot be mounted to multiple workloads or tasks concurrently. Additionally, local PVs cannot be mounted to multiple pods of a workload concurrently.
+
+.. meta::
+   :description: Learn about Local PV in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, Local Persistent Volume, LVM, StorageClass, Node Affinity

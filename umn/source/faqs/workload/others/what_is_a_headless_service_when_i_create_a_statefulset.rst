@@ -26,3 +26,7 @@ If there is no difference between multiple pods of a workload, you can use a com
 However, in some application scenarios, pods of a workload have different roles. For example, in a Redis cluster, each Redis pod is different. They have a master/slave relationship and need to communicate with each other. In this case, a common Service cannot access a specified pod through the cluster IP address. Therefore, you need to allow the headless Service to directly access the real IP address of the pod to implement mutual access among pods.
 
 Headless Services work with `StatefulSet <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#stable-network-id>`__ to deploy stateful applications, such as Redis and MySQL.
+
+.. meta::
+   :description: Learn about Headless Services in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Headless Service, Kubernetes, StatefulSet, Inter-pod Discovery

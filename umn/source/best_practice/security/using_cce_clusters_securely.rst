@@ -180,3 +180,7 @@ To ensure that resources of different tenants are isolated and to reduce the att
 -  High costs: It may increase the costs as more hardware or VM resources need to be purchased, and more workforce and time need to be spent on managing and maintaining these clusters.
 -  Low resource utilization: Each tenant requires separate hardware or VM resources to run their clusters, which may result in low resource utilization and wastage.
 -  Complex management: Managing and maintaining separate clusters for each tenant increase management complexity and may require more workforce and time.
+
+.. meta::
+   :description: Secure your T Cloud Public CCE clusters by upgrading to the latest version and disabling automatic token mounting for default service accounts to enhance pro...
+   :keywords: CCE, Kubernetes, Security, RBAC, Service Account

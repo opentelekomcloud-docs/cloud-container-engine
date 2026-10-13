@@ -33,3 +33,7 @@ Revoking a Cluster Credential
 -----------------------------
 
 CCE clusters allow you to revoke credentials. In multi-tenant scenarios, CCE generates a unique credential (such as a kubeconfig file or an X.509 certificate) for each user to access their designated cluster. These credentials contain user identity and authorization details to enable users to perform authorized operations while ensuring secure isolation and management. However, credentials typically have a fixed validity period. If an employee resigns or a credential is compromised, manual revocation is required to maintain cluster security. For details, see :ref:`Revoking a Cluster Access Credential <cce_10_0744>`.
+
+.. meta::
+   :description: Learn how to access T Cloud Public CCE clusters using kubectl, CloudShell, and X.
+   :keywords: Cloud Container Engine, CCE, Cluster Access, kubectl, Container Management

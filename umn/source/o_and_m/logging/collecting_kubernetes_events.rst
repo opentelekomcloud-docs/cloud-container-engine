@@ -95,3 +95,7 @@ Using kubectl
             - name: DeleteNodeWithNoServer    # Event name. This parameter is mandatory.
               resourceType: Namespace    # Type of the resource that operations are performed on.
               severity: Major    # Event severity after an event is reported to AOM, which can be Critical, Major, Minor, or Info. The default value is Major.
+
+.. meta::
+   :description: Learn to collect and report Kubernetes events to LTS and AOM using the CCE Cloud Native Log Collection add-on.
+   :keywords: Cloud Container Engine, Kubernetes Events, Cloud Native Log Collection, LTS, AOM

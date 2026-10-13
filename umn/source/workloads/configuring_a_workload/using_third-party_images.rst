@@ -185,3 +185,7 @@ Using kubectl
 
          NAME     READY   UP-TO-DATE   AVAILABLE   AGE
          foo      1/1     1            1           4m59s
+
+.. meta::
+   :description: Learn how to use third-party container images in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, Third-Party Images, Container Images, VPC Peering, SNAT

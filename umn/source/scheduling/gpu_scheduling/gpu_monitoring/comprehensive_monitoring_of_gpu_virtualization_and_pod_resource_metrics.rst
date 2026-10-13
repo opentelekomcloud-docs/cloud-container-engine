@@ -107,3 +107,7 @@ To view GPU metrics in Grafana, install Grafana and enable **Public Access**. Gr
 
 .. |image1| image:: /_static/images/en-us_image_0000002516198941.png
 .. |image2| image:: /_static/images/en-us_image_0000002516078931.png
+
+.. meta::
+   :description: Learn to comprehensively monitor GPU, virtualization, and pod resource metrics in T Cloud Public's Cloud Container Engine using Prometheus and Grafana.
+   :keywords: Cloud Container Engine, GPU Monitoring, Prometheus, Grafana, T Cloud Public

@@ -54,3 +54,7 @@ The following tables list log files of CCE nodes.
    | cce-hpa-controller log            | -  For v1.3.12 or later: **/var/paas/sys/log/kubernetes**                     |
    |                                   | -  For versions earlier than v1.3.12: **/var/paas/sys/log/ccehpa-controller** |
    +-----------------------------------+-------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to collect node logs in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, CCE, node logs, Kubernetes, T Cloud Public

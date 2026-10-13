@@ -60,3 +60,7 @@ job_id
       :alt: **Figure 4** Obtaining the job ID
 
       **Figure 4** Obtaining the job ID
+
+.. meta::
+   :description: Learn how to obtain project, cluster, node, and job IDs in the T Cloud Public CCE console API.
+   :keywords: Cloud Container Engine, CCE, API URI, Cluster Management, Node Management

@@ -38,3 +38,7 @@ Chart Management
    obtaining_chart_values
    obtaining_historical_records_of_a_release
    obtaining_the_quota_of_a_user_chart
+
+.. meta::
+   :description: Manage Helm charts and releases on T Cloud Public Container Engine.
+   :keywords: T Cloud Public, Cloud Container Engine, Helm Chart, Release Management, Kubernetes

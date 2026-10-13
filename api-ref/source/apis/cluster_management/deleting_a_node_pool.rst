@@ -819,3 +819,7 @@ Status Code
    =========== ===========================================================
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Learn to delete a node pool in T Cloud Public's Cloud Container Engine using the DELETE API.
+   :keywords: Cloud Container Engine, T Cloud Public, node pool, cluster, API

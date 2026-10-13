@@ -20,3 +20,7 @@ Container Networks
    vpc_network_settings/index
    tunnel_network_settings/index
    pod_network_settings/index
+
+.. meta::
+   :description: Manage container networks in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Container Networks, Cloud Native Network 2.0, VPC Network Settings

@@ -23,3 +23,7 @@ The skipped nodes are displayed on the upgrade details page. Reset the skipped n
 .. note::
 
    Resetting a node will reset all node labels, which may affect workload scheduling. Before resetting a node, check and retain the labels that you have manually added to the node.
+
+.. meta::
+   :description: Learn how to identify and resolve skipped nodes in T Cloud Public's Cloud Container Engine after an upgrade.
+   :keywords: CCE, Skipped Nodes, Upgrade, Node List, Reset Node

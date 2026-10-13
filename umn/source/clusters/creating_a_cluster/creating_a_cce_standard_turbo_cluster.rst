@@ -403,3 +403,7 @@ Helpful Links
 -  If a cluster fails to be created, rectify the fault by referring to :ref:`Why Can't I Create a CCE Cluster? <cce_faq_00111>`
 
 .. |image1| image:: /_static/images/en-us_image_0000002484119226.png
+
+.. meta::
+   :description: Create CCE Standard/Turbo clusters on T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, Kubernetes, containerized applications, cloud native

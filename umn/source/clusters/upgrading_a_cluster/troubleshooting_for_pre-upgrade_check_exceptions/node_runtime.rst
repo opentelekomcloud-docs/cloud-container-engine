@@ -16,3 +16,7 @@ Solutions
 If your node's runtime is not containerd, change it to containerd by resetting the node.
 
 If you plan to create and use Docker nodes in clusters of versions later than v1.27, ignore this alarm. However, you are advised to switch to containerd as soon as possible for a better user experience and more powerful functions.
+
+.. meta::
+   :description: Learn how to resolve Docker runtime alarms in T Cloud Public CCE v1.
+   :keywords: Cloud Container Engine, containerd, Docker, node runtime, cluster upgrade

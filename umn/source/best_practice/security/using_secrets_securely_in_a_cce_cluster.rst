@@ -120,3 +120,7 @@ Service account tokens based on secrets do not support expiration settings or au
                          path: namespace
 
 For details, see `Managing Service Accounts <https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/>`__.
+
+.. meta::
+   :description: Secure secrets in T Cloud Public CCE with static encryption.
+   :keywords: Cloud Container Engine, CCE, Secrets, Static Encryption, Security

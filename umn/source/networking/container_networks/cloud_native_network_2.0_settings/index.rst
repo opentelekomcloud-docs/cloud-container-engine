@@ -26,3 +26,7 @@ Cloud Native Network 2.0 Settings
    configuring_a_shared_bandwidth_for_dual-stack_pods_in_a_cce_turbo_cluster
    obtaining_pod_network_interfaces_in_a_cce_turbo_cluster
    configuring_a_security_group_for_a_workload_in_a_cce_turbo_cluster/index
+
+.. meta::
+   :description: Manage Cloud Native Network 2.
+   :keywords: Cloud Container Engine, CCE Turbo, Cloud Native Network 2.0, Pod Networking, T Cloud Public

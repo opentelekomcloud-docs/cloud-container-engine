@@ -31,3 +31,7 @@ Upgrade the CCE Node Problem Detector add-on to the latest version.
 #. In the window that slides out from the right, configure the parameters and click **OK**.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516197799.png
+
+.. meta::
+   :description: Resolve residual CCE Node Problem Detector processes on T Cloud Public ECS nodes by upgrading the add-on to the latest version in the CCE console.
+   :keywords: CCE, Node Problem Detector, Add-on, ECS, Cluster

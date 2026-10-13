@@ -15,3 +15,7 @@ GPU Settings
 
       -  The system installs the driver of the version specified for the node pool. The driver applies only to new nodes in the node pool.
       -  After the driver version is updated, it takes effect on the nodes newly added to the node pool. Existing nodes must restart to apply the changes.
+
+.. meta::
+   :description: Manage GPU settings in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Heterogeneous Resources, GPU Settings, Node Pool, NVIDIA Driver

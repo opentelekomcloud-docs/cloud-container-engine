@@ -221,3 +221,7 @@ Log in to an ECS and ping an IPv6 address on the Internet to verify the connecti
 
 .. |image1| image:: /_static/images/en-us_image_0000002483958176.png
 .. |image2| image:: /_static/images/en-us_image_0000002516078141.png
+
+.. meta::
+   :description: Learn how to create an IPv4/IPv6 dual-stack cluster in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, IPv4/IPv6 Dual-Stack, T Cloud Public, VPC, Cluster

@@ -71,3 +71,7 @@ Kubernetes automatically adds tolerances for the **node.kubernetes.io/not-ready*
        operator: Exists
        effect: NoExecute
        tolerationSeconds: 300
+
+.. meta::
+   :description: Learn how to configure tolerance policies in Cloud Container Engine.
+   :keywords: Cloud Container Engine, Tolerance Policies, Taints, Scheduling, Pods

@@ -24,3 +24,7 @@ Advanced Setting Examples of Nginx Ingresses
    nginx_ingress_usage_suggestions
    optimizing_nginx_ingress_controller_in_high-traffic_scenarios
    configuring_an_elb_certificate_for_nginx_ingress_controller
+
+.. meta::
+   :description: Master Nginx Ingress on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Nginx Ingress, HTTPS, Load Balancing, ELB Certificate

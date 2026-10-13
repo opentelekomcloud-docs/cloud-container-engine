@@ -276,3 +276,7 @@ Procedure
 #. Click **Next: Confirm**.
 
 #. Click **Submit**.
+
+.. meta::
+   :description: Learn how to create and manage node pools in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Node Pool, Cluster, Kubernetes

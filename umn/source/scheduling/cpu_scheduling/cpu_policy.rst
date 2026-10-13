@@ -114,3 +114,7 @@ Command output:
 
 -  If the **policyName** is **static**, the policy has been configured.
 -  Value **2-3** indicates the set of CPUs that can be used by containers in the pod.
+
+.. meta::
+   :description: Learn about CPU management policies in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, CPU Management Policy, CPU Pinning, Kubernetes, T Cloud Public

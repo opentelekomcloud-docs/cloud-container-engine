@@ -204,3 +204,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Resize T Cloud Public CCE cluster specs via API.
+   :keywords: Cloud Container Engine, T Cloud Public, ResizeCluster, Cluster Specifications, API

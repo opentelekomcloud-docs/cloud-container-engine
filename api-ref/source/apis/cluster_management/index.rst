@@ -66,3 +66,7 @@ Cluster Management
    listing_all_node_pools_in_a_specified_cluster
    deleting_a_node_pool
    synchronizing_node_pool_configurations_to_existing_nodes
+
+.. meta::
+   :description: Manage clusters, nodes, and node pools on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Cluster Management, Node Pool, T Cloud Public, Container Orchestration

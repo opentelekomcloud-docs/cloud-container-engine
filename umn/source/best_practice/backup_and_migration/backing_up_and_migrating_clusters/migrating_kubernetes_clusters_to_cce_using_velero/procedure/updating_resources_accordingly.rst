@@ -199,3 +199,7 @@ In this example, the database is a local MySQL database and does not need to be 
    -  **WORDPRESS_DB_NAME**: name of the database to be connected.
 
 #. Check whether the RDS database is properly connected.
+
+.. meta::
+   :description: Learn to update images and services in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, SWR, kubectl, Service, ELB

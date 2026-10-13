@@ -118,3 +118,7 @@ Creating a Namespace Using kubectl
    The **custom-namespace** namespace is displayed in the list.
 
    For more details about how to configure a namespace, see `Manage Memory, CPU, and API Resources <https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/>`__.
+
+.. meta::
+   :description: Learn how to create and manage namespaces in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Namespace, Kubernetes, Cluster, T Cloud Public

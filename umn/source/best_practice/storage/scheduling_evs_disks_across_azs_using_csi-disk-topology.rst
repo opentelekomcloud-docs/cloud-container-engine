@@ -316,3 +316,7 @@ After the creation, check the PVC and pod status. As shown in the following outp
 
 .. |image1| image:: /_static/images/en-us_image_0000002516197995.png
 .. |image2| image:: /_static/images/en-us_image_0000002483958066.png
+
+.. meta::
+   :description: Learn how to schedule EVS disks across AZs in CCE using the csi-disk-topology storage class to prevent pod scheduling failures in multi-AZ clusters on T Clou...
+   :keywords: Cloud Container Engine, csi-disk-topology, AZ, EVS, StatefulSet

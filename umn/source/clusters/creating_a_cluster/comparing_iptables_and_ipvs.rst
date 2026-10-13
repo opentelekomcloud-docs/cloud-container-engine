@@ -47,3 +47,7 @@ IPVS
 IPVS is constructed on top of Netfilter and balances transport-layer loads as part of the Linux kernel. IPVS can direct requests for TCP- or UDP-based services to the real servers, and make services of the real servers appear as virtual services on a single IP address.
 
 In the IPVS mode, kube-proxy uses IPVS load balancing instead of iptables. IPVS is designed to balance loads for a large number of Services. It has a set of optimized APIs and uses optimized search algorithms instead of simply searching for rules from a list. For details, see `IPVS proxy mode <https://kubernetes.io/docs/reference/networking/virtual-ips/#proxy-mode-ipvs>`__.
+
+.. meta::
+   :description: Explore CCE's iptables vs IPVS comparison.
+   :keywords: Cloud Container Engine, Kubernetes, kube-proxy, iptables, IPVS

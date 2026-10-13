@@ -219,3 +219,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Use T Cloud Public's CCE API to remove a node from a specified cluster.
+   :keywords: Cloud Container Engine, Remove Node, Cluster Management, API, T Cloud Public

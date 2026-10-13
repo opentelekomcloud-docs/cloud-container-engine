@@ -62,3 +62,7 @@ You can disable overload control when it is no longer needed. After overload con
 #. In the navigation pane, choose **Settings**.
 #. On the **Cluster Access** tab, disable overload control.
 #. Click **OK**.
+
+.. meta::
+   :description: Learn how to enable overload control in T Cloud Public's CCE to protect master nodes.
+   :keywords: Cloud Container Engine, Overload Control, Cluster Stability, Master Nodes, T Cloud Public

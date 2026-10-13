@@ -104,3 +104,7 @@ After Volcano is installed, bin packing takes effect by default. If the default 
       +------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
 
 #. Click **Confirm**.
+
+.. meta::
+   :description: Enable bin packing in T Cloud Public CCE to maximize node utilization.
+   :keywords: Cloud Container Engine, Bin Packing, Volcano, Resource Utilization, Scheduling

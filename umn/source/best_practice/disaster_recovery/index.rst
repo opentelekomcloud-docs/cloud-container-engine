@@ -16,3 +16,7 @@ Disaster Recovery
    recommended_configurations_for_ha_cce_clusters
    implementing_high_availability_for_applications_in_cce
    implementing_high_availability_for_add-ons_in_cce
+
+.. meta::
+   :description: Learn disaster recovery best practices for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Disaster Recovery, High Availability, HA Clusters, T Cloud Public

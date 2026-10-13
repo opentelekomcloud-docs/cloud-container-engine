@@ -1462,3 +1462,7 @@ Status Code
    +-------------+----------------------------------------------------------------------------+
 
 For the description about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Learn how to create a node in a T Cloud Public cluster using the Cloud Container Engine API.
+   :keywords: Cloud Container Engine, T Cloud Public, API, cluster, node

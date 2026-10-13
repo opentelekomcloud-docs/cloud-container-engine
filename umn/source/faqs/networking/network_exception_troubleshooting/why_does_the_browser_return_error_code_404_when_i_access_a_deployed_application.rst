@@ -24,3 +24,7 @@ If the error code shown in the following figure is returned, it indicates that e
    :alt: **Figure 2** 404:nginx/1.**.\*
 
    **Figure 2** 404:nginx/1.**.\*
+
+.. meta::
+   :description: Resolve 404 errors in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, 404, ELB, Nginx, forwarding policy

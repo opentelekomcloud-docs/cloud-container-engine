@@ -12,3 +12,7 @@ Image Repository FAQs
    :hidden: 
 
    how_do_i_upload_my_images_to_cce
+
+.. meta::
+   :description: Learn how to upload images to T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Image Repository, Container Images, FAQs

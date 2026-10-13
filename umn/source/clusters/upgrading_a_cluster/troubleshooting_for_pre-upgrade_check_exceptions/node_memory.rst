@@ -15,3 +15,7 @@ Solutions
 
 -  **Upgrade the cluster during off-peak hours.**
 -  Log in to the node, run the **top** command to obtain the memory usage of the process, and adjust the services running on the node as needed.
+
+.. meta::
+   :description: Learn how to resolve high node memory usage in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node Memory, Memory Usage, Cluster Upgrade, Troubleshooting

@@ -352,3 +352,7 @@ The following table lists how to back up cluster data.
 |                         |                                                                                    |                                                     |                                                                               |                   |                                                                           |
 |                         |                                                                                    |                                                     |                                                                               |                   | After this function is released, it will replace CBR cloud server backup. |
 +-------------------------+------------------------------------------------------------------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------+-------------------+---------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn precautions for upgrading T Cloud Public CCE clusters.
+   :keywords: CCE, T Cloud Public, Cluster Upgrade, Kubernetes, Cloud Container Engine

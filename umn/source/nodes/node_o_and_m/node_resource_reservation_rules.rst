@@ -167,3 +167,7 @@ Node Data Disk Reservation Rules
 --------------------------------
 
 CCE uses Logical Volume Manager (LVM) for disk management. LVM creates a metadata area on a disk to store logical and physical volume information, occupying 4 MiB of space. Therefore, the actual available disk space of a node is the disk size minus 4 MiB.
+
+.. meta::
+   :description: Learn about CCE node resource reservation rules.
+   :keywords: Cloud Container Engine, Kubernetes, Node Resources, Pod Eviction, Memory Management

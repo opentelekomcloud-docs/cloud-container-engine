@@ -250,3 +250,7 @@ Release History
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079513.png
 .. |image2| image:: /_static/images/en-us_image_0000002483959570.png
+
+.. meta::
+   :description: Learn about NodeLocal DNSCache for T Cloud Public CCE.
+   :keywords: Cloud Container Engine, NodeLocal DNSCache, Kubernetes, DNS performance, CCE add-on

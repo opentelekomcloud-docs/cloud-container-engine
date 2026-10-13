@@ -16,3 +16,7 @@ Solution
 --------
 
 You can use NodeLocal DNSCache to minimize the impact of IPVS defects. For details, see :ref:`Using NodeLocal DNSCache to Improve DNS Performance <cce_10_0362>`.
+
+.. meta::
+   :description: Resolve DNS timeouts in T Cloud Public CCE caused by IPVS defects.
+   :keywords: Cloud Container Engine, DNS Resolution Timeout, IPVS, NodeLocal DNSCache, CoreDNS

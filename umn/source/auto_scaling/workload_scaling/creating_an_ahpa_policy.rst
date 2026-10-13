@@ -228,3 +228,7 @@ Using AHPA
       kubectl delete ahpacheckpoint hamster-ahpa
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079031.png
+
+.. meta::
+   :description: Create AHPA policies in T Cloud Public CCE for predictive scaling.
+   :keywords: Cloud Container Engine, AHPA, Auto Scaling, Kubernetes, Predictive Scaling

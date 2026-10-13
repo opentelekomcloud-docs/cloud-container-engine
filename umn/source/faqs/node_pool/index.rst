@@ -18,3 +18,7 @@ Node Pool
    what_should_i_do_if_no_node_creation_record_is_displayed_when_the_node_pool_is_being_scaled_out
    what_should_i_do_if_a_node_pool_scale-out_fails
    how_do_i_modify_ecs_configurations_when_an_ecs_cant_be_managed_by_a_node_pool
+
+.. meta::
+   :description: Troubleshoot T Cloud Public CCE node pool issues.
+   :keywords: Cloud Container Engine, Node Pool, T Cloud Public, ECS, Container Management

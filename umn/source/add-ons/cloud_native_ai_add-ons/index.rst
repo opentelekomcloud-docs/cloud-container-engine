@@ -12,3 +12,7 @@ Cloud Native AI Add-ons
    :hidden: 
 
    cce_ai_suite_nvidia_gpu
+
+.. meta::
+   :description: Explore Cloud Native AI Add-ons for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Cloud Native, AI Add-ons, NVIDIA GPU

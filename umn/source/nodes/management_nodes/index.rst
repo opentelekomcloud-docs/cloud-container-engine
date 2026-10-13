@@ -28,3 +28,7 @@ Management Nodes
    deleting_a_node
    stopping_a_node
    performing_a_rolling_upgrade_for_nodes
+
+.. meta::
+   :description: Manage T Cloud Public CCE nodes: labels, taints, upgrades, and lifecycle.
+   :keywords: Cloud Container Engine, T Cloud Public, Management Nodes, Node Lifecycle, Kubernetes

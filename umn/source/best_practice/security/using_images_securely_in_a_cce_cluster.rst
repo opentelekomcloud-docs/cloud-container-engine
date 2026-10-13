@@ -67,3 +67,7 @@ By setting the USER instruction in Dockerfiles, subsequent commands can be execu
 -  Restricted access: Non-root users typically have limited permissions, which restrict their access to and operations on node resources.
 
 In addition to Dockerfiles, you can use the **securityContext** field in **podSpec** of Kubernetes to configure user and group IDs and enforce security policies during container deployment.
+
+.. meta::
+   :description: Learn best practices for using images securely in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Container Security, Image Optimization, Multi-Stage Builds, Vulnerability Mitigation

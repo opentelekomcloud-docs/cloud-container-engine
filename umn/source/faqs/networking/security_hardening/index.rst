@@ -18,3 +18,7 @@ Security Hardening
    how_do_i_configure_an_access_policy_for_a_cluster
    how_do_i_obtain_a_tls_key_certificate
    how_do_i_change_the_security_group_of_nodes_in_a_cluster_in_batches
+
+.. meta::
+   :description: Secure your T Cloud Public Cloud Container Engine with hardening guides: prevent public exposure, configure access policies, manage TLS certs, and batch upda...
+   :keywords: Cloud Container Engine, Security Hardening, Cluster Nodes, TLS Key Certificate, Security Group

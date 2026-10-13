@@ -18,3 +18,7 @@ emptyDir
    importing_an_ev_to_a_storage_pool
    local_ev
    temporary_path
+
+.. meta::
+   :description: Learn about emptyDir volumes in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, emptyDir, Storage Pool, Kubernetes

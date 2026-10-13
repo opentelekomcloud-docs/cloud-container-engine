@@ -52,3 +52,7 @@ API & kubectl
 -------------
 
 :ref:`Why Is "Error from server (Forbidden)" Displayed When I Use kubectl? <cce_faq_00311>`
+
+.. meta::
+   :description: Resolve CCE cluster, node, workload, and network issues.
+   :keywords: Cloud Container Engine, Cluster Management, Node Pool, Workload, Network Management

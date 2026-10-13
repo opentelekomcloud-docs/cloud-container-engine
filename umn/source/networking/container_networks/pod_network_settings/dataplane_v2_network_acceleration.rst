@@ -230,3 +230,7 @@ Information similar to the following is displayed:
 |                |                |                 |                                                                                                                            |                                              |
 |                |                | v1.31           |                                                                                                                            |                                              |
 +----------------+----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+
+
+.. meta::
+   :description: Enable DataPlane V2 in T Cloud Public CCE clusters.
+   :keywords: Cloud Container Engine, T Cloud Public, DataPlane V2, Cilium, eBPF

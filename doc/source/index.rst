@@ -15,3 +15,7 @@ CCE provides highly scalable, high-performance, enterprise-class Kubernetes clus
       :title: Best Practices
       :url: https://arch.otc-service.com/docs/best-practices/containers/cloud-container-engine
       :description: Discover our best practices for optimizing cloud-based solutions, focusing on architectural principles that ensure reliability, scalability, security, high availability, and fault tolerance in the Open Telekom Cloud Architecture Center.
+
+.. meta::
+   :description: Launch enterprise-grade Kubernetes clusters with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, containers, scalable, high-performance

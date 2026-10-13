@@ -70,3 +70,7 @@ Using kubectl
       kubectl apply -f pvc-evs-auto.yaml
 
 #. Go to the **PVCs** tab and check whether the PVC of the encrypted EVS disk is created and whether the disk is encrypted.
+
+.. meta::
+   :description: Learn to encrypt EVS disks in T Cloud Public's CCE using DEW keys for high security.
+   :keywords: CCE, EVS, encryption, DEW, PVC

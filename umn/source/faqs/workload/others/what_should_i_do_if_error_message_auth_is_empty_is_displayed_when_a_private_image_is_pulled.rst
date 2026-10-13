@@ -25,3 +25,7 @@ When you create a workload using an API, you can include the secret in Deploymen
 
    imagePullSecrets:
    - name: default-secret
+
+.. meta::
+   :description: Fix "Auth is empty" errors when pulling private images on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Private Image, Image Pull, Auth Error, Kubernetes

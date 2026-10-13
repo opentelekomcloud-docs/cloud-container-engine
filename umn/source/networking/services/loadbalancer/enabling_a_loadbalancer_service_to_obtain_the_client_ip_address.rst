@@ -69,3 +69,7 @@ An example YAML file of a Service created using an existing load balancer is as 
    |                                         |                       | -  **true**: Enabling the function of obtaining the client source IP address.   |
    |                                         |                       | -  **false**: Disabling the function of obtaining the client source IP address. |
    +-----------------------------------------+-----------------------+---------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to enable client IP address retention for LoadBalancer Services in T Cloud Public CCE using shared load balancers and kubectl annotations.
+   :keywords: Cloud Container Engine, Kubernetes, LoadBalancer, Client IP, kubectl

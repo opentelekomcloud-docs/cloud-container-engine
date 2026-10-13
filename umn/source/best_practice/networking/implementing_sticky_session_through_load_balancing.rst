@@ -375,3 +375,7 @@ Enable cookie-based sticky session on the ingress.
 
       a. Log in to the ELB console, locate the row containing the target load balancer, and click the listener name.
       b. Click the **Forwarding Policies** tab, click the backend server group name, and check whether sticky session is enabled for it.
+
+.. meta::
+   :description: Learn how to implement sticky sessions in T Cloud Public's Cloud Container Engine to ensure consistent user sessions and prevent login failures.
+   :keywords: Cloud Container Engine, Sticky Session, Load Balancing, T Cloud Public, Session Continuity

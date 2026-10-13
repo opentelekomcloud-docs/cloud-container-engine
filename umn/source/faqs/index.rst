@@ -36,3 +36,7 @@ FAQs
    dns_faqs/index
    image_repository_faqs/index
    permissions/index
+
+.. meta::
+   :description: Find answers to common questions about T Cloud Public's Cloud Container Engine, covering clusters, nodes, networking, and more.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Node Pool, Workload

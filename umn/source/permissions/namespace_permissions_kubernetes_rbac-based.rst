@@ -515,3 +515,7 @@ Example: Assigning Permissions for a Specific Kubernetes Resource Object
 ------------------------------------------------------------------------
 
 You can assign permissions on a specific Kubernetes resource object, such as pod, Deployment, and Service. For details, see :ref:`Using kubectl to Configure Namespace Permissions <cce_10_0189__section1273861718819>`.
+
+.. meta::
+   :description: Manage Kubernetes RBAC permissions in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes RBAC, Namespace Permissions, Role Binding, T Cloud Public

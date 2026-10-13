@@ -138,3 +138,7 @@ In the preceding configuration, the NodePort mode is selected to access the work
 You can obtain the access mode from the **Access Mode** tab on the workload details page.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516198019.png
+
+.. meta::
+   :description: Learn how to deploy container workloads on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, CCE, Kubernetes, container workload, ECS

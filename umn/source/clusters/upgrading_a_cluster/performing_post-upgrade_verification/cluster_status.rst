@@ -19,3 +19,7 @@ Solution
 --------
 
 If your cluster malfunctions, contact technical support.
+
+.. meta::
+   :description: Verify your T Cloud Public CCE cluster status is Running post-upgrade.
+   :keywords: Cloud Container Engine, CCE, Cluster Status, Cluster Upgrade, Technical Support

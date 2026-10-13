@@ -380,3 +380,7 @@ By using HPA and CA, auto scaling can be effortlessly implemented in various sce
 
 .. |image1| image:: /_static/images/en-us_image_0000002484118024.png
 .. |image2| image:: /_static/images/en-us_image_0000002483958054.png
+
+.. meta::
+   :description: Learn how to use HPA and CA in T Cloud Public's Cloud Container Engine for automatic workload and node scaling to handle traffic surges and optimize resources.
+   :keywords: Cloud Container Engine, HPA, CA, Auto Scaling, Workloads

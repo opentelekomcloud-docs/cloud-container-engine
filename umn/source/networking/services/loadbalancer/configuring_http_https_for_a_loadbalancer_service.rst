@@ -164,3 +164,7 @@ The following uses an automatically created dedicated load balancer as an exampl
    |                                     |                       |                                                                                                                                               |
    |                                     |                       | Dedicated load balancers are available in clusters of v1.23.14-r0, v1.25.9-r0, v1.27.6-r0, v1.28.4-r0, or later.                              |
    +-------------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to configure HTTP/HTTPS listeners for LoadBalancer Services in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, LoadBalancer, HTTP, HTTPS, ELB

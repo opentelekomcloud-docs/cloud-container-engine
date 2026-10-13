@@ -262,3 +262,7 @@ Step 3: Implement Blue-Green Deployment
 .. |image1| image:: /_static/images/en-us_image_0000002516198257.png
 .. |image2| image:: /_static/images/en-us_image_0000002484118292.png
 .. |image3| image:: /_static/images/en-us_image_0000002516198239.png
+
+.. meta::
+   :description: Learn simple grayscale release and blue-green deployment on T Cloud Public CCE using native Kubernetes features, avoiding complex tool configurations.
+   :keywords: Cloud Container Engine, Grayscale Release, Blue-Green Deployment, Kubernetes, Services

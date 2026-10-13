@@ -26,3 +26,7 @@ Solution
 --------
 
 If your online services malfunction after the cluster upgrade, contact technical support.
+
+.. meta::
+   :description: Verify services after upgrading your T Cloud Public Cloud Container Engine cluster.
+   :keywords: Cloud Container Engine, cluster upgrade, service verification, technical support, T Cloud Public

@@ -164,3 +164,7 @@ References
 ----------
 
 For more details about the performance comparison and functional evolution between Kubernetes 1.29 and other versions, see `Kubernetes v1.29 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.29.md>`__.
+
+.. meta::
+   :description: Explore Kubernetes 1.
+   :keywords: Cloud Container Engine, Kubernetes 1.29, Load Balancer IP Mode, nftables proxy mode, T Cloud Public

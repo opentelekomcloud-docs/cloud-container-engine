@@ -147,3 +147,7 @@ Helpful Links
 
 -  For details about how to configure workload affinity or anti-affinity, see :ref:`Configuring Workload Affinity or Anti-affinity Scheduling (podAffinity or podAntiAffinity) <cce_10_0893>`.
 -  For details about how to configure an EIP for a pod through annotations, see :ref:`Configuring an EIP for a Pod in a CCE Turbo Cluster <cce_10_0734>`.
+
+.. meta::
+   :description: Learn how to configure labels and annotations in T Cloud Public's Cloud Container Engine to manage Kubernetes pod metadata efficiently.
+   :keywords: Cloud Container Engine, Kubernetes, Labels, Annotations, T Cloud Public

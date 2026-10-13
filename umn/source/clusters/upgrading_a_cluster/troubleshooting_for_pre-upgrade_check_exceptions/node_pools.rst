@@ -25,3 +25,7 @@ Solutions
    Log in to the CCE console and click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane, check the status of the affected node pool on the **Node Pools** tab, and click **Upgrade**. Change the supported OSs based on the pre-upgrade check result, and click **OK**.
 
    If there are nodes in the affected node pool, choose **More** > **Synchronize** in the operation column to synchronize the OS of the existing nodes. For details, see :ref:`Synchronizing Node Pools <cce_10_0654>`.
+
+.. meta::
+   :description: Resolve CCE node pool issues on T Cloud Public.
+   :keywords: Cloud Container Engine, Node Pools, CCE, Node Status, OS Upgrade

@@ -122,3 +122,7 @@ After a cluster is created, you need to create nodes in the cluster to run workl
    It takes about 5 to 10 minutes to complete the node creation.
 
    The created node will be displayed on the **Nodes** page.
+
+.. meta::
+   :description: Learn how to quickly create a Kubernetes cluster with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes Cluster, T Cloud Public, Container Service, Cluster Creation

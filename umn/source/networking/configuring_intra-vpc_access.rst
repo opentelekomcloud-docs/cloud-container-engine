@@ -100,3 +100,7 @@ If an intranet cannot be accessed from a container, perform the following operat
 
 #. Check whether a trustlist is configured for the peer server. For example, the DCS Redis instance can be accessed only by the IP addresses in its trustlist. Add the container and node CIDR blocks to the trustlist.
 #. Check whether the container engine is installed on the peer server and whether it conflicts with the container CIDR block in CCE. If a network conflict occurs, the access fails.
+
+.. meta::
+   :description: Learn to configure intra-VPC access in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, VPC, Container Network, Security Group, Intra-VPC Access

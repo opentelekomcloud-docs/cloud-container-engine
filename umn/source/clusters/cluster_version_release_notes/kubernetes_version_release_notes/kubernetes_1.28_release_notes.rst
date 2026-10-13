@@ -152,3 +152,7 @@ References
 ----------
 
 For more details about the performance comparison and functional evolution between Kubernetes 1.28 and other versions, see `Kubernetes v1.28 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.28.md>`__.
+
+.. meta::
+   :description: Explore Kubernetes 1.
+   :keywords: Kubernetes 1.28, CCE, scheduling framework, Ceph FS, Ceph RBD

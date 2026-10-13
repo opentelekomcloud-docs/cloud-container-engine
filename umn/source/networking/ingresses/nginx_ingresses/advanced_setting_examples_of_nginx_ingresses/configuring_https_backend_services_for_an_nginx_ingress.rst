@@ -98,3 +98,7 @@ An ingress configuration example is as follows:
 
       NAME          CLASS   HOSTS     ADDRESS          PORTS   AGE
       ingress-test  nginx   *         121.**.**.**     80      10s
+
+.. meta::
+   :description: Learn to configure HTTPS backend services for Nginx Ingress on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Nginx Ingress, HTTPS, Kubernetes, T Cloud Public

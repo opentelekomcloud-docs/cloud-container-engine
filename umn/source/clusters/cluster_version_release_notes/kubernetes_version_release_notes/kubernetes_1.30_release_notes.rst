@@ -67,3 +67,7 @@ References
 ----------
 
 For more details about the performance comparison and functional evolution between Kubernetes 1.30 and other versions, see `Kubernetes v1.30 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.30.md>`__.
+
+.. meta::
+   :description: Explore Kubernetes 1.
+   :keywords: CCE, Kubernetes 1.30, Webhook matching expression, Pod scheduling readiness, Validating admission policies

@@ -95,3 +95,7 @@ This issue can arise in the following scenarios:
 
 -  Scenario 1: Update the security group specified by the **customSecurityGroups** field by calling the API for updating a node pool.
 -  Scenario 2: Log in to the CCE console and change the **default node security group** on the **Settings** page of the cluster. The new node security group must meet the communication rules of the cluster ports. For details, see :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
+
+.. meta::
+   :description: Troubleshoot Cloud Container Engine node pool scale-out failures.
+   :keywords: Cloud Container Engine, Node Pool, Scale-Out, Fault Locating, Key Pair

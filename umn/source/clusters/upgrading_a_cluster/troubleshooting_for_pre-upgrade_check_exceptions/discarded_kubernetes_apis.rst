@@ -32,3 +32,7 @@ For details about the YAML configuration structure changes, see :ref:`Using kube
 Scenario 2
 
 The scanning result indicates that the user agent's **coredns** client is accessing the deprecated or to-be-deprecated discovery.k8s.io/v1beta1 Kubernetes API (specifically the **/apis/discovery.k8s.io/v1beta1/endpointslices** path). To prevent domain name resolution issues during the cluster upgrade, you must manually restart the CoreDNS pods before proceeding.
+
+.. meta::
+   :description: Check for deprecated Kubernetes APIs in your T Cloud Public CCE cluster.
+   :keywords: Cloud Container Engine, Kubernetes, deprecated APIs, cluster upgrade, CoreDNS

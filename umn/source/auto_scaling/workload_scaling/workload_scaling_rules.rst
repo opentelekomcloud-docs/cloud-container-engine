@@ -118,3 +118,7 @@ The following shows how AHPA works:
 #. Prometheus collects resource usage metrics for Deployments and reports these metrics to AOM for storage.
 #. The training job periodically reads the metrics of each Deployment from AOM, updates the model, and provides the updated model for the inference job.
 #. The inference job uses the updated model to adjust the HPA scaling scope or the number of Deployment replicas based on model inference. The default adjustment period is 1 minute.
+
+.. meta::
+   :description: Explore CCE workload scaling modes on T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, Workload Scaling, HPA, AHPA

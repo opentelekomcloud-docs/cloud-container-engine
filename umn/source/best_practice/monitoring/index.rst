@@ -14,3 +14,7 @@ Monitoring
 
    monitoring_multiple_clusters_using_prometheus
    reporting_prometheus_monitoring_data_to_a_third-party_monitoring_platform
+
+.. meta::
+   :description: Learn how to monitor multiple clusters and report Prometheus data to third-party platforms with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Monitoring, Prometheus, Clusters

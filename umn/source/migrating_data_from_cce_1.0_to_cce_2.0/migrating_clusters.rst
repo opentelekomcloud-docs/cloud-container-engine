@@ -196,3 +196,7 @@ Procedure
 #. Click **Create Now**. Check all the configurations, and click **Submit**.
 
    It takes 6 to 10 minutes to create a cluster. Information indicating the progress of the creation process will be displayed.
+
+.. meta::
+   :description: Learn how to create hybrid clusters on T Cloud Public's CCE 2.
+   :keywords: Cloud Container Engine, Hybrid clusters, CCE 2.0, Cluster migration, T Cloud Public

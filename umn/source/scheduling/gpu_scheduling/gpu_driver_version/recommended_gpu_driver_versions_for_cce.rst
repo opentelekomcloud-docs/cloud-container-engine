@@ -61,3 +61,7 @@ Helpful Links
 
 -  `Official NVIDIA drivers <https://www.nvidia.com/Download/index.aspx>`__
 -  `Version Mapping of Mainstream Tesla Series Drivers <https://docs.nvidia.com/datacenter/tesla/index.html>`__
+
+.. meta::
+   :description: Learn recommended GPU driver versions for T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, GPU Driver, NVIDIA, CCE AI Suite, CUDA Toolkit

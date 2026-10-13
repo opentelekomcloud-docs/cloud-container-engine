@@ -18,3 +18,7 @@ SFS
    using_an_existing_sfs_file_system_through_a_static_pv
    using_an_sfs_file_system_through_a_dynamic_pv
    configuring_sfs_volume_mount_options
+
+.. meta::
+   :description: Manage containerized apps on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, SFS, Static PV, Dynamic PV

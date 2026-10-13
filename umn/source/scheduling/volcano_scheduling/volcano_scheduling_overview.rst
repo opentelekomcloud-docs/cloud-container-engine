@@ -32,3 +32,7 @@ Custom Volcano Resources
 -  A pod group is a custom Volcano resource type. It is a group of pods with strong association and is mainly used in batch scheduling, for example, ps and worker tasks in TensorFlow.
 -  A queue contains a group of PodGroups. It is also the basis for the PodGroups to obtain cluster resources.
 -  Volcano Job (vcjob for short) is a custom job resource type. Different from Kubernetes Jobs, vcjob supports specified scheduler, the minimum number of running pods, tasks, lifecycle management, specified queues, and priority-based scheduling. Volcano Job is more suitable for high-performance computing scenarios such as machine learning, big data, and scientific computing.
+
+.. meta::
+   :description: Learn about Volcano Scheduling in T Cloud Public's Cloud Container Engine.
+   :keywords: Volcano, Kubernetes, Batch Processing, Job Scheduling, T Cloud Public

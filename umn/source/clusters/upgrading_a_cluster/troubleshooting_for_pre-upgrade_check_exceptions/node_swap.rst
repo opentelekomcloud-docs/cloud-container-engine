@@ -16,3 +16,7 @@ Solutions
 By default, swap is disabled on CCE nodes. Check the necessity of enabling swap manually and determine the impact of disabling this function.
 
 If there is no impact, run the **swapoff -a** command to disable swap and perform the check again.
+
+.. meta::
+   :description: Learn how to manage swap on T Cloud Public CCE nodes.
+   :keywords: Cloud Container Engine, Node Swap, CCE, Swapoff, Kubernetes

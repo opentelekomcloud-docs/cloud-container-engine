@@ -84,3 +84,7 @@ Procedure
          If multiple flavors are configured for a node pool, you can specify the number of nodes and the scaling priority for each flavor.
 
 #. Click **OK**.
+
+.. meta::
+   :description: Learn to update Auto Scaling configurations in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Auto Scaling, Node Pool, Cluster Autoscaler, Scaling Policies

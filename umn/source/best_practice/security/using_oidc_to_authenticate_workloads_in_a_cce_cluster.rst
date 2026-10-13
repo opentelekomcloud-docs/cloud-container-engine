@@ -212,3 +212,7 @@ Step 3: Use a Workload Identity
       -  *$.auth.id_token.id*: The value is the content of the **/var/run/secrets/tokens/oidc-token** file in the container.
       -  *$.auth.scope.project.id*: indicates the project ID. To obtain the value, see `Obtaining a Project ID <https://docs.otc.t-systems.com/en-us/api2/cce/cce_02_0341.html>`__.
       -  *$.auth.scope.project.name*: indicates the project name.
+
+.. meta::
+   :description: Learn how to use OIDC workload identities in T Cloud Public CCE to authenticate workloads as IAM users, enhancing security by eliminating the need for AK/SK.
+   :keywords: Cloud Container Engine, Workload Identity, OIDC, IAM, Kubernetes

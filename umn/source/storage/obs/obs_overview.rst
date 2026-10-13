@@ -53,3 +53,7 @@ OBS supports the following mounting modes based on application scenarios:
 
 -  :ref:`Using an Existing OBS Bucket Through a Static PV <cce_10_0379>`: static creation mode, where you use an existing OBS volume to create a PV and then mount storage to the workload through a PVC. This mode applies if the underlying storage is available.
 -  :ref:`Using an OBS Bucket Through a Dynamic PV <cce_10_0630>`: dynamic creation mode, in which you do not need to create OBS volumes beforehand. Instead, specify a StorageClass when creating a PVC. Then, an OBS volume and PV will be created automatically. This mode applies to scenarios where no underlying storage is available.
+
+.. meta::
+   :description: Discover T Cloud Public's Object Storage Service (OBS).
+   :keywords: Object Storage Service, OBS, data storage, storage classes, enterprise backup

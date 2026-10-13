@@ -18,3 +18,7 @@ Local PVs
    importing_a_pv_to_a_storage_pool
    using_a_local_pv_through_a_dynamic_pv
    dynamically_mounting_a_local_pv_to_a_statefulset
+
+.. meta::
+   :description: Learn how to manage Local PVs in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Local PV, Kubernetes, Storage Pool, StatefulSet

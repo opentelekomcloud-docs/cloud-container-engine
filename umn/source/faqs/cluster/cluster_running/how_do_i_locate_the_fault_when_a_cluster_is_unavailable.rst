@@ -50,3 +50,7 @@ When a cluster has a large number of resources created simultaneously, it causes
 Increase the cluster management scale. A larger cluster management scale means higher capacity and improved performance of the master nodes. For details, see :ref:`Changing Cluster Scale <cce_10_0403>`.
 
 If a cluster is overloaded, you can submit a service ticket for technical support.
+
+.. meta::
+   :description: Learn how to locate faults when your T Cloud Public Cloud Container Engine cluster is unavailable.
+   :keywords: Cloud Container Engine, cluster fault locating, security group, master node overload, T Cloud Public

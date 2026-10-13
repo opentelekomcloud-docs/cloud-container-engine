@@ -24,3 +24,7 @@ Perform the following operations to migrate data from CCE 1.0 to CCE 2.0:
    migrating_images
    migrating_clusters
    migrating_applications
+
+.. meta::
+   :description: Learn how to migrate data from CCE 1.
+   :keywords: Cloud Container Engine, CCE, data migration, image repository, hybrid clusters

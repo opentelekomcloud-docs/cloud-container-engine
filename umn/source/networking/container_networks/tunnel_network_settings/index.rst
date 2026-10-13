@@ -12,3 +12,7 @@ Tunnel Network Settings
    :hidden: 
 
    tunnel_network_model
+
+.. meta::
+   :description: Configure tunnel network settings for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Tunnel Network Settings, Tunnel Network Model, Container Services

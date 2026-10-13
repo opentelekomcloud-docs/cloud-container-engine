@@ -42,3 +42,7 @@ To grant the Kubernetes permissions to the user, perform the following operation
    -  A Role is used to configure access permissions in a namespace. When creating a Role, specify the namespace to which the Role belongs.
 
 #. Click **OK**.
+
+.. meta::
+   :description: Resolve "Error from server (Forbidden)" in T Cloud Public's Cloud Container Engine.
+   :keywords: CCE, kubectl, Kubernetes, RBAC, permissions

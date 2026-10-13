@@ -14,3 +14,7 @@ GPU Monitoring
 
    gpu_metrics
    comprehensive_monitoring_of_gpu_virtualization_and_pod_resource_metrics
+
+.. meta::
+   :description: Monitor GPU, virtualization, and pod resources with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, GPU Monitoring, Container, Virtualization, Pod Resource Metrics

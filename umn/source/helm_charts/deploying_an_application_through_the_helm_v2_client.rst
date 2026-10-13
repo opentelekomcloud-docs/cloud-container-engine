@@ -192,3 +192,7 @@ Common Issues
       Error: Kubernetes cluster unreachable: Get "http://localhost:8080/version?timeout=32s": dial tcp [::1]:8080: connect: connection refused
 
    **Solution**: Configure kubeconfig for the node. For details, see :ref:`Step 1: Download kubectl <cce_10_0107__section37321625113110>`.
+
+.. meta::
+   :description: Learn how to deploy applications via Helm v2 on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, Helm, Tiller, kubectl

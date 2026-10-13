@@ -23,3 +23,7 @@ In this example, two container images are involved.
 -  `MySQL <https://github.com/docker-library/docs/tree/master/mysql>`__: Select mysql:5.7 in this example.
 
 When WordPress accesses MySQL in a cluster, Kubernetes provides a resource object called Service for the workload access. In this example, a Service is created for MySQL and WordPress, respectively. For details about how to create and configure a Service, see the following sections.
+
+.. meta::
+   :description: Learn to deploy WordPress and MySQL on T Cloud Public's Cloud Container Engine using Kubernetes Services for secure, scalable containerized content management.
+   :keywords: Cloud Container Engine, WordPress, MySQL, Kubernetes, Containers

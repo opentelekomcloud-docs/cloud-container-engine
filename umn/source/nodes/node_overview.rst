@@ -82,3 +82,7 @@ A lifecycle indicates the node statuses recorded from the time when the node is 
    |                       |                       |                                                                                                                                |
    |                       |                       | Nodes in this state no longer provide services. In this case, perform the operations in :ref:`Resetting a Node <cce_10_0003>`. |
    +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn about CCE worker nodes on T Cloud Public.
+   :keywords: Cloud Container Engine, Kubernetes, container cluster, worker nodes, ECS

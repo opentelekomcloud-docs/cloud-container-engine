@@ -33,3 +33,7 @@ Deleting a Node
 
       -  After the node is deleted, workload pods on the node are automatically migrated to other available nodes.
       -  If the disks and EIPs bound to the node are important resources, unbind them first. Otherwise, they will be deleted with the node.
+
+.. meta::
+   :description: Learn how to safely delete a node in T Cloud Public's CCE.
+   :keywords: CCE, Cloud Container Engine, T Cloud Public, Node Deletion, Kubernetes

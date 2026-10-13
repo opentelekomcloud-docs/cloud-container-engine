@@ -33,3 +33,7 @@ When you update **SNATIPRanges** in a region's backbone configuration, the chang
 CCE automatically checks if the SNATIPRanges configuration has been updated before a cluster upgrade. You can manually skip this check item and restart the pod after the upgrade to update its route table.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516199209.png
+
+.. meta::
+   :description: Learn how to resolve SNATIPRanges changes in T Cloud Public CCE Turbo clusters.
+   :keywords: CCE Turbo, SNATIPRanges, cluster upgrade, pod route table, T Cloud Public

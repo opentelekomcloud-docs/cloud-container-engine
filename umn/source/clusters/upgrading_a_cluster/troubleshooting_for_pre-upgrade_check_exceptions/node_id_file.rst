@@ -30,3 +30,7 @@ Solutions
 
       echo Node ID > /var/lib/cloud/data/instance-id
       echo Node ID > /var/paas/conf/server.conf
+
+.. meta::
+   :description: Fix abnormal CCE node IDs on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, Node ID, ECS, CCE console

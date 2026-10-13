@@ -535,3 +535,7 @@ Docker Hub sets limits for the maximum number of container image pull requests. 
 Push the frequently used images to SWR and then pull them from SWR to your nodes.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516197983.jpg
+
+.. meta::
+   :description: Troubleshoot pod image pull failures in T Cloud Public Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Pod, Image Pull

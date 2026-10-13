@@ -75,3 +75,7 @@ The following kernel versions are recommended:
 -  Arm: 4.19.90-vhulk2103.1.0.h584.eulerosv2r9.aarch64
 
 Kubernetes community issue: https://github.com/kubernetes/kubernetes/issues/81775
+
+.. meta::
+   :description: Fix CCE service access failures and latency caused by IPVS connection reuse bugs on nodes with kernel versions earlier than 5.
+   :keywords: Cloud Container Engine, IPVS, Kubernetes, kube-proxy, Linux Kernel

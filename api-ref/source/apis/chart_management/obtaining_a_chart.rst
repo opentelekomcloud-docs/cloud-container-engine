@@ -121,3 +121,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Use T Cloud Public's Cloud Container Engine API to retrieve charts via GET /v2/charts/{chart_id}.
+   :keywords: Cloud Container Engine, T Cloud Public, Chart API, Container Service, Kubernetes

@@ -18,3 +18,7 @@ O&M
    log_auditing/index
    o_and_m_faq/index
    o_and_m_best_practices/index
+
+.. meta::
+   :description: Manage and monitor T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Logging, Log Auditing, O&M

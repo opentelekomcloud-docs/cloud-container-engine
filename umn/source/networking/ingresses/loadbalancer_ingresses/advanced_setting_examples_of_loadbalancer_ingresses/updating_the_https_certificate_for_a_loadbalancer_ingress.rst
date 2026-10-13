@@ -33,3 +33,7 @@ Procedure for LoadBalancer Service Certificates
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Services & Ingresses**. Then, click the **Ingresses** tab, locate the row containing the target ingress, and choose **More** > **Update** in the **Operation** column.
 #. Set **Certificate Source** to **ELB server certificate**, select a new server certificate, and click **OK** to update the ingress.
+
+.. meta::
+   :description: Learn how to update the HTTPS certificate for a LoadBalancer Ingress in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, LoadBalancer, HTTPS Certificate, Ingress

@@ -616,3 +616,7 @@ Status Code
    +-------------+-------------------------------------------------------------------+
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Learn how to use the T Cloud Public API to read details of a specified Cloud Container Engine cluster.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Cluster Management, API

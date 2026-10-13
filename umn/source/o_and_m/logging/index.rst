@@ -20,3 +20,7 @@ Logging
    collecting_kubernetes_events
    collecting_control_plane_component_logs
    collecting_audit_logs
+
+.. meta::
+   :description: Learn how to collect container logs, Kubernetes events, control plane logs, and audit logs with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Logging, Kubernetes, Audit Logs, Control Plane

@@ -184,3 +184,7 @@ Create the default backend Service again.
 .. |image3| image:: /_static/images/en-us_image_0000002484117990.png
 .. |image4| image:: /_static/images/en-us_image_0000002483959286.png
 .. |image5| image:: /_static/images/en-us_image_0000002484119256.png
+
+.. meta::
+   :description: Secure your T Cloud Public CCE with NGINX Ingress Controller checks.
+   :keywords: Cloud Container Engine, NGINX Ingress Controller, Ingress, Kubernetes, Fault Locating

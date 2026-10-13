@@ -499,3 +499,7 @@ The following steps are used to verify whether a PVC can be created without spec
    The result shows that if no storage class is specified, the system will automatically use the default storage class.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516078763.png
+
+.. meta::
+   :description: Learn to configure custom and default storage classes in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, CCE, storage classes, PersistentVolumeClaim, EVS

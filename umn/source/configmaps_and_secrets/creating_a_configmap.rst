@@ -140,3 +140,7 @@ After creating a ConfigMap, you can update or delete it as described in :ref:`Ta
    +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Rolling back a ConfigMap          | Select the target ConfigMap and choose **More** > **Rollback** to roll back it to the specified historical version as instructed. This function is available only when the ConfigMap has a historical version. |
    +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn to create ConfigMaps in T Cloud Public's CCE to decouple config from images, enhancing workload portability and environment management.
+   :keywords: Cloud Container Engine, ConfigMap, Kubernetes, Container Workload, Configuration Management

@@ -221,3 +221,7 @@ Example Request
            }
        }
    }
+
+.. meta::
+   :description: Learn about CoreDNS, the recommended DNS server for Kubernetes clusters on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, CoreDNS, DNS server, Kubernetes, Add-on

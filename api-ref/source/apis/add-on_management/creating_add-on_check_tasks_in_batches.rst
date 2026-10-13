@@ -764,3 +764,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Create add-on check tasks in batches for your CCE cluster via T Cloud Public's BatchCreateAddonPrecheck API.
+   :keywords: Cloud Container Engine, T Cloud Public, BatchCreateAddonPrecheck, Add-on, Cluster

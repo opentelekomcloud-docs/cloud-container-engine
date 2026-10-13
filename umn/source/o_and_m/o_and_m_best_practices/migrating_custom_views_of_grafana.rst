@@ -62,3 +62,7 @@ Step 3: Import Custom Views
 .. |image5| image:: /_static/images/en-us_image_0000002483959478.png
 .. |image6| image:: /_static/images/en-us_image_0000002516079429.png
 .. |image7| image:: /_static/images/en-us_image_0000002516199425.png
+
+.. meta::
+   :description: Learn how to migrate custom Grafana views when upgrading from v7 to v10 on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Grafana, Custom Views, Migration, Add-ons

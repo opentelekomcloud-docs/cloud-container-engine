@@ -388,3 +388,7 @@ You can delete the new container network configuration or view its YAML file.
       The command output contains the pod name and namespace associated with the configuration.
 
    #. Delete the owner of the pod. The owner may be a Deployment, StatefulSet, DaemonSet, or Job.
+
+.. meta::
+   :description: Learn to bind subnets and security groups to namespaces or workloads in T Cloud Public CCE Turbo using NetworkAttachmentDefinition CRDs for secure isolation.
+   :keywords: Cloud Container Engine, CCE Turbo, NetworkAttachmentDefinition, Kubernetes CRDs, Subnet Security Group

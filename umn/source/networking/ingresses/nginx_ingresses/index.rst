@@ -20,3 +20,7 @@ Nginx Ingresses
    configuring_advanced_nginx_ingress_functions_using_annotations
    advanced_setting_examples_of_nginx_ingresses/index
    nginx_ingress_controller_upgrade_compatibility
+
+.. meta::
+   :description: Learn to create and configure Nginx Ingresses on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Nginx Ingress, Kubernetes, Ingress Controller

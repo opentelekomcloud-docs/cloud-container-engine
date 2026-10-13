@@ -16,3 +16,7 @@ Network Planning
    what_is_the_relationship_between_clusters_vpcs_and_subnets
    how_can_i_configure_a_security_group_rule_for_a_cluster
    how_do_i_configure_the_ipv6_service_cidr_block_when_creating_a_cce_turbo_cluster
+
+.. meta::
+   :description: Learn about network planning in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Network Planning, VPC, Subnet

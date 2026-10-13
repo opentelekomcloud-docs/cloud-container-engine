@@ -18,3 +18,7 @@ Network Configuration
    how_can_i_check_whether_an_eni_is_used_by_a_cluster
    how_can_i_delete_a_security_group_rule_associated_with_a_deleted_subnet
    how_can_i_determine_which_ingress_the_listener_settings_have_been_applied_to
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine network FAQs.
+   :keywords: Cloud Container Engine, Network Configuration, Container IP, ENI, Security Group

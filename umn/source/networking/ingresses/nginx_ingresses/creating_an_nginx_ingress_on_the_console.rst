@@ -75,3 +75,7 @@ This section uses an Nginx workload as an example to describe how to create an N
 #. Click **OK**.
 
    After the ingress is created, it is displayed in the ingress list.
+
+.. meta::
+   :description: Learn to create an Nginx Ingress on T Cloud Public's Cloud Container Engine console.
+   :keywords: Cloud Container Engine, Kubernetes, Nginx Ingress, Load Balancer, Ingress Controller

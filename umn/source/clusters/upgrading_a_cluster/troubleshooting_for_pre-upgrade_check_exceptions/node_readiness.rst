@@ -23,3 +23,7 @@ Solutions
 
    #. The node status is normal on the **Nodes** tab, but the check result shows that the node is not ready. Check again.
    #. The node is not found on the **Nodes** tab, but the check result shows that the node is in the cluster. Contact technical support.
+
+.. meta::
+   :description: Resolve T Cloud Public CCE node readiness issues.
+   :keywords: Cloud Container Engine, Node Readiness, Cluster, Nodes, T Cloud Public

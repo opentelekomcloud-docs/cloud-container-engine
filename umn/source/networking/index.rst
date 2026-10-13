@@ -26,3 +26,7 @@ Networking
    cluster_network_settings/index
    configuring_intra-vpc_access
    accessing_the_internet_from_a_container
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine networking guide.
+   :keywords: Cloud Container Engine, T Cloud Public, Container Networking, Ingresses, DNS

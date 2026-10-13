@@ -506,3 +506,7 @@ Release History
    |                 |                           |                                                                                 |                                                                      |
    |                 | v1.19                     |                                                                                 |                                                                      |
    +-----------------+---------------------------+---------------------------------------------------------------------------------+----------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn about CoreDNS, the default DNS add-on for T Cloud Public CCE clusters.
+   :keywords: Cloud Container Engine, CoreDNS, Kubernetes, DNS resolution, add-on

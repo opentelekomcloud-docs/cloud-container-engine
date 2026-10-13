@@ -37,3 +37,7 @@ An image pull policy can also be configured on the CCE console. When creating a 
 .. note::
 
    If you do not update the tag when creating an image, CCE considers that the image with that tag already exists on the node. Consequently, if the pull policy is set to **IfNotPresent**, CCE will not pull the image again. You are advised to use a new tag for each image creation.
+
+.. meta::
+   :description: Learn how to configure image pull policies in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, image pull policy, workload, container image, T Cloud Public

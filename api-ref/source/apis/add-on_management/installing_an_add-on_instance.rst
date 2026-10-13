@@ -342,3 +342,7 @@ Status Codes
    =========== ===========
 
 For the description about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Install add-on instances via API on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Add-on, Kubernetes Cluster, Container Management

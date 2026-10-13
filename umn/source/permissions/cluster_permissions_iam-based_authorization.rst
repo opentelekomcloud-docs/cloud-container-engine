@@ -177,3 +177,7 @@ When RBAC and IAM policies co-exist, the backend authentication logic for open A
 |image1|
 
 .. |image1| image:: /_static/images/en-us_image_0000002516199599.png
+
+.. meta::
+   :description: Manage CCE cluster permissions via IAM policies and user groups on T Cloud Public.
+   :keywords: Cloud Container Engine, IAM, Cluster Permissions, Kubernetes, T Cloud Public

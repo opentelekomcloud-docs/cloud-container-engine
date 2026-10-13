@@ -60,3 +60,7 @@ To enable a container to access the Internet, perform the following steps:
    After the SNAT rule is configured, workloads can access the Internet from the container. The Internet can be pinged from the container.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516199581.png
+
+.. meta::
+   :description: Learn how to enable Internet access for containers in T Cloud Public CCE using EIPs or NAT Gateway SNAT for secure, scalable connectivity.
+   :keywords: Cloud Container Engine, SNAT, NAT Gateway, EIP, Internet Access

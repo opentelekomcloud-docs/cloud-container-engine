@@ -170,3 +170,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Get release lists via T Cloud Public's CCE API.
+   :keywords: Cloud Container Engine, T Cloud Public, CCE, Cluster API, Release List

@@ -133,3 +133,7 @@ The following shows an example YAML file where an existing load balancer is asso
    |                                 |                       |                                                                                                                                                                                                                                  |
    |                                 |                       | Note: **HTTP/2 can be enabled or disabled only when the listener uses HTTPS.** This parameter is invalid and defaults to **false** when the listener protocol is HTTP.                                                           |
    +---------------------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to configure HTTP/2 for LoadBalancer services in T Cloud Public CCE to improve client access performance.
+   :keywords: Cloud Container Engine, HTTP/2, LoadBalancer Service, Kubernetes, T Cloud Public

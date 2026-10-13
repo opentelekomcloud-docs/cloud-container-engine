@@ -59,3 +59,7 @@ Verification
 ------------
 
 The ingress address can be accessed through a browser. However, the certificate and secret are not issued by the CA, so the CA does not recognize them and shows a message saying they are insecure.
+
+.. meta::
+   :description: Learn how to obtain TLS key certificates for Cloud Container Engine by T Cloud Public.
+   :keywords: Cloud Container Engine, TLS, Ingress, Certificate, Secret

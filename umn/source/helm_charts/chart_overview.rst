@@ -34,3 +34,7 @@ Helm can help application orchestration for Kubernetes:
 -  Tests and verifies the released version.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516078871.png
+
+.. meta::
+   :description: Manage Helm charts on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Helm, Kubernetes, Chart, Application Deployment

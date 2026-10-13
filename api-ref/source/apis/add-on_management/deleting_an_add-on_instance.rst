@@ -83,3 +83,7 @@ Status Codes
    =========== ===========
 
 For the description about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Learn how to delete an add-on instance using the Cloud Container Engine API from T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, add-on instance, API, cluster

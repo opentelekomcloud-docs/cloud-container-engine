@@ -59,3 +59,7 @@ Helpful Links
 :ref:`What Should I Do If an Error Occurs When I Deploy a Service on a GPU Node? <cce_faq_00109>`
 
 .. |image1| image:: /_static/images/en-us_image_0000002516197719.png
+
+.. meta::
+   :description: Fix NVIDIA driver failures on GPU nodes in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, GPU Nodes, NVIDIA Driver, CUDA, Container Engine

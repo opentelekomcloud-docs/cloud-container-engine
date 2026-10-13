@@ -334,3 +334,7 @@ Common Issues
 
 .. |image1| image:: /_static/images/en-us_image_0000002516077771.png
 .. |image2| image:: /_static/images/en-us_image_0000002516077785.png
+
+.. meta::
+   :description: Resolve LoadBalancer ingress configuration inconsistencies during CCE cluster upgrades on T Cloud Public.
+   :keywords: Cloud Container Engine, LoadBalancer Ingress, Load Balancer, CCE Cluster Upgrade, ELB Resources

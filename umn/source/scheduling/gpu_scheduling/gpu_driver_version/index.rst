@@ -18,3 +18,7 @@ GPU Driver Version
    recommended_gpu_driver_versions_for_cce
    manually_upgrading_the_driver_version_of_a_gpu_node
    upgrading_the_driver_version_of_a_gpu_node_using_a_node_pool
+
+.. meta::
+   :description: Manage GPU driver versions in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, GPU Driver, Node Pool, Container Service, T Cloud Public

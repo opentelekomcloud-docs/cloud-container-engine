@@ -26,3 +26,7 @@ Add-on Management
    listing_add-on_instances
    creating_add-on_check_tasks_in_batches
    obtaining_the_add-on_check_task_results
+
+.. meta::
+   :description: Manage T Cloud Public CCE add-ons: install, update, delete, and batch check instances.
+   :keywords: Cloud Container Engine, T Cloud Public, Add-on Management, Kubernetes, Container Orchestration

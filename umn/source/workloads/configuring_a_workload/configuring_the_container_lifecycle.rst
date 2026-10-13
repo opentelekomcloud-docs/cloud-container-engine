@@ -220,3 +220,7 @@ Example YAML
 
       NAME     READY   UP-TO-DATE   AVAILABLE   AGE
       nginx      1/1     1            1           4m59s
+
+.. meta::
+   :description: Learn about CCE container lifecycle hooks on T Cloud Public.
+   :keywords: Cloud Container Engine, Kubernetes, Container Lifecycle Hooks, Pod Management, Cloud Native

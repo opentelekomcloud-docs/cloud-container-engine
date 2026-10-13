@@ -92,3 +92,7 @@ If a namespace is deleted, all resources (such as workloads, jobs, and ConfigMap
    Follow the prompts to delete the namespace. The default namespaces cannot be deleted.
 
 .. |image1| image:: /_static/images/en-us_image_0000002483959438.png
+
+.. meta::
+   :description: Learn to manage namespaces in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Namespaces, Workloads, Resource Isolation, T Cloud Public

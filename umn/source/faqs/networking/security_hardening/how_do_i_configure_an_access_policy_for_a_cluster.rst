@@ -19,3 +19,7 @@ After the public API Server address is bound to the cluster, modify the security
       In addition to the client IP address, the port must allow traffic from the CIDR blocks of the VPC, container, and the control plane of the hosted service mesh to ensure that the API Server can be accessed from within the cluster.
 
 #. Click **Confirm**.
+
+.. meta::
+   :description: Learn how to configure access policies for T Cloud Public CCE clusters by modifying security group rules for port 5443 to harden API Server access.
+   :keywords: CCE, Cloud Container Engine, Access Policy, Security Group, API Server

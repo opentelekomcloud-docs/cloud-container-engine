@@ -25,3 +25,7 @@ Solution
 -  If the resources of the ECS flavor cannot meet service requirements, use ECSs of another flavor.
 -  If the ECS or memory quota is insufficient, increase the quota.
 -  If the ECS capacity verification fails, perform the verification again.
+
+.. meta::
+   :description: Fix CCE node pool scaling issues.
+   :keywords: Cloud Container Engine, T Cloud Public, node pool, scaling out, troubleshooting

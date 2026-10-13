@@ -12,3 +12,7 @@ Kubernetes APIs
    :hidden: 
 
    overview
+
+.. meta::
+   :description: Explore Kubernetes APIs for T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, T Cloud Public, Container Orchestration, Cloud Service

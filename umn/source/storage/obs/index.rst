@@ -22,3 +22,7 @@ OBS
    configuring_obs_mount_options
    using_a_custom_access_key_ak_sk_to_mount_an_obs_volume
    automatically_applying_updated_access_keys_ak_sk_for_an_obs_volume
+
+.. meta::
+   :description: Learn how to use Object Storage Service (OBS) with Cloud Container Engine on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, OBS, Container Storage, Persistent Volumes

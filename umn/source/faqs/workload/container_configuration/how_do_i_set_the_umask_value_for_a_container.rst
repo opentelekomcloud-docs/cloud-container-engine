@@ -38,3 +38,7 @@ You can add the following content to the startup script to set the permission on
    .. code-block::
 
       chown root.root $FILE
+
+.. meta::
+   :description: Learn how to set the umask value for containers in T Cloud Public's Cloud Container Engine to manage directory permissions and ensure security.
+   :keywords: Cloud Container Engine, umask, container, directory permission, Kubernetes

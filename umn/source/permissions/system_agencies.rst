@@ -66,3 +66,7 @@ Providing temporary access credentials, such as authentication details for acces
 
    - It is not advised to delete or modify CCENodeAgency in IAM while using CCE.
    - The CCENodeAgency is required only for clusters running version v1.28.15-r80, v1.29.15-r40, v1.30.14-r40, v1.31.14-r0, v1.32.9-r0, v1.33.7-r0, or later. When a cluster is created or upgraded to one of these versions, the agency is automatically created if it does not already exist.
+
+.. meta::
+   :description: Learn how T Cloud Public CCE automatically requests permissions to access ECS, VPC, and other cloud services.
+   :keywords: Cloud Container Engine, CCE, T Cloud Public, Container Orchestration, Cloud Services Integration

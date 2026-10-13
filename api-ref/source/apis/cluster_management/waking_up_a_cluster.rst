@@ -70,3 +70,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Use the T Cloud Public API to wake up a hibernated Cloud Container Engine cluster.
+   :keywords: Cloud Container Engine, T Cloud Public, cluster, hibernation, API

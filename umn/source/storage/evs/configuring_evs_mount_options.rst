@@ -179,3 +179,7 @@ You can also use **mountOptions** to configure mount options in a StorageClass. 
       .. code-block::
 
          stat testfile && cat testfile > /dev/null
+
+.. meta::
+   :description: Learn to configure EVS mount options in T Cloud Public's CCE for optimized storage performance, security, and access control.
+   :keywords: Cloud Container Engine, EVS, Mount Options, StorageClass, PV

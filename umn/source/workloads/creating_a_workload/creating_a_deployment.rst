@@ -247,3 +247,7 @@ Nginx is used as an example to describe how to create a workload using kubectl.
    -  **AGE**: period the Deployment keeps running
 
 #. If the Deployment will be accessed through a ClusterIP or NodePort Service, create such a Service. For details, see :ref:`Networking <cce_10_0020>`.
+
+.. meta::
+   :description: Learn how to create Kubernetes Deployments on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Deployment, Kubernetes, Stateless, Workload

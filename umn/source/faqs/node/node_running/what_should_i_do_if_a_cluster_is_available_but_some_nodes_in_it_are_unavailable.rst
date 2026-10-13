@@ -217,3 +217,7 @@ Check Item 10: Whether the Docker Service Is Normal
 
 .. |image1| image:: /_static/images/en-us_image_0000002516198141.png
 .. |image2| image:: /_static/images/en-us_image_0000002484118182.png
+
+.. meta::
+   :description: Resolve unavailable nodes in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, Kubernetes, Node Unavailability, Fault Locating, ECS

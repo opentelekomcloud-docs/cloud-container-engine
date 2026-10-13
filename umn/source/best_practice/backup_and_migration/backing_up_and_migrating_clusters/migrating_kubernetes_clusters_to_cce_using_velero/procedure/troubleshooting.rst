@@ -116,3 +116,7 @@ The following is an example of installation parameters:
         requests:
           cpu: 500m
           memory: 1Gi
+
+.. meta::
+   :description: Learn to troubleshoot hostPath volume backup issues in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, hostPath Volumes, Velero, Local volumes, Kubernetes

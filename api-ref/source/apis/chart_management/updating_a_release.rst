@@ -225,3 +225,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Manage T Cloud Public Cloud Container Engine releases via API.
+   :keywords: Cloud Container Engine, T Cloud Public, Release, Update, API

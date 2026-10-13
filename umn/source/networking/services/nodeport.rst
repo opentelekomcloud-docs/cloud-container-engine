@@ -237,3 +237,7 @@ You can configure Service access using kubectl. This section uses an Nginx workl
          </body>
          </html>
          / #
+
+.. meta::
+   :description: Learn about NodePort Services in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, NodePort, Kubernetes, Service, T Cloud Public

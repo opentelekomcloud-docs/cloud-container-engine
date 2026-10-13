@@ -12,3 +12,7 @@ Cloud Native Hybrid Deployment
    :hidden: 
 
    dynamic_resource_oversubscription
+
+.. meta::
+   :description: Manage cloud native hybrid deployments with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Cloud Native, Hybrid Deployment, Dynamic Resource Oversubscription

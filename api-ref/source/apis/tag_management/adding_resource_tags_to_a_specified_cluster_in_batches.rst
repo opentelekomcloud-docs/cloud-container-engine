@@ -210,3 +210,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Use T Cloud Public's BatchCreateClusterTags API to add or overwrite resource tags for CCE clusters in batches.
+   :keywords: Cloud Container Engine, T Cloud Public, BatchCreateClusterTags, Resource Tags, Cluster

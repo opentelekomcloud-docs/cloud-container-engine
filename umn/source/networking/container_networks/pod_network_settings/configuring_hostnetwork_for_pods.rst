@@ -144,3 +144,7 @@ To locate the fault, take the following steps:
       nginx: [emerg] bind() to [::]:80 failed (98: Address in use)
       2022/05/11 07:18:11 [emerg] 1#1: still could not bind()
       nginx: [emerg] still could not bind()
+
+.. meta::
+   :description: Learn how to configure hostNetwork for Pods in T Cloud Public Cloud Container Engine to reduce overhead and improve performance.
+   :keywords: Cloud Container Engine, hostNetwork, Kubernetes, pod, T Cloud Public

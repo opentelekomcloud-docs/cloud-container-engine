@@ -22,3 +22,7 @@ Pod Network Settings
    dataplane_v2_network_acceleration
    deploying_hubble_for_dataplane_v2_network_observability
    enabling_observability_for_cilium-agent_in_a_cluster_with_dataplane_v2_enabled
+
+.. meta::
+   :description: Learn to configure hostNetwork, QoS, and network policies for pods in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Pod Network, DataPlane V2, Network Policies, Observability

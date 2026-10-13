@@ -45,3 +45,7 @@ CCE allows you to customize cluster resources to meet various service requiremen
    +-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+
    |                 | Data Disk                                                 | Add a data disk for container runtime and kubelet. The disk size ranges from 20 GiB to 32768 GiB. The default value is 100 GiB.                                                                     | 100 GiB                   |
    +-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+
+
+.. meta::
+   :description: Plan CCE cluster resources on T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, cluster planning, resource customization, cloud provider

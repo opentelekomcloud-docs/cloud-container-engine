@@ -39,3 +39,7 @@ Solutions
       please upgrade addon [ ] in the page of addon managecheck and try again
 
    In this case, log in to the CCE console and click the cluster name to access the cluster console. Choose **Add-ons** in the navigation pane and manually upgrade the add-on.
+
+.. meta::
+   :description: Resolve CCE add-on issues during cluster upgrades.
+   :keywords: Cloud Container Engine, Add-ons, Cluster Upgrade, T Cloud Public, Console

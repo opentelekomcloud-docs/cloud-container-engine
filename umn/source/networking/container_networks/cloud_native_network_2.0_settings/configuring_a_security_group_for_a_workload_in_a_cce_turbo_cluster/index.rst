@@ -20,3 +20,7 @@ Configuring a Security Group for a Workload in a CCE Turbo Cluster
    binding_a_security_group_to_a_workload_using_a_security_group_policy
    using_node_pool_settings_to_bind_the_default_security_group_to_pods_in_the_node_pool
    binding_a_subnet_and_security_group_to_a_namespace_or_workload_using_a_container_network_configuration
+
+.. meta::
+   :description: Learn how to configure security groups for workloads in T Cloud Public's CCE Turbo Cluster.
+   :keywords: Cloud Container Engine, CCE Turbo Cluster, Security Group, Workload, Pod

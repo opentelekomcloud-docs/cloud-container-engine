@@ -192,3 +192,7 @@ Example Request
        }
      }
    }
+
+.. meta::
+   :description: Monitor cluster node issues with CCE Node Problem Detector.
+   :keywords: Cloud Container Engine, CCE Node Problem Detector, NPD, node monitoring, Kubernetes add-on

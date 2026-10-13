@@ -20,3 +20,7 @@ Ingresses
    loadbalancer_ingresses/index
    nginx_ingresses/index
    redirecting_traffic_from_an_nginx_ingress_to_a_loadbalancer_ingress
+
+.. meta::
+   :description: Learn about Ingresses in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Ingress, LoadBalancer, Nginx, T Cloud Public

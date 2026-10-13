@@ -18,3 +18,7 @@ Networking
    network_planning/index
    security_hardening/index
    network_configuration/index
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine networking guide.
+   :keywords: Cloud Container Engine, T Cloud Public, Networking, Network Configuration, Network Planning

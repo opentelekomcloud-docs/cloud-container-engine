@@ -32,3 +32,7 @@ If storage-driver is not installed in a cluster, perform the following operation
 
 #. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Add-ons**, locate **CCE Container Storage (FlexVolume)** on the right, and click **Install**.
 #. Click **Install** to install the add-on. Note that the storage-driver has no configurable parameters and can be directly installed.
+
+.. meta::
+   :description: Learn about FlexVolume in CCE.
+   :keywords: Cloud Container Engine, FlexVolume, Kubernetes, Everest, EVS

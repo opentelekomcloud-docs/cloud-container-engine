@@ -22,3 +22,7 @@ Helm Charts
    deploying_an_application_through_the_helm_v2_client
    deploying_an_application_through_the_helm_v3_client
    converting_a_release_from_helm_v2_to_v3
+
+.. meta::
+   :description: Master Helm Charts on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Helm, Charts, Kubernetes, T Cloud Public

@@ -24,3 +24,7 @@ Storage
    how_can_i_achieve_compatibility_between_extendpathmode_and_kubernetes_client-go
    can_cce_pvcs_detect_underlying_storage_faults
    why_cannot_i_delete_a_pv_or_pvc_using_the_kubectl_delete_command
+
+.. meta::
+   :description: Learn about CCE storage FAQs on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, Container Storage, Persistent Volume, Kubernetes

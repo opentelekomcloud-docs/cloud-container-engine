@@ -104,3 +104,7 @@ References
 ----------
 
 For more details about the performance comparison and functional evolution between Kubernetes 1.34 and other versions, see `Kubernetes v1.34 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.34.md>`__.
+
+.. meta::
+   :description: Explore Kubernetes 1.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes 1.34, Container Orchestration, Certified Kubernetes

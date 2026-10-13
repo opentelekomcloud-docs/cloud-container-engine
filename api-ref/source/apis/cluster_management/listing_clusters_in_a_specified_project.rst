@@ -696,3 +696,7 @@ Status Code
    +-------------+-------------------------------------------------------------------------------+
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: List all Kubernetes clusters in a specified project using T Cloud Public's Cloud Container Engine API.
+   :keywords: Cloud Container Engine, T Cloud Public, Clusters, API, Project

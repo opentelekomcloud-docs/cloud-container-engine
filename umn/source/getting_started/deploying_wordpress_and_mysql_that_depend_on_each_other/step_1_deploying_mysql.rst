@@ -85,3 +85,7 @@ Operations on the Console
    Wait until the workload is created.
 
    The created workload will be displayed on the **StatefulSets** tab.
+
+.. meta::
+   :description: Deploy MySQL on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, CCE, MySQL, Kubernetes, WordPress

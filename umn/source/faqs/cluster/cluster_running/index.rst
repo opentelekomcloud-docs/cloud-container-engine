@@ -14,3 +14,7 @@ Cluster Running
 
    how_do_i_locate_the_fault_when_a_cluster_is_unavailable
    how_do_i_retrieve_data_after_a_cce_cluster_is_deleted
+
+.. meta::
+   :description: Learn how to troubleshoot unavailable clusters and retrieve data after deletion with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Cluster Management, Fault Location, Data Retrieval

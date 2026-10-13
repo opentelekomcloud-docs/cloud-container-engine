@@ -118,3 +118,7 @@ Configure health check for different Service ports. The following is an example 
    |                     |                 |                 |                                                                                                                                              |
    |                     |                 |                 | Value range: 1-80 characters                                                                                                                 |
    +---------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to configure unique health checks for multiple LoadBalancer Service ports in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, LoadBalancer, Health Check, Kubernetes Service, ELB

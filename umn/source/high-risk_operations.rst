@@ -233,3 +233,7 @@ Add-ons
    +===========================================+===========================================================================================================================+===========================================================================================+
    | Modifying add-on resources in the backend | Add-on exceptions or other unexpected issues may occur. For example, parameter settings are overwritten after an upgrade. | Perform operations on the add-on configuration page or using open add-on management APIs. |
    +-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn about high-risk operations in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, high-risk operations, cluster management, node operations

@@ -14,3 +14,7 @@ IAM authentication is not required for running kubectl commands. Therefore, you 
 -  Scenario 2
 
    An IAM user has certain cluster management and namespace permissions and downloads the kubeconfig authentication file. In this case, CCE determines which Kubernetes resources can be accessed by kubectl based on the user information. That is, the authentication information of a user is recorded in kubeconfig. Anyone can use kubeconfig to access the cluster.
+
+.. meta::
+   :description: Learn if kubectl requires cluster management permissions in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, kubectl, kubeconfig, IAM, Kubernetes

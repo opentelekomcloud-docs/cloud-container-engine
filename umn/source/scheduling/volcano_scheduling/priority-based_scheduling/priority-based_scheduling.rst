@@ -316,3 +316,7 @@ For example, if there are two idle nodes and high-, medium-, and low-priority Vo
       priority-medium-test-1   1/1     Running   0          5m28s
       priority-medium-test-2   1/1     Running   0          5m28s
       priority-medium-test-3   1/1     Running   0          5m28s
+
+.. meta::
+   :description: Learn how T Cloud Public CCE uses Volcano for priority-based scheduling.
+   :keywords: Cloud Container Engine, T Cloud Public, Priority-based Scheduling, Volcano Scheduler, Kubernetes

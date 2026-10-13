@@ -16,3 +16,7 @@ Solutions
 containerd on your node may need to be restarted. To minimize the impact on service containers, upgrade the cluster when the impact on services is controllable (for example, during off-peak hours).
 
 If you need help, submit a service ticket to contact O&M personnel.
+
+.. meta::
+   :description: Learn about containerd Pod restart risks in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, containerd, Pod Restart, cluster upgrade, containerd node

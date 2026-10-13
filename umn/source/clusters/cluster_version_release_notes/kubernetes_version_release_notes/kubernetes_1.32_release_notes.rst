@@ -79,3 +79,7 @@ References
 ----------
 
 For more details about the performance comparison and functional evolution between Kubernetes 1.32 and other versions, see `Kubernetes v1.32 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.32.md>`__.
+
+.. meta::
+   :description: Explore Kubernetes 1.
+   :keywords: Cloud Container Engine, Kubernetes 1.32, T Cloud Public, container orchestration, cloud service

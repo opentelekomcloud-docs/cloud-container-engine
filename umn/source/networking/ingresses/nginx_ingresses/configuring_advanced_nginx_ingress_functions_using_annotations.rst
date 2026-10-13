@@ -557,3 +557,7 @@ Helpful Links
 -------------
 
 For details about annotation parameters supported by Nginx Ingress, see `Annotations <https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/>`__.
+
+.. meta::
+   :description: Learn to configure advanced Nginx Ingress functions in T Cloud Public CCE using annotations.
+   :keywords: CCE, Nginx Ingress, Annotations, Kubernetes, T Cloud Public

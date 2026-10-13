@@ -22,3 +22,7 @@ Scheduling Policies
    how_do_i_evict_all_pods_on_a_node
    why_cannot_a_pod_be_scheduled_to_a_node
    how_do_i_troubleshoot_a_pod_exit_caused_by_a_node_label_update
+
+.. meta::
+   :description: Learn how to manage pod scheduling on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Scheduling Policies, Pod Distribution, Node Eviction, T Cloud Public

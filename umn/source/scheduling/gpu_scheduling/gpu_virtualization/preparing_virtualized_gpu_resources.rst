@@ -65,3 +65,7 @@ Step 2: Create a GPU Node
 Create nodes that support GPU virtualization in the cluster to use the GPU virtualization function. For details, see :ref:`Creating a Node <cce_10_0363>` or :ref:`Creating a Node Pool <cce_10_0012>`. If there are GPU nodes in your cluster that meet the :ref:`prerequisites <cce_10_0645__section14347758125812>` requirements, skip this step.
 
 .. |image1| image:: /_static/images/en-us_image_0000002483959290.png
+
+.. meta::
+   :description: Learn to prepare virtualized GPU resources on T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, GPU virtualization, xGPU, GPU scheduling, HCE OS

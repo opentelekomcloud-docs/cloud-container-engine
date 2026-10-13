@@ -33,3 +33,7 @@ NodeLocal DNSCache defaults to using port 8080 on the host node, but this can ca
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079513.png
 .. |image2| image:: /_static/images/en-us_image_0000002483959570.png
+
+.. meta::
+   :description: Learn how to change the default NodeLocal DNSCache port in T Cloud Public CCE to avoid conflicts.
+   :keywords: Cloud Container Engine, NodeLocal DNSCache, port configuration, add-on management, CCE console

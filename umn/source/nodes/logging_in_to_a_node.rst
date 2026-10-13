@@ -50,3 +50,7 @@ You can log in to an ECS in either of the following modes:
    +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Yes/No                | Windows/Linux         | Remote login using the management console: `Login Using VNC <https://docs.otc.t-systems.com/usermanual/ecs/en-us_topic_0093263550.html>`__                 |
    +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to log in to CCE nodes via SSH or VNC.
+   :keywords: Cloud Container Engine, ECS, SSH, VNC, T Cloud Public

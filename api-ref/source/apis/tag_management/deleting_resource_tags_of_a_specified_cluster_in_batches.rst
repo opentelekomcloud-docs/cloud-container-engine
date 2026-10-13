@@ -174,3 +174,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Use T Cloud Public's BatchDeleteClusterTags API to delete resource tags from CCE clusters in batches.
+   :keywords: Cloud Container Engine, BatchDeleteClusterTags, Cluster Tags, Resource Management, T Cloud Public

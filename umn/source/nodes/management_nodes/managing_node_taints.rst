@@ -152,3 +152,7 @@ You can also configure tolerations similar to the following information, which i
    - key: "key1"
      operator: "Exists"
      effect: "NoSchedule"
+
+.. meta::
+   :description: Learn to manage node taints in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node Taints, Pod Scheduling, kubectl, Kubernetes

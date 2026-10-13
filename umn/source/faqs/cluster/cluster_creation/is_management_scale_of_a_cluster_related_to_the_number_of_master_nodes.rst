@@ -14,3 +14,7 @@ In a CCE cluster, the management scale is not directly related to the number of 
 -  Number of master nodes: The number of master nodes impacts the high availability of the cluster. To enhance the cluster's DR capabilities, you can choose multiple master nodes.
 
    For example, you can choose three masters for your cluster. If one of them is faulty, the cluster can still run properly. The services will not be affected.
+
+.. meta::
+   :description: Learn if cluster management scale relates to master nodes in T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, CCE, Cluster Management Scale, Master Nodes, High Availability

@@ -26,3 +26,7 @@ Log in to the CCE console and click the cluster name to access the cluster conso
 **Solution 2**
 
 After creating a node, delete the faulty node.
+
+.. meta::
+   :description: Resolve residual nodes in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, T Cloud Public, Residual Nodes, Node Reset, Cluster Management

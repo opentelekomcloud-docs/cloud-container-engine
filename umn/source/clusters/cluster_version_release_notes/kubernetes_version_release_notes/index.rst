@@ -36,3 +36,7 @@ Kubernetes Version Release Notes
    kubernetes_1.21_eom_release_notes
    kubernetes_1.19_eom_release_notes
    kubernetes_1.17_eom_release_notes
+
+.. meta::
+   :description: Explore T Cloud Public's Cloud Container Engine Kubernetes release notes.
+   :keywords: Cloud Container Engine, Kubernetes, Release Notes, T Cloud Public, Container Orchestration

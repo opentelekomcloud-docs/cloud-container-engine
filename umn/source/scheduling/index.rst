@@ -20,3 +20,7 @@ Scheduling
    gpu_scheduling/index
    volcano_scheduling/index
    cloud_native_hybrid_deployment/index
+
+.. meta::
+   :description: Manage container workloads with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Scheduling, GPU Scheduling, Volcano Scheduling

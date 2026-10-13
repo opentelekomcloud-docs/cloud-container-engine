@@ -49,3 +49,7 @@ The capacity of a storage pool can be expanded in either of the following ways:
 #. Increase the size of the existing disks on the ECS console. Then, the storage pool capacity will be automatically expanded.
 
 Either of these methods will work.
+
+.. meta::
+   :description: Learn how to import EVs to a storage pool in T Cloud Public CCE using LVM.
+   :keywords: Cloud Container Engine, T Cloud Public, Storage Pool, LVM, Local EV

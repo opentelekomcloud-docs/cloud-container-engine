@@ -52,3 +52,7 @@ By using containers, you can easily pack application code, configurations, and d
    |                                 |                                                                                                                                                                                |                                                                                                                                                                         |
    |                                 | As the number of applications deployed for customer grows, the number of VMs that need to be maintained increases accordingly, which requires a large sum of maintenance cost. | Enterprises can focus on service development without paying attention to VM maintenance.                                                                                |
    +---------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to containerize an ERP system with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, CCE, containerization, application migration, Tomcat

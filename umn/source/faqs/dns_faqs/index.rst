@@ -18,3 +18,7 @@ DNS FAQs
    why_does_a_container_in_a_cce_cluster_fail_to_perform_dns_resolution
    how_do_i_optimize_the_configuration_if_the_external_domain_name_resolution_is_slow_or_times_out
    how_do_i_configure_a_dns_policy_for_a_container
+
+.. meta::
+   :description: Resolve DNS issues in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, DNS, Container, Cluster, T Cloud Public

@@ -123,3 +123,7 @@ An example YAML file of a Service created using an existing load balancer is as 
    |                              |                       | -  **black**: indicates a blocklist. The selected IP address group cannot access the load balancer.                                                                                                                                                                                                        |
    |                              |                       | -  **white**: indicates a trustlist. Only the selected IP address group can access the load balancer.                                                                                                                                                                                                      |
    +------------------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn to configure trustlist or blocklist access policies for LoadBalancer Services in T Cloud Public CCE to control IP access.
+   :keywords: Cloud Container Engine, LoadBalancer Service, IP Blocklist, IP Trustlist, Kubernetes

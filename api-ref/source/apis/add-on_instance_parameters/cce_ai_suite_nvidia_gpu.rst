@@ -166,3 +166,7 @@ Example Request
        }
      }
    }
+
+.. meta::
+   :description: Manage GPUs in containers with CCE AI Suite by T Cloud Public.
+   :keywords: Cloud Container Engine, CCE AI Suite, NVIDIA GPU, container, device management

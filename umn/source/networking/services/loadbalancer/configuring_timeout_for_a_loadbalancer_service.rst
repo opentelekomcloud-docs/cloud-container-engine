@@ -144,3 +144,7 @@ Use annotations to configure timeout. The following shows an example:
    |                                     |                 |                 |                                                                                                                                                                                                                                                                                                    |
    |                                     |                 |                 | The value ranges from **1** to **300** (in seconds). The default value is **60**.                                                                                                                                                                                                                  |
    +-------------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Learn how to configure timeout for LoadBalancer Services in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, LoadBalancer Service, Idle Timeout, ELB, Kubernetes

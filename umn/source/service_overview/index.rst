@@ -24,3 +24,7 @@ Service Overview
    notes_and_constraints
    related_services
    regions_and_azs
+
+.. meta::
+   :description: Manage containerized apps with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, containerization, Kubernetes, cloud service

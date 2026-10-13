@@ -260,3 +260,7 @@ Check whether snippet annotations are configured for the ingress associated with
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079437.png
 .. |image2| image:: /_static/images/en-us_image_0000002516199433.png
+
+.. meta::
+   :description: Learn pre-upgrade checks for NGINX Ingress Controller on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, NGINX Ingress Controller, Certificate Key Length, OpenSSL Security Level, Upgrade Check

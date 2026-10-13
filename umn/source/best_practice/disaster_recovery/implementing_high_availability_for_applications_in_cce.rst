@@ -132,3 +132,7 @@ Increase the number of pods to 4. The pod is scheduled to the last node. With po
    nginx-6fffd8d664-dpwbk   1/1     Running   0          5m12s   10.0.0.132   192.168.5.112
    nginx-6fffd8d664-h796b   1/1     Running   0          78s     10.0.1.5     192.168.5.179
    nginx-6fffd8d664-qhclc   1/1     Running   0          5m12s   10.0.1.133   192.168.5.252
+
+.. meta::
+   :description: Learn how to implement high availability for applications in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, High Availability, Kubernetes, Pod Anti-Affinity, Availability Zone

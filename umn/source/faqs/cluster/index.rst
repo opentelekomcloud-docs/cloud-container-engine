@@ -18,3 +18,7 @@ Cluster
    cluster_running/index
    cluster_deletion/index
    cluster_upgrade/index
+
+.. meta::
+   :description: Manage T Cloud Public Cloud Container Engine clusters.
+   :keywords: Cloud Container Engine, Cluster, T Cloud Public, Container, Orchestration

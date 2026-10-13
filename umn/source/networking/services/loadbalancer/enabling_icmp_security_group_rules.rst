@@ -37,3 +37,7 @@ Procedure
    +--------------+-------------+---------------------------------------------------------------------------------------------+-----------------+---------------------------------------------+
 
 #. Click **OK**.
+
+.. meta::
+   :description: Learn to enable ICMP security group rules for backend servers in T Cloud Public's Cloud Container Engine to support UDP load balancing and health checks.
+   :keywords: Cloud Container Engine, ICMP, Security Group, Load Balancer, Health Check

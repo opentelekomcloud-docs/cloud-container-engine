@@ -93,3 +93,7 @@ Step 3: Verify the Driver Upgrade
 
 .. |image1| image:: /_static/images/en-us_image_0000002516079203.png
 .. |image2| image:: /_static/images/en-us_image_0000002483959260.png
+
+.. meta::
+   :description: Learn how to upgrade NVIDIA driver versions for GPU nodes in T Cloud Public's CCE using node pools.
+   :keywords: Cloud Container Engine, GPU Node, Node Pool, NVIDIA Driver, CUDA Library

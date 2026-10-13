@@ -60,3 +60,7 @@ When selecting a NVIDIA driver, ensure that the driver version is compatible wit
 +-----------------------------------+------------------------------------------------+
 | CUDA 11.0                         | >= 450.36.06                                   |
 +-----------------------------------+------------------------------------------------+
+
+.. meta::
+   :description: Learn how to select the right NVIDIA GPU driver and CUDA Toolkit versions for T Cloud Public's Cloud Container Engine nodes to ensure compatibility and perfo...
+   :keywords: Cloud Container Engine, GPU Driver, CUDA Toolkit, NVIDIA, Node Configuration

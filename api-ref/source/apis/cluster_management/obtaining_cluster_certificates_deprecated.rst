@@ -214,3 +214,7 @@ Status Code
    +-------------+------------------------------------------------------------------+
 
 For details about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: Learn how to obtain cluster certificates in kubeconfig format via the CCE API.
+   :keywords: Cloud Container Engine, Cluster Certificates, kubeconfig, API, T Cloud Public

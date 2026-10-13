@@ -142,3 +142,7 @@ GPU Metrics Provided by CCE
    |                               |             |             |                    | -  When GPU virtualization is disabled, this metric aligns with the **cce_gpu_memory_used** value.                                                                                                                                                                 |
    |                               |             |             |                    | -  When GPU virtualization is enabled, this metric aligns with **the xgpu_memory_used value x 1024 x 1024**.                                                                                                                                                       |
    +-------------------------------+-------------+-------------+--------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. meta::
+   :description: Explore GPU metrics for CCE AI Suite on T Cloud Public.
+   :keywords: CCE, GPU Metrics, NVIDIA GPU, AI Suite, Monitoring

@@ -228,3 +228,7 @@ Assume that a ConfigMap and a secret are already available in the cluster. For d
       key4=1                                # limits.cpu defined by container1. The value is rounded up, in unit of cores.
       configmap_key=configmap_value         # Added from a ConfigMap. The key value in the original ConfigMap key is imported.
       secret_key=secret_value               # Added from a secret. The key value in the original secret is imported.
+
+.. meta::
+   :description: Learn to configure environment variables on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, environment variables, Kubernetes, ConfigMap, Secret

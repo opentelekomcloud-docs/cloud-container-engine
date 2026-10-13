@@ -234,3 +234,7 @@ Helpful Links
 -  For more information about CCE container storage, see :ref:`Storage Overview <cce_10_0307>`.
 
 .. |image1| image:: /_static/images/en-us_image_0000002516199251.png
+
+.. meta::
+   :description: Learn how T Cloud Public's Cloud Container Engine uses Kubernetes volumes to solve ephemeral storage issues and enable file sharing between containers in pods.
+   :keywords: Cloud Container Engine, Kubernetes, Volumes, Pods, Storage

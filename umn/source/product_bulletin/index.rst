@@ -16,3 +16,7 @@ Product Bulletin
    kubernetes_version_policy
    nodeos_release_and_lifecycle/index
    security_vulnerability_responses/index
+
+.. meta::
+   :description: Manage containerized apps with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Node OS, Security Vulnerability

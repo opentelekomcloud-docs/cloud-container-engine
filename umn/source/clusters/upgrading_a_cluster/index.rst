@@ -20,3 +20,7 @@ Upgrading a Cluster
    performing_post-upgrade_verification/index
    migrating_services_across_clusters_of_different_versions
    troubleshooting_for_pre-upgrade_check_exceptions/index
+
+.. meta::
+   :description: Learn how to upgrade your cluster in Cloud Container Engine by T Cloud Public.
+   :keywords: Cloud Container Engine, Cluster Upgrade, T Cloud Public, Kubernetes, Container Management

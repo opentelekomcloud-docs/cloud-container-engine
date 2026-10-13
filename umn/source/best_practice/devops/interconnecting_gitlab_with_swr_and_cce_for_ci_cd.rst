@@ -226,3 +226,7 @@ Common Issues
 .. |image6| image:: /_static/images/en-us_image_0000002516198071.png
 .. |image7| image:: /_static/images/en-us_image_0000002483958152.png
 .. |image8| image:: /_static/images/en-us_image_0000002516078085.png
+
+.. meta::
+   :description: Learn how to interconnect GitLab with SWR and CCE on T Cloud Public for efficient CI/CD pipelines.
+   :keywords: CCE, GitLab, CI/CD, SWR, Helm

@@ -288,3 +288,7 @@ Status Codes
    =========== ===========
 
 For the description about error status codes, see :ref:`Status Code <cce_02_0084>`.
+
+.. meta::
+   :description: List all add-on instances in your T Cloud Public Cluster.
+   :keywords: Cloud Container Engine, T Cloud Public, add-on instances, cluster, API

@@ -12,3 +12,7 @@ GPU Auto Scaling
    :hidden: 
 
    configuring_workload_scaling_based_on_gpu_monitoring_metrics
+
+.. meta::
+   :description: Learn how to configure workload scaling based on GPU monitoring metrics in T Cloud Public's Cloud Container Engine for efficient resource management.
+   :keywords: Cloud Container Engine, GPU Auto Scaling, Workload Scaling, GPU Monitoring Metrics, T Cloud Public

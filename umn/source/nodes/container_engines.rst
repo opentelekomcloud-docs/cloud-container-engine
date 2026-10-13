@@ -183,3 +183,7 @@ Container Engine Versions
    .. note::
 
       If the cluster version is v1.28.8-r0, v1.29.4-r0, v1.30.1-r0, or later, the containerd version of new nodes is 1.7.16.
+
+.. meta::
+   :description: Discover T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, containerd, Docker, Container Runtime Interface

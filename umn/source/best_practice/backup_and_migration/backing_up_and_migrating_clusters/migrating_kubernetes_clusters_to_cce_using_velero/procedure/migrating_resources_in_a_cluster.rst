@@ -157,3 +157,7 @@ In this example, the storage class name in the source cluster is **local** and t
    You can run the **velero restore get** statement to check the application restoration.
 
 #. After the restoration is complete, check whether the application is running properly. If other adaptation problems may occur, rectify the fault by following the procedure described in :ref:`Updating Resources Accordingly <cce_bestpractice_0312>`.
+
+.. meta::
+   :description: Learn how to migrate WordPress from on-prem Kubernetes to T Cloud Public CCE using Velero.
+   :keywords: Cloud Container Engine, Kubernetes, Migration, Velero, Persistent Volumes

@@ -33,3 +33,7 @@ Procedure
    -  Partitioned disks on cloud servers will not be accepted as data disks. Back up data and clear the disks before node acceptance.
 
 #. Click **OK**.
+
+.. meta::
+   :description: Learn how to accept nodes in a T Cloud Public CCE node pool.
+   :keywords: Cloud Container Engine, Node Pool, ECS, Accept Node, T Cloud Public

@@ -103,3 +103,7 @@ To ensure a smooth upgrade and maintain service stability, pay attention to the 
 -  **2.4.6 or later**: The NGINX Ingress Controller supports graceful shutdown and hitless upgrade.
 
 For versions beyond the preceding ranges, services may experience temporary downtime during upgrades. To ensure service continuity and stability, plan and conduct an upgrade during **off-peak hours**.
+
+.. meta::
+   :description: Learn about CCE NGINX Ingress Controller upgrade compatibility on T Cloud Public.
+   :keywords: Cloud Container Engine, NGINX Ingress Controller, Kubernetes, T Cloud Public, Compatibility

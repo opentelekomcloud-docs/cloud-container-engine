@@ -26,3 +26,7 @@ Run the following command to restore the login permissions of user **paas**:
 .. code-block::
 
    usermod -s /bin/bash paas
+
+.. meta::
+   :description: Learn how to check and restore login permissions for user paas on nodes in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node, Login Permissions, User paas, T Cloud Public

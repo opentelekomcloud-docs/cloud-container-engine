@@ -12,3 +12,7 @@ How do I retrieve data after a CCE cluster is deleted?
 **Answer**
 
 After a cluster is deleted, the workload on the cluster will also be deleted and cannot be restored. Therefore, exercise caution when deleting a cluster.
+
+.. meta::
+   :description: Learn why workload data cannot be restored after a CCE cluster is deleted on T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, cluster deletion, data retrieval, workload

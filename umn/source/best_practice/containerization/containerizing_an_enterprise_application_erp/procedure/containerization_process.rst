@@ -16,3 +16,7 @@ For details about each step of the containerization, see :ref:`Containerization 
    :alt: **Figure 1** Process of containerizing an application
 
    **Figure 1** Process of containerizing an application
+
+.. meta::
+   :description: Master the containerization process with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, containerization, Docker, containerized workloads

@@ -554,3 +554,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Get job details via T Cloud Public's Cloud Container Engine API.
+   :keywords: Cloud Container Engine, T Cloud Public, Job Details, API, Project ID

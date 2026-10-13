@@ -14,3 +14,7 @@ Namespace
 
    what_should_i_do_if_a_namespace_fails_to_be_deleted_due_to_an_apiservice_object_access_failure
    how_do_i_delete_a_namespace_in_the_terminating_state
+
+.. meta::
+   :description: Resolve namespace deletion issues in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Namespace, Kubernetes, T Cloud Public, Container Orchestration

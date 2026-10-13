@@ -12,3 +12,7 @@ OSs
    :hidden: 
 
    what_should_i_do_if_there_is_a_service_access_failure_after_a_backend_service_upgrade_or_1-second_latency_when_a_service_accesses_a_cce_cluster
+
+.. meta::
+   :description: Resolve backend service access failures and 1-second latency issues when accessing T Cloud Public CCE clusters.
+   :keywords: Cloud Container Engine, CCE, T Cloud Public, Kubernetes, Container Service

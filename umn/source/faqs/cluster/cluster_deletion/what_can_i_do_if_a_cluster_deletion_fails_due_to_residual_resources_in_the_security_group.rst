@@ -33,3 +33,7 @@ Procedure
 #. For a residual elastic network interface, go to the **Network Interfaces** page and delete the elastic network interface obtained in the previous step.
 
 #. Go to the **Security Groups** page to confirm that the security group is not associated with any instance. Then, go to the CCE console to delete the cluster.
+
+.. meta::
+   :description: Learn how to resolve CCE cluster deletion failures caused by residual resources in security groups on T Cloud Public.
+   :keywords: Cloud Container Engine, cluster deletion, security group, residual resources, VPC

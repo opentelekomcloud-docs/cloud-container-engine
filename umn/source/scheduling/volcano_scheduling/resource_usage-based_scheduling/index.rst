@@ -20,3 +20,7 @@ Resource Usage-based Scheduling
    node_pool_affinity
    load-aware_scheduling
    configuration_cases_for_resource_usage-based_scheduling
+
+.. meta::
+   :description: Learn about Resource Usage-based Scheduling in T Cloud Public's Cloud Container Engine, covering bin packing, descheduling, and load-aware strategies.
+   :keywords: Cloud Container Engine, Resource Usage-based Scheduling, Bin Packing, Descheduling, Node Pool Affinity

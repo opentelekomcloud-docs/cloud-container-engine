@@ -34,3 +34,7 @@ For more details about the performance comparison and function evolution between
 
 -  `Kubernetes v1.21 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.21.md>`__
 -  `Kubernetes v1.20 Release Notes <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md>`__
+
+.. meta::
+   :description: Explore CCE Kubernetes 1.
+   :keywords: Cloud Container Engine, Kubernetes, CCE, T Cloud Public, Release Notes

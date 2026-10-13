@@ -110,3 +110,7 @@ If you have no key pair, create one on the management console. The procedure is 
 
 .. |image1| image:: /_static/images/en-us_image_0000001851742516.png
 .. |image2| image:: /_static/images/en-us_image_0000001898022705.png
+
+.. meta::
+   :description: Learn preparations for T Cloud Public CCE.
+   :keywords: CCE, Cloud Container Engine, IAM, VPC, ECS

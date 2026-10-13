@@ -40,3 +40,7 @@ You can use the following types of storage volumes when creating a workload. You
 -  OBS volumes: Create OBS volumes and mount them to a container path. OBS volumes are applicable to scenarios such as cloud workload, data analysis, content analysis, and hotspot objects.
 -  SFS Turbo volumes: Create SFS Turbo volumes and mount them to a container path. SFS Turbo volumes are fast, on-demand, and scalable, which makes them suitable for DevOps, containerized microservices, and enterprise office applications.
 -  DSS volumes: CCE allows you to create DSS volumes and mount them to a container path. DSS offers dedicated, physical storage resources tailored to fulfill the needs of high-performance and low-latency storage. It is ideal for scenarios such as high-performance computing, real-time analysis and processing, and handling mixed workloads.
+
+.. meta::
+   :description: Explore CCE StorageClass differences for persistent storage and multi-node mounting.
+   :keywords: Cloud Container Engine, T Cloud Public, StorageClasses, Persistent Storage, Multi-Node Mounting

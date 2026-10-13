@@ -511,3 +511,7 @@ To find the ingress with the active certificate configuration, run the following
 .. code-block::
 
    kubectl get ingress -n ${namespace} ${ingress_name}  -oyaml | grep kubernetes.io/elb.listener-master-ingress
+
+.. meta::
+   :description: Learn to configure HTTPS certificates for LoadBalancer Ingress in T Cloud Public CCE.
+   :keywords: Cloud Container Engine, LoadBalancer Ingress, HTTPS Certificate, Kubernetes, TLS

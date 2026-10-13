@@ -58,3 +58,7 @@ Solutions
 ---------
 
 If you modify some parameters in these files, exceptions may occur after the upgrade. If you are not sure whether the modified parameters will affect the upgrade, contact technical support.
+
+.. meta::
+   :description: Ensure smooth CCE cluster upgrades on T Cloud Public by checking node configuration consistency.
+   :keywords: Cloud Container Engine, Node Configuration, Kubernetes Upgrade, Cluster Management, T Cloud Public

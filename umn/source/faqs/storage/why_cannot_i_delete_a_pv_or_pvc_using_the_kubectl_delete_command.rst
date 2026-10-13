@@ -35,3 +35,7 @@ If you have run **kubectl delete** to delete a PV or PVC, the PV or PVC remains 
 
       kubectl patch pvc <pvc-name> -p '{"metadata":{"finalizers":null}}'
       kubectl delete pvc <pvc-name>
+
+.. meta::
+   :description: Resolve why PVs or PVCs remain in terminating state on T Cloud Public CCE.
+   :keywords: Cloud Container Engine, PV, PVC, kubectl, terminating state

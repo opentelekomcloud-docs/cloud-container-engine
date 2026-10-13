@@ -48,3 +48,7 @@ Solutions
       systemctl status kubelet
 
    If **systemctl** cannot be used, reset the node. For details, see :ref:`Resetting a Node <cce_10_0003>`.
+
+.. meta::
+   :description: Resolve node upgrade issues in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, node upgrade, key commands, reset node

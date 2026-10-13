@@ -20,3 +20,7 @@ Node
    node_running/index
    specification_change/index
    oss/index
+
+.. meta::
+   :description: Learn about T Cloud Public's Cloud Container Engine nodes.
+   :keywords: Cloud Container Engine, Node, Fault Location, Node Creation, Specification Change

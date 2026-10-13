@@ -20,3 +20,7 @@ DNS
    using_coredns_for_custom_domain_name_resolution
    using_nodelocal_dnscache_to_improve_dns_performance
    changing_the_default_nodelocal_dnscache_port
+
+.. meta::
+   :description: Explore DNS features in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, DNS, CoreDNS, NodeLocal DNSCache, T Cloud Public

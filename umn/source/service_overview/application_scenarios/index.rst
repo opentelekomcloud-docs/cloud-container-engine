@@ -18,3 +18,7 @@ Application Scenarios
    auto_scaling_in_seconds
    devops_and_ci_cd
    hybrid_clouds
+
+.. meta::
+   :description: T Cloud Public's Cloud Container Engine offers auto-scaling, DevOps integration, and hybrid cloud support for efficient containerized application management.
+   :keywords: Cloud Container Engine, T Cloud Public, containerized application management, auto scaling, DevOps CI/CD

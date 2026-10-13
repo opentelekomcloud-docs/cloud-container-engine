@@ -24,3 +24,7 @@ The normal command output is as follows:
    **Figure 1** Running status of journald
 
 If the problem persists after journald is restarted, contact technical support.
+
+.. meta::
+   :description: Troubleshoot systemd-journald issues on T Cloud Public Cloud Container Engine nodes.
+   :keywords: Cloud Container Engine, journald, node, systemd-journald, T Cloud Public

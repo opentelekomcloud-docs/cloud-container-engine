@@ -147,3 +147,7 @@ Example Request
            }
        }
    }
+
+.. meta::
+   :description: Scale Deployments flexibly with T Cloud Public's CCE Advanced HPA add-on.
+   :keywords: Cloud Container Engine, T Cloud Public, HPA, Kubernetes, Auto Scaling

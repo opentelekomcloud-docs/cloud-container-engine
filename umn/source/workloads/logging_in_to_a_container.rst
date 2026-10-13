@@ -47,3 +47,7 @@ Using kubectl
       kubectl exec -it nginx-59d89cb66f-mhljr -c container-1 -- /bin/sh
 
 #. To exit the container, run the **exit** command.
+
+.. meta::
+   :description: Learn how to log in to a container in T Cloud Public's Cloud Container Engine using kubectl for debugging.
+   :keywords: Cloud Container Engine, kubectl, container, pod, debugging

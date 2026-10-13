@@ -49,3 +49,7 @@ You can add annotations to a Deployment to specify the shared bandwidth to be ad
            yangtse.io/ipv6-bandwidth-id: "xxx"
 
 -  **yangtse.io/ipv6-bandwidth-id**: specifies the ID of the shared bandwidth. The IPv6 dual-stack network interfaces corresponding to the pod will be added to the shared bandwidth. You can obtain the ID on the **Shared Bandwidths** page on the EIP console.
+
+.. meta::
+   :description: Learn to configure shared bandwidth for dual-stack pods in CCE Turbo clusters.
+   :keywords: Cloud Container Engine, Shared Bandwidth, IPv6, Dual-Stack, CCE Turbo

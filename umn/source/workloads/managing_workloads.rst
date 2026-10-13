@@ -201,3 +201,7 @@ This section uses a Deployment as an example to describe how to view events of a
       Event data will be retained for one hour and then automatically deleted.
 
 .. |image1| image:: /_static/images/en-us_image_0000002483959098.png
+
+.. meta::
+   :description: Manage workloads on T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Workload Management, Monitoring, Logs, T Cloud Public

@@ -211,3 +211,7 @@ What Can I Do If FailedAssignENI Is Generated When a Node Is Created in a CCE Tu
 --------------------------------------------------------------------------------------------
 
 If the log add-on has been installed in a CCE Turbo cluster and is running normally, when a node is created, the log-agent-fluent component on the node may report the FailedAssignENI alarm because the network interface of the new node is not ready. The alarm will not be reported again after 5 seconds. The log collection function is not affected.
+
+.. meta::
+   :description: Resolve CCE logging issues on T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, Logging, Kubernetes, log-operator

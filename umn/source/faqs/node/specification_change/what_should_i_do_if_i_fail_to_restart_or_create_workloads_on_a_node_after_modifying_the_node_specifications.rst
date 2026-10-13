@@ -35,3 +35,7 @@ Solution
       systemctl restart kubelet
 
 #. Verify that workloads on the node can be successfully restarted or created.
+
+.. meta::
+   :description: Resolve CCE workload restart failures after node spec changes by deleting the cpu_manager_state file and restarting kubelet on T Cloud Public.
+   :keywords: Cloud Container Engine, CCE, Node Specifications, Workloads, cpu-manager-policy

@@ -384,3 +384,7 @@ The following is an API example:
 .. |image6| image:: /_static/images/en-us_image_0000001207129902.png
 .. |image7| image:: /_static/images/en-us_image_0000001252020583.png
 .. |image8| image:: /_static/images/en-us_image_0000001251962373.png
+
+.. meta::
+   :description: Learn to attach EVS or local disks to nodes in T Cloud Public's Cloud Container Engine using storageSelectors and storageGroups for flexible disk management.
+   :keywords: Cloud Container Engine, T Cloud Public, node storage, disk attachment, EVS disks

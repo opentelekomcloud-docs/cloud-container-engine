@@ -59,3 +59,7 @@ Solutions
 
 .. |image1| image:: /_static/images/en-us_image_0000002516199061.png
 .. |image2| image:: /_static/images/en-us_image_0000002516079061.png
+
+.. meta::
+   :description: Resolve deprecated Kubernetes annotations in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, deprecated annotations, cluster upgrade, ServiceSpec

@@ -137,3 +137,7 @@ Set the service affinity of a NodePort Service to **Node-level** instead of **Cl
 
 .. |image1| image:: /_static/images/en-us_image_0000002484117804.png
 .. |image2| image:: /_static/images/en-us_image_0000002516197763.png
+
+.. meta::
+   :description: Learn how to obtain client source IP addresses in T Cloud Public's CCE using Ingress or Service configurations.
+   :keywords: Cloud Container Engine, client source IP, ingress, service, network configuration

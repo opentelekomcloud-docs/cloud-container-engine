@@ -160,3 +160,7 @@ Services Supported by Nginx Ingresses
    CCE Turbo cluster    Shared load balancer    Supported Supported
    \                    Dedicated load balancer Supported Supported
    ==================== ======================= ========= =========
+
+.. meta::
+   :description: Learn how T Cloud Public CCE uses Ingress for HTTP/HTTPS traffic routing.
+   :keywords: Cloud Container Engine, Ingress, Kubernetes, Ingress Controller, NGINX

@@ -131,3 +131,7 @@ Dynamically Creating an SFS Turbo Subdirectory Using kubectl
    .. code-block::
 
       kubectl apply -f pvc-sfsturbo-subpath.yaml
+
+.. meta::
+   :description: Learn to dynamically create SFS Turbo subdirectories with CCE on T Cloud Public.
+   :keywords: Cloud Container Engine, SFS Turbo, Dynamic PV, PVC, Subdirectory

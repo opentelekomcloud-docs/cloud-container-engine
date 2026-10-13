@@ -27,3 +27,7 @@ Solutions
    -  **Type**: Select **IPv4**.
    -  **Protocol & Port**: Select **Protocols/ICMP** and select **All** for **Port**.
    -  **Source**: Select **Security Group** and set it to the master node security group. The master node security group is in the format of *cluster-name*\ **-control-**\ *xxx*. You can search for the security group by cluster name.
+
+.. meta::
+   :description: Learn to configure CCE worker node security groups on T Cloud Public.
+   :keywords: Cloud Container Engine, Security Groups, Worker Nodes, Master Nodes, VPC

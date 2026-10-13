@@ -27,3 +27,7 @@ Procedure
 #. Choose **More > Delete** in the **Operation** column of the target node pool.
 #. Read the precautions in the **Delete Node Pool** dialog box.
 #. In the text box, enter **DELETE** and click **Yes** to confirm that you want to continue the deletion.
+
+.. meta::
+   :description: Learn how to delete a node pool in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Node Pool, Deleting, T Cloud Public, Kubernetes

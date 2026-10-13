@@ -16,3 +16,7 @@ Solutions
 Upgrade the cluster when the impact on services is controllable (for example, during off-peak hours) to minimize the impact.
 
 If you need help, submit a service ticket to contact O&M personnel.
+
+.. meta::
+   :description: Learn about GPU Pod rebuild risks in T Cloud Public's Cloud Container Engine during cluster upgrades.
+   :keywords: GPU Pod, Rebuild, kubelet, Cluster Upgrade, T Cloud Public

@@ -123,3 +123,7 @@ The following command output indicates that the pod is repeatedly killed and sta
 
    ... Normal  Created   Created container with id 66a3a20aa7980e61be4922780bf9d24d1a1d8b7395c09861225b0eba1b1f8511
    ... Warning BackOff   Back-off restarting failed container
+
+.. meta::
+   :description: Learn how to properly allocate container computing resources in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, T Cloud Public, Container Resource Allocation, OOM Killer, Kubernetes

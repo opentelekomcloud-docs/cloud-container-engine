@@ -91,3 +91,7 @@ EulerOS 2.9
     |                        |              |   be suspended due to a kernel     |
     |                        |              |   defect.                          |
     +------------------------+--------------+------------------------------------+
+
+.. meta::
+   :description: View CCE OS Image Tag Release Notes for T Cloud Public.
+   :keywords: Cloud Container Engine, T Cloud Public, OS Image, Kernel, Security

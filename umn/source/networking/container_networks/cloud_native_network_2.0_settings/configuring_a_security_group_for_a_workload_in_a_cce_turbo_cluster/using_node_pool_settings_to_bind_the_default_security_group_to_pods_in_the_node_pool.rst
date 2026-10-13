@@ -28,3 +28,7 @@ Procedure
 #. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right.
 #. Locate the target node pool and choose **More** > **Manage**. In the **Pod Security Group** area, set **Default Pod Security Group** to the security group ID planned for this node pool.
 #. Click **OK**.
+
+.. meta::
+   :description: Learn to bind default security groups to pods in CCE Turbo node pools.
+   :keywords: CCE Turbo, Node Pool, Security Group, Pods, VPC

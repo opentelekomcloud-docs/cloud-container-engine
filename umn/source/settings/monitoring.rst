@@ -13,3 +13,7 @@ Log Settings
 **Collection Settings**
 
 **Send stdout Logs to AOM 1.0** (**No more evolution**): Logging in AOM 1.0 will not be improved, so you are advised to disable this function and use LTS logging instead.
+
+.. meta::
+   :description: Manage monitoring and log settings for CCE.
+   :keywords: Cloud Container Engine, CCE, Monitoring, Log Settings, AOM

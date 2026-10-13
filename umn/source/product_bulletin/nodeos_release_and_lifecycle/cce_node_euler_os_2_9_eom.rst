@@ -14,3 +14,7 @@ Impact of EoM
 - Existing nodes created with the EulerOS 2.9 image will continue to operate. However, EulerOS 2.9 is only supported up to CCE v1.34, and clusters with EulerOS 2.9 worker nodes must migrate to a supported node image before upgrading to CCE v1.35.
 
 If your cluster still has nodes running EulerOS 2.9, replace the EulerOS 2.9 image with another image as soon as possible to ensure service continuity. For details about the supported operating systems, see :ref:`Node OSs <cce_10_0476>`.
+
+.. meta::
+   :description: EulerOS 2.
+   :keywords: CCE, EulerOS 2.9, End of Maintenance, Node Image, Cluster Migration

@@ -36,3 +36,7 @@ Procedure
 #. In the navigation pane, choose **Virtual Private Cloud** > **Subnets**. Click **Create Subnet**. In **IPv4 CIDR Block**, enter the newly added secondary IPv4 CIDR block. Configure other parameters as planned, and click **OK**. Then, you can create subnets in the secondary IPv4 CIDR block for the cluster.
 
 #. After a subnet is created using the secondary IPv4 CIDR block, select the subnet when creating a node or node pool in the **Network Settings** area.
+
+.. meta::
+   :description: Learn how to add a secondary VPC CIDR block to T Cloud Public CCE clusters to resolve IP shortages and support service scaling.
+   :keywords: Cloud Container Engine, Secondary VPC CIDR, Cluster Scaling, IP Address Management, CCE Turbo

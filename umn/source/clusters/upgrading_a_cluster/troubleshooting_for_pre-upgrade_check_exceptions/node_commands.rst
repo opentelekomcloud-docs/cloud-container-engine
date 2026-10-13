@@ -28,3 +28,7 @@ Error messages:
    __error_code#ErrorCommandNotExist#pidof command is not exists#__
 
 The preceding error messages indicate the lack of node commands such as **chage**, **chown**, and **chmod**. Add these commands and check the node commands again.
+
+.. meta::
+   :description: Resolve CCE cluster upgrade failures caused by missing node commands like chage, chown, and chmod.
+   :keywords: Cloud Container Engine, Node Commands, Cluster Upgrade, T Cloud Public, Error Handling

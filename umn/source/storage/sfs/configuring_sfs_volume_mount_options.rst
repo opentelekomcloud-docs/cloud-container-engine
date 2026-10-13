@@ -187,3 +187,7 @@ You can use **mountOptions** to configure mount options in a StorageClass. The o
       .. code-block::
 
          <Your shared path> on /data type nfs (rw,relatime,vers=3,rsize=1048576,wsize=1048576,namlen=255,hard,nolock,noresvport,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=**.**.**.**,mountvers=3,mountport=2050,mountproto=tcp,local_lock=all,addr=**.**.**.**)
+
+.. meta::
+   :description: Learn how to configure SFS volume mount options in T Cloud Public's Cloud Container Engine using PVs, PVCs, or StorageClasses.
+   :keywords: Cloud Container Engine, SFS, mount options, Everest, StorageClass

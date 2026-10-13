@@ -20,3 +20,7 @@ CCE may temporarily restrict the cluster upgrade due to the following reasons:
 -  If the cluster contains Docker nodes but their OSs are different from that of the node pool, reset these nodes and run the pre-upgrade check again.
 
 To resolve this issue, contact technical support based on logs displayed on the console.
+
+.. meta::
+   :description: Learn why CCE restricts cluster upgrades for core production or ongoing O&M tasks.
+   :keywords: Cloud Container Engine, Upgrade Management, Cluster Upgrade, Pre-upgrade Check, Technical Support

@@ -136,3 +136,7 @@ Configuring Resource Quotas for Other Add-ons
 Resource quotas of other add-ons may also be insufficient due to cluster scale expansion. If, for example, the CPU or memory usage of the add-on pods increases and even OOM occurs, modify the resource quotas as required.
 
 For example, the resources occupied by the Cloud Native Cluster Monitoring add-on are related to the number of pods in the cluster. If the cluster scale is expanded, the number of pods may also grow. In this case, increase the resource quotas of the add-on pods.
+
+.. meta::
+   :description: Learn how to configure add-on resource quotas in T Cloud Public's Cloud Container Engine based on cluster scale to prevent OOM errors.
+   :keywords: Cloud Container Engine, Resource Quotas, Cluster Scale, Add-on Pods, coredns

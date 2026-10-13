@@ -507,3 +507,7 @@ Error Codes
 -----------
 
 See :ref:`Error Codes <cce_02_0250>`.
+
+.. meta::
+   :description: Use T Cloud Public's Cloud Container Engine API to accept a node into a specified cluster.
+   :keywords: Cloud Container Engine, T Cloud Public, Kubernetes, Node Management, Cluster

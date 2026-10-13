@@ -78,3 +78,7 @@ You can perform the following steps to re-install the OS and clear the CCE compo
    Run the following command:
 
    **bash clean.sh**
+
+.. meta::
+   :description: Learn how to remove nodes from T Cloud Public's CCE.
+   :keywords: Cloud Container Engine, Node Removal, Kubernetes, CCE, Local PV

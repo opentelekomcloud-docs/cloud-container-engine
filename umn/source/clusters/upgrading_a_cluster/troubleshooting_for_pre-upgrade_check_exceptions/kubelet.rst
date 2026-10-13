@@ -16,3 +16,7 @@ Solutions
 -  **Scenario: The kubelet status is abnormal.**
 
    If the kubelet malfunctions, the node will be unavailable. Restore the node and check again. For details, see :ref:`What Should I Do If a Cluster Is Available But Some Nodes in It Are Unavailable? <cce_faq_00120>`
+
+.. meta::
+   :description: Ensure your T Cloud Public Cloud Container Engine nodes are healthy.
+   :keywords: Cloud Container Engine, kubelet, node, cluster, troubleshooting

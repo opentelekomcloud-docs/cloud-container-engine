@@ -24,3 +24,7 @@ Perform the following operations to check the target GPU driver version and the 
 #. Verify the upgraded GPU driver version in the test environment, configure the current GPU driver, and check whether the created GPU node can run properly.
 
    If the GPU add-on and the GPU driver are incompatible, install the driver of a later version. If necessary, contact technical support.
+
+.. meta::
+   :description: Learn about CCE AI Suite (NVIDIA GPU) upgrade exceptions.
+   :keywords: Cloud Container Engine, CCE AI Suite, NVIDIA GPU, GPU Driver, Add-on

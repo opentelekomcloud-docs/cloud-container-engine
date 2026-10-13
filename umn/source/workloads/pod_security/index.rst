@@ -16,3 +16,7 @@ Pod Security
    configuring_a_pod_security_policy
    configuring_pod_security_admission
    using_apparmor_to_confine_container_access_to_resources
+
+.. meta::
+   :description: Secure your containers with T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Pod Security, Security Policy, Security Admission, AppArmor

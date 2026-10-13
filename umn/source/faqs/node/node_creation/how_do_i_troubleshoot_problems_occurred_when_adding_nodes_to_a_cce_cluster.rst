@@ -122,3 +122,7 @@ To confirm and modify the DNS of the subnet where the node resides, take the fol
    b. Search for the name of the subnet where the node is located in the search box and click the subnet name.
 
    c. Confirm and modify the DNS server address. You are advised to add the default private DNS.
+
+.. meta::
+   :description: Troubleshoot adding nodes to T Cloud Public CCE clusters.
+   :keywords: CCE, cluster, nodes, subnet, IP addresses

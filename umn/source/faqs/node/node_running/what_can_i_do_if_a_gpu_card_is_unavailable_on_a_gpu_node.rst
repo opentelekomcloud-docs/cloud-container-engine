@@ -127,3 +127,7 @@ Run the following command to **check the device-plugin status**:
 
 .. |image1| image:: /_static/images/en-us_image_0000002484118014.png
 .. |image2| image:: /_static/images/en-us_image_0000002516077983.png
+
+.. meta::
+   :description: Resolve GPU unavailability on T Cloud Public CCE nodes.
+   :keywords: Cloud Container Engine, GPU Node, NVIDIA GPU, CCE AI Suite, GPU Driver

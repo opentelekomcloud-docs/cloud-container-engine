@@ -164,3 +164,7 @@ Example Request
        }
      }
    }
+
+.. meta::
+   :description: Learn about the Kubernetes Metrics Server add-on in T Cloud Public's Cloud Container Engine.
+   :keywords: Cloud Container Engine, Kubernetes, Metrics Server, container CPU, memory usage

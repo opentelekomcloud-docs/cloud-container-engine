@@ -34,3 +34,7 @@ Solutions
    .. code-block::
 
       kubectl delete drainage {Name of the drainage task}
+
+.. meta::
+   :description: Resolve unfinished drainage tasks in T Cloud Public's Cloud Container Engine to prevent pod eviction during upgrades.
+   :keywords: Cloud Container Engine, Drainage Tasks, kubectl, Cluster Upgrade, Pod Eviction

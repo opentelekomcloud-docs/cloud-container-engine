@@ -132,3 +132,7 @@ You can log in to the CCE console and refer to the following sections to perform
 -  :ref:`Managing Node Pools <cce_10_0222>`
 -  :ref:`Creating a Deployment <cce_10_0047>`
 -  :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`
+
+.. meta::
+   :description: Manage Kubernetes nodes efficiently with T Cloud Public's CCE Node Pools.
+   :keywords: Cloud Container Engine, Node Pool, Kubernetes, Auto Scaling, T Cloud Public
