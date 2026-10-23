@@ -5,8 +5,8 @@
 Configuring a Static EIP for a Pod in a CCE Turbo Cluster
 =========================================================
 
-Application Scenarios
----------------------
+Scenarios
+---------
 
 In Cloud Native Network 2.0, static public IP addresses (EIPs) can be assigned to StatefulSets or pods created directly.
 
@@ -26,91 +26,48 @@ Notes and Constraints
 -  After a static EIP is allocated, the EIP attributes cannot be modified through the pod within the EIP lifecycle (before the EIP expires or it is still being used by the pod).
 -  Do not configure a static EIP for services that do not have specific requirements on pod EIPs. Otherwise, the pod rebuilding takes a longer time.
 
-Configuring a Static EIP for a Pod
-----------------------------------
+Static EIP with a Dedicated Bandwidth
+-------------------------------------
 
-When creating a pod to be bound with a static IP address, configure the EIP annotation. Then, an EIP will be automatically allocated and bound to the pod.
+For an automatically allocated EIP with a **dedicated bandwidth** when you create a StatefulSet, you do not need to specify the bandwidth ID. The following shows an example:
 
-The following uses a StatefulSet named **nginx** as an example. For details about annotations, see :ref:`Table 1 <cce_10_0651__table9600144121919>`.
+.. code-block::
 
--  For an automatically allocated EIP with a **dedicated bandwidth** when you create a StatefulSet, you do not need to specify the bandwidth ID. The following shows an example:
-
-   .. code-block::
-
-      apiVersion: apps/v1
-      kind: StatefulSet
-      metadata:
-        name: nginx
-      spec:
-        serviceName: nginx
-        replicas: 3
-        selector:
-          matchLabels:
-            app: nginx
-        template:
-          metadata:
-            labels:
-              app: nginx
-            annotations:
-              yangtse.io/static-eip: 'true'   # Static EIP bound to the pod
-              yangtse.io/static-eip-expire-no-cascading: 'false'   # Deleting the EIP with the associated workload
-              yangtse.io/static-eip-expire-duration: 5m   # Interval for reclaiming expired EIPs
-              yangtse.io/pod-with-eip: 'true'   # An EIP will be automatically allocated when the pod is created.
-              yangtse.io/eip-bandwidth-size: '5'    # EIP bandwidth
-              yangtse.io/eip-network-type: 5_bgp    # EIP type
-              yangtse.io/eip-charge-mode: traffic    # EIP billing mode
-          spec:
-            containers:
-              - name: container-0
-                image: nginx:alpine
-                resources:
-                  limits:
-                    cpu: 100m
-                    memory: 200Mi
-                  requests:
-                    cpu: 100m
-                    memory: 200Mi
-            imagePullSecrets:
-              - name: default-secret
-
--  For an automatically allocated EIP with a **shared bandwidth** when you create a StatefulSet, you are required to specify the bandwidth ID. The following shows an example:
-
-   .. code-block::
-
-      apiVersion: apps/v1
-      kind: StatefulSet
-      metadata:
-        name: nginx
-      spec:
-        serviceName: nginx
-        replicas: 3
-        selector:
-          matchLabels:
-            app: nginx
-        template:
-          metadata:
-            labels:
-              app: nginx
-            annotations:
-              yangtse.io/static-eip: 'true'   # Static EIP bound to the pod
-              yangtse.io/pod-with-eip: 'true'   # An EIP will be automatically allocated when the pod is created.
-              yangtse.io/eip-network-type: 5_bgp    # EIP type
-              yangtse.io/eip-bandwidth-id: <eip_bandwidth_id>    # Shared bandwidth ID of the EIP
-          spec:
-            containers:
-              - name: container-0
-                image: nginx:alpine
-                resources:
-                  limits:
-                    cpu: 100m
-                    memory: 200Mi
-                  requests:
-                    cpu: 100m
-                    memory: 200Mi
-            imagePullSecrets:
-              - name: default-secret
-
-.. _cce_10_0651__table9600144121919:
+   apiVersion: apps/v1
+   kind: StatefulSet
+   metadata:
+     name: nginx
+   spec:
+     serviceName: nginx
+     replicas: 3
+     selector:
+       matchLabels:
+         app: nginx
+     template:
+       metadata:
+         labels:
+           app: nginx
+         annotations:
+           yangtse.io/static-eip: 'true'   # Static EIP bound to the pod
+           yangtse.io/static-eip-expire-no-cascading: 'false'   # Deleting the EIP with the associated workload
+           yangtse.io/static-eip-expire-duration: 5m   # Interval for reclaiming expired EIPs
+           yangtse.io/pod-with-eip: 'true'   # An EIP will be automatically allocated when the pod is created.
+           yangtse.io/eip-bandwidth-size: '5'    # EIP bandwidth
+           yangtse.io/eip-network-type: 5_bgp    # EIP type
+           yangtse.io/eip-charge-mode: traffic    # EIP billing mode
+       spec:
+         containers:
+           - name: container-0
+             image: nginx:alpine
+             resources:
+               limits:
+                 cpu: 100m
+                 memory: 200Mi
+               requests:
+                 cpu: 100m
+                 memory: 200Mi
+         imagePullSecrets:
+           - name: default-secret
 
 .. table:: **Table 1** Annotations of the pod's static EIP
 
@@ -137,7 +94,7 @@ The following uses a StatefulSet named **nginx** as an example. For details abou
    +-------------------------------+-------------+---------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
    | yangtse.io/eip-network-type   | No          | 5_bgp         | EIP type                                                                                                                                                                              | The type varies depending on the region. For details, see the EIP console.                                    |
    +-------------------------------+-------------+---------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-   | yangtse.io/eip-charge-mode    | No          | None          | Bandwidth mode.                                                                                                                                                                       | -  **traffic**: billed by traffic                                                                             |
+   | yangtse.io/eip-charge-mode    | No          | None          | EIP billing mode                                                                                                                                                                      | -  **traffic**: billed by traffic                                                                             |
    |                               |             |               |                                                                                                                                                                                       |                                                                                                               |
    |                               |             |               | **You are advised to configure this parameter.** If this parameter is left blank, no billing mode is specified. In this case, the default value of the EIP API in the region is used. |                                                                                                               |
    +-------------------------------+-------------+---------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
@@ -146,7 +103,61 @@ The following uses a StatefulSet named **nginx** as an example. For details abou
    |                               |             |               |                                                                                                                                                                                       | -  Maximum length: 64 characters                                                                              |
    +-------------------------------+-------------+---------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 
-.. table:: **Table 3** Annotations of an EIP with a shared bandwidth
+Static EIP with a Shared Bandwidth
+----------------------------------
+
+For an automatically allocated EIP with a **shared bandwidth** when you create a StatefulSet, you are required to specify the bandwidth ID. The following shows an example:
+
+.. code-block::
+
+   apiVersion: apps/v1
+   kind: StatefulSet
+   metadata:
+     name: nginx
+   spec:
+     serviceName: nginx
+     replicas: 3
+     selector:
+       matchLabels:
+         app: nginx
+     template:
+       metadata:
+         labels:
+           app: nginx
+         annotations:
+           yangtse.io/static-eip: 'true'   # Static EIP bound to the pod
+           yangtse.io/pod-with-eip: 'true'    # An EIP will be automatically allocated when the pod is created.
+           yangtse.io/eip-network-type: 5_bgp    # EIP type
+           yangtse.io/eip-bandwidth-id: <eip_bandwidth_id>    # Shared bandwidth ID of the EIP
+       spec:
+         containers:
+           - name: container-0
+             image: nginx:alpine
+             resources:
+               limits:
+                 cpu: 100m
+                 memory: 200Mi
+               requests:
+                 cpu: 100m
+                 memory: 200Mi
+         imagePullSecrets:
+           - name: default-secret
+
+.. table:: **Table 3** Annotations of the pod's static EIP
+
+   +-------------------------------------------+-------------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+   | Annotation                                | Mandatory   | Default Value | Description                                                                                                                                                                                                                                                                              | Value Range                                                                                                                            |
+   +===========================================+=============+===============+==========================================================================================================================================================================================================================================================================================+========================================================================================================================================+
+   | yangtse.io/static-eip                     | Yes         | false         | Whether to enable the static EIP for a pod. This function is available only for StatefulSet pods or pods without **ownerReferences**. This function is disabled by default.                                                                                                              | **false** or **true**                                                                                                                  |
+   +-------------------------------------------+-------------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+   | yangtse.io/static-eip-expire-duration     | No          | 5m            | Specifies the interval for reclaiming the expired static EIP after the pod with a static EIP is deleted.                                                                                                                                                                                 | The time format is Go time type, for example, 1h30m and 5m. For details, see `Go time type <https://pkg.go.dev/time#ParseDuration>`__. |
+   +-------------------------------------------+-------------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+   | yangtse.io/static-eip-expire-no-cascading | No          | false         | Specifies whether to disable cascading reclamation of StatefulSet workloads.                                                                                                                                                                                                             | **false** or **true**                                                                                                                  |
+   |                                           |             |               |                                                                                                                                                                                                                                                                                          |                                                                                                                                        |
+   |                                           |             |               | The default value is **false**, indicating that the corresponding static EIP will be deleted with the StatefulSet workload. If you want to retain the static EIP for a new StatefulSet with the same name during the interval for reclaiming the expired EIP, set the value to **true**. |                                                                                                                                        |
+   +-------------------------------------------+-------------+---------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+
+.. table:: **Table 4** Annotations of an EIP with a shared bandwidth
 
    +-----------------------------+-------------------------------------------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
    | Annotation                  | Mandatory                                 | Default Value | Description                                                                                                                                                                                                                             | Value Range                                                 |

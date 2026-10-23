@@ -10,7 +10,7 @@ Dominant Resource Fairness (DRF) is a scheduling algorithm based on the dominant
 Prerequisites
 -------------
 
--  A cluster of v1.19 or later is available. For details, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
+-  A cluster of v1.19 or later is available. For details, see :ref:`Creating a Standard/Turbo Cluster <cce_10_0028>`.
 -  The Volcano add-on has been installed. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
 
 How It Works
@@ -33,7 +33,7 @@ If a job involves multiple resources, the resource with the largest share value 
 For example, there are two workloads, job 1 and job 2. The following figure shows the resources requested by the two jobs. After DRF calculation, the dominant resource of job 1 is memory, and its share value is 0.4; the dominant resource of job 2 is CPU, and its share value is 0.5. Since the dominant resource share of job 1 is less than that of job 2, job 1 takes precedence over job 2 in scheduling according to the max-min fairness policy.
 
 
-.. figure:: /_static/images/en-us_image_0000002484119718.png
+.. figure:: /_static/images/en-us_image_0000002662009923.png
    :alt: **Figure 1** DRF scheduling
 
    **Figure 1** DRF scheduling

@@ -91,6 +91,9 @@ When using a containerized application, comply with the principle of least privi
             securityContext:
               seccompProfile:
                 type: RuntimeDefault
+              sysctls:
+                - name: net.ipv4.ip_unprivileged_port_start
+                  value: "0"
             volumes:
               - hostPath:
                   path: /etc/localtime
@@ -98,6 +101,10 @@ When using a containerized application, comply with the principle of least privi
                 name: localtime
               - emptyDir: {}
                 name: tmpfs-example-001
+
+   .. note::
+
+      When binding a port (such as 80 or 443) below 1024 in a non-root container, adding only **NET_BIND_SERVICE** may not take effect. You need to add **net.ipv4.ip_unprivileged_port_start sysctl** and set its value to **0** in the pod-level securityContext. This sysctl is a Kubernetes safe sysctl and applies only in the **network** namespace of the pod and does not affect the host.
 
 Restricting Service Container Access to the Management Plane
 ------------------------------------------------------------
@@ -170,7 +177,7 @@ The **mountPropagation** field in **Container.volumeMounts** controls the mount 
 
 -  **None**: the default value and corresponds to the **private** mount propagation option in the `Linux kernel documentation <https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt>`__. After the volume is mounted, the pod will not see any subsequent mount changes made on the node for this volume or any of its subdirectories. Likewise, any mounts created by the pod will not be visible on the node.
 
--  **HostToContainer**: corresponds to the **rslave** mount propagation option in the `Linux kernel documentation <https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt>`__. After the volume is mounted, the pod will see any subsequent mount operations performed on the node for this volume or its subdirectories. If the node mounts anything inside this volume, the pod will be able to see it. If a pod is configured with **Bidirectional** and mounts something on the same volume, pods using **HostToContainer** will also see those changes.
+-  **HostToContainer**: corresponds to the **rslave** mount propagation option in the `Linux kernel documentation <https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt>`__. After the volume is mounted, the pod will see any subsequent mount operations performed on the node for this volume or its subdirectories. If the node mounts anything inside this volume, the pod will be able to see it. If a pod is configured with **Bidirectional** and has the same volume mounted, pods using **HostToContainer** will also see those changes.
 
 -  **Bidirectional**: corresponds to the **rshared** mount propagation option in the `Linux kernel documentation <https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt>`__. Mounts created inside the pod are propagated back to the node and to all containers in all pods that use the same volume.
 

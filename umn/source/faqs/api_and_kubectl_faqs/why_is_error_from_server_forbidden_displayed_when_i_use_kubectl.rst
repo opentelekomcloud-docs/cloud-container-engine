@@ -32,7 +32,7 @@ To grant the Kubernetes permissions to the user, perform the following operation
 
    .. note::
 
-      If you do not have IAM permissions, you cannot select users or user groups when configuring permissions for other users or user groups. In this case, you can enter a user ID or user group ID.
+      If you do not have IAM permissions but have the CCE Administrator role, you cannot directly select users, user groups, or delegated accounts when assigning permissions. Instead, you can query and enter the IDs of existing users, user groups, or delegated accounts.
 
    Permissions can be customized as required. After selecting **Custom** for **Permission Type**, click **Add Custom Role** on the right of the **Custom** parameter. In the dialog box displayed, enter a name and select a rule. After the custom rule is created, you can select a value from the **Custom** drop-down list box.
 

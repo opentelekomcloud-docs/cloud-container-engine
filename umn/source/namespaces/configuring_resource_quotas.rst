@@ -33,11 +33,11 @@ Procedure
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, click **Namespaces**.
+#. In the navigation pane, choose **Namespaces**.
 
 #. Click **Quota Management** next to the target namespace.
 
-   This operation cannot be performed on system namespaces **kube-system** and **kube-public**.
+   This operation cannot be performed on system namespaces including **kube-system**, **kube-public**, and **kube-node-lease**.
 
 #. Configure the resource quotas and click **OK**.
 

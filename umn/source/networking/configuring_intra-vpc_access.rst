@@ -41,7 +41,7 @@ The performance of accessing an intranet from a container varies depending on th
       --- 192.168.10.25 ping statistics ---
       104 packets transmitted, 0 packets received, 100% packet loss
 
-   Configure the security group to allow access from the container CIDR block 172.16.0.0/16.
+   Configure the ECS security group to allow inbound traffic from pod CIDR 172.16.0.0/16.
 
    In this case, 192.168.10.25 can be pinged from the container.
 
@@ -83,7 +83,7 @@ Cross-VPC access is implemented by establishing a peering connection between VPC
 Accessing Other Cloud Services
 ------------------------------
 
-The cloud services that communicate with CCE through an intranet include RDS, DCS, Kafka, and RabbitMQ.
+Cloud services that communicate with CCE over the intranet include RDS, DCS, Kafka, RabbitMQ, and ModelArts.
 
 In addition to the network configurations described in :ref:`Intra-VPC Access <cce_10_0399__section1940319933>` and :ref:`Cross-VPC Access <cce_10_0399__section44190754210>`, you also need to check **whether these cloud services allow external access**. For example, the DCS Redis instance can be accessed only by the IP addresses in its trustlist. Generally, these cloud services can be accessed by IP addresses in the same VPC. However, the container CIDR block in the VPC network model is different from the CIDR block of the VPC. Therefore, you must add the container CIDR block to the trustlist.
 
@@ -99,4 +99,4 @@ If an intranet cannot be accessed from a container, perform the following operat
    -  The Cloud Native Network 2.0 model needs to allow the subnet where the container is located.
 
 #. Check whether a trustlist is configured for the peer server. For example, the DCS Redis instance can be accessed only by the IP addresses in its trustlist. Add the container and node CIDR blocks to the trustlist.
-#. Check whether the container engine is installed on the peer server and whether it conflicts with the container CIDR block in CCE. If a network conflict occurs, the access fails.
+#. Check whether the container runtime is installed on the peer server and whether it conflicts with the container CIDR block in CCE. If a network conflict occurs, the access fails.

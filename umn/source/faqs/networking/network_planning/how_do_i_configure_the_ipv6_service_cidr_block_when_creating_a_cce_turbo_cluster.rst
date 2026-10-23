@@ -15,7 +15,7 @@ IPv6
 
 **IPv6 address**
 
-An IPv6 address is a 128-bit binary string, four times the length of an IPv4 address. Therefore, the decimal format of IPv4 addresses is no longer applicable. IPv6 addresses are expressed in hexadecimal format. To convert a 128-bit binary string, it is transformed into a 32-bit hexadecimal string. These hexadecimal strings are grouped into sets of four (case insensitive) and separated by a colon (:). IPv6 addresses are divided into eight groups.
+An IPv6 address is a 128-bit binary string, four times the length of an IPv4 address. Therefore, the decimal notation used for IPv4 addresses is no longer suitable. IPv6 uses hexadecimal representation, converting the 128-bit binary value into 32 hexadecimal digits. Every four hexadecimal digits (case-insensitive) form one group, with each group separated by a colon (:), resulting in a total of eight groups.
 
 An IPv6 address can be omitted in the following ways:
 
@@ -39,7 +39,7 @@ An IPv6 address can be omitted in the following ways:
 
 **IPv6 address segment**
 
-An IPv6 address segment is usually expressed in CIDR format. It is usually represented by a slash (/) followed by a number, that is, *IPv6 address/Prefix length*. The function of the prefix is similar to that of the mask of the IPv4 address segment. The number of binary bits occupied by the network part represents the binary bits occupied by the network part. An IPv6 address consists of the network part and host part. The prefix specifies the number of bits occupied by the network part, and the remaining bits are the host part.
+An IPv6 address segment is usually expressed in CIDR format. It is represented by a slash (/) followed by a number, that is, *IPv6 address/Prefix length*. The prefix length works similarly to the subnet mask in IPv4. It specifies how many bits of the IP address represent the network portion. Based on this prefix, an IPv6 address is divided into the network address and the host address. The prefix specifies the number of bits occupied by the network part, and the remaining bits are the host part.
 
 For example, **fc00:d28::/32** indicates an IPv6 address segment with a 32-bit prefix. The first 32 bits (**fc00:d28** in binary mode) are the network part and the last 96 bits are available host part.
 

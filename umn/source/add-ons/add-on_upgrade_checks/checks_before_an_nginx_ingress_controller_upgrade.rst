@@ -258,5 +258,5 @@ Check whether snippet annotations are configured for the ingress associated with
 
          This is because the default value of **annotations-risk-level** is downgraded to **High** in these versions. For details, see `Changelog <https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.12.0>`__. The snippet annotations are at the critical level. So, you need to change the value of **annotations-risk-level** to **Critical**. If you do not perform this, the snippet annotations are still unavailable.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516079437.png
-.. |image2| image:: /_static/images/en-us_image_0000002516199433.png
+.. |image1| image:: /_static/images/en-us_image_0000002631530726.png
+.. |image2| image:: /_static/images/en-us_image_0000002661849913.png

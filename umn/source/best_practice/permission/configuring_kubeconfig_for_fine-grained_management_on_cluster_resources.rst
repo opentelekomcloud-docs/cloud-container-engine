@@ -18,14 +18,14 @@ Cluster resources are managed in a refined manner so that specific users have on
 Precautions
 -----------
 
-Ensure that kubectl is available on your host. If not, download it from `here <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/README.md>`__ (corresponding to the cluster version or the latest version).
+Ensure that kubectl is available on your host. If not, `download the kubectl <https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/README.md>`__ corresponding to the cluster version or the latest version.
 
 Configuration Method
 --------------------
 
 .. note::
 
-   In the following example, only pods and Deployments in the **test** space can be viewed and added, and they cannot be deleted.
+   In this example, only pods and Deployments in the **test** namespace can be viewed and added, and they cannot be deleted.
 
 #. Set the service account name to **my-sa** and namespace to **test**.
 
@@ -41,11 +41,11 @@ Configuration Method
 
       vi role-test.yaml
 
-   The content is as follows:
+   The content is shown below.
 
    .. note::
 
-      In this example, the permission rules include the read-only permission (get/list/watch) of pods in the **test** namespace, and the read (get/list/watch) and create permissions of deployments.
+      In this example, the permission rules include the read-only permission (get/list/watch) of pods in the **test** namespace, and the read (get/list/watch) and create permissions of Deployments.
 
    .. code-block::
 
@@ -78,7 +78,7 @@ Configuration Method
         - watch
         - create
 
-   Create a Role.
+   Create the Role.
 
    .. code-block::
 
@@ -86,7 +86,7 @@ Configuration Method
 
    |image2|
 
-#. Create a RoleBinding and bind the service account to the role so that the user can obtain the corresponding permissions.
+#. Create a RoleBinding and bind the service account to the Role so that the user can have the corresponding permissions.
 
    .. code-block::
 
@@ -110,7 +110,7 @@ Configuration Method
         name: my-sa
         namespace: test
 
-   Create a RoleBinding.
+   Create the RoleBinding.
 
    .. code-block::
 
@@ -120,7 +120,7 @@ Configuration Method
 
    The user information is configured. Now perform :ref:`5 <cce_bestpractice_00221__en-us_topic_0235296162_li756812692518>` to :ref:`7 <cce_bestpractice_00221__en-us_topic_0235296162_li147965421277>` to write the user information to the configuration file.
 
-#. Manually create a token that is valid for a long time for ServiceAccount.
+#. Manually create a token that is valid for a long time for the service account.
 
    .. code-block::
 
@@ -139,7 +139,7 @@ Configuration Method
           kubernetes.io/service-account.name: my-sa
       type: kubernetes.io/service-account-token
 
-   Create a token:
+   Create the token.
 
    .. code-block::
 
@@ -155,15 +155,15 @@ Configuration Method
 
       kubectl get secret my-sa-token-secret -n test -oyaml |grep ca.crt: | awk '{print $2}' |base64 -d > /home/ca.crt
 
-   b. Set a cluster access mode. **test-arm** specifies the cluster to be accessed. **https://192.168.0.110:5443** specifies the apiserver IP address of the cluster. **/home/test.config** specifies the path for storing the configuration file.
+   b. Configure the cluster access mode. **test-arm** specifies the cluster to be accessed. **https://192.168.0.110:5443** specifies the API server address of the cluster. **/home/test.config** specifies the path for storing the configuration file.
 
-      -  If the internal API server address is used, run the following command:
+      -  If an internal API server address is used, run the following command:
 
          .. code-block::
 
             kubectl config set-cluster test-arm --server=https://192.168.0.110:5443  --certificate-authority=/home/ca.crt  --embed-certs=true --kubeconfig=/home/test.config
 
-      -  If the public API server address is used, run the following command:
+      -  If a public API server address is used, run the following command:
 
          .. code-block::
 
@@ -173,19 +173,19 @@ Configuration Method
 
    .. note::
 
-      If you **perform operations on a node in the cluster** or **the node that uses the configuration is a cluster node**, do not set the path of kubeconfig to **/root/.kube/config**.
+      If you **perform operations on a node in the cluster** or **the node that ultimately uses the configuration is in a cluster**, do not set the path of kubeconfig to **/root/.kube/config**.
 
-   By default, the apiserver IP address of the cluster is a private IP address. After an EIP is bound, you can use the public network IP address to access the apiserver.
+   By default, the API server address of the cluster is a private address. After an EIP is bound, you can use the public network IP address to access the API server.
 
 #. Configure the cluster authentication information.
 
-   a. Obtain the cluster token. (If the token is obtained in GET mode, run **based64 -d** to decode the token.)
+   a. Obtain the cluster token. If the token is obtained in GET mode, run **based64 -d** to decode the token.
 
    .. code-block::
 
       token=$(kubectl describe secret my-sa-token-secret -n test | awk '/token:/{print $2}')
 
-   b. Set the cluster user **ui-admin**.
+   b. Configure the cluster user **ui-admin**.
 
    .. code-block::
 
@@ -215,7 +215,7 @@ Configuration Method
 
    .. note::
 
-      If you want to assign other users the above permissions to perform operations on the cluster, provide the generated configuration file **/home/test.config** to the user after performing step :ref:`7 <cce_bestpractice_00221__en-us_topic_0235296162_li147965421277>`. The user must ensure that the host can access the API server address of the cluster. When performing step :ref:`8 <cce_bestpractice_00221__en-us_topic_0235296162_li1088912408273>` on the host and using kubectl, the user must set the kubeconfig parameter to the path of the configuration file.
+      If you want to assign other users the above permissions to perform operations on the cluster, provide the generated configuration file **/home/test.config** to the user after performing :ref:`7 <cce_bestpractice_00221__en-us_topic_0235296162_li147965421277>`. The user must ensure that the host can access the API server address of the cluster. When performing :ref:`8 <cce_bestpractice_00221__en-us_topic_0235296162_li1088912408273>` on the host and using kubectl, the user must set the kubeconfig parameter to the path of the configuration file.
 
 .. _cce_bestpractice_00221__en-us_topic_0235296162_section14884146153319:
 
@@ -237,14 +237,14 @@ Verification
 Further Readings
 ----------------
 
-For more information about users and identity authentication in Kubernetes, see `Authenticating <https://kubernetes.io/docs/reference/access-authn-authz/authentication/>`__.
+For details about users and identity authentication in Kubernetes, see `Authenticating <https://kubernetes.io/docs/reference/access-authn-authz/authentication/>`__.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516077979.png
-.. |image2| image:: /_static/images/en-us_image_0000002516077971.png
-.. |image3| image:: /_static/images/en-us_image_0000002516197985.png
-.. |image4| image:: /_static/images/en-us_image_0000002516197977.png
-.. |image5| image:: /_static/images/en-us_image_0000002483958046.png
-.. |image6| image:: /_static/images/en-us_image_0000002484118016.png
-.. |image7| image:: /_static/images/en-us_image_0000002516077965.png
-.. |image8| image:: /_static/images/en-us_image_0000002516077973.png
-.. |image9| image:: /_static/images/en-us_image_0000002516077969.png
+.. |image1| image:: /_static/images/en-us_image_0000002662010477.png
+.. |image2| image:: /_static/images/en-us_image_0000002661850525.png
+.. |image3| image:: /_static/images/en-us_image_0000002662010489.png
+.. |image4| image:: /_static/images/en-us_image_0000002631691246.png
+.. |image5| image:: /_static/images/en-us_image_0000002661850539.png
+.. |image6| image:: /_static/images/en-us_image_0000002631531344.png
+.. |image7| image:: /_static/images/en-us_image_0000002662010467.png
+.. |image8| image:: /_static/images/en-us_image_0000002631691236.png
+.. |image9| image:: /_static/images/en-us_image_0000002631531336.png

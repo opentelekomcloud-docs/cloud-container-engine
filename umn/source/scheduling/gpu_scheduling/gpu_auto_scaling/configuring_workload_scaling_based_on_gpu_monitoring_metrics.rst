@@ -7,12 +7,23 @@ Configuring Workload Scaling Based on GPU Monitoring Metrics
 
 In a standard or Turbo cluster, you can configure HPA policies for workloads that use GPU resources based on :ref:`GPU monitoring metrics <cce_10_0955>`. This enables applications to automatically scale out during peak hours and scale in during off-peak hours, optimizing resource utilization and reducing costs.
 
+How It Works
+------------
+
+By default, Kubernetes supports only CPU and memory as HPA auto scaling metrics. To scale based on GPU metrics such as GPU usage and GPU memory, use Prometheus Adapter to expose GPU metrics collected by Prometheus through the Custom Metrics API. This extends HPA's metric sources, enabling auto scaling based on GPU metrics. The following figure shows how GPU metrics are used for auto scaling.
+
+
+.. figure:: /_static/images/en-us_image_0000002662009541.png
+   :alt: **Figure 1** GPU metric-based auto scaling
+
+   **Figure 1** GPU metric-based auto scaling
+
 Prerequisites
 -------------
 
 -  A cluster is available, and there are GPU nodes and GPU related services running in the cluster.
 
--  The :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>` add-on has been installed in the cluster, and the add-on metrics API is working properly. You can log in to the GPU node and run the following command:
+-  :ref:`CCE AI Suite (NVIDIA GPU) <cce_10_0141>` has been installed in the cluster. The add-on can properly report GPU metrics. You can log in to the GPU node and run the following command:
 
    .. code-block::
 
@@ -20,7 +31,7 @@ Prerequisites
 
    In the preceding command, *{Pod IP}* must be the pod IP address of nvidia-gpu-device-plugin in CCE AI Suite (NVIDIA GPU), and metric results are expected to be returned.
 
--  The :ref:`Cloud Native Cluster Monitoring <cce_10_0406>` add-on of v3.9.5 or later has been installed in the cluster, and it is deployed in local data storage mode.
+-  The :ref:`Cloud Native Cluster Monitoring <cce_10_0406>` add-on of v3.9.5 or later has been installed in the cluster, and it is deployed in local data storage mode. Prometheus has been registered as a service that provides the Metrics API. For details, see :ref:`Providing Basic Resource Metrics Through the Metrics API <cce_10_0406__section17830202915211>`. If :ref:`Kubernetes Metrics Server <cce_10_0205>` has been installed in the cluster, the Metrics API is provided by default. No manual registration is required.
 
 Collecting GPU Metrics
 ----------------------
@@ -46,7 +57,7 @@ Collecting GPU Metrics
               resource: namespace
             pod:
               resource: pod
-        metricsQuery: sum(last_over_time(<<.Series>>{<<.LabelMatchers>>}[1m])) by (<<.GroupBy>>)
+        metricsQuery: sum(last_over_time(<<.Series>>{<<.LabelMatchers>>}[1m])) by (<<.GroupBy>>) * 100
 
 #. Redeploy the **custom-metrics-apiserver** workload in the **monitoring** namespace.
 
@@ -64,17 +75,17 @@ Collecting GPU Metrics
 
          {"kind":"APIResourceList","apiVersion":"v1","groupVersion":"custom.metrics.k8s.io/v1beta1","resources":[{"name":"pods/cce_gpu_memory_utilization","singularName":"","namespaced":true,"kind":"MetricValueList","verbs":["get"]},{"name":"namespaces/cce_gpu_memory_utilization","singularName":"","namespaced":false,"kind":"MetricValueList","verbs":["get"]}]}
 
-   b. Obtain workload metric values.
+   b. Obtain the metric value of the workload. *test-685b6854b4-5nq5c* specifies a pod name.
 
       .. code-block::
 
-         kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/pods/test-gpu-hpa-68667fdd94-grmd2/cce_gpu_memory_utilization"
+         kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/pods/test-685b6854b4-5nq5c/cce_gpu_memory_utilization"
 
       Information similar to the following is displayed:
 
       .. code-block::
 
-         {"kind":"MetricValueList","apiVersion":"custom.metrics.k8s.io/v1beta1","metadata":{},"items":[{"describedObject":{"kind":"Pod","namespace":"default","name":"test-gpu-hpa-68667fdd94-grmd2","apiVersion":"/v1"},"metricName":"cce_gpu_memory_utilization","timestamp":"2024-01-10T08:36:44Z","value":"20","selector":null}]}
+         {"kind":"MetricValueList","apiVersion":"custom.metrics.k8s.io/v1beta1","metadata":{},"items":[{"describedObject":{"kind":"Pod","namespace":"default","name":"test-685b6854b4-5nq5c","apiVersion":"/v1"},"metricName":"cce_gpu_memory_utilization","timestamp":"2026-01-17T10:03:16Z","value":"0","selector":null}]}
 
 Creating an Auto Scaling Policy
 -------------------------------
@@ -85,4 +96,4 @@ Creating an Auto Scaling Policy
 
    You can select GPU monitoring parameters in **Custom Policy** to create an auto scaling policy.
 
-#. Return to the **Scaling Policies** page and check whether the HPA policy has been created.
+#. Return to the **Scaling Policies** tab and check whether the HPA policy has been created.

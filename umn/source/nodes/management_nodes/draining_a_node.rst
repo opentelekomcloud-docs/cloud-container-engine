@@ -8,9 +8,9 @@ Draining a Node
 Scenario
 --------
 
-After you enable nodal drainage on the console, CCE configures the node to be non-schedulable and securely evicts all pods that comply with :ref:`Rules for Draining Nodes <cce_10_0605__section14957193483118>` on the node. Subsequent new pods will not be scheduled to this node.
+After you enable node drainage via the console, kubectl, or API, CCE configures the node to be non-schedulable and evicts all pods that comply with :ref:`Rules for Draining Nodes <cce_10_0605__section14957193483118>` on the node. New pods will not be scheduled to this node.
 
-When a node becomes faulty, nodal drainage quickly isolates the faulty node. The pods evicted from the faulty node will be scheduled by the workload controller to other nodes that are running properly.
+If a node fails, you can quickly drain the node to isolate it from the workload. The evicted pods will be rescheduled to healthy nodes by the workload controller.
 
 .. important::
 
@@ -26,7 +26,7 @@ Prerequisites
    -  v1.25: v1.25.3-r0 or later
    -  Versions later than v1.25
 
--  To drain a node as an IAM user, you must have at least one of the following permissions (for details, see :ref:`Namespace Permissions (Kubernetes RBAC-based) <cce_10_0189>`):
+-  To drain a node as an IAM user, you must have at least one of the following permissions (for details, see :ref:`Configuring Namespace Permissions (Kubernetes RBAC-based) <cce_10_0189>`):
 
    -  cluster-admin (administrator): read and write permissions on all resources in all namespaces.
    -  drainage-editor: drain a node.
@@ -61,7 +61,7 @@ When a node is drained, all pods on the node will be safely evicted. However, CC
 
    The following operations may be performed on pods during node drainage:
 
-   -  Deletion: The pod is deleted from the current node and will not be scheduled to other nodes.
+   -  Deletion: The pod is deleted from the current node and will not be rescheduled to other nodes.
    -  Eviction: The pod is deleted from the current node and rescheduled to another node.
    -  None: The pod will not be evicted or deleted.
    -  Drainage cancellation: If a pod on a node cancels drainage, the drainage process of the node is terminated and no pod is evicted or deleted.
@@ -232,7 +232,7 @@ Cancellation Using the Console
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab.
 #. Locate the node that is being drained and click **Cancel Drainage**.
-#. In the displayed dialog box, click **OK**. The node status changes to **Drainage cancelled**. You can click **Enable Scheduling** to restore the node to the schedulable state.
+#. In the displayed dialog box, click **OK**. The node status changes to **Drainage canceled**. You can click **Enable Scheduling** to restore the node to the schedulable state.
 
 Cancellation Using kubectl
 --------------------------

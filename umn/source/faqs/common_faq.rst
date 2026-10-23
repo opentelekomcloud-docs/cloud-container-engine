@@ -18,7 +18,7 @@ Node/Node Pool Management
 -  :ref:`What Should I Do If a Cluster Is Available But Some Nodes in It Are Unavailable? <cce_faq_00120>`
 -  :ref:`How Do I Collect Logs of Nodes in a CCE Cluster? <cce_faq_00201>`
 -  :ref:`How Do I Fix an Abnormal Container or Node Due to No Thin Pool Disk Space? <cce_faq_00307>`
--  :ref:`What Should I Do If a Node Cannot Be Managed and an Error Message Appears Saying That the Node Failed to Install? <cce_faq_00286>`
+-  :ref:`What Should I Do If a Node Can't Be Managed and an Error Message Appears Indicating That the Node Failed to Install? <cce_faq_00286>`
 
 Workload Management
 -------------------
@@ -30,13 +30,13 @@ Workload Management
 -  :ref:`What Should I Do If a Pod Remains in the Terminating State? <cce_faq_00210>`
 -  :ref:`What Should I Do If a Pod Fails to Be Evicted? <cce_faq_00209>`
 -  :ref:`How Can I Locate Faults Using an Exit Code? <cce_faq_00404>`
--  :ref:`How Do I Evenly Distribute Multiple Pods to Each Node? <cce_faq_00260>`
+-  :ref:`How Do I Evenly Distribute Multiple Pods Across Nodes? <cce_faq_00260>`
 -  :ref:`How Do I Evict All Pods on a Node? <cce_faq_00326>`
 
 Network Management
 ------------------
 
--  :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
+-  :ref:`How Do I Modify Cluster Security Group Rules? <cce_faq_00265>`
 -  :ref:`How Do I Locate a Workload Networking Fault? <cce_faq_00202>`
 -  :ref:`Why Does the Browser Return Error Code 404 When I Access a Deployed Application? <cce_faq_00203>`
 -  :ref:`What Should I Do If a Node Fails to Access the Internet? <cce_faq_00022>`
@@ -45,7 +45,7 @@ Network Management
 Storage Management
 ------------------
 
--  :ref:`Why Cannot I Delete a PV or PVC Using the kubectl delete Command? <cce_faq_00418>`
+-  :ref:`Why Can't I Delete a PV or PVC Using the kubectl delete Command? <cce_faq_00418>`
 -  :ref:`How Do I Expand the Storage Capacity of a Container? <cce_faq_00224>`
 
 API & kubectl

@@ -20,7 +20,7 @@ Optimized NGINX Ingress Controller Settings
 
 -  **Deploy NGINX Ingress Controller on a dedicated node for better performance and stability of Nginx Ingress.**
 
-   When creating a node, configure taints on it. During the installation of NGINX Ingress Controller, add the taint of the node to the tolerance policy.
+   When creating a node, configure taints on it. During the installation of NGINX Ingress Controller, add the taint of the node to the toleration policy.
 
 -  **Optimize the Nginx ingress performance.**
 

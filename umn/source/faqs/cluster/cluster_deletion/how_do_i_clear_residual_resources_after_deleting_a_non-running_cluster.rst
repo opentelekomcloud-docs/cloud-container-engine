@@ -5,10 +5,10 @@
 How Do I Clear Residual Resources After Deleting a Non-Running Cluster?
 =======================================================================
 
-If a cluster is not in the running state (for example, frozen or unavailable), its resources such as PVCs, Services, and Ingresses cannot be obtained. After the cluster is deleted, residual network and storage resources may exist. In this case, manually delete these resources on their respective service console.
+If a cluster is not in the running state (for example, frozen or unavailable), its resources such as PVCs, Services, and ingresses cannot be obtained. After the cluster is deleted, residual network and storage resources may exist. In this case, manually delete these resources on their respective service console.
 
-Deleting Residual ELB Resources
--------------------------------
+Deleting Residual Load Balancer Resources
+-----------------------------------------
 
 #. Log in to the ELB console.
 #. Search for load balancers in the VPC by VPC ID used in the cluster.

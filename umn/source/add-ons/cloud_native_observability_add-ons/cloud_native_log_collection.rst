@@ -8,11 +8,11 @@ Cloud Native Log Collection
 Introduction
 ------------
 
-The Cloud Native Log Collection add-on (formerly log-agent) is developed based on Fluent Bit and OpenTelemetry for collecting logs and Kubernetes events. This add-on supports CRD-based log collection policies. It collects and forwards standard output logs, container file logs, node logs, and Kubernetes event logs in a cluster based on configured policies. It also reports Kubernetes events to AOM for configuring event alarms. By default, all abnormal events and some normal events are reported.
+The Cloud Native Log Collection add-on (formerly log-agent) is developed based on Fluent Bit and OpenTelemetry for collecting logs and Kubernetes events. This add-on supports CRD-based log collection policies. It collects and forwards standard output logs, container file logs, node logs, and Kubernetes events in a cluster based on configured policies. It also reports Kubernetes events to AOM for configuring event alarms. By default, all abnormal events and some normal events are reported.
 
 .. note::
 
-   In 1.3.2 and later versions, Cloud Native Log Collection reports all warning events and some normal events to AOM by default. The reported events can be used to configure alarms. If the cluster version is 1.19.16, 1.21.11, 1.23.9, 1.25.4, or later, after Cloud Native Log Collection is installed, events are reported to AOM by this add-on instead of the control plane component. After Cloud Native Log Collection is uninstalled, events will not be reported to AOM.
+   In 1.3.2 and later versions, Cloud Native Log Collection reports all warning events and some normal events to AOM by default. The reported events can be used to configure alarms. If the cluster version is v1.19.16, v1.21.11, v1.23.9, v1.25.4, or later, after Cloud Native Log Collection is installed, events are reported to AOM by this add-on instead of the control plane component. After this add-on is uninstalled, events will not be reported to AOM.
 
 Log Collection Reliability
 --------------------------
@@ -28,7 +28,7 @@ Standard streams (stdout and stderr) and local log files use non-persistent stor
 While the Cloud Native Log Collection add-on employs techniques like multi-level buffering, priority queues, and resumable uploads to enhance log collection reliability, logs could still be lost in the following situations:
 
 -  The service log throughput surpasses the collector's processing capacity.
--  The service pod is abruptly terminated and reclaimed by CCE.
+-  The service pod is terminated and immediately reclaimed by the container runtime.
 -  The log collector pod experiences exceptions.
 
 The following lists some recommended best practices for cloud native log management. You can review and implement them thoughtfully.
@@ -47,9 +47,9 @@ Add-on Performance
 +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+
 | Item                              | Description                                                                                                                                                                                           | Remarks                                                               |
 +===================================+=======================================================================================================================================================================================================+=======================================================================+
-| Size of a log                     | Each individual log must not exceed 512 KB in size. In the case of multi-line logs, the length of each line will be calculated separately.                                                            | None                                                                  |
+| Size of a log                     | Each individual log must not exceed 512,000 bytes. For multi-line logs, each line is counted separately toward this limit.                                                                            | None                                                                  |
 +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+
-| Maximum number of collected files | On a single node, the total number of files that can be listened by all log collection rules is limited to 4,095.                                                                                     | None                                                                  |
+| Maximum number of collected files | On a single node, the total number of files that can be monitored by all log collection rules is limited to 4,095.                                                                                    | None                                                                  |
 +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+
 | Log collection rate               | -  If the add-on version is earlier than 1.5.0, in each cluster, no more than 10,000 single-line logs can be collected per second, and no more than 2000 multi-line logs can be collected per second. | Service quality cannot be ensured if any of these limits is exceeded. |
 |                                   | -  If the add-on version is 1.5.0 or later, on each node, no more than 20,000 logs or 10 MB of logs can be collected per second.                                                                      |                                                                       |
@@ -66,7 +66,7 @@ The following permissions are required for running the fluent-bit component:
 
 -  CAP_DAC_OVERRIDE: ignores the discretionary access control (DAC) restrictions on files.
 -  CAP_FOWNER: ignores the restrictions that the file owner ID must match the process user ID.
--  DAC_READ_SEARCH: ignores the DAC restrictions on file reading and catalog research.
+-  DAC_READ_SEARCH: ignores the DAC restrictions on file reading and catalog search.
 -  SYS_PTRACE: allows all processes to be traced.
 
 .. caution::
@@ -80,13 +80,13 @@ Installing the Add-on
 #. In the navigation pane, choose **Add-ons**. Locate **Cloud Native Log Collection** and click **Install**.
 #. On the **Install Add-on** page, configure the specifications as needed.
 
-   -  If you selected **Preset**, you can choose between **Small** or **Large** depending on the number of logs on nodes. The system will automatically set the number of add-on pods and resource quotas according to the preset specifications. You can see the configurations on the console.
+   -  If you select **Preset**, choose **Small** or **Large** based on your cluster scale. CCE automatically configures the number of add-on pods and resource quotas according to the selected specification. You can view these configurations on the console.
 
       You can select the **Small** option for clusters where the logs of a single node are less than 5000/s or 5 MB/s, and select the **Large** option for clusters where the logs on a single node are less than 10000/s or 10 MB/s.
 
-   -  If you selected **Custom**, you can adjust the number of pods and resource quotas as needed. High availability is not possible with a single pod. If an error occurs on the node where the add-on instance runs, the add-on will fail.
+   -  If you selected **Custom**, you can adjust the number of pods and resource quotas as needed. High availability is not possible with a single pod. If an error occurs on the node where the add-on pod runs, the add-on will fail.
 
-#. Configure add-on parameters, which is supported by the add-on of v1.6.1 or later. For details, see `Tail <https://docs.fluentbit.io/manual/pipeline/inputs/tail>`__.
+#. Configure add-on parameters, which are supported by the add-on of v1.6.1 or later. For details, see `Tail <https://docs.fluentbit.io/manual/pipeline/inputs/tail>`__.
 
    +-----------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------+
    | Parameter                               | Description                                                                                                                                                                                                                            | Default Value       |                     |
@@ -108,16 +108,16 @@ Installing the Add-on
 
    .. note::
 
-      Scheduling policies do not take effect on add-on pods of the DaemonSet type.
+      Scheduling policies do not take effect on the DaemonSet pods of the add-on.
 
    .. table:: **Table 1** Configurations for add-on scheduling
 
-      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                                                                                                                                                                     |
-      +===================================+=================================================================================================================================================================================================================================================================================================+
-      | Multi-AZ Deployment               | -  **Preferred**: Deployment pods of the add-on will be preferentially scheduled to nodes in different AZs. If all the nodes in the cluster are deployed in the same AZ, the pods will be scheduled to different nodes in that AZ.                                                              |
-      |                                   | -  **Forcible**: Deployment pods of the add-on are forcibly scheduled to nodes in different AZs. There can be at most one pod in each AZ. If nodes in a cluster are not in different AZs, some add-on pods cannot run properly. If a node is faulty, add-on pods on it may fail to be migrated. |
-      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                                                                                   |
+      +===================================+===============================================================================================================================================================================================================================================================================+
+      | Multi-AZ Deployment               | -  **Preferred**: Deployment pods of the add-on will be preferentially scheduled to nodes in different AZs. If all the nodes in the cluster are deployed in the same AZ, the pods will be scheduled to different nodes in that AZ.                                            |
+      |                                   | -  **Forcible**: Add-on pods are strictly distributed across AZs, with at most one pod per AZ. If the cluster's nodes do not span multiple AZs, some add-on pods will remain unscheduled and fail to run. If a node is faulty, the add-on pods on it may fail to be migrated. |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Click **Install**.
 
@@ -129,9 +129,9 @@ Components
    +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
    | Component             | Description                                                                                                                                                                                                                                                             | Resource Type         |
    +=======================+=========================================================================================================================================================================================================================================================================+=======================+
-   | fluent-bit            | Lightweight log collector and forwarder deployed on each node to collect logs In 1.5.0 and later versions, logs are directly reported to LTS. In versions earlier than 1.5.0, logs are reported to otel-collector.                                                      | DaemonSet             |
+   | fluent-bit            | Lightweight log collector and forwarder deployed on each node to collect logs. In 1.5.0 and later versions, logs are directly reported to LTS. In versions earlier than 1.5.0, logs are reported to otel-collector.                                                     | DaemonSet             |
    +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-   | cop-logs              | Used to generate soft links for collected files and run in the same pod as fluent-bit                                                                                                                                                                                   | DaemonSet             |
+   | cop-logs              | Used to generate soft links for collected files. It runs in the same pod as fluent-bit.                                                                                                                                                                                 | DaemonSet             |
    +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
    | log-operator          | Used to generate internal configuration files                                                                                                                                                                                                                           | Deployment            |
    +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
@@ -142,15 +142,15 @@ Components
    | otel-collector-event  | Added in v1.7.5 and later versions. It collects Kubernetes events and reports them to LTS and AOM.                                                                                                                                                                      | Deployment            |
    +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
 
-Add-on Usage
-------------
+How to Use the Add-on
+---------------------
 
 This add-on can collect container standard output logs, container file logs, node logs, and Kubernetes events. You can use LTS or AOM to store the collected logs. These services support different types of logs.
 
 .. table:: **Table 3** Log storage description
 
    +-----------------------+-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Log Storage Location  | Supported Log Types               | Instructions                                                                                                                                                                                                                                      |
+   | Log Storage Location  | Supported Log Types               | How to Use                                                                                                                                                                                                                                        |
    +=======================+===================================+===================================================================================================================================================================================================================================================+
    | LTS                   | -  Container standard output logs | Go to **Logging** to create a policy. For details, see :ref:`Collecting Container Logs Using the Cloud Native Log Collection Add-on <cce_10_0555>`.                                                                                               |
    |                       | -  Container file logs            |                                                                                                                                                                                                                                                   |
@@ -173,6 +173,30 @@ Release History
    +-----------------------+---------------------------+----------------------------------------------------------+
    | Add-on Version        | Supported Cluster Version | New Feature                                              |
    +=======================+===========================+==========================================================+
+   | 1.7.10                | v1.21                     | Supported CCE clusters v1.35.                            |
+   |                       |                           |                                                          |
+   |                       | v1.23                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.25                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.27                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.28                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.29                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.30                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.31                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.32                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.33                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.34                     |                                                          |
+   |                       |                           |                                                          |
+   |                       | v1.35                     |                                                          |
+   +-----------------------+---------------------------+----------------------------------------------------------+
    | 1.7.9                 | v1.21                     | Supported CCE clusters v1.34.                            |
    |                       |                           |                                                          |
    |                       | v1.23                     |                                                          |

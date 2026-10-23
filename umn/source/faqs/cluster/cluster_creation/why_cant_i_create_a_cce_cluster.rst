@@ -15,7 +15,7 @@ Details
 
 **Possible causes:**
 
-#. The Network Time Protocol daemon (ntpd) is not installed or fails to be installed, Kubernetes components fail to pass the pre-verification, or the disk partition is incorrect. The current solution is to create a cluster again. For details about how to locate the fault, see :ref:`Locating the Failure Cause <cce_faq_00111__section398812378182>`.
+#. The Network Time Protocol daemon (ntpd) is not installed or failed to be installed, Kubernetes components fail to pass the pre-verification, or the disk partition is incorrect. The current solution is to create a new cluster. For details about how to locate the fault, see :ref:`Locating the Failure Cause <cce_faq_00111__section398812378182>`.
 #. The cluster does not have sufficient underlying resources. You can create a new cluster with the appropriate type and scale.
 
 .. _cce_faq_00111__section398812378182:
@@ -25,6 +25,6 @@ Locating the Failure Cause
 
 View the cluster logs to identify the cause and rectify the fault.
 
-#. Log in to the CCE console and click **Operation Records** above the cluster list to view operation records.
-#. Click the record of the **Failed** status to view error information.
-#. Rectify the fault based on the error information and create a cluster again.
+#. Log in to the CCE console and click **Operation Records** above the cluster list.
+#. Click the error message in **Operation Records**.
+#. Rectify the fault based on the error information and create a new cluster.

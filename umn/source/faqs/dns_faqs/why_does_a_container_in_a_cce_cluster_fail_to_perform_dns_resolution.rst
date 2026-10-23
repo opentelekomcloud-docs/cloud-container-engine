@@ -30,9 +30,9 @@ However, when the domain name resolution is performed in a container, the messag
 
 Log in to the CCE console and check the add-ons installed in the cluster.
 
-If you find that the coredns add-on does not exist in **Add-ons Installed**, the coredns add-on may have been incorrectly uninstalled.
+If CoreDNS is not in the list of installed add-ons, it may have been uninstalled.
 
 Install it and add the corresponding domain name and DNS service address to resolve the domain name.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516077753.jpg
-.. |image2| image:: /_static/images/en-us_image_0000002516077749.jpg
+.. |image1| image:: /_static/images/en-us_image_0000002662011333.jpg
+.. |image2| image:: /_static/images/en-us_image_0000002661851395.jpg

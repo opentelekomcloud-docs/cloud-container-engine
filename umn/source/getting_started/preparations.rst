@@ -26,7 +26,7 @@ Your accounts have the permissions to use CCE. However, IAM users created by you
 Obtaining Resource Permissions
 ------------------------------
 
-CCE works closely with multiple cloud services to support computing, storage, networking, and monitoring functions. When you log in to the CCE console for the first time, CCE automatically requests permissions to access those cloud services in the region where you run your applications. Specifically:
+When you first log in to the CCE console, CCE automatically requests permissions to access related cloud services (compute, storage, networking, and monitoring) in the region where the cluster is deployed. Specifically:
 
 -  Compute services
 
@@ -44,20 +44,20 @@ CCE works closely with multiple cloud services to support computing, storage, ne
 
    CCE supports functions such as container image pull, monitoring, and logging. The prerequisite is that CCE has obtained the permissions to access services such as SoftWare Repository for Container (SWR) and Application Operations Management (AOM).
 
-After you agree to delegate the permissions, an agency named **cce_admin_trust** will be created for CCE in Identity and Access Management (IAM). The system account **op_svc_cce** will be delegated the **Tenant Administrator** role to perform operations on other cloud service resources. Tenant Administrator has the permissions on all cloud services except IAM, which calls the cloud services on which CCE depends. The delegation takes effect only in the current region. For details, see `Account Delegation <https://docs.otc.t-systems.com/en-us/usermanual/iam/iam_01_0054.html>`__.
+After you agree to delegate permissions, CCE uses IAM to create an agency named **cce_admin_trust** and uses the system account **op_svc_cce** to perform operations on your cloud service resources. This account is granted **Tenant Administrator** permissions for the resources of other cloud services (excluding IAM). These permissions are required for CCE to access dependent cloud services and are only valid for the current region. For more details, see `Account Delegation <https://docs.otc.t-systems.com/en-us/usermanual/iam/iam_01_0054.html>`__.
 
 To use CCE in multiple regions, request for cloud resource permissions in each region. You can go to the IAM console, choose **Agencies**, and click **cce_admin_trust** to view the delegation records of each region.
 
 .. note::
 
-   CCE may fail to run as expected if the Tenant Administrator role is not assigned. Therefore, do not delete or modify the **cce_admin_trust** agency when using CCE.
+   CCE may fail to run as expected if the Tenant Administrator permissions are not assigned. Therefore, do not delete or modify the **cce_admin_trust** agency when using CCE.
 
 .. _cce_qs_0006__section896411852619:
 
 (Optional) Creating a VPC
 -------------------------
 
-A VPC provides an isolated, configurable, and manageable virtual network for CCE clusters.
+A VPC provides an isolated, configurable, manageable virtual network for CCE clusters.
 
 Before creating the first cluster, ensure that a VPC has been created.
 
@@ -67,11 +67,11 @@ If you already have a VPC available, skip this step.
 
 #. Click |image1| in the upper left corner and select a region and a project.
 
-#. Under **Networking**, click **Virtual Private Cloud**.
+#. Choose **Networking** > **Virtual Private Cloud**.
 
 #. Click **Create VPC**.
 
-#. On the **Create VPC** page, configure parameters as prompted.
+#. On the **Create VPC** page, configure parameters following instructions.
 
    A default subnet will be created together with a VPC. You can click **Add Subnet** to create more subnets for the VPC.
 
@@ -84,8 +84,8 @@ If you already have a VPC available, skip this step.
 
 The cloud platform uses public key cryptography to protect the login information of your CCE nodes. Passwords or key pairs are used for identity authentication during remote login to nodes.
 
--  If you choose the key pair login mode, you need to specify the key pair name when creating a node and provide the private key when logging to the node using SSH.
--  If you choose the password login mode, skip this task.
+-  If you choose the key pair for logging in, you need to specify the key pair name when creating a node and provide the private key when logging in to the node using SSH.
+-  If you choose the password for logging in, skip this task.
 
 .. note::
 
@@ -97,16 +97,16 @@ If you have no key pair, create one on the management console. The procedure is 
 
 #. Log in to the management console.
 #. Click |image2| in the upper left corner and select a region and a project.
-#. Under **Compute**, click **Elastic Cloud Server**.
+#. Choose **Compute** > **Elastic Cloud Server**.
 #. In the navigation pane, choose **Key Pair**.
 #. On the displayed page, click **Create Key Pair**.
-#. Enter the key pair name and click **OK**.
-#. Enter an easy-to-remember name for the key pair. The name of a key pair is in the format of **KeyPair-**\ *{Four random digits}*, for example, **KeyPair-xxxx_ecs**.
+#. Enter a key pair name and click **OK**.
+#. Enter an easy-to-remember name for the key pair. The name of a key pair is in the format of **KeyPair-**\ *<four-random-digits>*, for example, **KeyPair-xxxx_ecs**.
 #. Manually or automatically download the private key file. The file name is a specified key pair name with a suffix of .pem. Securely store the private key file. In the dialog box displayed, click **OK**.
 
    .. note::
 
-      The private key file can be downloaded only once. Keep it secure. When creating an ECS, specify the name of your preferred key pair. Use the private key each time you SSH into the ECS.
+      The private key file can be downloaded only once. Keep it secure. When creating an ECS, specify the name of your preferred key pair. Use the private key each time you log in to the ECS using SSH.
 
-.. |image1| image:: /_static/images/en-us_image_0000001851742516.png
-.. |image2| image:: /_static/images/en-us_image_0000001898022705.png
+.. |image1| image:: /_static/images/en-us_image_0000002661852167.png
+.. |image2| image:: /_static/images/en-us_image_0000002662012105.png

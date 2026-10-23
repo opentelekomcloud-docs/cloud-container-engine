@@ -10,7 +10,7 @@ CCE allows you to use LVM to combine data volumes on nodes into a storage pool (
 Notes and Constraints
 ---------------------
 
--  Local EVs are supported only when the cluster version is v1.21.2-r0 or later and the Everest add-on version is 1.2.29 or later.
+-  Local EVs are supported only when the cluster version is v1.21.2-r0 or later and the Everest add-on version is v1.2.29 or later.
 
 -  Data disks used by the container runtime and Kubernetes components cannot be imported into a storage pool.
 -  Storage pools in striped mode do not support scale-out. After scale-out, fragmented space may be generated and the storage pool cannot be used.
@@ -45,7 +45,7 @@ Expanding a Storage Pool
 
 The capacity of a storage pool can be expanded in either of the following ways:
 
-#. Add more large-capacity disks to the pool using the preceding manual import method.
-#. Increase the size of the existing disks on the ECS console. Then, the storage pool capacity will be automatically expanded.
+-  Add more large-capacity disks to the pool using the preceding manual import method.
+-  Increase the size of the existing disks on the ECS console. Then, the storage pool capacity will be automatically expanded.
 
 Either of these methods will work.

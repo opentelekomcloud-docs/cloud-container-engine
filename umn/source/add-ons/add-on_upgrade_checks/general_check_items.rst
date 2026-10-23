@@ -63,7 +63,7 @@ Not all pods or Services associated with the add-on are ready. So the add-on is 
 
 #. Check the status of the Service associated with the add-on. If some add-ons are not associated with any Services, skip this step. NGINX Ingress Controller is used as an example.
 
-   a. In the navigation pane, choose **Services & Ingresses** and select the namespace to which the Service belongs.
+   a. In the navigation pane, choose **Services and Ingresses** and select the namespace to which the Service belongs.
 
    b. Use **release={releaseName}** to search for the Service associated with the add-on, locate the row containing the **LoadBalancer** Service, and choose **More** > **View YAML**.
 
@@ -138,5 +138,5 @@ If these discrepancies are not detected in advance, they may lead to unintended 
 
    (Assume the NGINX Ingress Controller add-on has four pods, but the Helm chart specifies only two. In this case, you can update the add-on settings and set the pod count to **4**, ignore the difference, and deliver the configuration to ensure that the generated resources are the same as expected.)
 
-.. |image1| image:: /_static/images/en-us_image_0000002484119160.png
-.. |image2| image:: /_static/images/en-us_image_0000002516199131.png
+.. |image1| image:: /_static/images/en-us_image_0000002631690202.png
+.. |image2| image:: /_static/images/en-us_image_0000002631690190.png

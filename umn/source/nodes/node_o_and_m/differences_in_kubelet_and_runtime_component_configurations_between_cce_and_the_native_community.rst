@@ -22,6 +22,8 @@ Differences in Default Paths to kubelet and Runtime
 | Container runtime (Docker)     | /var/lib/docker        | -  :ref:`Data Disk Space Allocation <cce_10_0341>` set to specific: **/var/lib/docker**, which is identical to the Kubernetes native path     |
 |                                |                        | -  Colocation on the system disk: **/var/lib/docker**, which is identical to the Kubernetes native path                                       |
 +--------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+| Docker logs                    | /var/log/pods          | /var/log/pods                                                                                                                                 |
++--------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
 | Container runtime (containerd) | /var/lib/containerd    | -  :ref:`Data Disk Space Allocation <cce_10_0341>` set to specific: **/var/lib/containerd**, which is identical to the Kubernetes native path |
 |                                |                        | -  Colocation on the system disk: **/var/lib/containerd**, which is identical to the Kubernetes native path                                   |
 +--------------------------------+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+

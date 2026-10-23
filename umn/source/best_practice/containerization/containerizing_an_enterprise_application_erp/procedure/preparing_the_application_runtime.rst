@@ -15,7 +15,7 @@ After application analysis, you have gained the understanding of the OS and runt
 Installing Docker
 -----------------
 
-Docker is compatible with almost all operating systems. Select a Docker version that best suits your needs.
+Docker is compatible with almost all OSs. Select a Docker version that best suits your needs.
 
 .. note::
 
@@ -75,7 +75,7 @@ In this example, the web application of the Tomcat type is used. This applicatio
 
 #. Use Xshell to save the downloaded dependency files to the **apptest** directory.
 
-#. Run the following commands to decompress the dependency files:
+#. Decompress the dependency files.
 
    **tar -zxf apache-tomcat-7.0.82.tar.gz**
 
@@ -83,7 +83,7 @@ In this example, the web application of the Tomcat type is used. This applicatio
 
    **tar -zxf mongodb-linux-x86_64-rhel70-3.2.9.tgz**
 
-#. Save the enterprise application (for example, **apptest.war**) in the **webapps/apptest** directory of the Tomcat runtime environment.
+#. Save the enterprise application (for example, **apptest.war**) to the **webapps/apptest** directory of Tomcat.
 
    .. note::
 

@@ -9,6 +9,6 @@ Can I Create a CCE Node Without Adding a Data Disk to the Node?
 
 -  Data disks are required if **System Component Storage** is set to **Data Disk**.
 
-   A data disk dedicated for kubelet and the container engine will be attached to a new node. By default, CCE uses LVM to manage data disks. With LVM, you can adjust the disk space ratio for different resources on a data disk.
+   A data disk dedicated for kubelet and the container runtime will be attached to a new node. By default, CCE uses LVM to manage data disks. With LVM, you can adjust the disk space ratio for different resources on a data disk.
 
-   If the data disk is uninstalled or damaged, the container engine will malfunction and the node becomes unavailable.
+   If the data disk is uninstalled or damaged, the container runtime will malfunction and the node will become unavailable.

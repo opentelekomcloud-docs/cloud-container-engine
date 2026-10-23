@@ -5,8 +5,8 @@
 CPU Policy
 ==========
 
-Application Scenarios
----------------------
+Applications
+------------
 
 By default, kubelet uses `CFS quotas <https://www.kernel.org/doc/html/next/scheduler/sched-design-CFS.html>`__ to enforce pod CPU limits. When a node runs many CPU-bound pods, the workload can move to different CPU cores depending on whether the pod is throttled and which CPU cores are available at scheduling time. Many workloads are not sensitive to this migration and work fine without any intervention. Some applications are CPU-sensitive. They are sensitive to:
 
@@ -21,12 +21,12 @@ If your workloads are sensitive to any of these items, you can use Kubernetes `C
 A CPU management policy is specified by using kubelet *--cpu-manager-policy*. By default, Kubernetes supports the following policies:
 
 -  **none**: the default policy. The **none** policy explicitly enables the existing default CPU affinity scheme, providing no affinity beyond what the OS scheduler does automatically.
--  **static**: The **static** policy allows containers in `guaranteed pods <https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/>`__ with integer CPU requests to be use dedicated CPU resources on nodes through CPU pinning.
+-  **static**: The **static** policy allows containers in `guaranteed pods <https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/>`__ with integer CPU requests to use dedicated CPU resources on nodes through CPU pinning.
 
 Notes and Constraints
 ---------------------
 
-The CPU management policy does not apply to ECS (PM) nodes in CCE Turbo clusters.
+-  The CPU management policy does not apply to ECS (PM) nodes in CCE Turbo clusters.
 
 .. _cce_10_0351__section173918176434:
 
@@ -51,7 +51,7 @@ You can configure a CPU management policy for a custom node pool. After the conf
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. Choose **Nodes** in the navigation pane and click the **Node Pools** tab on the right. Locate the target node pool and choose **More** > **Manage**.
-#. On the **Manage Configurations** page, change the **cpu-manager-policy** value to **static** in the **kubelet** area.
+#. On the **Manage Configurations** page, set **CPU Management Policy (cpu-manager-policy)** to **static** in the **kubelet** area.
 #. Click **OK**.
 
 Allowing Pods to Exclusively Use the CPU Resources

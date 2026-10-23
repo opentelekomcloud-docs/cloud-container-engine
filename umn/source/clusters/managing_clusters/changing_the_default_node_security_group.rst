@@ -13,7 +13,7 @@ When creating a cluster, you can specify a node security group to centrally mana
 Constraints
 -----------
 
--  Do not add more than 1,000 pods to the same security group. Otherwise, the security group performance may be impacted.
+-  Do not associate more than 1,000 instances with the same security group. Otherwise, security group performance may degrade.
 -  Exercise caution when modifying the security group rules of master nodes.
 
 Procedure

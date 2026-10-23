@@ -12,8 +12,8 @@ Each node in a cluster is a cloud server. After a cluster node is created, you c
 
 Some CCE node information is maintained independently of the cloud server console. After changing a cloud server's name, EIP, or specifications on the cloud server console, synchronize it with the target node on the CCE console to ensure consistency.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  Data, including the statuses, names, number of CPUs, memory, specifications, and public IP addresses of cloud servers, can be synchronized.
 -  The following data cannot be synchronized: OS, image ID, and disk configuration.

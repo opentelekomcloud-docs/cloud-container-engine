@@ -21,7 +21,7 @@ The following procedure uses an Nginx application as an example to describe how 
 
    Use the application image to deploy a workload in a cluster. Custom metrics will be automatically reported to Prometheus.
 
-   Use one of the following methods to monitor custom metrics:
+   You can configure custom metric monitoring using one of the following methods. Method 1 and method 2 require that Auto Service Discovery be enabled.
 
    -  :ref:`Method 1: Configuring Pod Annotations <cce_10_0373__section179021319175>`
    -  :ref:`Method 2: Configuring Service Annotations <cce_10_0373__section103284201722>`
@@ -62,15 +62,14 @@ Installing and Accessing Cloud Native Cluster Monitoring
 
    When installing this add-on, pay attention to the following configurations. Configure other parameters as required. For details, see :ref:`Cloud Native Cluster Monitoring <cce_10_0406>`.
 
-   -  For 3.8.0 or later, enable custom metric collection.
-
-   -  For 3.8.0 or earlier, do not enable custom metric collection.
+   -  For 3.8.0 and later versions, ensure that Auto Service Discovery is enabled in the add-on configuration.
+   -  For versions earlier than 3.8.0, you do not need to configure Auto Service Discovery.
 
 #. After this add-on is installed, deploy workloads and Services. The Prometheus server will be deployed as a StatefulSet in the **monitoring** namespace.
 
    You can create a public network :ref:`LoadBalancer Service <cce_10_0014>` so that Prometheus can be accessed from external networks.
 
-   a. Log in to the CCE console and click the name of the cluster with Prometheus installed to access the cluster console. In the navigation pane, choose **Services & Ingresses**.
+   a. Log in to the CCE console and click the name of the cluster with Prometheus installed to access the cluster console. In the navigation pane, choose **Services and Ingresses**.
 
    b. Click **Create from YAML** in the upper right corner to create a public network LoadBalancer Service.
 
@@ -97,7 +96,7 @@ Installing and Accessing Cloud Native Cluster Monitoring
              prometheus: server
            type: LoadBalancer
 
-   c. After the Service is created, enter *{public IP address of the load balancer}*\ **:**\ *{Service port}* in the address bar of the browser to access Prometheus.
+   c. After the Service is created, enter *{public IP address of the load balancer}*\ **:**\ *{Service port}* in the address box of the browser to access Prometheus.
 
 .. _cce_10_0373__section2212930134620:
 
@@ -165,7 +164,7 @@ This section uses Nginx as an example to describe how to collect monitoring data
 
 #. Use this Dockerfile to create an image and upload it to SWR. The image name is **nginx:exporter**.
 
-   a. In the navigation pane, choose **My Images**. In the upper right corner, click **Upload Through Client**. In the displayed dialog box, click **Generate a temporary login command**. Then, click |image1| to copy the command.
+   a. In the navigation pane, choose **My Images**. In the upper right corner, click **Upload Through Client**. In the displayed dialog box, click **Generate Login Command** > **Temporary Login Command**. Then, click |image1| to copy the command.
 
    b. Run the login command copied in the previous step on the node. If the login is successful, the message "Login Succeeded" is displayed.
 
@@ -534,4 +533,4 @@ After the application is successfully deployed, :ref:`access Prometheus <cce_10_
 
    nginx_connections_accepted{cluster="2048c170-8359-11ee-9527-0255ac1000cf", cluster_category="CCE", cluster_name="cce-test", endpoint="servicemonitor-ports", instance="10.0.0.47:9113", job="nginx-test3", namespace="default", pod="nginx-test3-6f8bccd9-f27hv", prometheus="monitoring/server", service="nginx-test3"}
 
-.. |image1| image:: /_static/images/en-us_image_0000002484119266.png
+.. |image1| image:: /_static/images/en-us_image_0000002631530572.png

@@ -26,9 +26,9 @@ Determine the cause based on the events, as listed in :ref:`Table 1 <cce_faq_000
    |                                                                                                                                                              |                                                                                                                             |
    |                                                                                                                                                              | :ref:`Check Item 1: Whether a Node Is Available in the Cluster <cce_faq_00098__section133416392418>`                        |
    +--------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+
-   | 0/2 nodes are available: 2 Insufficient cpu.                                                                                                                 | The resources (CPU and memory) on the node are insufficient.                                                                |
+   | 0/2 nodes are available: 2 Insufficient cpu.                                                                                                                 | The resources (CPUs and memory) on the node are insufficient.                                                               |
    |                                                                                                                                                              |                                                                                                                             |
-   | 0/2 nodes are available: 2 Insufficient memory.                                                                                                              | :ref:`Check Item 2: Whether Node Resources (CPU and Memory) Are Sufficient <cce_faq_00098__section29231833141817>`          |
+   | 0/2 nodes are available: 2 Insufficient memory.                                                                                                              | :ref:`Check Item 2: Whether Node Resources (CPUs and Memory) Are Sufficient <cce_faq_00098__section29231833141817>`         |
    +--------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+
    | 0/2 nodes are available: 1 node(s) didn't match node selector, 1 node(s) didn't match pod affinity rules, 1 node(s) didn't match pod affinity/anti-affinity. | The node and pod affinity configurations are mutually exclusive. No node meets the pod requirements.                        |
    |                                                                                                                                                              |                                                                                                                             |
@@ -54,7 +54,7 @@ Determine the cause based on the events, as listed in :ref:`Table 1 <cce_faq_000
    |                                                                                                                                                              |                                                                                                                             |
    | Create more free space in thin pool or use dm.min_free_space option to change behavior                                                                       | :ref:`Check Item 8: Whether the Thin Pool Space Is Sufficient <cce_faq_00098__section1739734419111>`                        |
    +--------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+
-   | 0/1 nodes are available: 1 Too many pods.                                                                                                                    | The number of pods scheduled to the node exceeded the maximum number allowed by the node.                                   |
+   | 0/1 nodes are available: 1 Too many pods.                                                                                                                    | The number of pods scheduled to the node exceeds the maximum allowed.                                                       |
    |                                                                                                                                                              |                                                                                                                             |
    |                                                                                                                                                              | :ref:`Check Item 9: Whether the Node Has Too Many Pods Scheduled onto It <cce_faq_00098__section24491119103316>`            |
    +--------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------+
@@ -87,8 +87,8 @@ If the status of all nodes is **Not Ready**, it means that there are no availabl
 
 .. _cce_faq_00098__section29231833141817:
 
-Check Item 2: Whether Node Resources (CPU and Memory) Are Sufficient
---------------------------------------------------------------------
+Check Item 2: Whether Node Resources (CPUs and Memory) Are Sufficient
+---------------------------------------------------------------------
 
 **0/2 nodes are available: 2 Insufficient cpu.** indicates that the CPUs are insufficient.
 
@@ -308,13 +308,13 @@ In this case, you can check the daemon named **everest-csi-driver** in the **kub
 Check Item 8: Whether the Thin Pool Space Is Sufficient
 -------------------------------------------------------
 
-A data disk dedicated for kubelet and the container engine will be attached to a new node. If the data disk space is insufficient, the pod cannot be created on the node.
+A data disk dedicated for kubelet and the container runtime will be attached to a new node. If the data disk space is insufficient, the pod cannot be created on the node.
 
 **Solution 1: Clearing images**
 
 Perform the following operations to clear unused images:
 
--  Nodes that use containerd
+-  containerd nodes
 
    #. Obtain local images on the node.
 
@@ -328,7 +328,7 @@ Perform the following operations to clear unused images:
 
          crictl rmi {Image ID}
 
--  Nodes that use Docker
+-  Docker nodes
 
    #. Obtain local images on the node.
 
@@ -340,31 +340,31 @@ Perform the following operations to clear unused images:
 
       .. code-block::
 
-         docker rmi {}Image ID}
+         docker rmi {image-ID}
 
 .. note::
 
-   Do not delete system images such as the **cce-pause** image. Otherwise, the pod creation may fail.
+   Do not delete system images, such as the **cce-pause** image. Otherwise, the pod creation may fail.
 
 **Solution 2: Expanding the disk capacity**
 
-To expand a disk capacity, perform the following operations:
+To expand a disk's capacity, perform the following operations:
 
 #. Expand the capacity of a data disk on the EVS console.
 
-   Only the storage capacity of EVS disks can be expanded. You need to perform the following operations to expand the capacity of logical volumes and file systems.
+   Only the storage capacity of EVS disks is expanded. You need to perform the following operations to expand the capacity of logical volumes and file systems.
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab, locate the row containing the target node, and choose **More** > **Sync Server Data** in the **Operation** column.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab, locate the row containing the node, and choose **More** > **Sync Server Data** in the **Operation** column.
 
-#. Log in to the target node.
+#. Log in to the node.
 
 #. Run **lsblk** to view the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 
-   Overlayfs: No independent thin pool is allocated. Image data is stored in **dockersys**.
+   **Overlayfs**: No independent thin pool is allocated. Image data is stored in **dockersys**.
 
-   a. Check the disk and partition space of the device.
+   a. Check the disk and partition capacity of the device.
 
       .. code-block::
 
@@ -372,13 +372,13 @@ To expand a disk capacity, perform the following operations:
          NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
          sda                   8:0    0   50G  0 disk
          └─sda1                8:1    0   50G  0 part /
-         sdb                   8:16   0  150G  0 disk      # The data disk has been expanded to 150 GiB, but 50-GiB space is not allocated.
+         sdb                   8:16   0  150G  0 disk      # The data disk has been expanded to 150 GiB, but 50 GiB space is not allocated.
          ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/containerd
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
    b. Expand the disk capacity.
 
-      Add the new disk capacity to the **dockersys** logical volume used by the container engine.
+      Add the new disk capacity to the **dockersys** logical volume used by the container runtime.
 
       #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/sdb* specifies the physical volume where dockersys is located.
 
@@ -393,7 +393,7 @@ To expand a disk capacity, perform the following operations:
             Physical volume "/dev/sdb" changed
             1 physical volume(s) resized or updated / 0 physical volume(s) not resized
 
-      #. Expand 100% of the free capacity to the logical volume. *vgpaas/dockersys* specifies the logical volume used by the container engine.
+      #. Expand 100% of the free capacity to the logical volume. *vgpaas/dockersys* specifies the logical volume used by the container runtime.
 
          .. code-block::
 
@@ -406,7 +406,7 @@ To expand a disk capacity, perform the following operations:
             Size of logical volume vgpaas/dockersys changed from <90.00 GiB (23039 extents) to 140.00 GiB (35840 extents).
             Logical volume vgpaas/dockersys successfully resized.
 
-      #. Adjust the size of the file system. */dev/vgpaas/dockersys* specifies the file system path of the container engine.
+      #. Adjust the capacity of the file system. */dev/vgpaas/dockersys* specifies the file system path of the container runtime.
 
          .. code-block::
 
@@ -432,9 +432,9 @@ To expand a disk capacity, perform the following operations:
          ├─vgpaas-dockersys  253:0    0   140G  0 lvm  /var/lib/containerd
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
-   Device Mapper: A thin pool is allocated to store image data.
+   **Devicemapper**: A thin pool is allocated to store image data.
 
-   a. Check the disk and partition space of the device.
+   a. Check the disk and partition capacity of the device.
 
       .. code-block::
 
@@ -454,7 +454,7 @@ To expand a disk capacity, perform the following operations:
 
    b. Expand the disk capacity.
 
-      Option 1: Add the new disk capacity to the thin pool.
+      **Option 1**: Add the new disk capacity to the thin pool.
 
       #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where thin pool is located.
 
@@ -469,7 +469,7 @@ To expand a disk capacity, perform the following operations:
             Physical volume "/dev/vdb" changed
             1 physical volume(s) resized or updated / 0 physical volume(s) not resized
 
-      #. Expand 100% of the free capacity to the logical volume. *vgpaas/thinpool* specifies the logical volume used by the container engine.
+      #. Expand 100% of the free capacity to the logical volume. *vgpaas/thinpool* specifies the logical volume used by the container runtime.
 
          .. code-block::
 
@@ -482,9 +482,9 @@ To expand a disk capacity, perform the following operations:
             Size of logical volume vgpaas/thinpool changed from <67.00 GiB (23039 extents) to <167.00 GiB (48639 extents).
             Logical volume vgpaas/thinpool successfully resized.
 
-      #. Do not need to adjust the size of the file system because the thin pool is not mounted to any devices.
+      #. Do not adjust the capacity of the file system because the thin pool is not mounted to any devices.
 
-      #. Run the **lsblk** command to check the disk and partition space of the device and check whether the capacity has been expanded. If the new disk capacity was added to the thin pool, the capacity has been expanded.
+      #. Run the **lsblk** command to check the disk and partition capacity of the device and check whether the capacity has been expanded. If the new disk capacity is added to the thin pool, the capacity has been expanded.
 
          .. code-block::
 
@@ -502,7 +502,7 @@ To expand a disk capacity, perform the following operations:
             │   ...
             └─vgpaas-kubernetes                 253:4    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
-      Option 2: Add the new disk capacity to the **dockersys** disk.
+      **Option 2**: Add the new disk capacity to the Docker system disk.
 
       #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where dockersys is located.
 
@@ -517,7 +517,7 @@ To expand a disk capacity, perform the following operations:
             Physical volume "/dev/vdb" changed
             1 physical volume(s) resized or updated / 0 physical volume(s) not resized
 
-      #. Expand 100% of the free capacity to the logical volume. *vgpaas/dockersys* specifies the logical volume used by the container engine.
+      #. Expand 100% of the free capacity to the logical volume. *vgpaas/dockersys* specifies the logical volume used by the container runtime.
 
          .. code-block::
 
@@ -530,7 +530,7 @@ To expand a disk capacity, perform the following operations:
             Size of logical volume vgpaas/dockersys changed from <18.00 GiB (4607 extents) to <118.00 GiB (30208 extents).
             Logical volume vgpaas/dockersys successfully resized.
 
-      #. Adjust the size of the file system. */dev/vgpaas/dockersys* specifies the file system path of the container engine.
+      #. Adjust the capacity of the file system. */dev/vgpaas/dockersys* specifies the file system path of the container runtime.
 
          .. code-block::
 
@@ -544,7 +544,7 @@ To expand a disk capacity, perform the following operations:
             old_desc_blocks = 3, new_desc_blocks = 15
             The filesystem on /dev/vgpaas/dockersys is now 30932992 blocks long.
 
-      #. Run the **lsblk** command to check the disk and partition space of the device and check whether the capacity has been expanded. If the new disk capacity was added to the dockersys, the capacity has been expanded.
+      #. Run the **lsblk** command to check the disk and partition capacity of the device and check whether the capacity has been expanded. If the new disk capacity was added to the dockersys, the capacity has been expanded.
 
          .. code-block::
 
@@ -583,7 +583,7 @@ To change the maximum number of pods that can run on a node, do as follows:
 Check Item 10: Whether the Static CPU Pinning of kubelet Is Abnormal
 --------------------------------------------------------------------
 
-If a pod has an init container with a CPU request that is different from the main container settings, and it is assigned a Guaranteed QoS class while the kubelet uses static CPU pinning, the pod scheduling could fail, resulting in the error **UnexpectedAdmissionError**.
+If a pod has an init container with a CPU request that is different from the main container settings, and it is assigned a Guaranteed QoS class while the kubelet uses static CPU pinning (with **cpuManagerPolicy** set to **static**), the pod scheduling could fail, resulting in the error **UnexpectedAdmissionError**.
 
 Community-related issue: https://github.com/kubernetes/kubernetes/issues/112228
 

@@ -44,5 +44,5 @@ Checking Whether a Global Access Key Is Used in a Cluster
 
    If the command output is blank, it means no PVC is using the global access key in the cluster.
 
-.. |image1| image:: /_static/images/en-us_image_0000002484118228.png
-.. |image2| image:: /_static/images/en-us_image_0000002483958246.png
+.. |image1| image:: /_static/images/en-us_image_0000002661851495.png
+.. |image2| image:: /_static/images/en-us_image_0000002631692200.png

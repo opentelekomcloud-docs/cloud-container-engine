@@ -24,7 +24,7 @@ Example:
 Possible Cause
 --------------
 
-After a PCI device is hot added to BUS 0, the Linux OS kernel will traverse all the PCI bridges mounted to BUS 0 for multiple times, and these PCI bridges cannot work properly during this period. During this period, if the PCI bridge used by the device is updated, due to a kernel defect, the device considers that the PCI bridge is abnormal, and the device enters a fault mode and cannot work normally. If the front end is writing data into the PCI configuration space for the back end to process disk I/Os, the write operation may be deleted. As a result, the back end cannot receive notifications to process new requests on the I/O ring. Finally, the front-end I/O suspension occurs.
+After a PCI device is hot added to BUS 0, the Linux OS kernel will traverse all the PCI bridges mounted to BUS 0 for multiple times, and these PCI bridges cannot work properly during this period. During this period, if the PCI bridge used by the device is updated, the device considers that the PCI bridge is abnormal due to a kernel defect, and the device enters a fault mode and cannot work normally. If the front end is writing data into the PCI configuration space for the back end to process disk I/Os, the write operation may be deleted. As a result, the back end cannot receive notifications to process new requests on the I/O ring. Finally, the front-end I/O suspension occurs.
 
 Impact
 ------
@@ -36,4 +36,4 @@ Solution
 
 Upgrade the kernel to a later version **by resetting the node**.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516197779.png
+.. |image1| image:: /_static/images/en-us_image_0000002631532212.png

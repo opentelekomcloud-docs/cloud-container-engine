@@ -7,7 +7,7 @@ Node Resource Reservation Rules
 
 Some node resources are used to run mandatory Kubernetes system components and resources to make the node as part of your cluster. Therefore, the total number of node resources and the number of allocatable node resources for your cluster are different. The larger the node specifications, the more the containers deployed on the node. Therefore, more node resources need to be reserved to run Kubernetes components.
 
-To maintain node stability, a specific number of CCE node resources will be reserved for Kubernetes components like kubelet, kube-proxy, and docker, based on the node specifications.
+To maintain node stability, a specific number of CCE node resources will be reserved for Kubernetes components like kubelet, kube-proxy, and Docker, based on the node specifications.
 
 CCE calculates the resources that can be allocated to user nodes as follows:
 
@@ -21,46 +21,86 @@ The memory eviction threshold is fixed at 100 MiB.
 
 When the memory consumed by all pods on a node increases, the following behaviors may occur:
 
-#. When the available memory of the node is lower than the eviction threshold, kubelet is triggered to evict pods. For details about the eviction threshold in Kubernetes, see `Node-pressure Eviction <https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction>`__.
-#. If a node triggers an OS memory insufficiency event (OOM) before kubelet reclaims memory, the system terminates the container. Unlike pod eviction, kubelet restarts the container based on the pod's RestartPolicy.
+-  When the available memory of the node is lower than the eviction threshold, kubelet is triggered to evict pods. For details about the eviction threshold in Kubernetes, see `Node-pressure Eviction <https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction>`__.
+-  If a node triggers an OS memory insufficiency event (OOM) before kubelet reclaims memory, the system terminates the container. Unlike pod eviction, kubelet restarts the container based on the pod's RestartPolicy.
+
+.. _cce_10_0178__section07621731135919:
+
+Querying Node Allocatable Resources
+-----------------------------------
+
+Use kubectl to access the cluster and run the following command to view a summary of all nodes. The output lists node names and statuses.
+
+.. code-block::
+
+   kubectl get nodes
+
+View the total resources and allocatable resources of a specific node. Replace *<node_name>* with the name of the target node.
+
+.. code-block::
+
+   kubectl describe node <node_name> | grep Capacity -A 17
+
+Expected output:
+
+.. code-block::
+
+   Capacity:
+     cpu:                2                 # The number of CPU cores on the node
+     ephemeral-storage:  102622136Ki       # Total ephemeral storage of the node, in KiB
+     hugepages-1Gi:      0
+     hugepages-2Mi:      0
+     localssd:           0
+     localvolume:        0
+     memory:             3852580Ki         # Total memory of the node, in KiB
+     pods:               20
+   Allocatable:
+     cpu:                1930m             # The number of node's allocatable CPU cores
+     ephemeral-storage:  94576560382       # The node's allocatable ephemeral storage, in bytes
+     hugepages-1Gi:      0
+     hugepages-2Mi:      0
+     localssd:           0
+     localvolume:        0
+     memory:             2632996Ki          # The node's allocatable memory, in KiB
+     pods:               20
 
 Relationship Between Node Resource Reservation and Cluster Versions
 -------------------------------------------------------------------
 
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
-| Cluster Version | Specific Version                                          | Node Memory Reservation                                                                             | Node CPU Reservation                                                | Node Data Disk Reservation                                                   |
-+=================+===========================================================+=====================================================================================================+=====================================================================+==============================================================================+
-| v1.29 or later  | None                                                      | :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>`                        | :ref:`Node CPU Reservation Rules <cce_10_0178__section65041914716>` | :ref:`Node Data Disk Reservation Rules <cce_10_0178__section10719193504911>` |
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
-| v1.28           | v1.28.2-r0 or later                                       | :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>`                        |                                                                     |                                                                              |
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
-|                 | Earlier than v1.28.2-r0                                   | -  Custom node pools: :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`   |                                                                     |                                                                              |
-|                 |                                                           | -  Default node pools: :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>` |                                                                     |                                                                              |
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
-| v1.27           | v1.27.4-r0 or later                                       | :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>`                        |                                                                     |                                                                              |
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
-|                 | Earlier than v1.27.4-r0                                   | -  Custom node pools: :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`   |                                                                     |                                                                              |
-|                 |                                                           | -  Default node pools: :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>` |                                                                     |                                                                              |
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
-| v1.25           | v1.25.7-r0 or later                                       | :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>`                        |                                                                     |                                                                              |
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
-|                 | Earlier than v1.25.7-r0                                   | -  Custom node pools: :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`   |                                                                     |                                                                              |
-|                 |                                                           | -  Default node pools: :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>` |                                                                     |                                                                              |
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
-| v1.23           | v1.23.12-r0 or later                                      | :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>`                        |                                                                     |                                                                              |
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
-|                 | v1.23.3-r0 or later, or versions earlier than v1.23.12-r0 | -  Custom node pools: :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`   |                                                                     |                                                                              |
-|                 |                                                           | -  Default node pools: :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>` |                                                                     |                                                                              |
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
-|                 | Earlier than v1.23.3-r0                                   | :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`                         |                                                                     |                                                                              |
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
-| v1.21           | v1.21.13-r0 or later                                      | :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>`                        |                                                                     |                                                                              |
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
-|                 | v1.21.4-r0 or later, or versions earlier than v1.21.13-r0 | -  Custom node pools: :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`   |                                                                     |                                                                              |
-|                 |                                                           | -  Default node pools: :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>` |                                                                     |                                                                              |
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
-|                 | Earlier than v1.21.4-r0                                   | :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`                         |                                                                     |                                                                              |
-+-----------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
+| Cluster Version | Specific Version                                 | Node Memory Reservation                                                                             | Node CPU Reservation                                                | Node Data Disk Reservation                                                   |
++=================+==================================================+=====================================================================================================+=====================================================================+==============================================================================+
+| v1.29 or later  | ``-``                                            | :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>`                        | :ref:`Node CPU Reservation Rules <cce_10_0178__section65041914716>` | :ref:`Node Data Disk Reservation Rules <cce_10_0178__section10719193504911>` |
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
+| v1.28           | v1.28.2-r0 or later                              | :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>`                        |                                                                     |                                                                              |
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
+|                 | Earlier than v1.28.2-r0                          | -  Custom node pools: :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`   |                                                                     |                                                                              |
+|                 |                                                  | -  Default node pools: :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>` |                                                                     |                                                                              |
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
+| v1.27           | v1.27.4-r0 or later                              | :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>`                        |                                                                     |                                                                              |
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
+|                 | Earlier than v1.27.4-r0                          | -  Custom node pools: :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`   |                                                                     |                                                                              |
+|                 |                                                  | -  Default node pools: :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>` |                                                                     |                                                                              |
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
+| v1.25           | v1.25.7-r0 or later                              | :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>`                        |                                                                     |                                                                              |
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
+|                 | Earlier than v1.25.7-r0                          | -  Custom node pools: :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`   |                                                                     |                                                                              |
+|                 |                                                  | -  Default node pools: :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>` |                                                                     |                                                                              |
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
+| v1.23           | v1.23.12-r0 or later                             | :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>`                        |                                                                     |                                                                              |
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
+|                 | v1.23.3-r0 or later, or earlier than v1.23.12-r0 | -  Custom node pools: :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`   |                                                                     |                                                                              |
+|                 |                                                  | -  Default node pools: :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>` |                                                                     |                                                                              |
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
+|                 | Earlier than v1.23.3-r0                          | :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`                         |                                                                     |                                                                              |
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
+| v1.21           | v1.21.13-r0 or later                             | :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>`                        |                                                                     |                                                                              |
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
+|                 | v1.21.4-r0 or later, or earlier than v1.21.13-r0 | -  Custom node pools: :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`   |                                                                     |                                                                              |
+|                 |                                                  | -  Default node pools: :ref:`Node Memory Reservation Rule v2 <cce_10_0178__section156741258145010>` |                                                                     |                                                                              |
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
+|                 | Earlier than v1.21.4-r0                          | :ref:`Node Memory Reservation Rule v1 <cce_10_0178__section16856143934620>`                         |                                                                     |                                                                              |
++-----------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------------------------------------------------------------------+
 
 .. _cce_10_0178__section16856143934620:
 
@@ -75,17 +115,17 @@ Total reserved amount = :ref:`Reserved memory for system components <cce_10_0178
 
 .. table:: **Table 1** Reservation rules for system components
 
-   +------------------------+-----------------------------------------------------------------------------+
-   | Total Memory (TM)      | Reserved Memory for System Components                                       |
-   +========================+=============================================================================+
-   | TM <= 8 GiB            | 0 MiB                                                                       |
-   +------------------------+-----------------------------------------------------------------------------+
-   | 8 GiB < TM <= 16 GiB   | [(TM - 8 GiB) x 1024 x 10%] MiB                                             |
-   +------------------------+-----------------------------------------------------------------------------+
-   | 16 GiB < TM <= 128 GiB | [8 GiB x 1024 x 10% + (TM - 16 GiB) x 1024 x 6%] MiB                        |
-   +------------------------+-----------------------------------------------------------------------------+
-   | TM > 128 GiB           | [8 GiB x 1024 x 10% + 112 GiB x 1024 x 6% + (TM - 128 GiB) x 1024 x 2%] MiB |
-   +------------------------+-----------------------------------------------------------------------------+
+   +------------------------+--------------------------------------------------------------------------------+
+   | Total Memory (TM)      | Reserved Memory for System Components                                          |
+   +========================+================================================================================+
+   | TM <= 8 GiB            | 0 MiB                                                                          |
+   +------------------------+--------------------------------------------------------------------------------+
+   | 8 GiB < TM <= 16 GiB   | [(TM - 8 GiB) x 1,024 x 10%] MiB                                               |
+   +------------------------+--------------------------------------------------------------------------------+
+   | 16 GiB < TM <= 128 GiB | [8 GiB x 1,024 x 10% + (TM - 16 GiB) x 1,024 x 6%] MiB                         |
+   +------------------------+--------------------------------------------------------------------------------+
+   | TM > 128 GiB           | [8 GiB x 1,024 x 10% + 112 GiB x 1,024 x 6% + (TM - 128 GiB) x 1,024 x 2%] MiB |
+   +------------------------+--------------------------------------------------------------------------------+
 
 .. _cce_10_0178__table124614211528:
 
@@ -120,7 +160,7 @@ The total reserved memory of a CCE node using memory reservation rule v2 include
 
 Reserved memory includes basic and floating parts. For system components, the floating memory depends on the node specifications. For Kubernetes, the floating memory depends on the number of pods on a node.
 
-By default, CCE automatically calculates the reserved memory based on the rules listed in :ref:`Table 3 <cce_10_0178__table1061012595214>`. You can specify the reserved memory by configuring parameters **system-reserved-mem** and **kube-reserved-mem** in the node pool settings. For details, see :ref:`Managing Node Pool Configurations <cce_10_0652>`.
+By default, CCE automatically calculates the reserved memory based on the rules listed in :ref:`Table 3 <cce_10_0178__table1061012595214>`. You can specify the reserved memory by configuring parameters **system-reserved-mem** and **kube-reserved-mem** in the node pool settings. For details, see :ref:`Configuring a Node Pool <cce_10_0652>`.
 
 .. _cce_10_0178__table1061012595214:
 
@@ -133,9 +173,9 @@ By default, CCE automatically calculates the reserved memory based on the rules 
    +---------------------+--------------------------------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    |                     | Floating (depending on the node memory)                | 25 MiB/GiB            | Kernel                                                                                                                                                                                              |
    +---------------------+--------------------------------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Kubernetes          | Basic                                                  | Fixed at 500 MiB      | Container engine components, such as kubelet and kube-proxy, when the node is unloaded                                                                                                              |
+   | Kubernetes          | Basic                                                  | Fixed at 500 MiB      | Container runtime components, such as kubelet and kube-proxy, when the node is unloaded                                                                                                             |
    +---------------------+--------------------------------------------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   |                     | Floating (depending on the number of pods on the node) | Docker: 20 MiB/Pod    | Container engine components when the number of pods increases                                                                                                                                       |
+   |                     | Floating (depending on the number of pods on the node) | Docker: 20 MiB/Pod    | Container runtime components when the number of pods increases                                                                                                                                      |
    |                     |                                                        |                       |                                                                                                                                                                                                     |
    |                     |                                                        | containerd: 5 MiB/pod | .. note::                                                                                                                                                                                           |
    |                     |                                                        |                       |                                                                                                                                                                                                     |
@@ -167,3 +207,8 @@ Node Data Disk Reservation Rules
 --------------------------------
 
 CCE uses Logical Volume Manager (LVM) for disk management. LVM creates a metadata area on a disk to store logical and physical volume information, occupying 4 MiB of space. Therefore, the actual available disk space of a node is the disk size minus 4 MiB.
+
+Helpful Links
+-------------
+
+For details about how to configure resource reservation and eviction thresholds, see :ref:`Configuring a Node Pool <cce_10_0652>`.

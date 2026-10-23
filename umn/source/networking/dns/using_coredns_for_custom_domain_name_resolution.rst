@@ -19,9 +19,9 @@ Solution
 There are several CoreDNS-based solutions for custom domain name resolution:
 
 -  :ref:`Configuring the Stub Domain for CoreDNS <cce_10_0361__section5202157467>`: You can configure a DNS server for a specific domain name and perform this operation on the console.
--  :ref:`Using the CoreDNS Hosts plug-in to configure resolution for any domain name <cce_10_0361__section106211954135311>`: You can add any record set for a specific domain name, which is similar to adding a record set in the local **/etc/hosts** file.
--  :ref:`Using the CoreDNS Rewrite plug-in to point a domain name to ClusterIP Services <cce_10_0361__section2213823544>`: Perform CNAME resolution on a domain name in the cluster and redirect it to another domain name in the cluster. This is like giving an alias to the Kubernetes Service, and you do not have to get the IP address of the record set beforehand.
--  :ref:`Using the CoreDNS Forward plug-in to set the on-premises DNS as the upstream DNS <cce_10_0361__section677819913541>`: Use the on-premises DNS as the external DNS server. You can manage a large number of records on the on-premises DNS, without modifying the CoreDNS configuration when adding or deleting records
+-  :ref:`Configuring DNS Resolution for Custom Domain Names Using CoreDNS Hosts <cce_10_0361__section106211954135311>`: Add custom DNS records for specific domain names. This method is simple and intuitive. It is similar to adding resolution records to the local **/etc/hosts** file.
+-  :ref:`Using CoreDNS Rewrite to Route Domain Names to ClusterIP Services <cce_10_0361__section2213823544>`: Perform CNAME resolution on a cluster domain name and redirect it to another cluster domain name. This creates an alias for the Kubernetes Service without requiring the target IP address.
+-  :ref:`Using CoreDNS Forward for Self-Managed Upstream DNS <cce_10_0361__section677819913541>`: Use a self-managed DNS server as the external resolver. You can manage a large number of records on the on-premises DNS, without modifying the CoreDNS configuration when adding or deleting records
 
 Precautions
 -----------
@@ -43,7 +43,7 @@ Assume that a cluster administrator has a Consul DNS server located at 10.150.0.
 
 #. Add a stub domain in the **Parameters** area. The format is a key-value pair. The key is a DNS suffix domain name, and the value is a DNS IP address or a group of DNS IP addresses, for example, **consul.local -- 10.150.0.1**.
 
-   Corefile:
+   If you edit the configuration using the Corefile view, the Corefile content is shown below:
 
    .. code-block::
 
@@ -73,14 +73,14 @@ Assume that a cluster administrator has a Consul DNS server located at 10.150.0.
           forward . 10.150.0.1
       }
 
-#. Click **OK**.
+#. Click **Next**. After the upgrade check is complete, click **OK**.
 
 #. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.
 
 .. _cce_10_0361__section106211954135311:
 
-Modifying the CoreDNS Hosts Configuration File
-----------------------------------------------
+Configuring DNS Resolution for Custom Domain Names Using CoreDNS Hosts
+----------------------------------------------------------------------
 
 After modifying the hosts file in CoreDNS, you do not need to configure the hosts file in each pod to add resolution records.
 
@@ -88,7 +88,7 @@ After modifying the hosts file in CoreDNS, you do not need to configure the host
 
 #. In the navigation pane, choose **Add-ons**. Then, click **Edit** under **CoreDNS**.
 
-#. Edit extended parameters in **Parameters** and add the following content to the **plugins** field:
+#. Edit extended parameters in **Parameters** and add the following content to the **plugins** field: For example, specify the IP address 192.168.1.1 for www.example.com. For more details, see `hosts <https://coredns.io/plugins/hosts/>`__.
 
    .. code-block::
 
@@ -103,7 +103,7 @@ After modifying the hosts file in CoreDNS, you do not need to configure the host
 
       For details about how to configure the hosts file, visit https://coredns.io/plugins/hosts/.
 
-   Corefile:
+   If you edit the configuration using the Corefile view, the Corefile content is shown below:
 
    .. code-block::
 
@@ -129,14 +129,14 @@ After modifying the hosts file in CoreDNS, you do not need to configure the host
           ready {$POD_IP}:8081
       }
 
-#. Click **OK**.
+#. Click **Next**. After the upgrade check is complete, click **OK**.
 
 #. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.
 
 .. _cce_10_0361__section2213823544:
 
-Adding the CoreDNS Rewrite Configuration to Point the Domain Name to ClusterIP Services
----------------------------------------------------------------------------------------
+Using CoreDNS Rewrite to Route Domain Names to ClusterIP Services
+-----------------------------------------------------------------
 
 Use the Rewrite plug-in of CoreDNS to resolve a specified domain name to the domain name of a Service. For example, the request for accessing the example.com domain name is redirected to the example.default.svc.cluster.local domain name, that is, the example service in the default namespace.
 
@@ -144,7 +144,7 @@ Use the Rewrite plug-in of CoreDNS to resolve a specified domain name to the dom
 
 #. In the navigation pane, choose **Add-ons**. Then, click **Edit** under **CoreDNS**.
 
-#. Edit extended parameters in **Parameters** and add the following content to the **plugins** field:
+#. Edit extended parameters in **Parameters** and add the following content to the **plugins** field: For example, rewrite example.com to example.default.svc.cluster.local. For more details, see `rewrite <https://coredns.io/plugins/rewrite/>`__.
 
    .. code-block::
 
@@ -153,7 +153,7 @@ Use the Rewrite plug-in of CoreDNS to resolve a specified domain name to the dom
          "parameters": "name example.com example.default.svc.cluster.local"
       }
 
-   Corefile:
+   If you edit the configuration using the Corefile view, the Corefile content is shown below:
 
    .. code-block::
 
@@ -176,14 +176,14 @@ Use the Rewrite plug-in of CoreDNS to resolve a specified domain name to the dom
           ready {$POD_IP}:8081
       }
 
-#. Click **OK**.
+#. Click **Next**. After the upgrade check is complete, click **OK**.
 
 #. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.
 
 .. _cce_10_0361__section677819913541:
 
-Using CoreDNS Forward to Configure Your Custom-built DNS as the Upstream DNS
-----------------------------------------------------------------------------
+Using CoreDNS Forward for Self-Managed Upstream DNS
+---------------------------------------------------
 
 If the domain name is not in the Kubernetes domain, CoreDNS will use the **/etc/resolv.conf** file of the node for resolution by default. You can also change the resolution address to that of the external DNS.
 
@@ -191,7 +191,7 @@ If the domain name is not in the Kubernetes domain, CoreDNS will use the **/etc/
 
 #. In the navigation pane, choose **Add-ons**. Then, click **Edit** under **CoreDNS**.
 
-#. Edit extended parameters in **Parameters** and modify the following content in the **plugins** field:
+#. Edit extended parameters in **Parameters** and modify the following content in the **plugins** field: For example, all domain name queries are forwarded to the upstream DNS server 192.168.1.1 using a random selection policy. For more details, see `forward <https://coredns.io/plugins/forward/>`__.
 
    .. code-block::
 
@@ -201,7 +201,7 @@ If the domain name is not in the Kubernetes domain, CoreDNS will use the **/etc/
           "parameters": ". 192.168.1.1"
       }
 
-   Corefile:
+   If you edit the configuration using the Corefile view, the Corefile content is shown below:
 
    .. code-block::
 
@@ -223,6 +223,6 @@ If the domain name is not in the Kubernetes domain, CoreDNS will use the **/etc/
           ready {$POD_IP}:8081
       }
 
-#. Click **OK**.
+#. Click **Next**. After the upgrade check is complete, click **OK**.
 
 #. Choose **ConfigMaps and Secrets** in the navigation pane, select the **kube-system** namespace, and view the ConfigMap data of **coredns** to check whether the update is successful.

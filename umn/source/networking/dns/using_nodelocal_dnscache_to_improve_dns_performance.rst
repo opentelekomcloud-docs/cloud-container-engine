@@ -21,7 +21,7 @@ To minimize the impact of DNS delay, deploy NodeLocal DNSCache in the cluster to
 After NodeLocal DNSCache is enabled, a DNS query goes through the path as shown below.
 
 
-.. figure:: /_static/images/en-us_image_0000002483959282.png
+.. figure:: /_static/images/en-us_image_0000002631530368.png
    :alt: **Figure 1** NodeLocal DNSCache query path
 
    **Figure 1** NodeLocal DNSCache query path
@@ -37,7 +37,7 @@ The resolution rules are as follows:
 Notes and Constraints
 ---------------------
 
--  Only clusters of version 1.19 or later support the :ref:`NodeLocal DNSCache <cce_10_0404>` add-on.
+-  Only clusters v1.19 or later support the :ref:`NodeLocal DNSCache <cce_10_0404>` add-on.
 -  The **node-local-dns-injection** label is the system label used by NodeLocal DNSCache. Use this label only to :ref:`prevent an automatic DNSConfig injection <cce_10_0362__section1754716106492>`.
 
 .. _cce_10_0362__section0938141194810:
@@ -61,7 +61,7 @@ CCE provides add-on :ref:`NodeLocal DNSCache <cce_10_0404>` that simplifies the 
 
    b. In the navigation pane, choose **Add-ons**. Then, click **Edit** under **CoreDNS**.
 
-   c. Edit the advanced configuration under **Parameters** and modify the following content in the **plugins** field:
+   c. Edit extended parameters in **Parameters** and modify the following content in the **plugins** field:
 
       .. code-block::
 
@@ -96,29 +96,31 @@ CCE provides add-on :ref:`NodeLocal DNSCache <cce_10_0404>` that simplifies the 
                ready {$POD_IP}:8081
            }
 
+   d. Click **Next**. After the upgrade check is complete, click **OK**.
+
 #. Choose **Add-ons** in the navigation pane, find the **NodeLocal DNSCache** add-on on the right, and click **Install**.
 
 #. On the **Install Add-on** page, select the add-on specifications and set related parameters.
 
-   -  **DNSConfig**: After this function is enabled, a DNSConfig admission controller will be created. The controller intercepts pod creation requests in the namespace labeled with **node-local-dns-injection=enabled** based on admission webhooks and automatically configures DNSConfig for pods. If this function is disabled or the pod belongs to a non-target namespace, you must manually configure DNSConfig for the pod.
+   -  **DNSConfig**: After this function is enabled, a DNSConfig admission controller will be created. The controller intercepts pod creation requests in the namespace labeled with **node-local-dns-injection=enabled** based on admission webhooks and automatically configures DNSConfig for pods. If this function is disabled or the pods to be created are not in the target namespace, you must manually configure DNSConfig for the pods.
 
-      After automatic injection is enabled, you can customize the following configuration items for DNSConfig (supported when the add-on version is 1.6.7 or later):
+      After this function is enabled, you can customize the ConfigMaps below for DNSConfig (supported when the add-on version is 1.6.7 or later):
 
       .. note::
 
-         If DNSConfig has been configured in the pod when automatic injection is enabled, DNSConfig in the pod will be used first.
+         In scenarios where DNSConfig is enabled, the DNS configuration specified within the pod overrides any injected DNSConfig settings.
 
-      -  (Optional) **IP Address of DNS Server**: IP address list of the DNS server obtained when the container resolves the domain name. NodeLocal DNSCache and CoreDNS IP addresses are added by default. You have the option to add an additional IP address, but duplicates will be removed.
+      -  (Optional) **IP Address of DNS Server**: an IP address list of the DNS server obtained when the container resolves the domain name. NodeLocal DNSCache and CoreDNS IP addresses are added by default. You have the option to add one extra IP address, but any duplicates will be removed.
       -  (Optional) **Search Domain**: a search list for host-name lookup. When a domain name cannot be resolved, DNS queries will be attempted combining the domain name with each domain in the search list in turn until a match is found or all domains in the search list are tried. You can add up to three extra search domains, but any duplicates will be removed.
-      -  (Optional) **ndots**: specifies that if a domain name has fewer periods (.) than the specified value of **ndots**, it will be combined with the search domain list for DNS query. If the domain name still cannot be resolved, it will be used for DNS query. The system will perform a DNS query on a domain name if the number of periods (.) in it is greater than or equal to the value of **ndots**. If the domain name cannot be resolved, the system will sequentially combine it with the search domain list and then perform a DNS query.
+      -  (Optional) **ndots**: specifies that if a domain name has fewer periods (.) than the specified value of **ndots**, it will be combined with the search domain list for DNS query. If the domain name still cannot be resolved, it will be used for DNS query. If the number of periods (.) in a domain name is greater than or equal to the value of **ndots**, the system will perform a DNS query on the domain name. If the domain name cannot be resolved, the system will sequentially combine it with the search domain list and then perform a DNS query.
 
-   -  **Target Namespace**: This parameter is available after **DNSConfig** is enabled. Only NodeLocal DNSCache of v1.3.0 or later supports this function.
+   -  **Target Namespace**: This parameter is available after **DNSConfig** is enabled. Only NodeLocal DNSCache of 1.3.0 or later supports this function.
 
       -  **Enable All**: CCE adds the **node-local-dns-injection=enabled** label to all created namespaces excluding built-in ones and the ones preset by some add-ons (such as **kube-system**, **kube-public**, **kube-node-lease**, **istio-system**, and **monitoring**), identifies namespace creation requests, and automatically adds the label to newly created namespaces.
 
-         In add-ons of v1.6.77 or later, the **node-local-dns-injection=enabled** label cannot be manually deleted. You can set **node-local-dns-injection** to **disabled** to disable automatic injection in a namespace.
+         In add-ons of 1.6.77 or later, the **node-local-dns-injection=enabled** label cannot be manually deleted. You can set **node-local-dns-injection** to **disabled** to disable automatic DNSConfig injection in a namespace.
 
-      -  **Manual Configure**: You must manually add the **node-local-dns-injection=enabled** label to the namespaces requiring the injection of DNSConfig. For details, see :ref:`Managing Namespace Labels <cce_10_0285__section124953014352>`.
+      -  **Manually Configure**: You must manually add the **node-local-dns-injection=enabled** label to the namespaces requiring DNSConfig injection. For details, see :ref:`Managing Namespace Labels <cce_10_0285__section124953014352>`.
 
 #. Click **Install**.
 
@@ -160,7 +162,14 @@ To enable auto injection, perform the following operations:
 
       kubectl get pod <pod_name> -oyaml
 
-   After auto injection is enabled, the following **dnsConfig** settings will be automatically added to the created pod. In addition to the NodeLocal DNSCache IP address 169.254.20.10, the CoreDNS IP address 10.247.3.10 is added to **nameservers**, ensuring high availability of the service DNS server.
+   After auto injection is enabled, the following **dnsConfig** settings are automatically added to created pods. In addition to the NodeLocal DNSCache IP address (169.254.20.10 in this example), the CoreDNS IP address (10.247.3.10 in this example) is added to **nameservers**, ensuring DNS server high availability.
+
+   .. note::
+
+      The NodeLocal DNSCache addresses of different cluster types are as follows:
+
+      -  CCE standard clusters: 169.254.20.10
+      -  CCE Turbo cluster: 169.254.1.1
 
    .. code-block::
 
@@ -188,7 +197,14 @@ Manually add the **dnsConfig** settings to pods.
 
 #. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
-#. Create a pod and add the NodeLocal DNSCache IP address 169.254.20.10 to **nameservers** in **dnsConfig**.
+#. Create a pod and add the NodeLocal DNSCache IP address (169.254.20.10 in this example) to **nameservers** in **dnsConfig**.
+
+   .. note::
+
+      The NodeLocal DNSCache addresses of different cluster types are as follows:
+
+      -  CCE standard cluster: 169.254.20.10
+      -  CCE Turbo cluster: 169.254.1.1
 
    Create a **nginx.yaml** file. The following shows an example:
 
@@ -224,8 +240,8 @@ Manually add the **dnsConfig** settings to pods.
 
 .. _cce_10_0362__section1754716106492:
 
-Common Issues
--------------
+FAQ
+---
 
 -  How Do I Prevent Auto DNSConfig Injection on a Specific Pod?
 

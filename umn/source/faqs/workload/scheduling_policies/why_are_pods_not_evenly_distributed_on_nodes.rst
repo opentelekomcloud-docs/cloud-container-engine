@@ -15,7 +15,7 @@ BalancedResourceAllocation is only one of the scoring priorities. Other scoring 
 Possible Causes of Why Pods Are Not Evenly Distributed on Nodes
 ---------------------------------------------------------------
 
--  Resource configurations may vary between nodes, including differences in CPU and memory size. This can result in the pods' defined requests not being met, even if a node's actual load is low. As a result, the pod cannot be scheduled to the node.
+-  Resource configurations may vary between nodes, including differences in CPU and memory sizes. This can result in the pods' defined requests not being met, even if a node's actual load is low. As a result, the pod cannot be scheduled to the node.
 -  Custom scheduling policies can be used to schedule pods based on affinity and anti-affinity rules, resulting in uneven distribution of pods across nodes.
 -  Nodes can have taints that prevent unscheduled pods from being assigned to them if tolerations are not set.
 -  Certain workloads may have unique distribution constraints. For instance, if an EVS disk is attached to a workload, the workload pods can only be scheduled to nodes within the same AZ as the disk.

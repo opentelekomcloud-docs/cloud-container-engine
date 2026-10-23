@@ -59,7 +59,7 @@ Suggestions
 
 Evaluate the impact of these problems. If they affect your services, take the following measures:
 
-#. Use an OS that is not affected by the preceding issues, for example, HCE OS 2.0 or Ubuntu 22.04. The newly created nodes which run EulerOS 2.9 are not affected by the preceding issues. Upgrade the earlier kernel versions used by existing nodes to the fixed version. For details, see :ref:`Rectification Plan <cce_faq_00409__en-us_topic_0000001250194017_section059433819273>`.
+#. Use an OS that is not affected by the preceding issues, for example, HCE OS 2.0 or Ubuntu 22.04. The newly created nodes that run EulerOS 2.9 are not affected by the preceding issues. Upgrade the earlier kernel versions used by existing nodes to the fixed version. For details, see :ref:`Rectification Plan <cce_faq_00409__en-us_topic_0000001250194017_section059433819273>`.
 #. Use a cluster whose forwarding mode is iptables.
 
 .. _cce_faq_00409__en-us_topic_0000001250194017_section059433819273:

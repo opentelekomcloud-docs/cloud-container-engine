@@ -17,17 +17,18 @@ Prerequisites
 
 Before using node auto scaling, you must install the CCE Cluster Autoscaler add-on (:ref:`CCE Cluster Autoscaler <cce_10_0154>`) of v1.13.8 or later in the cluster.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  If there are no nodes in a node pool, the CCE Cluster Autoscaler add-on cannot obtain the CPU or memory data of the node, and the node auto scaling rule triggered based on CPU or memory metrics will not take effect.
--  If the driver of a GPU node is not installed, the CCE Cluster Autoscaler add-on will consider that the node is not fully available, and the node auto scaling rules triggered based on the CPU or memory metrics will not take effect.
+-  If the GPU driver is not installed, the CCE Cluster Autoscaler add-on considers the node unavailable, preventing CPU- or memory-based auto scaling rules from taking effect.
 -  When CCE Cluster Autoscaler is used, some taints or annotations may affect auto scaling. Therefore, do not use the following taints or annotations in clusters:
 
-   -  **ignore-taint.cluster-autoscaler.kubernetes.io**: The taint works on nodes. Kubernetes-native Autoscaler supports protection against abnormal scale-outs and periodically evaluates the proportion of available nodes in the cluster. When the proportion of non-ready nodes exceeds 45%, protection will be triggered. In this case, all nodes with this taint in the cluster are filtered out from the Autoscaler template and recorded as non-ready nodes, which affect cluster scaling.
+   -  **ignore-taint.cluster-autoscaler.kubernetes.io**: The taint works on nodes. Kubernetes-native Autoscaler supports protection against abnormal scale-outs and periodically evaluates the proportion of available nodes in the cluster. When the proportion of non-ready nodes exceeds 45%, protection will be triggered. In this case, all nodes with the **ignore-taint.cluster-autoscaler.kubernetes.io** taint in the cluster are filtered out from the Autoscaler template and recorded as non-ready nodes, which affects cluster scaling.
    -  **cluster-autoscaler.kubernetes.io/enable-ds-eviction**: The annotation works on pods, which determines whether DaemonSet pods can be evicted by Autoscaler. For details, see `Well-Known Labels, Annotations and Taints <https://kubernetes.io/docs/reference/labels-annotations-taints/#enable-ds-eviction>`__.
 
 -  If the CCE Cluster Autoscaler add-on is installed, node pool auto scaling cannot be triggered when some node affinity policies of workloads cause pod scheduling failures. The following node labels should not be used for node affinity policies of the workloads in the cluster: **node.kubernetes.io/subnetid**, **os.architecture**, **os.name**, and **os.version**.
+-  During the initial scale-out, resources are calculated based on estimates. During subsequent scale-outs, calculations use actual resources reported by the node. Due to system background noise (such as underlying architecture or OS differences), the initial scale-out may provision excess nodes in extreme scenarios. Enable automatic scale-in or manually remove excess nodes as needed. If workloads fail to schedule due to insufficient resources, switch to a higher-specification flavor group.
 
 .. _cce_10_0209__section4444195220142:
 
@@ -38,16 +39,16 @@ Configuring a Node Pool Auto Scaling Policy
 
 #. In the navigation pane, choose **Nodes**. On the **Node Pools** tab, locate the row containing the target node pool and click **Auto Scaling**.
 
-   -  If CCE Cluster Autoscaler is not installed, configure add-on parameters based on service requirements, click **Install**, and wait until the add-on is installed. For details about add-on configurations, see :ref:`CCE Cluster Autoscaler <cce_10_0154>`.
+   -  If CCE Cluster Autoscaler is not installed, click **Install**, configure add-on parameters based on service requirements, click **Install**, and wait until the add-on is installed. For details about add-on configurations, see :ref:`CCE Cluster Autoscaler <cce_10_0154>`.
    -  If CCE Cluster Autoscaler has been installed, configure scaling policies.
 
 #. Configure auto scaling policies.
 
-   **AS Configuration**
+   **Auto Scaling Configuration**
 
    -  .. _cce_10_0209__li662211905512:
 
-      Custom rules: Click **Add Rule**. In the dialog box displayed, configure parameters. You can add multiple node scaling policies, a maximum of one CPU usage-based rule, and a maximum of one memory usage-based rule. The total number of rules cannot exceed 10.
+      Custom rules: Click **Add Rule**. In the dialog box displayed, configure parameters. You can add multiple node scaling policies, including a maximum of one CPU-based rule and one memory-based rule. The total number of rules cannot exceed 10.
 
       The following table lists custom rules.
 
@@ -88,7 +89,7 @@ Configuring a Node Pool Auto Scaling Policy
 
    -  .. _cce_10_0209__li44889425212:
 
-      **Nodes**: The number of nodes in a node pool will always be within the specified node range during auto scaling, but this setting does not apply to manual scaling.
+      **Nodes**: specifies the minimum number of nodes during scale-in and the maximum number of nodes during scale-out. The number of nodes in a node pool will always be within the specified node range during auto scaling, but this setting does not apply to manual scaling.
 
       For example, if the number of nodes in a node pool has reached the maximum, auto scaling cannot be triggered, but manual scaling is still allowed.
 
@@ -102,7 +103,7 @@ Configuring a Node Pool Auto Scaling Policy
 
       .. note::
 
-         If multiple flavors are configured for a node pool, you can specify the number of nodes and the scaling priority for each flavor.
+         If multiple flavors are configured for a node pool, you can specify the number of nodes and the scaling priority for each flavor. Multiple flavors are supported only by add-ons v1.21.18, v1.23.19, v1.25.9, or later.
 
 #. View cluster-level auto scaling configurations, which take effect for all node pools in the cluster. On the **Policies** page, you can only view cluster-level auto scaling policies. To modify these policies, go to the **Settings** page. For details, see :ref:`Configuring an Auto Scaling Policy for a Cluster <cce_10_0209__section6521214191020>`.
 
@@ -126,7 +127,7 @@ Configuring an Auto Scaling Policy for a Cluster
 
 #. Configure auto scale-out.
 
-   -  **Auto Scale-out when the load cannot be scheduled**: When workload pods in a cluster cannot be scheduled (pods remain in the pending state), CCE automatically adds nodes to the node pool. If a pod has been scheduled to a node, the node will not be involved in an auto scale-out. Such auto scaling typically works with an HPA policy. For details, see :ref:`Using HPA and CA for Auto Scaling of Workloads and Nodes <cce_10_0300>`.
+   -  **Auto Scale-out when the load cannot be scheduled**: When workload pods in a cluster cannot be scheduled (pods remain in the pending state), CCE automatically adds nodes to the node pool. If a pod has been scheduled to a node, the node will not be involved in an auto scale-out. Such auto scaling typically works with an HPA policy. For details, see :ref:`Using an HPA and a CA for Auto Scaling of Workloads and Nodes <cce_10_0300>`.
 
       If this function is not enabled, :ref:`custom scaling rules <cce_10_0209__li662211905512>` are the only option for performing a scale-out.
 
@@ -171,31 +172,40 @@ Configuring an Auto Scaling Policy for a Cluster
 
    .. table:: **Table 3** Node scale-in policy configurations
 
-      +------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Item                         | Description                                                                                                                                                                                                                                                                             | Default Value         |
-      +==============================+=========================================================================================================================================================================================================================================================================================+=======================+
-      | Max Nodes for Batch Deletion | Maximum number of idle nodes that can be deleted concurrently.                                                                                                                                                                                                                          | 10                    |
-      |                              |                                                                                                                                                                                                                                                                                         |                       |
-      |                              | Only idle nodes can be concurrently scaled in. Nodes that are not idle can only be scaled in one by one.                                                                                                                                                                                |                       |
-      |                              |                                                                                                                                                                                                                                                                                         |                       |
-      |                              | .. note::                                                                                                                                                                                                                                                                               |                       |
-      |                              |                                                                                                                                                                                                                                                                                         |                       |
-      |                              |    During a node scale-in, if the pods on the node do not need to be evicted (such as DaemonSet pods), the node is idle. Otherwise, the node is not idle.                                                                                                                               |                       |
-      +------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Check Period                 | Interval at which a node can be checked again after it is determined that the node cannot be scaled in                                                                                                                                                                                  | 5 minutes             |
-      +------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Cooldown Duration            | The length of time before CCE starts evaluating scale-in again after an auto scale-in in a cluster.                                                                                                                                                                                     | 10 minutes            |
-      |                              |                                                                                                                                                                                                                                                                                         |                       |
-      |                              | .. note::                                                                                                                                                                                                                                                                               |                       |
-      |                              |                                                                                                                                                                                                                                                                                         |                       |
-      |                              |    If both auto scale-out and scale-in exist in a cluster, set this parameter to 0 minutes. This prevents the node scale-in from being blocked due to continuous scale-out of some node pools or retries upon a scale-out failure, which results in unexpected waste of node resources. |                       |
-      +------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      |                              | The length of time before CCE starts evaluating scale-in again after an auto scale-out in a cluster.                                                                                                                                                                                    | 10 minutes            |
-      +------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      |                              | The length of time before CCE starts evaluating scale-in again after an auto scale-in failure in a cluster.                                                                                                                                                                             | 3 minutes             |
-      +------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      +---------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      | Item                                                                                                                                        | Description                                                                                                                                                                                                                                                           | Default Value         |
+      +=============================================================================================================================================+=======================================================================================================================================================================================================================================================================+=======================+
+      | Max Nodes for Batch Deletion                                                                                                                | Maximum number of idle nodes that can be deleted concurrently. The actual number of nodes that can be deleted concurrently is also affected by the flow control value of the node deletion API.                                                                       | 10                    |
+      |                                                                                                                                             |                                                                                                                                                                                                                                                                       |                       |
+      |                                                                                                                                             | Only idle nodes can be concurrently scaled in. Nodes that are not idle can only be scaled in one by one.                                                                                                                                                              |                       |
+      |                                                                                                                                             |                                                                                                                                                                                                                                                                       |                       |
+      |                                                                                                                                             | .. note::                                                                                                                                                                                                                                                             |                       |
+      |                                                                                                                                             |                                                                                                                                                                                                                                                                       |                       |
+      |                                                                                                                                             |    During a node scale-in, if all the pods on a node do not need to be evicted (such as the DaemonSet pods), the node will be considered as idle. Otherwise, the node is not idle.                                                                                    |                       |
+      +---------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      | Check Period                                                                                                                                | Interval at which a node can be checked again after it is determined that the node cannot be scaled in                                                                                                                                                                | 5 minutes             |
+      +---------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      | Cooldown Duration                                                                                                                           | The length of time before CCE starts evaluating scale-in again after an auto scale-in in a cluster.                                                                                                                                                                   | 10 minutes            |
+      |                                                                                                                                             |                                                                                                                                                                                                                                                                       |                       |
+      | (If multiple cooldown durations are active in a cluster, scale-in evaluation will only resume after all cooldown durations have completed.) |                                                                                                                                                                                                                                                                       |                       |
+      +---------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      |                                                                                                                                             | The length of time before CCE starts evaluating scale-in again after an auto scale-out in a cluster.                                                                                                                                                                  | 10 minutes            |
+      |                                                                                                                                             |                                                                                                                                                                                                                                                                       |                       |
+      |                                                                                                                                             | .. note::                                                                                                                                                                                                                                                             |                       |
+      |                                                                                                                                             |                                                                                                                                                                                                                                                                       |                       |
+      |                                                                                                                                             |    If both auto scale-outs and scale-ins exist in a cluster, set this parameter to 0 minutes. This prevents unexpected waste of node resources caused by a blocked node scale-in due to continuous scale-outs of some node pools or retries upon a scale-out failure. |                       |
+      +---------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      |                                                                                                                                             | The length of time before CCE starts evaluating scale-in again after an auto scale-in failure in a cluster.                                                                                                                                                           | 3 minutes             |
+      +---------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
 
 #. Click **Confirm Settings**.
+
+Checking the Status of a Node Scaling Policy
+--------------------------------------------
+
+#. Log in to the CCE console and click the cluster name to access the cluster console.
+#. In the navigation pane, choose **Policies**. On the page displayed, click the **Node Scaling Policies** tab. The page for creating node scaling policies is displayed.
+#. Check whether the target node scaling policy is enabled.
 
 Cooldown Period
 ---------------
@@ -217,7 +227,7 @@ The interval after a failed scale-in indicates the period during which the clust
 Period for CCE Cluster Autoscaler to Retry a Scale-out
 ------------------------------------------------------
 
-If a node pool failed to be scaled out, for example, due to insufficient quota, or an error during node installation, the CCE Cluster Autoscaler add-on can retry the scale-out in the same node pool or another node pool. The retry period varies depending on failure causes:
+If a node pool failed to be scaled out due to reasons such as insufficient quota or an error during node installation, the CCE Cluster Autoscaler add-on can retry the scale-out in the same node pool or another node pool. The retry period varies depending on failure causes:
 
 -  When the user quota is insufficient, the CCE Cluster Autoscaler add-on cools down the node pool for 5 minutes, 10 minutes, or 20 minutes. The maximum cooldown period is 30 minutes. Then, the CCE Cluster Autoscaler add-on switches to another node pool in the next 10 seconds for a scale-out until the desired nodes are added or all node pools have been cooled down.
 -  If there is an error during node installation in a node pool, the node pool will enter a 5-minute cooldown period. After the period expires, the CCE Cluster Autoscaler add-on can trigger a node pool scale-out again. If the faulty node is automatically reclaimed, the CCE Cluster Autoscaler add-on re-evaluates the cluster status within 1 minute and triggers a node pool scale-out as needed.
@@ -266,40 +276,47 @@ The following is a YAML example of a node scaling policy:
 
 .. table:: **Table 4** Key parameters
 
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Parameter                                   | Type    | Description                                                                                                                                                                |
-   +=============================================+=========+============================================================================================================================================================================+
-   | spec.disable                                | Bool    | Whether to enable the scaling policy. This parameter takes effect for all rules in the policy.                                                                             |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules                                  | Array   | All rules in a scaling policy.                                                                                                                                             |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].ruleName                      | String  | Rule name.                                                                                                                                                                 |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].type                          | String  | Rule type. **Cron** and **Metric** are supported.                                                                                                                          |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].disable                       | Bool    | Rule switch. Currently, only **false** is supported.                                                                                                                       |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].action.type                   | String  | Rule action type. Currently, only **ScaleUp** is supported.                                                                                                                |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].action.unit                   | String  | Rule action unit. Currently, only **Node** is supported.                                                                                                                   |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].action.value                  | Integer | Rule action value.                                                                                                                                                         |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].cronTrigger                   | N/A     | Optional. This parameter is valid only in periodic rules.                                                                                                                  |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].cronTrigger.schedule          | String  | Cron expression of a periodic rule.                                                                                                                                        |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].metricTrigger                 | N/A     | Optional. This parameter is valid only in metric-based rules.                                                                                                              |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].metricTrigger.metricName      | String  | Metric of a metric-based rule. Currently, **Cpu** and **Memory** are supported.                                                                                            |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].metricTrigger.metricOperation | String  | Comparison operator of a metric-based rule. Only **>** is supported.                                                                                                       |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].metricTrigger.metricValue     | String  | Threshold of the metric rule. The value can be an integer from 1 to 100 and must be a character. If the value is set to **-1**, the threshold is automatically calculated. |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.rules[x].metricTrigger.Unit            | String  | Unit of the metric-based rule threshold. Only **%** is supported.                                                                                                          |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.targetNodepoolIds                      | Array   | All node pools associated with the scaling policy.                                                                                                                         |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | spec.targetNodepoolIds[x]                   | String  | UID of the node pool associated with the scaling policy.                                                                                                                   |
-   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter                                   | Type    | Description                                                                                                                                        |
+   +=============================================+=========+====================================================================================================================================================+
+   | spec.disable                                | Bool    | Whether to enable the scaling policy. This parameter takes effect for all rules in the policy.                                                     |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules                                  | Array   | All rules in a scaling policy.                                                                                                                     |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules[x].ruleName                      | String  | Rule name.                                                                                                                                         |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules[x].type                          | String  | Rule type. **Cron** and **Metric** are supported.                                                                                                  |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules[x].disable                       | Bool    | Rule switch. Currently, only **false** is supported.                                                                                               |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules[x].action.type                   | String  | Rule action type. Currently, only **ScaleUp** is supported.                                                                                        |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules[x].action.unit                   | String  | Rule action unit. Currently, only **Node** is supported.                                                                                           |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules[x].action.value                  | Integer | Rule action value.                                                                                                                                 |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules[x].cronTrigger                   | N/A     | Optional. This parameter is valid only in periodic rules.                                                                                          |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules[x].cronTrigger.schedule          | String  | Cron expression of a periodic rule.                                                                                                                |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules[x].metricTrigger                 | N/A     | Optional. This parameter is valid only in metric-based rules.                                                                                      |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules[x].metricTrigger.metricName      | String  | Metric of a metric-based rule. Currently, **Cpu** and **Memory** are supported.                                                                    |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules[x].metricTrigger.metricOperation | String  | Comparison operator of a metric-based rule. Only **>** is supported.                                                                               |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules[x].metricTrigger.metricValue     | String  | Threshold of the metric rule. It must be an integer from 1 to 100, specified as a string. Set to **-1** to enable automatic threshold calculation. |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.rules[x].metricTrigger.Unit            | String  | Unit of the metric-based rule threshold. Only **%** is supported.                                                                                  |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.targetNodepoolIds                      | Array   | All node pools associated with the scaling policy.                                                                                                 |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+   | spec.targetNodepoolIds[x]                   | String  | UID of the node pool associated with the scaling policy.                                                                                           |
+   +---------------------------------------------+---------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Common Issues
+-------------
+
+-  Why is the "no scale task needed with desired node count n" event reported?
+
+   CCE Cluster Autoscaler caches node pool information. This may trigger "no scale task needed with desired node count n." This event does not affect any node pool and can be safely ignored.

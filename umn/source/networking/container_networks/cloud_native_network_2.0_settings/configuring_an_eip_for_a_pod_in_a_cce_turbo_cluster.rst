@@ -8,14 +8,14 @@ Configuring an EIP for a Pod in a CCE Turbo Cluster
 Application Scenarios
 ---------------------
 
-In Cloud Native Network 2.0, pods use VPC elastic network interfaces or supplementary network interfaces for networking. You can directly bind and EIPs to pods.
+In Cloud Native Network 2.0, pods use VPC elastic network interfaces or supplementary network interfaces for networking. You can directly bind EIPs to pods.
 
 To associate an EIP with a pod, simply set the value of the **yangtse.io/pod-with-eip** annotation to **true** when creating the pod. Then, the EIP will be automatically allocated and bound to the pod.
 
 Prerequisites
 -------------
 
-A CCE Turbo cluster is available and the cluster version meets the requirements listed in the following table.
+A CCE Turbo cluster is available and the cluster version meets the requirements listed in the table below.
 
 +-----------------------------------+-----------------------------------+
 | Scenario                          | Cluster Version                   |
@@ -42,7 +42,7 @@ A CCE Turbo cluster is available and the cluster version meets the requirements 
 Notes and Constraints
 ---------------------
 
--  To access a pod bound with an EIP from the Internet, add security group rules to allow the target request traffic.
+-  To access a pod with an EIP bound from the Internet, you need to add security group rules to allow the Internet traffic to the pod.
 -  Only one EIP can be bound to a pod.
 -  Configure the EIP-related annotation when creating a pod. After the pod is created, the annotations related to the EIP cannot be modified.
 -  Do not perform operations on the EIP associated with a pod through the EIP console or API. Otherwise, the EIP may malfunction. The operations include changing the EIP name, and deleting, unbinding, or binding the EIP.
@@ -79,10 +79,10 @@ The following uses a Deployment named **nginx** as an example. For details about
               app: nginx
             annotations:
               yangtse.io/pod-with-eip: "true"  # An EIP will be automatically allocated when the pod is created.
-              yangtse.io/eip-bandwidth-size: "5"  # EIP bandwidth
-              yangtse.io/eip-network-type: 5_bgp  # EIP type
-              yangtse.io/eip-charge-mode: traffic  # EIP billing mode
-              yangtse.io/eip-bandwidth-name: <eip_bandwidth_name>  # EIP bandwidth name
+              yangtse.io/eip-bandwidth-size: "5"   # (Optional) EIP bandwidth
+              yangtse.io/eip-network-type: 5_bgp  # (Optional) EIP type
+              yangtse.io/eip-charge-mode: traffic   # (Optional) EIP billing mode
+              yangtse.io/eip-bandwidth-name: <eip_bandwidth_name># (Optional) EIP bandwidth name
           spec:
             containers:
               - name: container-0
@@ -110,7 +110,7 @@ The following uses a Deployment named **nginx** as an example. For details about
       +-------------------------------+-------------+---------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
       | yangtse.io/eip-network-type   | No          | 5_bgp         | EIP type                                                                                                                                                                              | The type varies depending on the region. For details, see the EIP console.                                    |
       +-------------------------------+-------------+---------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-      | yangtse.io/eip-charge-mode    | No          | None          | Bandwidth mode.                                                                                                                                                                       | -  **traffic**: billed by traffic                                                                             |
+      | yangtse.io/eip-charge-mode    | No          | None          | EIP billing mode                                                                                                                                                                      | -  **traffic**: billed by traffic                                                                             |
       |                               |             |               |                                                                                                                                                                                       |                                                                                                               |
       |                               |             |               | **You are advised to configure this parameter.** If this parameter is left blank, no billing mode is specified. In this case, the default value of the EIP API in the region is used. |                                                                                                               |
       +-------------------------------+-------------+---------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
@@ -138,7 +138,7 @@ The following uses a Deployment named **nginx** as an example. For details about
               app: nginx
             annotations:
               yangtse.io/pod-with-eip: "true"  # An EIP will be automatically allocated when the pod is created.
-              yangtse.io/eip-network-type: 5_bgp  # EIP type
+              yangtse.io/eip-network-type: 5_bgp  # (Optional) EIP type
               yangtse.io/eip-bandwidth-id: <eip_bandwidth_id>  # Shared bandwidth ID of the EIP
           spec:
             containers:
@@ -182,6 +182,7 @@ If you configure the **yangtse.io/eip-id** annotation when creating a pod, the E
 
    -  After an existing EIP is bound to a pod, CCE will automatically add the cluster ID, namespace, and pod name labels to the EIP.
    -  When a pod using an existing EIP is deleted, the EIP will be retained. CCE will automatically delete the labels for the cluster ID, namespace, and pod name that were added when the EIP was bound.
+   -  Before deleting the target cluster, delete the pod that uses the existing EIP. Otherwise, the tags added to the EIP may be retained.
 
 The following example shows how to create a Deployment named **nginx** with a single pod with an EIP automatically bound.
 

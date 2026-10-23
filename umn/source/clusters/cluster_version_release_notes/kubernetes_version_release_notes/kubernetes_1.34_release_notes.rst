@@ -10,12 +10,12 @@ CCE has passed the Certified Kubernetes Conformance Program and is a certified K
 Indexes
 -------
 
--  :ref:`New and Enhanced Features <cce_bulletin_0108__en-us_topic_0000002521161917_en-us_topic_0000002486722206_section14972102702312>`
--  :ref:`API Changes and Removals <cce_bulletin_0108__en-us_topic_0000002521161917_en-us_topic_0000002486722206_section1898982110241>`
--  :ref:`Enhanced Kubernetes 1.34 on CCE <cce_bulletin_0108__en-us_topic_0000002521161917_en-us_topic_0000002486722206_section115291322132513>`
--  :ref:`References <cce_bulletin_0108__en-us_topic_0000002521161917_en-us_topic_0000002486722206_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583>`
+-  :ref:`New and Enhanced Features <cce_bulletin_0108__en-us_topic_0000002486722206_section14972102702312>`
+-  :ref:`API Changes and Removals <cce_bulletin_0108__en-us_topic_0000002486722206_section1898982110241>`
+-  :ref:`Enhanced Kubernetes 1.34 on CCE <cce_bulletin_0108__en-us_topic_0000002486722206_section115291322132513>`
+-  :ref:`References <cce_bulletin_0108__en-us_topic_0000002486722206_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583>`
 
-.. _cce_bulletin_0108__en-us_topic_0000002521161917_en-us_topic_0000002486722206_section14972102702312:
+.. _cce_bulletin_0108__en-us_topic_0000002486722206_section14972102702312:
 
 New and Enhanced Features
 -------------------------
@@ -75,7 +75,7 @@ New and Enhanced Features
 
       When you configure resource requests or limits for pods, the CPU and memory information displayed on the console, including requests, limits, and usage, is still calculated based on the container-level values.
 
-.. _cce_bulletin_0108__en-us_topic_0000002521161917_en-us_topic_0000002486722206_section1898982110241:
+.. _cce_bulletin_0108__en-us_topic_0000002486722206_section1898982110241:
 
 API Changes and Removals
 ------------------------
@@ -89,7 +89,7 @@ API Changes and Removals
 -  The fallback behavior of the Downward API's **resourceFieldRef** field has been updated to consider pod-level resources. If a container-level resource limit is not configured, the pod-level resource limit will be used first before falling back to node allocatable resources.
 -  Zero-valued **metadata.creationTimestamp** is now omitted and no longer serialized as an explicit **null** in JSON, YAML, or CBOR output.
 
-.. _cce_bulletin_0108__en-us_topic_0000002521161917_en-us_topic_0000002486722206_section115291322132513:
+.. _cce_bulletin_0108__en-us_topic_0000002486722206_section115291322132513:
 
 Enhanced Kubernetes 1.34 on CCE
 -------------------------------
@@ -98,7 +98,7 @@ During a version maintenance period, CCE periodically updates Kubernetes 1.34 an
 
 For details about cluster version updates, see :ref:`Patch Versions <cce_10_0405>`.
 
-.. _cce_bulletin_0108__en-us_topic_0000002521161917_en-us_topic_0000002486722206_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583:
+.. _cce_bulletin_0108__en-us_topic_0000002486722206_en-us_topic_0000001072975092_en-us_topic_0261805759_en-us_topic_0261793154_section1272182810583:
 
 References
 ----------

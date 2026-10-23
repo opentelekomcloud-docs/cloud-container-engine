@@ -5,7 +5,7 @@
 What Should I Do If Domain Name Resolution Fails in a CCE Cluster?
 ==================================================================
 
-Check Item 1: Whether the coredns Add-on Has Been Installed
+Check Item 1: Whether the CoreDNS Add-on Has Been Installed
 -----------------------------------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
@@ -14,7 +14,7 @@ Check Item 1: Whether the coredns Add-on Has Been Installed
 
 .. _cce_faq_00197__section19878113435:
 
-Check Item 2: Whether the coredns Instance Reaches the Performance Limit
+Check Item 2: Whether the CoreDNS Instance Reaches the Performance Limit
 ------------------------------------------------------------------------
 
 CoreDNS QPS is positively correlated with the CPU usage. If the QPS is high, adjust the CoreDNS instance specifications based on the QPS.
@@ -27,7 +27,7 @@ CoreDNS QPS is positively correlated with the CPU usage. If the QPS is high, adj
 
 #. Click **Monitor** of the add-on pods to view the CPU and memory usage.
 
-   If the add-on performance reaches the bottleneck, adjust the coredns add-on specifications.
+   If the add-on performance reaches the bottleneck, adjust the CoreDNS add-on specifications.
 
 Check Item 3: Whether the External Domain Name Resolution Is Slow or Times Out
 ------------------------------------------------------------------------------
@@ -41,37 +41,37 @@ When service requests in the cluster are sent to an external DNS server, a domai
 
 To locate the fault, perform the following operations:
 
-#. Check the host name carefully (spelling and extra spaces).
+#. Check the hostname carefully (spelling and extra spaces).
 
-#. Check the DNS settings. Before running the application, run the **ping hostname** command to ensure that the DNS server has been started and running. If the host name is new, you need to wait for a period of time before the DNS server is accessed.
+#. Check the DNS settings. Before running the application, run the **ping** *hostname* command to ensure that the DNS server has been started and running. If the hostname is new, you need to wait for a period of time before the DNS server is accessed.
 
-#. Check the CPU and memory usage of the coredns add-on to determine whether the performance bottleneck has been reached. For details, see :ref:`Check Item 2: Whether the coredns Instance Reaches the Performance Limit <cce_faq_00197__section19878113435>`.
+#. Check the CPU and memory usage of the CoreDNS add-on to determine whether the performance bottleneck has been reached. For details, see :ref:`Check Item 2: Whether the CoreDNS Instance Reaches the Performance Limit <cce_faq_00197__section19878113435>`.
 
-#. Check whether traffic limiting is performed on the coredns add-on. If traffic limiting is triggered, the processing time of some requests may be prolonged. In this case, you need to adjust the coredns add-on specifications.
+#. Check whether traffic limiting is performed on the CoreDNS add-on. If traffic limiting is triggered, the processing time of some requests may be prolonged. In this case, you need to adjust the CoreDNS add-on specifications.
 
-   Log in to the node where the coredns add-on is installed and view the following content:
+   Log in to the node where the CoreDNS add-on is installed and view the following content:
 
    .. code-block::
 
-      cat /sys/fs/cgroup/cpu/kubepods/pod<pod_uid>/<coredns container ID>/cpu.stat
+      cat /sys/fs/cgroup/cpu/kubepods/pod<pod_uid>/<CoreDNS container ID>/cpu.stat
 
-   -  *<pod uid>* indicates the pod UID of the coredns add-on, which can be obtained by running the following command:
+   -  *<pod uid>* indicates the pod UID of the CoreDNS add-on, which can be obtained by running the following command:
 
       .. code-block::
 
          kubectl get po <pod name> -nkube-system -ojsonpath='{.metadata.uid}{"\n"}'
 
-      In the preceding command, *<pod name>* indicates the name of the coredns add-on running on the current node.
+      In the preceding command, *<pod name>* indicates the name of the CoreDNS add-on running on the current node.
 
-   -  *<coredns container ID>* must be a complete container ID, which can be obtained by running the following command:
+   -  *<CoreDNS container ID>* must be a complete container ID, which can be obtained by running the following command:
 
-      Nodes that use Docker:
+      Docker nodes:
 
       .. code-block::
 
          docker ps --no-trunc | grep coredns | awk '{print $1}'
 
-      Nodes that use containerd:
+      containerd nodes:
 
       .. code-block::
 
@@ -88,24 +88,24 @@ To locate the fault, perform the following operations:
    -  **nr_throttled**: number of times that traffic is limited.
    -  **throttled_time**: total duration of traffic limiting, in nanoseconds.
 
-If the host name and DNS settings are correct, you can use the following optimization policies.
+If the hostname and DNS settings are correct, you can use the following optimization policies.
 
 **Optimization policies:**
 
-#. Change the coredns cache time.
+#. Change the CoreDNS cache time.
 #. Configure the stub domain.
 #. Modify the value of **ndots**.
 
 .. note::
 
-   -  **Increasing the cache time of coredns** helps resolve the same domain name for the *N* time, reducing the number of cascading DNS requests.
+   -  **Increasing the cache time of CoreDNS** helps resolve the same domain name for the *N* time, reducing the number of cascading DNS requests.
    -  **Configuring the stub domain** can reduce the number of DNS request links.
 
 **How to modify:**
 
-#. Modifying the coredns cache time and configuring the stub domain:
+#. Modifying the CoreDNS cache time and configuring the stub domain:
 
-   Restart the coredns add-on after you modify the configurations.
+   Restart the CoreDNS add-on after you modify the configurations.
 
 #. Modifying **ndots**:
 

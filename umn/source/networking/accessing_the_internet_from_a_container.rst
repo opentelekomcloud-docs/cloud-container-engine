@@ -11,16 +11,16 @@ Containers can access the Internet in either of the following ways:
 -  Bind an EIP to the target pod if the cluster uses a Cloud Native 2.0 network. For details, see :ref:`Configuring an EIP for a Pod in a CCE Turbo Cluster <cce_10_0734>`.
 -  Configure SNAT rules through NAT Gateway.
 
-You can use NAT Gateway to enable pods in a VPC to access the Internet. NAT Gateway provides source network address translation (SNAT), which translates private IP addresses to a public IP address using the assigned EIP. Pods in the VPC can share this EIP to access the Internet. :ref:`Figure 1 <cce_10_0400__en-us_topic_0261817696_en-us_topic_0241700138_en-us_topic_0144420145_fig34611314153619>` shows the SNAT architecture. SNAT allows the pods in a VPC to access the Internet without being bound to EIPs. SNAT supports a large number of concurrent connections, which makes it suitable for applications involving a large number of requests and connections.
+NAT Gateway provides source network address translation (SNAT) for VPC pods, translating private IP addresses to the EIP's public IP address. Pods in the VPC share this EIP for Internet access. :ref:`Figure 1 <cce_10_0400__en-us_topic_0261817696_en-us_topic_0241700138_en-us_topic_0144420145_fig34611314153619>` shows the SNAT architecture. SNAT allows the pods in a VPC to access the Internet without being bound to EIPs. SNAT supports a large number of concurrent connections, which makes it suitable for applications involving a large number of requests and connections.
 
 .. _cce_10_0400__en-us_topic_0261817696_en-us_topic_0241700138_en-us_topic_0144420145_fig34611314153619:
 
-.. figure:: /_static/images/en-us_image_0000002484119606.png
+.. figure:: /_static/images/en-us_image_0000002662009925.png
    :alt: **Figure 1** SNAT
 
    **Figure 1** SNAT
 
-To enable a container to access the Internet, perform the following steps:
+This section describes how to use a NAT gateway for Internet access.
 
 #. Obtain an EIP.
 
@@ -45,7 +45,7 @@ To enable a container to access the Internet, perform the following steps:
 #. Configure an SNAT rule and bind the EIP to the subnet.
 
    a. On the page displayed, click the name of the NAT gateway for which you want to add the SNAT rule.
-   b. On the **SNAT Rules** tab page, click **Add SNAT Rule**.
+   b. On the **SNAT Rules** tab, click **Add SNAT Rule**.
    c. Configure parameters as required.
 
    .. note::
@@ -59,4 +59,4 @@ To enable a container to access the Internet, perform the following steps:
 
    After the SNAT rule is configured, workloads can access the Internet from the container. The Internet can be pinged from the container.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516199581.png
+.. |image1| image:: /_static/images/en-us_image_0000002631530798.png

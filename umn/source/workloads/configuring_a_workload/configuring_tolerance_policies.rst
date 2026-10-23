@@ -16,7 +16,7 @@ The following table shows how taint policies and tolerations affect pod running.
 |                       | -  Inactive pods will not be scheduled to the node.                        | -  If the tolerance time window **tolerationSeconds** is specified, pods still run on the node with taints within the time window. After the time expires, the pods will be evicted. |
 +-----------------------+----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | PreferNoSchedule      | -  Pods running on the node will not be evicted.                           | Pods can always run on this node.                                                                                                                                                    |
-|                       | -  Inactive pods will not be scheduled to the node **to the best extend**. |                                                                                                                                                                                      |
+|                       | -  Inactive pods will not be scheduled to the node **to the best extent**. |                                                                                                                                                                                      |
 +-----------------------+----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | NoSchedule            | -  Pods running on the node will not be evicted.                           | Pods can always run on this node.                                                                                                                                                    |
 |                       | -  Inactive pods will not be scheduled to the node.                        |                                                                                                                                                                                      |
@@ -54,11 +54,7 @@ Configuring Tolerance Policies on the Console
 Default Tolerance Policy
 ------------------------
 
-Kubernetes automatically adds tolerances for the **node.kubernetes.io/not-ready** and **node.kubernetes.io/unreachable** taints to pods, and sets the tolerance time window (**tolerationSeconds**) to 300s. These default tolerance policies indicate that when either of the preceding taint is added to the node where pods are running, the pods can still run on the node for 5 minutes.
-
-.. note::
-
-   When a DaemonSet pod is created, no tolerance time window will be specified for the tolerances automatically added for the preceding taints. When either of the preceding taints is added to the node where the DaemonSet pod is running, the DaemonSet pod will never be evicted.
+Kubernetes automatically adds tolerances for the **node.kubernetes.io/not-ready** and **node.kubernetes.io/unreachable** taints to pods, and sets the tolerance time window (**tolerationSeconds**) to 300s. These default toleration policies indicate that when either of the preceding taints is applied to a node running these pods, the pods can remain on that node for 5 minutes.
 
 .. code-block::
 

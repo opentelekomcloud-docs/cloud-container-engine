@@ -19,7 +19,7 @@ The cluster cannot be deleted, and the following error information is displayed:
 Possible Cause
 --------------
 
-The cluster's security group has undeleted resources, preventing its deletion and causing the creation of the cluster to fail.
+The cluster's security group has undeleted resources, preventing its deletion and causing a cluster deletion failure.
 
 Procedure
 ---------
@@ -28,8 +28,8 @@ Procedure
 
 #. Click the security group to view its details, and click the **Associated Instances** tab.
 
-   Obtain other resources associated with the security group, such as elastic network interfaces, supplementary network interfaces, and servers. You can delete the residual resources. The supplementary network interfaces will be automatically deleted.
+   Obtain other resources associated with the security group, such as network interfaces, supplementary network interfaces, and servers. You can delete the residual resources. The supplementary network interfaces will be automatically deleted.
 
-#. For a residual elastic network interface, go to the **Network Interfaces** page and delete the elastic network interface obtained in the previous step.
+#. For a residual network interface, go to the **Network Interfaces** page and delete the network interface obtained in the previous step.
 
-#. Go to the **Security Groups** page to confirm that the security group is not associated with any instance. Then, go to the CCE console to delete the cluster.
+#. Go to the **Security Groups** page and confirm that the security group is not associated with any instance. Then, go to the CCE console to delete the cluster.

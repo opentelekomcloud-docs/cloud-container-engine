@@ -5,8 +5,8 @@
 Configuring a Static IP Address for a Pod in a CCE Turbo Cluster
 ================================================================
 
-Application Scenarios
----------------------
+Applications
+------------
 
 In Cloud Native Network 2.0, each pod is assigned a VPC network interface with a static IP address. This is particularly applicable to StatefulSet pods. This practice is commonly used for access control, service registration, service discovery, and log auditing.
 

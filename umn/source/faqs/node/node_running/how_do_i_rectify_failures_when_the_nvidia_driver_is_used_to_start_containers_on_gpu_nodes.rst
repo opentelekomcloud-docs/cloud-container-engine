@@ -22,11 +22,7 @@ A node is running properly and has GPU resources. However, the following error i
 
 #. Check whether the NVIDIA driver is running properly.
 
-   Log in to the node where the add-on is running and view the driver installation log in the following path:
-
-   .. code-block::
-
-      /opt/cloud/cce/nvidia/nvidia_installer.log
+   Log in to the node where the add-on is running and view the driver installation log in the **/opt/cloud/cce/nvidia/nvidia_installer.log** or **/usr/local/nvidia/nvidia-installer.log** directory.
 
    View standard output logs of the NVIDIA container.
 
@@ -34,28 +30,28 @@ A node is running properly and has GPU resources. However, the following error i
 
    .. code-block::
 
-      docker ps -a | grep nvidia
+      crictl ps -a | grep nvidia
 
    View logs by running the following command:
 
    .. code-block::
 
-      docker logs Container ID
+      crictl logs Container ID
 
 What Should I Do If the NVIDIA Version Reported by a Service and the CUDA Version Do Not Match?
 -----------------------------------------------------------------------------------------------
 
-Run the following command to check the CUDA version in the container:
+#. Check the CUDA version in the service container (preferentially using the official CUDA query method):
 
-.. code-block::
+   .. code-block::
 
-   cat /usr/local/cuda/version.txt
+      cat /usr/local/cuda/version.txt
 
-Check whether the CUDA version supported by the NVIDIA driver version of the node where the container is located contains the CUDA version of the container.
+#. Check whether the CUDA version inside the container is included in the range of CUDA versions supported by the NVIDIA driver on the host node. Run **nvidia-smi** to check the maximum CUDA version supported by the driver on the node.
 
 Helpful Links
 -------------
 
 :ref:`What Should I Do If an Error Occurs When I Deploy a Service on a GPU Node? <cce_faq_00109>`
 
-.. |image1| image:: /_static/images/en-us_image_0000002516197719.png
+.. |image1| image:: /_static/images/en-us_image_0000002662011331.png

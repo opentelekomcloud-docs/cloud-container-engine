@@ -5,6 +5,8 @@
 Managing Node Labels
 ====================
 
+You can add different labels to nodes and define different attributes for labels. By using these node labels, you can quickly understand the characteristics of each node.
+
 Node Label Usage Scenario
 -------------------------
 
@@ -22,66 +24,78 @@ After a node is created, some fixed labels exist and cannot be deleted. For deta
 
 .. note::
 
-   Do not manually change the inherent labels that are automatically added to a node. If the manually changed value conflicts with the system value, the system value is used.
+   Do not manually modify system labels automatically applied to nodes. System values take precedence over conflicting manual changes.
 
 .. _cce_10_0004__table83962234533:
 
 .. table:: **Table 1** Inherent labels of a node
 
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | Key                                                 | Description                                                 |
-   +=====================================================+=============================================================+
-   | New: topology.kubernetes.io/region                  | Region where the node is located                            |
-   |                                                     |                                                             |
-   | Old: failure-domain.beta.kubernetes.io/region       |                                                             |
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | New: topology.kubernetes.io/zone                    | AZ where the node is located                                |
-   |                                                     |                                                             |
-   | Old: failure-domain.beta.kubernetes.io/zone         |                                                             |
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | New: node.kubernetes.io/baremetal                   | Whether it is a bare metal node                             |
-   |                                                     |                                                             |
-   | Old: failure-domain.beta.kubernetes.io/is-baremetal | **false** indicates that the node is not a bare metal node. |
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | node.kubernetes.io/container-engine                 | Container engine                                            |
-   |                                                     |                                                             |
-   |                                                     | Example: **docker** or **containerd**                       |
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | node.kubernetes.io/instance-type                    | Node specifications                                         |
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | kubernetes.io/arch                                  | Node processor architecture                                 |
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | kubernetes.io/hostname                              | Node name                                                   |
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | kubernetes.io/os                                    | Node OS type                                                |
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | node.kubernetes.io/subnetid                         | ID of the subnet where the node is located                  |
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | os.architecture                                     | Node processor architecture                                 |
-   |                                                     |                                                             |
-   |                                                     | For example, **amd64** indicates a AMD64-bit processor.     |
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | os.name                                             | Node OS name                                                |
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | os.version                                          | Node OS kernel version                                      |
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | accelerator                                         | GPU node labels                                             |
-   +-----------------------------------------------------+-------------------------------------------------------------+
-   | cce.cloud.com/cce-nodepool                          | The dedicated label of a node in a node pool                |
-   +-----------------------------------------------------+-------------------------------------------------------------+
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | Key                                                 | Description                                                                                                          |
+   +=====================================================+======================================================================================================================+
+   | New: topology.kubernetes.io/region                  | Region where the node is located                                                                                     |
+   |                                                     |                                                                                                                      |
+   | Old: failure-domain.beta.kubernetes.io/region       |                                                                                                                      |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | New: topology.kubernetes.io/zone                    | AZ where the node is located                                                                                         |
+   |                                                     |                                                                                                                      |
+   | Old: failure-domain.beta.kubernetes.io/zone         |                                                                                                                      |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | New: node.kubernetes.io/baremetal                   | Whether it is a bare metal node                                                                                      |
+   |                                                     |                                                                                                                      |
+   | Old: failure-domain.beta.kubernetes.io/is-baremetal | **false** indicates that the node is not a bare metal node.                                                          |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | node.kubernetes.io/container-engine                 | Container runtime                                                                                                    |
+   |                                                     |                                                                                                                      |
+   |                                                     | Example: **docker** or **containerd**                                                                                |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | node.kubernetes.io/instance-type                    | Node specifications                                                                                                  |
+   |                                                     |                                                                                                                      |
+   | beta.kubernetes.io/instance-type                    |                                                                                                                      |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | kubernetes.io/arch                                  | Node processor architecture                                                                                          |
+   |                                                     |                                                                                                                      |
+   | beta.kubernetes.io/arch                             |                                                                                                                      |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | kubernetes.io/hostname                              | Node name                                                                                                            |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | kubernetes.io/os                                    | Node OS type                                                                                                         |
+   |                                                     |                                                                                                                      |
+   | beta.kubernetes.io/os                               |                                                                                                                      |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | node.kubernetes.io/subnetid                         | ID of the subnet where the node is located                                                                           |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | os.architecture                                     | Node processor architecture                                                                                          |
+   |                                                     |                                                                                                                      |
+   |                                                     | For example, **amd64** indicates a AMD64-bit processor.                                                              |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | os.name                                             | Node OS name                                                                                                         |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | os.version                                          | Node OS kernel version                                                                                               |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | accelerator                                         | GPU node label                                                                                                       |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | cce.cloud.com/cce-nodepool                          | The dedicated label of a node in a node pool, indicating the node pool name                                          |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | cce.cloud.com/cce-nodepool-id                       | The dedicated label of a node in a node pool, indicating the node pool ID                                            |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | node.cce.io/billing-mode                            | Node billing mode                                                                                                    |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+   | node.cce.io/eni-network-mode                        | The type of network interfaces used by pods on a node. This label is available only for nodes in CCE Turbo clusters. |
+   +-----------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
 
 .. _cce_10_0004__section33951611481:
 
-Adding or Deleting a Node Label
--------------------------------
+Adding, Updating, or Deleting a Node Label
+------------------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
 #. In the navigation pane, choose **Nodes**. On the displayed page, click the **Nodes** tab, select the target node and click **Manage Labels and Taints** above the node list.
 
-#. In the displayed window, click **Add Operation** under **Batch Operation** and then choose **Add/Update** or **Delete**.
+#. In the displayed window, click **Add Operation** under **Batch Operation**, and then choose **Add/Update** or **Delete**.
 
-   Enter the key and value of the label to be added or deleted, and click **OK**.
+   Enter the key and value of the label to be added, updated, or deleted, and click **OK**.
 
    For example, the key is **deploy_qa** and the value is **true**, indicating that the node is used to deploy the QA (test) environment.
 

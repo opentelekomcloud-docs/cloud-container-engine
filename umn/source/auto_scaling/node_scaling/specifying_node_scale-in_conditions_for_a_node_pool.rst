@@ -59,7 +59,7 @@ Step 2: Specify Custom Scale-in Conditions for the Node Pool
 Step 3: Verify that the Custom Scale-in Conditions Take Effect
 --------------------------------------------------------------
 
-In this example, the custom scale-in threshold is set to 30% for the node pool, while the default scale-in threshold is 50%. If the node CPU and memory in the node pool remains between 30% and 50% and scale-in is not triggered, the node pool preferentially follows the custom scale-in conditions instead of the default scale-in conditions.
+In this example, the custom scale-in threshold is set to 30% for the node pool, while the default scale-in threshold is 50%. If the node resource usage in the node pool remains between 30% and 50% and scale-in is not triggered, the node pool preferentially follows the custom scale-in conditions instead of the default scale-in conditions.
 
 Helpful Links
 -------------

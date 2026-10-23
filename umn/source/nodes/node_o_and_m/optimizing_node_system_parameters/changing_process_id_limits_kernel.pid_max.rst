@@ -44,7 +44,7 @@ Command output:
 
    kernel.pid_max = 32768
 
-Change **kernel.pid_max**, if necessary, as instructed in :ref:`Changing kernel.pid_max of a Node <cce_10_0401__section103357276311>`.
+Change **kernel.pid_max**, if necessary, as instructed in :ref:`Changing kernel.pid_max <cce_10_0401__section103357276311>`.
 
 Checking Node PIDs
 ------------------
@@ -63,8 +63,8 @@ Command output:
 
 .. _cce_10_0401__section103357276311:
 
-Changing kernel.pid_max of a Node
----------------------------------
+Changing kernel.pid_max
+-----------------------
 
 Log in to the node and run the following command. **4194304** indicates the value of **kernel.pid_max** and is used as an example here.
 
@@ -72,7 +72,7 @@ Log in to the node and run the following command. **4194304** indicates the valu
 
    echo kernel.pid_max = 4194304 >> /etc/sysctl.conf && sysctl -p
 
-Run the following command to check whether the returned value is the same as that you configured:
+Check whether the returned value matches your configuration. If it does, the change is successful.
 
 .. code-block::
 

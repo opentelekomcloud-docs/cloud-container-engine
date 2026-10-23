@@ -68,7 +68,7 @@ To create a secret on the console and pull a third-party image to create a workl
 
    .. caution::
 
-      If you do not specify a domain name when entering a third-party image address, for example, **nginx:latest**, the image will be pulled from **docker.io** by default. To specify the default image pull address, configure the **Modify Image Repository Configuration** parameter in the :ref:`container engine configuration <cce_10_0652__section942261815116>` of the node pool.
+      If you do not specify a domain name when entering a third-party image address, for example, **nginx:latest**, the image will be pulled from **docker.io** by default. To specify the default image pull address, configure the **Modify Image Repository Configuration** parameter in the :ref:`container runtime configuration <cce_10_0652__section942261815116>` of the node pool.
 
 #. Configure other parameters and click **Create Workload**. If the workload status is **Running**, the third-party image has been pulled.
 
@@ -129,7 +129,7 @@ Using kubectl
 
          vim deployment.yaml
 
-      The file content is as follows:
+      Example file content:
 
       .. code-block::
 
@@ -159,7 +159,7 @@ Using kubectl
 
       .. caution::
 
-         If you do not specify a domain name when entering a third-party image address, for example, **nginx:latest**, the image will be pulled from **docker.io** by default. To specify the default image pull address, configure the **Modify Image Repository Configuration** parameter in the :ref:`container engine configuration <cce_10_0652__section942261815116>` of the node pool.
+         If you do not specify a domain name when entering a third-party image address, for example, **nginx:latest**, the image will be pulled from **docker.io** by default. To specify the default image pull address, configure the **Modify Image Repository Configuration** parameter in the :ref:`container runtime configuration <cce_10_0652__section942261815116>` of the node pool.
 
    b. Create the workload.
 

@@ -19,14 +19,14 @@ Procedure
 
 #. In the navigation pane, choose **Nodes**. On the **Node Pools** tab, locate the row containing the target node pool and click **Auto Scaling**.
 
-   -  If CCE Cluster Autoscaler is not installed, configure add-on parameters based on service requirements, click **Install**, and wait until the add-on is installed. For details about add-on configurations, see :ref:`CCE Cluster Autoscaler <cce_10_0154>`.
+   -  If CCE Cluster Autoscaler is not installed, click **Install**, configure add-on parameters based on service requirements, click **Install**, and wait until the add-on is installed. For details about add-on configurations, see :ref:`CCE Cluster Autoscaler <cce_10_0154>`.
    -  If CCE Cluster Autoscaler has been installed, configure scaling policies.
 
 #. Configure auto scaling policies.
 
-   **AS Configuration**
+   **Auto Scaling Configuration**
 
-   -  Custom rules: Click **Add Rule**. In the dialog box displayed, configure parameters. You can add multiple node scaling policies, a maximum of one CPU usage-based rule, and a maximum of one memory usage-based rule. The total number of rules cannot exceed 10.
+   -  Custom rules: Click **Add Rule**. In the dialog box displayed, configure parameters. You can add multiple node scaling policies, including a maximum of one CPU-based rule and one memory-based rule. The total number of rules cannot exceed 10.
 
       The following table lists custom rules.
 
@@ -67,7 +67,7 @@ Procedure
 
    -  .. _cce_10_0727__cce_10_0209_li44889425212:
 
-      **Nodes**: The number of nodes in a node pool will always be within the specified node range during auto scaling, but this setting does not apply to manual scaling.
+      **Nodes**: specifies the minimum number of nodes during scale-in and the maximum number of nodes during scale-out. The number of nodes in a node pool will always be within the specified node range during auto scaling, but this setting does not apply to manual scaling.
 
       For example, if the number of nodes in a node pool has reached the maximum, auto scaling cannot be triggered, but manual scaling is still allowed.
 
@@ -81,6 +81,6 @@ Procedure
 
       .. note::
 
-         If multiple flavors are configured for a node pool, you can specify the number of nodes and the scaling priority for each flavor.
+         If multiple flavors are configured for a node pool, you can specify the number of nodes and the scaling priority for each flavor. Multiple flavors are supported only by add-ons v1.21.18, v1.23.19, v1.25.9, or later.
 
 #. Click **OK**.

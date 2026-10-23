@@ -10,8 +10,8 @@ Volcano Scheduler offers CPU and memory load-aware scheduling for pods and prefe
 Prerequisites
 -------------
 
--  A cluster of v1.21 or later is available. For details, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
--  The Volcano add-on of v1.11.14 or later has been installed. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
+-  A cluster of v1.21 or later is available. For details, see :ref:`Creating a Standard/Turbo Cluster <cce_10_0028>`.
+-  The Volcano add-on of 1.11.14 or later has been installed. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
 -  The Cloud Native Cluster Monitoring add-on (kube-prometheus-stack) has been installed and it runs in local data storage mode. For details, see :ref:`Cloud Native Cluster Monitoring <cce_10_0406>`. If you use an on-premises Prometheus monitoring system, Prometheus 2.35.0 or later is recommended. For details, see :ref:`Using On-premises Prometheus <cce_10_0789__section423012214818>`.
 -  Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
@@ -112,7 +112,7 @@ Using Cloud Native Cluster Monitoring
 
       In the example rules below, the rules in **config.yaml** are new ones and others are existing ones. Custom metric collection rules are related to the Cloud Native Cluster Monitoring add-on version. Select the rules based on the add-on version.
 
-      -  For Cloud Native Cluster Monitoring of v3.12.0 or earlier versions:
+      -  For Cloud Native Cluster Monitoring of 3.12.0 or earlier versions:
 
          .. code-block::
 
@@ -166,7 +166,7 @@ Using Cloud Native Cluster Monitoring
                   window: 1m
             ...
 
-      -  For Cloud Native Cluster Monitoring of v3.12.1 or later versions:
+      -  For Cloud Native Cluster Monitoring of 3.12.1 or later versions:
 
          .. code-block::
 
@@ -280,7 +280,7 @@ Using Cloud Native Cluster Monitoring
 
       .. note::
 
-         For optimal load-aware scheduling, disable bin packing because this policy preferentially schedules pods to the node with the maximal resources allocated based on pods' requested resources. This affects load-aware scheduling to some extent. For details about the combination of multiple policies, see :ref:`Configuration Cases for Resource Usage-based Scheduling <cce_10_0813>`.
+         For optimal load-aware scheduling, disable bin packing because this policy preferentially schedules pods to the node with the maximum resources allocated based on pods' requested resources. This affects load-aware scheduling to some extent. For details about the combination of multiple policies, see :ref:`Configuration Cases for Resource Usage-based Scheduling <cce_10_0813>`.
 
       +--------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
       | Parameter                            | Description                                                                                                                                                                                                                                                   | Default Value         |
@@ -540,8 +540,8 @@ Using On-premises Prometheus
          | name                  | usage                 | The name of the enabled add-on. The value is fixed as **usage**.                                                                                                                                                                                                                                           |
          +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. |image1| image:: /_static/images/en-us_image_0000002483959498.png
-.. |image2| image:: /_static/images/en-us_image_0000002516079443.png
-.. |image3| image:: /_static/images/en-us_image_0000002516079449.png
-.. |image4| image:: /_static/images/en-us_image_0000002483959494.png
-.. |image5| image:: /_static/images/en-us_image_0000002516079445.png
+.. |image1| image:: /_static/images/en-us_image_0000002631690576.png
+.. |image2| image:: /_static/images/en-us_image_0000002631690574.png
+.. |image3| image:: /_static/images/en-us_image_0000002661849873.png
+.. |image4| image:: /_static/images/en-us_image_0000002662009807.png
+.. |image5| image:: /_static/images/en-us_image_0000002662009809.png

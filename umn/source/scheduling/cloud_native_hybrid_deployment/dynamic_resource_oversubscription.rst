@@ -12,7 +12,7 @@ Resource oversubscription is the process of using idle requested resources. Over
 Hybrid deployment of online and offline jobs in a cluster can better utilize cluster resources.
 
 
-.. figure:: /_static/images/en-us_image_0000002516079395.png
+.. figure:: /_static/images/en-us_image_0000002661849769.png
    :alt: **Figure 1** Resource oversubscription
 
    **Figure 1** Resource oversubscription
@@ -38,7 +38,7 @@ Hybrid deployment is supported, and CPU and memory resources can be oversubscrib
 
    If both online and offline jobs exist, online jobs are scheduled first. When the node resource usage exceeds the upper limit and the node requests exceed 100%, offline jobs will be evicted.
 
--  CPU/Memory resources can be isolation by kernel.
+-  CPU/Memory resources can be isolated by kernel.
 
    CPU isolation: Online jobs can quickly preempt CPU resources of offline jobs and suppress the CPU usage of the offline jobs.
 

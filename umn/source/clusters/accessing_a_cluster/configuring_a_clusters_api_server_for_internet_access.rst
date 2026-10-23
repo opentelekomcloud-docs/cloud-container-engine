@@ -30,7 +30,7 @@ Configuring Access Policies for an API Server
 
 To ensure the security of a cluster's API server, it is important to modify the security group rules for the master nodes. This is because the EIP, which is exposed to the Internet, is at risk of being attacked.
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. On the **Overview** page, find and copy the cluster ID.
+#. Log in to the CCE console. On the **Cluster Management** page, hover over the cluster name, click |image1| next to **Cluster ID**, and copy and save the value.
 #. Log in to the VPC console. In the navigation pane, choose **Access Control** > **Security Groups**.
 #. Select **Description** as the filter criterion and search for the target security group by cluster ID.
 #. Locate the row that contains the security group (starting with *{CCE cluster name}*\ **-cce-control**) of the master node and click **Manage Rules** in the **Operation** column.
@@ -39,6 +39,8 @@ To ensure the security of a cluster's API server, it is important to modify the 
 
    .. note::
 
-      In addition to the client IP address, the port must allow traffic from the CIDR blocks of the VPC, container, and the control plane of the hosted service mesh to ensure that the API Server can be accessed from within the cluster.
+      In addition to the client IP address, the port must allow traffic from and to the CIDR blocks of the VPC and container to ensure that the API Server can be accessed from the cluster.
 
 #. Click **Confirm**.
+
+.. |image1| image:: /_static/images/en-us_image_0000002537503888.png

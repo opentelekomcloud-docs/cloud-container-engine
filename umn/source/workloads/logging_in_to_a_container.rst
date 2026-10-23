@@ -46,4 +46,6 @@ Using kubectl
 
       kubectl exec -it nginx-59d89cb66f-mhljr -c container-1 -- /bin/sh
 
+   If a command prompt similar to **/ #** or **root@<container_id>:/ #** is displayed, you have logged in to the container.
+
 #. To exit the container, run the **exit** command.

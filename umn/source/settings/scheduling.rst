@@ -12,7 +12,7 @@ kube-scheduler
 
 kube-scheduler provides the community native, standard scheduling capabilities.
 
-Before **enabling volcano enhanced capabilities**, install Volcano Scheduler. Enabling this function will provide advanced scheduling capabilities, including optimizing resource utilization, enhancing AI job performance, and managing heterogeneous resources. This will ultimately improve cluster resource utilization and reduce costs.
+Before enabling **Volcano Enhancement**, install Volcano Scheduler. Enabling this function will provide advanced scheduling capabilities, including optimizing resource utilization, enhancing AI job performance, and managing heterogeneous resources. This will ultimately improve cluster resource utilization and reduce costs.
 
 Enhanced configurations of the Volcano Scheduler:
 
@@ -87,7 +87,7 @@ Enhanced AI Job Scheduling (Supported by Volcano Scheduler)
 
 **DRF Scheduling**
 
-Dominant Resource Fairness (DRF) is a scheduling algorithm based on the dominant resource of a container group. It supports fair allocation of multiple types of resources and is suitable for batch AI training and big data jobs. DRF is suitable for batch process small scale services like single AI model training and single big data computing and query, because it preferentially considers the throughput of services in clusters.
+Dominant Resource Fairness (DRF) is a scheduling algorithm based on the dominant resource of a container group. It supports fair allocation of multiple types of resources and is suitable for batch AI training and big data jobs. DRF is suitable for batch process small-scale services like single AI model training and single big data computing and query because it preferentially considers the throughput of services in clusters.
 
 DRF helps you enhance the service throughput of clusters and improve service performance. For details, see :ref:`DRF <cce_10_0777>`.
 

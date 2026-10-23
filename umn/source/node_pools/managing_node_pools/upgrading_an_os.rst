@@ -42,21 +42,21 @@ Procedure for Default Node Pools
 
       -  **Key Pair**
 
-         Select the key pair used to log in to the node. You can select a shared key.
+         Select the key pair used to log in to the node. Private key pairs are accessible only to you. Account key pairs are shared with all users in the account.
 
-         A key pair is used for identity authentication when you remotely log in to a node. If no key pair is available, click **Create Key Pair**.
+         A key pair is used for identity authentication when you remotely log in to the node. If no key pair is available, click **Create Key Pair**.
 
    -  Pre-installation script:
 
-      Installation script command. The script command will be Base64-transcoded. The characters of both the pre-installation and post-installation scripts are centrally calculated, and the total number of characters after transcoding cannot exceed 10240.
+      Installation script command. The script command will be Base64-transcoded. The characters of both the pre-installation and post-installation scripts are centrally calculated, and the total number of characters after transcoding cannot exceed 10,240.
 
       The script will be executed before Kubernetes software is installed. Note that if the script is incorrect, Kubernetes software may fail to be installed.
 
    -  Post-installation script:
 
-      Installation script command. The script command will be Base64-transcoded. The characters of both the pre-installation and post-installation scripts are centrally calculated, and the total number of characters after transcoding cannot exceed 10240.
+      Installation script command. The script command will be Base64-transcoded. The characters of both the pre-installation and post-installation scripts are centrally calculated, and the total number of characters after transcoding cannot exceed 10,240.
 
-      The script will be executed after Kubernetes software is installed, which does not affect the installation. During post-installation script execution, pods can be scheduled normally. However, if the script execution times out, node installation will fail. To prevent pods from being scheduled to nodes with incomplete script execution, enable the option to schedule pods only after the post-installation script execution completes.
+      The script will be executed after Kubernetes software is installed, which does not affect the installation. During post-installation script execution, pods can be scheduled normally. However, if the script times out, node installation fails. To prevent pod scheduling on nodes with incomplete script execution, enable the option to schedule pods only after post-installation script completion.
 
       .. caution::
 
@@ -70,11 +70,10 @@ Procedure for Non-default Node Pools
 #. Log in to the CCE console.
 #. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. In the right pane, click the **Node Pools** tab.
 #. Choose **More > Synchronize** in the **Operation** column of the target node pool.
-#. In the **Batch synchronization** window, configure parameters.
+#. In the **Batch Synchronize** window, configure parameters.
 
    -  **OS**: shows the image of the target version. You do not need to configure this parameter.
    -  **Synchronization Type**: **Reset node** is supported.
-   -  **Max. Nodes for Batch Synchronization**: maximum number of nodes that will be unavailable during node synchronization. Nodes will be unavailable during synchronization by resetting the nodes. Properly configure this parameter to prevent pod scheduling failures caused by too many unavailable nodes in the cluster.
-   -  In the node list, select the nodes requiring the synchronization of node pool configurations.
+   -  **Max. Nodes for Batch Synchronization**: the maximum number of nodes that can be synchronized simultaneously. Nodes will be unavailable during synchronization when the nodes are reset. Properly configure this parameter to prevent pod scheduling failures caused by too many unavailable nodes in the cluster.
 
-#. Click **OK**.
+#. Select the target nodes and click **OK** to start the synchronization.

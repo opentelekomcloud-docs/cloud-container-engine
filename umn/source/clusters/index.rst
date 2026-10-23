@@ -10,7 +10,7 @@ Clusters
 -  :ref:`Creating a Cluster <cce_10_0298>`
 -  :ref:`Accessing a Cluster <cce_10_0140>`
 -  :ref:`Managing Clusters <cce_10_0031>`
--  :ref:`Upgrading a Cluster <cce_10_0215>`
+-  :ref:`Upgrade Management <cce_10_0215>`
 
 .. toctree::
    :maxdepth: 1
@@ -21,4 +21,4 @@ Clusters
    creating_a_cluster/index
    accessing_a_cluster/index
    managing_clusters/index
-   upgrading_a_cluster/index
+   upgrade_management/index

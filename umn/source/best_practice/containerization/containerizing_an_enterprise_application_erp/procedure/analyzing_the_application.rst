@@ -5,7 +5,7 @@
 Analyzing the Application
 =========================
 
-Before containerizing an application, analyze the running environment and dependencies of the application, and get familiar with the application deployment mode. For details, see :ref:`Table 1 <cce_bestpractice_0005__table1893834493714>`.
+Before containerizing an application, analyze its runtime environment and dependencies, and get familiar with the application deployment mode. For details, see :ref:`Table 1 <cce_bestpractice_0005__table1893834493714>`.
 
 .. _cce_bestpractice_0005__table1893834493714:
 

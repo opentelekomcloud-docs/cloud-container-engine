@@ -20,14 +20,14 @@ Pod labels enable intelligent resource association. Once labels are added to pod
 -  App 1: **release=alpha**
 -  App 2: **release=beta**
 
-When App 3 is created with a workload affinity of **release=alpha**, Kubernetes will attempt to schedule App 3 onto the same node as App 1 or another node that matches this affinity. This enables intelligent collaborative deployment between App 1 and App 3. For details, see :ref:`Configuring Workload Affinity or Anti-affinity Scheduling (podAffinity or podAntiAffinity) <cce_10_0893>`.
+When creating workload App 3, configure a scheduling policy as follows: Set **Workload Affinity** to **Customize affinity**, and add a **Required** policy under **Workload Affinity**. Set **Namespace** to App 1's namespace, **Topology Domain** to **kubernetes.io/hostname**, **Label Key** to **release**, **Operator** to **In** (default), and **Label Value** to **alpha**. Kubernetes will attempt to schedule the workload to the node running App 1, or to another node meeting these conditions. This ensures App 1 and App 3 are co-located when possible. For details, see :ref:`Configuring Workload Affinity or Anti-affinity Scheduling (podAffinity or podAntiAffinity) <cce_10_0893>`.
 
 You can add labels to a pod using either the console or YAML.
 
 Adding a Pod Label Using the Console
 ------------------------------------
 
-When creating or upgrading a workload on the CCE console, you can add a **pod label** by clicking **Labels and Annotations** in the **Advanced Settings** area. This label helps identify the pod within the cluster. During the workload creation, CCE will add the label shown in the figure below to the workload pod by default. The value of **app** is the workload name.
+When creating or upgrading a workload on the CCE console, you can add a **pod label** by clicking **Labels and Annotations** in the **Advanced Settings** area. This label helps identify the pod within the cluster. When you create a workload, CCE automatically adds **app=workload-name** and **version=v1** labels to the pod by default.
 
 Adding a Pod Label Using YAML
 -----------------------------

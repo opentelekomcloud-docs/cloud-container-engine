@@ -39,6 +39,8 @@ The following lists some possible causes:
 
 -  **There are unfinished requests or resource occupation within a pod.** If a process within a pod continues to run for an extended period, it may prevent the pod from being terminated and cause it to enter the **Terminating** state.
 
+-  **If a postStart hook script in a container does not exit**, the container cannot be deleted, and the pod remains in the **Terminating** state.
+
 -  **A pod has finalizers specified.** Finalizers are used to clean up resources before they are deleted. If a pod has finalizers specified and the cleanup process is paused or unresponsive, the pod will remain in the **Terminating** state.
 
 -  **A pod has terminationGracePeriodSeconds configured.** Once a graceful exit time is set for a pod, it will enter the **Terminating** state upon termination and be automatically deleted after exiting gracefully.
@@ -46,11 +48,11 @@ The following lists some possible causes:
 Solution
 --------
 
-.. note::
+.. caution::
 
-   Before forcibly deleting a pod, it is important to consider the potential risks to your services. This is especially true for StatefulSet pods, because there is a higher chance of data inconsistency and abnormal container exits. Take the time to evaluate these risks before proceeding with the operation. For details, see `Force Delete StatefulSet Pods <https://kubernetes.io/docs/tasks/run-application/force-delete-stateful-set-pod/#statefulset-considerations>`__.
+   Before forcibly deleting a pod, it is important to consider the potential risks to your services. This is especially true for StatefulSet pods because there is a higher chance of data inconsistency and abnormal container exits. Take the time to evaluate these risks before proceeding with the operation. For details, see `Force Delete StatefulSet Pods <https://kubernetes.io/docs/tasks/run-application/force-delete-stateful-set-pod/#statefulset-considerations>`__.
 
-Run the following command to forcibly delete the pods created in any ways:
+Run the following command to forcibly delete pods regardless of how they were created:
 
 .. code-block::
 
@@ -61,3 +63,19 @@ Run the following command to delete the terminating pod described at the very be
 .. code-block::
 
    kubectl delete pod aos-apiserver-5f8f5b5585-s9l92 -n aos --grace-period=0 --force
+
+**Special Cases**
+
+If a pod with a running postStart hook is forcibly deleted, the pod resource is removed, but the container process may continue running on the node. To clean up the residual container, identify the container ID *<containerId>* on the node and forcibly delete the container using the appropriate runtime command.
+
+-  Docker
+
+   .. code-block::
+
+      docker rm -f <containerId>
+
+-  containerd
+
+   .. code-block::
+
+      crictl rm -f <containerId>

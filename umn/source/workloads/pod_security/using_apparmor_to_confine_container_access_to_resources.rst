@@ -9,8 +9,8 @@ Application Armor (AppArmor) is a security module of the Linux kernel, which is 
 
 This section describes how to use AppArmor to confine container access to resources on Ubuntu nodes in a CCE cluster.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  This feature is supported only in clusters of v1.31.6-r0 or later, and the nodes must run Ubuntu. Ensure that your cluster version and node OS meet the requirements.
 -  The version of the Everest add-on in the cluster must be 2.4.158 or later.
@@ -63,10 +63,10 @@ Enabling AppArmor on a Node
 
       sudo systemctl restart kubelet
 
-Enabling AppArmor for the Container Engine
-------------------------------------------
+Enabling AppArmor on a Container Runtime
+----------------------------------------
 
-**If the container engine is containerd, take the following steps:**
+**containerd**
 
 #. Modify the containerd configuration.
 
@@ -87,7 +87,7 @@ Enabling AppArmor for the Container Engine
 
       sudo systemctl restart containerd
 
-**If the container engine is Docker, take the following steps:**
+**Docker**
 
 #. Modify the Docker configuration.
 
@@ -241,17 +241,17 @@ Rules for AppArmor Configurations to Take Effect After AppArmor Is Enabled for P
 
 If privileged containers are enabled for a pod (**privileged: true**), the rules for AppArmor configurations to take effect are as follows.
 
-+----------------------------+-------------------------------------------------+-----------------------------------------------+
-| Pod AppArmor Configuration | Privileged Containers Not Used                  | Privileged Containers Used (privileged: true) |
-+============================+=================================================+===============================================+
-| AppArmor not enabled       | Use the default policy of the container engine. | The AppArmor profile is not enforced.         |
-+----------------------------+-------------------------------------------------+-----------------------------------------------+
-| RuntimeDefault             | Use the default policy of the container engine. | The AppArmor profile is not enforced.         |
-+----------------------------+-------------------------------------------------+-----------------------------------------------+
-| Unconfined                 | The AppArmor profile is not enforced.           | The AppArmor profile is not enforced.         |
-+----------------------------+-------------------------------------------------+-----------------------------------------------+
-| Localhost                  | Use the AppArmor profile loaded on the node.    | Use the AppArmor profile loaded on the node.  |
-+----------------------------+-------------------------------------------------+-----------------------------------------------+
++----------------------------+--------------------------------------------------+-----------------------------------------------+
+| Pod AppArmor Configuration | Privileged Containers Not Used                   | Privileged Containers Used (privileged: true) |
++============================+==================================================+===============================================+
+| AppArmor not enabled       | Use the default policy of the container runtime. | The AppArmor profile is not enforced.         |
++----------------------------+--------------------------------------------------+-----------------------------------------------+
+| RuntimeDefault             | Use the default policy of the container runtime. | The AppArmor profile is not enforced.         |
++----------------------------+--------------------------------------------------+-----------------------------------------------+
+| Unconfined                 | The AppArmor profile is not enforced.            | The AppArmor profile is not enforced.         |
++----------------------------+--------------------------------------------------+-----------------------------------------------+
+| Localhost                  | Use the AppArmor profile loaded on the node.     | Use the AppArmor profile loaded on the node.  |
++----------------------------+--------------------------------------------------+-----------------------------------------------+
 
 Helpful Links
 -------------

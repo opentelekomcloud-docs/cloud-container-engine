@@ -14,10 +14,10 @@ Prerequisites
 -  To create a cluster using commands, ensure kubectl is used. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 -  To use a local EV, import a data disk of a node to the local EV storage pool. For details, see :ref:`Importing an EV to a Storage Pool <cce_10_0725>`.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
--  Local EVs are supported only when the cluster version is v1.21.2-r0 or later and the Everest add-on version is 1.2.29 or later.
+-  Local EVs are supported only when the cluster version is v1.21.2-r0 or later and the Everest add-on version is v1.2.29 or later.
 -  Do not manually delete the corresponding storage pool or detach data disks from the node. Otherwise, exceptions such as data loss may occur.
 -  Ensure that the **/var/lib/kubelet/pods/** directory is not mounted to the pod on the node. Otherwise, the pod, mounted with such volumes, may fail to be deleted.
 
@@ -39,7 +39,7 @@ Using a Local EV Through the Console
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                        |
       +===================================+====================================================================================================================================================================================================================================================================================================================================================================================================================================================+
-      | Capacity                          | Capacity of the requested storage volume.                                                                                                                                                                                                                                                                                                                                                                                                          |
+      | Capacity (GiB)                    | Capacity of the requested storage volume.                                                                                                                                                                                                                                                                                                                                                                                                          |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Mount Path                        | Enter a mount path, for example, **/tmp**.                                                                                                                                                                                                                                                                                                                                                                                                         |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
@@ -91,11 +91,11 @@ Using a Local EV Through kubectl
                 image: nginx:latest
                 volumeMounts:
                   - name: vol-emptydir         # Volume name, which must be the same as the volume name in the volumes field.
-                    mountPath: /tmp            # Location where the emptyDir is mounted
+                    mountPath: /tmp            # Mount path of the emptyDir volume
             imagePullSecrets:
               - name: default-secret
             volumes:
-              - name: vol-emptydir             # Volume name, which can be customized
+              - name: vol-emptydir             # Volume name, which is user-defined
                 emptyDir:
                   medium: LocalVolume          # If the disk medium of emptyDir is set to LocalVolume, the local EV is used.
                   sizeLimit: 1Gi               # Volume capacity

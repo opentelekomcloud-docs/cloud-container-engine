@@ -7,12 +7,12 @@ Modifying the Node Scale-In Concurrency Settings
 
 After a node auto scaling policy is configured, scale-in latency may become excessive or scale-in speed may fall short of expectations, particularly in large-scale clusters. To address these issues, the CCE Cluster Autoscaler add-on provides configurable parameters that allow you to set the maximum garbage collection (GC) waiting time for individual nodes and define the number of nodes that can be scaled in concurrently. These settings can be flexibly adjusted based on specific service requirements to improve scaling efficiency.
 
-By setting **maxGracefulTerminationFlag**, you can specify a graceful termination period of up to 60 minutes. This ensures that service pods have enough time to complete ongoing tasks before being terminated. Additionally, **maxScaleDownParallelism**, **maxDrainParallelism**, and **parallelDrain** allow you to control the number of concurrent node scale-in operations. Fine-tuning these settings helps speed up the scale-in process and improve overall efficiency.
+By setting **maxGracefulTerminationFlag**, you can specify a graceful termination period of up to 60 minutes. This ensures that service pods have enough time to complete ongoing tasks before being terminated. Additionally, **maxScaleDownParallelism**, **maxDrainParallelism**, and **parallelDrain** allow you to control the number of concurrent node scale-in operations. Fine-tuning these settings helps accelerate the scale-in process and improve overall efficiency.
 
 Prerequisites
 -------------
 
-CCE Cluster Autoscaler v1.27.205, v1.28.172, v1.29.134, v1.30.100, v1.31.62, v1.32.38, v1.33.31, v1.34.35, or later is installed in the cluster.
+The CCE Cluster Autoscaler add-on of 1.27.205, 1.28.172, 1.29.134, 1.30.100, 1.31.62, 1.32.38, 1.33.31, or later has been installed in the cluster.
 
 Procedure
 ---------
@@ -28,8 +28,8 @@ Procedure
    +----------------------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
    | Add-on Parameter           | Community Parameter          | Description                                                                                                                                                                                                                                                                                                       | Example Value   |
    +============================+==============================+===================================================================================================================================================================================================================================================================================================================+=================+
-   | parallelDrain              | parallel-drain               | -  Whether to enable parallel drainage of nodes.                                                                                                                                                                                                                                                                  | true            |
-   |                            |                              | -  If it is set to **true**, the add-on will drain multiple nodes in parallel to speed up the scale-in process. It defaults to **false**. This specifies that parallel drainage is disabled.                                                                                                                      |                 |
+   | parallelDrain              | parallel-drain               | -  Whether to enable parallel drainage for nodes.                                                                                                                                                                                                                                                                 | true            |
+   |                            |                              | -  If it is set to **true**, the add-on will drain multiple nodes in parallel to accelerate the scale-in process. It defaults to **false**. This specifies that parallel drainage is disabled.                                                                                                                    |                 |
    +----------------------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
    | maxScaleDownParallelism    | max-scale-down-parallelism   | -  The maximum number of concurrent scale-in tasks for both empty and non-empty nodes.                                                                                                                                                                                                                            | 20              |
    |                            |                              | -  It controls the maximum number of concurrent scale-in tasks for both empty and non-empty nodes with **--parallel-drain** set to **true**. If it is set to **20**, it indicates that up to 20 nodes will be moved in parallel at a time. It defaults to **10**.                                                 |                 |
@@ -54,4 +54,4 @@ You can view the logs of the add-on pods to ensure that the new startup paramete
 
    kubectl logs -f -n kube-system -l app=cluster-autoscaler
 
-.. |image1| image:: /_static/images/en-us_image_0000002484119358.png
+.. |image1| image:: /_static/images/en-us_image_0000002662009617.png

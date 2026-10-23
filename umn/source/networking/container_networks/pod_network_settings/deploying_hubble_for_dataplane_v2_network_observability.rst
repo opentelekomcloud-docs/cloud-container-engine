@@ -10,8 +10,7 @@ In a cluster with DataPlane V2 enabled, you can deploy Hubble, an open-source ob
 Prerequisites
 -------------
 
--  CCE DataPlane V2 is released with restrictions. To use this feature, submit a service ticket to CCE.
--  Currently, Hubble can only be deployed in CCE standard clusters of v1.27.16-r50, v1.28.15-r40, v1.29.15-r0, v1.30.14-r0, v1.31.10-r0, v1.32.6-r0, and later versions with DataPlane V2 enabled.
+-  Hubble can be deployed in CCE standard clusters v1.27.16-r50, v1.28.15-r40, v1.29.15-r0, v1.30.14-r0, v1.31.10-r0, v1.32.6-r0, or later when DataPlane V2 is enabled.
 
 Step 1: Configure a ConfigMap and Rebuild yangtse-cilium
 --------------------------------------------------------
@@ -36,21 +35,21 @@ Step 1: Configure a ConfigMap and Rebuild yangtse-cilium
 
    .. table:: **Table 1** Parameters
 
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
-      | Parameter             | Description                                                                                                                                                                                                                                                                                                                | Remarks                                                                            |
-      +=======================+============================================================================================================================================================================================================================================================================================================================+====================================================================================+
-      | enable-hubble         | Whether to enable Hubble. **true** indicates Hubble is enabled, and **false** indicates Hubble is disabled.                                                                                                                                                                                                                | This parameter is set to **true** here.                                            |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
-      | hubble-disable-tls    | Whether to disable TLS on the Hubble server. **true** indicates TLS is disabled, and **false** indicates TLS is enabled.                                                                                                                                                                                                   | This parameter is set to **true** here.                                            |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
-      | hubble-listen-address | Listening address of the Hubble server.                                                                                                                                                                                                                                                                                    | This parameter is set to **:4244** here. The colon cannot be omitted.              |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
-      | hubble-metrics        | Metrics to be collected by Hubble. Separate multiple metrics with spaces.                                                                                                                                                                                                                                                  | If you specify a large number of metrics, the Hubble performance will be affected. |
-      |                       |                                                                                                                                                                                                                                                                                                                            |                                                                                    |
-      |                       | The metrics that can be collected by Hubble include **dns**, **drop**, **tcp**, **flow**, **flows-to-world**, **httpV2**, **icmp**, **kafka**, and **port-distribution**. For details, see `Metrics <https://docs.cilium.io/en/v1.17/observability/metrics/#hubble-exported-metrics>`__ supported by the Cilium community. |                                                                                    |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
-      | hubble-metrics-server | Address for accessing Hubble metrics.                                                                                                                                                                                                                                                                                      | This parameter is set to **:9965** here. The colon cannot be omitted.              |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
+      +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
+      | Parameter             | Description                                                                                                                                                                                                                                                                                                                 | Remarks                                                                            |
+      +=======================+=============================================================================================================================================================================================================================================================================================================================+====================================================================================+
+      | enable-hubble         | Whether to enable Hubble. **true** indicates Hubble is enabled, and **false** indicates Hubble is disabled.                                                                                                                                                                                                                 | This parameter is set to **true** here.                                            |
+      +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
+      | hubble-disable-tls    | Whether to disable TLS on the Hubble server. **true** indicates TLS is disabled, and **false** indicates TLS is enabled.                                                                                                                                                                                                    | This parameter is set to **true** here.                                            |
+      +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
+      | hubble-listen-address | Listening address of the Hubble server.                                                                                                                                                                                                                                                                                     | This parameter is set to **:4244** here. The colon cannot be omitted.              |
+      +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
+      | hubble-metrics        | Metrics to be collected by Hubble. Separate multiple metrics with spaces.                                                                                                                                                                                                                                                   | If you specify a large number of metrics, the Hubble performance will be affected. |
+      |                       |                                                                                                                                                                                                                                                                                                                             |                                                                                    |
+      |                       | The metrics that can be collected by Hubble include **dns**, **drop**, **tcp**, **flow**, **flows-to-world**, **httpV2**, **icmp**, **kafka**, and **port-distribution**. For details, see `Metrics <https://docs.cilium.io/en/stable/observability/metrics/#hubble-exported-metrics>`__ supported by the Cilium community. |                                                                                    |
+      +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
+      | hubble-metrics-server | Address for accessing Hubble metrics.                                                                                                                                                                                                                                                                                       | This parameter is set to **:9965** here. The colon cannot be omitted.              |
+      +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
 
 #. Roll back and rebuild yangtse-cilium to apply the configuration.
 
@@ -68,7 +67,8 @@ Step 2: Deploy Hubble Components
 
    .. note::
 
-      Change the value of **valid-cluster** in the following configuration file to the name of your cluster.
+      -  Change the **valid-cluster** value in the configuration file to your current cluster name.
+      -  In the YAML example, the image tags for hubble-relay, hubble-ui, and hubble-ui-backend correspond to `Cilium v1.19.1 <https://github.com/cilium/cilium/blob/v1.19.1/install/kubernetes/cilium/values.yaml>`__. Replace these tags with the community Hubble image tags matching your current Cilium version.
 
    .. code-block::
 
@@ -231,7 +231,7 @@ Step 2: Deploy Hubble Components
         namespace: kube-system
       ---
       apiVersion: v1
-      data: # Change the value of valid-cluster to the name of your cluster.
+      data: # Change the valid-cluster value to your current cluster name.
         config.yaml: "cluster-name: valid-cluster\npeer-service: \"hubble-peer.kube-system.svc.cluster.local.:80\"\nlisten-address:
           :4245\ngops: true\ngops-port: \"9893\"\nretry-timeout: \nsort-buffer-len-max:
           \nsort-buffer-drain-timeout: \ndisable-client-tls: true\n\ndisable-server-tls:
@@ -279,7 +279,7 @@ Step 2: Deploy Hubble Components
               - serve
               command:
               - hubble-relay
-              image: quay.io/cilium/hubble-relay:v1.17.6
+              image: quay.io/cilium/hubble-relay:v1.19.1
               imagePullPolicy: IfNotPresent
               livenessProbe:
                 failureThreshold: 12
@@ -370,7 +370,7 @@ Step 2: Deploy Hubble Components
           spec:
             automountServiceAccountToken: true
             containers:
-            - image: quay.io/cilium/hubble-ui:v0.13.2
+            - image: quay.io/cilium/hubble-ui:v0.13.3
               imagePullPolicy: IfNotPresent
               livenessProbe:
                 failureThreshold: 3
@@ -409,7 +409,7 @@ Step 2: Deploy Hubble Components
                 value: "8090"
               - name: FLOWS_API_ADDR
                 value: hubble-relay:80
-              image: quay.io/cilium/hubble-ui-backend:v0.13.2
+              image: quay.io/cilium/hubble-ui-backend:v0.13.3
               imagePullPolicy: IfNotPresent
               name: backend
               ports:
@@ -543,7 +543,7 @@ Step 6: Configure the Hubble Metric Dashboard
 
 The Cilium official website provides a Grafana dashboard for Hubble metrics. Compared with the monotonous metrics of Prometheus, the Grafana dashboard is more attractive. You can access the dashboard to view Hubble metrics.
 
-#. Prepare the configuration file of the Hubble metric dashboard. Open the `Prometheus sample file <https://raw.githubusercontent.com/cilium/cilium/v1.17.6/examples/kubernetes/addons/prometheus/monitoring-example.yaml>`__ in the Cilium community, locate **hubble-dashboard.json** in the file, and copy it.
+#. Prepare the Hubble metric dashboard configuration. Open the `sample Prometheus file <https://raw.githubusercontent.com/cilium/cilium/v1.19.1/examples/kubernetes/addons/prometheus/monitoring-example.yaml>`__ from the Cilium community, locate **hubble-dashboard.json**, and copy its contents.
 
 #. Log in to Grafana, choose **Dashboards**, and import the **hubble-dashboard.json** file.
 
@@ -551,8 +551,8 @@ The Cilium official website provides a Grafana dashboard for Hubble metrics. Com
 
       If you have enabled **Interconnect with AOM** when installing the Grafana add-on in :ref:`Step 5: Install Add-ons <cce_10_1063__section558903294616>`, change the value of **datasource** in the **hubble-dashboard.json** file to **prometheus-aom**, and then import the file.
 
-#. Access the dashboard to view Hubble metrics. For details about Hubble metrics, see `hubble-metrics <https://docs.cilium.io/en/v1.17/observability/metrics/#hubble-metrics>`__.
+#. Access the dashboard to view Hubble metrics. For details, see `Hubble Metrics <https://docs.cilium.io/en/v1.19/observability/metrics/#hubble-metrics>`__.
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000002483959250.png
+.. |image1| image:: /_static/images/en-us_image_0000002662009575.png

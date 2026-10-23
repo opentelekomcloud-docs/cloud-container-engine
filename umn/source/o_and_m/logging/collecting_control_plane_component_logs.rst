@@ -52,7 +52,7 @@ Enabling Control Plane Logging
 #. Click the **Control Plane Logs** tab and modify the settings in **Logging Settings**.
 
 
-   .. figure:: /_static/images/en-us_image_0000002484119292.png
+   .. figure:: /_static/images/en-us_image_0000002662009755.png
       :alt: **Figure 1** Modifying logging settings
 
       **Figure 1** Modifying logging settings
@@ -92,5 +92,5 @@ Disabling Control Plane Logging
 
       After you disable control plane logging, logs are no longer written to the original log stream, but the existing logs will not be deleted and expenses may be incurred for this.
 
-.. |image1| image:: /_static/images/en-us_image_0000002484119302.png
-.. |image2| image:: /_static/images/en-us_image_0000002516199277.png
+.. |image1| image:: /_static/images/en-us_image_0000002661849821.png
+.. |image2| image:: /_static/images/en-us_image_0000002631530632.png

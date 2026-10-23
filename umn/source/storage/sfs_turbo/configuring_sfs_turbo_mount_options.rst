@@ -12,8 +12,8 @@ Prerequisites
 
 The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be **1.2.8 or later**. This add-on identifies the mount options and transfers them to the underlying storage resources. The parameter settings take effect only if the underlying storage resources support the specified options.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  Mount options cannot be configured for secure containers.
 -  Due to the restrictions of the NFS protocol, if an SFS volume is mounted to a node for multiple times, link-related mounting parameters (such as **timeo**) take effect only when the SFS volume is mounted for the first time by default. For example, if the same SFS file system is mounted to multiple pods running on a node, the mounting parameter set later does not overwrite the existing parameter value. If you want to configure different mounting parameters in the preceding scenario, additionally configure the **nosharecache** parameter.
@@ -82,7 +82,7 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
           volumeHandle: {your_volume_id}   # SFS Turbo volume ID
           volumeAttributes:
             everest.io/share-export-location: {your_location}   # Shared path of the SFS Turbo volume
-            everest.io/enterprise-project-id: {your_enterprise_project_id}  # Enterprise project ID of the SFS Turbo volume
+
             storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
         persistentVolumeReclaimPolicy: Retain    # Reclaim policy
         storageClassName: csi-sfsturbo           # StorageClass name of the SFS Turbo file system
@@ -92,7 +92,7 @@ You can use the **mountOptions** field to configure mount options in a PV. The o
         - timeo=600
         - hard
 
-#. After creating a PV, you can create a PVC, bind it to the PV, and mount the PV to the container in the workload. For details, see :ref:`Using an Existing SFS Turbo File System Through a Static PV <cce_10_0625>`.
+#. After creating a PV, you can create a PVC, bind it to the PV, and mount the PV to the containers in the workload. For details, see :ref:`Using an Existing SFS Turbo File System Through a Static PV <cce_10_0625>`.
 
 #. Check whether the mount options are effective.
 

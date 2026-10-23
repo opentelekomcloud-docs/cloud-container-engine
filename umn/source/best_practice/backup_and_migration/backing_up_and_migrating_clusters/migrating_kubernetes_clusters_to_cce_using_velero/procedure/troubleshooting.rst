@@ -10,13 +10,13 @@ Troubleshooting
 hostPath Volumes Cannot Be Backed Up
 ------------------------------------
 
-Both hostPath and local volumes are local storage volumes. However, restic, which is integrated into Velero, cannot back up hostPath PVs. It only supports the local type. So, you need to replace the storage volumes of the hostPath type with the local type in the source cluster.
+Both hostPath and local volumes are local storage volumes. However, restic, which is integrated into Velero, cannot back up hostPath volumes. It can only back up local volumes. So, you need to change the hostPath volumes to local ones in the source cluster.
 
 .. note::
 
-   It is recommended that Local volumes be used in Kubernetes v1.10 or later and can only be statically created. For details, see `local <https://kubernetes.io/docs/concepts/storage/volumes/#local>`__.
+   It is recommended that local volumes be used in Kubernetes v1.10 or later. Such volumes can only be statically created. For details, see `local <https://kubernetes.io/docs/concepts/storage/volumes/#local>`__.
 
-#. Create a storage class for the Local volume.
+#. Create a storage class for a local volume.
 
    Example YAML:
 
@@ -29,7 +29,7 @@ Both hostPath and local volumes are local storage volumes. However, restic, whic
       provisioner: kubernetes.io/no-provisioner
       volumeBindingMode: WaitForFirstConsumer
 
-#. Change the **hostPath** field to the **local** field, specify the original local disk path of the host machine, and add the **nodeAffinity** field.
+#. Change the **hostPath** field to the **local** field, specify the original local disk path of the node, and add the **nodeAffinity** field.
 
    Example YAML:
 
@@ -57,7 +57,7 @@ Both hostPath and local volumes are local storage volumes. However, restic, whic
               - key: kubernetes.io/hostname
                 operator: Exists
 
-#. Run the following commands to verify the creation result:
+#. Verify the creation result.
 
    .. code-block::
 
@@ -75,7 +75,7 @@ Both hostPath and local volumes are local storage volumes. However, restic, whic
 Backup Tool Resources Are Insufficient
 --------------------------------------
 
-In a production environment with numerous resources to be backed up, using the backup tool with the default resource size may lead to insufficient resources. In such case, take the following steps to adjust the CPU and memory resources of Velero and restic:
+In a production environment with numerous resources to be backed up, using the backup tool with the default resource size may lead to insufficient resources. In such case, take the following steps to adjust the vCPU and memory settings of Velero and restic:
 
 **Before installing Velero:**
 

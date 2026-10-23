@@ -11,7 +11,7 @@ CCE provides the following options for configuring ingress certificates for the 
 -  ELB certificate. Use an ELB certificate created on the ELB console. There is no need to specify a secret certificate for the add-on.
 
 
-.. figure:: /_static/images/en-us_image_0000002483959602.png
+.. figure:: /_static/images/en-us_image_0000002662009713.png
    :alt: **Figure 1** Differences between the two methods of configuring certificates for the NGINX Ingress Controller
 
    **Figure 1** Differences between the two methods of configuring certificates for the NGINX Ingress Controller
@@ -77,7 +77,7 @@ Procedure
       |                                 |                       | To obtain the certificate, log in to the CCE console, choose **Service List** > **Networking** > **Elastic Load Balance**, and click **Certificates** in the navigation pane. In the certificate list, copy the ID under the target certificate name.                         |
       +---------------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-      For details about the preceding parameters, see :ref:`Configuring HTTP/HTTPS for a LoadBalancer Service <cce_10_0683>`.
+      For details about the preceding parameters, see :ref:`Configuring HTTP/HTTPS for LoadBalancer Services <cce_10_0683>`.
 
    b. Configure the **targetPort** parameter to direct the load balancer access traffic to the HTTP port of the container.
 
@@ -98,4 +98,4 @@ Procedure
 
 #. Configure other mandatory parameters as required and click **Install**. For details about the parameters, see :ref:`NGINX Ingress Controller <cce_10_0034>`.
 
-#. After completing the configuration, choose **Services & Ingresses** in the navigation pane, switch to the **kube-system** namespace, and check the protocols and listening ports of the add-on. In this example, the protocol is HTTP and HTTPS instead of TCP.
+#. After completing the configuration, choose **Services and Ingresses** in the navigation pane, switch to the **kube-system** namespace, and check the protocols and listening ports of the add-on. In this example, the protocol is HTTP and HTTPS instead of TCP.

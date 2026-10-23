@@ -153,7 +153,7 @@ Common Issues
 
    The Helm chart reads the configuration certificate in **.kube/config** and communicates with Kubernetes. The preceding error indicates that the kubectl configuration is incorrect. In this case, reconnect the cluster to kubectl. For details, see :ref:`Step 1: Download kubectl <cce_10_0107__section37321625113110>`.
 
--  Storage fails to be created after you have connected to cloud storage services.
+-  Storage creation fails after you have connected to cloud storage services.
 
    This issue may be caused by the **annotation** field in the created PVC. Change the chart name and install the chart again.
 

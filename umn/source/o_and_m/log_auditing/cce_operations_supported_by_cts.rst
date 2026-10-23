@@ -62,7 +62,7 @@ Cloud Trace Service (CTS) records operations on cloud service resources, allowin
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
    | Waking up a cluster (V3)                                                          | Cluster             | awakeCluster                   |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
-   | Changing the specifications of a cluster                                          | Cluster             | resizeCluster                  |
+   | Changing the size of a cluster                                                    | Cluster             | resizeCluster                  |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
    | Modifying configurations of a cluster                                             | Cluster             | updateConfiguration            |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
@@ -202,21 +202,21 @@ Cloud Trace Service (CTS) records operations on cloud service resources, allowin
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
    | Obtaining a job                                                                   | Job                 | getJobByUID                    |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
-   | Creating an add-on instance                                                       | Add-on instance     | createAddonInstance            |
+   | Creating an add-on pod                                                            | Add-on pod          | createAddonInstance            |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
-   | Querying an add-on instance                                                       | Add-on instance     | getAddonInstance               |
+   | Querying an add-on pod                                                            | Add-on pod          | getAddonInstance               |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
-   | Deleting an add-on instance                                                       | Add-on instance     | deleteAddonInstance            |
+   | Deleting an add-on pod                                                            | Add-on pod          | deleteAddonInstance            |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
-   | Obtaining the add-on list                                                         | Add-on instance     | getAddonsList                  |
+   | Obtaining the add-on list                                                         | Add-on pod          | getAddonsList                  |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
-   | Updating an add-on instance                                                       | Add-on instance     | updateAddonInstance            |
+   | Updating an add-on pod                                                            | Add-on pod          | updateAddonInstance            |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
-   | Rolling back an add-on instance                                                   | Add-on instance     | rollbackAddonInstance          |
+   | Rolling back an add-on pod                                                        | Add-on pod          | rollbackAddonInstance          |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
-   | Obtaining add-on details by add-on ID                                             | Add-on instance     | GetAddonTemplate               |
+   | Obtaining add-on details by add-on ID                                             | Add-on pod          | GetAddonTemplate               |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
-   | Obtaining the add-on template list                                                | Add-on instance     | GetAddonTemplateList           |
+   | Obtaining the add-on template list                                                | Add-on pod          | GetAddonTemplateList           |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+
    | Uploading a chart                                                                 | Chart               | uploadChart                    |
    +-----------------------------------------------------------------------------------+---------------------+--------------------------------+

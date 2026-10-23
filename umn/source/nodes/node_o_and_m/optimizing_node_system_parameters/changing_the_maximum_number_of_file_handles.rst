@@ -5,16 +5,17 @@
 Changing the Maximum Number of File Handles
 ===========================================
 
-The maximum number of file handles is the maximum number of files that can be opened. In Linux, there are two file handle restrictions. One is a system-level restriction, where the maximum number of files that can be opened by all user processes at the same time. The other is a user-level restriction, where the maximum number of files that can be opened by a single user process. Containers have a third file handle restriction, which is the maximum number of file handles of a single process in the container.
+The maximum number of file handles is the maximum number of files that can be opened simultaneously. In Linux, there are two file handle limits. System-level: the maximum number of files that can be opened by all user processes at the same time. User-level: the maximum number of files that can be opened by a single user process. Containers have a third limit: the maximum number of file handles for a single process in the container.
 
 .. important::
 
-   The commands for modifying node system parameters are valid only when public images are used. The commands provided in this document are for reference only when private images are used.
+   -  Commands for modifying node system parameters are valid only when public images are used. For private images, the commands in this section are for reference only.
+   -  Directly logging in to a node to modify system parameters may cause changes to be lost during subsequent node reset or upgrade, affecting running services. Fully evaluate the risks before proceeding. Use a **pre-installation script** or **post-installation script** to modify the node parameters instead.
 
 .. _cce_10_0411__section156844286910:
 
-Changing the Maximum Number of System-Level File Handles on a Node
-------------------------------------------------------------------
+Changing the System-Level File Handle Limit
+-------------------------------------------
 
 #. Log in to the node and check the **/etc/sysctl.conf** file.
 
@@ -24,7 +25,7 @@ Changing the Maximum Number of System-Level File Handles on a Node
 
 #. Modify the **fs.file-max** parameter. **fs.file-max=1048576** indicates the kernel parameter name and recommended value.
 
-   -  If the value of **fs.file-max** has been set in the **sysctl.conf** file, run the following command to change the value:
+   -  If fs.file-max is already set in **sysctl.conf**, run the following command to change the value:
 
       .. code-block::
 
@@ -36,7 +37,7 @@ Changing the Maximum Number of System-Level File Handles on a Node
 
          echo fs.file-max=1048576 >> /etc/sysctl.conf && sysctl -p
 
-#. Run the following command to check whether the change is successful (whether the returned value is the same as that you configured).
+#. Check whether the returned value matches your configuration. If it does, the change is successful.
 
    .. code-block::
 
@@ -50,8 +51,8 @@ Changing the Maximum Number of System-Level File Handles on a Node
 
 .. _cce_10_0411__section57532291011:
 
-Changing the Maximum Number of File Handles for a Single Process on a Node
---------------------------------------------------------------------------
+Changing the Single-Process File Handle Limit
+---------------------------------------------
 
 #. Log in to the node and view the **/etc/security/limits.conf** file.
 
@@ -75,7 +76,7 @@ Changing the Maximum Number of File Handles for a Single Process on a Node
 
       sed -i "s/nofile.[0-9]*$/nofile 65535/g" /etc/security/limits.conf
 
-#. Log in to the node again and run the following command to check whether the modification is successful. If the returned value is the same as the modified value, the modification is successful.
+#. **Log in to the node again** and check whether the modification is successful. If the returned value matches your configuration, the modification is successful.
 
    .. code-block::
 
@@ -89,8 +90,8 @@ Changing the Maximum Number of File Handles for a Single Process on a Node
 
 .. _cce_10_0411__section1732602025518:
 
-Changing the Maximum Number of File Handles for a Single Container Process
---------------------------------------------------------------------------
+Changing the File Handle Limit for a Single Container Process
+-------------------------------------------------------------
 
 #. Log in to the node and check the maximum number of file handles for a single container process.
 
@@ -131,10 +132,10 @@ Changing the Maximum Number of File Handles for a Single Container Process
       LimitNPROC=1048576
       ...
 
-   -  **LimitNOFILE** specifies the maximum number of file handles a single process can open. If it is set to **infinity**, there is a maximum of 1,048,576 files handles per process in a container.
+   -  **LimitNOFILE** specifies the maximum number of file handles a single process can open. When set to **infinity**, the effective limit is 1,048,576 file handles per container process.
    -  **LimitNPROC** specifies the maximum number of processes a single user can run. If it is set to **infinity**, there is no limit on the number of processes.
 
-#. Run the command below to modify the two parameters. In the command, **1048576** is the recommended value of the maximum number of file handles.
+#. Modify both parameters. In the following command, **1048576** is the recommended maximum.
 
    .. important::
 
@@ -200,13 +201,13 @@ Automatically Configuring the Maximum Number of File Handles When Creating a Nod
 You can set the script to be executed after a node or node pool is created. When creating a node or node pool, you can use the script to configure the maximum number of file handles.
 
 #. Confirm the OS of the node or node pool to be created.
-#. Manually test the script commands on nodes in the same cluster and running the same OS.
+#. Before applying the script, manually test the commands on nodes **in the same cluster running the same OS**.
 
-   -  :ref:`Changing the Maximum Number of System-Level File Handles on a Node <cce_10_0411__section156844286910>`
-   -  :ref:`Changing the Maximum Number of File Handles for a Single Process on a Node <cce_10_0411__section57532291011>`
-   -  :ref:`Changing the Maximum Number of File Handles for a Single Container Process <cce_10_0411__section1732602025518>`
+   -  :ref:`Changing the System-Level File Handle Limit <cce_10_0411__section156844286910>`
+   -  :ref:`Changing the Single-Process File Handle Limit <cce_10_0411__section57532291011>`
+   -  :ref:`Changing the File Handle Limit for a Single Container Process <cce_10_0411__section1732602025518>`
 
-#. When creating a node or node pool, choose **Advanced Settings** > **Post-installation Command** to add commands. (The following commands must be configured after they are verified to be executable.)
+#. When creating a node or node pool, choose **Advanced Settings > Post-installation script** to add the commands. **The commands must be verified as executable before configuration.**
 
    -  Change the maximum number of system-level file handles on a node.
 
@@ -248,4 +249,4 @@ You can set the script to be executed after a node or node pool is created. When
 
       In the preceding command, **1048576** is the recommended maximum number of file handles.
 
-#. After the node is created, log in to the node to check whether the parameter is successfully modified.
+#. After node creation, log in to the node and verify that the parameter was modified successfully.

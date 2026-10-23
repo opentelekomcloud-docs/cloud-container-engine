@@ -9,7 +9,7 @@ In CCE Turbo clusters, pods can be directly bound to security groups using VPC n
 
 .. caution::
 
-   If multiple security group configuration methods are used, the method with the highest priority will be applied. In the table below, smaller values indicate higher priorities.
+   Security groups can be associated with workloads through multiple methods: annotations, security group policies, node pool settings, or pod network settings. When multiple methods are used, only the highest-priority method applies. (Lower values in the table below indicate higher priority.)
 
 .. table:: **Table 1** Comparison between methods for configuring workload security groups
 

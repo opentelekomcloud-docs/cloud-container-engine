@@ -110,7 +110,7 @@ The following is an example YAML of creating a pod. After the **kubernetes.io/ex
          - name: single-request-reopen
      enableServiceLinks: true
 
-.. table:: **Table 1** Descriptions of key parameters
+.. table:: **Table 1** Key parameters
 
    +-----------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------+
    | Parameter             | Type                  | Description                                                                                                                            |
