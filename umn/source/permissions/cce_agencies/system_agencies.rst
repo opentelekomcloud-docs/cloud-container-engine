@@ -42,7 +42,7 @@ The agencies automatically created by CCE are as follows:
 
    For details about how to add custom permissions to cloud services, see `Custom Policies <https://docs.otc.t-systems.com/cloud-container-engine/umn/permissions/cluster_permissions_iam-based_authorization.html#cce-10-0188-section1437818291149>`__.
 
-.. _cce_10_0556__section0924155117391:
+.. _cce_10_0556__section123269912477:
 
 cce_admin_trust
 ---------------
