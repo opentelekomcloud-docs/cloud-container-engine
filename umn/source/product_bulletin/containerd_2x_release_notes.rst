@@ -83,12 +83,15 @@ FAQs
 -----------------
 
 - **Will services be affected during the containerd upgrade?**
+
 By default, an in-place upgrade is performed. During the upgrade, the containers do not restart, and services are not affected.
 
 - **Can I roll back the containerd upgrade from 1.7 to 2.x if I encounter any issues?**
+
 Rollback is not supported. containerd 2.x introduces the Shim v3 API, which is incompatible with the Shim v2 API used in containerd 1.x. Once the upgrade is complete, the system cannot be downgraded to the source version.
 
 - **Will container data (such as images and container logs) on the nodes be lost during the upgrade?**
+
 No. During the in-place upgrade, containerd 2.x will continue to use the original data directories (Data Root and State Root), and the existing data will not be lost.
 
 Helpful Links
