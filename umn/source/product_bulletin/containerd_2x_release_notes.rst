@@ -42,7 +42,7 @@ Pre-upgrade Check (Important)
 
 Before the upgrade to containerd 2.x, the system checks for deprecated APIs and incompatible items. If any obstacles are detected, the upgrade will be interrupted. You are advised to manually perform a pre-upgrade check before a cluster upgrade.
 
-## Checking Whether the containerd Directory Is Directly Mounted
+**Checking Whether the containerd Directory Is Directly Mounted**
 
 If the containerd socket or related running directory is directly mounted to a service pod, the pod may be affected. You can run the following command to check the cluster (install the jq tool in advance by running the **yum install jq** command):
 
@@ -58,7 +58,8 @@ If the containerd socket or related running directory is directly mounted to a s
            "/run/containerd/containerd.sock"] | index($p)) |
         .metadata.namespace + "/" + .metadata.name'
 
-## Identifying Deprecated API Calls on a Node
+**Identifying Deprecated API Calls on a Node**
+
 
 Log in to the node and use the ctr command line tool to check whether any deprecated API is being called:
 
@@ -66,7 +67,7 @@ Log in to the node and use the ctr command line tool to check whether any deprec
 
     ctr deprecations list
 
-## Checking for Docker Schema 1 Images
+**Checking for Docker Schema 1 Images**
 
 Run the following command on the node to check whether there are Docker Schema 1 images in the local cache:
 
