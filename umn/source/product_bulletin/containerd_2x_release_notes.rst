@@ -60,7 +60,6 @@ If the containerd socket or related running directory is directly mounted to a s
 
 **Identifying Deprecated API Calls on a Node**
 
-
 Log in to the node and use the ctr command line tool to check whether any deprecated API is being called:
 
 .. code-block::
