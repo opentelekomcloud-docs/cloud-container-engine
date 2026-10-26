@@ -78,3 +78,10 @@ You can perform the following steps to re-install the OS and clear the CCE compo
    Run the following command:
 
    **bash clean.sh**
+
+Helpful Links
+-------------
+
+-  After a node is removed, you can re-add it to the cluster. For details, see :ref:`Accepting Nodes for Management <cce_10_0198>`.
+-  You can scale a CCE node pool by adjusting its node count to maintain the desired number of nodes. For details, see :ref:`Scaling a Node Pool <cce_10_0658>`.
+-  You can migrate nodes between node pools within the same cluster. For details, see :ref:`Migrating a Node <cce_10_0656>`.

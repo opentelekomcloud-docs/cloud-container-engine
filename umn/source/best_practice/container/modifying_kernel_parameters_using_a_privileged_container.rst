@@ -15,7 +15,7 @@ Procedure
 
 #. Create a DaemonSet on the backend, select the Nginx image, enable the privileged container, configure the lifecycle, and specify **hostNetwork: true**.
 
-   a. Create a DaemonSet file.
+   a. Create a DaemonSet YAML file.
 
       .. code-block::
 
@@ -110,7 +110,7 @@ Procedure
       daemonset-test-mqdpv               1/1     Running             0          2h
       daemonset-test-n56vm               1/1     Running             0          2h
 
-#. Access the container.
+#. Access the pod.
 
    .. code-block::
 
@@ -122,13 +122,13 @@ Procedure
 
       kubectl exec -it daemonset-test-mqdpv -- /bin/sh
 
-#. Check whether the configured command is executed after the container is started.
+#. Check whether the configured command is executed after the pod is started.
 
    .. code-block::
 
       sysctl -a |grep net.ipv4.tcp_tw_reuse
 
-   If the following information is displayed, the system parameters are modified successfully:
+   If information similar to the following is displayed, the system parameters have been modified:
 
    .. code-block::
 

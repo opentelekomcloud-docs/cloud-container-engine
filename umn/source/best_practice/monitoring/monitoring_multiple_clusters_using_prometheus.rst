@@ -8,30 +8,30 @@ Monitoring Multiple Clusters Using Prometheus
 Application Scenarios
 ---------------------
 
-Generally, a user has different clusters for different purposes, such as production, testing, and development. To monitor, collect, and view metrics of these clusters, you can deploy a set of Prometheus.
+In most cases, users have more than one cluster, for example, production, testing, and development clusters. If Prometheus is deployed in every cluster to monitor service metrics, the maintenance and resource costs increase significantly, and it becomes inconvenient to aggregate the data for unified viewing. In such scenarios, you can deploy a single Prometheus instance and connect it to multiple clusters to collect their metric data.
 
 Solution Architecture
 ---------------------
 
-Multiple clusters are connected to the same Prometheus monitoring system, as shown in the following figure. This reduces maintenance and resource costs and facilitates monitoring information aggregation.
+Connect multiple clusters to the same Prometheus monitoring system, as shown in the figure below. This reduces maintenance and resource costs and facilitates monitoring information aggregation.
 
 |image1|
 
 Prerequisites
 -------------
 
--  The target cluster has been created.
--  Prometheus has been properly connected to the target cluster.
+-  The needed clusters are available.
+-  Prometheus has been properly connected to these clusters.
 -  Prometheus has been installed on a Linux host using a binary file. For details, see `Installation <https://prometheus.io/docs/prometheus/latest/installation/>`__.
 
 Procedure
 ---------
 
-#. Obtain the **bearer_token** information of the target cluster.
+#. Obtain the **bearer_token** information of these clusters.
 
-   a. Create the RBAC permission in the target cluster.
+   a. Create the RBAC permissions in a cluster.
 
-      Log in to the background node of the target cluster and create the **prometheus_rbac.yaml** file.
+      Log in to a node of the cluster and create a **prometheus_rbac.yaml** file.
 
       .. code-block::
 
@@ -92,11 +92,11 @@ Procedure
            name: prometheus-test
            namespace: kube-system
 
-      Run the following command to create the RBAC permission:
+      Create the RBAC permissions.
 
       **kubectl apply -f prometheus_rbac.yaml**
 
-   b. Obtain the **bearer_token** information of the target cluster.
+   b. Obtain the **bearer_token** information of the cluster.
 
       .. note::
 
@@ -118,15 +118,15 @@ Procedure
 
       Record the token value, which is the **bearer_token** information to be collected.
 
-#. Configure **bearer_token** information.
+#. Configure **bearer_token**.
 
-   Log in to the host where Prometheus is located, go to the Prometheus installation directory, and save the token information of the target cluster in a file.
+   Log in to the host where Prometheus is located, go to the Prometheus installation directory, and save the cluster tokens in a file.
 
    |image4|
 
 #. Configure a Prometheus monitoring job.
 
-   The example job monitors container metrics. To monitor other metrics, you can add jobs and compile capture rules.
+   The example job monitors container metrics. To monitor other metrics, you can add jobs and write capture rules.
 
    .. code-block::
 
@@ -135,22 +135,22 @@ Procedure
           bearer_token_file: k8s_token # Token file in the previous step.
           tls_config:
             insecure_skip_verify: true
-          kubernetes_sd_configs:  # kubernetes automatic discovery configuration
+          kubernetes_sd_configs:  # Kubernetes automatic discovery
           - role: node    # Automatic discovery of the node type
             bearer_token_file: k8s_token # Token file in the previous step
             api_server: https://192.168.0.153:5443  # API server address of the Kubernetes cluster
             tls_config:
-              insecure_skip_verify: true   # Skip the authentication on the server.
-          relabel_configs:  ## Modify the existing label of the target cluster before capturing metrics.
+              insecure_skip_verify: true   # Skip the server authentication.
+          relabel_configs:  ## Modify the existing label of the cluster before capturing metrics.
           - target_label: __address__
             replacement: 192.168.0.153:5443
             action: replace
             ## Convert metrics_path to /api/v1/nodes/${1}/proxy/metrics/cadvisor.
             # Obtain data from kubelet using the API server proxy.
-          - source_labels: [__meta_kubernetes_node_name]   # Specifies the source label to be processed.
+          - source_labels: [__meta_kubernetes_node_name]   # The source label to be processed
             regex: (.+)    # Matched value of the source label. (.+) indicates that any value of the source label can be matched.
-            target_label: __metrics_path__     # Specifies the label to be replaced.
-            replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor  # Indicates the new label, that is, the value of __metrics_path__. ${1} indicates the value that matches the regular expression, that is, node name.
+            target_label: __metrics_path__     # The label to be replaced
+            replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor  # The new label, that is, the value of __metrics_path__. ${1} indicates the value that matches the regular expression, that is, node name.
           - target_label: cluster
             replacement: xxxxx   ## (Optional) Enter the cluster information.
 
@@ -165,8 +165,8 @@ Procedure
             bearer_token_file: k8s02_token # Token file in the previous step
             api_server: https://192.168.0.147:5443  # API server address of the Kubernetes cluster
             tls_config:
-              insecure_skip_verify: true   # Skip the authentication on the server.
-          relabel_configs:  ## Modify the existing label of the target cluster before capturing metrics.
+              insecure_skip_verify: true   # Skip the server authentication.
+          relabel_configs:  ## Modify the existing label of the cluster before capturing metrics.
           - target_label: __address__
             replacement: 192.168.0.147:5443
             action: replace
@@ -191,9 +191,9 @@ Procedure
 
    |image6|
 
-.. |image1| image:: /_static/images/en-us_image_0000002483958016.png
-.. |image2| image:: /_static/images/en-us_image_0000002484118002.png
-.. |image3| image:: /_static/images/en-us_image_0000002484118000.png
-.. |image4| image:: /_static/images/en-us_image_0000002484118012.png
-.. |image5| image:: /_static/images/en-us_image_0000002484117998.png
-.. |image6| image:: /_static/images/en-us_image_0000002484118006.png
+.. |image1| image:: /_static/images/en-us_image_0000002631531292.png
+.. |image2| image:: /_static/images/en-us_image_0000002631691194.png
+.. |image3| image:: /_static/images/en-us_image_0000002631531296.png
+.. |image4| image:: /_static/images/en-us_image_0000002631691198.png
+.. |image5| image:: /_static/images/en-us_image_0000002631691190.png
+.. |image6| image:: /_static/images/en-us_image_0000002631531300.png

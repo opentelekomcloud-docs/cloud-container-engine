@@ -5,7 +5,20 @@
 Encrypting EVS Disks
 ====================
 
-Encrypting cloud disks ensures data privacy and control, making it ideal for scenarios that demand high security or compliance standards. This section describes how to use the keys managed by Data Encryption Workshop (DEW) to encrypt EVS disks.
+Encrypting cloud disks ensures data privacy and control, making it ideal for scenarios that demand high security or compliance standards. This section describes how to use the keys managed by the Data Encryption Workshop (DEW) service to encrypt data on cloud disks. DEW builds cryptographic service resource pools based on Cloud-hosted Hardware Security Modules (Cloud HSMs) certified by the State Cryptography Administration (SCA) to centrally manage, control, and schedule cryptographic resources on the cloud. It provides users with Virtual Security Modules (VSMs) on demand and interconnects with service applications to implement security functions such as data encryption and decryption, signature verification, key creation, and secure key storage.
+
+How It Works
+------------
+
+The encryption system uses a two-layer key structure. The first-layer key is the customer master key (CMK), and the second-layer key is the data key (DK). The CMK encrypts and decrypts the DK to ensure their security in transit and at rest. The DK encrypts and decrypts service data. The process is as follows:
+
+#. **Encrypt the DK**
+
+   Before encrypting service data, the DK is encrypted by a CMK. Only encrypted DKs are stored or transferred. If an attacker gains access to an encrypted DK and service data, they cannot decrypt the data without the CMK.
+
+#. **Encrypt data in transit and at rest**
+
+   To read encrypted data, a decryption request is sent to KMS. KMS validates the request, decrypts the DK using the CMK, and returns the plaintext DK. The decryption is done in memory, so the plaintext DK will not be persisted to any storage medium. The system then uses the in-memory plaintext DK to decrypt disk I/O data, ensuring security both in transit and at rest.
 
 Prerequisites
 -------------
@@ -18,14 +31,16 @@ Using the Console
 -----------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
+
 #. Dynamically create a PVC and PV.
 
-   a. Choose **Storage** in the navigation pane and click the **PVCs** tab. Click **Create PVC** in the upper right corner. In the dialog box displayed, configure PVC parameters.
+   a. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** tab. Click **Create PVC** in the upper right corner. On the slide-out panel, configure PVC parameters.
    b. Select EVS for the StorageClass, enable encryption, and choose a key. Configure other parameters based on service requirements. For details, see :ref:`Using an EVS Disk Through a Dynamic PV <cce_10_0615>`.
    c. Click **Create**.
 
-#. Go to the **PVCs** tab and check whether the PVC of the encrypted EVS disk is created and whether the disk is encrypted.
-#. The method of using an encrypted PVC is the same as that of using a regular PVC.
+#. Go to the **PVCs** tab and check whether the PVC of the encrypted EVS volume is created and the volume is encrypted.
+
+   The method of using an encrypted PVC is the same as that of using a regular PVC.
 
 Using kubectl
 -------------
@@ -69,4 +84,4 @@ Using kubectl
 
       kubectl apply -f pvc-evs-auto.yaml
 
-#. Go to the **PVCs** tab and check whether the PVC of the encrypted EVS disk is created and whether the disk is encrypted.
+#. Go to the **PVCs** tab and check whether the PVC of the encrypted EVS volume is created and the volume is encrypted.

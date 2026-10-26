@@ -8,7 +8,7 @@ How Do I Expand the Storage Capacity of a Container?
 Application Scenario
 --------------------
 
-The default storage size of a container is 10 GiB. If a large volume of data is generated in the container, expand the capacity using the method described in this topic.
+The default storage size of a container is 10 GiB. If a large volume of data generates in the container, expand the capacity using the method described in this topic.
 
 Solution
 --------
@@ -29,7 +29,7 @@ Solution
 
    **Storage Settings**: Click **Expand** next to the data disk to configure the following parameter:
 
-   **Space Allocation for Pods**: indicates the base size of a pod. It is the maximum size that a workload's pods (including the container images) can grow to in the disk space. Proper settings can prevent pods from taking all the disk space available and avoid service exceptions. It is recommended that the value is less than or equal to 80% of the container engine space. This parameter is related to the node OS and container storage rootfs and is not supported in some scenarios. For details, see :ref:`Data Disk Space Allocation <cce_10_0341>`.
+   **Space Allocation for Pods**: indicates the base size of a pod. It is the maximum size that a workload's pods (including the container images) can grow to in the disk space. Proper settings can prevent pods from taking all the disk space available and avoid service exceptions. It is recommended that the value is less than or equal to 80% of the container runtime space. This parameter is related to the node OS and container storage rootfs and is not supported in some scenarios. For details, see :ref:`Data Disk Space Allocation <cce_10_0341>`.
 
 #. After the node is reset, log in to the node and check whether the container capacity has been expanded. The command output varies with the container storage rootfs.
 

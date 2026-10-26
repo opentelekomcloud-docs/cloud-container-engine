@@ -12,6 +12,21 @@ CCE standard and Turbo clusters support Kubernetes' default GPU scheduling mode.
 
 This section describes how to use Kubernetes' default GPU scheduling. For more information, see `Schedule GPUs <https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/>`__.
 
+Precautions
+-----------
+
+When using Kubernetes' default GPU scheduling, you must use the standard Kubernetes extended resource request method. Adhere to the following precautions:
+
+-  Do not deploy GPU-consuming applications directly on nodes.
+-  Do not use standalone container tools (such as Docker, Podman, and nerdctl) to launch GPU containers on GPU nodes. For example, avoid the following operations: Run *docker run --gpus all* or *docker run -e NVIDIA_VISIBLE_DEVICES=all* and then run GPU programs.
+-  Do not hardcode **NVIDIA_VISIBLE_DEVICES** or related GPU environment variables in pod YAML **env** fields. Similarly, do not set **NVIDIA_VISIBLE_DEVICES** to **all** or specific device values by default during image building.
+-  Do not set **privileged: true** in pods' **securityContext** because this setting allows containers to access all GPUs on the node, potentially starving other workloads on the same node.
+
+Non-standard GPU operations introduce the following risks:
+
+-  The scheduler cannot accurately track node GPU utilization. Tasks may be scheduled to nodes with exhausted GPU resources, causing resource contention or launch failures.
+-  Bypassing Kubernetes' GPU management may trigger NVIDIA driver conflicts or known community issues, destabilizing workloads. For example, `Failed to initialization NVML: Unknown Error <https://github.com/NVIDIA/nvidia-docker/issues/1671>`__.
+
 Prerequisites
 -------------
 
@@ -169,4 +184,4 @@ Using kubectl
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000002516199121.png
+.. |image1| image:: /_static/images/en-us_image_0000002631690186.png

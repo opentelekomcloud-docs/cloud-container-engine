@@ -11,7 +11,7 @@ Introduction
 Object Storage Service (OBS) provides massive, secure, and cost-effective data storage for you to store data of any type and size. You can use it in enterprise backup/archiving, video on demand (VoD), video surveillance, and many other scenarios.
 
 -  **Standard APIs**: With HTTP RESTful APIs, OBS allows you to use client tools or third-party tools to access object storage.
--  **Data sharing**: Servers, embedded devices, and IoT devices can use the same path to access shared object data in OBS.
+-  **Data sharing**: Servers, IoT devices, and embedded devices can use the same path to access shared object data in OBS.
 -  **Public/Private networks**: OBS allows data to be accessed from public networks to meet Internet application requirements.
 -  **Capacity and performance**: No capacity limit; high performance (I/O latency within 10 ms).
 -  **Use cases**: Deployments/StatefulSets in the **ReadOnlyMany** mode and jobs created for big data analysis, static website hosting, online VoD, gene sequencing, intelligent video surveillance, backup and archiving, and enterprise cloud boxes (web disks). You can create object storage by using the OBS console, tools, and SDKs.

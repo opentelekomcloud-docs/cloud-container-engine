@@ -7,8 +7,8 @@ Collecting Kubernetes Events
 
 The Cloud Native Log Collection add-on of CCE works with LTS to collect and store Kubernetes events and works with AOM to generate alarms.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 During Kubernetes event collection, the events generated in the following scenarios will not be collected:
 
@@ -17,7 +17,7 @@ During Kubernetes event collection, the events generated in the following scenar
 -  During configuration changes, for example, the following changes:
 
    -  An event collection policy is created or deleted.
-   -  The blacklist and whitelist of Kubernetes events reported to AOM is modified.
+   -  The blacklist and whitelist of Kubernetes events reported to AOM are modified.
 
 -  During otel-collector-event listening interruption. You need to restart the interrupted listening.
 
@@ -37,7 +37,7 @@ If logging has been enabled for a cluster but Kubernetes event collection has no
 
 #. In the upper right corner, click **View Log Collection Policies**.
 
-   All log collection policies are displayed.
+   All log collection policies in the current cluster are displayed.
 
 #. Click **Create Log Collection Policy**. Then, select **Kubernetes events** and click **OK**.
 
@@ -48,7 +48,7 @@ If logging has been enabled for a cluster but Kubernetes event collection has no
 Reporting Kubernetes Events to AOM
 ----------------------------------
 
-In 1.3.2 and later versions, the Cloud Native Log Collection add-on reports all warning events and some normal events to AOM by default. The reported events can be used to configure alarms. If the cluster version is 1.19.16, 1.21.11, 1.23.9, 1.25.4, or later, after the Cloud Native Log Collection add-on is installed, events will be reported to AOM by this add-on instead of the control plane component. After this add-on is uninstalled, events will not be reported to AOM.
+In 1.3.2 and later versions, Cloud Native Log Collection reports all warning events and some normal events to AOM by default. The reported events can be used to configure alarms. If the cluster version is v1.19.16, v1.21.11, v1.23.9, v1.25.4, or later, after Cloud Native Log Collection is installed, events are reported to AOM by this add-on instead of the control plane component. After this add-on is uninstalled, events will not be reported to AOM.
 
 **Custom Event Reporting**
 

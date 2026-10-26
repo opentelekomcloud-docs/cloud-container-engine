@@ -1,6 +1,6 @@
-:original_name: cce_qs_0000.html
+:original_name: cce_qs_0000_0.html
 
-.. _cce_qs_0000:
+.. _cce_qs_0000_0:
 
 Getting Started
 ===============
@@ -9,7 +9,7 @@ Getting Started
 -  :ref:`Preparations <cce_qs_0006>`
 -  :ref:`Creating a Kubernetes Cluster <cce_qs_0008>`
 -  :ref:`Deploying a Deployment (Nginx) <cce_qs_0003>`
--  :ref:`Deploying WordPress and MySQL That Depend on Each Other <cce_qs_0007>`
+-  :ref:`Deploying WordPress and MySQL, Which WordPress Requires <cce_qs_0007>`
 
 .. toctree::
    :maxdepth: 1
@@ -19,4 +19,4 @@ Getting Started
    preparations
    creating_a_kubernetes_cluster
    deploying_a_deployment_nginx
-   deploying_wordpress_and_mysql_that_depend_on_each_other/index
+   deploying_wordpress_and_mysql_which_wordpress_requires/index

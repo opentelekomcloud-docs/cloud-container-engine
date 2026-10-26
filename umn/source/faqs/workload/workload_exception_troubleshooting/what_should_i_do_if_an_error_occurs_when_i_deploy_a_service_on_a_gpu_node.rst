@@ -22,7 +22,7 @@ Fault Locating
 --------------
 
 #. The CCE AI Suite (NVIDIA GPU) add-on has an outdated driver version. After a new driver is downloaded and installed, the fault is rectified.
-#. You did not specify the requirement for GPUs in workloads.
+#. You did not specify the requirements for GPUs in workloads.
 
 Suggested Solution
 ------------------
@@ -43,7 +43,7 @@ After you install gpu-beta (gpu-device-plugin) on a node, nvidia-smi will be aut
 
          cd /usr/local/nvidia/bin && ./nvidia-smi
 
--  Container:
+-  Pod:
 
    -  If the cluster version is v1.27 or earlier, run the following command:
 

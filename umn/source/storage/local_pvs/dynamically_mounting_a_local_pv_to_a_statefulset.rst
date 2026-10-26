@@ -5,10 +5,10 @@
 Dynamically Mounting a Local PV to a StatefulSet
 ================================================
 
-Application Scenarios
----------------------
+Scenarios
+---------
 
-Dynamic mounting is available only for creating a :ref:`StatefulSet <cce_10_0048>`. It is implemented through a volume claim template (`volumeClaimTemplates <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#volume-claim-templates>`__ field) and depends on dynamic creation of PVs through StorageClass. In this mode, each pod in a multi-pod StatefulSet is associated with a unique PVC and PV. After a pod is rescheduled, the original data can still be mounted to it based on the PVC name. In the common mounting mode for a Deployment, if ReadWriteMany is supported, multiple pods of the Deployment will be mounted to the same underlying storage.
+Dynamic mounting is available only for creating a :ref:`StatefulSet <cce_10_0048>`. It is implemented through a PVC template (the `volumeClaimTemplates <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#volume-claim-templates>`__ field) and depends on dynamic creation of PVs through StorageClass. In this mode, each pod in a StatefulSet is associated with a unique PVC and PV. After a pod is rescheduled, the original data can still be mounted to it based on the PVC name. In the common mounting mode for a Deployment, if ReadWriteMany is supported, multiple pods of the Deployment will be mounted to the same underlying storage.
 
 .. note::
 
@@ -30,7 +30,7 @@ Dynamically Mounting a Local PV Using the Console
 
 #. Click **Create Workload** in the upper right corner. On the displayed page, click **Data Storage** in the **Container Information** area under **Container Settings** and choose **Add Volume** > **VCT**.
 
-#. Click **Create PVC**. In the dialog box displayed, configure the volume claim template parameters.
+#. Click **Create PVC**. On the slide-out panel, configure the PVC template parameters.
 
    Click **Create**.
 
@@ -120,7 +120,7 @@ Dynamically Mounting a Local PV Using kubectl
           spec:
             containers:
               - name: container-1
-                image: nginx:latest
+                image: nginx:latest         # Image of the workload
                 volumeMounts:
                   - name: pvc-local          # The value must be the same as that in the volumeClaimTemplates field.
                     mountPath: /data         # Location where the storage volume is mounted
@@ -135,7 +135,7 @@ Dynamically Mounting a Local PV Using kubectl
               name: pvc-local
               namespace: default
               annotations:
-                everest.io/csi.volume-name-prefix: test  # (Optional) Storage volume name prefix of the automatically created underlying storage
+                everest.io/csi.volume-name-prefix: test  # (Optional) Storage volume name prefix of the automatically-created underlying storage
             spec:
               accessModes:
                 - ReadWriteOnce               # The value must be ReadWriteOnce for local PVs.
@@ -297,12 +297,12 @@ You can also perform the operations listed in :ref:`Table 3 <cce_10_0635__cce_10
 
 .. table:: **Table 3** Related operations
 
-   +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Operation             | Description                                                                                                                                | Procedure                                                                                                                                                 |
-   +=======================+============================================================================================================================================+===========================================================================================================================================================+
-   | Viewing events        | View event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** or **PVs** tab.                                                       |
-   |                       |                                                                                                                                            | #. Click **View Events** in the **Operation** column of the target PVC or PV to view events generated within one hour (events are retained for one hour). |
-   +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Viewing a YAML file   | View, copy, or download the YAML file of a PVC or PV.                                                                                      | #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** or **PVs** tab.                                                       |
-   |                       |                                                                                                                                            | #. Click **View YAML** in the **Operation** column of the target PVC or PV to view, copy, or download the YAML.                                           |
-   +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+   +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Operation             | Description                                                                                                                                | Procedure                                                                                                                                                                                                        |
+   +=======================+============================================================================================================================================+==================================================================================================================================================================================================================+
+   | Viewing events        | View event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time of the PVC or PV. | #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** or **PVs** tab.                                                                                                              |
+   |                       |                                                                                                                                            | #. Locate the target PVC or PV and click **View Events** in the **Operation** column to view events generated within one hour (events are retained for one hour). You can also enable event persistence storage. |
+   +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Viewing a YAML file   | View, copy, or download the YAML file of a PVC or PV.                                                                                      | #. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** or **PVs** tab.                                                                                                              |
+   |                       |                                                                                                                                            | #. Locate the target PVC or PV and click **View YAML** in the **Operation** column to view, copy, or download the YAML.                                                                                          |
+   +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

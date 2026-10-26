@@ -8,7 +8,7 @@ Deleting a Node
 Scenario
 --------
 
-If a node is no longer needed, delete it on the CCE console if the node is billed on a pay-per-use basis. Do not manually remove nodes using **kubectl delete node**, as this may lead to unexpected results.
+To remove an unnecessary node, delete it on the CCE console if pay-per-use. Do not manually remove nodes using **kubectl delete node**, as this may lead to unexpected results.
 
 Deleting or unsubscribing from a node in a CCE cluster will release the node and services running on the node. Drain the node and back up data before the deletion or unsubscription to prevent services running on the node from being affected.
 

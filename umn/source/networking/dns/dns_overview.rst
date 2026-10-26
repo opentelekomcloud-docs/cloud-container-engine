@@ -19,7 +19,7 @@ You can view the pod of the CoreDNS add-on in the kube-system namespace.
    coredns-7689f8bdf-295rk                   1/1     Running   0          9m11s
    coredns-7689f8bdf-h7n68                   1/1     Running   0          11m
 
-After CoreDNS is installed, it becomes a DNS. After the Service is created, CoreDNS records the Service name and IP address. In this way, the pod can obtain the Service IP address by querying the Service name from CoreDNS.
+After CoreDNS is installed, it becomes a DNS server. After the Service is created, CoreDNS records the Service name and IP address. In this way, the pod can obtain the Service IP address by querying the Service name from CoreDNS.
 
 **nginx.<namespace>.svc.cluster.local** is used to access the Service. **nginx** is the Service name, **<namespace>** is the namespace, and **svc.cluster.local** is the domain name suffix. In actual use, you can omit **<namespace>.svc.cluster.local** in the same namespace and use the ServiceName.
 
@@ -46,7 +46,7 @@ By default, after other pods are created, the address of the CoreDNS Service is 
 When a user accesses the *Service name:Port* of the Nginx pod, the IP address of the Nginx Service is resolved from CoreDNS, and then the IP address of the Nginx Service is accessed. In this way, the user can access the backend Nginx pod.
 
 
-.. figure:: /_static/images/en-us_image_0000002516079535.png
+.. figure:: /_static/images/en-us_image_0000002631690644.png
    :alt: **Figure 1** Example of domain name resolution in a cluster
 
    **Figure 1** Example of domain name resolution in a cluster
@@ -54,12 +54,12 @@ When a user accesses the *Service name:Port* of the Nginx pod, the IP address of
 How Does Domain Name Resolution Work in Kubernetes?
 ---------------------------------------------------
 
-DNS policies can be configured for each pod. Kubernetes supports DNS policies **Default**, **ClusterFirst**, **ClusterFirstWithHostNet**, and **None**. For details, see `DNS for Services and Pods <https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/>`__. These policies are specified in the **dnsPolicy** field in the pod-specific.
+DNS policies can be configured for each pod. Kubernetes supports DNS policies **Default**, **ClusterFirst**, **ClusterFirstWithHostNet**, and **None**. For details, see `DNS for Services and Pods <https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/>`__. These policies are specified in the pod-specific **dnsPolicy** field.
 
 -  **Default**: Pods inherit the name resolution configuration from the node that the pods run on. The custom upstream DNS server and the stub domain cannot be used together with this policy.
 -  **ClusterFirst**: Any DNS query that does not match the configured cluster domain suffix, such as **www.kubernetes.io**, is forwarded to the upstream name server inherited from the node. Cluster administrators may have extra stub domains and upstream DNS servers configured.
--  **ClusterFirstWithHostNet**: For pods running with hostNetwork, set its DNS policy **ClusterFirstWithHostNet**.
--  **None**: It allows a pod to ignore DNS settings from the Kubernetes environment. All DNS settings should be provided using the **dnsPolicy** field in **dnsConfigPod**.
+-  **ClusterFirstWithHostNet**: For pods running with hostNetwork, use **ClusterFirstWithHostNet**.
+-  **None**: It allows a pod to ignore DNS settings in a Kubernetes environment. All DNS settings should be provided using the **dnsPolicy** field in **dnsConfigPod**.
 
 .. note::
 
@@ -78,10 +78,10 @@ DNS policies can be configured for each pod. Kubernetes supports DNS policies **
    -  Names with the cluster suffix, for example, **.cluster.local**: The request is sent to CoreDNS.
 
    -  Names with the stub domain suffix, for example, **.acme.local**: The request is sent to the configured custom DNS resolver that listens, for example, on 1.2.3.4.
-   -  Names that do not match the suffix (for example, **widget.com**): The request is forwarded to the upstream DNS.
+   -  Names that do not match the suffix, for example, **widget.com**: The request is forwarded to the upstream DNS.
 
 
-.. figure:: /_static/images/en-us_image_0000002484119088.png
+.. figure:: /_static/images/en-us_image_0000002661849511.png
    :alt: **Figure 2** Routing
 
    **Figure 2** Routing

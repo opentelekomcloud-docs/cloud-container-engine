@@ -8,14 +8,14 @@ Configuring the /etc/hosts File of a Pod Using hostAliases
 Application Scenarios
 ---------------------
 
-If DNS or other related settings are inappropriate, you can use **hostAliases** to overwrite the resolution of the hostname at the pod level when adding entries to the **/etc/hosts** file of the pod.
+If DNS or other related settings are inappropriate, you can use **hostAliases** to overwrite the resolution of the hostname at the pod level when adding entries to the **/etc/hosts** file of a pod.
 
 Procedure
 ---------
 
-#. Use kubectl to connect to the cluster.
+#. Use kubectl to access the cluster.
 
-#. Create the **hostaliases-pod.yaml** file.
+#. Create a **hostaliases-pod.yaml** file.
 
    **vi hostaliases-pod.yaml**
 
@@ -51,19 +51,19 @@ Procedure
 
    .. table:: **Table 1** pod field description
 
-      +------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter  | Mandatory | Description                                                                                                                                                |
-      +============+===========+============================================================================================================================================================+
-      | apiVersion | Yes       | API version number                                                                                                                                         |
-      +------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | kind       | Yes       | Type of the object to be created                                                                                                                           |
-      +------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | metadata   | Yes       | Metadata definition of a resource object                                                                                                                   |
-      +------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | name       | Yes       | Name of a pod                                                                                                                                              |
-      +------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | spec       | Yes       | Detailed description of the pod. For details, see :ref:`Table 2 <cce_bestpractice_00226__en-us_topic_0226102200_en-us_topic_0179003345_table33531919193>`. |
-      +------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter  | Mandatory | Description                                                                                                                                              |
+      +============+===========+==========================================================================================================================================================+
+      | apiVersion | Yes       | API version                                                                                                                                              |
+      +------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | kind       | Yes       | Type of an object to be created                                                                                                                          |
+      +------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | metadata   | Yes       | Metadata definition of a resource object                                                                                                                 |
+      +------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | name       | Yes       | Name of a pod                                                                                                                                            |
+      +------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | spec       | Yes       | Detailed description of a pod. For details, see :ref:`Table 2 <cce_bestpractice_00226__en-us_topic_0226102200_en-us_topic_0179003345_table33531919193>`. |
+      +------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    .. _cce_bestpractice_00226__en-us_topic_0226102200_en-us_topic_0179003345_table33531919193:
 
@@ -89,11 +89,11 @@ Procedure
       lifecycle No        Lifecycle
       ========= ========= ====================
 
-#. Create a pod.
+#. Create the pod.
 
    **kubectl create -f hostaliases-pod.yaml**
 
-   If information similar to the following is displayed, the pod is created.
+   If information similar to the following is displayed, the pod has been created:
 
    .. code-block::
 
@@ -103,14 +103,14 @@ Procedure
 
    **kubectl get pod hostaliases-pod**
 
-   If the pod is in the **Running** state, the pod is successfully created.
+   If the pod is in the **Running** state, the pod has been created:
 
    .. code-block::
 
       NAME                  READY          STATUS       RESTARTS      AGE
       hostaliases-pod       1/1            Running      0             16m
 
-#. Check whether the **hostAliases** functions properly.
+#. Check whether **hostAliases** functions properly.
 
    **docker ps \|grep hostaliases-pod**
 
@@ -118,4 +118,4 @@ Procedure
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000002483957908.png
+.. |image1| image:: /_static/images/en-us_image_0000002661851561.png

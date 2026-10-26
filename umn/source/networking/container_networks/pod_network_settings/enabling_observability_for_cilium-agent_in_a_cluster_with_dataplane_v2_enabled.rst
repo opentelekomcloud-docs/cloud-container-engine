@@ -5,13 +5,12 @@
 Enabling Observability for cilium-agent in a Cluster with DataPlane V2 Enabled
 ==============================================================================
 
-In a cluster with DataPlane V2 enabled, the cilium-agent component is deployed on each node. You can enable the observability for this component by referring to this section.
+CCE automatically deploys cilium-agent on every node in clusters with DataPlane V2 enabled. Follow the steps in this section to enable observability for cilium-agent.
 
 Prerequisites
 -------------
 
--  CCE DataPlane V2 is released with restrictions. To use this feature, submit a service ticket to CCE.
--  Currently, only CCE standard clusters of v1.27.16-r50, v1.28.15-r40, v1.29.15-r0, v1.30.14-r0, v1.31.10-r0, v1.32.6-r0, and later versions that have DataPlane V2 enabled support the observability of the cilium-agent component.
+-  Observability for cilium-agent can be configured in CCE standard clusters v1.27.16-r50, v1.28.15-r40, v1.29.15-r0, v1.30.14-r0, v1.31.10-r0, v1.32.6-r0, or later when DataPlane V2 is enabled.
 
 Step 1: Configure a ConfigMap and Rebuild yangtse-cilium
 --------------------------------------------------------
@@ -129,7 +128,7 @@ Step 4: Configure the Cilium Metric Dashboard
 
 The Cilium official website provides a Grafana dashboard for Cilium metrics. Compared with the monotonous metrics of Prometheus, the Grafana dashboard is more attractive. You can access the dashboard to view Cilium metrics.
 
-#. Prepare the configuration file of the Cilium metric dashboard. Open the `Prometheus sample file <https://raw.githubusercontent.com/cilium/cilium/v1.17.6/examples/kubernetes/addons/prometheus/monitoring-example.yaml>`__ in the Cilium community, locate **cilium-dashboard.json** in the file, and copy it.
+#. Prepare the Cilium metric dashboard configuration. Open the `sample Prometheus file <https://raw.githubusercontent.com/cilium/cilium/v1.19.1/examples/kubernetes/addons/prometheus/monitoring-example.yaml>`__ from the Cilium community, locate **cilium-dashboard.json**, and copy its contents.
 
 #. Log in to Grafana, choose **Dashboards**, and import the **cilium-dashboard.json** file.
 
@@ -137,8 +136,8 @@ The Cilium official website provides a Grafana dashboard for Cilium metrics. Com
 
       If you have enabled **Interconnect with AOM** when installing the Grafana add-on in :ref:`Step 2: Install Add-ons <cce_10_1064__section558903294616>`, change the **datasource** field in the **cilium-dashboard.json** file to **prometheus-aom**, and then import the file.
 
-#. Access the dashboard to view Cilium metrics. For details about Cilium metrics, see `cilium-metrics <https://docs.cilium.io/en/v1.17/observability/metrics/#cilium-metrics>`__.
+#. Access the dashboard to view Cilium metrics. For details, see `Cilium Metrics <https://docs.cilium.io/en/v1.19/observability/metrics/#cilium-metrics>`__.
 
    |image1|
 
-.. |image1| image:: /_static/images/en-us_image_0000002516079245.png
+.. |image1| image:: /_static/images/en-us_image_0000002661849589.png

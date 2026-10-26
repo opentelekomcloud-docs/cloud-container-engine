@@ -5,37 +5,37 @@
 How Do I Locate the Fault When a Cluster Is Unavailable?
 ========================================================
 
-This section provides you with some operations to locate the fault when a cluster becomes unavailable.
+This section shows you how to locate the fault when a cluster becomes unavailable.
 
-Fault Locating
---------------
+Troubleshooting
+---------------
 
-Possible causes are described here in order of how likely they are to occur.
+Possible causes are listed in order of likelihood.
 
-If the fault persists after you have ruled out a cause, check other causes.
+Check these causes one by one until you find the cause of the fault.
 
--  :ref:`Check Item 1: Whether the Security Group Is Modified <cce_faq_00039__section48059154014>`
--  :ref:`Check Item 2: Whether the Cluster Is Overloaded <cce_faq_00039__section1821659134014>`
+-  :ref:`Check Item 1: Security Group Modification <cce_faq_00039__section48059154014>`
+-  :ref:`Check Item 2: Cluster Overloaded <cce_faq_00039__section1821659134014>`
 
 If the fault persists, contact the customer service to help you locate the fault.
 
 .. _cce_faq_00039__section48059154014:
 
-Check Item 1: Whether the Security Group Is Modified
-----------------------------------------------------
+Check Item 1: Security Group Modification
+-----------------------------------------
 
 #. Log in to the management console and choose **Service List** > **Networking** > **Virtual Private Cloud**. In the navigation pane, choose **Access Control** > **Security Groups** and find the security group of the master node in the cluster.
 
-   The name of this security group is in the format of *Cluster name*-cce-**control**\ ``-``\ *ID*.
+   The name of this security group is in the format of *{cluster_name}*-cce-**control**\ ``-``\ *{ID}*.
 
 #. Click the security group. On the details page displayed, ensure that the security group rules of the master node are correct.
 
-   For details, see :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
+   For details, see :ref:`How Do I Modify Cluster Security Group Rules? <cce_faq_00265>`
 
 .. _cce_faq_00039__section1821659134014:
 
-Check Item 2: Whether the Cluster Is Overloaded
------------------------------------------------
+Check Item 2: Cluster Overloaded
+--------------------------------
 
 **Symptom**
 
@@ -47,6 +47,6 @@ When a cluster has a large number of resources created simultaneously, it causes
 
 **Solution**
 
-Increase the cluster management scale. A larger cluster management scale means higher capacity and improved performance of the master nodes. For details, see :ref:`Changing Cluster Scale <cce_10_0403>`.
+Increase the cluster management scale. A larger cluster management scale means higher capacity and improved performance of the master nodes. For details, see :ref:`Changing a Cluster Scale <cce_10_0403>`.
 
 If a cluster is overloaded, you can submit a service ticket for technical support.

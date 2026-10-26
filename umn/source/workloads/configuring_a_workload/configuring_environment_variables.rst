@@ -31,7 +31,7 @@ Before using a ConfigMap or secret as an environment variable, ensure that the C
 
    .. _cce_10_0113__fig164568529317:
 
-   .. figure:: /_static/images/en-us_image_0000002484119078.png
+   .. figure:: /_static/images/en-us_image_0000002631690132.png
       :alt: **Figure 1** Configuring environment variables
 
       **Figure 1** Configuring environment variables
@@ -91,7 +91,7 @@ Assume that a ConfigMap and a secret are already available in the cluster. For d
 
       kubectl get configmap configmap-example -oyaml
 
-   Information similar to the following is displayed:
+   Command output:
 
    .. code-block::
 
@@ -107,7 +107,7 @@ Assume that a ConfigMap and a secret are already available in the cluster. For d
 
       kubectl get secret secret-example -oyaml
 
-   Information similar to the following is displayed:
+   Command output:
 
    .. code-block::
 
@@ -203,7 +203,7 @@ Assume that a ConfigMap and a secret are already available in the cluster. For d
 
       kubectl get pod
 
-   Information similar to the following is displayed:
+   Command output:
 
    .. code-block::
 

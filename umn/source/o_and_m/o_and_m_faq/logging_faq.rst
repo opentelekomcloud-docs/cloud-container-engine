@@ -11,7 +11,7 @@ Indexes
 -  :ref:`How Do I Disable Logging? <cce_10_0809__section79501212173811>`
 -  :ref:`What Can I Do If All Components Except log-operator Are Not Ready? <cce_10_0809__section4325193116367>`
 -  :ref:`How Do I Handle the Error in Stdout Logs of log-operator? <cce_10_0809__section1674113819365>`
--  :ref:`What Can I Do If Container File Logs Cannot Be Collected When Docker Is Used as the Container Engine? <cce_10_0809__section15385204383613>`
+-  :ref:`What Can I Do If Container File Logs Cannot Be Collected When Docker Is Used as the Container Runtime? <cce_10_0809__section15385204383613>`
 -  :ref:`What Can I Do If Container File Logs Cannot Be Collected Due to the Wildcard in the Collection Directory? <cce_10_0809__section011012583364>`
 -  :ref:`What Can I Do If fluent-bit Pod Keeps Restarting? <cce_10_0809__section1880322183714>`
 -  :ref:`What Can I Do If Job Logs Cannot Be Collected? <cce_10_0809__section97887823715>`
@@ -26,17 +26,17 @@ Indexes
 How Do I Disable Logging?
 -------------------------
 
-**Disabling container log and Kubernetes event collection**
+**Disabling Container Log and Kubernetes Event Collection**
 
-Method 1: Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Logging**. In the upper right corner, click **View Log Policy**. Then, locate and delete the corresponding log collection policy.
+Method 1: Access **Logging**. In the upper right corner, click **View Log Policy**. Locate the target log policy and click **More** > **Delete** in the **Operation** column.
 
 Method 2: Access the **Add-ons** page and uninstall the Cloud Native Log Collection add-on. **Note that after you uninstall this add-on, it will no longer report Kubernetes events to AOM.**
 
-**Disabling log collection for control plane components**
+**Disabling Component Logging**
 
-Choose **Logging** > **Control Plane Logs** and deselect one or more components whose logs do not need to be collected.
+Choose **Logging** > **Control Plane Logs** and deselect one or more components you want to disable logging for.
 
-**Disabling Kubernetes audit log collection**
+**Disabling Kubernetes Audit Logging**
 
 Choose **Logging** > **Kubernetes Audit Logs** and deselect the component whose logs do not need to be collected.
 
@@ -70,12 +70,12 @@ How Do I Handle the Error in Stdout Logs of log-operator?
 
 .. _cce_10_0809__section15385204383613:
 
-What Can I Do If Container File Logs Cannot Be Collected When Docker Is Used as the Container Engine?
------------------------------------------------------------------------------------------------------
+What Can I Do If Container File Logs Cannot Be Collected When Docker Is Used as the Container Runtime?
+------------------------------------------------------------------------------------------------------
 
 **Symptom**:
 
-A container file path is configured but is not mounted to the container, and Docker is used as the container engine. As a result, logs cannot be collected.
+A container file path is configured but is not mounted to the container, and Docker is used as the container runtime. As a result, logs cannot be collected.
 
 **Solution**:
 
@@ -154,7 +154,7 @@ Run the **kubectl edit deploy -n monitoring log-agent-log-operator** command on 
    If the Cloud Native Log Collection add-on is upgraded, you need to reconfigure **kubernetes-buffer-size**.
 
 
-.. figure:: /_static/images/en-us_image_0000002516198997.png
+.. figure:: /_static/images/en-us_image_0000002631530078.png
    :alt: **Figure 1** Modifying the command line parameter of the log-operator container
 
    **Figure 1** Modifying the command line parameter of the log-operator container
@@ -175,7 +175,7 @@ What Can I Do If the Log Group or Stream Specified in the Log Collection Policy 
 
 -  **Scenario 1: The default log group or stream does not exist.**
 
-   Take Kubernetes events as an example. If the default log group or stream does not exist, a message will be displayed on the Kubernetes events page of the console. You can click **Create Log Collection Policy** to create a log group or stream.
+   Take Kubernetes events as an example. If the default log group or stream does not exist, a message will be displayed on the Kubernetes events page of the console. You can click the button for creating the log collection policy to create a log group or stream.
 
    After the log group or stream is created, the ID of the default log group or stream changes, and the existing log collection policy of the default log group or stream does not take effect. In this case, you can rectify the fault by referring to :ref:`Scenario 2 <cce_10_0809__li146683521096>`.
 
@@ -195,15 +195,15 @@ What Can I Do If the Log Group or Stream Specified in the Log Collection Policy 
       #. In the upper right corner, click **View Log Policy**. Then, locate the log collection policy and click **Delete** in the **Operation** column.
       #. Click **Create Log Collection Policy**. Then, select **Kubernetes events** and click **OK**.
 
--  **Scenario 3: The custom log group (stream) does not exist.**
+-  **Scenario 3: The custom log group does not exist.**
 
-   CCE does not support the creation of non-default log groups (streams). You can create a non-default log group (stream) on the LTS console.
+   CCE does not support the creation of non-default log groups. You can create non-default log groups on the LTS console.
 
    After the creation is complete, take the following steps:
 
    #. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Logging**.
    #. In the upper right corner, click **View Log Policy**. Then, locate the log collection policy and click **Edit** in the **Operation** column.
-   #. Select **Custom** and configure a log group or stream.
+   #. Select **Custom** and configure a log group.
 
 .. _cce_10_0809__section242432981511:
 

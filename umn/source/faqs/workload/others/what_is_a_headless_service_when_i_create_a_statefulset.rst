@@ -23,6 +23,6 @@ Headless Service Application Scenarios
 
 If there is no difference between multiple pods of a workload, you can use a common Service and use the cluster kube-proxy to implement load balancing, for example, an Nginx Deployment.
 
-However, in some application scenarios, pods of a workload have different roles. For example, in a Redis cluster, each Redis pod is different. They have a master/slave relationship and need to communicate with each other. In this case, a common Service cannot access a specified pod through the cluster IP address. Therefore, you need to allow the headless Service to directly access the real IP address of the pod to implement mutual access among pods.
+However, in some scenarios, the pods of a workload serve different roles. For example, in a Redis cluster, each pod has a distinct function, forming a primary-secondary architecture that requires inter-pod communication. In this case, a common Service cannot access a specified pod through the cluster IP address. Therefore, you need to allow the headless Service to directly access the real IP address of the pod to implement mutual access among pods.
 
 Headless Services work with `StatefulSet <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#stable-network-id>`__ to deploy stateful applications, such as Redis and MySQL.

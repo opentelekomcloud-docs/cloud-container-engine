@@ -68,7 +68,7 @@ HTTPS certificates can be configured for ingresses to provide security services.
 
       vi ingress-test.yaml
 
-   **For clusters of v1.23 or later:**
+   **For clusters v1.23 or later:**
 
    .. code-block::
 
@@ -89,15 +89,15 @@ HTTPS certificates can be configured for ingresses to provide security services.
                 - path: /
                   backend:
                     service:
-                      name: <your_service_name>  # Replace it with the name of your target Service.
+                      name: <your_service_name>  # Replace it with your target Service name.
                       port:
-                        number: <your_service_port>  # Replace it with the port number of your target Service.
+                        number: <your_service_port>  # Replace it with your target Service port.
                   property:
                     ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
                   pathType: ImplementationSpecific
         ingressClassName: nginx
 
-   **For clusters of v1.21 or earlier:**
+   **For clusters v1.21 or earlier:**
 
    .. code-block::
 
@@ -118,8 +118,8 @@ HTTPS certificates can be configured for ingresses to provide security services.
             paths:
             - path: '/'
               backend:
-                serviceName: <your_service_name>  # Replace it with the name of your target Service.
-                servicePort: <your_service_port>  # Replace it with the port number of your target Service.
+                serviceName: <your_service_name>  # Replace it with your target Service name.
+                servicePort: <your_service_port>  # Replace it with your target Service port.
 
 #. Create an ingress.
 
@@ -131,7 +131,7 @@ HTTPS certificates can be configured for ingresses to provide security services.
 
    .. code-block::
 
-      ingress/ingress-test created
+      ingress.networking.k8s.io/ingress-test created
 
 #. Check the created ingress.
 

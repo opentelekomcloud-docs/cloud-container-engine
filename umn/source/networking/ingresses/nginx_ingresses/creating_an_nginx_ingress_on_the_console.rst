@@ -17,11 +17,11 @@ Prerequisites
 Notes and Constraints
 ---------------------
 
--  **It is not recommended modifying any configuration of a load balancer on the ELB console. Otherwise, the Service will be abnormal.** If you have modified the configuration, uninstall the nginx-ingress add-on and reinstall it.
+-  **It is not recommended that you modify any configuration of a load balancer on the ELB console. Otherwise, the Service will be abnormal.** If you have modified the configuration, uninstall the nginx-ingress add-on and reinstall it.
 -  The URL registered in an ingress forwarding policy must be the same as the URL used to access the backend Service. Otherwise, a 404 error will be returned.
 -  The selected or created load balancer must be in the same VPC as the current cluster, and it must match the load balancer type (private or public network).
 -  The load balancer has at least two listeners, and ports 80 and 443 are not occupied by listeners.
--  When NGINX Ingress Controller accesses a dedicated load balancer and the service affinity is set to the node level, the load balancer's IP address may fail to be accessed within the cluster. For details, see :ref:`Why a Service Fails to Be Accessed from Within the Cluster <cce_10_0249__section52631714117>`.
+-  In CCE standard clusters, when the NGINX Ingress Controller is bound to a dedicated load balancer, the node hosting the **cceaddon-nginx-ingress-controller** pod, and any other containers on that same node, cannot use the load balancer's private IP to access the ingress.
 
 Creating an Nginx Ingress
 -------------------------
@@ -30,22 +30,22 @@ This section uses an Nginx workload as an example to describe how to create an N
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. Choose **Services & Ingresses** in the navigation pane, click the **Ingresses** tab, and click **Create Ingress** in the upper right corner.
+#. Choose **Services and Ingresses** in the navigation pane, click the **Ingresses** tab, and click **Create Ingress** in the upper right corner.
 
 #. Configure ingress parameters.
 
-   -  **Name**: Customize the name of an ingress, for example, **nginx-ingress-demo**.
+   -  **Name**: Enter a name for the ingress, for example, **nginx-ingress-demo**.
    -  **Namespace**: Select the namespace to which the ingress is to be added.
    -  **nginx-ingress**: This option is displayed only after the :ref:`NGINX Ingress Controller <cce_10_0034>` add-on is installed in the cluster.
 
-      -  **Ingress Class**: Select the name of the Nginx Ingress controller installed in the cluster. You can :ref:`install multiple Nginx Ingress controllers <cce_10_0034__section1057051834311>` and customize controller names as needed.
-      -  **External Protocol**: The options are **HTTP** and **HTTPS**. The default number of the listening port reserved when NGINX Ingress Controller is installed is 80 for HTTP and 443 for HTTPS. To use HTTPS, configure a certificate.
-      -  **Certificate Source**: source of a certificate for encrypting and authenticating HTTPS data transmission.
+      -  **Ingress Class**: Select the name of the Nginx Ingress controller installed in the cluster. You can :ref:`deploy multiple Nginx Ingress controllers <cce_10_0034__section1057051834311>` and customize their names as needed.
+      -  **Frontend Protocol**: The options are **HTTP** and **HTTPS**. By default, NGINX Ingress Controller listens on ports 80 for HTTP and 443 for HTTPS. To use HTTPS, configure a certificate.
+      -  **Certificate Source**: the source of a certificate for encrypting and authenticating HTTPS data transmission.
 
          -  If you select a TLS key, you must create a key certificate of the IngressTLS or kubernetes.io/tls type beforehand. For details, see :ref:`Creating a Secret <cce_10_0153>`.
-         -  If you select the default certificate, NGINX Ingress Controller will use its default certificate for encryption and authentication. You can configure the default certificate during :ref:`NGINX Ingress Controller <cce_10_0034>` installation. If the default certificate is not configured, the certificate provided by NGINX Ingress Controller will be used.
+         -  If you select **Default certificate**, NGINX Ingress Controller will use its default certificate for encryption and authentication. You can override this default while installing :ref:`NGINX Ingress Controller <cce_10_0034>`. Otherwise, the controller's built-in certificate will be used.
 
-      -  **SNI**: stands for Server Name Indication (SNI), which is an extended protocol of TLS. SNI allows multiple TLS-compliant domain names for external access using the same IP address and port number, and different domain names can use different security certificates. After SNI is enabled, the client is allowed to submit the requested domain name when initiating a TLS handshake request. After receiving the TLS request, the load balancer searches for the certificate based on the domain name in the request. If the certificate corresponding to the domain name is found, the load balancer returns the certificate for authorization. Otherwise, the default certificate (server certificate) is returned for authorization.
+      -  **SNI**: stands for Server Name Indication (SNI), which is an extended protocol of TLS. SNI enables several TLS domain names to share one IP:port pair while using different security certificates for each domain name. With SNI enabled, the client can send the requested domain name during the TLS handshake. The load balancer uses the domain name from the TLS request to find the matching certificate. If found, it returns that certificate. Otherwise, it returns the default server certificate.
 
    -  **Forwarding Policy**: When the access address of a request matches the forwarding policy (a forwarding policy consists of a domain name and URL), the request is forwarded to the corresponding target Service for processing. Click **Add Forwarding Policies** to add multiple forwarding policies.
 

@@ -5,7 +5,7 @@
 Overview
 ========
 
-CCE uses xGPU virtualization technologies to dynamically divide the GPU memory and computing power. A single GPU can be virtualized into a maximum of 20 virtual GPU devices. Virtualization is more flexible than static allocation. You can specify the number of GPUs on the basis of stable service running to improve GPU utilization.
+CCE uses xGPU virtualization technologies to dynamically divide the GPU memory and compute. A single GPU can be virtualized into a maximum of 20 virtual GPU devices. Virtualization is more flexible than static allocation. You can specify the number of GPUs on the basis of stable service running to improve GPU utilization.
 
 Advantages
 ----------
@@ -47,7 +47,7 @@ Notes and Constraints
 
 -  A single GPU can be virtualized into a maximum of 20 virtual GPU devices.
 -  Virtual GPUs cannot be used in init containers.
--  GPU virtualization supports GPU memory isolation and isolation between GPU memory and computing power. A single GPU can schedule only workloads in the same isolation mode.
+-  GPU virtualization supports GPU memory isolation and isolation between GPU memory and compute. A single GPU can schedule only workloads in the same isolation mode.
 -  Autoscaler does not support automatic scaling of virtual GPU nodes in clusters of v1.26 or earlier.
 -  When isolation is required, virtual GPUs do not support requesting GPU memory using the CUDA API cudaMallocManaged(), which is also known as Unified Virtual Memory (UVM). For more information, see `NVIDIA official documents <https://developer.nvidia.com/blog/unified-memory-cuda-beginners/>`__. Use other methods to request for GPU memory, for example, by calling cudaMalloc().
 -  When a containerized application is initializing, the real-time compute monitored by the nvidia-smi may exceed the upper limit of the available compute of the container.
@@ -57,5 +57,5 @@ Notes and Constraints
 Process of GPU Virtualization
 -----------------------------
 
--  :ref:`Preparing Virtualized GPU Resources <cce_10_0645>`: Prepare nodes that support GPU virtualization.
+-  :ref:`Preparing Virtual GPU Resources <cce_10_0645>`: Prepare nodes that support GPU virtualization.
 -  :ref:`Using GPU Virtualization <cce_10_0646>`: Create a GPU virtualization workload to meet service needs.

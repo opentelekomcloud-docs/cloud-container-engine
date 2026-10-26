@@ -37,7 +37,7 @@ Deploying a GPU Workload
 
 Create a GPU-backed workload. After the workload runs properly, access Prometheus or Grafana to monitor GPU metrics.
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. The **Overview** page is displayed.
+#. Log in to the CCE console and click the cluster name to access the cluster **Overview** page.
 #. In the navigation pane, choose **Workloads**. In the upper right corner of the displayed page, click **Create Workload**.
 #. Click **Basic Info** in the **Container Information** area under **Container Settings**. Select **GPU card** for **GPU Quota** and set **Number of GPUs** to **1**.
 #. Configure other workload parameters and click **Create Workload**. If the workload status is **Running**, the GPU workload has been created.
@@ -51,7 +51,7 @@ To view GPU metrics in Prometheus, enable **Local Data Storage** in **Data Stora
 
 After Cloud Native Cluster Monitoring is installed, its associated workloads and Services are automatically deployed in the cluster. The Prometheus server will be deployed as a StatefulSet in the **monitoring** namespace. You can create a public :ref:`LoadBalancer Service <cce_10_0014>` to enable Prometheus access from the Internet.
 
-#. In the navigation pane, choose Services & Ingresses. In the upper right corner, click **Create from YAML** and create a public LoadBalancer Service.
+#. In the navigation pane, choose Services and Ingresses. In the upper right corner, click **Create from YAML** and create a public LoadBalancer Service.
 
    .. code-block::
 
@@ -76,7 +76,7 @@ After Cloud Native Cluster Monitoring is installed, its associated workloads and
           prometheus: server
         type: LoadBalancer
 
-#. After the Service is created, enter **Public IP address of the load balancer:Service port** in your browser's address bar to access Prometheus.
+#. After the Service is created, enter *<public-IP-address-of-the-load-balancer>*\ **:**\ *<Service port>* in the address bar of the browser to access Prometheus.
 
 #. Click **Graph** in the upper part of the page, search for the required GPU metric, and view its details.
 
@@ -105,5 +105,5 @@ To view GPU metrics in Grafana, install Grafana and enable **Public Access**. Gr
 
       Cloud Native Cluster Monitoring does not automatically collect :ref:`GPU pod monitoring metrics <cce_10_0955__table18614557123814>`. To view data in Grafana, set up a dashboard. For details, see "Monitoring > Collecting GPU Pod Monitoring Metrics and Setting Up a Grafana Dashboard" in *Best Practices*.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516198941.png
-.. |image2| image:: /_static/images/en-us_image_0000002516078931.png
+.. |image1| image:: /_static/images/en-us_image_0000002631689960.png
+.. |image2| image:: /_static/images/en-us_image_0000002661849245.png

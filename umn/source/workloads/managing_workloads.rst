@@ -16,10 +16,18 @@ After a workload is created, you can upgrade it, edit its YAML file, view logs a
    | Operation                                                                                      | Description                                                                                                                                                                            |
    +================================================================================================+========================================================================================================================================================================================+
    | :ref:`Monitor <cce_10_0007__section7200124254011>`                                             | You can view the CPU and memory usage of workloads and pods on the CCE console to determine the resource specifications you may need.                                                  |
+   |                                                                                                |                                                                                                                                                                                        |
+   |                                                                                                | .. note::                                                                                                                                                                              |
+   |                                                                                                |                                                                                                                                                                                        |
+   |                                                                                                |    Monitoring data is unavailable for jobs and CronJobs.                                                                                                                               |
    +------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`View Log <cce_10_0007__en-us_topic_0107283638_section51511928173817>`                    | You can view the logs of workloads.                                                                                                                                                    |
+   |                                                                                                |                                                                                                                                                                                        |
+   |                                                                                                | .. note::                                                                                                                                                                              |
+   |                                                                                                |                                                                                                                                                                                        |
+   |                                                                                                |    CronJob logs are not directly accessible. View the logs of the job created by that CronJob instead.                                                                                 |
    +------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Upgrade <cce_10_0007__en-us_topic_0107283638_section17604174417381>`                     | You can replace images or image tags to quickly upgrade Deployments, StatefulSets, and DaemonSets without interrupting services.                                                       |
+   | :ref:`Upgrade <cce_10_0007__en-us_topic_0107283638_section17604174417381>`                     | You can replace images or image tags to quickly upgrade Deployments, StatefulSets, and DaemonSets.                                                                                     |
    +------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Edit YAML <cce_10_0007__en-us_topic_0107283638_section21669213390>`                      | You can modify and download YAML files of Deployments, StatefulSets, DaemonSets, CronJobs, and pods on the CCE console. YAML files of jobs can only be viewed, copied, and downloaded. |
    |                                                                                                |                                                                                                                                                                                        |
@@ -30,16 +38,20 @@ After a workload is created, you can upgrade it, edit its YAML file, view logs a
    | :ref:`Roll Back <cce_10_0007__en-us_topic_0107283638_section13324541124815>`                   | Only Deployments can be rolled back.                                                                                                                                                   |
    +------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Redeploy <cce_10_0007__section132451237607>`                                             | You can redeploy a workload. After the workload is redeployed, all pods in the workload will be restarted.                                                                             |
+   |                                                                                                |                                                                                                                                                                                        |
+   |                                                                                                | .. note::                                                                                                                                                                              |
+   |                                                                                                |                                                                                                                                                                                        |
+   |                                                                                                |    Redeployment is supported only for Deployments and StatefulSets.                                                                                                                    |
    +------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Enabling/Disabling the Upgrade <cce_10_0007__en-us_topic_0107283638_section12087915401>` | Only Deployments support this operation.                                                                                                                                               |
    +------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Manage Label <cce_10_0007__en-us_topic_0107283638_section5931193015488>`                 | Labels are attached to workloads as key-value pairs to manage and select workloads. Jobs and Cron Jobs do not support this operation.                                                  |
+   | :ref:`Manage Label <cce_10_0007__en-us_topic_0107283638_section5931193015488>`                 | Labels are attached to workloads as key-value pairs to manage and select workloads. Label management is not supported for jobs and CronJobs.                                           |
    +------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Delete <cce_10_0007__en-us_topic_0107283638_section14423721191418>`                      | You can delete a workload or job that is no longer needed. Deleted workloads or jobs cannot be recovered.                                                                              |
    +------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`View Events <cce_10_0007__en-us_topic_0107283638_section1947616516301>`                  | You can view event names, event types, number of occurrences, Kubernetes events, first occurrence time, and last occurrence time.                                                      |
    +------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Stop/Start                                                                                     | You can only start or stop a cron job.                                                                                                                                                 |
+   | Stop/Start                                                                                     | You can stop or start a CronJob. Only CronJobs support this operation.                                                                                                                 |
    +------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. _cce_10_0007__section7200124254011:
@@ -51,7 +63,7 @@ You can view the CPU and memory usage of Deployments and pods on the CCE console
 
 #. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and click **Monitor** of the target workload. On the page that is displayed, you can view CPU usage and memory usage of the workload.
-#. Click the workload name. On the **Pods** tab page, click the **Monitor** of the target pod to view its CPU and memory usage.
+#. Click the workload name. On the **Pods** tab, click the **Monitor** of the target pod to view its CPU and memory usage.
 
 .. _cce_10_0007__en-us_topic_0107283638_section51511928173817:
 
@@ -72,7 +84,7 @@ You can view logs of Deployments, StatefulSets, DaemonSets, and jobs. This secti
 
    .. note::
 
-      The displayed logs are standard output logs of containers and do not have persistence and advanced O&M capabilities. To use more comprehensive log capabilities, see :ref:`Logs <cce_10_0553>`. If the function of collecting standard output is enabled for the workload (enabled by default), you can go to AOM to view more workload logs. For details, see :ref:`Collecting Container Logs Using ICAgent <cce_10_0018>`.
+      The displayed logs are standard output logs of containers and do not have persistence and advanced O&M capabilities. To use more comprehensive log capabilities, see :ref:`Logs <cce_10_0553>`. If the function of collecting standard output is enabled for the workload (enabled by default), you can go to AOM to view more workload logs. For details, see :ref:`Using ICAgent to Collect Container Logs <cce_10_0018>`.
 
 .. _cce_10_0007__en-us_topic_0107283638_section17604174417381:
 
@@ -117,7 +129,7 @@ CCE records the release history of all Deployments. You can roll back a Deployme
 
 #. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and choose **More > Roll Back** in the **Operation** column of the target workload.
-#. Switch to the **Change History** tab page, click **Roll Back to This Version** of the target version, manually confirm the YAML file, and click **OK**.
+#. Switch to the **Change History** tab, click **Roll Back to This Version** of the target version, manually confirm the YAML file, and click **OK**.
 
 .. _cce_10_0007__section132451237607:
 
@@ -145,7 +157,7 @@ Only Deployments support this operation.
 
 .. important::
 
-   Deployments in the disable upgrade state cannot be rolled back.
+   Once upgrades are disabled, upgrade and rollback operations can still be triggered but will not affect running pods.
 
 #. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and choose **More** > **Disable/Enable Upgrade** in the **Operation** column of the workload.
@@ -160,11 +172,11 @@ Labels are key-value pairs and can be attached to workloads. You can manage and 
 
 #. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
 #. Click the **Deployments** tab and choose **More** > **Manage Label** in the **Operation** column of the target workload.
-#. Click |image1|, enter a key and a value, and click **OK**.
+#. Click **Add**, enter a key and a value, and click **OK**.
 
    .. note::
 
-      A key-value pair must contain 1 to 63 characters starting and ending with a letter or digit. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed.
+      A label's key-value pair must contain 1 to 63 characters starting and ending with a letter or digit. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed.
 
 .. _cce_10_0007__en-us_topic_0107283638_section14423721191418:
 
@@ -183,8 +195,7 @@ You can delete a workload or job that is no longer needed. Deleted workloads or 
 
    .. note::
 
-      -  If the node where the pod is located is unavailable or shut down and the workload cannot be deleted, you can forcibly delete the pod from the pod list on the workload details page.
-      -  Ensure that the storage volumes to be deleted are not used by other workloads. If these volumes are imported or have snapshots, you can only unbind them.
+      If a node hosting the pods becomes unavailable and the workload cannot be deleted, click the workload name to go to its details page and delete all pods from the pod list.
 
 .. _cce_10_0007__en-us_topic_0107283638_section1947616516301:
 
@@ -194,10 +205,4 @@ Events
 This section uses a Deployment as an example to describe how to view events of a workload. To view the event of a job or CronJob, click **View Event** in the **Operation** column of the target workload.
 
 #. Log in to the CCE console, go to the console of an existing cluster, and choose **Workloads** in the navigation pane.
-#. On the **Deployments** tab page, click the target workload. In the **Pods** tab page, click the **View Events** to view the event name, event type, number of occurrences, Kubernetes event, first occurrence time, and last occurrence time.
-
-   .. note::
-
-      Event data will be retained for one hour and then automatically deleted.
-
-.. |image1| image:: /_static/images/en-us_image_0000002483959098.png
+#. On the **Deployments** tab, click the target workload. In the **Pods** tab, click the **View Events** to view the event name, event type, number of occurrences, Kubernetes event, first occurrence time, and last occurrence time.

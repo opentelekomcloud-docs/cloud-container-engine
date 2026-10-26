@@ -13,10 +13,10 @@ Mount options are parameters passed to the kernel during file system mounting. T
 Prerequisites
 -------------
 
-The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be **2.4.153 or later**. This add-on identifies the mount options and transfers them to the underlying storage resources. The parameter settings take effect only if the underlying storage resources support the specified options.
+The :ref:`CCE Container Storage (Everest) <cce_10_0066>` version must be 2.4.153 or later. This add-on identifies the mount options and transfers them to the underlying storage resources. The parameter settings take effect only if the underlying storage resources support the specified options.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  Mount options cannot be configured for secure containers.
 
@@ -62,8 +62,8 @@ You can use **mountOptions** to configure mount options in a PV. This configurat
           pv.kubernetes.io/provisioned-by: everest-csi-provisioner
         name: pv-disk  # PV name
         labels:
-          failure-domain.beta.kubernetes.io/region:
-          failure-domain.beta.kubernetes.io/zone:
+          failure-domain.beta.kubernetes.io/region:  <your_region>   # Region of the node where the application is to be deployed
+          failure-domain.beta.kubernetes.io/zone:  <your_zone>       # AZ of the node where the application is to be deployed
       spec:
         accessModes:
           - ReadWriteOnce
@@ -76,8 +76,8 @@ You can use **mountOptions** to configure mount options in a PV. This configurat
           volumeAttributes:
             storage.kubernetes.io/csiProvisionerIdentity: everest-csi-provisioner
             everest.io/disk-mode: SCSI
-            everest.io/disk-volume-type: SATA
-            everest.io/enterprise-project-id: '0'
+            everest.io/disk-volume-type: SAS
+            everest.io/enterprise-project-id: '0'     # Enterprise project ID. 0 indicates the default enterprise project.
         persistentVolumeReclaimPolicy: Retain
         storageClassName: csi-disk
         mountOptions: # Mount options
@@ -121,7 +121,7 @@ You can use **mountOptions** to configure mount options in a PV. This configurat
 Configuring Mount Options in a StorageClass
 -------------------------------------------
 
-You can also use **mountOptions** to configure mount options in a StorageClass. This configuration applies to all PVs created using this StorageClass. For details about **mountOptions**, see :ref:`EVS Mount Options <cce_10_1012__section1254912109811>`.
+You can also use **mountOptions** to configure mount options in a StorageClass. This configuration applies to all PVs created using this StorageClass. For details about **mountOptions**, see :ref:`EVS Mount Options <cce_10_1012__section1254912109811>`. For more information about StorageClasses, see :ref:`Customizing a StorageClass <cce_10_0380>`.
 
 #. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
@@ -133,7 +133,7 @@ You can also use **mountOptions** to configure mount options in a StorageClass. 
       apiVersion: storage.k8s.io/v1
       kind: StorageClass
       metadata:
-        name: csi-disk # The StorageClass name
+        name: csi-disk-01 # StorageClass name
       mountOptions: # Mount options
       - strictatime
       parameters:

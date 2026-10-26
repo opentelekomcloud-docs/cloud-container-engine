@@ -27,7 +27,7 @@ When selecting a region, consider the following factors:
 Selecting an AZ
 ---------------
 
-When deploying resources, consider your applications' requirements on disaster recovery (DR) and network latency.
+When determining whether to deploy resources in the same AZ, consider your requirements for disaster recovery (DR) and network latency.
 
 -  For high DR capability, deploy resources in different AZs within the same region.
 -  For lower network latency, deploy resources in the same AZ.
@@ -35,4 +35,4 @@ When deploying resources, consider your applications' requirements on disaster r
 Regions and Endpoints
 ---------------------
 
-When using an API to access resources, you must specify a region and endpoint. For more information about regions and endpoints, see `Regions and Endpoints <https://docs.otc.t-systems.com/en-us/endpoint/index.html>`__.
+When using an API to access resources, you must specify a region and endpoint. For details, see `Regions and Endpoints <https://docs.otc.t-systems.com/en-us/endpoint/index.html>`__.

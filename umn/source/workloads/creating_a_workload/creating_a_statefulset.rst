@@ -11,18 +11,18 @@ A `StatefulSet <https://kubernetes.io/docs/concepts/workloads/controllers/statef
 -  **Ordered deployment and scaling**: Pods in a StatefulSet are created, scaled, or deleted sequentially. For example, pods with higher ordinals are prioritized for scale-out and removed first during scale-in, which is critical to stateful applications that need to be started or stopped in sequence and ideal for scenarios like primary-secondary replication of databases.
 -  **Persistent storage**: To ensure data persistence, you can assign stable persistent storage volumes to each StatefulSet pod by using **VolumeClaimTemplate**. If a pod is scheduled to other nodes, its original data volume remains intact via the PVC, preventing data loss.
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  When you delete or scale a StatefulSet, the system does not delete the storage volumes associated with the StatefulSet to ensure data security.
 -  When you delete a StatefulSet, reduce the number of replicas to **0** before deleting the StatefulSet so that pods in the StatefulSet can be stopped in order.
--  When you create a StatefulSet, a headless Service is required for pod access. For details, see :ref:`Headless Service <cce_10_0398>`.
+-  When you create a StatefulSet, a headless Service is required for pod access. For details, see :ref:`Headless Services <cce_10_0398>`.
 -  When a node is unavailable, pods become **Unready**. In this case, manually delete the pods of the StatefulSet so that the pods can be migrated to a normal node.
 
 Prerequisites
 -------------
 
--  A cluster is available. For details about how to create a cluster, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
+-  A cluster is available. For details about how to create a cluster, see :ref:`Creating a Standard/Turbo Cluster <cce_10_0028>`.
 -  There are some available nodes in the cluster. If no node is available, create one by referring to :ref:`Creating a Node <cce_10_0363>`.
 
 Using the CCE Console
@@ -126,7 +126,7 @@ Using the CCE Console
 
       -  (Optional) **Security Context**: Assign container permissions to protect the system and other containers from being affected. Enter the user ID to assign container permissions and prevent systems and other containers from being affected.
 
-      -  (Optional) **Logging**: Report standard container output logs to AOM by default, without requiring manual settings. You can manually configure the log collection path. For details, see :ref:`Collecting Container Logs Using ICAgent <cce_10_0018>`.
+      -  (Optional) **Logging**: Report standard container output logs to AOM by default, without requiring manual settings. You can manually configure the log collection path. For details, see :ref:`Using ICAgent to Collect Container Logs <cce_10_0018>`.
 
          To disable the collection of the standard output logs of the current workload, add the annotation **kubernetes.AOM.log.stdout: []** in :ref:`Labels and Annotations <cce_10_0048__li9923141863518>` in the **Advanced Settings** area. For details about how to use this annotation, see :ref:`Table 1 <cce_10_0386__table19757101213714>`.
 
@@ -135,7 +135,7 @@ Using the CCE Console
 
 #. Configure the **settings of the headless Service** associated with the workload.
 
-   A headless Service provides a fixed access domain name for every pod within a StatefulSet for mutual pod access. For details, see :ref:`Headless Service <cce_10_0398>`.
+   A headless Service provides a fixed access domain name for every pod within a StatefulSet for mutual pod access. For details, see :ref:`Headless Services <cce_10_0398>`.
 
 #. (Optional) Configure **the settings of the Service** associated with the workload.
 
@@ -252,7 +252,7 @@ In this example, a Nginx workload is used and the EVS volume is dynamically moun
                 everest.io/disk-volume-type: SAS  # SAS EVS volume type.
               labels:
                 failure-domain.beta.kubernetes.io/region: eu-de  # region where the EVS volume is created.
-                failure-domain.beta.kubernetes.io/zone:    # AZ where the EVS volume is created. It must be the same as the AZ of the node.
+                failure-domain.beta.kubernetes.io/zone: eu-de-01   # AZ where the EVS volume is created. It must be the same as the AZ of the node.
             spec:
               accessModes:
                 - ReadWriteOnce  # The value must be ReadWriteOnce for the EVS volume.

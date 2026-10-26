@@ -8,12 +8,12 @@ How Can I Drain a GPU Node After Upgrading or Rolling Back the CCE AI Suite (NVI
 Symptom
 -------
 
-When GPU virtualization workloads are present on a GPU node, upgrading or rolling back the CCE AI Suite (NVIDIA GPU) add-on led to failures in upgrading or rolling back certain components like GPU virtualization and runtime components. To ensure smooth operation of the add-on, a drainage operation must be carried out on the GPU node to clear the GPU virtualization workloads. You are advised to follow the rolling drainage policy, which involves draining only one or a few GPU nodes at a time to avoid disrupting services on a large scale.
+When GPU virtualization workloads are present on a GPU node, upgrading or rolling back the CCE AI Suite (NVIDIA GPU) add-on leads to failures in upgrading or rolling back certain components like GPU virtualization and runtime components. To ensure smooth operation of the add-on, a drainage operation must be carried out on the GPU node to clear the GPU virtualization workloads. You are advised to follow the rolling drainage policy, which involves draining only one or a few GPU nodes at a time to avoid disrupting services on a large scale.
 
 Solution
 --------
 
-When draining a GPU node, make sure to reserve enough GPU resources on other nodes to meet pod scheduling needs. This helps avoid pod scheduling issues due to inadequate resources and ensures smooth service operation.
+When draining a GPU node, make sure to reserve enough GPU resources on other nodes for pod scheduling needs. This helps avoid pod scheduling issues due to inadequate resources and ensures smooth service operation.
 
 #. Log in to the CCE console and click the cluster name to access the cluster **Overview** page.
 

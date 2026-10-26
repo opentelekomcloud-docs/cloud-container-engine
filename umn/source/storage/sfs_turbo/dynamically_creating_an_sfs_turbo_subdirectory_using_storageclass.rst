@@ -8,31 +8,31 @@ Dynamically Creating an SFS Turbo Subdirectory Using StorageClass
 Background
 ----------
 
-The minimum capacity of an SFS Turbo file system is 1000 GiB. By default, the root directory of an SFS Turbo file system is mounted to a container which, in most case, does not require such a large capacity.
+There is a minimum capacity limit when you create an SFS Turbo volume, so you are billed based on this minimum capacity rather than the capacity you have used. By default, when you mount an SFS Turbo volume to a workload, the root directory of the volume is mapped to the containers. The actual capacity used by the workload is far lower than the limit, leading to resource wastage.
 
-The Everest add-on allows you to dynamically create subdirectories in an SFS Turbo file system and mount these subdirectories to containers. In this way, an SFS Turbo file system can be shared by multiple containers to increase storage efficiency.
+The CCE Container Storage (Everest) add-on allows you to dynamically create subdirectories in an SFS Turbo file system and mount these subdirectories to containers. In this way, an SFS Turbo file system can be shared by multiple containers to increase storage efficiency.
 
 Notes and Constraints
 ---------------------
 
--  Only clusters v1.15 or later are supported.
+-  Only clusters of v1.15 or later are supported.
 
--  The cluster must use the Everest add-on of version 1.1.13 or later.
+-  The cluster must use the CCE Container Storage (Everest) add-on of version 1.1.13 or later.
 
 -  Kata containers are not supported.
 
--  When the Everest add-on earlier than 1.2.69 or 2.1.11 is used, a maximum of 10 PVCs can be created concurrently at a time by using the subdirectory function. everest of 1.2.69 or later or of 2.1.11 or later is recommended.
+-  When the CCE Container Storage (Everest) add-on earlier than 1.2.69 or 2.1.11 is used, a maximum of 10 PVCs can be created concurrently using subdirectories. CCE Container Storage (Everest) of 1.2.69 or later or of 2.1.11 or later is recommended.
 
 -  A subPath volume is a subdirectory of an SFS Turbo file system. Increasing the capacity of a PVC of this type only changes the resource range specified by the PVC, but does not change the total capacity of the SFS Turbo file system. If the SFS Turbo file system's total resource capacity is not enough, the available capacity of the subPath volume will be restricted. To fix this, you must increase the resource capacity of the SFS Turbo file system on the SFS Turbo console.
 
-   Deleting the subPath volume does not result in the deletion of the resources of the SFS Turbo file system.
+   Deleting the subPath volume does not result in the deletion of the SFS Turbo file system.
 
 Creating an SFS Turbo Volume of the subPath Type
 ------------------------------------------------
 
 #. Create an SFS Turbo file system in the same VPC and subnet as the cluster.
 
-#. Create a YAML file of StorageClass, for example, **sfsturbo-subpath-sc.yaml**.
+#. Create a YAML file of a storage class, for example, **sfsturbo-subpath-sc.yaml**.
 
    The following is an example:
 
@@ -59,14 +59,14 @@ Creating an SFS Turbo Volume of the subPath Type
       reclaimPolicy: Delete
       volumeBindingMode: Immediate
 
-   In this example:
+   Where:
 
-   -  **name**: indicates the name of the StorageClass.
+   -  **name**: indicates the name of the storage class.
    -  **mountOptions**: (Optional) indicates the mount options.
 
-      -  In versions later than Everest 1.1.13 and earlier than Everest 1.2.8, only the **nolock** parameter can be configured. By default, the **nolock** parameter is used for the mount operation and does not need to be configured. If **nolock** is set to **false**, the **lock** field is used.
+      -  In versions later than CCE Container Storage (Everest) 1.1.13 and earlier than 1.2.8, only the **nolock** parameter can be configured. By default, **nolock** is used for the mount operation and does not need to be configured. If **nolock** is set to **false**, the **lock** field is used.
 
-      -  Starting from Everest 1.2.8, more mount options are supported. For details, see `Configuring SFS Volume Mount Options <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0337.html>`__. **Do not set nolock to true. Otherwise, the mount operation will fail.**
+      -  Starting from CCE Container Storage (Everest) 1.2.8, additional mount options are supported. For details, see `Configuring SFS Turbo Mount Options <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0337.html>`__. **Do not set nolock to true. Otherwise, mount operations will fail.**
 
          .. code-block::
 
@@ -76,13 +76,13 @@ Creating an SFS Turbo Volume of the subPath Type
             - nolock
             - hard
 
-   -  **everest.io/volume-as**: This parameter is set to **subpath** to use the subPath volume.
-   -  **everest.io/share-expand-type**: This parameter is optional. If the type of the SFS Turbo file system is SFS Turbo Standard - Enhanced or SFS Turbo Performance - Enhanced, set this parameter to **bandwidth**.
-   -  **everest.io/share-export-location**: This parameter indicates the mount directory. It consists of the SFS Turbo shared path and sub-directory. You can obtain the shared path on the SFS Turbo console and create the sub-directory by yourself. The PVCs created using the StorageClass are in this sub-directory.
-   -  **everest.io/share-volume-type**: This parameter is optional. It specifies the SFS Turbo file system type. The value can be **STANDARD** or **PERFORMANCE**. For enhanced types, this parameter must be used together with **everest.io/share-expand-type** (whose value should be **bandwidth**).
-   -  **everest.io/zone**: This parameter is optional. Set it to the AZ where the SFS Turbo file system is located.
-   -  **everest.io/volume-id**: This parameter indicates the ID of the SFS Turbo volume. You can obtain the volume ID on the SFS Turbo page.
-   -  **everest.io/archive-on-delete**: If this parameter is set to **true** and **Delete** is selected for **Reclaim Policy**, the original documents of the PV will be archived to the directory named **archived-**\ *{$PV name.timestamp}* before the PVC is deleted. If this parameter is set to **false**, the SFS Turbo subdirectory of the corresponding PV will be deleted. The default value is **true**, indicating that the original documents of the PV will be archived to the directory named **archived-**\ *{$PV name.timestamp}* before the PVC is deleted.
+   -  **everest.io/volume-as**: This parameter is set to **subpath** to use a subPath volume.
+   -  **everest.io/share-expand-type**: (Optional) If the type of an SFS Turbo file system is SFS Turbo Standard - Enhanced or SFS Turbo Performance - Enhanced, set this parameter to **bandwidth**.
+   -  **everest.io/share-export-location**: indicates the mount directory. It consists of the SFS Turbo shared path and subdirectory. You can obtain the shared path on the SFS Turbo console and create the subdirectory by yourself. The PVCs created using the storage class are in this subdirectory.
+   -  **everest.io/share-volume-type**: (Optional) specifies the SFS Turbo file system type. The value can be **STANDARD** or **PERFORMANCE**. For enhanced types, this parameter must be used together with **everest.io/share-expand-type** (whose value should be **bandwidth**).
+   -  **everest.io/zone**: (Optional) Set it to the AZ where an SFS Turbo file system is located.
+   -  **everest.io/volume-id**: indicates the ID of an SFS Turbo volume. You can obtain the volume ID on the SFS Turbo console.
+   -  **everest.io/archive-on-delete**: When this parameter is set to **true**, and **Delete** is selected for **Reclaim Policy**, deleting a PVC deletes the subpath and archives the original PV data to a directory named **archived-**\ *{$PV_NAME.TIMESTAMP}*. (When a cluster is deleted, the subpath is neither deleted nor archived.) When this parameter is set to **false**, deleting a PVC deletes the SFS Turbo subpath without archiving the original PV data. The parameter is set to **true** by default.
 
 3. Run **kubectl create -f sfsturbo-subpath-sc.yaml**.
 
@@ -106,11 +106,11 @@ Creating an SFS Turbo Volume of the subPath Type
         storageClassName: sfsturbo-subpath-sc  # Storage class name
         volumeMode: Filesystem
 
-   In this example:
+   Where:
 
-   -  **name**: indicates the name of the PVC.
-   -  **storageClassName**: specifies the name of the StorageClass.
-   -  **storage**: In a subPath volume, modifying the value of this parameter does not impact the resource capacity of the SFS Turbo file system. A subPath volume is essentially a file path within an SFS Turbo file system. As a result, increasing the capacity of the subPath volume in a PVC does not lead to an increase in the resources of the SFS Turbo file system.
+   -  **name**: indicates the name of a PVC.
+   -  **storageClassName**: specifies the name of a storage class.
+   -  **storage**: In a subPath volume, modifying the value of this parameter does not impact the resource capacity of the SFS Turbo file system. A subPath volume is essentially a file path within an SFS Turbo file system. Increasing the capacity of the subPath volume in a PVC does not lead to an increase in the resources of the SFS Turbo file system.
 
       .. note::
 
@@ -121,7 +121,7 @@ Creating an SFS Turbo Volume of the subPath Type
 Creating a Deployment and Mounting an Existing Volume
 -----------------------------------------------------
 
-#. Create a YAML file for the Deployment, for example, **deployment-test.yaml**.
+#. Create a YAML file for a Deployment, for example, **deployment-test.yaml**.
 
    The following is an example:
 
@@ -159,11 +159,11 @@ Creating a Deployment and Mounting an Existing Volume
               persistentVolumeClaim:
                 claimName: sfs-turbo-test   # Name of an existing PVC
 
-   In this example:
+   Where:
 
    -  **name**: indicates the name of the created workload.
    -  **image**: specifies the image used by the workload.
-   -  **mountPath**: indicates the mount path of the container. In this example, the volume is mounted to the **/tmp** directory.
+   -  **mountPath**: indicates the mount path of a container. In this example, the volume is mounted to the **/tmp** directory.
    -  **claimName**: indicates the name of an existing PVC.
 
 2. Create the Deployment.
@@ -202,7 +202,7 @@ Dynamically Creating a subPath Volume for a StatefulSet
           spec:
             containers:
               - name: container-0
-                image: 'nginx:latest'  # Image of the workload
+                image: 'nginx:latest'  # Image of a workload
                 resources: {}
                 volumeMounts:
                   - name: sfs-turbo-160024548582479676
@@ -236,13 +236,13 @@ Dynamically Creating a subPath Volume for a StatefulSet
           type: RollingUpdate
         revisionHistoryLimit: 10
 
-   In this example:
+   Where:
 
    -  **name**: indicates the name of the created workload.
    -  **image**: specifies the image used by the workload.
-   -  **mountPath**: indicates the mount path of the container. In this example, the volume is mounted to the **/tmp** directory.
+   -  **mountPath**: indicates the mount path of a container. In this example, the volume is mounted to the **/tmp** directory.
    -  **spec.template.spec.containers.volumeMounts.name** and **spec.volumeClaimTemplates.metadata.name**: must be consistent because they have a mapping relationship.
-   -  **storageClassName**: specifies the name of an on-premises StorageClass.
+   -  **storageClassName**: specifies the name of an on-premises storage class.
 
 2. Create the StatefulSet.
 

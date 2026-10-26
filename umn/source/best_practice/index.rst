@@ -14,6 +14,7 @@ Best Practice
 -  :ref:`Auto Scaling <cce_bestpractice_0090>`
 -  :ref:`Monitoring <cce_bestpractice_10008>`
 -  :ref:`Cluster <cce_bestpractice_0050>`
+-  :ref:`Node and Node Pool <cce_bestpractice_0056>`
 -  :ref:`Networking <cce_bestpractice_0052>`
 -  :ref:`Storage <cce_bestpractice_0053>`
 -  :ref:`Container <cce_bestpractice_0051>`
@@ -33,6 +34,7 @@ Best Practice
    auto_scaling/index
    monitoring/index
    cluster/index
+   node_and_node_pool/index
    networking/index
    storage/index
    container/index

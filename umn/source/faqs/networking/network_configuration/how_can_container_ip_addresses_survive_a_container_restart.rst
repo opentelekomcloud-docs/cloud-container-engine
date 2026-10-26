@@ -18,4 +18,4 @@ Configure node affinity policies, in addition to perform the operations describe
 Expected Result
 ---------------
 
-After the previous settings are complete and the workload is running, the IP addresses of the workload's pods are the same as the node IP addresses. After the workload is restarted, these IP addresses will keep unchanged.
+After the previous settings are complete and the workload is running, the IP addresses of the workload's pods are the same as the node IP addresses. After the workload is restarted, these IP addresses will remain unchanged.

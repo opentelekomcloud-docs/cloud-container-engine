@@ -9,12 +9,13 @@ Journald is a log system in Linux. It writes log information into binary files a
 
 .. important::
 
-   The commands for modifying node system parameters are valid only when public images are used. The commands provided in this document are for reference only when private images are used.
+   -  Commands for modifying node system parameters are valid only when public images are used. For private images, the commands in this section are for reference only.
+   -  Directly logging in to a node to modify system parameters may cause changes to be lost during subsequent node reset or upgrade, affecting running services. Fully evaluate the risks before proceeding. Use a **pre-installation script** or **post-installation script** to modify the node parameters instead.
 
 .. _cce_10_0410__section103357276311:
 
-Changing RuntimeMaxUse
-----------------------
+Logging In to the Node to Change RuntimeMaxUse
+----------------------------------------------
 
 #. Log in to the node and view the **/etc/systemd/journald.conf** file.
 
@@ -24,19 +25,19 @@ Changing RuntimeMaxUse
 
 #. Modify **RuntimeMaxUse**. The recommended value is **100M**.
 
-   -  If **RuntimeMaxUse** has been set in the **journald.conf** file, run the following command to change the value:
+   -  If **RuntimeMaxUse** is already set in **journald.conf**, run the following command to change the value:
 
       .. code-block::
 
          sed -i "s/RuntimeMaxUse=[0-9]*M/RuntimeMaxUse=100M/g" /etc/systemd/journald.conf && systemctl restart systemd-journald
 
-   -  If **RuntimeMaxUse** is not set in the **journald.conf** file, run the following command to add it:
+   -  If **RuntimeMaxUse** is not set in **journald.conf**, run the following command to set it:
 
       .. code-block::
 
          echo RuntimeMaxUse=100M >> /etc/systemd/journald.conf && systemctl restart systemd-journald
 
-#. Verify the modification. If the returned value is the same as the modified value, the modification is correct.
+#. Verify the modification. If the returned value matches your configuration, the modification is correct.
 
    .. code-block::
 
@@ -49,9 +50,9 @@ You can set the script to be executed after a node or node pool is created. When
 
 #. Confirm the OS of the node or node pool to be created.
 
-#. Manually test the script commands on nodes **in the same cluster and running the same OS**. For details about how to manually run the script, see :ref:`Changing RuntimeMaxUse <cce_10_0410__section103357276311>`.
+#. Manually test the script commands on nodes **in the same cluster and running the same OS**. For details about how to manually run the script, see :ref:`Logging In to the Node to Change RuntimeMaxUse <cce_10_0410__section103357276311>`.
 
-#. When creating a node or node pool, choose **Advanced Settings** > **Post-installation Command** to add commands. (The following commands must be configured after the verification is successful.)
+#. When creating a node or node pool, choose **Advanced Settings > Post-installation script** to add the commands. **The commands must be verified as executable before configuration.**
 
    -  Log in to the node and view the **/etc/systemd/journald.conf** file. If **RuntimeMaxUse** has been set, run the following command to change the value:
 
@@ -65,7 +66,7 @@ You can set the script to be executed after a node or node pool is created. When
 
          echo RuntimeMaxUse=100M >> /etc/systemd/journald.conf && systemctl restart systemd-journald
 
-#. After the node is created, log in to the node to check whether the parameter is successfully modified.
+#. After node creation, log in to the node and verify that the parameter was modified successfully.
 
    .. code-block::
 

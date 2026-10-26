@@ -7,10 +7,11 @@ Importing a PV to a Storage Pool
 
 CCE allows you to use LVM to combine data volumes on nodes into a storage pool (VolumeGroup) and create LVs for containers to mount. Before creating a local PV, import the data disk of the node to the storage pool.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
--  Local PVs are supported only when the cluster version is v1.21.2-r0 or later and the Everest add-on version is 2.1.23 or later. Version 2.1.23 or later is recommended.
+-  Local PVs are supported only when the cluster version is v1.21.2-r0 or later and the Everest add-on version is v2.1.23 or later.
+-  The default data disk (used by container runtime and the kubelet component) on a node cannot be imported as a storage pool.
 
 -  Data disks used by the container runtime and Kubernetes components cannot be imported into a storage pool.
 -  Storage pools in striped mode do not support scale-out. After scale-out, fragmented space may be generated and the storage pool cannot be used.
@@ -45,7 +46,7 @@ Expanding a Storage Pool
 
 The capacity of a storage pool can be expanded in either of the following ways:
 
-#. Add more large-capacity disks to the pool using the preceding manual import method.
-#. Increase the size of the existing disks on the ECS console. Then, the storage pool capacity will be automatically expanded.
+-  Add more large-capacity disks to the pool using the preceding manual import method.
+-  Increase the size of the existing disks on the ECS console. Then, the storage pool capacity will be automatically expanded.
 
 Either of these methods will work.

@@ -14,18 +14,18 @@ This section describes how to build an entire application into a Docker image. A
 Required Cloud Services
 -----------------------
 
-SoftWare Repository for Container (SWR) provides easy, secure, and reliable management over container images throughout their lifecycle, facilitating the deployment of containerized services.
+SoftWare Repository for Container (SWR) provides easy, secure, reliable management over container images throughout their lifecycle, facilitating the deployment of containerized services.
 
 Basic Concepts
 --------------
 
--  Image: A Docker image is a special file system that includes everything needed to run containers: programs, libraries, resources, settings, and so on. It also includes corresponding configuration parameters (such as anonymous volumes, environment variables, and users) required within a container runtime. An image does not contain any dynamic data, and its content remains unchanged after being built.
--  Container: Images become containers at runtime, that is, containers are created from images. A container can be created, started, stopped, deleted, or suspended.
+-  Image: A Docker image is a special file system that includes files needed to run containers, such as programs, libraries, resources, and settings. It also includes corresponding configuration parameters, such as anonymous volumes, environment variables, and users, required within a container runtime. An image does not contain any dynamic data, and its content remains unchanged after being built.
+-  Container: The relationship between an image and a container is similar to that between a class and an instance in object-oriented programming. An image provides the static definition, while a container is the running instance created from that image. A container can be created, started, stopped, deleted, or suspended.
 
 Procedure
 ---------
 
-#. Log in as user **root** to the device running Docker.
+#. Log in as the **root** user to the device running Docker.
 
 #. Enter the **apptest** directory.
 
@@ -41,4 +41,4 @@ Procedure
 
 #. Upload the image to SWR. For details, see `Uploading an Image Through the Client <https://docs.otc.t-systems.com/usermanual/swr/swr_01_0011.html>`__.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516197739.png
+.. |image1| image:: /_static/images/en-us_image_0000002661850439.png

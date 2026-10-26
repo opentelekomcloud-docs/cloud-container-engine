@@ -22,7 +22,7 @@ In Kubernetes, both kube-controller-manager and kubelet can evict pods.
    -  **node-eviction-rate**: indicates the number of nodes to be evicted per second. The default value is **0.1**, indicating that pods are evicted from one node every 10 seconds.
    -  **secondary-node-eviction-rate**: specifies a rate at which nodes are evicted in the second grade. If a large number of nodes are down in the cluster, the eviction rate will be reduced to **secondary-node-eviction-rate**. The default value is **0.01**.
    -  **unhealthy-zone-threshold**: specifies a threshold for an AZ to be considered unhealthy. The default value is **0.55**, meaning that if the percentage of faulty nodes in an AZ exceeds 55%, the AZ will be considered unhealthy.
-   -  **large-cluster-size-threshold**: specifies a threshold for a cluster to be considered large. The parameter defaults to **50**. If there are more nodes than this threshold, the cluster is considered as a large one. If there are more than 55% faulty nodes in a cluster, the eviction rate is reduced to 0.01. If the cluster is a small one, the eviction rate is reduced to 0, which means, pods running on the nodes in the cluster will not be evicted.
+   -  **large-cluster-size-threshold**: specifies a threshold for a cluster to be considered large. The parameter defaults to **50**. If there are more nodes than this threshold, the cluster is considered as a large one. If there are more than 55% faulty nodes in a cluster, the eviction rate is reduced to 0.01. If the cluster is small, the eviction rate is reduced to 0, which means, pods running on the nodes in the cluster will not be evicted.
 
 -  **Eviction implemented by kubelet**
 
@@ -36,7 +36,7 @@ In Kubernetes, both kube-controller-manager and kubelet can evict pods.
 
       You can configure soft eviction thresholds using the following parameters:
 
-      -  **eviction-soft**: indicates a soft eviction threshold. If a node's `eviction signal <https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals>`__ reaches a certain threshold, for example, **memory.available<1.5Gi**, kubelet will not immediately evict some pods on the node but wait for a grace period configured by **eviction-soft-grace-period**. If the threshold is reached after the grace period elapses, kubelet will evict some pods on the node.
+      -  **eviction-soft**: indicates a soft eviction threshold. If a node's `eviction signal <https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals>`__ reaches a certain threshold, for example, **memory.available<1.5Gi**, kubelet will not immediately evict some pods on the node but wait for a grace period configured by **eviction-soft-grace-period**. If the threshold has been reached after the grace period elapses, kubelet will evict some pods on the node.
       -  **eviction-soft-grace-period**: indicates an eviction grace period. If a pod reaches the soft eviction threshold, it will be terminated after the configured grace period elapses. This parameter indicates the time difference for a terminating pod to respond to the threshold being met.
       -  **eviction-max-pod-grace-period**: indicates the maximum allowed grace period to use when terminating pods in response to a soft eviction threshold being met.
 
@@ -78,7 +78,7 @@ Check results will be recorded in kubelet logs of the node. You can run the foll
 Troubleshooting
 ---------------
 
-The issues here are described in order of how likely they are to occur.
+Possible causes are listed in order of likelihood.
 
 Check these causes one by one until you find the cause of the fault.
 
@@ -155,9 +155,9 @@ A workload pod fails and is being redeployed constantly.
 
 After a pod is evicted and scheduled to a new node, if pods in that node are also being evicted, the pod will be evicted again. Pods may be evicted repeatedly.
 
-If a pod is evicted by kube-controller-manager, it would be in the **Terminating** state. This pod will be automatically deleted only after the node where the container is located is restored. If the node has been deleted or cannot be restored due to other reasons, you can forcibly delete the pod.
+If a pod is evicted by kube-controller-manager, it will be in the **Terminating** state. This pod will be automatically deleted only after the node where the container is located is restored. If the node has been deleted or cannot be restored due to other reasons, you can forcibly delete the pod.
 
-If a pod is evicted by kubelet, it would be in the **Evicted** state. This pod is only used for subsequent fault locating and can be directly deleted.
+If a pod is evicted by kubelet, it will be in the **Evicted** state. This pod is only used for subsequent fault locating and can be directly deleted.
 
 **Solution**
 

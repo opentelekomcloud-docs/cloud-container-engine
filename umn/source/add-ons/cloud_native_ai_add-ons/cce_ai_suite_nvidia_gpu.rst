@@ -18,7 +18,7 @@ nvidia-gpu-device-plugin is one of the core components of CCE AI Suite (NVIDIA G
 This component runs as a DaemonSet so that the GPUs on every node can be identified by kubelet and reported to Kubernetes. You only need to declare the GPU resource requests in pod specs to use the GPUs on nodes. kubelet does not automatically detect GPU devices on its own. Instead, it relies on nvidia-gpu-device-plugin to register and report GPU information. nvidia-gpu-device-plugin runs on every GPU node and uses the gRPC protocol to communicate with kubelet Device Plugin Manager and complete the registration. The workflow is shown below.
 
 
-.. figure:: /_static/images/en-us_image_0000002516079373.png
+.. figure:: /_static/images/en-us_image_0000002631690334.png
    :alt: **Figure 1** GPU resource reporting and health
 
    **Figure 1** GPU resource reporting and health
@@ -34,13 +34,13 @@ This component runs as a DaemonSet so that the GPUs on every node can be identif
 #. Information reporting: kubelet integrates the device information into the node statuses and reports resource details such as the number of devices to Kubernetes API server. The scheduler (kube-scheduler or Volcano) uses these details to make scheduling decisions.
 #. Persistent storage: CCE stores the GPU device information (such as quantity and status) reported by nodes in etcd for cluster-level resource persistence. This ensures that GPU data can be kept after a cluster component is faulty or restarted, and provides consistent data sources for components such as the scheduler and controller, ensuring reliability of resource scheduling and management.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
 -  The driver to be downloaded must be a **.run** file.
 -  Only NVIDIA Tesla drivers are supported, not GRID drivers.
 -  When installing or reinstalling the add-on, ensure that the driver download address is correct and accessible. CCE does not verify the address validity.
--  This add-on only enables you to download the driver and execute the installation script. The add-on status only indicates that how the add-on is running, not whether the driver is successfully installed.
+-  This add-on only enables you to download the driver and execute the installation script. The add-on status only indicates how the add-on is running, not whether the driver is successfully installed.
 -  CCE does not guarantee the compatibility between the GPU driver version and the CUDA library version of your application. You need to check the compatibility by yourself.
 -  If a custom OS image has had a GPU driver installed, CCE cannot ensure that the GPU driver is compatible with other GPU components such as the monitoring components used in CCE.
 
@@ -61,20 +61,20 @@ Installing the Add-on
 
    .. table:: **Table 1** Add-on parameters
 
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                                                                                                                                                                                                            |
-      +===================================+========================================================================================================================================================================================================================================================================================================================================+
-      | Default Cluster Driver            | All GPU nodes in a cluster use the same driver. You can select a proper GPU driver version or customize the driver link and enter the download link of the NVIDIA driver.                                                                                                                                                              |
-      |                                   |                                                                                                                                                                                                                                                                                                                                        |
-      |                                   | .. important::                                                                                                                                                                                                                                                                                                                         |
-      |                                   |                                                                                                                                                                                                                                                                                                                                        |
-      |                                   |    NOTICE:                                                                                                                                                                                                                                                                                                                             |
-      |                                   |                                                                                                                                                                                                                                                                                                                                        |
-      |                                   |    -  If the download link is a public network address, for example, **https://us.download.nvidia.com/tesla/470.103.01/NVIDIA-Linux-x86_64-470.103.01.run**, bind an EIP to each GPU node. For details about how to obtain the driver link, see :ref:`Obtaining a Driver Link from the Internet <cce_10_0141__section95451728192112>`. |
-      |                                   |    -  If the download link is an OBS URL, you do not need to bind an EIP to GPU nodes. For details about how to obtain the driver link, see :ref:`Obtaining a Driver Link from the OBS Link <cce_10_0141__section14922133914508>`.                                                                                                     |
-      |                                   |    -  Ensure that the NVIDIA driver version matches the GPU node.                                                                                                                                                                                                                                                                      |
-      |                                   |    -  If the driver version is changed, restart the node to apply the change.                                                                                                                                                                                                                                                          |
-      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                                                                                                                                       |
+      +===================================+===================================================================================================================================================================================================================================================================================================================================+
+      | Default Cluster Driver            | All GPU nodes in a cluster use the same driver. You can select a proper GPU driver version or customize the driver link and enter the download link of the NVIDIA driver.                                                                                                                                                         |
+      |                                   |                                                                                                                                                                                                                                                                                                                                   |
+      |                                   | .. important::                                                                                                                                                                                                                                                                                                                    |
+      |                                   |                                                                                                                                                                                                                                                                                                                                   |
+      |                                   |    NOTICE:                                                                                                                                                                                                                                                                                                                        |
+      |                                   |                                                                                                                                                                                                                                                                                                                                   |
+      |                                   |    -  If the download link is an Internet address, for example, **https://us.download.nvidia.com/tesla/470.103.01/NVIDIA-Linux-x86_64-470.103.01.run**, bind an EIP to each GPU node. For details about how to obtain the driver link, see :ref:`Obtaining a Driver Link from the Internet <cce_10_0141__section95451728192112>`. |
+      |                                   |    -  If the download link is an OBS URL, you do not need to bind an EIP to GPU nodes. For details about how to obtain the driver link, see :ref:`Obtaining a Driver Link from the OBS Link <cce_10_0141__section14922133914508>`.                                                                                                |
+      |                                   |    -  Ensure that the NVIDIA driver version matches the GPU nodes.                                                                                                                                                                                                                                                                |
+      |                                   |    -  If the driver version is changed, restart the nodes to apply the change.                                                                                                                                                                                                                                                    |
+      +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    .. note::
 
@@ -105,7 +105,7 @@ After the add-on is installed, run the **nvidia-smi** command on the GPU node an
 
          cd /usr/local/nvidia/bin && ./nvidia-smi
 
--  Container:
+-  Pod:
 
    -  If the cluster version is v1.27 or earlier, run the following command:
 
@@ -126,7 +126,7 @@ If GPU information is returned, the device is available and the add-on has been 
 Managing the Add-on
 -------------------
 
-Once the add-on is installed, you can upgrade or roll back it as needed. Before upgrading or rolling back the CCE AI Suite (NVIDIA GPU) add-on, make sure there are no GPU virtualization workloads running on the GPU node. If the GPU node has GPU virtualization workloads, when you upgrade or roll back the add-on, you need to drain the GPU node.
+Once the add-on is installed, you can upgrade or roll it back as needed. Before upgrading or rolling back the CCE AI Suite (NVIDIA GPU) add-on, make sure there are no GPU virtualization workloads running on the GPU node. If the GPU node has GPU virtualization workloads, when you upgrade or roll back the add-on, you need to drain the GPU node.
 
 Upgrading the Add-on
 --------------------
@@ -144,9 +144,9 @@ CCE regularly launches new add-on versions to update features, improve performan
 Rolling Back the Add-on
 -----------------------
 
-If an add-on upgrade fails or any other exceptions occur, you have the option to roll back the add-on to the source version. After an add-on rollback, **the virtualization and driver configurations of node pools remain unchanged and are not reverted**. The add-on rollback feature has specific requirements based on the cluster and add-on versions.
+If an add-on upgrade fails or other exceptions occur, you have the option to roll back the add-on to the source version. After an add-on rollback, **the virtualization and driver configurations of node pools remain unchanged and are not reverted**. The add-on rollback feature has specific requirements based on the cluster and add-on versions.
 
--  If the cluster version is v1.28 or later, only add-on of 2.7.35 or later versions can be rolled back. (The source version must be later than 2.7.13).
+-  If the cluster version is v1.28 or later, only add-on of 2.7.35 or later versions can be rolled back. (The source version must be later than 2.7.13.)
 -  If the cluster version is v1.27 or earlier, only add-on of 2.1.19 or later versions can be rolled back. (The source version must be later than 2.1.8).
 
 .. note::
@@ -166,9 +166,9 @@ Upgrading the NVIDIA driver of a cluster involves reinstalling the driver during
 
 #. Specify the cluster driver version. You can specify the cluster driver version through either of the following ways:
 
-   -  **Upgrading the add-on**: In the navigation pane, choose **Add-ons**. In the right pane, find the CCE AI Suite (NVIDIA GPU) add-on and click **Upgrade**. In the window that slides out from the right, change the value of **Cluster Default Driver** to a proper one, for example, **535.216.03**, and click **OK**.
-   -  **Editing the add-on**: In the navigation pane, choose **Add-ons**. In the right pane, find the CCE AI Suite (NVIDIA GPU) add-on and click **Edit**. In the window that slides out from the right, change the value of **Cluster Default Driver** to a proper one, for example, **535.216.03**, and click **OK**.
-   -  **Configuring heterogeneous resources**: In the navigation pane, choose **Settings**. In the right pane, click the **Heterogeneous Resources** tab, change the value of **Cluster Default Driver** to a proper one, for example, **535.216.03**, and click **Confirm Settings**.
+   -  **Upgrading the add-on**: In the navigation pane, choose **Add-ons**. In the right pane, find the CCE AI Suite (NVIDIA GPU) add-on and click **Upgrade**. In the window that slides out from the right, change the value of **Default Cluster Driver** to a proper one, for example, **535.216.03**, and click **OK**.
+   -  **Editing the add-on**: In the navigation pane, choose **Add-ons**. In the right pane, find the CCE AI Suite (NVIDIA GPU) add-on and click **Edit**. In the window that slides out from the right, change the value of **Default Cluster Driver** to a proper one, for example, **535.216.03**, and click **OK**.
+   -  **Configuring heterogeneous resources**: In the navigation pane, choose **Settings**. In the right pane, click the **Heterogeneous Resources** tab, change the value of **Default Cluster Driver** to a proper one, for example, **535.216.03**, and click **Confirm Settings**.
 
 #. Perform rolling restart on the GPU node and install the driver of the specified version. **Evict pods on the GPU node before restarting the node.** For details, see :ref:`Draining a Node <cce_10_0605>`. When draining a GPU node, make sure to reserve enough GPU resources on other nodes to meet pod scheduling needs. This helps avoid pod scheduling issues due to inadequate resources and ensures smooth service operation.
 
@@ -199,14 +199,14 @@ Upgrading the NVIDIA driver of a cluster involves reinstalling the driver during
 
    |image2|
 
-   Once you have verified that the node and services are operating properly, follow the preceding steps again to perform a restart of the remaining GPU nodes within the cluster.
+   Once you have verified that the node and services are operating properly, follow the preceding steps again to restart the remaining GPU nodes within the cluster.
 
 Supported GPU Drivers
 ---------------------
 
 .. important::
 
-   -  The list of supported GPU drivers applies only to CCE AI Suite (NVIDIA GPU) of v1.2.28 or later.
+   -  The list of supported GPU drivers applies only to CCE AI Suite (NVIDIA GPU) of 1.2.28 or later.
 
    -  To use the latest GPU driver, upgrade your CCE AI Suite (NVIDIA GPU) to the latest version.
 
@@ -227,9 +227,11 @@ Supported GPU Drivers
    +============+========================+===============+============+==============+=====================+
    |            |                        |               | HCE OS 2.0 | Ubuntu 22.04 | EulerOS release 2.9 |
    +------------+------------------------+---------------+------------+--------------+---------------------+
-   | Tesla T4   | CCE standard cluster   | g6            | 570.86.15  | 570.86.15    | 535.54.03           |
+   | Tesla T4   | CCE standard cluster   | g6            | 580.126.20 | 580.126.20   | 535.54.03           |
    |            |                        |               |            |              |                     |
-   |            |                        | pi2           | 535.216.03 | 535.216.03   | 470.141.03          |
+   |            |                        | pi2           | 570.86.15  | 570.86.15    | 470.141.03          |
+   |            |                        |               |            |              |                     |
+   |            |                        |               | 535.216.03 | 535.216.03   |                     |
    |            |                        |               |            |              |                     |
    |            |                        |               | 535.161.08 | 535.161.08   |                     |
    |            |                        |               |            |              |                     |
@@ -239,11 +241,13 @@ Supported GPU Drivers
    |            |                        |               |            |              |                     |
    |            |                        |               | 470.57.02  |              |                     |
    +------------+------------------------+---------------+------------+--------------+---------------------+
-   | Tesla V100 | CCE standard cluster   | p2s           | 570.86.15  | 570.86.15    | 535.54.03           |
+   | Tesla V100 | CCE standard cluster   | p2s           | 580.126.20 | 580.126.20   | 535.54.03           |
    |            |                        |               |            |              |                     |
-   |            |                        | p2vs          | 535.216.03 | 535.216.03   | 470.141.03          |
+   |            |                        | p2vs          | 570.86.15  | 570.86.15    | 470.141.03          |
    |            |                        |               |            |              |                     |
-   |            |                        | p2v           | 535.161.08 | 535.161.08   |                     |
+   |            |                        | p2v           | 535.216.03 | 535.216.03   |                     |
+   |            |                        |               |            |              |                     |
+   |            |                        |               | 535.161.08 | 535.161.08   |                     |
    |            |                        |               |            |              |                     |
    |            |                        |               | 535.54.03  | 535.54.03    |                     |
    |            |                        |               |            |              |                     |
@@ -259,6 +263,8 @@ Supported GPU Drivers
    +-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+
    | Driver Version                                                                                                                | Ubuntu 22.04                      |
    +===============================================================================================================================+===================================+
+   | `580.126.20 <https://docs.nvidia.com/datacenter/tesla/tesla-release-notes-580-126-20/index.html#hardware-software-support>`__ | Ubuntu 22.04.z LTS (where z <= 5) |
+   +-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+
    | `570.86.15 <https://docs.nvidia.com/datacenter/tesla/tesla-release-notes-570-86-15/index.html#hardware-software-support>`__   | Ubuntu 22.04.z LTS (where z <= 5) |
    +-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+
    | `535.216.03 <https://docs.nvidia.com/datacenter/tesla/tesla-release-notes-535-216-03/index.html#hardware-software-support>`__ | Ubuntu 22.04.z LTS (where z <= 4) |
@@ -280,12 +286,12 @@ Obtaining a Driver Link from the Internet
 -----------------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. Create a node. In the **Specifications** area, select the GPU node flavor. The GPU card models are displayed in the lower part of the area.
+#. Create a node. In the **Specifications** area, select the GPU node flavor. The GPU models are displayed in the lower part of the area.
 
-3. Log in to the `NVIDIA driver download page <https://www.nvidia.com/en-us/drivers/>`__ and search for driver information. The OS must be **Linux 64-bit**.
+3. Go to the `NVIDIA driver download page <https://www.nvidia.com/en-us/drivers/>`__ and search for the driver information. The OS must be **Linux 64-bit**.
 
 
-   .. figure:: /_static/images/en-us_image_0000002516199373.png
+   .. figure:: /_static/images/en-us_image_0000002631690336.png
       :alt: **Figure 2** Selecting parameters
 
       **Figure 2** Selecting parameters
@@ -293,7 +299,7 @@ Obtaining a Driver Link from the Internet
 4. After confirming the driver information, click **Find**. On the displayed page, find the driver to be downloaded and click **View**.
 
 
-   .. figure:: /_static/images/en-us_image_0000002483959410.png
+   .. figure:: /_static/images/en-us_image_0000002661849615.png
       :alt: **Figure 3** Viewing the driver information
 
       **Figure 3** Viewing the driver information
@@ -301,7 +307,7 @@ Obtaining a Driver Link from the Internet
 5. Click **Download** and copy the download link.
 
 
-   .. figure:: /_static/images/en-us_image_0000002516079355.png
+   .. figure:: /_static/images/en-us_image_0000002631530426.png
       :alt: **Figure 4** Obtaining the link
 
       **Figure 4** Obtaining the link
@@ -317,24 +323,23 @@ Obtaining a Driver Link from the OBS Link
 
       When the node is restarted, the driver will be downloaded and installed again. Ensure that the OBS bucket link of the driver is valid.
 
-#. In the bucket list, click a bucket name, and then the **Overview** page of the bucket is displayed.
-#. In the navigation pane, choose **Objects**.
-#. Select the name of the target object and copy the driver link on the object details page.
+#. In the bucket list, click the bucket name to go to the **Objects** page.
+#. Click the target object name and copy the driver link on the **Basic Information** tab.
 
 Components
 ----------
 
 .. table:: **Table 4** Add-on components
 
-   +--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
-   | Component                | Description                                                                                                                                                                      | Resource Type |
-   +==========================+==================================================================================================================================================================================+===============+
-   | nvidia-driver-installer  | A workload for installing the NVIDIA GPU driver on a node, which only uses resources during the installation process (Once the installation is finished, no resources are used.) | DaemonSet     |
-   +--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
-   | nvidia-gpu-device-plugin | A Kubernetes device plugin that provides NVIDIA GPU heterogeneous compute for containers                                                                                         | DaemonSet     |
-   +--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
-   | nvidia-operator          | A component that provides NVIDIA GPU node management capabilities for clusters                                                                                                   | Deployment    |
-   +--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
+   +--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
+   | Component                | Description                                                                                                                                                             | Resource Type |
+   +==========================+=========================================================================================================================================================================+===============+
+   | nvidia-driver-installer  | A workload for installing the NVIDIA GPU driver on a node, which only uses resources during the installation (Once it has been installed, it no longer uses resources.) | DaemonSet     |
+   +--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
+   | nvidia-gpu-device-plugin | A Kubernetes device plugin that provides NVIDIA GPU heterogeneous compute for containers                                                                                | DaemonSet     |
+   +--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
+   | nvidia-operator          | A component that provides NVIDIA GPU node management capabilities for clusters                                                                                          | Deployment    |
+   +--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+
 
 Helpful Links
 -------------
@@ -349,6 +354,20 @@ Release History
    +-----------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Add-on Version        | Supported Cluster Version | New Feature                                                                                                                                                                      |
    +=======================+===========================+==================================================================================================================================================================================+
+   | 2.15.6                | v1.29                     | Supported NVIDIA driver 580.126.20.                                                                                                                                              |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.30                     | Supported CCE clusters v1.35.                                                                                                                                                    |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.31                     |                                                                                                                                                                                  |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.32                     |                                                                                                                                                                                  |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.33                     |                                                                                                                                                                                  |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.34                     |                                                                                                                                                                                  |
+   |                       |                           |                                                                                                                                                                                  |
+   |                       | v1.35                     |                                                                                                                                                                                  |
+   +-----------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | 2.13.3                | v1.28                     | Fixed compatibility issues.                                                                                                                                                      |
    |                       |                           |                                                                                                                                                                                  |
    |                       | v1.29                     |                                                                                                                                                                                  |
@@ -508,5 +527,5 @@ Release History
    |                       | v1.19                     |                                                                                                                                                                                  |
    +-----------------------+---------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. |image1| image:: /_static/images/en-us_image_0000002516199377.png
-.. |image2| image:: /_static/images/en-us_image_0000002516079369.png
+.. |image1| image:: /_static/images/en-us_image_0000002661849629.png
+.. |image2| image:: /_static/images/en-us_image_0000002661849623.png

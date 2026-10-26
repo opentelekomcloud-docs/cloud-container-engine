@@ -10,8 +10,8 @@ A pod priority indicates the importance of a pod relative to other pods. Volcano
 Prerequisites
 -------------
 
--  A cluster of v1.19 or later is available. For details, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
--  The Volcano Scheduler add-on has been installed. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
+-  A cluster of v1.19 or later is available. For details, see :ref:`Creating a Standard/Turbo Cluster <cce_10_0028>`.
+-  The Volcano add-on has been installed. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
 
 Overview
 --------
@@ -39,7 +39,7 @@ Configuring Priority-based Scheduling Policies
 
    -  **Priority-based Scheduling**: The scheduler preferentially guarantees the running of high-priority pods, but will not evict low-priority pods that are running. Priority-based scheduling is enabled by default and cannot be disabled.
 
-#. After the configuration, you can use `PriorityClasses <https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass>`__ to schedule the pods of workloads or Volcano jobs based priorities.
+#. After the configuration, you can use `PriorityClasses <https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass>`__ to schedule the pods of workloads or Volcano jobs based on priorities.
 
    a. Create one or more `PriorityClasses <https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass>`__.
 

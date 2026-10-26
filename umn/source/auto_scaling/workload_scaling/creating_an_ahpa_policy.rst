@@ -28,16 +28,15 @@ Prerequisites
 -  :ref:`CCE Advanced HPA <cce_10_0240>` of v1.5.2 or later has been installed in the cluster.
 -  The Cloud Native Cluster Monitoring add-on has been installed in the cluster, and the **monitoring data is reported to AOM**. For details, see :ref:`Cloud Native Cluster Monitoring <cce_10_0406>`.
 
-Notes and Constraints
----------------------
+Constraints
+-----------
 
--  AHPA policies apply only to clusters of v1.23 or later.
--  For clusters of v1.19.10 and later, if an HPA policy is used to scale out a workload with EVS volumes mounted, a new pod cannot be started because EVS disks cannot be attached.
+-  AHPA policies apply only to clusters v1.23 or later.
+-  For clusters v1.19.10 and later, if an HPA policy is used to scale out a workload with EVS volumes mounted, a new pod cannot be started because EVS disks cannot be attached.
 -  The specifications of the CCE Advanced HPA add-on are determined based on the total number of containers in the cluster and the number of scaling policies. Configure 500m and 1,000 MiB of memory for every 5,000 containers, and 100m and 500 MiB of memory for every 1,000 scaling policies.
 -  AHPA needs extra memory as it analyzes and processes historical workload data. It is advised to allocate 100m CPU cores and 300 MiB of memory for every 100 AHPA policies.
 -  After an AHPA policy is created, the type of its associated workload cannot be changed.
 -  Either an AHPA policy or a CustomedHPA policy can be enabled.
--  AHPA policies do not support `pod-level resources <https://kubernetes.io/blog/2025/09/22/kubernetes-v1-34-pod-level-resources/>`__ in clusters v1.34.
 
 Enabling an AHPA Policy
 -----------------------
@@ -130,7 +129,7 @@ Using AHPA
       +==========================================+===========+=========================================================================================================================================================================================================================================================================================================================================+
       | scaleTargetRef                           | Yes       | Target Deployment/HPA.                                                                                                                                                                                                                                                                                                                  |
       +------------------------------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | metrics                                  | Yes       | Metrics for scaling, which can only be CPU or memory. Only one metric can be configured. Either CPU or memory can be configured.                                                                                                                                                                                                        |
+      | metrics                                  | Yes       | Metrics for scaling, which can currently be CPU or memory. Only one metric can be configured. Either CPU or memory can be configured.                                                                                                                                                                                                   |
       +------------------------------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | maxReplicas                              | Yes       | Maximum number of pods, which ranges from 0 to 2147483647.                                                                                                                                                                                                                                                                              |
       +------------------------------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -227,4 +226,4 @@ Using AHPA
 
       kubectl delete ahpacheckpoint hamster-ahpa
 
-.. |image1| image:: /_static/images/en-us_image_0000002516079031.png
+.. |image1| image:: /_static/images/en-us_image_0000002631530108.png

@@ -5,19 +5,19 @@
 What Should I Do If a Cluster Is Available But Some Nodes in It Are Unavailable?
 ================================================================================
 
-If you encountered a fault that a cluster is available but some nodes in it are unavailable, you can rectify this fault by referring to the methods provided in this section.
+If you encounter a fault that a cluster is available but some nodes in it are unavailable, you can rectify this fault by referring to the methods provided in this section.
 
 Mechanism for Detecting Node Unavailability
 -------------------------------------------
 
 Kubernetes provides heartbeats to help you detect whether a node is available. For details about the mechanism and detection interval, see `Heartbeats <https://kubernetes.io/docs/concepts/architecture/nodes/#heartbeats>`__.
 
-Fault Locating
---------------
+Troubleshooting
+---------------
 
-Possible causes are described here in order of how likely they are to occur.
+Possible causes are listed in order of likelihood.
 
-If the fault persists after you have ruled out a cause, check other causes.
+Check these causes one by one until you find the cause of the fault.
 
 -  :ref:`Check Item 1: Whether the Node Is Overloaded <cce_faq_00120__section745921416917>`
 -  :ref:`Check Item 2: Whether the ECS Is Deleted or Faulty <cce_faq_00120__section19793128323>`
@@ -37,7 +37,7 @@ Check Item 1: Whether the Node Is Overloaded
 
 **Symptom**
 
-The node connection in the cluster is abnormal. Multiple nodes report write errors, but services are not affected.
+The node connection in the cluster is abnormal, with multiple nodes reporting write errors, but services are not affected.
 
 **Fault locating**
 
@@ -57,7 +57,7 @@ The node connection in the cluster is abnormal. Multiple nodes report write erro
 #. Add more nodes and deploy memory-intensive containers separately.
 #. Reset the nodes.
 
-After the nodes become available, the workload is restored.
+After the node becomes available, the workloads are restored.
 
 .. _cce_faq_00120__section19793128323:
 
@@ -75,7 +75,7 @@ Check Item 2: Whether the ECS Is Deleted or Faulty
 
    Log in to the ECS console and view the ECS status.
 
-   -  If the ECS status is **Deleted**, go back to the CCE console, delete the corresponding node from the node list of the cluster, and then create another one.
+   -  If the ECS status is **Deleted**, go back to the CCE console, delete the corresponding node from the node list of the cluster, and then create a new one.
    -  If the ECS status is **Stopped** or **Frozen**, restore the ECS first. It takes about 3 minutes to restore the node.
    -  If the ECS is faulty, restart it to rectify the fault.
    -  If the ECS status is **Running**, log in to the ECS and locate the fault by referring to :ref:`Check Item 7: Whether Internal Components Are Normal <cce_faq_00120__section89551837167>`.
@@ -98,9 +98,9 @@ Check Item 4: Whether the Security Group Has Been Changed
 
 Log in to the VPC console. In the navigation pane, choose **Access Control** > **Security Groups** and find the master node security group of the cluster.
 
-The name of this security group is in the format of *{Cluster name}*-cce-**control**\ ``-``\ *{ID}*. You can search for the security group by cluster name and then **-cce-control-**.
+The name of this security group is in the format of *{cluster_name}*-cce-**control**\ ``-``\ *{ID}*. You can search for the security group by cluster name and then **-cce-control-**.
 
-Check whether the security group rules have been changed. For details about security groups, see :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
+Check whether the security group rules have been changed. For details about security groups, see :ref:`How Do I Modify Cluster Security Group Rules? <cce_faq_00265>`
 
 .. _cce_faq_00120__section64919515161:
 
@@ -111,7 +111,7 @@ Check whether such a security group rule exists.
 
 When adding a node to the cluster, add the security group rules in the figure below to the *cluster-name*\ **-cce-control-**\ *random-ID* security group to ensure the availability of the added node. This is necessary if a secondary CIDR block is added to the VPC of the node subnet and the subnet is in the secondary CIDR block. However, if a secondary CIDR block has already been added to the VPC during cluster creation, this step is not required.
 
-For details about security groups, see :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
+For details about security groups, see :ref:`How Do I Modify Cluster Security Group Rules? <cce_faq_00265>`
 
 .. _cce_faq_00120__section165209286116:
 
@@ -170,7 +170,7 @@ Check Item 7: Whether Internal Components Are Normal
 Check Item 8: Whether the DNS Address Is Properly Configured
 ------------------------------------------------------------
 
-#. Log in to the node and check whether any domain name resolution failure is recorded in the **/var/log/cloud-init-output.log** file.
+#. Log in to the node and check whether any domain name resolution failure is recorded in **/var/log/cloud-init-output.log**.
 
    **cat /var/log/cloud-init-output.log \| grep resolv**
 
@@ -181,14 +181,14 @@ Check Item 8: Whether the DNS Address Is Properly Configured
 #. On the node, ping the domain name that cannot be resolved in the previous step to check whether the domain name can be resolved.
 
    -  If the domain name cannot be pinged, the DNS cannot resolve the IP address. Check whether the DNS address in the **/etc/resolv.conf** file is the same as that configured on the VPC subnet. In most cases, the DNS address in the file is configured incorrectly, leading to the inability to resolve the domain name. To fix this issue, adjust the DNS configuration of the VPC subnet and reset the node.
-   -  If yes, the DNS address configuration is correct. Check whether there are other faults.
+   -  If the domain name can be pinged, the DNS address configuration is correct. Check whether there are other faults.
 
 .. _cce_faq_00120__section1903800103:
 
 Check Item 9: Whether the vdb Disk on the Node Has Been Deleted
 ---------------------------------------------------------------
 
-If the vdb disk on a node has been deleted, you can refer to :ref:`this topic <cce_faq_00263>` to restore the node.
+If the vdb disk on a node has been deleted, you can restore the node by referring to :ref:`What Should I Do If the vdb Disk of a Node Is Damaged and the Node Can't Be Recovered After Reset? <cce_faq_00263>`
 
 .. _cce_faq_00120__section76261312361:
 
@@ -215,5 +215,5 @@ Check Item 10: Whether the Docker Service Is Normal
 
    In this case, stop repeated creation and deletion of workloads or use more nodes to share the load. Typically, the node will be restored after a period of time. If necessary, run the **docker rm** *{container_id}* command to manually clear the abnormal containers.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516198141.png
-.. |image2| image:: /_static/images/en-us_image_0000002484118182.png
+.. |image1| image:: /_static/images/en-us_image_0000002631692244.png
+.. |image2| image:: /_static/images/en-us_image_0000002631532342.png

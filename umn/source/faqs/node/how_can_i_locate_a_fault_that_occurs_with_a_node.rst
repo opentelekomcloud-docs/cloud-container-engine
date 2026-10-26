@@ -23,7 +23,7 @@ It is strongly recommended that you install this add-on or upgrade it to **versi
 
 With this add-on, if an exception occurs with a node, you can view the abnormal metrics on the console.
 
-You can also view the events reported by the add-on in node events and locate the faults based on the events.
+You can also view the events reported by the add-on in the node events and locate the faults based on the events.
 
 .. table:: **Table 1** Fault events
 
@@ -36,7 +36,7 @@ You can also view the events reported by the add-on in node events and locate th
    +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
    | TaskHung                          | Check whether taskHung events occurred and are reported.                                                                                            |
    +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-   | KernelOops                        | Check the kernel null pointer panic errors.                                                                                                         |
+   | KernelOops                        | Check for kernel null pointer panic errors.                                                                                                         |
    +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
    | ConntrackFull                     | Check whether the conntrack table is full.                                                                                                          |
    +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -101,7 +101,7 @@ Locating a Node Fault by Performing a Self-Check
 ------------------------------------------------
 
 
-.. figure:: /_static/images/en-us_image_0000002484117772.png
+.. figure:: /_static/images/en-us_image_0000002631532164.png
    :alt: **Figure 1** Performing a self-check
 
    **Figure 1** Performing a self-check
@@ -164,7 +164,7 @@ Checking a Node
 ---------------
 
 #. Log in to the CCE console.
-#. Click the name of the target cluster to access the cluster console.
+#. Click the cluster name to access the cluster.
 #. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab, locate the row containing the unavailable node, and view its status. (If NPD 1.6.10 or a later version is installed in the cluster, you will see a message indicating that the metrics for the unavailable node are abnormal. In this case, you can move the cursor to the upper part to view the specific problem. If the add-on is not installed, you can rectify the fault by referring to the check items.)
 
 .. _cce_faq_00468__section153218576118:
@@ -174,7 +174,7 @@ Checking the Node Monitoring Data
 
 #. Log in to the CCE console.
 
-#. Click the name of the target cluster to access the cluster console.
+#. Click the cluster name to access the cluster.
 
 #. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab, locate the row containing the abnormal node, and click **Monitor** in the **Operation** column.
 
@@ -186,7 +186,7 @@ Checking the Node Events
 ------------------------
 
 #. Log in to the CCE console.
-#. Click the name of the target cluster to access the cluster console.
+#. Click the cluster name to access the cluster.
 #. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab, locate the row containing the abnormal node, click **View Events** in the **Operation** column, and check whether any abnormal event is reported. (The NPD add-on must be installed.)
 
 .. _cce_faq_00468__section12601731141210:
@@ -194,7 +194,8 @@ Checking the Node Events
 Verifying Whether the ECS Has Been Deleted or Is Faulty
 -------------------------------------------------------
 
-#. Log in to the CCE console, click the name of the target cluster to access the cluster console, and view the name of the unavailable node.
+#. Log in to the CCE console.
+#. Click the cluster name to access the cluster and view the name of the unavailable node.
 #. Log in to the ECS console, search for the node, and check the ECS status.
 
    -  If the ECS has been deleted, go back to the CCE console, delete the node from the node list, and create another one.
@@ -222,7 +223,7 @@ Checking the Node Security Group
 
    #. Log in to the VPC console. In the navigation pane, choose **Access Control** > **Security Groups** and find the master node security group of the cluster.
    #. Search for the name of the security group that contains the cluster name and **-cce-control-**. The name of a master node security group is in the format of *cluster-name*\ **-cce-control-**\ *random-ID*.
-   #. Check whether the security group rules have been changed. For details about security groups, see :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
+   #. Check whether the security group rules have been changed. For details about security groups, see :ref:`How Do I Modify Cluster Security Group Rules? <cce_faq_00265>`
 
 -  The node security group rules must contain a policy that allows the communication between the master nodes and the worker nodes.
 
@@ -230,7 +231,7 @@ Checking the Node Security Group
 
    -  When adding a node to the cluster, add the security group rules listed in :ref:`Table 2 <cce_faq_00468__table173615012426>` to the *cluster-name*\ **-cce-control-**\ *random-ID* security group to ensure the availability of the added node. This is necessary if a secondary CIDR block is added to the VPC of the node subnet and the subnet is in the secondary CIDR block. However, if a secondary CIDR block has already been added to the VPC during cluster creation, this step is not required.
 
-   -  For details about security groups, see :ref:`How Can I Configure a Security Group Rule for a Cluster? <cce_faq_00265>`
+   -  For details about security groups, see :ref:`How Do I Modify Cluster Security Group Rules? <cce_faq_00265>`
 
       .. _cce_faq_00468__table173615012426:
 
@@ -355,7 +356,7 @@ Checking Key Components of the Node
 Verifying Whether the Node DNS Address Is Properly Configured
 -------------------------------------------------------------
 
--  Log in to the node and check whether any domain name resolution failure is recorded in **/var/log/cloud-init-output.log**:
+-  Log in to the node and check whether any domain name resolution failure is recorded in **/var/log/cloud-init-output.log**.
 
    .. code-block::
 
@@ -461,7 +462,7 @@ The pods on the node are using up a large amount of memory, causing a shortage o
 
 -  Check the node memory usage through the node monitoring data, identify the time when the exception occurs, and verify if there is any memory leak in the processes on the node. For details, see :ref:`Checking the Node Monitoring Data <cce_faq_00468__section153218576118>`.
 -  Reduce the load of the node.
--  To restart the node, go to the ECS console and restart it. (**Be cautious when restarting the node because it may cause interruptions to your services.**)
+-  To restart the node, go to the ECS console and restart it. **Be cautious when restarting the node because it may cause interruptions to your services.**
 
 .. _cce_faq_00468__section9667492258:
 
@@ -768,7 +769,7 @@ Pay attention to the resource allocation in the command output:
 Specifically:
 
 -  **Allocatable**: specifies the total number of allocatable resources like CPUs, memory, and temporary storage on a node.
--  **Allocated resources**: specifies the total number or amount of resources (such as CPU, memory, and temporary storage) that has been allocated to the pods on a node.
+-  **Allocated resources**: specifies the total number of resources like CPUs, memory, and temporary storage that has been allocated to the pods on a node.
 
 **Solution**
 
@@ -828,7 +829,7 @@ A newly created node is **restricted for scheduling** for a long time.
 
    After the container is started, log in to another normal node and ping the IP address of the container. If the communication is abnormal, go to the next step.
 
-#. On the **Route Tables** page of the VPC console, check whether the node route has been added, whether the next hop type is cloud container, and whether the next hop is the node name. If the node route is present in the route table but the node is still unable to connect to the network, it suggests a potential problem with the underlying network. In such situations, submit a service ticket to the networking team for assistance.
+#. On the **Routes** page of the VPC console, check whether the node's routes have been added, whether the next hop type is Cloud container, and whether the next hop is the node name. If the node route is present in the route table but the node is still unable to connect to the network, it suggests a potential problem with the underlying network. In such situations, submit a service ticket to the networking team for assistance.
 
 #. If the fault persists, submit a service ticket to CCE for troubleshooting.
 
@@ -839,7 +840,7 @@ Node Unavailable Due to OOM
 
 **Possible Cause**
 
-Many containers are scheduled onto a node, using up all its resources and causing an OOM issue. This issue is primarily seen on nodes running the Docker container engine.
+Too many pods are scheduled to a node, exhausting resources and causing OOM errors. This issue primarily affects Docker nodes.
 
 **Symptom**
 
@@ -866,10 +867,10 @@ If the resources on a node are not enough for pod scheduling, reduce the node lo
 -  Restrict the resource configurations of pods based on service requirements.
 -  Add more nodes to the cluster.
 
-.. |image1| image:: /_static/images/en-us_image_0000002483957760.png
-.. |image2| image:: /_static/images/en-us_image_0000002483957780.png
-.. |image3| image:: /_static/images/en-us_image_0000002483957768.png
-.. |image4| image:: /_static/images/en-us_image_0000002516197723.png
-.. |image5| image:: /_static/images/en-us_image_0000002516077723.png
-.. |image6| image:: /_static/images/en-us_image_0000002484117764.png
-.. |image7| image:: /_static/images/en-us_image_0000002484117752.png
+.. |image1| image:: /_static/images/en-us_image_0000002631532150.png
+.. |image2| image:: /_static/images/en-us_image_0000002631532158.png
+.. |image3| image:: /_static/images/en-us_image_0000002662011283.png
+.. |image4| image:: /_static/images/en-us_image_0000002662011295.png
+.. |image5| image:: /_static/images/en-us_image_0000002661851351.png
+.. |image6| image:: /_static/images/en-us_image_0000002661851359.png
+.. |image7| image:: /_static/images/en-us_image_0000002661851349.png

@@ -48,7 +48,7 @@ After the SAN is modified, the original **kubeconfig.json** file becomes invalid
    Download the **kubeconfig.json** file again after the SAN is modified.
 
    a. Log in to the CCE console and click the cluster name to access the cluster console.
-   b. On the **Overview** page, locate the **Connection Information** area, and click **Configure** next to **kubectl**. On the page displayed, download the configuration file.
+   b. On the **Overview** page, locate the **Connection Information** area and click **Configure** next to **kubectl**. On the page displayed, download the configuration file.
 
 #. Configure kubectl.
 
@@ -93,7 +93,7 @@ After the SAN is modified, the original X.509 certificate becomes invalid. If yo
 
    a. Log in to the CCE console and click the cluster name to access the cluster console.
    b. On the **Overview** page, locate the **Connection Information** area, and click **Download** next to **X.509 certificate**.
-   c. In the **Obtain Certificate** dialog box displayed, select the certificate validity period and download the X.509 certificate of the cluster as prompted.
+   c. In the **Obtain Certificate** dialog box, select the certificate validity period and download the X.509 certificate of the cluster as prompted.
 
 #. Call Kubernetes native APIs using the cluster certificate.
 
@@ -114,4 +114,4 @@ After the SAN is modified, the original X.509 certificate becomes invalid. If yo
 
    For more cluster APIs, see `Kubernetes API <https://kubernetes.io/docs/reference/kubernetes-api/>`__.
 
-.. |image1| image:: /_static/images/en-us_image_0000002483959210.png
+.. |image1| image:: /_static/images/en-us_image_0000002631690342.png

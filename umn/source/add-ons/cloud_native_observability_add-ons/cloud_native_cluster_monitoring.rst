@@ -8,7 +8,7 @@ Cloud Native Cluster Monitoring
 Introduction
 ------------
 
-The Cloud Native Cluster Monitoring add-on (formerly kube-prometheus-stack) uses Prometheus-operator and Prometheus and provides easy-to-use, end-to-end Kubernetes cluster monitoring.
+The Cloud Native Cluster Monitoring add-on (formerly kube-prometheus-stack) uses Prometheus operator and Prometheus and provides easy-to-use, end-to-end Kubernetes cluster monitoring.
 
 **Open-source community**: https://github.com/prometheus/prometheus
 
@@ -17,18 +17,11 @@ Notes and Constraints
 
 -  By default, the kube-state-metrics component of the add-on does not collect labels and annotations of Kubernetes resources. To collect these labels and annotations, manually enable the collection function in the startup parameters and check whether the corresponding metrics are added to the collection trustlist of ServiceMonitor named **kube-state-metrics**. For details, see :ref:`Collecting All Labels and Annotations of a Pod <cce_10_0406__section163751639151115>`.
 
--  In 3.8.0 and later versions, component metrics in the kube-system and monitoring namespaces are not collected by default. If you have workloads in the two namespaces, use :ref:`Pod Monitor <cce_10_0373__section3497144813213>` or :ref:`Service Monitor <cce_10_0373__section92241661317>` to collect these metrics.
+-  In 3.8.0 and later versions, component metrics defined using annotations in the **kube-system** and **monitoring** namespaces are not collected by default after Auto Service Discovery is enabled. If you have workloads in the two namespaces, use :ref:`PodMonitors <cce_10_0373__section3497144813213>` or :ref:`ServiceMonitors <cce_10_0373__section92241661317>` to collect their metrics.
 
 -  In 3.8.0 and later versions, etcd-server, kube-controller, kube-scheduler, autoscaler, fluent-bit, volcano-agent, volcano-scheduler and otel-collector metrics are not collected by default. Enable the collection as required.
 
-   To enable this function, on the **ConfigMaps and Secrets** page, expand the dropdown list of **Namespace**, and select **monitoring**. Locate the row that contains the configuration item named **persistent-user-config**, and click **Edit YAML** in the operation column. Remove the **serviceMonitorDisable** or **podMonitorDisable** configuration in the **customSettings** field as required or set the configuration to an empty array.
-
-   .. code-block::
-
-      ...
-         customSettings:
-            podMonitorDisable: []
-            serviceMonitorDisable: []
+   To enable the collection, choose **Settings** in the navigation pane, click the **Monitoring** tab, find **ServiceMonitor Policies** or **PodMonitor Policies**, click **Manage**, and enable the collection of related metrics as required.
 
 Permissions
 -----------
@@ -60,7 +53,7 @@ Installing the Add-on
 
    On the **Install Add-on** page, enable at least one item in the **Data Storage Configuration** area.
 
-   -  **Report Monitoring Data to AOM**: Report Prometheus data to AOM. After this function is enabled, you can select the corresponding AOM instance. The collected basic metrics are free of charge. Custom metrics are charged by AOM. To interconnect with AOM, you must have certain permissions. Only **users in the** **admin** **user group** can perform this operation.
+   -  **Report Monitoring Data to AOM**: Report Prometheus data to AOM. After this function is enabled, you can select the corresponding AOM instance. Basic container metrics are monitored for free. Custom metrics are billed by AOM. To access AOM, you must have required permissions. Only users in the **admin** user group can perform this operation.
    -  **Reporting Monitoring Data to a Third-Party Monitoring Platform**: To report Prometheus data to a third-party monitoring system, you need to enter the address and token of the third-party monitoring system and determine whether to skip certificate authentication.
    -  **Local Data Storage**: Select the type and size of a disk for storing monitoring data to store Prometheus data in PVCs in the cluster. **Storage volumes are not deleted along with the add-on.** If **Local Data Storage** is enabled, all components will be deployed. For details, see :ref:`Components <cce_10_0406__section0377457163618>`.
 
@@ -73,14 +66,14 @@ Installing the Add-on
    -  **Add-on Specifications**:
 
       -  If you selected **Preset**, the system will configure the number of pods and resource quotas for the add-on based on the preset specifications. You can see the configurations on the console.
-      -  If you selected **Custom**, you can adjust the number of pods and resource quotas as needed. High availability is not possible with a single pod. If an error occurs on the node where the add-on instance runs, the add-on will fail.
+      -  If you selected **Custom**, you can adjust the number of pods and resource quotas as needed. High availability is not possible with a single pod. If an error occurs on the node where the add-on pod runs, the add-on will fail.
 
-   -  **Prometheus HA**: The Prometheus-server, Prometheus-operator, thanos-query, custom-metrics-apiserver, alertmanager, and kube-state-metrics components are deployed in multi-instance mode in the cluster.
+   -  **Prometheus HA**: The Prometheus server, Prometheus operator, thanos-query, custom-metrics-apiserver, alertmanager, and kube-state-metrics components are deployed in multi-instance mode in the cluster.
    -  **Number of collected shards** (available after **Local Data Storage** is disabled): When there is a lot of Prometheus data, you can configure this parameter to spread the data across a specific number of Prometheus instances. This will help with storage and querying. Increasing the number of shards reduces the data volume carried by each shard. This can increase the upper limit of the metric collection throughput and cause more resources to be consumed. By default, CCE automatically determines the number of shards based on the cluster scale. It is advised to allocate one shard for every 50 nodes. If you want to enhance collection performance by increasing the number of shards, carefully assess resource utilization and optimize based on your monitoring needs. To ensure system stability, keep the master node's memory usage below 50%.
 
 #. Configure the add-on parameters.
 
-   -  **Custom Metric Collection**: Application metrics are automatically collected in the form of service discovery. After this function is enabled, you need to add related configurations to the target application. For details, see :ref:`Monitoring Custom Metrics Using Cloud Native Cluster Monitoring <cce_10_0373>`.
+   -  **Auto Service Discovery**: After this function is enabled, the add-on automatically collects application metrics using annotation-based service discovery. By default, applications in the **kube-system** and **monitoring** namespaces are excluded. For details about how to configure automatic collection of annotations, see :ref:`Configuring Pod Annotations <cce_10_0373__section179021319175>` and :ref:`Configuring Service Annotations <cce_10_0373__section103284201722>`.
    -  **Collection Interval**: Configure the collection interval.
    -  **Data Retention** (available only after **Local Data Storage** is enabled): Configure how long the monitoring data can be kept.
    -  **node-exporter Listening Port**: This port uses the host network to listen to and expose metrics on the node for Prometheus collection. The default port number is 9100, but it can be modified if there is a conflict with an existing port.
@@ -153,6 +146,8 @@ Providing Basic Resource Metrics Through the Metrics API
 .. note::
 
    If **Local Data Storage** is enabled for the Cloud Native Cluster Monitoring add-on, basic resource metrics can only be provided through Metrics API.
+
+   If :ref:`Kubernetes Metrics Server <cce_10_0205>` has been installed in the cluster, the Metrics API is provided by default. Skip this part.
 
 Resource metrics of containers and nodes, such as CPU and memory usage, can be obtained through the Kubernetes Metrics API. Resource metrics can be directly accessed, for example, by using the **kubectl top** command, or used by HPA or CustomedHPA policies for auto scaling.
 
@@ -227,7 +222,7 @@ In this section, the nginx metric (nginx_connections_accepted) in :ref:`Monitori
    .. code-block::
 
       rules:
-      # Match the metric whose name is nginx_connections_accepted. The metric name must be confirmed. Otherwise, the HPA controller cannot get the metric.
+      # Match the metric whose name is nginx_connections_accepted. The metric name must be verified. Otherwise, the HPA controller cannot get the metric.
       - seriesQuery: '{__name__=~"nginx_connections_accepted",container!="POD",namespace!="",pod!=""}'
         resources:
           # Specify pod and namespace resources.
@@ -237,9 +232,9 @@ In this section, the nginx metric (nginx_connections_accepted) in :ref:`Monitori
             pod:
               resource: pod
         name:
-          #Use nginx_connections_accepted"
+          # Use nginx_connections_accepted.
           matches: "nginx_connections_accepted"
-          #Use nginx_connections_accepted_per_second to represent the metric. The name is the custom metric name in a custom HPA policy.
+          # Use nginx_connections_accepted_per_second to represent the metric. The name is the custom metric name in a custom HPA policy.
           as: "nginx_connections_accepted_per_second"
           # Calculate rate(nginx_connections_accepted[2m]) to specify the number of requests received per second.
         metricsQuery: 'rate(<<.Series>>{<<.LabelMatchers>>,container!="POD"}[2m])'
@@ -265,7 +260,7 @@ Collecting All Labels and Annotations of a Pod
 
       --metric-labels-allowlist=pods=[*],nodes=[node,failure-domain.beta.kubernetes.io/zone,topology.kubernetes.io/zone]
 
-   To collect annotations, add parameters in the startup parameters in the same way.
+   To collect annotations, add parameters to the startup parameters in the same way.
 
    .. code-block::
 
@@ -273,7 +268,7 @@ Collecting All Labels and Annotations of a Pod
 
    .. important::
 
-      When editing the startup command, do not modify other original startup parameters. Otherwise, the component may be abnormal.
+      When editing the startup command, do not modify other original startup parameters. Otherwise, the component may malfunction.
 
 #. **kube-state-metrics** starts to collect the labels/annotations of pods and nodes and checks whether **kube_pod_labels/kube_pod_annotations** is in the collection task of Prometheus.
 
@@ -291,6 +286,30 @@ Release History
    +-----------------+---------------------------+----------------------------------+----------------------------------------------------------------------------+
    | Add-on Version  | Supported Cluster Version | New Feature                      | Community Version                                                          |
    +=================+===========================+==================================+============================================================================+
+   | 3.12.9          | v1.21                     | Supported CCE clusters v1.35.    | `2.53.2 <https://github.com/prometheus/prometheus/releases/tag/v2.53.2>`__ |
+   |                 |                           |                                  |                                                                            |
+   |                 | v1.23                     |                                  |                                                                            |
+   |                 |                           |                                  |                                                                            |
+   |                 | v1.25                     |                                  |                                                                            |
+   |                 |                           |                                  |                                                                            |
+   |                 | v1.27                     |                                  |                                                                            |
+   |                 |                           |                                  |                                                                            |
+   |                 | v1.28                     |                                  |                                                                            |
+   |                 |                           |                                  |                                                                            |
+   |                 | v1.29                     |                                  |                                                                            |
+   |                 |                           |                                  |                                                                            |
+   |                 | v1.30                     |                                  |                                                                            |
+   |                 |                           |                                  |                                                                            |
+   |                 | v1.31                     |                                  |                                                                            |
+   |                 |                           |                                  |                                                                            |
+   |                 | v1.32                     |                                  |                                                                            |
+   |                 |                           |                                  |                                                                            |
+   |                 | v1.33                     |                                  |                                                                            |
+   |                 |                           |                                  |                                                                            |
+   |                 | v1.34                     |                                  |                                                                            |
+   |                 |                           |                                  |                                                                            |
+   |                 | v1.35                     |                                  |                                                                            |
+   +-----------------+---------------------------+----------------------------------+----------------------------------------------------------------------------+
    | 3.12.8          | v1.21                     | Supported CCE clusters v1.34.    | `2.53.2 <https://github.com/prometheus/prometheus/releases/tag/v2.53.2>`__ |
    |                 |                           |                                  |                                                                            |
    |                 | v1.23                     |                                  |                                                                            |

@@ -38,9 +38,9 @@ Automatic key updates for OBS volumes are only available for workloads created a
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Add-ons**. Check whether the CCE Container Storage (Everest) version is 2.4.150 or later.
+#. In the navigation pane, choose **Add-ons**. Check whether the CCE Container Storage (Everest) version meets the requirements.
 
-   Click **Edit**. In **Edit Add-on**, ensure dynamic AK/SK update is enabled in **Extended Parameter Settings** under **Advanced Settings**. Verify **enable_aksk_refresh** is set to **true**.
+   -  If the add-on version is 2.4.150 or later, click **Edit**. In **Edit Add-on**, ensure dynamic AK/SK update is enabled in **Extended Parameter Settings** under **Advanced Settings**. Verify that **enable_aksk_refresh** is set to **true**.
 
 #. Check the workloads that use OBS buckets and the nodes where these workloads are running in the cluster. The following uses a parallel file system as an example.
 
@@ -92,7 +92,7 @@ Step 2: Update the Custom Access Keys (AK/SK) of the OBS Volume
 After confirming that the workload with the OBS volume mounted supports automatic key updates, you can update the custom access keys (AK/SK) of the OBS volume.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Storage**. On the **PVCs** tab, locate the volume and click **More** > **Update Access Key** in the **Operation** column.
+#. In the navigation pane, choose **Storage**. On the **PVCs** tab, locate the volume and choose **More** > **Update Access Key** in the **Operation** column.
 #. Upload the new access keys (AK/SK) and click **OK**.
 
    .. caution::
@@ -139,4 +139,4 @@ Common Events
 
    If this alarm persists, rebuild the pod and then check whether the fault is rectified.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516198957.png
+.. |image1| image:: /_static/images/en-us_image_0000002631689990.png

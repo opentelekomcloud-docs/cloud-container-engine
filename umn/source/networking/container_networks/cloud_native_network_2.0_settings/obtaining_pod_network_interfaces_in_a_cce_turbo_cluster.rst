@@ -10,6 +10,11 @@ In a CCE Turbo cluster, the network model add-on automatically binds an independ
 This section describes how to obtain network interface details of pods from the pod annotations. This function supports the following configurations:
 
 -  Global configuration: Network interface details of all pods will be displayed. This means you can enable **enablePodNetworkStatus** in **YangtseConfiguration**. For details, see :ref:`Global Configuration <cce_10_1062__section1875674445611>`.
+
+   .. caution::
+
+      Do not modify other **YangtseConfiguration** parameters. Doing so may cause serious issues, including cluster unavailability.
+
 -  On-demand configuration: You can configure the **yangtse.io/enable-pod-network-status** annotation for a pod to display its network interface details. For details, see :ref:`On-demand Configuration <cce_10_1062__section2061855119567>`.
 
 The following table lists the logic of displaying network interface details when you configure switches at different levels.
@@ -30,8 +35,8 @@ The following table lists the logic of displaying network interface details when
 | Disabled (**false**) | Not set                 | No                                  |
 +----------------------+-------------------------+-------------------------------------+
 
-Constraints
------------
+Notes and Constraints
+---------------------
 
 -  This function is only available in CCE Turbo clusters of the following versions:
 
@@ -191,5 +196,5 @@ On-demand Configuration
    -  **portID**: indicates the ID of the network interface used by the pod.
    -  **ips**: indicates the IP address of the network interface.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516199533.png
-.. |image2| image:: /_static/images/en-us_image_0000002484119560.png
+.. |image1| image:: /_static/images/en-us_image_0000002631530756.png
+.. |image2| image:: /_static/images/en-us_image_0000002661849945.png

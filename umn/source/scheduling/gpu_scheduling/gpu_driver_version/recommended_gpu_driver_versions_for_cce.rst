@@ -12,7 +12,7 @@ Supported GPU Drivers
 
 .. important::
 
-   -  The list of supported GPU drivers applies only to CCE AI Suite (NVIDIA GPU) of v1.2.28 or later.
+   -  The list of supported GPU drivers applies only to CCE AI Suite (NVIDIA GPU) of 1.2.28 or later.
 
    -  To use the latest GPU driver, upgrade your CCE AI Suite (NVIDIA GPU) to the latest version.
 
@@ -31,9 +31,11 @@ Supported GPU Drivers
    +============+========================+===============+============+==============+=====================+
    |            |                        |               | HCE OS 2.0 | Ubuntu 22.04 | EulerOS release 2.9 |
    +------------+------------------------+---------------+------------+--------------+---------------------+
-   | Tesla T4   | CCE standard cluster   | g6            | 570.86.15  | 570.86.15    | 535.54.03           |
+   | Tesla T4   | CCE standard cluster   | g6            | 580.126.20 | 580.126.20   | 535.54.03           |
    |            |                        |               |            |              |                     |
-   |            |                        | pi2           | 535.216.03 | 535.216.03   | 470.141.03          |
+   |            |                        | pi2           | 570.86.15  | 570.86.15    | 470.141.03          |
+   |            |                        |               |            |              |                     |
+   |            |                        |               | 535.216.03 | 535.216.03   |                     |
    |            |                        |               |            |              |                     |
    |            |                        |               | 535.161.08 | 535.161.08   |                     |
    |            |                        |               |            |              |                     |
@@ -43,11 +45,13 @@ Supported GPU Drivers
    |            |                        |               |            |              |                     |
    |            |                        |               | 470.57.02  |              |                     |
    +------------+------------------------+---------------+------------+--------------+---------------------+
-   | Tesla V100 | CCE standard cluster   | p2s           | 570.86.15  | 570.86.15    | 535.54.03           |
+   | Tesla V100 | CCE standard cluster   | p2s           | 580.126.20 | 580.126.20   | 535.54.03           |
    |            |                        |               |            |              |                     |
-   |            |                        | p2vs          | 535.216.03 | 535.216.03   | 470.141.03          |
+   |            |                        | p2vs          | 570.86.15  | 570.86.15    | 470.141.03          |
    |            |                        |               |            |              |                     |
-   |            |                        | p2v           | 535.161.08 | 535.161.08   |                     |
+   |            |                        | p2v           | 535.216.03 | 535.216.03   |                     |
+   |            |                        |               |            |              |                     |
+   |            |                        |               | 535.161.08 | 535.161.08   |                     |
    |            |                        |               |            |              |                     |
    |            |                        |               | 535.54.03  | 535.54.03    |                     |
    |            |                        |               |            |              |                     |

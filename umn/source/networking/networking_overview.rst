@@ -29,7 +29,7 @@ Cluster networks are the core of Kubernetes. They ensure that containers in a cl
 -  **Container network**: Pods in a cluster are allocated independent IP addresses. All pods in a cluster are on a flat network and can be accessed using their IP addresses without NAT. Kubernetes uses `Container Network Interface (CNI) <https://github.com/containernetworking/cni>`__ to standardize the network between containers. Network model plugins are used to allocate independent IP addresses to pods for flat network communications in a cluster. Different network models have different allocation principles.
 
 
-   .. figure:: /_static/images/en-us_image_0000002483959592.png
+   .. figure:: /_static/images/en-us_image_0000002631530558.png
       :alt: **Figure 1** Container network
 
       **Figure 1** Container network
@@ -38,7 +38,7 @@ Cluster networks are the core of Kubernetes. They ensure that containers in a cl
 
    -  :ref:`Container tunnel network <cce_10_0282>`: This network model is constructed based on the node network through tunnel encapsulation, but it is independent of the node network. It uses VXLAN to encapsulate Ethernet packets into UDP packets and transmits them in tunnels. Open vSwitch serves as the backend virtual switch.
    -  :ref:`VPC network <cce_10_0283>`: This network model seamlessly combines VPC routing with the underlying network, making it ideal for high-performance scenarios. However, the maximum number of nodes allowed in a cluster is determined by the VPC route quota. Each node in a cluster that uses a VPC network is running in a subnet with a fixed number of IP addresses. The VPC network model outperforms the container tunnel network model in terms of performance because it does not have tunnel encapsulation overhead. In addition, as the routes destined for nodes and containers are added to a VPC route table, containers can be directly accessed from outside the cluster.
-   -  :ref:`Cloud Native Network 2.0 <cce_10_0284>` is a next-generation model developed by CCE and combines the network interfaces and supplementary network interfaces of VPC. Pod IP addresses are allocated from the VPC CIDR block. ELB passthrough networking is supported to forward requests to containers. Security groups and EIPs are associated to deliver high performance.
+   -  :ref:`Cloud Native Network 2.0 <cce_10_0284>` is a proprietary, high-performance pod networking model that integrates a VPC's primary and supplementary network interfaces. Pod IP addresses are allocated directly from VPC CIDR blocks. The model supports ELB passthrough networking to forward requests directly to containers, and associates security groups and EIPs to deliver high performance.
 
    The performance, networking scale, and application scenarios of a container network vary depending on the container network model. For details about the functions and features of different container network models, see :ref:`Overview <cce_10_0281>`.
 
@@ -88,7 +88,7 @@ DNS
 CCE uses CoreDNS to implement service discovery in a cluster. For example, a client can access backend pods through a ClusterIP Service whose name is mapped to a cluster-scoped virtual IP address. This approach decouples the invoking between applications in a cluster from specific IP addresses and deployment environments. For details about the cluster DNS settings, see :ref:`DNS Overview <cce_10_0360>`.
 
 
-.. figure:: /_static/images/en-us_image_0000002516079535.png
+.. figure:: /_static/images/en-us_image_0000002631690644.png
    :alt: **Figure 4** Example of domain name resolution in a cluster
 
    **Figure 4** Example of domain name resolution in a cluster
@@ -112,7 +112,7 @@ Workload access scenarios can be categorized as follows:
    -  Accessing a public network: Assign an EIP to the node where the workload runs (when a VPC network or tunnel network is used), bind an EIP to the pod IP address (when Cloud Native Network 2.0 is used), or configure an SNAT rule on the NAT gateway. For details, see :ref:`Accessing the Internet from a Container <cce_10_0400>`.
 
 
-.. figure:: /_static/images/en-us_image_0000002516199539.png
+.. figure:: /_static/images/en-us_image_0000002661849749.png
    :alt: **Figure 5** Network access diagram
 
    **Figure 5** Network access diagram

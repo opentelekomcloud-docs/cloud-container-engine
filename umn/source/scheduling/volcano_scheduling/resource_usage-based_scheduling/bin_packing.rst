@@ -10,7 +10,7 @@ Bin packing is an optimization algorithm that aims to properly allocate resource
 Prerequisites
 -------------
 
--  A cluster of v1.19 or later is available. For details, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
+-  A cluster of v1.19 or later is available. For details, see :ref:`Creating a Standard/Turbo Cluster <cce_10_0028>`.
 -  The Volcano add-on has been installed. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
 
 Features
@@ -49,7 +49,7 @@ A larger bin packing weight leads to a higher score. A larger resource weight le
 
 .. _cce_10_0773__fig565130165812:
 
-.. figure:: /_static/images/en-us_image_0000002483959660.png
+.. figure:: /_static/images/en-us_image_0000002661849981.png
    :alt: **Figure 1** Bin packing example
 
    **Figure 1** Bin packing example

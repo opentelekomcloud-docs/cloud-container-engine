@@ -23,7 +23,7 @@ Procedure
    b. In the image repository list, click the name of the target image repository. On the **Pull/Push Guide** tab page, click **Generate the Docker login command**.
 
 
-      .. figure:: /_static/images/en-us_image_0000001178352594.png
+      .. figure:: /_static/images/en-us_image_0000002706704595.png
          :alt: **Figure 1** Generate the Docker login command
 
          **Figure 1** Generate the Docker login command
@@ -31,7 +31,7 @@ Procedure
 #. Log in to the CCE 1.0 console, and obtain the docker login configuration file **dockercfg.json**.
 
 
-   .. figure:: /_static/images/en-us_image_0000001223473833.png
+   .. figure:: /_static/images/en-us_image_0000002677104556.png
       :alt: **Figure 2** Obtain the docker login configuration file
 
       **Figure 2** Obtain the docker login configuration file
@@ -53,7 +53,7 @@ Procedure
    After the preceding command is executed, go to the image repository of CCE 2.0. You can find that images have been successfully pushed.
 
 
-   .. figure:: /_static/images/en-us_image_0000001223393885.png
+   .. figure:: /_static/images/en-us_image_0000002676944706.png
       :alt: **Figure 3** Migrate the image
 
       **Figure 3** Migrate the image

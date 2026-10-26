@@ -6,13 +6,13 @@ Creating a Cluster
 ==================
 
 -  :ref:`Comparison Between Cluster Types <cce_10_0342>`
--  :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`
--  :ref:`Comparing iptables and IPVS <cce_10_0349>`
+-  :ref:`Creating a Standard/Turbo Cluster <cce_10_0028>`
+-  :ref:`Comparing iptables, nftables, and IPVS <cce_10_0349>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
    comparison_between_cluster_types
-   creating_a_cce_standard_turbo_cluster
-   comparing_iptables_and_ipvs
+   creating_a_standard_turbo_cluster
+   comparing_iptables_nftables_and_ipvs

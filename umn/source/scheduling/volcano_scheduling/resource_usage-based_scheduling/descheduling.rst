@@ -14,10 +14,10 @@ Features
 
 **Load-aware Descheduling**
 
-During Kubernetes cluster management, over-utilized nodes are due to high CPU or memory usage, which affects the stable running of pods on these nodes and increases the probability of node faults. To dynamically balance the resource usage between nodes in a cluster, a cluster resource view is required based on node monitoring metrics. During cluster management, real-time monitoring can be used to detect issues such as high resource usage on a node, node faults, and excessive number of pods on a node so that the system can take measures promptly, for example, by migrating some pods from an over-utilized node to under-utilized nodes.
+During Kubernetes cluster management, over-utilized nodes are due to high CPU or memory usage, which affects the stable running of pods on these nodes and increases the probability of node faults. To address issues like load imbalance across cluster nodes and to dynamically balance resource usage, a cluster-wide resource view must be built based on node monitoring metrics. During the cluster governance phase, real-time monitoring is performed. If a node shows high resource usage, experiences a fault, or hosts an excessive number of pods, the system can automatically migrate some pods from the overloaded node to nodes with lower resource usage.
 
 
-.. figure:: /_static/images/en-us_image_0000002516079249.png
+.. figure:: /_static/images/en-us_image_0000002662009533.png
    :alt: **Figure 1** Load-aware descheduling
 
    **Figure 1** Load-aware descheduling
@@ -35,8 +35,8 @@ This policy finds nodes that are under-utilized and evicts pods from the nodes i
 Prerequisites
 -------------
 
--  A cluster of v1.19.16 or later is available. For details, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
--  Volcano of v1.11.5 or later has been installed in the cluster. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
+-  A cluster of v1.19.16 or later is available. For details, see :ref:`Creating a Standard/Turbo Cluster <cce_10_0028>`.
+-  Volcano Scheduler of 1.11.5 or later has been installed in the cluster. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
 
 Notes and Constraints
 ---------------------
@@ -58,7 +58,7 @@ When configuring a load-aware descheduling policy, do as follows to enable load-
 
 #. On the **Scheduling** tab, find the expert mode and click **Try Now**.
 
-#. Configure a load-aware descheduling policy. If you are using Volcano v1.11.21 or later, refer to the example JSON parameter settings below. For more parameters, see the JSON example in **Getting Started** on the console.
+#. Configure a load-aware descheduling policy. If you are using Volcano Scheduler 1.11.21 or later, refer to the example JSON parameter settings below. For more parameters, see the JSON example in **Getting Started** on the console.
 
    .. code-block::
 
@@ -337,11 +337,11 @@ Use Cases
 
 #. In the navigation pane, choose **Settings** and click the **Scheduling** tab. Find the expert mode and click **Try Now**.
 
-#. Edit Volcano parameters and set both the CPU and memory thresholds to 25. When the CPU and memory usage of a node is less than 25%, pods on the node will be evicted.
+#. Edit Volcano parameters and set both the CPU and memory thresholds to 25. When the CPU and memory usage of a node are less than 25%, pods on the node will be evicted.
 
    |image1|
 
-#. After the policy takes effect, pods on the node with IP address 192.168.44.152 will be migrated to the node with IP address 192.168.54.65 for minimized resource fragments.
+#. After the policy takes effect, pods on the node with IP address 192.168.44.152 will be migrated to the node with IP address 192.168.54.65 to minimize resource fragmentation.
 
 Common Issues
 -------------
@@ -350,5 +350,5 @@ If an input parameter is incorrect, for example, the entered value is beyond the
 
 |image2|
 
-.. |image1| image:: /_static/images/en-us_image_0000002484119280.png
-.. |image2| image:: /_static/images/en-us_image_0000002483959314.png
+.. |image1| image:: /_static/images/en-us_image_0000002631530404.png
+.. |image2| image:: /_static/images/en-us_image_0000002661849587.png

@@ -27,5 +27,5 @@ Switching the AOM Instance Connected to Grafana
 
 #. Select the AOM instance to be switched and click **OK**.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516079275.png
-.. |image2| image:: /_static/images/en-us_image_0000002516199271.png
+.. |image1| image:: /_static/images/en-us_image_0000002662009469.png
+.. |image2| image:: /_static/images/en-us_image_0000002631690230.png

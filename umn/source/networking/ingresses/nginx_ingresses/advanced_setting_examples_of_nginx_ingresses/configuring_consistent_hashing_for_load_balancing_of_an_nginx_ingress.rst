@@ -26,7 +26,7 @@ Nginx Ingress can use the **nginx.ingress.kubernetes.io/upstream-hash-by** annot
 
       vi ingress-test.yaml
 
-   **For clusters of v1.23 or later:**
+   **For clusters v1.23 or later:**
 
    .. code-block::
 
@@ -45,15 +45,15 @@ Nginx Ingress can use the **nginx.ingress.kubernetes.io/upstream-hash-by** annot
                 - path: '/'
                   backend:
                     service:
-                      name: <your_service_name>  # Replace it with the name of your target Service.
+                      name: <your_service_name>  # Replace it with your target Service name.
                       port:
-                        number: <your_service_port>  # Replace it with the port number of your target Service.
+                        number: <your_service_port>  # Replace it with your target Service port.
                   property:
                     ingress.beta.kubernetes.io/url-match-mode: STARTS_WITH
                   pathType: ImplementationSpecific
         ingressClassName: nginx
 
-   **For clusters of v1.21 or earlier:**
+   **For clusters v1.21 or earlier:**
 
    .. code-block::
 
@@ -72,8 +72,8 @@ Nginx Ingress can use the **nginx.ingress.kubernetes.io/upstream-hash-by** annot
               paths:
                 - path: '/'
                   backend:
-                    serviceName: <your_service_name>  # Replace it with the name of your target Service.
-                    servicePort: <your_service_port>  # Replace it with the port number of your target Service.
+                    serviceName: <your_service_name>  # Replace it with your target Service name.
+                    servicePort: <your_service_port>  # Replace it your target Service port.
 
    The value of **nginx.ingress.kubernetes.io/upstream-hash-by** can be an nginx variable, a text value, or any combination:
 
@@ -91,7 +91,7 @@ Nginx Ingress can use the **nginx.ingress.kubernetes.io/upstream-hash-by** annot
 
    .. code-block::
 
-      ingress/ingress-test created
+      ingress.networking.k8s.io/ingress-test created
 
 #. Check the created ingress.
 

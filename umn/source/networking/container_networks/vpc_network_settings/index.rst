@@ -6,11 +6,11 @@ VPC Network Settings
 ====================
 
 -  :ref:`VPC Network Model <cce_10_0283>`
--  :ref:`Expanding the Container CIDR Block of a Cluster That Uses a VPC Network <cce_10_0680>`
+-  :ref:`Adding a Container CIDR Block for a Cluster That Uses a VPC Network <cce_10_0680>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
    vpc_network_model
-   expanding_the_container_cidr_block_of_a_cluster_that_uses_a_vpc_network
+   adding_a_container_cidr_block_for_a_cluster_that_uses_a_vpc_network

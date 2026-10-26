@@ -80,7 +80,7 @@ To use a specific NVIDIA driver version, perform the following operations to ins
 
             sudo fuser -v /dev/nvidia*
 
-         If the following information is displayed, some programs are using the GPUs. If no fuser command is unavailable (for example, in an RPM-based Linux distribution), run the **yum install psmisc** command to install the Psmisc package:
+         If the following information is displayed, some programs are using the GPUs. If fuser is missing (for example, in an RPM-based Linux distribution), run the **yum install psmisc** command to install the Psmisc package:
 
          .. code-block::
 
@@ -153,7 +153,7 @@ To use a specific NVIDIA driver version, perform the following operations to ins
 
    c. Prepare for the installation.
 
-      Obtain the kernel version of the current node and install its dependencies (such as gcc, make, and kernel-devel). The following is an example using a RPM-based Linux distribution (whose OS is EulerOS, HCE, or CentOS).
+      Obtain the kernel version of the current node and install its dependencies (such as gcc, make, and kernel-devel). The following is an example using the RPM-based Linux distribution (whose OS is EulerOS, HCE, or CentOS).
 
       .. code-block::
 

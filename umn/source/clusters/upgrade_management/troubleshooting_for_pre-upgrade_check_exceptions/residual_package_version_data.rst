@@ -1,0 +1,44 @@
+:original_name: cce_10_0505.html
+
+.. _cce_10_0505:
+
+Residual Package Version Data
+=============================
+
+Check Items
+-----------
+
+Check whether there is residual package version data in the current cluster.
+
+Solutions
+---------
+
+A message is displayed, indicating that there are residual CRD resources (such as 10.12.1.109) in your cluster. This issue occurs because CRD resources are not cleared after nodes in earlier CCE versions are deleted.
+
+Manually perform the following operations to clear the residual resources:
+
+#. Back up the residual CRD resources. Take CRD resource 10.12.1.109 as an example. Replace it with the resource displayed in the error message.
+
+   .. code-block::
+
+      kubectl get packageversion 10.12.1.109 -oyaml > /tmp/packageversion-109.bak
+
+#. Clear the residual CRD resources.
+
+   .. code-block::
+
+      kubectl delete packageversion 10.12.1.109
+
+#. Check residual package versions again.
+
+#. If the check still fails, the node may have been removed from the cluster, but cce-agent on the node is still running and continuously generates the preceding CRD resources. In this case, go to the VPC console and check whether the IP address is used by an ECS or BMS. Then log in to the node and check the cce-agent status.
+
+   .. code-block::
+
+      systemctl status cce-agent
+
+   If cce-agent is still running, stop the component or shut down the node.
+
+   .. code-block::
+
+      systemctl stop cce-agent

@@ -5,7 +5,7 @@
 (Recommended) Creating an SFS Turbo Subdirectory Using a Dynamic PV
 ===================================================================
 
-When an SFS Turbo volume is mounted to a workload container, the root directory is mounted to the container by default. However, the minimum capacity of an SFS Turbo volume is 500 GiB, which exceeds the capacity required by most workloads, leading to a waste of storage resources. CCE enables efficient utilization of storage capacity by creating SFS Turbo subdirectories dynamically when you create a PVC. If your Everest version is 2.4.73, you can configure the capacities of these subdirectories. This allows multiple workloads to share the SFS Turbo file system.
+There is a minimum capacity limit when you create an SFS Turbo volume, so you are not billed based on the capacity you have used. By default, when you mount an SFS Turbo volume to a workload, the root directory of the volume is mapped to the containers. The actual capacity used by the workload is far lower than the limit, which wastes resources. CCE enables efficient utilization of storage capacity by creating SFS Turbo subdirectories dynamically when you create a PVC. If your Everest version is 2.4.73, you can configure the capacities of these subdirectories. This allows multiple workloads to share the SFS Turbo file system.
 
 Prerequisites
 -------------
@@ -62,7 +62,7 @@ Dynamically Creating an SFS Turbo Subdirectory Using the Console
 
 #. Click **Create** to create a PVC and a PV.
 
-   You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PVCs** and **PVs** tab pages, respectively.
+   You can choose **Storage** in the navigation pane and view the created PVC and PV on the **PVCs** and **PVs** tabs, respectively.
 
 Dynamically Creating an SFS Turbo Subdirectory Using kubectl
 ------------------------------------------------------------

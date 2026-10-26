@@ -8,20 +8,20 @@ Creating a ConfigMap
 Scenario
 --------
 
-A ConfigMap is a type of resource that stores configuration information required by a workload. Its content is user-defined. After creating ConfigMaps, you can use them as files or environment variables in a containerized workload.
+A ConfigMap is a Kubernetes resource used to store non-sensitive configuration data. Its content is defined by users. After a ConfigMap is created, containerized workloads can use it through volume mounts or environment variable injection.
 
-ConfigMaps allow you to decouple configuration files from container images to enhance the portability of workloads.
+ConfigMaps decouple configuration files from container images, improving workload portability and preventing unnecessary image rebuilds caused by configuration changes.
 
-Benefits of ConfigMaps:
+The core benefits of ConfigMaps include:
 
--  Manage configurations of different environments and services.
--  Deploy workloads in different environments. Multiple versions are supported for configuration files so that you can update and roll back workloads easily.
--  Quickly import configurations in the form of files to containers.
+-  Easy injection of configuration files into containers: Configuration files can be mounted directly to a specified path in a container, allowing configuration updates without modifying the image.
+-  Unified management across multiple environments and services: Separate ConfigMaps can be created for different environments (such as development, testing, and production) or different service lines. This enables configuration isolation and efficient management.
+-  Agile workload deployment and version control: The same workload can be deployed in different environments using different ConfigMaps. ConfigMaps support versioning, enabling efficient workload updates, iterations, and quick rollbacks.
 
 Notes and Constraints
 ---------------------
 
--  The size of a ConfigMap resource file cannot exceed 1 MB.
+-  The size of a ConfigMap resource file cannot exceed 1 MiB.
 -  ConfigMaps cannot be used in `static pods <https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/>`__.
 
 Creating a ConfigMap Using the Console
@@ -37,22 +37,22 @@ Creating a ConfigMap Using the Console
 
    .. table:: **Table 1** Parameters for creating a ConfigMap
 
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                                                                                                                          |
-      +===================================+======================================================================================================================================================================================================================================================+
-      | Name                              | Name of the ConfigMap you create, which must be unique in a namespace.                                                                                                                                                                               |
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Namespace                         | Namespace to which the ConfigMap belongs. If you do not specify this parameter, the value **default** is used by default.                                                                                                                            |
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Description                       | Description of the ConfigMap.                                                                                                                                                                                                                        |
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Data                              | Data of the ConfigMap. Click **Add** and enter key-value pairs.                                                                                                                                                                                      |
-      |                                   |                                                                                                                                                                                                                                                      |
-      |                                   | -  **Key**: Enter 1 to 63 characters. Only digits, letters, periods (.), hyphens (-), and underscores (_) are allowed. The key cannot start with two periods (..).                                                                                   |
-      |                                   | -  **Value**: The value can be in string, JSON, or YAML format.                                                                                                                                                                                      |
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Label                             | Label of the ConfigMap. Click **Add Label** and enter key-value pairs. The key and value must contain 1 to 63 characters that start and end with a letter or digit. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. |
-      +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                                                           |
+      +===================================+=======================================================================================================================================================================================================================================================+
+      | Name                              | Name of the ConfigMap you create, which must be unique in a namespace.                                                                                                                                                                                |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Namespace                         | Namespace to which the ConfigMap belongs. If you do not specify this parameter, the value **default** is used by default.                                                                                                                             |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Description                       | Description of the ConfigMap.                                                                                                                                                                                                                         |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Data                              | Data of the ConfigMap. Click **Add** and enter key-value pairs.                                                                                                                                                                                       |
+      |                                   |                                                                                                                                                                                                                                                       |
+      |                                   | -  **Key**: Enter 1 to 63 characters. Only digits, letters, periods (.), hyphens (-), and underscores (_) are allowed. The key cannot start with two periods (..).                                                                                    |
+      |                                   | -  **Value**: The value can be in string, JSON, or YAML format.                                                                                                                                                                                       |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Tag Management (Optional)         | Labels of the ConfigMap. Click **Add Label** and enter key-value pairs. The key and value must contain 1 to 63 characters that start and end with a letter or digit. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Click **OK**.
 
@@ -92,7 +92,7 @@ Creating a ConfigMap Using kubectl
       data          ConfigMap data. The value must be key-value pairs.
       ============= ==================================================
 
-#. Run the following commands to create a ConfigMap.
+#. Run the following commands to create the ConfigMap:
 
    .. code-block::
 
@@ -109,7 +109,7 @@ Creating a ConfigMap Using kubectl
    .. code-block::
 
       NAME               DATA            AGE
-      cce-configmap      3               7m
+      cce-configmap      2               7m
 
 Related Operations
 ------------------
@@ -123,10 +123,10 @@ After creating a ConfigMap, you can update or delete it as described in :ref:`Ta
    +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Operation                         | Description                                                                                                                                                                                                    |
    +===================================+================================================================================================================================================================================================================+
-   | Editing a YAML file               | Click **Edit YAML** in the row where the target ConfigMap resides to edit its YAML file.                                                                                                                       |
+   | Editing a ConfigMap's YAML file   | Click **Edit YAML** in the row where the target ConfigMap resides to edit its YAML file.                                                                                                                       |
    +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Updating a ConfigMap              | #. Select the name of the ConfigMap to be updated and click **Update**.                                                                                                                                        |
-   |                                   | #. Modify the secret data. For more information, see :ref:`Table 1 <cce_10_0152__table16321825732>`.                                                                                                           |
+   |                                   | #. Modify the information by referring to :ref:`Table 1 <cce_10_0152__table16321825732>`.                                                                                                                      |
    |                                   |                                                                                                                                                                                                                |
    |                                   |    .. note::                                                                                                                                                                                                   |
    |                                   |                                                                                                                                                                                                                |

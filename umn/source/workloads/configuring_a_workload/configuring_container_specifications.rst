@@ -8,7 +8,7 @@ Configuring Container Specifications
 Scenario
 --------
 
-CCE allows you to set resource requirements and limits, such as CPU and RAM, for added containers during workload creation. Kubernetes also allows using YAML to set requirements of other resource types.
+CCE allows you to set resource requests and limits, such as CPU and RAM, for added containers during workload creation. Kubernetes also allows using YAML to set requirements of other resource types.
 
 Request and Limit
 -----------------
@@ -18,7 +18,7 @@ For **CPU** and **Memory**, the meanings of **Request** and **Limit** are as fol
 -  **Request**: The system schedules a pod to the node that meets the requirements for workload deployment based on the request value.
 -  **Limit**: The system limits the resources used by the workload based on the limit value.
 
-If a node has sufficient resources, the pod on this node can use more resources than requested, but no more than limited.
+If a node has sufficient resources, the pod on this node can use more resources than requested, but no more than the limit.
 
 For example, if you set a pod's memory request to 1 GiB and its limit to 2 GiB, and the pod is scheduled on a node with 8 GiB of memory (with no other pods running), the pod can use more than 1 GiB of memory under heavy load, but its memory usage will be capped at 2 GiB. If a process in a container attempts to use more than 2 GiB resources, the system kernel attempts to terminate the process. As a result, an out of memory (OOM) error occurs.
 
@@ -31,37 +31,37 @@ Configuration
 
 In real-world scenarios, the recommended ratio of **Request** to **Limit** is about 1:1.5. For some sensitive services, the recommended ratio is 1:1. If the **Request** is too small and the **Limit** is too large, node resources are oversubscribed. During service peaks, the memory or CPU of a node may be used up. As a result, the node is unavailable.
 
--  CPU quota: The unit of CPU resources is core, which can be expressed by quantity or an integer suffixed with the unit (m). For example, 0.1 core in the quantity expression is equivalent to 100m in the expression. However, Kubernetes does not allow CPU resources whose precision is less than 1m.
+-  CPU quota: CPU resources are measured in cores. You can specify CPU quantities using decimal notation (for example, 0.1) or integer millicore notation suffixed with m (for example, 100m). Note that 0.1 core is equivalent to 100m. However, Kubernetes enforces a minimum granularity of 1m. In YAML configurations, values with precision finer than 1m (for example, 100.1m) are automatically rounded up to the nearest 1m (for example, 101m) during resource creation.
 
    .. table:: **Table 1** CPU quotas
 
-      +-------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter   | Description                                                                                                                                                                                                                                                                             |
-      +=============+=========================================================================================================================================================================================================================================================================================+
-      | CPU request | Minimum number of CPU cores required by a container. Resources are scheduled for the container based on this value. The container can be scheduled to this node only when the total available CPU on the node is greater than or equal to the number of containerized CPU applications. |
-      +-------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | CPU limit   | Maximum number of CPU cores available for a container.                                                                                                                                                                                                                                  |
-      +-------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter   | Description                                                                                                                                                                                                                                                                                                         |
+      +=============+=====================================================================================================================================================================================================================================================================================================================+
+      | CPU request | Minimum number of CPU cores required by a container. Resources are scheduled for the container based on this value. A container can be scheduled to a node only when the total number of CPU cores that are allocatable on the node is greater than or equal to the number of CPU cores requested by the container. |
+      +-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | CPU limit   | Maximum number of CPU cores available for a container.                                                                                                                                                                                                                                                              |
+      +-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    **Recommended configuration**
 
-   Actual available CPU of a node >= Sum of CPU limits of all containers on the current node >= Sum of CPU requests of all containers on the current node. You can view the actual available CPUs of a node on the CCE console (**Resource Management** > **Nodes** > **Allocatable**).
+   Actual available CPU cores on a node >= Sum of CPU limits for all containers in the pod >= Sum of CPU requests for all containers in the pod. Run **kubectl describe node** to view available CPU cores. For details, see :ref:`Querying Node Allocatable Resources <cce_10_0178__section07621731135919>`.
 
 -  Memory quota: The default unit of memory resources is byte. You can also use an integer with the unit suffix, for example, 100 Mi. Note that the unit is case-sensitive.
 
    .. table:: **Table 2** Description of memory quotas
 
-      +----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter      | Description                                                                                                                                                                                                                                                                                |
-      +================+============================================================================================================================================================================================================================================================================================+
-      | Memory request | Minimum amount of memory required by a container. Resources are scheduled for the container based on this value. The container can be scheduled to this node only when the total available memory on the node is greater than or equal to the number of containerized memory applications. |
-      +----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Memory Limit   | Maximum amount of memory available for a container. When the memory usage exceeds the configured memory limit, the instance may be restarted, which affects the normal use of the workload.                                                                                                |
-      +----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter      | Description                                                                                                                                                                                                                                                                 |
+      +================+=============================================================================================================================================================================================================================================================================+
+      | Memory request | Minimum amount of memory required by a container. Resources are scheduled for the container based on this value. A container can be scheduled to a node only when the total available memory on the node is greater than or equal to the memory requested by the container. |
+      +----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Memory Limit   | Maximum amount of memory available for a container. When the memory usage exceeds the configured memory limit, the instance may be restarted, which affects the normal use of the workload.                                                                                 |
+      +----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    **Recommended configuration**
 
-   Actual available memory of a node >= Sum of memory limits of all containers on the current node >= Sum of memory requests of all containers on the current node. You can view the actual available memory of a node on the CCE console (**Resource Management** > **Nodes** > **Allocatable**).
+   Actual available memory on a node >= Sum of memory limits for all containers in the pod >= Sum of memory requests for all containers in the pod. Run **kubectl describe node** to view available memory. For details, see :ref:`Querying Node Allocatable Resources <cce_10_0178__section07621731135919>`.
 
 .. note::
 
@@ -104,7 +104,7 @@ Kubernetes allows you to specify the requested value and limit value of ephemera
 
 -  spec.containers[].resources.requests.ephemeral-storage
 
-In the following example, a pod contains two containers. The requested value of each container for local ephemeral storage is 2 GiB, and the limit value is 4 GiB. Therefore, the requested value of the pod for local ephemeral storage is 4 GiB, the limit value is 8 GiB, and the emptyDir volume uses 500 MiB of the local ephemeral storage.
+In the following example, a pod contains two containers. The requested value of each container for local ephemeral storage is 2 GiB, and the limit value is 4 GiB. Therefore, the requested value of the pod for local ephemeral storage is 4 GiB, the limit value is 8 GiB, and the emptyDir volume uses 500 MiB of the local ephemeral storage. After the creation, you can run **kubectl describe pod** to view the ephemeral-storage configuration.
 
 .. code-block::
 
@@ -116,7 +116,7 @@ In the following example, a pod contains two containers. The requested value of 
      containers:
      - name: container-1
        image: <example_app_image>
-       resources:
+       resources:  # Configure local ephemeral storage resources.
          requests:
            ephemeral-storage: "2Gi"
          limits:
@@ -126,7 +126,7 @@ In the following example, a pod contains two containers. The requested value of 
          mountPath: "/tmp"
      - name: container-2
        image: <example_log_aggregator_image>
-       resources:
+       resources: # Configure local ephemeral storage resources.
          requests:
            ephemeral-storage: "2Gi"
          limits:
@@ -136,5 +136,5 @@ In the following example, a pod contains two containers. The requested value of 
          mountPath: "/tmp"
      volumes:
        - name: ephemeral
-         emptyDir:
+         emptyDir: # Configure an emptyDir volume.
            sizeLimit: 500Mi

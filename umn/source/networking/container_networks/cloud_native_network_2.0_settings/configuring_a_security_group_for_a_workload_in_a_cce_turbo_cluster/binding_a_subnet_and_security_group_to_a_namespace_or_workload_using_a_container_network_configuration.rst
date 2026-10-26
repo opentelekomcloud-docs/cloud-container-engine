@@ -8,10 +8,10 @@ Binding a Subnet and Security Group to a Namespace or Workload Using a Container
 Scenario
 --------
 
-In a CCE Turbo cluster, you can configure subnets and security groups for containers by namespace or workload using NetworkAttachmentDefinition `CRDs <https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/>`__. To configure a particular container subnet and security group for a specified namespace or workload, create a container network configuration (NetworkAttachmentDefinition) and associate it with the target namespace or workload. In this way, service subnets can be planned or services can be securely isolated.
+In a CCE Turbo cluster, you can configure pod subnets and security groups for containers by namespace or workload using NetworkAttachmentDefinition `CRDs <https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/>`__. To configure a particular pod subnet and security group for a specified namespace or workload, create a container network configuration (NetworkAttachmentDefinition) and associate it with the target namespace or workload. In this way, service subnets can be planned or services can be securely isolated.
 
 
-.. figure:: /_static/images/en-us_image_0000002483959484.png
+.. figure:: /_static/images/en-us_image_0000002631530676.png
    :alt: **Figure 1** Custom container network settings
 
    **Figure 1** Custom container network settings
@@ -36,8 +36,7 @@ The following table lists the resources that a container network configuration c
 
 .. note::
 
-   -  The priorities (in descending order) of the container network configurations used by a pod are as follows: Container network configuration directly associated with the pod > Container network configuration associated with the pod namespace > Default container network configuration of the cluster (**default-network**)
-   -  If **default-network** is available in a cluster, it takes effect on all pods where no custom container network configuration has been configured. The default container subnet in the network settings on the **Overview** page is the container subnet in **default-network**. **default-network** cannot be deleted.
+   -  If **default-network** is available in a cluster, it takes effect on all pods where no custom container network configuration has been configured. The default pod subnet in the network settings on the **Overview** page is the pod subnet in **default-network**. **default-network cannot be deleted. When using kubectl, only the securityGroups field may be modified. Changes to other fields may result in configuration loss or corruption.**
    -  If there is only one container network configuration in a cluster, it is the default container network configuration. If there are multiple container network configurations in a cluster, the one with annotation **yangtse.io/default-network: true** is the default container network configuration. If there is no default container network configuration in a cluster, the pod that is not associated with any container network configuration fails to be start after being created because no network interface can be allocated for the pod.
 
 Notes and Constraints
@@ -59,8 +58,8 @@ Operations on the Console for the Namespace Type
    -  **Name**: Enter a name that contains a maximum of 63 characters. Do not use **default-network**, **default**, **mgnt0**, or **mgnt1**.
    -  **Associated Resource Type**: resource type associated with the custom container network configuration. For details, see :ref:`Table 1 <cce_10_0196__table17616165517211>`. To create a container network configuration of the namespace type, select **Namespace**.
    -  **Namespace**: Select the namespace to be associated. The namespaces associated with different container network configurations must be unique. If no namespace is available, click **Create Namespace** to create one.
-   -  **Pod Subnet**: Select a subnet. If no subnet is available, click **Create Subnet** to create one. After the subnet is created, click the refresh button. A maximum of 20 subnets can be selected for clusters of a version earlier than v1.23.18-r10, v1.25.16-r0, v1.27.16-r0, v1.29.8-r0, v1.30.4-r0, or v1.28.13-r0. A maximum of 100 subnets can be selected for clusters of v1.23.18-r10, v1.25.16-r0, v1.27.16-r0, v1.28.13-r0, v1.29.8-r0, v1.30.4-r0, or later.
-   -  **Associate Security Group**: The default value is the container network interface security group. You can also click **Create Security Group** to create one. After the security group is created, click the refresh button. A maximum of five security groups can be selected.
+   -  **Pod Subnet**: Select a subnet. If no subnet is available, click **Create Subnet** to create one. After the subnet is created, click the refresh button. A maximum of 20 subnets can be selected for clusters earlier than v1.23.18-r10, v1.25.16-r0, v1.27.16-r0, v1.29.8-r0, v1.30.4-r0, or v1.28.13-r0. A maximum of 100 subnets can be selected for clusters v1.23.18-r10, v1.25.16-r0, v1.27.16-r0, v1.28.13-r0, v1.29.8-r0, v1.30.4-r0, or later.
+   -  **Associate Security Group**: The default value is the container ENI security group. You can also click **Create Security Group** to create one. After the security group is created, click the refresh button. For better network performance, select no more than five security groups.
 
 #. Click **OK**. After the creation, you will be redirected to the custom container network configuration list, where the new container network configuration is included.
 
@@ -111,67 +110,69 @@ This section describes how to use kubectl to create a container network configur
 
    .. table:: **Table 2** Key parameters
 
-      +-----------------------+-----------+----------------------------------------------------------+------------------------------------------------------------------------------------------+
-      | Parameter             | Mandatory | Type                                                     | Description                                                                              |
-      +=======================+===========+==========================================================+==========================================================================================+
-      | apiVersion            | Yes       | String                                                   | API version. The value is fixed at **k8s.cni.cncf.io/v1**.                               |
-      +-----------------------+-----------+----------------------------------------------------------+------------------------------------------------------------------------------------------+
-      | kind                  | Yes       | String                                                   | Type of the object to be created. The value is fixed at **NetworkAttachmentDefinition**. |
-      +-----------------------+-----------+----------------------------------------------------------+------------------------------------------------------------------------------------------+
-      | yangtse.io/project-id | Yes       | String                                                   | Project ID in the current region.                                                        |
-      +-----------------------+-----------+----------------------------------------------------------+------------------------------------------------------------------------------------------+
-      | name                  | Yes       | String                                                   | Configuration item name.                                                                 |
-      +-----------------------+-----------+----------------------------------------------------------+------------------------------------------------------------------------------------------+
-      | namespace             | Yes       | String                                                   | Namespace of the configuration resource. The value is fixed to **kube-system**.          |
-      +-----------------------+-----------+----------------------------------------------------------+------------------------------------------------------------------------------------------+
-      | config                | Yes       | :ref:`Table 3 <cce_10_0196__table17807161418257>` object | Configuration content, which is a string in JSON format.                                 |
-      +-----------------------+-----------+----------------------------------------------------------+------------------------------------------------------------------------------------------+
+      +-----------------------+-----------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
+      | Parameter             | Mandatory | Type                                                    | Description                                                                              |
+      +=======================+===========+=========================================================+==========================================================================================+
+      | apiVersion            | Yes       | String                                                  | API version. The value is fixed at **k8s.cni.cncf.io/v1**.                               |
+      +-----------------------+-----------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
+      | kind                  | Yes       | String                                                  | Type of the object to be created. The value is fixed at **NetworkAttachmentDefinition**. |
+      +-----------------------+-----------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
+      | yangtse.io/project-id | Yes       | String                                                  | Project ID in the current region.                                                        |
+      +-----------------------+-----------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
+      | name                  | Yes       | String                                                  | Configuration item name.                                                                 |
+      +-----------------------+-----------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
+      | namespace             | Yes       | String                                                  | Namespace of the configuration resource. The value is fixed to **kube-system**.          |
+      +-----------------------+-----------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
+      | config                | Yes       | :ref:`config <cce_10_0196__table17807161418257>` Object | Configuration content, which is a string in JSON format.                                 |
+      +-----------------------+-----------+---------------------------------------------------------+------------------------------------------------------------------------------------------+
 
    .. _cce_10_0196__table17807161418257:
 
    .. table:: **Table 3** config parameters
 
-      +-----------------+-----------------+----------------------------------------------------------+----------------------------------------------------+
-      | Parameter       | Mandatory       | Type                                                     | Description                                        |
-      +=================+=================+==========================================================+====================================================+
-      | type            | Yes             | String                                                   | The value is fixed at **eni-neutron**.             |
-      +-----------------+-----------------+----------------------------------------------------------+----------------------------------------------------+
-      | args            | No              | :ref:`Table 4 <cce_10_0196__table19808181418253>`        | Configuration parameters.                          |
-      |                 |                 |                                                          |                                                    |
-      |                 |                 | object                                                   |                                                    |
-      +-----------------+-----------------+----------------------------------------------------------+----------------------------------------------------+
-      | selector        | No              | :ref:`Table 5 <cce_10_0196__table14809514132514>` object | Namespace in which the configuration takes effect. |
-      +-----------------+-----------------+----------------------------------------------------------+----------------------------------------------------+
+      +-----------+-----------+-----------------------------------------------------------+----------------------------------------------------+
+      | Parameter | Mandatory | Type                                                      | Description                                        |
+      +===========+===========+===========================================================+====================================================+
+      | type      | Yes       | String                                                    | The value is fixed at **eni-neutron**.             |
+      +-----------+-----------+-----------------------------------------------------------+----------------------------------------------------+
+      | args      | No        | :ref:`args <cce_10_0196__table19808181418253>` Object     | Configuration parameters.                          |
+      +-----------+-----------+-----------------------------------------------------------+----------------------------------------------------+
+      | selector  | No        | :ref:`selector <cce_10_0196__table14809514132514>` Object | Namespace in which the configuration takes effect. |
+      +-----------+-----------+-----------------------------------------------------------+----------------------------------------------------+
 
    .. _cce_10_0196__table19808181418253:
 
    .. table:: **Table 4** args parameters
 
-      +-----------------+-----------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter       | Mandatory       | Type                      | Description                                                                                                                                                                        |
-      +=================+=================+===========================+====================================================================================================================================================================================+
-      | securityGroups  | No              | String                    | Security group ID. If no security group is planned, ensure that the security group is the same as that in **default-network**.                                                     |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           | How to obtain:                                                                                                                                                                     |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           | Log in to the VPC console. In the navigation pane, choose **Access Control** > **Security Groups**. Click the target security group name and copy the ID on the **Summary** tab.   |
-      +-----------------+-----------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | subnets         | Yes             | Array of subnetID Objects | List of container subnet IDs. At least one subnet ID must be entered. The format is as follows:                                                                                    |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           | .. code-block::                                                                                                                                                                    |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           |    [{"subnetID":"27d95**"},{"subnetID":"827bb**"},{"subnetID":"bdd6b**"}]                                                                                                          |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           | Subnet ID not used by the cluster in the same VPC.                                                                                                                                 |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           | How to obtain:                                                                                                                                                                     |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           | Log in to the VPC console. In the navigation pane, choose **Virtual Private Cloud** > **Subnets**. Click the target subnet name and copy the **Subnet ID** on the **Summary** tab. |
-      +-----------------+-----------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-----------------+-----------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter       | Mandatory       | Type                                                           | Description                                                                                                                                                                           |
+      +=================+=================+================================================================+=======================================================================================================================================================================================+
+      | securityGroups  | No              | String                                                         | Security group ID. If no security group is planned, ensure that the security group is the same as that in **default-network**.                                                        |
+      |                 |                 |                                                                |                                                                                                                                                                                       |
+      |                 |                 |                                                                | How to obtain:                                                                                                                                                                        |
+      |                 |                 |                                                                |                                                                                                                                                                                       |
+      |                 |                 |                                                                | Log in to the VPC console. In the navigation pane, choose **Access Control** > **Security Groups**. Click the target security group name and copy the ID on the **Summary** tab page. |
+      +-----------------+-----------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | subnets         | Yes             | Array of :ref:`subnets <cce_10_0196__table9718291110>` Objects | List of pod subnet IDs. At least one subnet ID is required.                                                                                                                           |
+      +-----------------+-----------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+   .. _cce_10_0196__table9718291110:
+
+   .. table:: **Table 5** subnets data structure
+
+      +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter       | Mandatory       | Type            | Description                                                                                                                                                                             |
+      +=================+=================+=================+=========================================================================================================================================================================================+
+      | subnetID        | Yes             | String          | Subnet ID in the same VPC.                                                                                                                                                              |
+      |                 |                 |                 |                                                                                                                                                                                         |
+      |                 |                 |                 | How to obtain:                                                                                                                                                                          |
+      |                 |                 |                 |                                                                                                                                                                                         |
+      |                 |                 |                 | Log in to the VPC console. In the navigation pane, choose **Virtual Private Cloud** > **Subnets**. Click the target subnet name and copy the **Subnet ID** on the **Summary** tab page. |
+      +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    .. _cce_10_0196__table14809514132514:
 
-   .. table:: **Table 5** selector parameters
+   .. table:: **Table 6** selector parameters
 
       +-------------------+-----------------+--------------------+------------------------------------------------------------------------------------+
       | Parameter         | Mandatory       | Type               | Description                                                                        |
@@ -208,8 +209,8 @@ Operations on the Console for the Workload Type
 
    -  **Name**: Enter a name that contains a maximum of 63 characters. Do not use **default-network**, **default**, **mgnt0**, or **mgnt1**.
    -  **Associated Resource Type**: resource type associated with the custom container network configuration. For details, see :ref:`Table 1 <cce_10_0196__table17616165517211>`. To create a container network configuration of the workload type, select **Workload**.
-   -  **Pod Subnet**: Select a subnet. If no subnet is available, click **Create Subnet** to create one. After the subnet is created, click the refresh button. A maximum of 20 subnets can be selected for clusters of a version earlier than v1.23.18-r10, v1.25.16-r0, v1.27.16-r0, v1.29.8-r0, v1.30.4-r0, or v1.28.13-r0. A maximum of 100 subnets can be selected for clusters of v1.23.18-r10, v1.25.16-r0, v1.27.16-r0, v1.28.13-r0, v1.29.8-r0, v1.30.4-r0, or later.
-   -  **Associate Security Group**: The default value is the container network interface security group. You can also click **Create Security Group** to create one. After the security group is created, click the refresh button. A maximum of five security groups can be selected.
+   -  **Pod Subnet**: Select a subnet. If no subnet is available, click **Create Subnet** to create one. After the subnet is created, click the refresh button. A maximum of 20 subnets can be selected for clusters earlier than v1.23.18-r10, v1.25.16-r0, v1.27.16-r0, v1.29.8-r0, v1.30.4-r0, or v1.28.13-r0. A maximum of 100 subnets can be selected for clusters v1.23.18-r10, v1.25.16-r0, v1.27.16-r0, v1.28.13-r0, v1.29.8-r0, v1.30.4-r0, or later.
+   -  **Associate Security Group**: The default value is the container ENI security group. You can also click **Create Security Group** to create one. After the security group is created, click the refresh button.
 
 #. Click **OK**. After the creation, you will be redirected to the custom container network configuration list, where the new container network configuration is included.
 #. When creating a workload, you can select a custom container network configuration.
@@ -262,63 +263,65 @@ This section describes how to use kubectl to create a container network configur
           }
          }
 
-   .. table:: **Table 6** Key parameters
+   .. table:: **Table 7** Key parameters
 
-      +-----------------------+-----------+--------------------------------------------------------+------------------------------------------------------------------------------------------+
-      | Parameter             | Mandatory | Type                                                   | Description                                                                              |
-      +=======================+===========+========================================================+==========================================================================================+
-      | apiVersion            | Yes       | String                                                 | API version. The value is fixed at **k8s.cni.cncf.io/v1**.                               |
-      +-----------------------+-----------+--------------------------------------------------------+------------------------------------------------------------------------------------------+
-      | kind                  | Yes       | String                                                 | Type of the object to be created. The value is fixed at **NetworkAttachmentDefinition**. |
-      +-----------------------+-----------+--------------------------------------------------------+------------------------------------------------------------------------------------------+
-      | yangtse.io/project-id | Yes       | String                                                 | Project ID in the current region.                                                        |
-      +-----------------------+-----------+--------------------------------------------------------+------------------------------------------------------------------------------------------+
-      | name                  | Yes       | String                                                 | Configuration item name.                                                                 |
-      +-----------------------+-----------+--------------------------------------------------------+------------------------------------------------------------------------------------------+
-      | namespace             | Yes       | String                                                 | Namespace of the configuration resource. The value is fixed to **kube-system**.          |
-      +-----------------------+-----------+--------------------------------------------------------+------------------------------------------------------------------------------------------+
-      | config                | Yes       | :ref:`Table 7 <cce_10_0196__table192753513431>` object | Configuration content, which is a string in JSON format.                                 |
-      +-----------------------+-----------+--------------------------------------------------------+------------------------------------------------------------------------------------------+
+      +-----------------------+-----------+-------------------------------------------------------+------------------------------------------------------------------------------------------+
+      | Parameter             | Mandatory | Type                                                  | Description                                                                              |
+      +=======================+===========+=======================================================+==========================================================================================+
+      | apiVersion            | Yes       | String                                                | API version. The value is fixed at **k8s.cni.cncf.io/v1**.                               |
+      +-----------------------+-----------+-------------------------------------------------------+------------------------------------------------------------------------------------------+
+      | kind                  | Yes       | String                                                | Type of the object to be created. The value is fixed at **NetworkAttachmentDefinition**. |
+      +-----------------------+-----------+-------------------------------------------------------+------------------------------------------------------------------------------------------+
+      | yangtse.io/project-id | Yes       | String                                                | Project ID in the current region.                                                        |
+      +-----------------------+-----------+-------------------------------------------------------+------------------------------------------------------------------------------------------+
+      | name                  | Yes       | String                                                | Configuration item name.                                                                 |
+      +-----------------------+-----------+-------------------------------------------------------+------------------------------------------------------------------------------------------+
+      | namespace             | Yes       | String                                                | Namespace of the configuration resource. The value is fixed to **kube-system**.          |
+      +-----------------------+-----------+-------------------------------------------------------+------------------------------------------------------------------------------------------+
+      | config                | Yes       | :ref:`config <cce_10_0196__table192753513431>` Object | Configuration content, which is a string in JSON format.                                 |
+      +-----------------------+-----------+-------------------------------------------------------+------------------------------------------------------------------------------------------+
 
    .. _cce_10_0196__table192753513431:
 
-   .. table:: **Table 7** config parameters
+   .. table:: **Table 8** config parameters
 
-      +-----------------+-----------------+---------------------------------------------------+----------------------------------------+
-      | Parameter       | Mandatory       | Type                                              | Description                            |
-      +=================+=================+===================================================+========================================+
-      | type            | Yes             | String                                            | The value is fixed at **eni-neutron**. |
-      +-----------------+-----------------+---------------------------------------------------+----------------------------------------+
-      | args            | No              | :ref:`Table 8 <cce_10_0196__table16276175114438>` | Configuration parameters.              |
-      |                 |                 |                                                   |                                        |
-      |                 |                 | object                                            |                                        |
-      +-----------------+-----------------+---------------------------------------------------+----------------------------------------+
+      +-----------+-----------+-------------------------------------------------------+----------------------------------------+
+      | Parameter | Mandatory | Type                                                  | Description                            |
+      +===========+===========+=======================================================+========================================+
+      | type      | Yes       | String                                                | The value is fixed at **eni-neutron**. |
+      +-----------+-----------+-------------------------------------------------------+----------------------------------------+
+      | args      | No        | :ref:`args <cce_10_0196__table16276175114438>` Object | Configuration parameters.              |
+      +-----------+-----------+-------------------------------------------------------+----------------------------------------+
 
    .. _cce_10_0196__table16276175114438:
 
-   .. table:: **Table 8** args parameters
+   .. table:: **Table 9** args parameters
 
-      +-----------------+-----------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter       | Mandatory       | Type                      | Description                                                                                                                                                                        |
-      +=================+=================+===========================+====================================================================================================================================================================================+
-      | securityGroups  | No              | String                    | Security group ID. If no security group is planned, ensure that the security group is the same as that in **default-network**.                                                     |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           | How to obtain:                                                                                                                                                                     |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           | Log in to the VPC console. In the navigation pane, choose **Access Control** > **Security Groups**. Click the target security group name and copy the ID on the **Summary** tab.   |
-      +-----------------+-----------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | subnets         | Yes             | Array of subnetID Objects | List of container subnet IDs. At least one subnet ID must be entered. The format is as follows:                                                                                    |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           | .. code-block::                                                                                                                                                                    |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           |    [{"subnetID":"27d95**"},{"subnetID":"827bb**"},{"subnetID":"bdd6b**"}]                                                                                                          |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           | Subnet ID not used by the cluster in the same VPC.                                                                                                                                 |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           | How to obtain:                                                                                                                                                                     |
-      |                 |                 |                           |                                                                                                                                                                                    |
-      |                 |                 |                           | Log in to the VPC console. In the navigation pane, choose **Virtual Private Cloud** > **Subnets**. Click the target subnet name and copy the **Subnet ID** on the **Summary** tab. |
-      +-----------------+-----------------+---------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-----------------+-----------------+-------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter       | Mandatory       | Type                                                              | Description                                                                                                                                                                           |
+      +=================+=================+===================================================================+=======================================================================================================================================================================================+
+      | securityGroups  | No              | String                                                            | Security group ID. If no security group is planned, ensure that the security group is the same as that in **default-network**.                                                        |
+      |                 |                 |                                                                   |                                                                                                                                                                                       |
+      |                 |                 |                                                                   | How to obtain:                                                                                                                                                                        |
+      |                 |                 |                                                                   |                                                                                                                                                                                       |
+      |                 |                 |                                                                   | Log in to the VPC console. In the navigation pane, choose **Access Control** > **Security Groups**. Click the target security group name and copy the ID on the **Summary** tab page. |
+      +-----------------+-----------------+-------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | subnets         | Yes             | Array of :ref:`subnets <cce_10_0196__table1347915115615>` Objects | List of pod subnet IDs. At least one subnet ID is required.                                                                                                                           |
+      +-----------------+-----------------+-------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+   .. _cce_10_0196__table1347915115615:
+
+   .. table:: **Table 10** subnets data structure
+
+      +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter       | Mandatory       | Type            | Description                                                                                                                                                                             |
+      +=================+=================+=================+=========================================================================================================================================================================================+
+      | subnetID        | Yes             | String          | Subnet ID in the same VPC.                                                                                                                                                              |
+      |                 |                 |                 |                                                                                                                                                                                         |
+      |                 |                 |                 | How to obtain:                                                                                                                                                                          |
+      |                 |                 |                 |                                                                                                                                                                                         |
+      |                 |                 |                 | Log in to the VPC console. In the navigation pane, choose **Virtual Private Cloud** > **Subnets**. Click the target subnet name and copy the **Subnet ID** on the **Summary** tab page. |
+      +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Create a NetworkAttachmentDefinition.
 
@@ -379,7 +382,7 @@ You can delete the new container network configuration or view its YAML file.
 
    Before deleting a container network configuration, delete all pods using the configuration. Otherwise, the deletion will fail.
 
-   #. Run the following command to filter the pods that use the configuration in the cluster (**example** is used as an example):
+   #. Run the following command to filter the pods that use the configuration in the cluster (**example** is used as a placeholder):
 
       .. code-block::
 

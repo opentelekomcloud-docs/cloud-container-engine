@@ -11,17 +11,17 @@ You can migrate nodes between node pools within a cluster. :ref:`Table 1 <cce_10
 
 .. table:: **Table 1** Migration scenarios
 
-   +---------------------------------+---------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------+
-   | Migration Scenario              |                                 | Migration                               | Operation                                                                                                   |
-   +=================================+=================================+=========================================+=============================================================================================================+
-   | Source Node Pool                | Target Node Pool                |                                         |                                                                                                             |
-   +---------------------------------+---------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------+
-   | Custom node pool                | Default node pool (DefaultPool) | Supported                               | :ref:`Migrating Nodes from a Custom Node Pool to the Default Node Pool <cce_10_0656__section124008234509>`  |
-   +---------------------------------+---------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------+
-   | Default node pool (DefaultPool) | Custom node pool                | Supported by clusters of v1.23 or later | :ref:`Migrating Nodes from the Default Node Pool to a Custom Node Pool <cce_10_0656__section7117453155012>` |
-   +---------------------------------+---------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------+
-   | Custom node pool                | Custom node pool                | Not supported                           | None                                                                                                        |
-   +---------------------------------+---------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------+
+   +---------------------------------+---------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Migration Scenario              |                                 | Migration                               | Operation                                                                                                                                                                                                               |
+   +=================================+=================================+=========================================+=========================================================================================================================================================================================================================+
+   | Source Node Pool                | Target Node Pool                |                                         |                                                                                                                                                                                                                         |
+   +---------------------------------+---------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Custom node pool                | Default node pool (DefaultPool) | Supported                               | :ref:`Migrating Nodes from a Custom Node Pool to the Default Node Pool <cce_10_0656__section124008234509>`                                                                                                              |
+   +---------------------------------+---------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Default node pool (DefaultPool) | Custom node pool                | Supported by clusters of v1.23 or later | :ref:`Migrating Nodes from the Default Node Pool to a Custom Node Pool <cce_10_0656__section7117453155012>`                                                                                                             |
+   +---------------------------------+---------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Custom node pool                | Custom node pool                | Not supported for direct migration      | In certain scenarios, you may need to remove a node from management and later re-add it. Note that removing and re-adding nodes are subject to specific restrictions. Migration may not be supported in some scenarios. |
+   +---------------------------------+---------------------------------+-----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. _cce_10_0656__section124008234509:
 
@@ -37,6 +37,7 @@ Migrating Nodes from a Custom Node Pool to the Default Node Pool
    .. note::
 
       -  The migration does not affect custom resource tags, and Kubernetes labels and taints of the node.
+      -  The migration does not affect the kubelet, kube-proxy, container runtime, and node OS settings of the node.
       -  After the migration, system labels **cce.cloud.com** and **cce-nodepool** on the node will be deleted. If an existing workload uses these labels for affinity or anti-affinity scheduling, the existing pods on the node will be stopped and rescheduled when kubelet is restarted.
 
 .. _cce_10_0656__section7117453155012:
@@ -50,11 +51,9 @@ Migrating Nodes from the Default Node Pool to a Custom Node Pool
 #. In the **Migrate Node** dialog box, select the nodes that meet the following conditions:
 
    -  The nodes and the current node pool are deployed in the same VPC and subnet.
-   -  The nodes and the current node pool belong to the same enterprise project.
    -  The nodes and the current node pool are in the same cloud server group.
-   -  The billing mode of the nodes is supported by the current node pool.
    -  The nodes are running and they are from the default node pool.
-   -  The flavor, AZ, resource reservation, container engine, and OS configurations of the nodes are the same as those of the node pool.
+   -  The flavor, AZ, container runtime, OS, and resource reservation settings of the nodes must match those of the node pool.
 
 #. Click **OK**.
 
@@ -64,4 +63,4 @@ Migrating Nodes from the Default Node Pool to a Custom Node Pool
       -  After the migration, the pool's security group will take over the nodes' original security group.
       -  After the migration, the pool's agency will take over the nodes' original agency.
       -  After the migration, the nodes' original login mode will remain unchanged.
-      -  After a node is migrated to a node pool after being accepted by the cluster, its acceptance tag will be removed. Scaling in the node pool may result in the removal of the node.
+      -  Nodes migrated to a node pool after acceptance may be removed during scale-in.

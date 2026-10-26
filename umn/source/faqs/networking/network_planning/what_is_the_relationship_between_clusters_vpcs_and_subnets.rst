@@ -5,9 +5,9 @@
 What Is the Relationship Between Clusters, VPCs, and Subnets?
 =============================================================
 
-A VPC is similar to a private local area network (LAN) managed by a home gateway whose IP address is 192.168.0.0/16. A VPC is a private network built on the cloud and provides basic network environment for running ECSs, load balancers, and middleware. Networks of different scales can be configured based on service requirements. Generally, you can set the CIDR block to 10.0.0.0/8-24, 172.16.0.0/12-24, or 192.168.0.0/16-24. The largest CIDR block is 10.0.0.0/8, which corresponds to a class A network.
+A VPC is similar to a private local area network (LAN) managed by a home gateway whose IP address is 192.168.0.0/16. A VPC is a private network built on the cloud and provides basic network environment for running ECSs, load balancers, and middleware. Choose a CIDR block based on your service requirements. You can typically use 10.0.0.0/8, 172.16.0.0/12, or 192.168.0.0/16 as the base network, with subnet prefix lengths ranging from the base mask down to /24.
 
-A VPC can be divided into multiple subnets. Security groups are configured to determine whether these subnets can communicate with each other. This ensures that subnets can be isolated from each other, so that you can deploy different services on different subnets.
+A subnet is a logical subdivision of a VPC. You can partition a VPC into multiple subnets and apply security groups, route tables, and network ACLs to control inter-subnet communication. This isolation allows you to deploy different services in separate subnets.
 
 A cluster is one or a group of ECSs (also known as nodes) in the same VPC. It provides computing resource pools for running containers.
 
@@ -19,7 +19,7 @@ As shown in :ref:`Figure 1 <cce_faq_00266__fig43963373019>`, a region may consis
 
 .. _cce_faq_00266__fig43963373019:
 
-.. figure:: /_static/images/en-us_image_0000002516077839.png
+.. figure:: /_static/images/en-us_image_0000002631532244.png
    :alt: **Figure 1** Relationship between clusters, VPCs, and subnets
 
    **Figure 1** Relationship between clusters, VPCs, and subnets

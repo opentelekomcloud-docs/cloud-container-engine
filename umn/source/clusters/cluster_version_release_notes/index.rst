@@ -6,11 +6,11 @@ Cluster Version Release Notes
 =============================
 
 -  :ref:`Kubernetes Version Release Notes <cce_10_0068>`
--  :ref:`Patch Version Release Notes <cce_10_0405>`
+-  :ref:`CCE Patch Release Notes <cce_10_0405>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
    kubernetes_version_release_notes/index
-   patch_version_release_notes
+   cce_patch_release_notes

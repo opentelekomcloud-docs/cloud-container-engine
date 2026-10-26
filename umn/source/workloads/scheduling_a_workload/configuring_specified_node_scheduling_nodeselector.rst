@@ -16,7 +16,7 @@ When a node is created, some labels are automatically added to it. You can sched
 Prerequisites
 -------------
 
-If the default labels of a node cannot meet your requirements, you can add custom labels to the node so that workloads can be scheduled based on the labels. For details, see :ref:`Adding or Deleting a Node Label <cce_10_0004__section33951611481>`.
+If the default labels of a node cannot meet your requirements, you can add custom labels to the node so that workloads can be scheduled based on the labels. For details, see :ref:`Adding, Updating, or Deleting a Node Label <cce_10_0004__section33951611481>`.
 
 Creating a Workload Scheduled to a Specified Node
 -------------------------------------------------

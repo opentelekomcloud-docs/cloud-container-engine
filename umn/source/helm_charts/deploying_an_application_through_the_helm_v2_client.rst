@@ -35,7 +35,7 @@ For other versions, visit https://github.com/helm/helm/releases.
 
       mv linux-amd64/helm /usr/local/bin/helm
 
-#. RBAC is enabled on the Kubernetes API server. Create the service account name **tiller** for the tiller and assign cluster-admin, a system ClusterRole, to the tiller. Create a tiller resource account as follows:
+#. RBAC is enabled on the Kubernetes API server. Create a service account named **tiller** for the tiller and assign cluster-admin, a system ClusterRole, with the tiller. Create a tiller resource account as follows:
 
    .. code-block::
 
@@ -70,7 +70,7 @@ For other versions, visit https://github.com/helm/helm/releases.
 
       kubectl apply -f tiller-rbac.yaml
 
-#. Initialize the Helm and deploy the pod of tiller.
+#. Initialize the Helm and deploy the tiller pod.
 
    .. code-block::
 
@@ -172,7 +172,7 @@ Common Issues
 
    The Helm chart reads the configuration certificate in **.kube/config** and communicates with Kubernetes. The preceding error indicates that the kubectl configuration is incorrect. In this case, reconnect the cluster to kubectl. For details, see :ref:`Step 1: Download kubectl <cce_10_0107__section37321625113110>`.
 
--  Storage fails to be created after you have connected to cloud storage services.
+-  Storage creation fails after you have connected to cloud storage services.
 
    This issue may be caused by the **annotation** field in the created PVC. Change the chart name and install the chart again.
 

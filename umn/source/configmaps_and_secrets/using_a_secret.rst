@@ -5,7 +5,7 @@
 Using a Secret
 ==============
 
-After secrets are created, they can be mounted as data volumes or be exposed as environment variables to be used by a container in a pod.
+After secrets are created, they can be mounted to workloads as data volumes or environment variables.
 
 .. important::
 
@@ -27,16 +27,18 @@ The following example shows how to use a secret.
      name: mysecret
    type: Opaque
    data:
-     username: ******  #The value must be Base64-encoded.
-     password: ******  #The value must be encoded using Base64.
+     username: ******  # The value must be encoded using Base64.
+     password: ******  # The value must be encoded using Base64.
 
-.. important::
+.. caution::
 
    -  When a secret is used in a pod, the pod and secret must be in the same cluster and namespace.
 
-   -  When a secret is updated, Kubernetes updates the data in the data volume at the same time.
+   -  When a secret is mounted as a data volume and the secret has been updated, Kubernetes periodically and automatically updates the data in the data volume.
 
-      However, when a secret data volume mounted in `subPath <https://kubernetes.io/docs/concepts/storage/volumes/#using-subpath>`__ mode is updated, Kubernetes cannot automatically update the data in the data volume.
+      However, if a secret mounted using a `subPath <https://kubernetes.io/docs/concepts/storage/volumes/#using-subpath>`__ volume has been updated, Kubernetes cannot automatically update the data in the data volume.
+
+   -  If a secret is used as an environment variable, the data will not be automatically updated when the secret is updated. To update the data, restart the pod.
 
 .. _cce_10_0016__section207271352141216:
 
@@ -47,7 +49,7 @@ Configuring Environment Variables of a Workload
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
-#. In the navigation pane, choose **Workloads**. In the dialog box displayed, click **Create Workload** in the upper right corner.
+#. In the navigation pane, choose **Workloads**. In the right pane, click **Create Workload** in the upper right corner.
 
    When creating a workload, click **Environment Variables** in the **Container Settings** area, and click **Add Variable**.
 
@@ -136,7 +138,7 @@ Configuring Environment Variables of a Workload
                      secretKeyRef:
                        name: mysecret       # Name of the referenced secret.
                        key: username        # Key in the referenced secret.
-                 - name: SECRET_PASSWORD            # Add multiple environment variables to import them at the same time.
+                 - name: SECRET_PASSWORD            # Add multiple environment variables.
                    valueFrom:
                      secretKeyRef:
                        name: mysecret
@@ -187,11 +189,11 @@ You can mount a secret as a volume to the specified container path. Contents in 
 
    When creating a workload, click **Data Storage** in the **Container Settings** area. Click **Add Volume** and choose **Secret** from the drop-down list.
 
-#. Select parameters for mounting a secret volume, as shown in :ref:`Table 1 <cce_10_0016__table861818920109>`.
+#. Select parameters for mounting a secret, as shown in :ref:`Table 1 <cce_10_0016__table861818920109>`.
 
    .. _cce_10_0016__table861818920109:
 
-   .. table:: **Table 1** Mounting a secret volume
+   .. table:: **Table 1** Mounting a secret
 
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -200,14 +202,14 @@ You can mount a secret as a volume to the specified container path. Contents in 
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
       |                                   | A secret must be created beforehand. For details, see :ref:`Creating a Secret <cce_10_0153>`.                                                                                                                                                                                                                                                                                                                                                      |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Mount Path                        | Enter a mount path. After the secret volume is mounted, a secret file with the key as the file name and value as the file content is generated in the mount path of the container.                                                                                                                                                                                                                                                                 |
+      | Mount Path                        | Enter a mount path. After the secret is mounted, a secret file with the key as the file name and value as the file content is generated in the mount path of the container.                                                                                                                                                                                                                                                                        |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
       |                                   | This parameter specifies a container path to which a data volume will be mounted. Do not mount the volume to a system directory such as **/** or **/var/run**. This may lead to container errors. Mount the volume to an empty directory. If the directory is not empty, ensure that there are no files that affect container startup. Otherwise, the files will be replaced, leading to container startup failures or workload creation failures. |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
       |                                   | .. important::                                                                                                                                                                                                                                                                                                                                                                                                                                     |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
       |                                   |    NOTICE:                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-      |                                   |    If the container is mounted to a high-risk directory, use an account with minimum permissions to start the container. Otherwise, high-risk files on the host may be damaged.                                                                                                                                                                                                                                                                    |
+      |                                   |    If a volume is mounted to a high-risk directory, use an account with minimum permissions to start the container. Otherwise, high-risk files on the host may be damaged.                                                                                                                                                                                                                                                                         |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Subpath                           | Enter a subpath of the mount path.                                                                                                                                                                                                                                                                                                                                                                                                                 |
       |                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
@@ -315,7 +317,7 @@ You can mount a secret as a volume to the specified container path. Contents in 
 
       kubectl apply -f nginx-secret.yaml
 
-#. After the workload runs properly, the **username** and **password** files will be generated in the **/etc/foo** directory.
+#. Wait until the workload runs properly. The **username** and **password** files will be generated in the **/etc/foo** directory.
 
    a. Run the following command to view the created pod:
 

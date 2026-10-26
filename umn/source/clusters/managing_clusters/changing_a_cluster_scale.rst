@@ -27,7 +27,7 @@ Procedure
 
 #. On the page displayed, select a new cluster scale.
 
-#. Click **Next** to confirm the specifications and click **OK**. Scaling out a cluster is typically completed within 30 minutes. The exact duration varies based on the cluster scale.
+#. Click **Next** to confirm the specifications and click **OK**. It takes fewer than 30 minutes to scale out a cluster. The exact duration varies based on the cluster scale.
 
    You can click **Operation Records** in the upper right corner to view the cluster change history. The status changes from **Executing** to **Successful**, indicating that the cluster scale has been changed.
 
@@ -36,4 +36,4 @@ Helpful Links
 
 When a cluster is scaled to 1,000 nodes or more, some parameter values of the cluster are adjusted accordingly to ensure optimal performance. For details, see :ref:`Modifying Cluster Configurations <cce_10_0213>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000002483959168.png
+.. |image1| image:: /_static/images/en-us_image_0000002631530270.png

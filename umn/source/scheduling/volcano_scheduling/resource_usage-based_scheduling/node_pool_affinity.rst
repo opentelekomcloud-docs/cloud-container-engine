@@ -29,8 +29,8 @@ Parameters:
 Prerequisites
 -------------
 
--  A cluster of v1.19.16 or later is available. For details, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
--  Volcano of v1.11.5 or later has been installed in the cluster. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
+-  A cluster of v1.19.16 or later is available. For details, see :ref:`Creating a Standard/Turbo Cluster <cce_10_0028>`.
+-  Volcano Scheduler of 1.11.5 or later has been installed in the cluster. For details, see :ref:`Volcano Scheduler <cce_10_0193>`.
 
 Configuring Soft Affinity Scheduling for Volcano Node Pools
 -----------------------------------------------------------

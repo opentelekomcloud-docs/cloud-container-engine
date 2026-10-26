@@ -10,7 +10,7 @@ A `Deployment <https://kubernetes.io/docs/concepts/workloads/controllers/deploym
 Prerequisites
 -------------
 
--  A cluster is available. For details about how to create a cluster, see :ref:`Creating a CCE Standard/Turbo Cluster <cce_10_0028>`.
+-  A cluster is available. For details about how to create a cluster, see :ref:`Creating a Standard/Turbo Cluster <cce_10_0028>`.
 -  There are some available nodes in the cluster. If no node is available, create one by referring to :ref:`Creating a Node <cce_10_0363>`.
 
 Using the CCE Console
@@ -110,7 +110,7 @@ Using the CCE Console
 
       -  (Optional) **Security Context**: Assign container permissions to protect the system and other containers from being affected. Enter the user ID to assign container permissions and prevent systems and other containers from being affected.
 
-      -  (Optional) **Logging**: Report standard container output logs to AOM by default, without requiring manual settings. You can manually configure the log collection path. For details, see :ref:`Collecting Container Logs Using ICAgent <cce_10_0018>`.
+      -  (Optional) **Logging**: Report standard container output logs to AOM by default, without requiring manual settings. You can manually configure the log collection path. For details, see :ref:`Using ICAgent to Collect Container Logs <cce_10_0018>`.
 
          To disable the collection of the standard output logs of the current workload, add the annotation **kubernetes.AOM.log.stdout: []** in :ref:`Labels and Annotations <cce_10_0047__li499691020198>` in the **Advanced Settings** area. For details about how to use this annotation, see :ref:`Table 1 <cce_10_0386__table19757101213714>`.
 

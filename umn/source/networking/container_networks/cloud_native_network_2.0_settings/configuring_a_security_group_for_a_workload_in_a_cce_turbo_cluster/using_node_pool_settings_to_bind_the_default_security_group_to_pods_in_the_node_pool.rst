@@ -12,7 +12,8 @@ In Cloud Native Network 2.0, pods can be directly bound to security groups using
 
 .. caution::
 
-   To bind the default security group to pods in a node pool, classify services by node pool and configure associated scheduling policies based on your services. Otherwise, the security group may change if the workload is rescheduled to another node pool. For details about how to configure workload scheduling policies, see :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`.
+   -  To bind the default security group to pods in a node pool, classify services by node pool and configure associated scheduling policies based on your services. Otherwise, the security group may change when workloads are rescheduled to other node pools. For details about how to configure workload scheduling policies, see :ref:`Configuring Node Affinity Scheduling (nodeAffinity) <cce_10_0892>`.
+   -  Security groups can be associated with workloads through multiple methods: annotations, security group policies, node pool settings, or pod network settings. When multiple methods are used, only the highest-priority method applies. For details about priorities, see :ref:`Comparison of Workload Security Group Configuration Methods <cce_10_1078>`.
 
 Notes and Constraints
 ---------------------

@@ -13,7 +13,7 @@ If pods need to communicate with each other within a cluster, you can create a C
 
 .. _cce_10_0011__fig192245420557:
 
-.. figure:: /_static/images/en-us_image_0000002516079663.png
+.. figure:: /_static/images/en-us_image_0000002661850017.png
    :alt: **Figure 1** Intra-cluster access (ClusterIP)
 
    **Figure 1** Intra-cluster access (ClusterIP)
@@ -22,7 +22,7 @@ Using the CCE Console
 ---------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. In the navigation pane, choose **Services & Ingresses**. In the upper right corner, click **Create Service**.
+#. In the navigation pane, choose **Services and Ingresses**. In the upper right corner, click **Create Service**.
 #. Configure intra-cluster access parameters.
 
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -40,7 +40,7 @@ Using the CCE Console
    |                                   |                                                                                                                                                                                                                                                         |
    |                                   | You can also click **Reference Workload Label** to use the label of an existing workload. In the dialog box displayed, select a workload and click **OK**.                                                                                              |
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Protocol Version                  | Select the IP address of different versions based on service requirements. **This function is displayed only when IPv6 is enabled during the creation of clusters of v1.15 or later.**                                                                  |
+   | Protocol Version                  | Select the IP address of different versions based on service requirements. This option is only available in clusters v1.15 or later with IPv6 enabled (set during cluster creation).                                                                    |
    +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Port                              | -  **Protocol**: the protocol supported by the Service.                                                                                                                                                                                                 |
    |                                   | -  **Container Port**: the listening port of the service containers. The port ranges from 1 to 65535. You need to determine the port based on the container image. For example, the default port of Nginx is 80, and the default port of MySQL is 3306. |
@@ -56,7 +56,7 @@ You can configure Service access using kubectl. This section uses an Nginx workl
 
 #. Use kubectl to access the cluster. For details, see :ref:`Accessing a Cluster Using kubectl <cce_10_0107>`.
 
-#. Create and edit the **nginx-deployment.yaml** file to configure the sample workload. For details, see :ref:`Creating a Deployment <cce_10_0047>`. **nginx-deployment.yaml** is an example file name. You can rename it as needed.
+#. Create and edit the **nginx-deployment.yaml** file to configure the sample workload. For details, see :ref:`Creating a Deployment <cce_10_0047>`. **nginx-deployment.yaml** is an example file name. You can change the file name if you want to.
 
    .. code-block::
 
@@ -86,7 +86,7 @@ You can configure Service access using kubectl. This section uses an Nginx workl
             imagePullSecrets:
             - name: default-secret
 
-#. Create and edit the **nginx-clusterip-svc.yaml** file to configure Service parameters. **nginx-clusterip-svc.yaml** is an example file name. You can rename it as needed.
+#. Create and edit the **nginx-clusterip-svc.yaml** file to configure Service parameters. **nginx-clusterip-svc.yaml** is an example file name. You can change the file name if you want to.
 
    .. code-block::
 

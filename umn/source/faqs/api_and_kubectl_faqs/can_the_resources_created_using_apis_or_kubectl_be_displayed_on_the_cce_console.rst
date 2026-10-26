@@ -13,11 +13,11 @@ In addition, Deployments, StatefulSets, Services, and pods can be displayed on t
 
 -  Deployments and StatefulSets: At least one label uses **app** as its key.
 
--  Pods: Pods are displayed on the **Pods** tab page in the workload details only after a Deployment or StatefulSet has been created.
+-  Pods: Pods are displayed on the **Pods** tab in the workload details only after a Deployment or StatefulSet has been created.
 
--  Services: Services are displayed on the **Access Mode** tab page in the Deployment or StatefulSet details.
+-  Services: Services are displayed on the **Access Mode** tab in the Deployment or StatefulSet details.
 
-   The Services displayed on this tab page are associated with the workload.
+   The Services displayed on this tab are associated with the workload.
 
-   #. At lease one label of the workload uses **app** as its key.
+   #. At least one label of the workload uses **app** as its key.
    #. The label of a Service is the same as that of the workload.

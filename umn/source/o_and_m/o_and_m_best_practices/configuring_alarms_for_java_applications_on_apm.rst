@@ -1,6 +1,6 @@
-:original_name: en-us_topic_0000002516078019.html
+:original_name: cce_10_1089.html
 
-.. _en-us_topic_0000002516078019:
+.. _cce_10_1089:
 
 Configuring Alarms for Java Applications on APM
 ===============================================
@@ -15,9 +15,9 @@ Configuring APM
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 #. In the navigation pane, choose **Workloads**. In the upper right corner of the displayed page, click **Create Workload**.
 #. In the **Advanced Settings** area, click **APM Settings** and enable a probe. APM 2.0 is recommended.
-#. Configure probe parameters. For details, see :ref:`Configuring APM <cce_10_0055>`.
+#. Configure probe parameters. For details, see :ref:`Configuring APM Settings <cce_10_0055>`.
 
-   .. table:: **Table 1** APM 2.0 probe parameter settings
+   .. table:: **Table 1** APM 2.0 probe parameters
 
       +-----------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Parameter             | Example Value             | Description                                                                                                                                                                                                                                                                                            |
@@ -40,7 +40,7 @@ Configuring APM
       |                       |                           |                                                                                                                                                                                                                                                                                                        |
       |                       |                           | If the sub-application already exists in APM, the workload will be associated with the sub-application. Otherwise, CCE will create the specified sub-application.                                                                                                                                      |
       +-----------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Access Key            | **AK:** *xxx*             | Enter the APM AK/SK, which are used to obtain the permissions to report data. **CCE will retrieve the APM AK/SK for you.**                                                                                                                                                                             |
+      | Access Key            | **AK:** *xxx*             | Enter the APM AK/SK, which are used to obtain the permissions to report data. **CCE will retrieve the APM AK/SK.**                                                                                                                                                                                     |
       |                       |                           |                                                                                                                                                                                                                                                                                                        |
       |                       | **SK:** *xxx*             |                                                                                                                                                                                                                                                                                                        |
       +-----------------------+---------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

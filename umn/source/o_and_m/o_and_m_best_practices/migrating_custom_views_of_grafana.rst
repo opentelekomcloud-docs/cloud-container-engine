@@ -55,10 +55,10 @@ Step 3: Import Custom Views
 
 #. Check whether the view is normal and repeat the preceding steps to import all custom views.
 
-.. |image1| image:: /_static/images/en-us_image_0000002483959474.png
-.. |image2| image:: /_static/images/en-us_image_0000002516079421.png
-.. |image3| image:: /_static/images/en-us_image_0000002484119448.png
-.. |image4| image:: /_static/images/en-us_image_0000002516199429.png
-.. |image5| image:: /_static/images/en-us_image_0000002483959478.png
-.. |image6| image:: /_static/images/en-us_image_0000002516079429.png
-.. |image7| image:: /_static/images/en-us_image_0000002516199425.png
+.. |image1| image:: /_static/images/en-us_image_0000002661849801.png
+.. |image2| image:: /_static/images/en-us_image_0000002662009735.png
+.. |image3| image:: /_static/images/en-us_image_0000002631690514.png
+.. |image4| image:: /_static/images/en-us_image_0000002631530616.png
+.. |image5| image:: /_static/images/en-us_image_0000002631530614.png
+.. |image6| image:: /_static/images/en-us_image_0000002661849803.png
+.. |image7| image:: /_static/images/en-us_image_0000002661849797.png

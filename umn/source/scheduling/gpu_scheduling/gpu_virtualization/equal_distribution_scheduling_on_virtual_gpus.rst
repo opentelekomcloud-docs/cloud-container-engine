@@ -26,7 +26,7 @@ Prerequisites
    -  If the cluster version is 1.28 or later, the add-on version must be 2.7.57 or later.
 
 -  GPU nodes with virtualization enabled at the node pool level are available in the cluster.
--  Volcano of v1.16.10 or later has been installed.
+-  Volcano v1.16.10 or later has been installed.
 
 Notes and Constraints
 ---------------------
@@ -54,7 +54,7 @@ Using the Console
       +-----------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Total GPU Memory      | 128                   | (Mandatory) The requested GPU memory size in MiB. It must be a positive integer and a multiple of 128. If the specified value exceeds the total GPU memory, scheduling will fail. |
       +-----------------------+-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Total Computing       | 5                     | (Optional) The requested GPU computing as a percentage. The value must be a multiple of 5 and is determined by the number of GPUs.                                                |
+      | Total Computing       | 5                     | (Optional) The requested GPU compute as a percentage. The value must be a multiple of 5 and is determined by the number of GPUs.                                                  |
       |                       |                       |                                                                                                                                                                                   |
       |                       |                       | -  If this parameter is left blank, the container uses GPU memory isolation.                                                                                                      |
       |                       |                       | -  If set, the container uses isolation of both compute and memory resources.                                                                                                     |

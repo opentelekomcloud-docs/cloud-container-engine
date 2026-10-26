@@ -86,11 +86,11 @@ Using a Temporary Path Through kubectl
                 image: nginx:latest
                 volumeMounts:
                   - name: vol-emptydir     # Volume name, which must be the same as the volume name in the volumes field
-                    mountPath: /tmp        # Location where the emptyDir is mounted
+                    mountPath: /tmp        # Mount path of the emptyDir volume
             imagePullSecrets:
               - name: default-secret
             volumes:
-              - name: vol-emptydir         # Volume name, which can be customized
+              - name: vol-emptydir         # Volume name, which is user-defined
                 emptyDir:
                   medium: Memory          # emptyDir volume medium: If this parameter is set to Memory, the memory is enabled. If this parameter is left blank, the native default storage medium will be used.
                   sizeLimit: 1Gi          # Volume capacity

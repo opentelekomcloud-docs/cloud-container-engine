@@ -10,15 +10,18 @@ If the EVS disk attached to a workload does not have enough space, you can incre
 Prerequisites
 -------------
 
-You have created a cluster and installed the :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on in the cluster.
+-  You have created a cluster and installed the :ref:`CCE Container Storage (Everest) <cce_10_0066>` add-on in the cluster.
+-  An EVS volume has been created in the cluster.
 
 Procedure
 ---------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
-#. Choose **Storage** in the navigation pane and click the **PVCs** tab. Click **More** in the **Operation** column of the target PVC and select **Scale-out**.
+#. Choose **Storage** in the navigation pane. In the right pane, click the **PVCs** tab. Locate the target PVC and choose **More** > **Scale-out** in the **Operation** column.
 #. Enter the capacity to be added and click **OK**.
 
    .. note::
 
       Disk sizes can only be increased, not decreased.
+
+#. Wait until the scale-out is complete and verify that the total capacity of the PVC has been expanded.

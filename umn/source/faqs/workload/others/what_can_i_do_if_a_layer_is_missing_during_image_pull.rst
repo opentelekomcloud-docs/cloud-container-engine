@@ -8,7 +8,7 @@ What Can I Do If a Layer Is Missing During Image Pull?
 Symptom
 -------
 
-When containerd is used as the container engine, there is a possibility that the image layer is missing when an image is pulled to a node. As a result, the workload container fails to be created.
+When containerd is used as the container runtime, there is a possibility that the image layer is missing when an image is pulled to a node. As a result, the workload fails to be created.
 
 |image1|
 
@@ -33,4 +33,4 @@ You can use either of the following methods to solve this problem:
 
    #. Use the newly pulled image to create a workload.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516197953.png
+.. |image1| image:: /_static/images/en-us_image_0000002662011377.png

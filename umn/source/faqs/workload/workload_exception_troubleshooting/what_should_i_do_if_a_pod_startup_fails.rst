@@ -164,7 +164,7 @@ The following message refers to the thin pool disk that is allocated from the Do
 
 Perform the following operations to clear unused images:
 
--  Nodes that use containerd
+-  containerd nodes
 
    #. Obtain local images on the node.
 
@@ -178,7 +178,7 @@ Perform the following operations to clear unused images:
 
          crictl rmi {Image ID}
 
--  Nodes that use Docker
+-  Docker nodes
 
    #. Obtain local images on the node.
 
@@ -190,31 +190,31 @@ Perform the following operations to clear unused images:
 
       .. code-block::
 
-         docker rmi {}Image ID}
+         docker rmi {image-ID}
 
 .. note::
 
-   Do not delete system images such as the **cce-pause** image. Otherwise, the pod creation may fail.
+   Do not delete system images, such as the **cce-pause** image. Otherwise, the pod creation may fail.
 
 **Solution 2: Expanding the disk capacity**
 
-To expand a disk capacity, perform the following operations:
+To expand a disk's capacity, perform the following operations:
 
 #. Expand the capacity of a data disk on the EVS console.
 
-   Only the storage capacity of EVS disks can be expanded. You need to perform the following operations to expand the capacity of logical volumes and file systems.
+   Only the storage capacity of EVS disks is expanded. You need to perform the following operations to expand the capacity of logical volumes and file systems.
 
-#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab, locate the row containing the target node, and choose **More** > **Sync Server Data** in the **Operation** column.
+#. Log in to the CCE console and click the cluster name to access the cluster console. In the navigation pane, choose **Nodes**. In the right pane, click the **Nodes** tab, locate the row containing the node, and choose **More** > **Sync Server Data** in the **Operation** column.
 
-#. Log in to the target node.
+#. Log in to the node.
 
 #. Run **lsblk** to view the block device information of the node.
 
    A data disk is divided depending on the container storage **Rootfs**:
 
-   Overlayfs: No independent thin pool is allocated. Image data is stored in **dockersys**.
+   **Overlayfs**: No independent thin pool is allocated. Image data is stored in **dockersys**.
 
-   a. Check the disk and partition space of the device.
+   a. Check the disk and partition capacity of the device.
 
       .. code-block::
 
@@ -222,13 +222,13 @@ To expand a disk capacity, perform the following operations:
          NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
          sda                   8:0    0   50G  0 disk
          └─sda1                8:1    0   50G  0 part /
-         sdb                   8:16   0  150G  0 disk      # The data disk has been expanded to 150 GiB, but 50-GiB space is not allocated.
+         sdb                   8:16   0  150G  0 disk      # The data disk has been expanded to 150 GiB, but 50 GiB space is not allocated.
          ├─vgpaas-dockersys  253:0    0   90G  0 lvm  /var/lib/containerd
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
    b. Expand the disk capacity.
 
-      Add the new disk capacity to the **dockersys** logical volume used by the container engine.
+      Add the new disk capacity to the **dockersys** logical volume used by the container runtime.
 
       #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/sdb* specifies the physical volume where dockersys is located.
 
@@ -243,7 +243,7 @@ To expand a disk capacity, perform the following operations:
             Physical volume "/dev/sdb" changed
             1 physical volume(s) resized or updated / 0 physical volume(s) not resized
 
-      #. Expand 100% of the free capacity to the logical volume. *vgpaas/dockersys* specifies the logical volume used by the container engine.
+      #. Expand 100% of the free capacity to the logical volume. *vgpaas/dockersys* specifies the logical volume used by the container runtime.
 
          .. code-block::
 
@@ -256,7 +256,7 @@ To expand a disk capacity, perform the following operations:
             Size of logical volume vgpaas/dockersys changed from <90.00 GiB (23039 extents) to 140.00 GiB (35840 extents).
             Logical volume vgpaas/dockersys successfully resized.
 
-      #. Adjust the size of the file system. */dev/vgpaas/dockersys* specifies the file system path of the container engine.
+      #. Adjust the capacity of the file system. */dev/vgpaas/dockersys* specifies the file system path of the container runtime.
 
          .. code-block::
 
@@ -282,9 +282,9 @@ To expand a disk capacity, perform the following operations:
          ├─vgpaas-dockersys  253:0    0   140G  0 lvm  /var/lib/containerd
          └─vgpaas-kubernetes 253:1    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
-   Device Mapper: A thin pool is allocated to store image data.
+   **Devicemapper**: A thin pool is allocated to store image data.
 
-   a. Check the disk and partition space of the device.
+   a. Check the disk and partition capacity of the device.
 
       .. code-block::
 
@@ -304,7 +304,7 @@ To expand a disk capacity, perform the following operations:
 
    b. Expand the disk capacity.
 
-      Option 1: Add the new disk capacity to the thin pool.
+      **Option 1**: Add the new disk capacity to the thin pool.
 
       #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where thin pool is located.
 
@@ -319,7 +319,7 @@ To expand a disk capacity, perform the following operations:
             Physical volume "/dev/vdb" changed
             1 physical volume(s) resized or updated / 0 physical volume(s) not resized
 
-      #. Expand 100% of the free capacity to the logical volume. *vgpaas/thinpool* specifies the logical volume used by the container engine.
+      #. Expand 100% of the free capacity to the logical volume. *vgpaas/thinpool* specifies the logical volume used by the container runtime.
 
          .. code-block::
 
@@ -332,9 +332,9 @@ To expand a disk capacity, perform the following operations:
             Size of logical volume vgpaas/thinpool changed from <67.00 GiB (23039 extents) to <167.00 GiB (48639 extents).
             Logical volume vgpaas/thinpool successfully resized.
 
-      #. Do not need to adjust the size of the file system because the thin pool is not mounted to any devices.
+      #. Do not adjust the capacity of the file system because the thin pool is not mounted to any devices.
 
-      #. Run the **lsblk** command to check the disk and partition space of the device and check whether the capacity has been expanded. If the new disk capacity was added to the thin pool, the capacity has been expanded.
+      #. Run the **lsblk** command to check the disk and partition capacity of the device and check whether the capacity has been expanded. If the new disk capacity is added to the thin pool, the capacity has been expanded.
 
          .. code-block::
 
@@ -352,7 +352,7 @@ To expand a disk capacity, perform the following operations:
             │   ...
             └─vgpaas-kubernetes                 253:4    0   10G  0 lvm  /mnt/paas/kubernetes/kubelet
 
-      Option 2: Add the new disk capacity to the **dockersys** disk.
+      **Option 2**: Add the new disk capacity to the Docker system disk.
 
       #. Expand the PV capacity so that LVM can identify the new EVS capacity. */dev/vdb* specifies the physical volume where dockersys is located.
 
@@ -367,7 +367,7 @@ To expand a disk capacity, perform the following operations:
             Physical volume "/dev/vdb" changed
             1 physical volume(s) resized or updated / 0 physical volume(s) not resized
 
-      #. Expand 100% of the free capacity to the logical volume. *vgpaas/dockersys* specifies the logical volume used by the container engine.
+      #. Expand 100% of the free capacity to the logical volume. *vgpaas/dockersys* specifies the logical volume used by the container runtime.
 
          .. code-block::
 
@@ -380,7 +380,7 @@ To expand a disk capacity, perform the following operations:
             Size of logical volume vgpaas/dockersys changed from <18.00 GiB (4607 extents) to <118.00 GiB (30208 extents).
             Logical volume vgpaas/dockersys successfully resized.
 
-      #. Adjust the size of the file system. */dev/vgpaas/dockersys* specifies the file system path of the container engine.
+      #. Adjust the capacity of the file system. */dev/vgpaas/dockersys* specifies the file system path of the container runtime.
 
          .. code-block::
 
@@ -394,7 +394,7 @@ To expand a disk capacity, perform the following operations:
             old_desc_blocks = 3, new_desc_blocks = 15
             The filesystem on /dev/vgpaas/dockersys is now 30932992 blocks long.
 
-      #. Run the **lsblk** command to check the disk and partition space of the device and check whether the capacity has been expanded. If the new disk capacity was added to the dockersys, the capacity has been expanded.
+      #. Run the **lsblk** command to check the disk and partition capacity of the device and check whether the capacity has been expanded. If the new disk capacity was added to the dockersys, the capacity has been expanded.
 
          .. code-block::
 
@@ -465,7 +465,7 @@ Container Port Conflict in the Pod
    Rectify the fault of the workload based on logs. As shown in the following figure, container ports in the same pod conflict. As a result, the container fails to be started.
 
 
-   .. figure:: /_static/images/en-us_image_0000002516197861.png
+   .. figure:: /_static/images/en-us_image_0000002631532290.png
       :alt: **Figure 1** Pod restart failure due to a container port conflict
 
       **Figure 1** Pod restart failure due to a container port conflict
@@ -528,7 +528,7 @@ Change **tail -f** *xx* in the startup parameters to **sleep 2 && tail -f** *xx*
 **Solution**
 
 -  Upgrade the cluster to v1.25.16-r20, v1.27.16-r20, v1.28.15-r10, v1.29.10-r10, v1.30.6-r10, v1.31.4-r0, or later.
--  Reset the node and use the Docker container engine instead.
+-  Reset the node and use the Docker container runtime instead.
 
 .. _cce_faq_00018__section16311023103717:
 
@@ -569,18 +569,64 @@ Check whether the workload startup command is correctly executed or whether the 
 
    Note: In the preceding command, *containerID* indicates the ID of the container that has exited.
 
+   Rectify the workload bug based on logs.
 
-   .. figure:: /_static/images/en-us_image_0000002516077859.png
-      :alt: **Figure 2** Incorrect startup command of the container
+Common Issue 1: Incorrect Container Startup Command
+---------------------------------------------------
 
-      **Figure 2** Incorrect startup command of the container
+As shown in the figure below, the container fails to start due to an incorrect startup command.
 
-   As shown in the figure above, the container fails to be started due to an incorrect startup command. For other errors, rectify the bugs based on the logs.
+|image4|
 
 **Solution**
 
-Create a new workload and configure a correct startup command.
+Create a new workload and configure the correct startup command.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516077871.png
-.. |image2| image:: /_static/images/en-us_image_0000002484117900.png
-.. |image3| image:: /_static/images/en-us_image_0000002516197853.png
+Common Issue 2: "fatal error: procresize: invalid arg" During Startup
+---------------------------------------------------------------------
+
+After a workload is created, it fails to start. The following error is displayed in the logs:
+
+.. code-block::
+
+   fatal error: procresize: invalid arg
+   runtime stack:
+   runtime.throw(0x75be20, 0x17)
+       /usr/lib/google-golang/src/runtime/panic.go:530 +0x99
+   runtime.procresize(0x180, 0x0)
+       /usr/lib/google-golang/src/runtime/proc1.go:2735 +0xba6
+   runtime.schedinit()
+       /usr/lib/google-golang/src/runtime/proc1.go:72 +0x110
+   runtime.rt0_go(0x7ffcd751f9f8, 0x1, 0x7ffcd751f9f8, 0x0, 0x0, 0x1, 0x7ffcd7520b77, 0x0, 0x7ffcd7520b81, 0x7ffcd7520bc3, ...)
+       /usr/lib/google-golang/src/runtime/asm_amd64.s:109 +0x132
+
+According to the error logs, the Go program crashes on startup because the runtime attempts to set **GOMAXPROCS** based on the visible CPU count and computes an invalid value due to integer overflow. This occurs when the container's visible CPU count exceeds 255 and the Go version is 1.9 or 1.10. The Go version in the image is 1.10.
+
+In Go 1.9 and 1.10, the runtime uses an 8-bit integer to store the CPU count, which overflows when more than 255 visible cores are present. The overflowed value is passed to the internal procresize function, causing the container to crash.
+
+Run the following command to check the node's CPU limit:
+
+.. code-block::
+
+   cat /sys/fs/cgroup/cpuset/cpuset.cpus
+
+The output is **0-383**, which exceeds 255. This confirms the cause.
+
+**Solution**
+
+Use one of the following methods to resolve this issue:
+
+-  Upgrade the Go program in the image to a version later than 1.10 (latest version recommended). Rebuild the image and redeploy.
+
+-  Add environment variables to the workload YAML file to limit **GOMAXPROCS**.
+
+   .. code-block::
+
+      - env:
+        - name: GOMAXPROCS
+          value: "1"
+
+.. |image1| image:: /_static/images/en-us_image_0000002631532288.png
+.. |image2| image:: /_static/images/en-us_image_0000002661851489.png
+.. |image3| image:: /_static/images/en-us_image_0000002662011423.png
+.. |image4| image:: /_static/images/en-us_image_0000002662011425.png

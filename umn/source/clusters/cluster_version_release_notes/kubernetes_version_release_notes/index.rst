@@ -5,6 +5,7 @@
 Kubernetes Version Release Notes
 ================================
 
+-  :ref:`Kubernetes 1.35 Release Notes <cce_bulletin_0117>`
 -  :ref:`Kubernetes 1.34 Release Notes <cce_bulletin_0108>`
 -  :ref:`Kubernetes 1.33 Release Notes <cce_bulletin_0105>`
 -  :ref:`Kubernetes 1.32 Release Notes <cce_bulletin_0104>`
@@ -23,6 +24,7 @@ Kubernetes Version Release Notes
    :maxdepth: 1
    :hidden: 
 
+   kubernetes_1.35_release_notes
    kubernetes_1.34_release_notes
    kubernetes_1.33_release_notes
    kubernetes_1.32_release_notes

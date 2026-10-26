@@ -12,32 +12,32 @@ Updating Images
 
 The WordPress and MySQL images used in this example can be pulled from SWR. Therefore, the image pull failure (ErrImagePull) will not occur. If the application to be migrated is created from a private image, perform the following operations to update the image:
 
-#. Migrate the image resources to SWR. For details, see `Uploading an Image Through the Client <https://docs.otc.t-systems.com/usermanual/swr/swr_01_0011.html>`__.
+#. Migrate the images to SWR. For details, see `Uploading an Image Through the Client <https://docs.otc.t-systems.com/usermanual/swr/swr_01_0011.html>`__.
 
-#. Log in to the SWR console and obtain the image path used after the migration.
+#. Log in to the SWR console and obtain the image address after the migration.
 
-   The image path is in the following format:
+   The image address is in the following format:
 
    .. code-block::
 
       'swr.{Region}.otc.t-systems.com/{Organization name}/{Image name}:{Tag}'
 
-#. Run the following command to modify the workload and replace the **image** field in the YAML file with the image path:
+#. Run the following command to modify the workload and replace the **image** field in the YAML file with the image address:
 
    .. code-block::
 
       kubectl edit deploy wordpress
 
-#. Check the running status of the workload.
+#. Check the workload status.
 
 .. _cce_bestpractice_0312__section41282507482:
 
 Updating Services
 -----------------
 
-After the cluster is migrated, the Service of the source cluster may fail to take effect. You can perform the following operations to update the Service. If ingresses are configured in the source cluster, connect the new cluster to ELB again after the migration. For details, see `Creating a LoadBalancer Ingress Using kubectl <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
+After the cluster is migrated, the Services in the source cluster may not work. You can perform the following operations to update the Service. If there are ingresses in the source cluster, you must re-associate them with load balancers after the migration. For details, see `Creating a LoadBalancer Ingress Using kubectl <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0252.html>`__.
 
-#. Connect to the cluster using kubectl.
+#. Access the cluster using kubectl.
 
 #. Edit the YAML file of the corresponding Service to change the Service type and port number.
 
@@ -45,7 +45,7 @@ After the cluster is migrated, the Service of the source cluster may fail to tak
 
       kubectl edit svc wordpress
 
-   To update load balancer resources, connect to ELB again. Add the annotations by following the procedure in `Creating a LoadBalancer Service <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0681.html>`__.
+   After updating a LoadBalancer Service, re-associate it with the load balancer. Add the annotations by following the procedure in `Creating a LoadBalancer Service <https://docs.otc.t-systems.com/en-us/usermanual2/cce/cce_10_0681.html>`__.
 
    .. code-block::
 
@@ -58,18 +58,18 @@ After the cluster is migrated, the Service of the source cluster may fail to tak
 
 .. _cce_bestpractice_0312__section746195321414:
 
-Updating the Storage Class
---------------------------
+Updating Storage Classes
+------------------------
 
 As the storage infrastructures of clusters may be different, storage volumes cannot be mounted to the target cluster. You can use either of the following methods to update the volumes:
 
 .. important::
 
-   Both update methods can be performed only before the application is restored in the target cluster. Otherwise, PV data resources may fail to be restored. In this case, use Velero to restore applications after the storage class update is complete.
+   Both update methods can be performed only before applications are restored to the target cluster. Otherwise, PV data may fail to restore. In this case, use Velero to restore applications after the storage class update is complete.
 
 **Method 1: Creating a ConfigMap mapping**
 
-#. Create a ConfigMap in the CCE cluster and map the storage class used by the source cluster to the default storage class of the CCE cluster.
+#. Create a ConfigMap in the CCE cluster and map the storage classes used by the source cluster to the default storage classes of the CCE cluster.
 
    .. code-block::
 
@@ -86,16 +86,16 @@ As the storage infrastructures of clusters may be different, storage volumes can
         {Storage class name01 in the source cluster}: {Storage class name01 in the target cluster}
         {Storage class name02 in the source cluster}: {Storage class name02 in the target cluster}
 
-#. Run the following command to apply the ConfigMap configuration:
+#. Apply the ConfigMap settings.
 
    .. code-block::
 
       kubectl create -f change-storage-class.yaml
       configmap/change-storageclass-plugin-config created
 
-**Method 2: Creating a storage class with the same name**
+**Method 2: Creating storage classes with the same name**
 
-#. Run the following command to query the default storage class supported by CCE:
+#. Obtain the default storage classes supported by CCE.
 
    .. code-block::
 
@@ -107,33 +107,37 @@ As the storage infrastructures of clusters may be different, storage volumes can
 
       csi-disk             everest-csi-provisioner         Delete          Immediate              true                   77d
       csi-disk-topology    everest-csi-provisioner         Delete          WaitForFirstConsumer   true                   77d
-      csi-nas              everest-csi-provisioner         Delete          Immediate              true                   77d
       csi-obs              everest-csi-provisioner         Delete          Immediate              false                  77d
+      csi-sfs              everest-csi-provisioner         Delete          Immediate              false                  77d
       csi-sfsturbo         everest-csi-provisioner         Delete          Immediate              true                   77d
 
-   .. table:: **Table 1** Storage classes
+   .. table:: **Table 1** StorageClasses
 
-      ================= =============================
-      Storage Class     Storage Resource
-      ================= =============================
-      csi-disk          EVS disk
-      csi-disk-topology EVS disk with delayed binding
-      csi-nas           File system (SFS 1.0)
-      csi-obs           OBS bucket
-      csi-sfsturbo      SFS Turbo file system
-      ================= =============================
+      +-------------------+---------------------------------------------------------+
+      | StorageClass      | Storage Resource                                        |
+      +===================+=========================================================+
+      | csi-disk          | EVS disk                                                |
+      +-------------------+---------------------------------------------------------+
+      | csi-disk-topology | EVS disk with delayed binding                           |
+      +-------------------+---------------------------------------------------------+
+      | csi-sfs           | General purpose file system (SFS 3.0 Capacity-Oriented) |
+      +-------------------+---------------------------------------------------------+
+      | csi-obs           | OBS bucket                                              |
+      +-------------------+---------------------------------------------------------+
+      | csi-sfsturbo      | SFS Turbo file system                                   |
+      +-------------------+---------------------------------------------------------+
 
-#. Run the following command to export the required storage class details in YAML format:
+#. Export the required storage class details in the YAML format.
 
    .. code-block::
 
       kubectl get sc <storageclass-name> -o=yaml
 
-#. Copy the YAML file and create a new storage class.
+#. Copy the YAML file and create new storage classes.
 
-   Change the storage class name to the name used in the source cluster to call basic storage resources of the cloud.
+   Change the storage class names to the names used in the source cluster to call basic storage resources on the cloud.
 
-   The YAML file of csi-obs is used as an example. Delete the unnecessary information in italic under the **metadata** field and modify the information in bold. You are advised not to modify other parameters.
+   The YAML file of **csi-obs** is used as an example. Delete unnecessary information, such as **creationTimestamp**, **resourceVersion**, **selfLink**, and **uid**, under the **metadata** field and change the **name** field. You are advised not to modify other parameters.
 
    .. code-block::
 
@@ -155,10 +159,9 @@ As the storage infrastructures of clusters may be different, storage volumes can
 
    .. note::
 
-      -  SFS Turbo file systems cannot be directly created using StorageClass. Go to the SFS Turbo console to create SFS Turbo file systems that belong to the same VPC subnet and have inbound ports (111, 445, 2049, 2051, 2052, and 20048) enabled in the security group.
       -  CCE does not support EVS disks of the ReadWriteMany type. If resources of this type exist in the source cluster, change the storage type to **ReadWriteOnce**.
 
-#. Restore the cluster application by referring to :ref:`Restoring the Application in the Target Cluster <cce_bestpractice_0024__section482103142819>` and check whether the PVC is successfully created.
+#. Restore the cluster application by referring to :ref:`Restoring the Application to the Target Cluster <cce_bestpractice_0024__section482103142819>` and check whether the PVC has been created.
 
    .. code-block::
 
@@ -176,26 +179,26 @@ As the storage infrastructures of clusters may be different, storage volumes can
 Updating Databases
 ------------------
 
-In this example, the database is a local MySQL database and does not need to be reconfigured after the migration.
+A local MySQL database is used as an example. It does not need to be reconfigured after the migration.
 
 .. note::
 
-   -  If the RDS instance is in the same VPC as the CCE cluster, it can be accessed using the private IP address. Otherwise, it can only be accessed only through public networks by binding an EIP. You are advised to use the private network access mode for high security and good RDS performance.
-   -  Ensure that the inbound rule of the security group to which RDS belongs has been enabled for the cluster. Otherwise, the connection will fail.
+   -  If the RDS instance is in the same VPC as the CCE cluster, it can be accessed using the private IP address. If it is not, it can only be accessed through the Internet with an EIP. You are advised to use the private network access mode for high security and good RDS performance.
+   -  Traffic from the cluster has been allowed in the inbound rule of the RDS security group. Otherwise, the access will fail.
 
-#. Log in to the RDS console and obtain the private IP address and port number of the DB instance on the **Basic Information** page.
+#. Log in to the RDS console and obtain the private IP address and port number of the DB instance on the **Summary** page.
 
-#. Run the following command to modify the WordPress workload:
+#. Modify the WordPress workload.
 
    .. code-block::
 
       kubectl edit deploy wordpress
 
-   Set the environment variables in the **env** field.
+   Configure the environment variables in the **env** field.
 
-   -  **WORDPRESS_DB_HOST**: address and port number used for accessing the database, that is, the internal network address and port number obtained in the previous step.
-   -  **WORDPRESS_DB_USER**: username for accessing the database.
-   -  **WORDPRESS_DB_PASSWORD**: password for accessing the database.
-   -  **WORDPRESS_DB_NAME**: name of the database to be connected.
+   -  **WORDPRESS_DB_HOST**: address and port number used for accessing the database, that is, the internal network address and port number obtained in the previous step
+   -  **WORDPRESS_DB_USER**: username for accessing the database
+   -  **WORDPRESS_DB_PASSWORD**: password for accessing the database
+   -  **WORDPRESS_DB_NAME**: name of the database to be connected
 
 #. Check whether the RDS database is properly connected.

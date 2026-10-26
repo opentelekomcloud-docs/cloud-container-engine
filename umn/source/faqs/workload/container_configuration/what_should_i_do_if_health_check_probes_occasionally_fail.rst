@@ -11,4 +11,4 @@ Common causes are as follows:
 
 -  The service processing takes a long time. As a result, the response times out.
 -  The Tomcat connection setup and waiting time are too long (for example, too many connections or threads). As a result, the response times out.
--  The performance of the node where the container is located, such as the disk I/O, reaches the bottleneck. As a result, the service processing times out.
+-  The performance of the node where the container is located, such as the disk I/O, reaches a bottleneck. As a result, the service processing times out.

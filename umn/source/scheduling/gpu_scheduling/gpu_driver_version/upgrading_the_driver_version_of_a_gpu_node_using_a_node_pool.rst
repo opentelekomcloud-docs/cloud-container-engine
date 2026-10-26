@@ -7,7 +7,7 @@ Upgrading the Driver Version of a GPU Node Using a Node Pool
 
 To ensure proper functioning of GPU nodes, upgrade the NVIDIA driver version if it does not match the CUDA library you use. It is recommended that you use node pools to effectively manage node NVIDIA driver versions. This allows you to schedule applications to a specific node pool with a designated driver version. Additionally, when upgrading drivers, you can perform the upgrade in batches by node pool.
 
-.. note::
+.. caution::
 
    When upgrading the NVIDIA driver of a node by node pool, note that the driver will be reinstalled during the node restart. To prevent any issues, ensure that there are no running tasks on the node before upgrading the driver.
 
@@ -49,9 +49,10 @@ Step 1: Specify the Driver Version of a Node Pool
 Step 2: Restart the Nodes in the Node Pool
 ------------------------------------------
 
-.. note::
+.. caution::
 
-   Evict pods on a node before restarting the node. For details, see :ref:`Draining a Node <cce_10_0605>`. Make sure to reserve GPU resources to avoid a pod scheduling failure during node drainage. Insufficient resources can affect service running.
+   -  Evict pods on a node before restarting the node. For details, see :ref:`Draining a Node <cce_10_0605>`. Reserve sufficient GPU resources to prevent pod scheduling failures during node drainage. Insufficient resources may affect running services.
+   -  For GPU nodes migrated to the node pool, upgrade CCE AI Suite (NVIDIA GPU) to v2.9.3 or later before restarting the node. Otherwise, the GPU driver upgrade will fail, requiring a :ref:`node reset <cce_10_0003>`.
 
 #. Log in to the CCE console and click the cluster name to access the cluster console. The **Overview** page is displayed.
 #. Choose **Nodes**, locate the target node pool, and click **View Node**.
@@ -91,5 +92,5 @@ Step 3: Verify the Driver Upgrade
 
 #. Confirm that the node and its services are running correctly. Then, perform the same operations on the remaining nodes in the node pool individually.
 
-.. |image1| image:: /_static/images/en-us_image_0000002516079203.png
-.. |image2| image:: /_static/images/en-us_image_0000002483959260.png
+.. |image1| image:: /_static/images/en-us_image_0000002631690316.png
+.. |image2| image:: /_static/images/en-us_image_0000002662009549.png

@@ -7,7 +7,7 @@ Local PVs
 
 -  :ref:`Local PV Overview <cce_10_0633>`
 -  :ref:`Importing a PV to a Storage Pool <cce_10_0642>`
--  :ref:`Using a Local PV Through a Dynamic PV <cce_10_0634>`
+-  :ref:`Using Local PVs Through Dynamic Provisioning <cce_10_0634>`
 -  :ref:`Dynamically Mounting a Local PV to a StatefulSet <cce_10_0635>`
 
 .. toctree::
@@ -16,5 +16,5 @@ Local PVs
 
    local_pv_overview
    importing_a_pv_to_a_storage_pool
-   using_a_local_pv_through_a_dynamic_pv
+   using_local_pvs_through_dynamic_provisioning
    dynamically_mounting_a_local_pv_to_a_statefulset

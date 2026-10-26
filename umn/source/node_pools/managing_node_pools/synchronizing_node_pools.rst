@@ -5,19 +5,15 @@
 Synchronizing Node Pools
 ========================
 
-After the configuration of a node pool is updated, some configurations cannot be automatically synchronized for existing nodes. You can manually synchronize configurations for these nodes.
+After the settings of a node pool are updated, some settings cannot be automatically synchronized for existing nodes. You can manually synchronize the settings for these nodes.
 
-.. important::
+.. caution::
 
    -  Do not delete or reset nodes during batch synchronization. Otherwise, the synchronization of node pool configuration may fail.
    -  This operation involves resetting nodes. **Workloads running on a node may be interrupted due to standalone deployment or insufficient schedulable resources.** Evaluate the upgrade risks and perform the upgrade during off-peak hours. Alternatively, `specify a disruption budget for your key applications <https://kubernetes.io/docs/tasks/run-application/configure-pdb/>`__ to ensure the availability of these applications during the upgrade.
    -  During configuration synchronization for existing nodes, the nodes will be reset, and the system disks and data disks will be cleared. Back up important data before the synchronization.
-   -  Only some node pool parameters can be synchronized by resetting nodes. The constraints are as follows:
-
-      -  Changes to the container engine, OS, security hardening, or pre-/post-installation script in a node pool take effect only on new nodes. To synchronize the modification onto existing nodes, manually reset these nodes.
-      -  Changes to resource tags and Kubernetes labels/taints in a node pool will be automatically synchronized to existing nodes. You do not need to reset these nodes.
-
-      -  If a new OS patch exists in the environment, you can synchronize the node pool to update the OS.
+   -  Only some node pool parameters can be synchronized by resetting nodes. For details, see :ref:`Updating a Node Pool <cce_10_0653>`.
+   -  If a new OS patch is available in the environment, synchronize the node pool to update the OS.
 
 Synchronizing a Single Node
 ---------------------------
@@ -33,11 +29,10 @@ Batch Synchronization
 #. Log in to the CCE console.
 #. Click the cluster name to access the cluster console. Choose **Nodes** in the navigation pane. In the right pane, click the **Node Pools** tab.
 #. Choose **More > Synchronize** in the **Operation** column of the target node pool.
-#. In the **Batch synchronization** window, configure parameters.
+#. In the **Batch Synchronize** window, configure parameters.
 
    -  **OS**: shows the image of the target version. You do not need to configure this parameter.
    -  **Synchronization Type**: **Reset node** is supported.
-   -  **Max. Nodes for Batch Synchronization**: maximum number of nodes that will be unavailable during node synchronization. Nodes will be unavailable during synchronization by resetting the nodes. Properly configure this parameter to prevent pod scheduling failures caused by too many unavailable nodes in the cluster.
-   -  In the node list, select the nodes requiring the synchronization of node pool configurations.
+   -  **Max. Nodes for Batch Synchronization**: the maximum number of nodes that can be synchronized simultaneously. Nodes will be unavailable during synchronization when the nodes are reset. Properly configure this parameter to prevent pod scheduling failures caused by too many unavailable nodes in the cluster.
 
-#. Click **OK**.
+#. Select the target nodes and click **OK** to start the synchronization.

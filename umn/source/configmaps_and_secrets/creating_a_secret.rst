@@ -8,15 +8,17 @@ Creating a Secret
 Scenario
 --------
 
-A secret is a type of resource that holds sensitive data, such as authentication and key information. Its content is user-defined. After creating secrets, you can use them as files or environment variables in a containerized workload.
+A secret is a Kubernetes resource used to store sensitive information, such as authentication credentials and keys required by workloads. The content of a secret is defined by users. After a secret is created, containerized workloads can securely use it through volume mounts or environment variable injection.
+
+Secrets decouple sensitive data from container images, preventing sensitive data from being exposed in plaintext within images or configuration files. This significantly reduces the risk of data leakage and improves the security and portability of workloads.
 
 Notes and Constraints
 ---------------------
 
 Secrets cannot be used in `static pods <https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/>`__.
 
-Creating a Key Pair using the Console
--------------------------------------
+Creating a Secret Using the Console
+-----------------------------------
 
 #. Log in to the CCE console and click the cluster name to access the cluster console.
 
@@ -41,8 +43,8 @@ Creating a Key Pair using the Console
       |                                   |                                                                                                                                                                                                                                                                                                                  |
       |                                   | -  Opaque: common secret.                                                                                                                                                                                                                                                                                        |
       |                                   | -  kubernetes.io/dockerconfigjson: a secret that stores the authentication information required for pulling images from a private repository.                                                                                                                                                                    |
-      |                                   | -  **kubernetes.io/tls**: Kubernetes TLS secret, which is used to store the certificate required by layer-7 load balancing Services. For details about examples of the kubernetes.io/tls secret and its description, see `TLS secrets <https://kubernetes.io/docs/concepts/configuration/secret/#tls-secret>`__. |
-      |                                   | -  **IngressTLS**: TLS secret provided by CCE to store the certificate required by layer-7 load balancing Services.                                                                                                                                                                                              |
+      |                                   | -  **kubernetes.io/tls**: Kubernetes TLS secret, which is used to store the certificate required by Layer 7 load balancing Services. For details about examples of the kubernetes.io/tls secret and its description, see `TLS secrets <https://kubernetes.io/docs/concepts/configuration/secret/#tls-secret>`__. |
+      |                                   | -  **IngressTLS**: TLS secret provided by CCE to store the certificate required by Layer 7 load balancing Services.                                                                                                                                                                                              |
       |                                   | -  Other: another type of secret, which is specified manually.                                                                                                                                                                                                                                                   |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Data                              | Workload secret data can be used in containers.                                                                                                                                                                                                                                                                  |
@@ -53,14 +55,14 @@ Creating a Key Pair using the Console
       |                                   |                                                                                                                                                                                                                                                                                                                  |
       |                                   | -  If **Secret Type** is set to **kubernetes.io/dockerconfigjson**, click **Add** and enter the account and password for logging in to the private image repository.                                                                                                                                             |
       |                                   |                                                                                                                                                                                                                                                                                                                  |
-      |                                   | -  If **Secret Type** is **kubernetes.io/tls** or **IngressTLS**, upload the certificate file and private key file.                                                                                                                                                                                              |
+      |                                   | -  If **Secret Type** is set to **kubernetes.io/tls** or **IngressTLS**, upload the certificate file and private key file.                                                                                                                                                                                       |
       |                                   |                                                                                                                                                                                                                                                                                                                  |
       |                                   |    .. note::                                                                                                                                                                                                                                                                                                     |
       |                                   |                                                                                                                                                                                                                                                                                                                  |
       |                                   |       -  A certificate is a self-signed or CA-signed credential used for identity authentication.                                                                                                                                                                                                                |
       |                                   |       -  A certificate request is a request for a signature with a private key.                                                                                                                                                                                                                                  |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Secret Label                      | Label of the secret. Click **Add Label** and enter key-value pairs. The key and value must contain 1 to 63 characters that start and end with a letter or digit. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed.                                                                |
+      | Tag Management (Optional)         | Labels of the secret. Click **Add Label** and enter key-value pairs. The key and value must contain 1 to 63 characters that start and end with a letter or digit. Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed.                                                               |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Click **OK**.
@@ -97,7 +99,7 @@ Creating a Secret Using kubectl
       data:
         <your_key>: <your_value>  # Enter a key-value pair. The value must be encoded using Base64.
 
-#. Create a secret.
+#. Create the secret.
 
    .. code-block::
 
@@ -114,7 +116,7 @@ Creating a Secret Using kubectl
 Secret Resource File Configuration Example
 ------------------------------------------
 
-This section describes configuration examples of secret resource description files.
+This section provides configuration examples for secret files.
 
 -  Opaque type
 
@@ -148,7 +150,7 @@ This section describes configuration examples of secret resource description fil
 
    To obtain the **.dockerconfigjson** content, take the following steps:
 
-   #. Obtain the following login information of the image repository.
+   #. Obtain the following login information of the image repository:
 
       -  Image repository address: The section uses *address* as an example. Replace it with the actual address.
       -  Username: The section uses *username* as an example. Replace it with the actual username.
@@ -241,13 +243,13 @@ After creating a secret, you can update or delete it as described in :ref:`Table
    +-----------------------------------+-------------------------------------------------------------------------------------------+
    | Operation                         | Description                                                                               |
    +===================================+===========================================================================================+
-   | Editing a YAML file               | Click **Edit YAML** in the row where the target secret resides to edit its YAML file.     |
+   | Editing a secret's YAML file      | Click **Edit YAML** in the row where the target secret resides to edit its YAML file.     |
    +-----------------------------------+-------------------------------------------------------------------------------------------+
    | Updating a secret                 | #. Select the name of the secret to be updated and click **Update**.                      |
    |                                   | #. Modify the information by referring to :ref:`Table 1 <cce_10_0153__table16321825732>`. |
    |                                   | #. Click **OK**.                                                                          |
    +-----------------------------------+-------------------------------------------------------------------------------------------+
-   | Deleting a secret                 | Select the secret you want to delete and click **Delete**.                                |
+   | Deleting a secret                 | Select the secret to be deleted and choose **More** > **Delete**.                         |
    |                                   |                                                                                           |
    |                                   | Follow the prompts to delete the secret.                                                  |
    +-----------------------------------+-------------------------------------------------------------------------------------------+
