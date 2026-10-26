@@ -25,7 +25,7 @@ containerd features:
 
 Kubernetes upstream features:
 
-- `User namespaces <https://kubernetes.io/docs/concepts/workloads/pods/user-namespaces/>`__: The underlying isolation technology allows the root user in a pod to run as a non-privileged user on the host. This greatly improves the security isolation of containers. In addition, Kubernetes relaxes the security restrictions (such as the runAsNonRoot check) on such pods. Note that this feature depends on the Linux 6.3+ kernel. Ensure that the kernel supports this feature. HCE 3.0 is recommended.
+- `User namespaces <https://kubernetes.io/docs/concepts/workloads/pods/user-namespaces/>`__: The underlying isolation technology allows the root user in a pod to run as a non-privileged user on the host. This greatly improves the security isolation of containers. In addition, Kubernetes relaxes the security restrictions (such as the runAsNonRoot check) on such pods. Note that this feature depends on the Linux 6.3+ kernel.
 - `Image volumes <https://kubernetes.io/docs/tasks/configure-pod-container/image-volumes/>`__: The content from an OCI image can be directly mounted as a data volume to a pod. With the support of containerd, you can reuse the distribution capability of image registries to deliver static configurations, model files, or build products without running them in independent containers. (Note: It is possible to utilize subPath from Kubernetes 1.33 when using the image volume feature.)
 
 Deprecated Functions and Removed APIs
