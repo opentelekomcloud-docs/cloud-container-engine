@@ -156,7 +156,6 @@ Response
    +-----------------------+--------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | os                    | String                                                       | Node OS.                                                                                                                                                                                                  |
    |                       |                                                              |                                                                                                                                                                                                           |
-   |                       |                                                              | -  Nodes in clusters of Kubernetes v1.13, v1.15, v1.17, v1.19, v1.21, v1.23, or v1.25 support EulerOS 2.5.                                                                                                |
    |                       |                                                              | -  Nodes in clusters of Kubernetes v1.19 or later support EulerOS 2.9.                                                                                                                                    |
    |                       |                                                              | -  Nodes in clusters of Kubernetes v1.25 or later support Ubuntu 22.04 and HCE OS 2.0.                                                                                                                    |
    |                       |                                                              | -  Nodes using **kata** runtime in CCE Turbo cluster support EulerOS 2.9.                                                                                                                                 |
@@ -539,7 +538,7 @@ Response
      "spec": {
        "flavor": "s1.medium",
        "az": "eu-de-01",
-       "os": "EulerOS 2.5",
+       "os": "EulerOS 2.9",
        "login": {
          "sshKey": "Keypair-demo"
        },

@@ -41,7 +41,7 @@ Request
 .. table:: **Table 2** Parameters in the request header
 
    +-----------------+-----------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Parameter       | Mandatory       | String          | Description                                                                                                                                                                                                                                                                   |
+   | Parameter       | Mandatory       | Type            | Description                                                                                                                                                                                                                                                                   |
    +=================+=================+=================+===============================================================================================================================================================================================================================================================================+
    | Content-Type    | Yes             | String          | Message body type (format).                                                                                                                                                                                                                                                   |
    |                 |                 |                 |                                                                                                                                                                                                                                                                               |
@@ -130,8 +130,7 @@ Request
    +-----------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | az              | Yes             | String                                                                            | AZ of the node. For details, see the description of the **availability_zone** parameter in `Creating an ECS <https://docs.otc.t-systems.com/en-us/api/ecs/en-us_topic_0020212668.html>`__.                                                                                         |
    +-----------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | os              | No              | String                                                                            | -  Nodes in clusters of Kubernetes v1.13, v1.15, v1.17, v1.19, v1.21, v1.23, or v1.25 support EulerOS 2.5.                                                                                                                                                                         |
-   |                 |                 |                                                                                   | -  Nodes in clusters of Kubernetes v1.19 or later support EulerOS 2.9.                                                                                                                                                                                                             |
+   | os              | No              | String                                                                            | -  Nodes in clusters of Kubernetes v1.19 or later support EulerOS 2.9.                                                                                                                                                                                                             |
    |                 |                 |                                                                                   | -  Nodes in clusters of Kubernetes v1.25 or later support Ubuntu 22.04 and HCE OS 2.0.                                                                                                                                                                                             |
    |                 |                 |                                                                                   | -  Nodes using **kata** runtime in CCE Turbo cluster support EulerOS 2.9.                                                                                                                                                                                                          |
    |                 |                 |                                                                                   |                                                                                                                                                                                                                                                                                    |
@@ -143,17 +142,17 @@ Request
    +-----------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | rootVolume      | Yes             | :ref:`Volume <cce_02_0354__table1359314517>` object                               | System disk parameters of the node.                                                                                                                                                                                                                                                |
    +-----------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | dataVolumes     | Yes             | Array of :ref:`Volume <cce_02_0354__table1359314517>` object                      | Data disk parameters of the node.                                                                                                                                                                                                                                                  |
+   | dataVolumes     | No              | Array of :ref:`Volume <cce_02_0354__table1359314517>` object                      | Data disk parameters of the node.                                                                                                                                                                                                                                                  |
    +-----------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | storage         | No              | :ref:`Storage <cce_02_0354__en-us_topic_0000001417516392_request_storage>` object | Disk initialization management parameter.                                                                                                                                                                                                                                          |
    |                 |                 |                                                                                   |                                                                                                                                                                                                                                                                                    |
    |                 |                 |                                                                                   | This parameter is complex to configure. For details, see :ref:`Attaching Disks to a Node <node_storage_example>`.                                                                                                                                                                  |
    |                 |                 |                                                                                   |                                                                                                                                                                                                                                                                                    |
-   |                 |                 |                                                                                   | If this parameter retains its default, disks are managed based on the DockerLVMConfigOverride (discarded) parameter in extendParam. This parameter is supported by clusters of version 1.15.11 and later.                                                                          |
-   |                 |                 |                                                                                   |                                                                                                                                                                                                                                                                                    |
-   |                 |                 |                                                                                   | .. note::                                                                                                                                                                                                                                                                          |
-   |                 |                 |                                                                                   |                                                                                                                                                                                                                                                                                    |
-   |                 |                 |                                                                                   |    If a node specification involves local disks and EVS disks at the same time, do not retain the default value of this parameter to prevent unexpected disk partitions.                                                                                                           |
+   |                 |                 |                                                                                   | -  This field is supported by clusters v1.15.11-r0 and later versions. If the cluster version is not supported, this field will be ignored.                                                                                                                                        |
+   |                 |                 |                                                                                   | -  If a node has both local and EVS disks attached, make sure to not keep the default value for this parameter, or it may result in unexpected disk partitions.                                                                                                                    |
+   |                 |                 |                                                                                   | -  If you want to change the value range of a data disk to 20 to 32768, do not use the default value.                                                                                                                                                                              |
+   |                 |                 |                                                                                   | -  If you want to use the shared disk space (with the runtime and Kubernetes partitions cancelled), do not retain the default value of this parameter. For details about the shared disk space, see :ref:`Space Allocation of a Data Disk <cce_10_0341>`.                          |
+   |                 |                 |                                                                                   | -  If you want to store system components in the system disk, do not use the default value.                                                                                                                                                                                        |
    +-----------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | publicIP        | No              | :ref:`publicIP <cce_02_0354__table139179586343>` object                           | EIP used by the node to access public networks.                                                                                                                                                                                                                                    |
    +-----------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -261,7 +260,13 @@ Request
    +-----------------+-----------------+---------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | size            | No              | Integer                                                             | Disk size, in GB.                                                                                                                                                                          |
    |                 |                 |                                                                     |                                                                                                                                                                                            |
-   |                 |                 |                                                                     | Value range for system disks: 40 to 1024. Value range for data disks: 100 to 32768.                                                                                                        |
+   |                 |                 |                                                                     | -  System disk: 40 to 1024                                                                                                                                                                 |
+   |                 |                 |                                                                     | -  The first data disk: 20 to 32768 (When storage is set to its default value, this value range becomes 100 to 32768.)                                                                     |
+   |                 |                 |                                                                     | -  Other data disks: 10 to 32768 (When storage is set to its default value, this value range becomes 100 to 32768.)                                                                        |
+   |                 |                 |                                                                     |                                                                                                                                                                                            |
+   |                 |                 |                                                                     | .. note::                                                                                                                                                                                  |
+   |                 |                 |                                                                     |                                                                                                                                                                                            |
+   |                 |                 |                                                                     |    For clusters of v1.28 and later, the value range of the system disk size can be 20 to 1024.                                                                                             |
    +-----------------+-----------------+---------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | extendParam     | No              | Map<String,Object>                                                  | Disk extension parameter. For details, see the description of the extendparam parameter in `Creating an ECS <https://docs.otc.t-systems.com/en-us/api/ecs/en-us_topic_0020212668.html>`__. |
    +-----------------+-----------------+---------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -659,7 +664,7 @@ CCE cluster:
            "nodeTemplate": {
                "flavor": "s6.large.2",
                "az": "eu-de-01",
-               "os": "EulerOS 2.5",
+               "os": "EulerOS 2.9",
                "login": {
                    "sshKey": "KeyPair-nodepool"
                },
@@ -799,25 +804,27 @@ Response
 
 .. table:: **Table 28** Data structure of the spec field
 
-   +-----------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-   | Parameter             | Type                                                           | Description                                                                                                                     |
-   +=======================+================================================================+=================================================================================================================================+
-   | type                  | String                                                         | Node type. Currently, only VM nodes are supported.                                                                              |
-   +-----------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-   | initialNodeCount      | Integer                                                        | Initial number of nodes for the node pool.                                                                                      |
-   +-----------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-   | nodeTemplate          | :ref:`nodeTemplate <cce_02_0354__table3150105216225>` object   | Detailed parameters of the node pool template.                                                                                  |
-   +-----------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-   | autoscaling           | :ref:`autoscaling <cce_02_0354__table14356154632610>` object   | Auto scaling parameters.                                                                                                        |
-   +-----------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-   | nodeManagement        | :ref:`nodeManagement <cce_02_0354__table1778609171919>` object | Node management parameters.                                                                                                     |
-   +-----------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-   | customSecurityGroups  | Array of strings                                               | Custom security group settings for a node pool. New nodes scaled out in a node pool can be bound to a specified security group. |
-   |                       |                                                                |                                                                                                                                 |
-   |                       |                                                                | -  Specifying no security group ID will add the new nodes to the default security group of the worker nodes.                    |
-   |                       |                                                                | -  Specifying a valid security group ID will put new nodes in that security group.                                              |
-   |                       |                                                                | -  When specifying a security group, do not modify the rules of the port on which CCE running depends.                          |
-   +-----------------------+----------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+   +-----------------------+----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter             | Type                                                                       | Description                                                                                                                     |
+   +=======================+============================================================================+=================================================================================================================================+
+   | type                  | String                                                                     | Node type. Currently, only VM nodes are supported.                                                                              |
+   +-----------------------+----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+   | initialNodeCount      | Integer                                                                    | Initial number of nodes for the node pool.                                                                                      |
+   +-----------------------+----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+   | nodeTemplate          | :ref:`nodeTemplate <cce_02_0354__table3150105216225>` object               | Detailed parameters of the node pool template.                                                                                  |
+   +-----------------------+----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+   | autoscaling           | :ref:`autoscaling <cce_02_0354__table14356154632610>` object               | Auto scaling parameters.                                                                                                        |
+   +-----------------------+----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+   | nodeManagement        | :ref:`nodeManagement <cce_02_0354__table1778609171919>` object             | Node management parameters.                                                                                                     |
+   +-----------------------+----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+   | podSecurityGroups     | Array of \ :ref:`SecurityID <cce_02_0354__table144371538183815>`\  objects | Security group configuration.                                                                                                   |
+   +-----------------------+----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+   | customSecurityGroups  | Array of strings                                                           | Custom security group settings for a node pool. New nodes scaled out in a node pool can be bound to a specified security group. |
+   |                       |                                                                            |                                                                                                                                 |
+   |                       |                                                                            | -  Specifying no security group ID will add the new nodes to the default security group of the worker nodes.                    |
+   |                       |                                                                            | -  Specifying a valid security group ID will put new nodes in that security group.                                              |
+   |                       |                                                                            | -  When specifying a security group, do not modify the rules of the port on which CCE running depends.                          |
+   +-----------------------+----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
 
 .. _cce_02_0354__table14356154632610:
 
@@ -891,6 +898,16 @@ Response
    | jobId                 | String                | ID of the job to delete the node pool.                        |
    +-----------------------+-----------------------+---------------------------------------------------------------+
 
+.. _cce_02_0354__table144371538183815:
+
+.. table:: **Table 32** SecurityID
+
+   ========= ====== =============================================
+   Parameter Type   Description
+   ========= ====== =============================================
+   id        String ID of the container security group on a node.
+   ========= ====== =============================================
+
 **Example response:**
 
 CCE cluster:
@@ -910,7 +927,7 @@ CCE cluster:
            "nodeTemplate": {
                "flavor": "s6.large.2",
                "az": "eu-de-01",
-               "os": "EulerOS 2.5",
+               "os": "EulerOS 2.9",
                "login": {
                    "sshKey": "KeyPair-nodepool",
                    "userPassword": {}
@@ -1109,16 +1126,16 @@ CCE Turbo cluster:
 Status Code
 -----------
 
-:ref:`Table 32 <cce_02_0354__zh-cn_topic_0079614900_table46761928>` describes the status code of this API.
+:ref:`Table 33 <cce_02_0354__zh-cn_topic_0079614900_table46761928>` describes the status code of this API.
 
 .. _cce_02_0354__zh-cn_topic_0079614900_table46761928:
 
-.. table:: **Table 32** Status code
+.. table:: **Table 33** Status code
 
-   +-------------+-------------------------------------------------------------------------------+
-   | Status Code | Description                                                                   |
-   +=============+===============================================================================+
-   | 201         | The job for creating a node in a specified cluster is successfully delivered. |
-   +-------------+-------------------------------------------------------------------------------+
+   +-------------+------------------------------------------------------------------------------------+
+   | Status Code | Description                                                                        |
+   +=============+====================================================================================+
+   | 201         | The job for creating a node pool in a specified cluster is successfully delivered. |
+   +-------------+------------------------------------------------------------------------------------+
 
 For the description about error status codes, see :ref:`Status Code <cce_02_0084>`.
