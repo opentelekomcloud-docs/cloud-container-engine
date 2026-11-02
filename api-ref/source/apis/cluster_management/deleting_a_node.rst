@@ -146,7 +146,7 @@ Response
        "spec": {
            "flavor": "s1.medium",
            "az": "eu-de-01",
-           "os": "EulerOS 2.5",
+           "os": "EulerOS 2.9",
            "login": {
                "sshKey": "KeyPair-demo"
            },
