@@ -104,7 +104,7 @@ When using a containerized application, comply with the principle of least privi
 
    .. note::
 
-      When binding a port (such as 80 or 443) below 1024 in a non-root container, adding only **NET_BIND_SERVICE** may not take effect. You need to add **net.ipv4.ip_unprivileged_port_start sysctl** and set its value to **0** in the pod-level securityContext. This sysctl is a Kubernetes safe sysctl and applies only in the **network** namespace of the pod and does not affect the host.
+      When binding a port less than 1024 (such as 80 or 443) in a non-root container, adding only **NET_BIND_SERVICE** may not take effect. You need to add **net.ipv4.ip_unprivileged_port_start sysctl** and set its value to **0** in the pod-level securityContext. This sysctl is a Kubernetes safe sysctl and applies only in the **network** namespace of the pod and does not affect the host.
 
 Restricting Service Container Access to the Management Plane
 ------------------------------------------------------------

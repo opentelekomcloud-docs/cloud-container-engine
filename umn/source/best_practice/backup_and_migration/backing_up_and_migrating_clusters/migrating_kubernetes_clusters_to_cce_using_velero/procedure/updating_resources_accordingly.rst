@@ -20,7 +20,7 @@ The WordPress and MySQL images used in this example can be pulled from SWR. Ther
 
    .. code-block::
 
-      'swr.{Region}.otc.t-systems.com/{Organization name}/{Image name}:{Tag}'
+      'swr.{region}.otc.t-systems.com/{organization-name}/{image-name}:{tag}'
 
 #. Run the following command to modify the workload and replace the **image** field in the YAML file with the image address:
 
@@ -58,18 +58,18 @@ After the cluster is migrated, the Services in the source cluster may not work. 
 
 .. _cce_bestpractice_0312__section746195321414:
 
-Updating Storage Classes
-------------------------
+Updating StorageClasses
+-----------------------
 
 As the storage infrastructures of clusters may be different, storage volumes cannot be mounted to the target cluster. You can use either of the following methods to update the volumes:
 
 .. important::
 
-   Both update methods can be performed only before applications are restored to the target cluster. Otherwise, PV data may fail to restore. In this case, use Velero to restore applications after the storage class update is complete.
+   Both update methods can be performed only before applications are restored to the target cluster. Otherwise, PV data may fail to restore. In this case, use Velero to restore applications after the StorageClass update is complete.
 
 **Method 1: Creating a ConfigMap mapping**
 
-#. Create a ConfigMap in the CCE cluster and map the storage classes used by the source cluster to the default storage classes of the CCE cluster.
+#. Create a ConfigMap in the CCE cluster and map the StorageClasses used by the source cluster to the default StorageClasses of the CCE cluster.
 
    .. code-block::
 
@@ -83,8 +83,8 @@ As the storage infrastructures of clusters may be different, storage volumes can
           velero.io/plugin-config: "true"
           velero.io/change-storage-class: RestoreItemAction
       data:
-        {Storage class name01 in the source cluster}: {Storage class name01 in the target cluster}
-        {Storage class name02 in the source cluster}: {Storage class name02 in the target cluster}
+        {StorageClass-name01-in-the-source-cluster}: {StorageClass-name01-in-the-target-cluster}
+        {StorageClass-name02-in-the-source-cluster}: {StorageClass-name02-in-the-target-cluster}
 
 #. Apply the ConfigMap settings.
 
@@ -93,9 +93,9 @@ As the storage infrastructures of clusters may be different, storage volumes can
       kubectl create -f change-storage-class.yaml
       configmap/change-storageclass-plugin-config created
 
-**Method 2: Creating storage classes with the same name**
+**Method 2: Creating StorageClasses with the same name**
 
-#. Obtain the default storage classes supported by CCE.
+#. Obtain the default StorageClasses supported by CCE.
 
    .. code-block::
 
@@ -127,15 +127,15 @@ As the storage infrastructures of clusters may be different, storage volumes can
       | csi-sfsturbo      | SFS Turbo file system                                   |
       +-------------------+---------------------------------------------------------+
 
-#. Export the required storage class details in the YAML format.
+#. Export the required StorageClass details in the YAML format.
 
    .. code-block::
 
       kubectl get sc <storageclass-name> -o=yaml
 
-#. Copy the YAML file and create new storage classes.
+#. Copy the YAML file and create new StorageClasses.
 
-   Change the storage class names to the names used in the source cluster to call basic storage resources on the cloud.
+   Change the StorageClass names to the names used in the source cluster to call basic storage resources on the cloud.
 
    The YAML file of **csi-obs** is used as an example. Delete unnecessary information, such as **creationTimestamp**, **resourceVersion**, **selfLink**, and **uid**, under the **metadata** field and change the **name** field. You are advised not to modify other parameters.
 
@@ -145,7 +145,7 @@ As the storage infrastructures of clusters may be different, storage volumes can
       kind: StorageClass
       metadata:
         creationTimestamp: "2021-10-18T06:41:36Z"
-        name: <your_storageclass_name>     # Use the name of the storage class used in the source cluster.
+        name: <your_storageclass_name>     # Use the name of the StorageClass used in the source cluster.
         resourceVersion: "747"
         selfLink: /apis/storage.k8s.io/v1/storageclasses/csi-obs
         uid: 4dbbe557-ddd1-4ce8-bb7b-7fa15459aac7
@@ -167,7 +167,7 @@ As the storage infrastructures of clusters may be different, storage volumes can
 
       kubectl get pvc
 
-   In the command output, the **VOLUME** column indicates the name of the PV automatically created using the storage class.
+   In the command output, the **VOLUME** column indicates the name of the PV automatically created using the StorageClass.
 
    .. code-block::
 

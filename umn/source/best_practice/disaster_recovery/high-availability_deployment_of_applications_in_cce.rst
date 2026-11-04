@@ -158,7 +158,7 @@ Configuration example:
        initialDelaySeconds: 15
        periodSeconds: 20
        failureThreshold: 3  # Increase this value to between 3 and 5 to prevent frequent container restarts caused by temporary fluctuations such as heavy load or GC pauses.
-     # Startup probe: protects applications such as Java that take a long time to start.
+     # Startup probe: protects applications that take a long time to start, such as Java.
      startupProbe:
        httpGet:
          path: /
@@ -294,7 +294,7 @@ Verification and Testing
 
 #. Trigger a rolling update and confirm that the old pod waits for the duration specified by the preStop hook before terminating.
 
-#. Manually disable the application's internal port to simulate an application fault. Confirm that the readiness probe removes the pod from service endpoints and that the liveness probe subsequently restarts the container.
+#. Manually disable the application's internal port to simulate an application fault. Confirm that the readiness probe removes the pod from service endpoints and the liveness probe subsequently restarts the container.
 
 FAQs
 ----

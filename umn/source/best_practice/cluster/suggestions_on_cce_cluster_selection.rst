@@ -136,8 +136,8 @@ Additionally, select a proper vCPU/memory ratio based on your requirements. For 
 
 In a CCE Turbo cluster, pods use network interfaces or supplementary network interfaces. The maximum number of pods that can be created on a node is related to the number of network interfaces that can be used on the node. So, you need to evaluate the number of network interfaces on a node. This determines the maximum number of pods that can run on the node.
 
-Node Container Runtimes
------------------------
+Node Container Runtime
+----------------------
 
 CCE supports containerd and Docker. **containerd is recommended for its shorter call chains, fewer components, higher stability, and lower node resource overhead.** As of Kubernetes 1.24, Dockershim has been removed and Docker is no longer supported as a container runtime. For details, see `Kubernetes is Moving on From Dockershim: Commitments and Next Steps <https://kubernetes.io/blog/2022/01/07/kubernetes-is-moving-on-from-dockershim/>`__. CCE clusters of v1.27 do not support Docker.
 
