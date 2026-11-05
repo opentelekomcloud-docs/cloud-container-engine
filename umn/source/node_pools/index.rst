@@ -8,6 +8,7 @@ Node Pools
 -  :ref:`Node Pool Overview <cce_10_0081>`
 -  :ref:`Creating a Node Pool <cce_10_0012>`
 -  :ref:`Scaling a Node Pool <cce_10_0658>`
+-  :ref:`Automatically Assigning an EIP to Each Node in a Node Pool <cce_10_0964>`
 -  :ref:`Managing Node Pools <cce_10_0222>`
 
 .. toctree::
@@ -17,4 +18,5 @@ Node Pools
    node_pool_overview
    creating_a_node_pool
    scaling_a_node_pool
+   automatically_assigning_an_eip_to_each_node_in_a_node_pool
    managing_node_pools/index

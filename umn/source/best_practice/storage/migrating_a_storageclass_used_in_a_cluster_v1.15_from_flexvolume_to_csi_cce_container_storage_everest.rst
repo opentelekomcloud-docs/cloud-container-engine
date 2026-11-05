@@ -2,8 +2,8 @@
 
 .. _cce_bestpractice_0107:
 
-Migrating a Storage Class Used in a Cluster of v1.15 from FlexVolume to CSI CCE Container Storage (Everest)
-===========================================================================================================
+Migrating a StorageClass Used in a Cluster v1.15 from FlexVolume to CSI CCE Container Storage (Everest)
+=======================================================================================================
 
 In clusters later than v1.15.11-r1, CSI, the CCE Container Storage (Everest) add-on, has taken over all functions of fuxi FlexVolume (the storage-driver add-on) for managing container storage. You are advised to use CCE Container Storage (Everest).
 
@@ -22,7 +22,7 @@ Procedure
 
    Configure a YAML file for the PV in the CSI format according to the PV in the FlexVolume format and associate the PV with the existing storage.
 
-   To be specific, run the following commands to configure the pv-example.yaml file, which is used to create a PV.
+   To be specific, run the following commands to configure the **pv-example.yaml** file, which is used to create a PV.
 
    **touch pv-example.yaml**
 
@@ -61,27 +61,27 @@ Procedure
 
    .. table:: **Table 1** EVS volume configuration parameters
 
-      +------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                                | Description                                                                                                                                       |
-      +==========================================+===================================================================================================================================================+
-      | failure-domain.beta.kubernetes.io/region | Region where an EVS disk is located. Use the same value as that of the FlexVolume PV.                                                             |
-      +------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-      | failure-domain.beta.kubernetes.io/zone   | AZ where an EVS disk is located. Use the same value as that of the FlexVolume PV.                                                                 |
-      +------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-      | name                                     | Name of a PV, which must be unique in the cluster.                                                                                                |
-      +------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-      | storage                                  | EVS volume capacity in the unit of Gi. Use the value of **spec.capacity.storage** of the FlexVolume PV.                                           |
-      +------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-      | driver                                   | Storage driver used to mount volumes. Set the driver to **disk.csi.everest.io** for an EVS volume.                                                |
-      +------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-      | volumeHandle                             | Volume ID of an EVS disk. Use the value of **spec.flexVolume.options.volumeID** of the FlexVolume PV.                                             |
-      +------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-      | everest.io/disk-mode                     | EVS disk mode. Use the value of **spec.flexVolume.options.disk-mode** of the FlexVolume PV.                                                       |
-      +------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-      | everest.io/disk-volume-type              | EVS disk type. Use the value of **kubernetes.io/volumetype** in the StorageClass corresponding to **spec.storageClassName** of the FlexVolume PV. |
-      +------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-      | storageClassName                         | Name of the Kubernetes StorageClass associated with a storage volume. Set this field to **csi-disk** for an EVS disk.                             |
-      +------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                                | Description                                                                                                                                            |
+      +==========================================+========================================================================================================================================================+
+      | failure-domain.beta.kubernetes.io/region | Region where an EVS disk is located. Use the same value as that of the FlexVolume PV.                                                                  |
+      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | failure-domain.beta.kubernetes.io/zone   | AZ where an EVS disk is located. Use the same value as that of the FlexVolume PV.                                                                      |
+      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | name                                     | Name of a PV, which must be unique in the cluster.                                                                                                     |
+      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | storage                                  | EVS volume capacity in the unit of Gi. Use the value of **spec.capacity.storage** of the FlexVolume PV.                                                |
+      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | driver                                   | Storage driver used to mount volumes. Set the driver to **disk.csi.everest.io** for an EVS volume.                                                     |
+      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | volumeHandle                             | Volume ID of an EVS disk. Use the value of **spec.flexVolume.options.volumeID** of the FlexVolume PV.                                                  |
+      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | everest.io/disk-mode                     | EVS disk mode. Use the value of **spec.flexVolume.options.disk-mode** of the FlexVolume PV.                                                            |
+      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | everest.io/disk-volume-type              | EVS disk type. Refer to the value of **kubernetes.io/volumetype** in the StorageClass corresponding to **spec.storageClassName** of the FlexVolume PV. |
+      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | storageClassName                         | Name of the Kubernetes StorageClass associated with a storage volume. Set this field to **csi-disk** for an EVS disk.                                  |
+      +------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    Configuration example of **a PV for an SFS volume**:
 
@@ -218,7 +218,7 @@ Procedure
       +----------------------------------+------------------------------------------------------------------------------------------------------------------------+
       | everest.io/share-export-location | Shared path of an SFS Turbo volume. Use the value of **spec.flexVolume.options.deviceMountPath** of the FlexVolume PV. |
       +----------------------------------+------------------------------------------------------------------------------------------------------------------------+
-      | volumeHandle                     | SFS Turbo volume ID. Use the value of **spec.flexVolume.options.volumeID** of the FlexVolume PV.                       |
+      | volumeHandle                     | SFS Turbo file system ID. Refer to the value of **spec.flexVolume.options.volumeID** of the FlexVolume PV.             |
       +----------------------------------+------------------------------------------------------------------------------------------------------------------------+
       | storageClassName                 | Name of a Kubernetes StorageClass. Set this field to **csi-sfsturbo** for an SFS Turbo volume.                         |
       +----------------------------------+------------------------------------------------------------------------------------------------------------------------+
@@ -435,7 +435,7 @@ Procedure
 
       .. note::
 
-         Replace the example file name in the commands with the names of the YAML files configured in :ref:`2 <cce_bestpractice_0107__li1219802032512>` and :ref:`3 <cce_bestpractice_0107__li1710710385418>`.
+         Replace the example file names in the commands with the names of the YAML files configured in :ref:`2 <cce_bestpractice_0107__li1219802032512>` and :ref:`3 <cce_bestpractice_0107__li1710710385418>`.
 
    b. Run the **kubectl edit** command to edit the StatefulSet and use the newly created PVC.
 
@@ -473,7 +473,7 @@ Procedure
 
       .. note::
 
-         Replace the example file name in the commands with the names of the YAML files configured in :ref:`2 <cce_bestpractice_0107__li1219802032512>` and :ref:`3 <cce_bestpractice_0107__li1710710385418>`.
+         Replace the example file names in the commands with the names of the YAML files configured in :ref:`2 <cce_bestpractice_0107__li1219802032512>` and :ref:`3 <cce_bestpractice_0107__li1710710385418>`.
 
    e. Change the number of pods back to the original value and wait until the pods are running.
 

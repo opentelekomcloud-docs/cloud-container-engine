@@ -525,7 +525,7 @@ The legacy version of containerd is incompatible with the tail version (>= 8.28)
 
 Change **tail -f** *xx* in the startup parameters to **sleep 2 && tail -f** *xx* and create a workload again.
 
-**Solution**
+**Permanent Solution**
 
 -  Upgrade the cluster to v1.25.16-r20, v1.27.16-r20, v1.28.15-r10, v1.29.10-r10, v1.30.6-r10, v1.31.4-r0, or later.
 -  Reset the node and use the Docker container runtime instead.
@@ -600,7 +600,7 @@ After a workload is created, it fails to start. The following error is displayed
    runtime.rt0_go(0x7ffcd751f9f8, 0x1, 0x7ffcd751f9f8, 0x0, 0x0, 0x1, 0x7ffcd7520b77, 0x0, 0x7ffcd7520b81, 0x7ffcd7520bc3, ...)
        /usr/lib/google-golang/src/runtime/asm_amd64.s:109 +0x132
 
-According to the error logs, the Go program crashes on startup because the runtime attempts to set **GOMAXPROCS** based on the visible CPU count and computes an invalid value due to integer overflow. This occurs when the container's visible CPU count exceeds 255 and the Go version is 1.9 or 1.10. The Go version in the image is 1.10.
+According to the error logs, the Go program crashed when it was started in the container because the runtime attempted to adjust the number of threads (**GOMAXPROCS**) and passed an invalid parameter. This issue is usually caused by container resource limitations or Go version compatibility issues. The Go program version in the image was checked and found to be 1.10.
 
 In Go 1.9 and 1.10, the runtime uses an 8-bit integer to store the CPU count, which overflows when more than 255 visible cores are present. The overflowed value is passed to the internal procresize function, causing the container to crash.
 

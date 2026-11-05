@@ -116,7 +116,7 @@ Restoring the Application to the Target Cluster
 
 When you migrate a pod with mounted storage volumes to CCE, differences in CSI and storage infrastructure between the source cluster and CCE may prevent the original storage volumes from being reused. As a result, the PV cannot be mounted to the pod after migration. To ensure successful storage adaptation, follow these guidelines:
 
--  For dynamically provisioned volumes using storage classes in the source cluster: Adapt the storage classes in the target CCE cluster to match the original configuration. During workload creation, CCE can automatically apply supported storage resources, abstracting differences in underlying storage interfaces. This adaptation must be completed before **restoring applications** in the **target cluster**. Otherwise, PV data may fail to restore. For details, see :ref:`Updating Storage Classes <cce_bestpractice_0312__section746195321414>`.
+-  For dynamically provisioned volumes using storage classes in the source cluster: Adapt the storage classes in the target CCE cluster to match the original configuration. During workload creation, CCE can automatically apply supported storage resources, abstracting differences in underlying storage interfaces. This adaptation must be completed before **restoring applications** in the **target cluster**. Otherwise, PV data may fail to restore. For details, see :ref:`Updating StorageClasses <cce_bestpractice_0312__section746195321414>`.
 -  For volumes created not using storage classes in the source cluster: Manually create PVs with the same names in the target cluster before migration and then use Velero to migrate the applications.
 
 In this example, the storage class name in the source cluster is **local** and the storage type is local disk. Local disk storage is tightly coupled with node availability, resulting in poor DR performance. When a node becomes unavailable, the associated storage data may be compromised or inaccessible. To address this limitation, EVS volumes are adopted as the storage resource. These volumes are backed by SAS disks.
@@ -144,7 +144,7 @@ In this example, the storage class name in the source cluster is **local** and t
    .. note::
 
       -  When you restore an application with PV data in to a CCE cluster, the associated storage class dynamically provisions and mounts storage resources, such as EVS disks, based on the PVC. This will incur certain storage charges.
-      -  The cluster's storage resource mapping is flexible and can be adjusted as needed, allowing for alternatives beyond EVS volumes. To mount other types of storage, such as file storage and object storage, add or change the storage class name. For details, see :ref:`Updating Storage Classes <cce_bestpractice_0312__section746195321414>`.
+      -  The cluster's storage resource mapping is flexible and can be adjusted as needed, allowing for alternatives beyond EVS volumes. To mount other types of storage, such as file storage and object storage, add or change the storage class name. For details, see :ref:`Updating StorageClasses <cce_bestpractice_0312__section746195321414>`.
 
 #. Apply the ConfigMap settings.
 

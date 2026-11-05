@@ -2,8 +2,8 @@
 
 .. _cce_bestpractice_00281:
 
-Using a Custom Storage Class
-============================
+Using a Custom StorageClass
+===========================
 
 Background
 ----------
@@ -32,21 +32,21 @@ To specify the EVS disk type, configure the **everest.io/disk-volume-type** fiel
 This configuration method may not work if you want to:
 
 -  Configure **storageClassName** only, which is simpler than specifying the EVS disk type by using **everest.io/disk-volume-type**.
--  Avoid modifying YAML files or Helm charts. Some users switch from self-built or other Kubernetes services to CCE and have written YAML files of many applications. In these YAML files, different types of storage resources are specified by different storage class names. When using CCE, they need to modify a large number of YAML files or Helm charts to use storage resources, which is labor-consuming and error-prone.
+-  Avoid modifying YAML files or Helm charts. Some users switch from self-built or other Kubernetes services to CCE and have written YAML files of many applications. In these YAML files, different types of storage resources are specified by different StorageClass names. When using CCE, they need to modify a large number of YAML files or Helm charts to use storage resources, which is labor-consuming and error-prone.
 -  Use the default **storageClassName** for all applications. In this way, you can create storage resources of the default type without needing to specify **storageClassName** in the YAML file.
 
 Solution
 --------
 
-This section describes how to configure a custom storage class and the default storage class. You can specify different types of storage resources by setting **storageClassName**.
+This section describes how to configure a custom StorageClass and the default StorageClass. You can specify different types of storage resources by setting **storageClassName**.
 
--  For the first scenario, you can define custom storage class names for SAS and SSD EVS disks. For example, define a storage class named **csi-disk-sas** for creating SAS disks. The figure below shows the differences before and after you use a custom storage class. When writing a YAML file, you only need to specify **storageClassName**. This meets the usage habits of specific users.
+-  For the first scenario, you can define custom StorageClass names for SAS and SSD EVS disks. For example, define a StorageClass named **csi-disk-sas** for creating SAS disks. The figure below shows the differences before and after you use a custom StorageClass. When writing a YAML file, you only need to specify **storageClassName**. This meets the usage habits of specific users.
 
    |image1|
 
--  For the second scenario, you can define a storage class with the same name as that in the existing YAML file without modifying **storageClassName** in the YAML file.
+-  For the second scenario, you can define a StorageClass with the same name as that in the existing YAML file without modifying **storageClassName** in the YAML file.
 
--  For the third scenario, you can set the default storage class as described below to create storage resources without specifying **storageClassName** in the YAML file.
+-  For the third scenario, you can set the default StorageClass as described below to create storage resources without specifying **storageClassName** in the YAML file.
 
    .. code-block::
 
@@ -202,17 +202,17 @@ Each StorageClass contains the default parameters used for dynamically creating 
    | Local PV        | volume-type                        | Yes             | Volume type. The value can only be **persistent**.                                                                                                                                                  |
    +-----------------+------------------------------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-Creating a Custom Storage Class
--------------------------------
+Creating a Custom StorageClass
+------------------------------
 
-You can customize a high I/O storage class in a YAML file. For example, **csi-disk-sas** indicates that the disk type is SAS (high I/O).
+You can customize a high I/O StorageClass in a YAML file. For example, **csi-disk-sas** indicates that the disk type is SAS (high I/O).
 
 .. code-block::
 
    apiVersion: storage.k8s.io/v1
    kind: StorageClass
    metadata:
-     name: csi-disk-sas                          # Name of the high I/O storage class. You can use another name.
+     name: csi-disk-sas                          # Name of the high I/O StorageClass. You can use another name.
    parameters:
      csi.storage.k8s.io/csi-driver-name: disk.csi.everest.io
      csi.storage.k8s.io/fstype: ext4
@@ -223,14 +223,14 @@ You can customize a high I/O storage class in a YAML file. For example, **csi-di
    volumeBindingMode: Immediate
    allowVolumeExpansion: true                    # true indicates that capacity expansion is allowed.
 
-For an ultra-high I/O storage class, you can set the class name to **csi-disk-ssd** to create SSD EVS disk (ultra-high I/O).
+For an ultra-high I/O StorageClass, you can set the StorageClass to **csi-disk-ssd** to create an SSD EVS disk (ultra-high I/O).
 
 .. code-block::
 
    apiVersion: storage.k8s.io/v1
    kind: StorageClass
    metadata:
-     name: csi-disk-ssd                       # Name of the ultra-high I/O storage class. You can use another name.
+     name: csi-disk-ssd                       # Name of the ultra-high I/O StorageClass. You can use another name.
    parameters:
      csi.storage.k8s.io/csi-driver-name: disk.csi.everest.io
      csi.storage.k8s.io/fstype: ext4
@@ -261,7 +261,7 @@ After the definition is complete, run the **kubectl create** commands to create 
    # kubectl create -f ssd.yaml
    storageclass.storage.k8s.io/csi-disk-ssd created
 
-Query the storage classes again. Two more types of storage classes are displayed in the command output, as shown below.
+Query the StorageClasses again. Two more types of StorageClasses are displayed in the command output, as shown below.
 
 .. code-block::
 
@@ -311,16 +311,16 @@ Other types of storage resources can be defined in the similar way. You can use 
       parameters:
         csi.storage.k8s.io/csi-driver-name: obs.csi.everest.io
         csi.storage.k8s.io/fstype: s3fs           # Object storage type. s3fs indicates an object bucket, and obsfs indicates a parallel file system.
-        everest.io/obs-volume-type: STANDARD      # Storage class of the OBS bucket
+        everest.io/obs-volume-type: STANDARD      # StorageClass of the OBS bucket
       reclaimPolicy: Delete
       volumeBindingMode: Immediate
 
-Specifying a Storage Class as the Default One
----------------------------------------------
+Specifying a StorageClass as the Default One
+--------------------------------------------
 
-You can specify a storage class as the default class. In this way, if you do not specify **storageClassName** when creating a PVC, the PVC is created using the default storage class.
+You can specify a StorageClass as the default class. In this way, if you do not specify **storageClassName** when creating a PVC, the PVC is created using the default StorageClass.
 
-For example, to specify **csi-disk-ssd** as the default storage class, edit your YAML file as follows:
+For example, to specify **csi-disk-ssd** as the default StorageClass, edit your YAML file as follows:
 
 .. code-block::
 
@@ -329,7 +329,7 @@ For example, to specify **csi-disk-ssd** as the default storage class, edit your
    metadata:
      name: csi-disk-ssd
      annotations:
-       storageclass.kubernetes.io/is-default-class: "true"   # Specifies the default storage class in a cluster. A cluster can have only one default storage class.
+       storageclass.kubernetes.io/is-default-class: "true"   # Specifies the default StorageClass in a cluster. A cluster can have only one default StorageClass.
    parameters:
      csi.storage.k8s.io/csi-driver-name: disk.csi.everest.io
      csi.storage.k8s.io/fstype: ext4
@@ -340,7 +340,7 @@ For example, to specify **csi-disk-ssd** as the default storage class, edit your
    volumeBindingMode: Immediate
    allowVolumeExpansion: true
 
-Delete the created **csi-disk-ssd** disk, run the **kubectl create** command to create a **csi-disk-ssd** disk again, and then query the storage class. The following information is displayed:
+Delete the created **csi-disk-ssd** disk, run the **kubectl create** command to create a **csi-disk-ssd** disk again, and then query the StorageClass. The following information is displayed:
 
 .. code-block::
 
@@ -363,12 +363,12 @@ Verification
 
 You can use either of the following methods to create a PVC:
 
--  Specify a storage class explicitly.
--  Use the default storage class in the cluster if you do not specify a storage class.
+-  Specify a StorageClass explicitly.
+-  Use the default StorageClass in the cluster if you do not specify a StorageClass.
 
 The steps to check the results of both methods are shown below.
 
-The steps are used to verify whether the storage class **csi-disk-sas** defined in "Creating a Custom Storage Class" can be used to create a PVC.
+The steps are used to verify whether the StorageClass **csi-disk-sas** defined in "Creating a Custom StorageClass" can be used to create a PVC.
 
 #. Create a YAML file named **sas-disk.yaml**. You can change the file name as needed. This file uses **csi-disk-sas** to create a PVC.
 
@@ -410,7 +410,7 @@ The steps are used to verify whether the storage class **csi-disk-sas** defined 
 
       kubectl get pvc
 
-   If information similar to the following is displayed, a PV has been associated with the PVC and the storage class is **csi-disk-sas**.
+   If information similar to the following is displayed, a PV has been associated with the PVC and the StorageClass is **csi-disk-sas**.
 
    .. code-block::
 
@@ -430,11 +430,11 @@ The steps are used to verify whether the storage class **csi-disk-sas** defined 
       NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM                     STORAGECLASS   REASON   AGE
       pvc-6e2f37f9-7346-4419-82f7-b42e79f7964c   10Gi       RWO            Delete           Bound       default/sas-disk          csi-disk-sas            30s
 
-   The result shows that the custom storage class **csi-disk-sas** can be used properly.
+   The result shows that the custom StorageClass **csi-disk-sas** can be used properly.
 
-The following steps are used to verify whether a PVC can be created without specifying a storage class.
+The following steps are used to verify whether a PVC can be created without specifying a StorageClass.
 
-#. Create a YAML file named **sas-disk.yaml**. You can change the file name as needed. When the file is used to create a PVC, no storage class is specified.
+#. Create a YAML file named **sas-disk.yaml**. You can change the file name as needed. When the file is used to create a PVC, no StorageClass is specified.
 
    .. code-block::
 
@@ -473,7 +473,7 @@ The following steps are used to verify whether a PVC can be created without spec
 
       kubectl get pvc
 
-   If information similar to the following is displayed, a PV has been bound to the PVC and the default storage class of the EVS disk is used.
+   If information similar to the following is displayed, a PV has been bound to the PVC and the default StorageClass of the EVS disk is used.
 
    .. code-block::
 
@@ -487,7 +487,7 @@ The following steps are used to verify whether a PVC can be created without spec
 
       kubectl get pv
 
-   If information similar to the following is displayed, the PV has been automatically created and the default storage class of the EVS disk is used.
+   If information similar to the following is displayed, the PV has been automatically created and the default StorageClass of the EVS disk is used.
 
    .. code-block::
 
@@ -495,6 +495,6 @@ The following steps are used to verify whether a PVC can be created without spec
       pvc-4d2b059c-0d6c-44af-9994-f74d01c78731   10Gi       RWO            Delete           Bound       default/ssd-disk          csi-disk-ssd            15s
       pvc-6e2f37f9-7346-4419-82f7-b42e79f7964c   10Gi       RWO            Delete           Bound       default/sas-disk          csi-disk-sas            17m
 
-   The result shows that if no storage class is specified, the system will automatically use the default storage class.
+   The result shows that if no StorageClass is specified, the system will automatically use the default StorageClass.
 
 .. |image1| image:: /_static/images/en-us_image_0000002631691690.png

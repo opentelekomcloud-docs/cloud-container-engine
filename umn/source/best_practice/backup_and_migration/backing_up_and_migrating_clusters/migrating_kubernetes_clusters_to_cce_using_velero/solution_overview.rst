@@ -100,7 +100,7 @@ The cluster migration process is as follows:
 
    -  :ref:`Updating Images <cce_bestpractice_0312__section7125750134820>`
    -  :ref:`Updating Services <cce_bestpractice_0312__section41282507482>`
-   -  :ref:`Updating Storage Classes <cce_bestpractice_0312__section746195321414>`
+   -  :ref:`Updating StorageClasses <cce_bestpractice_0312__section746195321414>`
    -  :ref:`Updating Databases <cce_bestpractice_0312__section728213614323>`
 
 #. **Perform additional tasks.**

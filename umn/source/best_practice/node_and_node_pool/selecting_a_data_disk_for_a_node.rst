@@ -21,7 +21,7 @@ When a node is created, a data disk is attached by default to its container runt
 Notes and Constraints
 ---------------------
 
--  Only clusters of v1.19 or later allow reducing the data disk space used by the container runtimes and kubelet on nodes.
+-  Only clusters v1.19 or later allow reducing the data disk space used by the container runtimes and kubelet on nodes.
 -  Only the EVS disk space can be adjusted. Local disk space cannot be adjusted. Local disks are available only when the node specification is **disk-intensive** or **Ultra-high I/O**.
 
 Selecting a Data Disk
@@ -62,7 +62,7 @@ dockersys volume space > The total actual image storage space x 2 + The total si
 
 Example:
 
-Assume that a node uses OverlayFS and the data disk space is 20 GiB. Based on :ref:`the calculation above <cce_bestpractice_10012__li14531528269>`, the container runtime storage and image storage consume 90% of the data disk space, and the dockersys volume occupies 18 GiB (20 GiB x 90%). During cluster creation, mandatory system add-ons may use around 2 GiB of the space. If you need to deploy a 10-GiB image .tar package, decompressing it will consume roughly 20 GiB of dockersys space. When combined with the space used by mandatory add-ons, this exceeds the remaining dockersys space, making the image pull likely to fail.
+Assume that a node uses OverlayFS and the data disk space is 20 GiB. Based on :ref:`the calculations above <cce_bestpractice_10012__li14531528269>`, the container runtime storage and image storage consume 90% of the data disk space, and the dockersys volume occupies 18 GiB (20 GiB x 90%). During cluster creation, mandatory system add-ons may use around 2 GiB of the space. If you need to deploy a 10-GiB image .tar package, decompressing it will consume roughly 20 GiB of dockersys space. When combined with the space used by mandatory add-ons, this exceeds the remaining dockersys space, making the image pull likely to fail.
 
 .. _cce_bestpractice_10012__section212373119234:
 

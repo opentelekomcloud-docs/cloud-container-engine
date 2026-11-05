@@ -75,8 +75,8 @@ kube-proxy is a key component in a Kubernetes cluster. It is responsible for loa
 CCE supports multiple service forwarding modes, each with its own advantages and disadvantages.
 
 -  nftables is a high-performance forwarding mode that eliminates iptables' performance bottlenecks and scalability limitations at scale. It provides a unified configuration framework for multi-protocol rule management. This option is only available in clusters v1.35 and later.
--  IPVS allows higher throughput and faster forwarding. It applies to scenarios involving large clusters or a large number of Services.
--  iptables is the traditional kube-proxy mode. It applies to scenario involving a small number of Services or a large number of short concurrent connections on clients. If there are more than 1,000 Services in a cluster, network delay may occur.
+-  IPVS allows higher throughput and faster forwarding. It applies to scenarios where the cluster scale is large or there are many Services.
+-  iptables is the traditional kube-proxy mode. It applies to scenario where there are not so many Services or there are many short concurrent connections on clients. If there are more than 1,000 Services in a cluster, network delay may occur.
 
 .. _cce_bestpractice_10017__section1129916578355:
 

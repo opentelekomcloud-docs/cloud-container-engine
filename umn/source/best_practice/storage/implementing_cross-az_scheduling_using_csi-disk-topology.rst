@@ -8,14 +8,14 @@ Implementing Cross-AZ Scheduling Using csi-disk-topology
 Background
 ----------
 
-An EVS disk cannot be attached to a node deployed in another AZ. For example, the EVS disk in AZ 1 cannot be attached to a node in AZ 2. If the storage class csi-disk is used for a StatefulSet, when the StatefulSet is scheduled, a PVC and a PV are created immediately (an EVS disk is created along with the PV), and then the PVC is bound to the PV. However, when some cluster nodes are located in multiple AZs, the EVS disk created by the PVC and the node to which the pods are scheduled may be in different AZs. As a result, the pods fail to be scheduled.
+An EVS disk cannot be attached to a node deployed in another AZ. For example, the EVS disk in AZ 1 cannot be attached to a node in AZ 2. If the StorageClass csi-disk is used for a StatefulSet, when the StatefulSet is scheduled, a PVC and a PV are created immediately (an EVS disk is created along with the PV), and then the PVC is bound to the PV. However, when some cluster nodes are located in multiple AZs, the EVS disk created by the PVC and the node to which the pods are scheduled may be in different AZs. As a result, the pods fail to be scheduled.
 
 |image1|
 
 Solution
 --------
 
-CCE provides a storage class named **csi-disk-topology**, which is a late-binding EVS disk type. When you use this storage class to create a PVC, no PV will be created in pace with the PVC. Instead, the PV is created in the AZ of the node where the pod will be scheduled. An EVS disk is then created in the same AZ to ensure that the EVS disk can be attached and the pod can be successfully scheduled.
+CCE provides a StorageClass named **csi-disk-topology**, which is a late-binding EVS disk type. When you use this StorageClass to create a PVC, no PV will be created in pace with the PVC. Instead, the PV is created in the AZ of the node where the pod will be scheduled. An EVS disk is then created in the same AZ to ensure that the EVS disk can be attached and the pod can be successfully scheduled.
 
 |image2|
 
@@ -123,10 +123,10 @@ Check the pod events. It is found that the scheduling fails because no node is a
 
 Check the AZ where the EVS disk created for the PVC is located. It is found that **data-nginx-3** is in AZ 1. In this case, the node in AZ 1 has no resources, and only the node in AZ 3 has CPUs. As a result, the scheduling fails. Therefore, there should be a delay between the creation of the PVC and the binding of the PV.
 
-Storage Class for Delayed Binding
----------------------------------
+StorageClass for Delayed Binding
+--------------------------------
 
-If you check the cluster storage class, you can see that the binding mode of csi-disk-topology is **WaitForFirstConsumer**, indicating that a PV is created and bound when a pod uses the PVC. That is, the PV and the underlying storage resources are created based on the pod information.
+If you check the cluster StorageClass, you can see that the binding mode of csi-disk-topology is **WaitForFirstConsumer**, indicating that a PV is created and bound when a pod uses the PVC. That is, the PV and the underlying storage resources are created based on the pod information.
 
 .. code-block::
 
