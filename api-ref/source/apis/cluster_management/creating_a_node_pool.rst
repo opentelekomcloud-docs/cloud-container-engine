@@ -166,6 +166,14 @@ Request
    +-----------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | extendParam     | No              | :ref:`extendParam <cce_02_0354__table153332427337>` object                        | Extended parameter. Format: Key-value pair.                                                                                                                                                                                                                                        |
    +-----------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | hostnameConfig  | No              | :ref:`HostnameConfig <cce_02_0354__table922461717399>`\  object                   | Details:                                                                                                                                                                                                                                                                           |
+   |                 |                 |                                                                                   |                                                                                                                                                                                                                                                                                    |
+   |                 |                 |                                                                                   | Kubernetes node name configuration parameter                                                                                                                                                                                                                                       |
+   |                 |                 |                                                                                   |                                                                                                                                                                                                                                                                                    |
+   |                 |                 |                                                                                   | Constraints:                                                                                                                                                                                                                                                                       |
+   |                 |                 |                                                                                   |                                                                                                                                                                                                                                                                                    |
+   |                 |                 |                                                                                   | The supported cluster version is v1.23.6-r0 to v1.25 or v1.25.2-r0 or later.                                                                                                                                                                                                       |
+   +-----------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | userTags        | No              | Object                                                                            | Tag of a VM.                                                                                                                                                                                                                                                                       |
    |                 |                 |                                                                                   |                                                                                                                                                                                                                                                                                    |
    |                 |                 |                                                                                   | The format is key-value pair. The number of key-value pairs cannot exceed 20.                                                                                                                                                                                                      |
@@ -636,6 +644,33 @@ Request
    | lvType    | Yes       | String | LVM write mode. **linear** indicates the linear mode. **striped** indicates the striped mode, in which multiple disks are used to form a strip to improve disk performance. |
    +-----------+-----------+--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+.. _cce_02_0354__table922461717399:
+
+.. table:: **Table 26** HostnameConfig
+
+   +-----------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter       | Mandatory       | Type            | Description                                                                                                                                                                                                                                                        |
+   +=================+=================+=================+====================================================================================================================================================================================================================================================================+
+   | type            | Yes             | String          | Details:                                                                                                                                                                                                                                                           |
+   |                 |                 |                 |                                                                                                                                                                                                                                                                    |
+   |                 |                 |                 | Configuration type of the Kubernetes node name. The default value is privateIp.                                                                                                                                                                                    |
+   |                 |                 |                 |                                                                                                                                                                                                                                                                    |
+   |                 |                 |                 | Constraints:                                                                                                                                                                                                                                                       |
+   |                 |                 |                 |                                                                                                                                                                                                                                                                    |
+   |                 |                 |                 | -  The node names, Kubernetes node names, and VM names of the nodes configured with cceNodeName are the same. Node names cannot be changed. Once a VM name is altered on the ECS console, the node name cannot be modified accordingly during ECS synchronization. |
+   |                 |                 |                 |                                                                                                                                                                                                                                                                    |
+   |                 |                 |                 | -  To prevent conflicts between Kubernetes node names, a suffix is automatically added to the node name of a node configured with cceNodeName. The suffix consists of a hyphen (-) followed by five random lowercase letters and digits (0 to 9).                  |
+   |                 |                 |                 |                                                                                                                                                                                                                                                                    |
+   |                 |                 |                 | Options:                                                                                                                                                                                                                                                           |
+   |                 |                 |                 |                                                                                                                                                                                                                                                                    |
+   |                 |                 |                 | -  privateIp: Use the private node IP address as the Kubernetes node name.                                                                                                                                                                                         |
+   |                 |                 |                 | -  cceNodeName: Use the CCE node name as the Kubernetes node name.                                                                                                                                                                                                 |
+   |                 |                 |                 |                                                                                                                                                                                                                                                                    |
+   |                 |                 |                 | Default value:                                                                                                                                                                                                                                                     |
+   |                 |                 |                 |                                                                                                                                                                                                                                                                    |
+   |                 |                 |                 | privateIp                                                                                                                                                                                                                                                          |
+   +-----------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
 **Example Request**
 
 CCE cluster:
@@ -769,11 +804,11 @@ Response
 
 **Response parameters:**
 
-:ref:`Table 26 <cce_02_0354__table835415466262>` describes the response parameters.
+:ref:`Table 27 <cce_02_0354__table835415466262>` describes the response parameters.
 
 .. _cce_02_0354__table835415466262:
 
-.. table:: **Table 26** Response parameters
+.. table:: **Table 27** Response parameters
 
    +------------+------------------------------------------------------------+-----------------------------------------------+
    | Parameter  | Type                                                       | Description                                   |
@@ -791,7 +826,7 @@ Response
 
 .. _cce_02_0354__table173551146152616:
 
-.. table:: **Table 27** Data structure of the metadata field
+.. table:: **Table 28** Data structure of the metadata field
 
    ========= ====== ======================
    Parameter Type   Description
@@ -802,7 +837,7 @@ Response
 
 .. _cce_02_0354__table1735515465260:
 
-.. table:: **Table 28** Data structure of the spec field
+.. table:: **Table 29** Data structure of the spec field
 
    +-----------------------+----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
    | Parameter             | Type                                                                       | Description                                                                                                                     |
@@ -828,7 +863,7 @@ Response
 
 .. _cce_02_0354__table14356154632610:
 
-.. table:: **Table 29** Data structure of the autoscaling field
+.. table:: **Table 30** Data structure of the autoscaling field
 
    +-----------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Parameter             | Type                  | Description                                                                                                                                                                                                        |
@@ -854,7 +889,7 @@ Response
 
 .. _cce_02_0354__table1778609171919:
 
-.. table:: **Table 30** Data structure of the nodeManagement field
+.. table:: **Table 31** Data structure of the nodeManagement field
 
    +----------------------+--------+-------------------------------------------------------------------------------------------------------------+
    | Parameter            | Type   | Description                                                                                                 |
@@ -864,7 +899,7 @@ Response
 
 .. _cce_02_0354__table19851129411:
 
-.. table:: **Table 31** Data structure of the status field
+.. table:: **Table 32** Data structure of the status field
 
    +-----------------------+-----------------------+---------------------------------------------------------------+
    | Parameter             | Type                  | Description                                                   |
@@ -900,7 +935,7 @@ Response
 
 .. _cce_02_0354__table144371538183815:
 
-.. table:: **Table 32** SecurityID
+.. table:: **Table 33** SecurityID
 
    ========= ====== =============================================
    Parameter Type   Description
@@ -1126,11 +1161,11 @@ CCE Turbo cluster:
 Status Code
 -----------
 
-:ref:`Table 33 <cce_02_0354__zh-cn_topic_0079614900_table46761928>` describes the status code of this API.
+:ref:`Table 34 <cce_02_0354__zh-cn_topic_0079614900_table46761928>` describes the status code of this API.
 
 .. _cce_02_0354__zh-cn_topic_0079614900_table46761928:
 
-.. table:: **Table 33** Status code
+.. table:: **Table 34** Status code
 
    +-------------+------------------------------------------------------------------------------------+
    | Status Code | Description                                                                        |
